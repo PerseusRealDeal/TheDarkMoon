@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XdO-8w-GAc">
-                    <rect key="frame" x="72" y="33" width="181" height="24"/>
+                    <rect key="frame" x="68" y="33" width="189" height="24"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Location Name Label" id="W3Q-Ei-Qtg">
                         <font key="font" metaFont="system" size="20"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -31,7 +31,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3WQ-1R-kmJ">
-                    <rect key="frame" x="73" y="68" width="43" height="17"/>
+                    <rect key="frame" x="73" y="69" width="43" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Status" id="oBr-sx-wHs">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -39,7 +39,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kTd-g8-roX">
-                    <rect key="frame" x="0.0" y="7" width="122" height="17"/>
+                    <rect key="frame" x="0.0" y="7" width="122" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Latitude, Longitude" id="qc4-GJ-hVX">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -47,7 +47,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dzE-ai-CbN">
-                    <rect key="frame" x="164" y="-2" width="167" height="32"/>
+                    <rect key="frame" x="170" y="-2" width="162" height="32"/>
                     <buttonCell key="cell" type="push" title="Get Current Location" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dNz-Wm-Pow">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -57,7 +57,7 @@
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Bi-kF-QOm">
-                    <rect key="frame" x="0.0" y="68" width="75" height="17"/>
+                    <rect key="frame" x="0.0" y="69" width="75" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Permission:" id="nlB-9i-IAi">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

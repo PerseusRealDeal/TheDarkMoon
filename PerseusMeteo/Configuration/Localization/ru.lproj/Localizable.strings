@@ -15,25 +15,26 @@
 
 "Product Name" = "Cнеговик";
 "Greetings" = "Рады приветствовать!";
+"DeveloperRelease" = "Выпуск разработчика, для ознакомления";
 
 "Default: N/A" = "нет";
 
 /* Popover Screen – PopoverViewController */
 
-"Button: Call Weather" = "Запроси Погоду";
-"Button: Call Forecast" = "Запроси Прогноз";
+"Button: Call Weather" = "Запросить Погоду";
+"Button: Call Forecast" = "Запросить Прогноз";
 
 "Label: Made with Love" = "C любовью из Новосибирска.";
 
 "Tab: Current Weather" = "Наблюдение";
 "Tab: Forecast" = "Прогноз";
 
-"Button: Quit" = "Выйди";
+"Button: Quit" = "Завершить";
 
 "Button: About" = "Себяшка";
 "Button: Options" = "Настройки";
 
-"Button: Hide" = "Скройся";
+"Button: Hide" = "Скрыться";
 
 /* Location View */
 
@@ -45,12 +46,12 @@
 "GeoAccess: .deniedForAllApps" = "Заблокирован для всех";
 "GeoAccess: .deniedForTheApp" = "Заблокирован";
 "GeoAccess: .allowed" = "Предоставлен";
+"GeoAccess: .notAllowed" = "Запрещено";
 
 "Geo Couple" = "Широта, Долгота";
 
-"Button: Allow Geo..." = "Спроси Разрешение";
-"Button: Go to Settings..." = "Системные Настройки";
-"Button: Refresh Current Location" = "Обнови Геолокацию";
+"Button: Update Geo Access" = "Обновить Геодоступ";
+"Button: Refresh Current Location" = "Обновить Геолокацию";
 
 /* Current Weather View */
 
@@ -113,7 +114,7 @@
 
 /* Options Screen – OptionsWindowController, OptionsViewController */
 
-"Title: Options Screen" = "Изделие";
+"Title: Options Screen" = "Настройки Изделия";
 
 "Section: App Options" = "Настройки Изделия";
 
@@ -155,7 +156,7 @@
 "Unit: Kilometre long" = "Километры";
 "Unit: Mile long" = "Мили";
 
-"Button: Close" = "Исчезни";
+"Button: Close" = "Исчезнуть";
 
 /* Compass Directions */
 
@@ -203,8 +204,8 @@
 
 /* About Screen – AboutWindowController, AboutViewController */
 
-"Button: The App Source Code" = "Исходники Изделия";
-"Button: The Technological Tree" = "Лукоморья Дуб Зелёный";
+"Button: The App Source Code" = "Исходники изделия";
+"Button: The Technological Tree" = "Лукоморья дуб зелёный";
 
 "Label: The App Version" = "Выпуск";
 

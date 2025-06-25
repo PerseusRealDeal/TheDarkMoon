@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="qVI-uV-xDV">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="qVI-uV-xDV">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,7 +13,7 @@
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="Az4-Bv-Rv1">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES"/>
-                        <rect key="contentRect" x="150" y="0.0" width="350" height="400"/>
+                        <rect key="contentRect" x="150" y="0.0" width="400" height="400"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
                         <connections>
                             <outlet property="delegate" destination="qVI-uV-xDV" id="HDD-Dy-nt4"/>
@@ -32,13 +32,13 @@
             <objects>
                 <viewController id="RC6-y6-TVr" customClass="AboutViewController" customModule="Snowman" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="afq-ju-bEo">
-                        <rect key="frame" x="0.0" y="0.0" width="350" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KfQ-oh-9OF">
-                                <rect key="frame" x="257" y="3" width="89" height="32"/>
+                                <rect key="frame" x="3" y="3" width="125" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="77" id="eRZ-t7-jcP"/>
+                                    <constraint firstAttribute="width" constant="111" id="eRZ-t7-jcP"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="ghO-su-a11">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -57,7 +57,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="Icon" id="CtV-0o-ara"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Myv-QZ-CwF">
-                                <rect key="frame" x="105" y="314" width="193" height="36"/>
+                                <rect key="frame" x="105" y="315" width="198" height="35"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" title="The App Name" usesSingleLineMode="YES" id="GjZ-JN-4E7">
                                     <font key="font" metaFont="system" size="30"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -65,7 +65,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uFb-Y8-30I">
-                                <rect key="frame" x="105" y="287" width="50" height="17"/>
+                                <rect key="frame" x="105" y="289" width="50" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" title="Version" usesSingleLineMode="YES" id="Cru-PW-P6U">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -73,7 +73,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jeR-wo-BeJ">
-                                <rect key="frame" x="156" y="287" width="53" height="17"/>
+                                <rect key="frame" x="156" y="289" width="53" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" title="Number" usesSingleLineMode="YES" id="qWm-FG-zTf">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -81,17 +81,17 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView appearanceType="darkAqua" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="Y46-p1-bJq">
-                                <rect key="frame" x="20" y="238" width="310" height="35"/>
+                                <rect key="frame" x="20" y="238" width="360" height="35"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="5t6-dm-4gR">
-                                    <rect key="frame" x="0.0" y="0.0" width="310" height="35"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="360" height="35"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" id="H1o-hz-CwQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="35"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="360" height="35"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <size key="minSize" width="310" height="35"/>
-                                            <size key="maxSize" width="310" height="10000000"/>
+                                            <size key="minSize" width="360" height="35"/>
+                                            <size key="maxSize" width="360" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment content="Copyright">
                                                     <attributes>
@@ -107,27 +107,27 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="uaM-x3-eXc"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="E9o-0p-Vjh">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="E9o-0p-Vjh">
                                     <rect key="frame" x="-100" y="-100" width="310" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="7tT-8b-NXu">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="7tT-8b-NXu">
                                     <rect key="frame" x="-100" y="-100" width="16" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <scrollView appearanceType="darkAqua" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="0lx-Tu-Mzg">
-                                <rect key="frame" x="10" y="196" width="330" height="37"/>
+                                <rect key="frame" x="20" y="196" width="360" height="37"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Exh-JN-cz9">
-                                    <rect key="frame" x="0.0" y="0.0" width="330" height="37"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="360" height="37"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" id="8sx-8U-nLg">
-                                            <rect key="frame" x="0.0" y="0.0" width="330" height="37"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="360" height="37"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <size key="minSize" width="330" height="37"/>
-                                            <size key="maxSize" width="330" height="10000000"/>
+                                            <size key="minSize" width="360" height="37"/>
+                                            <size key="maxSize" width="380" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment content="Copyright details">
                                                     <attributes>
@@ -143,27 +143,27 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="9vk-R6-bDz"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="7OP-uJ-e7r">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="7OP-uJ-e7r">
                                     <rect key="frame" x="-100" y="-100" width="330" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="xxp-wE-jnZ">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="xxp-wE-jnZ">
                                     <rect key="frame" x="-100" y="-100" width="16" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owj-au-EYB">
-                                <rect key="frame" x="10" y="121" width="330" height="70"/>
+                                <rect key="frame" x="20" y="121" width="360" height="70"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="5gg-B9-bRb">
-                                    <rect key="frame" x="0.0" y="0.0" width="330" height="70"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="360" height="70"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Z1x-HX-wOa">
-                                            <rect key="frame" x="0.0" y="0.0" width="330" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="360" height="70"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <size key="minSize" width="330" height="70"/>
-                                            <size key="maxSize" width="330" height="10000000"/>
+                                            <size key="minSize" width="360" height="70"/>
+                                            <size key="maxSize" width="380" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment content="Credits">
                                                     <attributes>
@@ -179,17 +179,17 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="GBs-ke-kCD"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="PGy-pL-Kbn">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="PGy-pL-Kbn">
                                     <rect key="frame" x="-100" y="-100" width="330" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="P06-By-x6T">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="P06-By-x6T">
                                     <rect key="frame" x="314" y="0.0" width="16" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9nh-HF-Ybk">
-                                <rect key="frame" x="218" y="378" width="127" height="17"/>
+                                <rect key="frame" x="260" y="372" width="130" height="18"/>
                                 <buttonCell key="cell" type="inline" title="The App Source Code" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="TGM-Mg-Uqp">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -199,7 +199,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TId-fu-fJV">
-                                <rect key="frame" x="211" y="353" width="134" height="17"/>
+                                <rect key="frame" x="252" y="347" width="138" height="18"/>
                                 <buttonCell key="cell" type="inline" title="The Technological Tree" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="5oU-yZ-dYk">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -208,18 +208,8 @@
                                     <action selector="buttonTheTechnologicalTreeTapped:" target="RC6-y6-TVr" id="k5H-Uh-3Cs"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zAV-1R-ssA">
-                                <rect key="frame" x="4" y="3" width="87" height="32"/>
-                                <buttonCell key="cell" type="push" title="License" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="YDY-N6-9Nh">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="buttonLicenseTapped:" target="RC6-y6-TVr" id="53x-Vs-dD3"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ra0-L8-EK7">
-                                <rect key="frame" x="89" y="3" width="159" height="32"/>
+                                <rect key="frame" x="165" y="3" width="154" height="32"/>
                                 <buttonCell key="cell" type="push" title="Terms &amp; Conditions" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="Y34-C8-c2v">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -229,9 +219,9 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r29-7J-ObJ">
-                                <rect key="frame" x="8" y="97" width="115" height="17"/>
+                                <rect key="frame" x="60" y="96" width="115" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="inline" title="Perseus Dark Mode" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="vwj-51-hAx">
+                                <buttonCell key="cell" type="inline" title="PerseusDarkMode" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="vwj-51-hAx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
@@ -240,9 +230,9 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tjb-8m-XI0">
-                                <rect key="frame" x="188" y="99" width="157" height="17"/>
+                                <rect key="frame" x="233" y="96" width="157" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="inline" title="Perseus Compass Direction" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="du1-RA-z7r">
+                                <buttonCell key="cell" type="inline" title="PerseusCompassDirection" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="du1-RA-z7r">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
@@ -250,32 +240,10 @@
                                     <action selector="buttonPerseusCompassDirectionTapped:" target="RC6-y6-TVr" id="vjN-Ee-viJ"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Ly-vU-eF6">
-                                <rect key="frame" x="9" y="41" width="144" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="inline" title="Perseus Geo Location Kit" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="bHc-yf-Mwl">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="buttonPerseusGeoLocationKitTapped:" target="RC6-y6-TVr" id="OBz-si-QN2"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MSZ-Pb-C95">
-                                <rect key="frame" x="161" y="78" width="128" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="inline" title="Perseus UI System Kit" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="gC9-Mv-T4O">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="buttonPerseusUISystemKitTapped:" target="RC6-y6-TVr" id="Yrv-R7-L5W"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D4L-Og-gHI">
-                                <rect key="frame" x="204" y="57" width="124" height="17"/>
+                                <rect key="frame" x="271" y="60" width="124" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="inline" title="Perseus Time Format" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="xmc-tG-2dA">
+                                <buttonCell key="cell" type="inline" title="PerseusTimeFormat" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="xmc-tG-2dA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
@@ -284,9 +252,9 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bqi-Xx-TmO">
-                                <rect key="frame" x="27" y="65" width="118" height="17"/>
+                                <rect key="frame" x="77" y="47" width="118" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="inline" title="OpenWeather Client" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="1FH-Dq-Thb">
+                                <buttonCell key="cell" type="inline" title="OpenWeatherAgent" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="1FH-Dq-Thb">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
@@ -295,9 +263,9 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHT-o1-kJV">
-                                <rect key="frame" x="174" y="36" width="94" height="17"/>
+                                <rect key="frame" x="7" y="70" width="94" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="inline" title="Perseus Logger" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="asF-lO-WJW">
+                                <buttonCell key="cell" type="inline" title="PerseusLogger" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="asF-lO-WJW">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
@@ -305,46 +273,78 @@
                                     <action selector="buttonPerseusLoggerTapped:" target="RC6-y6-TVr" id="Ics-0a-ir6"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Ly-vU-eF6">
+                                <rect key="frame" x="144" y="74" width="120" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="inline" title="PerseusGeoKit" bezelStyle="inline" alignment="center" borderStyle="border" inset="2" id="bHc-yf-Mwl">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="buttonPerseusGeoLocationKitTapped:" target="RC6-y6-TVr" id="OBz-si-QN2"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zAV-1R-ssA">
+                                <rect key="frame" x="315" y="3" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="License" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="YDY-N6-9Nh">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="buttonLicenseTapped:" target="RC6-y6-TVr" id="53x-Vs-dD3"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fWC-VV-W1J">
+                                <rect key="frame" x="204" y="34" width="155" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="inline" title="ConsolePerseusLogger" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gtY-OO-p3e">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystemBold"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="buttonConsolePerseusLoggerTapped:" target="RC6-y6-TVr" id="9nL-wm-Spp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="TId-fu-fJV" firstAttribute="top" secondItem="afq-ju-bEo" secondAttribute="top" constant="30" id="15Z-nf-QdZ"/>
-                            <constraint firstAttribute="trailing" secondItem="9nh-HF-Ybk" secondAttribute="trailing" constant="5" id="3KW-0O-45z"/>
-                            <constraint firstAttribute="trailing" secondItem="owj-au-EYB" secondAttribute="trailing" constant="10" id="4rr-ug-FUf"/>
-                            <constraint firstAttribute="trailing" secondItem="TId-fu-fJV" secondAttribute="trailing" constant="5" id="5Pd-0m-Pli"/>
+                            <constraint firstItem="TId-fu-fJV" firstAttribute="top" secondItem="afq-ju-bEo" secondAttribute="top" constant="35" id="15Z-nf-QdZ"/>
+                            <constraint firstAttribute="trailing" secondItem="zAV-1R-ssA" secondAttribute="trailing" constant="10" id="1Yc-0j-z64"/>
+                            <constraint firstAttribute="bottom" secondItem="zAV-1R-ssA" secondAttribute="bottom" constant="10" id="2C2-fx-2yZ"/>
+                            <constraint firstAttribute="trailing" secondItem="9nh-HF-Ybk" secondAttribute="trailing" constant="10" id="3KW-0O-45z"/>
+                            <constraint firstAttribute="trailing" secondItem="owj-au-EYB" secondAttribute="trailing" constant="20" id="4rr-ug-FUf"/>
+                            <constraint firstAttribute="trailing" secondItem="TId-fu-fJV" secondAttribute="trailing" constant="10" id="5Pd-0m-Pli"/>
                             <constraint firstAttribute="trailing" secondItem="Y46-p1-bJq" secondAttribute="trailing" constant="20" id="5Zh-Vz-iAw"/>
-                            <constraint firstItem="owj-au-EYB" firstAttribute="leading" secondItem="afq-ju-bEo" secondAttribute="leading" constant="10" id="AGa-Kd-1zx"/>
+                            <constraint firstItem="owj-au-EYB" firstAttribute="leading" secondItem="afq-ju-bEo" secondAttribute="leading" constant="20" id="AGa-Kd-1zx"/>
                             <constraint firstItem="Zv8-fK-Jre" firstAttribute="leading" secondItem="afq-ju-bEo" secondAttribute="leading" constant="20" id="Bnf-bq-BLV"/>
                             <constraint firstItem="Zv8-fK-Jre" firstAttribute="top" secondItem="afq-ju-bEo" secondAttribute="top" constant="40" id="C1q-Yb-mBi"/>
-                            <constraint firstAttribute="bottom" secondItem="zAV-1R-ssA" secondAttribute="bottom" constant="10" id="IY0-dq-KP2"/>
+                            <constraint firstItem="KfQ-oh-9OF" firstAttribute="leading" secondItem="afq-ju-bEo" secondAttribute="leading" constant="10" id="HsO-yk-DQI"/>
                             <constraint firstItem="Myv-QZ-CwF" firstAttribute="leading" secondItem="Zv8-fK-Jre" secondAttribute="trailing" constant="10" id="IoB-hU-p91"/>
                             <constraint firstItem="0lx-Tu-Mzg" firstAttribute="top" secondItem="H1o-hz-CwQ" secondAttribute="bottom" constant="5" id="KmL-9a-bZr"/>
-                            <constraint firstAttribute="trailing" secondItem="KfQ-oh-9OF" secondAttribute="trailing" constant="10" id="LbQ-VJ-hdV"/>
                             <constraint firstItem="uFb-Y8-30I" firstAttribute="top" secondItem="Myv-QZ-CwF" secondAttribute="bottom" constant="10" id="M9J-BP-eLz"/>
                             <constraint firstItem="Myv-QZ-CwF" firstAttribute="top" secondItem="afq-ju-bEo" secondAttribute="top" constant="50" id="Mvq-rw-gB2"/>
                             <constraint firstItem="owj-au-EYB" firstAttribute="top" secondItem="0lx-Tu-Mzg" secondAttribute="bottom" constant="5" id="SvZ-DZ-Yrg"/>
                             <constraint firstItem="uFb-Y8-30I" firstAttribute="leading" secondItem="Myv-QZ-CwF" secondAttribute="leading" id="Uko-iB-a0Z"/>
-                            <constraint firstItem="0lx-Tu-Mzg" firstAttribute="leading" secondItem="afq-ju-bEo" secondAttribute="leading" constant="10" id="aLB-SN-87R"/>
+                            <constraint firstItem="0lx-Tu-Mzg" firstAttribute="leading" secondItem="afq-ju-bEo" secondAttribute="leading" constant="20" id="aLB-SN-87R"/>
                             <constraint firstItem="jeR-wo-BeJ" firstAttribute="centerY" secondItem="uFb-Y8-30I" secondAttribute="centerY" id="cAb-c1-BvO"/>
-                            <constraint firstAttribute="trailing" secondItem="0lx-Tu-Mzg" secondAttribute="trailing" constant="10" id="d8r-2h-8TM"/>
-                            <constraint firstAttribute="bottom" secondItem="KfQ-oh-9OF" secondAttribute="bottom" constant="10" id="dRu-qN-jMs"/>
-                            <constraint firstItem="zAV-1R-ssA" firstAttribute="leading" secondItem="afq-ju-bEo" secondAttribute="leading" constant="10" id="kKO-9E-cTi"/>
+                            <constraint firstItem="KfQ-oh-9OF" firstAttribute="centerY" secondItem="ra0-L8-EK7" secondAttribute="centerY" id="cd6-UF-eQ5"/>
+                            <constraint firstAttribute="trailing" secondItem="0lx-Tu-Mzg" secondAttribute="trailing" constant="20" id="d8r-2h-8TM"/>
+                            <constraint firstItem="zAV-1R-ssA" firstAttribute="leading" secondItem="ra0-L8-EK7" secondAttribute="trailing" constant="10" id="hlQ-kV-zR9"/>
+                            <constraint firstItem="ra0-L8-EK7" firstAttribute="centerY" secondItem="zAV-1R-ssA" secondAttribute="centerY" id="kP6-kd-L1u"/>
                             <constraint firstItem="Y46-p1-bJq" firstAttribute="leading" secondItem="afq-ju-bEo" secondAttribute="leading" constant="20" id="oez-AP-eXH"/>
-                            <constraint firstAttribute="bottom" secondItem="ra0-L8-EK7" secondAttribute="bottom" constant="10" id="qKi-mj-uVO"/>
-                            <constraint firstItem="ra0-L8-EK7" firstAttribute="leading" secondItem="zAV-1R-ssA" secondAttribute="trailing" constant="10" id="rLL-Kn-rmR"/>
-                            <constraint firstItem="9nh-HF-Ybk" firstAttribute="top" secondItem="afq-ju-bEo" secondAttribute="top" constant="5" id="wVb-4P-GPj"/>
+                            <constraint firstItem="9nh-HF-Ybk" firstAttribute="top" secondItem="afq-ju-bEo" secondAttribute="top" constant="10" id="wVb-4P-GPj"/>
                             <constraint firstItem="Y46-p1-bJq" firstAttribute="top" secondItem="Zv8-fK-Jre" secondAttribute="bottom" constant="10" id="wwX-Mx-pCX"/>
                             <constraint firstItem="jeR-wo-BeJ" firstAttribute="leading" secondItem="uFb-Y8-30I" secondAttribute="trailing" constant="5" id="yfC-eB-cQI"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="buttonClose" destination="KfQ-oh-9OF" id="ToA-cR-xVJ"/>
+                        <outlet property="buttonConsolePerseusLogger" destination="fWC-VV-W1J" id="6bk-vr-Bxo"/>
                         <outlet property="buttonLicense" destination="zAV-1R-ssA" id="b34-HC-zkA"/>
                         <outlet property="buttonPerseusCompassDirection" destination="Tjb-8m-XI0" id="2dJ-Su-gDc"/>
                         <outlet property="buttonPerseusDarkMode" destination="r29-7J-ObJ" id="ETf-hC-xLl"/>
                         <outlet property="buttonPerseusGeoLocationKit" destination="2Ly-vU-eF6" id="Io7-pv-EvR"/>
                         <outlet property="buttonPerseusLogger" destination="PHT-o1-kJV" id="SUe-53-zUx"/>
                         <outlet property="buttonPerseusTimeFormat" destination="D4L-Og-gHI" id="wbC-Dc-u8J"/>
-                        <outlet property="buttonPerseusUISystemKit" destination="MSZ-Pb-C95" id="S9L-iK-dNy"/>
                         <outlet property="buttonTerms" destination="ra0-L8-EK7" id="cxe-LG-npK"/>
                         <outlet property="buttonTheAppSourceCode" destination="9nh-HF-Ybk" id="rfj-lT-9oH"/>
                         <outlet property="buttonTheOpenWeatherClient" destination="bqi-Xx-TmO" id="3EZ-oe-H2b"/>

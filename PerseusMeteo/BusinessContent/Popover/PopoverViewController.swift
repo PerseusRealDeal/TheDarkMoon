@@ -30,14 +30,31 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
     // MARK: - Internals
 
-    private let darkModeObserver = DarkModeObserver()
-
     private let tabCurrentWeatherID = "CurrentWeather"
     private let tabForecastID = "Forecast"
+
+    // MARK: - Storyboard Instance
+
+    public class func storyboardInstance() -> PopoverViewController {
+        log.message("[\(type(of: self))].\(#function)")
+
+        let sb = NSStoryboard(name: String(describing: self), bundle: nil)
+
+        guard let screen = sb.instantiateInitialController() as? PopoverViewController else {
+            let text = "[\(type(of: self))].\(#function)"
+            log.message(text, .error)
+            fatalError(text)
+        }
+
+        // Do default setup; don't set any parameter causing loadWindow up, breaks unit tests.
+
+        return screen
+    }
 
     // MARK: - Outlets
 
     @IBOutlet private(set) weak var buttonQuit: NSButton!
+    @IBOutlet private(set) weak var labelGreeting: NSTextField!
 
     @IBOutlet private(set) weak var viewLocation: LocationView!
     @IBOutlet private(set) weak var viewCurrentWeather: WeatherView!
@@ -57,59 +74,47 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     // MARK: - Actions
 
     @IBAction func quitButtonTapped(_ sender: NSButton) {
-
-        log.message("[\(type(of: self))].\(#function)")
-
         // AppOptions.removeAll()
         AppGlobals.quitTheApp()
     }
 
     @IBAction func fetchMeteoFactsButtonTapped(_ sender: NSButton) {
-
         log.message("[\(type(of: self))].\(#function)")
-
         if
             let tabSelected = viewTabs.selectedTabViewItem,
             let tabId = tabSelected.identifier as? String {
 
             if tabId == tabCurrentWeatherID {
-                globals.statusMenusButtonPresenter.callCurrentWeather(sender)
+                statusMenusButtonPresenter.callCurrentWeather(sender)
             } else if tabId == tabForecastID {
-                globals.statusMenusButtonPresenter.callForecast(sender)
+                statusMenusButtonPresenter.callForecast(sender)
             }
         }
     }
 
     @IBAction func aboutButtonTapped(_ sender: NSButton) {
-
         log.message("[\(type(of: self))].\(#function)")
-
-        globals.statusMenusButtonPresenter.screenAbout.showWindow(sender)
+        statusMenusButtonPresenter.screenAbout.showWindow(sender)
     }
 
     @IBAction func optionsButtonTapped(_ sender: NSButton) {
-
         log.message("[\(type(of: self))].\(#function)")
-
-        globals.statusMenusButtonPresenter.screenOptions.showWindow(sender)
+        statusMenusButtonPresenter.screenOptions.showWindow(sender)
     }
 
     @IBAction func hideAppScreensButtonTapped(_ sender: NSButton) {
-
         log.message("[\(type(of: self))].\(#function)")
 
-        guard let popover = globals.statusMenusButtonPresenter.popover else { return }
+        guard let popover = statusMenusButtonPresenter.popover else { return }
 
-        // globals.statusMenusButtonPresenter.screenAbout.close()
-        // globals.statusMenusButtonPresenter.screenOptions.close()
+        statusMenusButtonPresenter.screenAbout.close()
+        statusMenusButtonPresenter.screenOptions.close()
 
         popover.performClose(sender)
     }
 
     public func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
-
         log.message("[\(type(of: self))].\(#function)")
-
         actualizeCallingSection()
     }
 
@@ -117,13 +122,11 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
     public override func awakeFromNib() {
         super.awakeFromNib()
-
         log.message("[\(type(of: self))].\(#function)")
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-
         log.message("[\(type(of: self))].\(#function)")
 
         // Setup content size.
@@ -139,9 +142,9 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
         viewTabs.delegate = self
 
-        // Dark Mode.
+        // Connect to Dark Mode
 
-        darkModeObserver.action = { _ in self.makeup() }
+        DarkModeAgent.register(stakeholder: self, selector: #selector(makeUp))
 
         // Localization, option changed event.
 
@@ -159,7 +162,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
         // Appearance.
 
-        makeup()
+        makeUp()
         localize()
 
         // Forecast items selected by default.
@@ -173,11 +176,9 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     // MARK: - Contract
 
     @objc public func reloadData() {
-
-        guard
-            let weather = self.viewCurrentWeather,
-            let forecast = self.viewForecast
-        else { return }
+        guard let weather = self.viewCurrentWeather, let forecast = self.viewForecast else {
+            return
+        }
 
         weather.reloadData()
         forecast.reloadData(saveSelection: true)
@@ -186,16 +187,18 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     }
 
     public func reloadCurrentWeatherData() {
-
-        guard let weather = self.viewCurrentWeather else { return }
+        guard let weather = self.viewCurrentWeather else {
+            return
+        }
 
         weather.reloadData()
         self.actualizeCallingSection()
     }
 
     public func reloadForecastData() {
-
-        guard let forecast = self.viewForecast else { return }
+        guard let forecast = self.viewForecast else {
+            return
+        }
 
         forecast.reloadData(saveSelection: false)
         self.actualizeCallingSection()
@@ -206,7 +209,6 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
     public func startAnimationProgressIndicator(_ section: MeteoCategory,
                                                 _ sender: Any? = nil) {
-
         switch section {
         case .current:
             viewCurrentWeather.progressIndicator = true
@@ -217,7 +219,6 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
     public func stopAnimationProgressIndicator(_ section: MeteoCategory,
                                                _ sender: Any? = nil) {
-
         switch section {
         case .current:
             viewCurrentWeather.progressIndicator = false
@@ -225,40 +226,8 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
             viewForecast.progressIndicator = false
         }
     }
-}
 
-// MARK: - STORYBOARD INSTANCE
-
-extension PopoverViewController {
-
-    public class func storyboardInstance() -> PopoverViewController {
-
-        log.message("[\(type(of: self))].\(#function)")
-
-        let sb = NSStoryboard(name: String(describing: self), bundle: nil)
-
-        guard
-            let screen = sb.instantiateInitialController() as? PopoverViewController
-        else {
-
-            let text = "[\(type(of: self))].\(#function)"
-
-            log.message(text, .error)
-            fatalError(text)
-        }
-
-        // Do default setup; don't set any parameter causing loadWindow up, breaks unit tests.
-
-        return screen
-    }
-}
-
-// MARK: - DARK MODE
-
-extension PopoverViewController {
-
-    private func makeup() {
-
+    @objc private func makeUp() {
         log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
 
         // Subviews.
@@ -266,21 +235,6 @@ extension PopoverViewController {
         viewLocation?.makeup()
         viewCurrentWeather?.makeup()
         viewForecast?.makeup()
-
-        // Make the appearance up.
-
-        let appearance = DarkMode.style == .light ?
-        NSAppearance(named: .aqua) : NSAppearance(named: .vibrantDark)
-
-        globals.statusMenusButtonPresenter.popover?.appearance = appearance
-        view.appearance = appearance
-
-        guard #available(macOS 10.14, *) else {
-            viewTabs.appearance = NSAppearance(named: .aqua)
-            return
-        }
-
-        // view.layer?.backgroundColor = NSColor.perseusBlue.cgColor
     }
 }
 
@@ -289,7 +243,6 @@ extension PopoverViewController {
 extension PopoverViewController: Localizable {
 
     @objc func localize() {
-
         log.message("[\(type(of: self))].\(#function)")
 
         // Subviews.
@@ -301,6 +254,7 @@ extension PopoverViewController: Localizable {
         // Buttons and labels.
 
         buttonQuit.title = "Button: Quit".localizedValue
+        labelGreeting.stringValue = "DeveloperRelease".localizedValue
 
         actualizeCallingSection()
 
@@ -314,7 +268,6 @@ extension PopoverViewController: Localizable {
     }
 
     private func actualizeCallingSection() {
-
         if
             let tabSelected = viewTabs.selectedTabViewItem,
             let tabId = tabSelected.identifier as? String {

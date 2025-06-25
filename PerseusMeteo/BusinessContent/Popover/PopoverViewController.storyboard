@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,16 +11,16 @@
             <objects>
                 <viewController id="bU7-R8-ocO" customClass="PopoverViewController" customModule="Snowman" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="tOy-S4-hL0">
-                        <rect key="frame" x="0.0" y="0.0" width="355" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="454" height="508"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LDX-e9-rrj" userLabel="Greetings Stack">
-                                <rect key="frame" x="0.0" y="370" width="355" height="30"/>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="nuV-nB-E1H" userLabel="Top Greeting View">
+                                <rect key="frame" x="0.0" y="468" width="454" height="40"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3AG-Tj-6c2">
-                                        <rect key="frame" x="-6" y="-2" width="102" height="32"/>
+                                        <rect key="frame" x="3" y="3" width="104" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="Ns9-hQ-yq0"/>
+                                            <constraint firstAttribute="width" constant="90" id="iDe-ua-28i"/>
                                         </constraints>
                                         <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ULG-dk-9PQ">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -30,52 +30,37 @@
                                             <action selector="quitButtonTapped:" target="bU7-R8-ocO" id="kMD-E6-RsV"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zc8-I8-0yO">
-                                        <rect key="frame" x="96" y="7" width="163" height="17"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" id="rlK-5p-gP0">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vs7-Lz-WvA">
+                                        <rect key="frame" x="108" y="12" width="37" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="46e-Ab-C6v">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="viI-SM-TNh" userLabel="Block">
-                                        <rect key="frame" x="265" y="0.0" width="90" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="IkZ-Ew-4Kp"/>
-                                        </constraints>
-                                    </customView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="AlW-61-Z0j"/>
-                                    <constraint firstItem="3AG-Tj-6c2" firstAttribute="centerY" secondItem="LDX-e9-rrj" secondAttribute="centerY" id="ImM-Iq-tfO"/>
-                                    <constraint firstItem="3AG-Tj-6c2" firstAttribute="leading" secondItem="LDX-e9-rrj" secondAttribute="leading" id="LRt-hi-Y1T"/>
-                                    <constraint firstItem="zc8-I8-0yO" firstAttribute="centerY" secondItem="LDX-e9-rrj" secondAttribute="centerY" id="ttF-qJ-gDP"/>
+                                    <constraint firstItem="3AG-Tj-6c2" firstAttribute="leading" secondItem="nuV-nB-E1H" secondAttribute="leading" constant="10" id="DA8-wY-3dE"/>
+                                    <constraint firstItem="3AG-Tj-6c2" firstAttribute="top" secondItem="nuV-nB-E1H" secondAttribute="top" constant="10" id="Hb9-r9-kVt"/>
+                                    <constraint firstItem="Vs7-Lz-WvA" firstAttribute="centerY" secondItem="3AG-Tj-6c2" secondAttribute="centerY" id="Pl1-9N-AMX"/>
+                                    <constraint firstAttribute="height" constant="40" id="RJj-05-ffy"/>
+                                    <constraint firstItem="Vs7-Lz-WvA" firstAttribute="leading" secondItem="3AG-Tj-6c2" secondAttribute="trailing" constant="10" id="sYD-71-mpv"/>
                                 </constraints>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
-                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yf8-y3-HSv" userLabel="Business Stack">
-                                <rect key="frame" x="0.0" y="30" width="355" height="340"/>
+                            </customView>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yf8-y3-HSv" userLabel="Middle Business View">
+                                <rect key="frame" x="10" y="40" width="434" height="428"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="KvG-58-2dT" userLabel="Location Section" customClass="LocationView" customModule="Snowman" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="250" width="355" height="90"/>
+                                        <rect key="frame" x="0.0" y="338" width="434" height="90"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="90" id="Uvu-eJ-eoU"/>
+                                            <constraint firstAttribute="height" constant="90" id="8yO-Yf-08x"/>
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="zay-Cg-HHE" userLabel="Calling Section">
-                                        <rect key="frame" x="0.0" y="220" width="355" height="30"/>
+                                        <rect key="frame" x="0.0" y="298" width="434" height="40"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1oS-xB-Iag">
-                                                <rect key="frame" x="-6" y="-2" width="118" height="32"/>
+                                                <rect key="frame" x="-7" y="-3" width="112" height="44"/>
                                                 <buttonCell key="cell" type="push" title="Call Weather" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fAD-io-zUq">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -85,7 +70,7 @@
                                                 </connections>
                                             </button>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="II3-Ni-sjv">
-                                                <rect key="frame" x="166" y="8" width="189" height="14"/>
+                                                <rect key="frame" x="248" y="13" width="188" height="14"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" alignment="right" title="Last One: 28 Dec 2023 3:51:45 pm" id="oSM-RN-xuB">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -94,24 +79,21 @@
                                             </textField>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="centerY" secondItem="zay-Cg-HHE" secondAttribute="centerY" id="JcW-ps-KmT"/>
-                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="leading" secondItem="zay-Cg-HHE" secondAttribute="leading" id="M6g-Hi-CXR"/>
-                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="top" secondItem="zay-Cg-HHE" secondAttribute="top" constant="4" id="g7e-4A-DGa"/>
-                                            <constraint firstAttribute="height" constant="30" id="heM-LO-oHu"/>
-                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="centerY" secondItem="II3-Ni-sjv" secondAttribute="centerY" id="pKz-2S-pgc"/>
-                                            <constraint firstAttribute="trailing" secondItem="II3-Ni-sjv" secondAttribute="trailing" constant="2" id="r0m-Ka-1Ua"/>
+                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="centerY" secondItem="II3-Ni-sjv" secondAttribute="centerY" id="1Z4-xe-VXw"/>
+                                            <constraint firstAttribute="height" constant="40" id="9Xh-H2-1x7"/>
+                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="top" secondItem="zay-Cg-HHE" secondAttribute="top" constant="4" id="C1i-xE-U2p"/>
+                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="leading" secondItem="zay-Cg-HHE" secondAttribute="leading" id="Ji1-dy-DYR"/>
+                                            <constraint firstAttribute="trailing" secondItem="II3-Ni-sjv" secondAttribute="trailing" id="Nt8-Ol-CYs"/>
+                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="centerY" secondItem="zay-Cg-HHE" secondAttribute="centerY" id="eJi-Bn-Pg3"/>
                                         </constraints>
                                     </customView>
-                                    <tabView focusRingType="none" type="rightTabsBezelBorder" initialItem="g1D-Zn-Myw" translatesAutoresizingMaskIntoConstraints="NO" id="CfE-8B-27I" userLabel="Meteo Data Section">
-                                        <rect key="frame" x="-7" y="-10" width="368" height="234"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="220" id="Q3H-IB-5Dq"/>
-                                        </constraints>
+                                    <tabView focusRingType="none" initialItem="g1D-Zn-Myw" translatesAutoresizingMaskIntoConstraints="NO" id="CfE-8B-27I" userLabel="Meteo Data Section">
+                                        <rect key="frame" x="-7" y="-10" width="448" height="314"/>
                                         <font key="font" metaFont="system"/>
                                         <tabViewItems>
                                             <tabViewItem label="Current Weather" id="g1D-Zn-Myw">
                                                 <view key="view" id="4E9-lB-SpT" customClass="WeatherView" customModule="Snowman" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="7" width="327" height="214"/>
+                                                    <rect key="frame" x="10" y="33" width="428" height="268"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </view>
                                             </tabViewItem>
@@ -128,9 +110,9 @@
                                     </tabView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="CfE-8B-27I" firstAttribute="width" secondItem="yf8-y3-HSv" secondAttribute="width" id="2J6-Xa-UVf"/>
-                                    <constraint firstItem="zay-Cg-HHE" firstAttribute="width" secondItem="yf8-y3-HSv" secondAttribute="width" id="mXL-bR-PNp"/>
-                                    <constraint firstItem="KvG-58-2dT" firstAttribute="width" secondItem="yf8-y3-HSv" secondAttribute="width" id="r0h-Tj-jbk"/>
+                                    <constraint firstItem="KvG-58-2dT" firstAttribute="width" secondItem="yf8-y3-HSv" secondAttribute="width" id="Slz-jH-Lx0"/>
+                                    <constraint firstItem="zay-Cg-HHE" firstAttribute="width" secondItem="yf8-y3-HSv" secondAttribute="width" id="srW-ec-CST"/>
+                                    <constraint firstItem="CfE-8B-27I" firstAttribute="width" secondItem="yf8-y3-HSv" secondAttribute="width" id="tTx-Ve-fRG"/>
                                 </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
@@ -143,45 +125,13 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
-                            <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ped-mA-ACD" userLabel="Commands Stack">
-                                <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="0Xu-O6-hXQ" userLabel="Bottom Commands View">
+                                <rect key="frame" x="0.0" y="0.0" width="454" height="40"/>
                                 <subviews>
-                                    <button horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MSy-7h-iOl">
-                                        <rect key="frame" x="-6" y="-2" width="102" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="9IS-19-PYQ"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="push" title="About" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cHA-V5-SWx">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="aboutButtonTapped:" target="bU7-R8-ocO" id="oYs-Gg-GNo"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lEc-RC-GkU">
-                                        <rect key="frame" x="89" y="-2" width="102" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="YpF-pI-mZI"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="push" title="Options" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1Xd-cg-7A0">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="optionsButtonTapped:" target="bU7-R8-ocO" id="dub-X9-Bw2"/>
-                                        </connections>
-                                    </button>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="5qj-zM-4et" userLabel="Block">
-                                        <rect key="frame" x="190" y="0.0" width="70" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="hVA-pX-2La"/>
-                                        </constraints>
-                                    </customView>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ub5-ci-hl1">
-                                        <rect key="frame" x="259" y="-2" width="102" height="32"/>
+                                        <rect key="frame" x="347" y="3" width="104" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="TIj-fw-ccb"/>
+                                            <constraint firstAttribute="width" constant="90" id="xja-ea-ngz"/>
                                         </constraints>
                                         <buttonCell key="cell" type="push" title="Hide" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5DE-zQ-BGm">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -191,39 +141,55 @@
                                             <action selector="hideAppScreensButtonTapped:" target="bU7-R8-ocO" id="SQy-KO-KG6"/>
                                         </connections>
                                     </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lEc-RC-GkU">
+                                        <rect key="frame" x="103" y="3" width="104" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="LSf-fn-44i"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="Options" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1Xd-cg-7A0">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="optionsButtonTapped:" target="bU7-R8-ocO" id="dub-X9-Bw2"/>
+                                        </connections>
+                                    </button>
+                                    <button horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MSy-7h-iOl">
+                                        <rect key="frame" x="3" y="3" width="104" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="KGb-Ji-Pa2"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="About" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cHA-V5-SWx">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="aboutButtonTapped:" target="bU7-R8-ocO" id="oYs-Gg-GNo"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Ub5-ci-hl1" firstAttribute="centerY" secondItem="ped-mA-ACD" secondAttribute="centerY" id="13V-ch-qLm"/>
-                                    <constraint firstItem="lEc-RC-GkU" firstAttribute="centerY" secondItem="ped-mA-ACD" secondAttribute="centerY" id="4cU-jW-XQB"/>
-                                    <constraint firstItem="Ub5-ci-hl1" firstAttribute="trailing" secondItem="ped-mA-ACD" secondAttribute="trailing" id="AmP-yQ-Ori"/>
-                                    <constraint firstItem="MSy-7h-iOl" firstAttribute="centerY" secondItem="ped-mA-ACD" secondAttribute="centerY" id="B6p-5T-zOX"/>
-                                    <constraint firstAttribute="height" constant="30" id="HNg-fD-LWy"/>
-                                    <constraint firstAttribute="width" constant="355" id="stT-cK-8bM"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ub5-ci-hl1" secondAttribute="bottom" constant="10" id="8FX-HC-3Pi"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ub5-ci-hl1" secondAttribute="trailing" constant="10" id="K5N-1V-UX7"/>
+                                    <constraint firstAttribute="height" constant="40" id="KaB-uv-vTK"/>
+                                    <constraint firstItem="MSy-7h-iOl" firstAttribute="leading" secondItem="0Xu-O6-hXQ" secondAttribute="leading" constant="10" id="UQc-8s-SGB"/>
+                                    <constraint firstAttribute="bottom" secondItem="MSy-7h-iOl" secondAttribute="bottom" constant="10" id="mWg-lX-Uxk"/>
+                                    <constraint firstItem="lEc-RC-GkU" firstAttribute="centerY" secondItem="MSy-7h-iOl" secondAttribute="centerY" id="q4V-bv-Vnk"/>
+                                    <constraint firstItem="lEc-RC-GkU" firstAttribute="leading" secondItem="MSy-7h-iOl" secondAttribute="trailing" constant="10" id="rVf-47-wbk"/>
                                 </constraints>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
+                            </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="ped-mA-ACD" firstAttribute="top" secondItem="yf8-y3-HSv" secondAttribute="bottom" id="0d4-wn-eaO"/>
-                            <constraint firstItem="yf8-y3-HSv" firstAttribute="top" secondItem="LDX-e9-rrj" secondAttribute="bottom" id="FeS-8q-AjY"/>
-                            <constraint firstItem="LDX-e9-rrj" firstAttribute="top" secondItem="tOy-S4-hL0" secondAttribute="top" id="P3p-mV-fMh"/>
-                            <constraint firstItem="yf8-y3-HSv" firstAttribute="width" secondItem="tOy-S4-hL0" secondAttribute="width" id="TCa-u3-wm4"/>
-                            <constraint firstItem="LDX-e9-rrj" firstAttribute="centerX" secondItem="tOy-S4-hL0" secondAttribute="centerX" id="Ua1-3d-hXG"/>
-                            <constraint firstItem="yf8-y3-HSv" firstAttribute="centerX" secondItem="tOy-S4-hL0" secondAttribute="centerX" id="bwB-uN-HmZ"/>
-                            <constraint firstItem="LDX-e9-rrj" firstAttribute="width" secondItem="tOy-S4-hL0" secondAttribute="width" id="itz-Ya-3pg"/>
-                            <constraint firstItem="ped-mA-ACD" firstAttribute="centerX" secondItem="tOy-S4-hL0" secondAttribute="centerX" id="oVf-RX-uR5"/>
-                            <constraint firstItem="ped-mA-ACD" firstAttribute="width" secondItem="tOy-S4-hL0" secondAttribute="width" id="pDB-Pb-5TP"/>
+                            <constraint firstItem="nuV-nB-E1H" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" id="DxR-TE-UI6"/>
+                            <constraint firstItem="0Xu-O6-hXQ" firstAttribute="top" secondItem="yf8-y3-HSv" secondAttribute="bottom" id="Km8-4V-7s9"/>
+                            <constraint firstItem="nuV-nB-E1H" firstAttribute="top" secondItem="tOy-S4-hL0" secondAttribute="top" id="MIc-1a-5P2"/>
+                            <constraint firstAttribute="bottom" secondItem="0Xu-O6-hXQ" secondAttribute="bottom" id="Ora-Aa-uE7"/>
+                            <constraint firstAttribute="trailing" secondItem="nuV-nB-E1H" secondAttribute="trailing" id="RtV-zr-WZd"/>
+                            <constraint firstItem="0Xu-O6-hXQ" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" id="dzR-jt-hxG"/>
+                            <constraint firstAttribute="trailing" secondItem="yf8-y3-HSv" secondAttribute="trailing" constant="10" id="jSu-Bk-j56"/>
+                            <constraint firstAttribute="trailing" secondItem="0Xu-O6-hXQ" secondAttribute="trailing" id="kvL-yd-i0n"/>
+                            <constraint firstItem="yf8-y3-HSv" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" constant="10" id="ywl-rj-aIR"/>
+                            <constraint firstItem="yf8-y3-HSv" firstAttribute="centerY" secondItem="tOy-S4-hL0" secondAttribute="centerY" id="zH8-4M-C8g"/>
                         </constraints>
                     </view>
                     <connections>
@@ -232,6 +198,7 @@
                         <outlet property="buttonHideAppScreens" destination="Ub5-ci-hl1" id="jUj-ke-nTb"/>
                         <outlet property="buttonOptions" destination="lEc-RC-GkU" id="9WS-WU-GoL"/>
                         <outlet property="buttonQuit" destination="3AG-Tj-6c2" id="Lh0-xY-ekv"/>
+                        <outlet property="labelGreeting" destination="Vs7-Lz-WvA" id="3Hn-E6-21W"/>
                         <outlet property="labelMadeWithLove" destination="II3-Ni-sjv" id="ohb-Gv-dHz"/>
                         <outlet property="tabCurrentWeather" destination="g1D-Zn-Myw" id="7uf-lK-bWC"/>
                         <outlet property="tabForecast" destination="XwN-hq-rQ0" id="rKh-up-612"/>

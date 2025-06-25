@@ -2,8 +2,10 @@
 //  CurrentSystemLanguageGift.swift
 //  Gifts
 //
-//  Just a gift. Tested with Swift 4.2 compiler.
-//  https://gist.github.com/perseusrealdeal/98b082b136d574dd1b5aa760036dac8b
+//  Just a gift.
+//  <https://gist.github.com/PerseusRealDeal/98b082b136d574dd1b5aa760036dac8b>
+//
+//  Unlicensed Free Software. For more information, <http://unlicense.org/>
 //
 
 /* Perseus Logger source code */

@@ -12,7 +12,7 @@
         <td>Developer release (candidate) with minimum functionality (forecast).</td>
     </tr>
     <tr>
-        <td>Rejected, Changed</td>
+        <td>Reject, Change</td>
         <td>—</td>
     </tr>
     <tr>
@@ -20,11 +20,11 @@
         <td>Developer release (candidate) with minimum functionality (current weather).</td>
     </tr>
     <tr>
-        <td>* Changed</td>
+        <td>* Change</td>
         <td>DATA-1: Temperature default changed from Celsius to Fahrenheit.</td>
     </tr>
     <tr>
-        <td>** Rejected</td>
+        <td>** Reject</td>
         <td>00-3: Starts on login had been canceled.</td>
     </tr>
 </table>
@@ -122,19 +122,19 @@
 
 > ## Business matter attributes
 
-| ID     | Name             | Details                                                 | Defaults           |
-| ------ | ---------------- | ------------------------------------------------------- | ------------------ |
-| DATA-1 | Temperature      | Standard: Kelvin, Metric: Celsius, Imperial: Fahrenheit | Apply: Fahrenheit* |
-| DATA-2 | Current location | Couple: (latitude, longitude)                           | -                  |
+| ID     | Name             | Details                                                 | Defaults            |
+| ------ | ---------------- | ------------------------------------------------------- | ------------------- |
+| DATA-1 | Temperature      | Standard: Kelvin, Metric: Celsius, Imperial: Fahrenheit | Apply: Fahrenheit\* |
+| DATA-2 | Current location | Couple: (latitude, longitude)                           | -                   |
 
 > ## Other Options
 
-| ID     | Name                | Details          | Defaults    |
-| ------ | ------------------- | ---------------- | ----------- |
-| OO-1   | Dark Mode           | Auto, On, Off    | Apply: Auto |
-| OO-2   | OpenWeather API key | User Input       | -           |
-| OO-3** | Starts on login     | True, False      | Apply: True |
+| ID       | Name                | Details          | Defaults    |
+| -------- | ------------------- | ---------------- | ----------- |
+| OO-1     | Dark Mode           | Auto, On, Off    | Apply: Auto |
+| OO-2     | OpenWeather API key | User Input       | -           |
+| OO-3\*\* | Starts on login     | True, False      | Apply: True |
 
 > \* changed
 
-> \** rejected
+> \*\* rejected

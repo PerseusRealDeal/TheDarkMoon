@@ -6,6 +6,8 @@
 	<string>Snowman</string>
 	<key>Greetings</key>
 	<string>Hello world!</string>
+	<key>DeveloperRelease</key>
+	<string>Developer release, to become acquainted</string>
 	<key>Location Usage Description</key>
 	<string>Geo information—latitude and longitude—is required to fetch meteo facts.</string>
 	<key>Copyright</key>
@@ -48,14 +50,14 @@
 	<string>Denied for the app</string>
 	<key>GeoAccess: .allowed</key>
 	<string>Allowed</string>
+	<key>GeoAccess: .notAllowed</key>
+	<string>Not allowed</string>
 	<key>Geo Couple</key>
 	<string>Latitude, Longitude</string>
-	<key>Button: Allow Geo...</key>
-	<string>Allow Geo Service</string>
-	<key>Button: Go to Settings...</key>
-	<string>Go to Settings...</string>
+	<key>Button: Update Geo Access</key>
+	<string>Update Geo Access</string>
 	<key>Button: Refresh Current Location</key>
-	<string>Get Current Location</string>
+	<string>Update Current Location</string>
 	<key>/* Current Weather View */</key>
 	<string>--</string>
 	<key>Label: Meteo Data Provider</key>
@@ -135,7 +137,7 @@
 	<key>/* Options Screen */</key>
 	<string>--</string>
 	<key>Title: Options Screen</key>
-	<string>Product</string>
+	<string>Product Options</string>
 	<key>Section: App Options</key>
 	<string>The App Setup</string>
 	<key>Option: Dark Mode</key>
@@ -275,9 +277,9 @@
 	<key>/* About Screen */</key>
 	<string>--</string>
 	<key>Button: The App Source Code</key>
-	<string>The Product Source Code</string>
+	<string>The product source code</string>
 	<key>Button: The Technological Tree</key>
-	<string>The Oak Tree Greening by the Ocean</string>
+	<string>There is a tree greening by the ocean...</string>
 	<key>Label: The App Version</key>
 	<string>Version</string>
 	<key>Label: Star Copyright Notice</key>
@@ -304,7 +306,7 @@
 	<string>License</string>
 	<key>Button: Terms &amp; Conditions</key>
 	<string>Terms &amp; Conditions</string>
-	<key>/* Weathert-conditions descriptions */</key>
+	<key>/* Weather-conditions descriptions */</key>
 	<string>--</string>
 	<key>Main: clear sky</key>
 	<string>clear sky</string>

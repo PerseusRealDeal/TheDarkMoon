@@ -95,14 +95,14 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("GeoAccess: .allowed".localizedExpectation,
                        "GeoAccess: .allowed".localizedValue)
 
+        XCTAssertEqual("GeoAccess: .notAllowed".localizedExpectation,
+                       "GeoAccess: .notAllowed".localizedValue)
+
         XCTAssertEqual("Geo Couple".localizedExpectation,
                        "Geo Couple".localizedValue)
 
-        XCTAssertEqual("Button: Allow Geo...".localizedExpectation,
-                       "Button: Allow Geo...".localizedValue)
-
-        XCTAssertEqual("Button: Go to Settings...".localizedExpectation,
-                       "Button: Go to Settings...".localizedValue)
+        XCTAssertEqual("Button: Update Geo Access".localizedExpectation,
+                       "Button: Update Geo Access".localizedValue)
 
         XCTAssertEqual("Button: Refresh Current Location".localizedExpectation,
                        "Button: Refresh Current Location".localizedValue)

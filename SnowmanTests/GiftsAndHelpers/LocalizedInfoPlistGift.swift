@@ -4,6 +4,8 @@
 //
 //  Just a gift, tested with Swift 4.2 compiler.
 //
+//  Unlicensed Free Software. For more information, <http://unlicense.org/>
+//
 
 /* Perseus Logger source code */
 /* https://gist.github.com/perseusrealdeal/df456a9825fcface44eca738056eb6d5 */
@@ -17,7 +19,7 @@ extension String {
         guard
             let infoPlist = Bundle.main.localizedInfoDictionary
         else {
-            testlog.message("InfoPlist.strings", .error)
+            log.message("InfoPlist.strings", .error)
             return nil
         }
 

@@ -171,7 +171,7 @@ public struct ForecastDay {
                     log.message("[\(#function) [temp] wrong.", .error)
                 }
             } else {
-                log.message("[\(#function) [main] wrong.", .error)
+                // log.message("[\(#function) [main] wrong.", .error)
             }
         }
 

@@ -14,41 +14,39 @@
 //
 
 import Cocoa
-
 import ConsolePerseusLogger
 
+// MARK: - The Logger
+
 import class PerseusDarkMode.PerseusLogger
-import class PerseusGeoLocationKit.PerseusLogger
-import class OpenWeatherFreeClient.PerseusLogger
+import class PerseusGeoKit.PerseusLogger
+import class OpenWeatherAgent.PerseusLogger
 
-typealias PerseusDarkModeLogger = PerseusDarkMode.PerseusLogger
-typealias PerseusGeoLocationKitLogger = PerseusGeoLocationKit.PerseusLogger
-typealias OpenWeatherFreeClientLogger = OpenWeatherFreeClient.PerseusLogger
+// swiftlint:disable type_name
+typealias applog = ConsolePerseusLogger.PerseusLogger // For test bundle, log is for main.
+typealias pdmlog = PerseusDarkMode.PerseusLogger
+typealias pgklog = PerseusGeoKit.PerseusLogger
+typealias owclog = OpenWeatherAgent.PerseusLogger
+// swiftlint:enable type_name
 
-// MARK: - Logger
+pdmlog.turned = .off
+pgklog.turned = .off
+owclog.turned = .off
 
-// Default.
+// MARK: - The Start Line
 
-// MARK: - External Loggers
+log.message("> The app's start point...", .info)
 
-/*
-PerseusDarkModeLogger.turned = .off
-PerseusGeoLocationKitLogger.turned = .off
-OpenWeatherFreeClientLogger.turned = .off
-*/
-
-// MARK: - Construct the app's top elements
-
-log.message("The app's start point...", .info)
+let globals = AppGlobals()
 
 let app = NSApplication.shared
 
 let appPurpose = NSClassFromString("TestingAppDelegate") as? NSObject.Type
 let appDelegate = appPurpose?.init() ?? AppDelegate()
 
-let globals = AppGlobals()
+let statusMenusButtonPresenter = StatusMenusButtonPresenter()
 
-// MARK: - Make the app run
+// MARK: - The Run
 
 /*
 
@@ -58,6 +56,8 @@ let globals = AppGlobals()
  activated programmatically or by clicking on one of its windows.
 
  */
+
+log.message("> The app in the beginning...", .info)
 
 app.setActivationPolicy(.accessory)
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RqP-Rv-nzd">
-                    <rect key="frame" x="-2" y="203" width="96" height="17"/>
+                    <rect key="frame" x="3" y="204" width="96" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Meteo Data by:" id="WyF-eG-QYY">
                         <font key="font" usesAppearanceFont="YES"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -33,7 +33,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YyR-ui-s1a">
-                    <rect key="frame" x="95" y="203" width="127" height="17"/>
+                    <rect key="frame" x="100" y="204" width="127" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Meteo Provider Nick" id="eay-U8-hkg">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -45,7 +45,7 @@
                 </progressIndicator>
                 <scrollView wantsLayer="YES" borderType="none" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="cUv-Pj-QKs">
                     <rect key="frame" x="0.0" y="0.0" width="110" height="200"/>
-                    <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="l2K-BI-YG7">
+                    <clipView key="contentView" copiesOnScroll="NO" id="l2K-BI-YG7">
                         <rect key="frame" x="0.0" y="0.0" width="110" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -62,18 +62,18 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="110" id="RyM-BS-58k"/>
                     </constraints>
-                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="dqJ-zb-eYQ">
+                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="dqJ-zb-eYQ">
                         <rect key="frame" x="-100" y="-100" width="148" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="3DA-tj-5lg">
+                    <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="3DA-tj-5lg">
                         <rect key="frame" x="-100" y="-100" width="16" height="200"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
                 <scrollView wantsLayer="YES" borderType="none" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="C3U-jg-8cN">
                     <rect key="frame" x="110" y="150" width="217" height="50"/>
-                    <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="pMm-aP-dHN">
+                    <clipView key="contentView" copiesOnScroll="NO" id="pMm-aP-dHN">
                         <rect key="frame" x="0.0" y="0.0" width="217" height="50"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -90,11 +90,11 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="L0D-L9-Kcl"/>
                     </constraints>
-                    <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="Khc-Ly-bXy">
+                    <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Khc-Ly-bXy">
                         <rect key="frame" x="0.0" y="34" width="217" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Cwq-aQ-Dl8">
+                    <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Cwq-aQ-Dl8">
                         <rect key="frame" x="-100" y="-100" width="16" height="40"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
@@ -103,7 +103,7 @@
                     <rect key="frame" x="110" y="130" width="217" height="20"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FBr-DI-wL7">
-                            <rect key="frame" x="-2" y="2" width="221" height="17"/>
+                            <rect key="frame" x="-2" y="2" width="221" height="16"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Weather Description" id="DX1-Jw-qih">
                                 <font key="font" usesAppearanceFont="YES"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -128,7 +128,7 @@
                 <constraint firstItem="cUv-Pj-QKs" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="BpY-dl-s4U"/>
                 <constraint firstItem="C3U-jg-8cN" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="Buc-us-SAf"/>
                 <constraint firstAttribute="bottom" secondItem="cUv-Pj-QKs" secondAttribute="bottom" id="H1R-bB-G0A"/>
-                <constraint firstItem="RqP-Rv-nzd" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="NVq-lK-6jY"/>
+                <constraint firstItem="RqP-Rv-nzd" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="5" id="NVq-lK-6jY"/>
                 <constraint firstItem="YyR-ui-s1a" firstAttribute="centerY" secondItem="RqP-Rv-nzd" secondAttribute="centerY" id="PSf-nR-17p"/>
                 <constraint firstAttribute="trailing" secondItem="C3U-jg-8cN" secondAttribute="trailing" id="Q4o-jf-gIO"/>
                 <constraint firstItem="klC-xc-C8u" firstAttribute="top" secondItem="C3U-jg-8cN" secondAttribute="bottom" id="Qla-NA-nYg"/>

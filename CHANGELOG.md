@@ -6,7 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Version in format MAJOR.MINOR where MINOR includes PATCH that means any patch increments MINOR.
 - Dates in this file meets Gregorian calendar. Date in format YYYY-MM-DD.
 
-## [0.3] - [Unreleased], Forecast
+## [0.3] - [2025-06-NN], The Dark Moon
+
+### Added
+
+- Forecast.
+- Minor changes.
 
 ### Fixed
 
@@ -14,10 +19,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Expectation > Translation.
-- Xcode Project Version from 10 to 14.
+- Default Xcode Project Version from 10 to 14.
 
-## [0.2] - 2024-02-01, Current Weather
+### Updated
+
+- Dependencies: CPL, PDM, PGK, OWA. 
+
+## [0.2] - [2024-02-01], Current Weather
 
 ### Added
 

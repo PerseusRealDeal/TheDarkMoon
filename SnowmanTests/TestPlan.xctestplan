@@ -29,7 +29,7 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:PerseusMeteo.xcodeproj",
+        "containerPath" : "container:TheDarkMoon.xcodeproj",
         "identifier" : "4B1483F22912892F0013B76E",
         "name" : "SnowmanTests"
       }

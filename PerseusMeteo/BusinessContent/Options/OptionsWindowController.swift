@@ -23,7 +23,24 @@ public class OptionsWindowController: NSWindowController, NSWindowDelegate {
     // MARK: - Internals
 
     private var alwaysOnTop: Any?
-    private let darkModeObserver = DarkModeObserver()
+
+    // MARK: - Storyboard Instance
+
+    class func storyboardInstance() -> OptionsWindowController {
+        log.message("[\(type(of: self))].\(#function)")
+
+        let sb = NSStoryboard(name: String(describing: self), bundle: nil)
+
+        guard let screen = sb.instantiateInitialController() as? OptionsWindowController else {
+            let text = "[\(type(of: self))].\(#function)"
+            log.message(text, .error)
+            fatalError(text)
+        }
+
+        // Do default setup; don't set any parameter causing loadWindow up, breaks unit tests.
+
+        return screen
+    }
 
     // MARK: - Initialization
 
@@ -39,13 +56,13 @@ public class OptionsWindowController: NSWindowController, NSWindowDelegate {
         let notification = NSApplication.didResignActiveNotification
         let queue = OperationQueue.main
 
-        alwaysOnTop = nc.addObserver(forName: notification,
-                                     object: nil,
-                                     queue: queue) { _ in self.window?.level = .floating }
+        alwaysOnTop = nc.addObserver(forName: notification, object: nil, queue: queue) { _ in
+            self.window?.level = .floating
+        }
 
-        // Dark Mode.
+        // Connect to Dark Mode.
 
-        darkModeObserver.action = { _ in self.makeup() }
+        DarkModeAgent.register(stakeholder: self, selector: #selector(makeUp))
 
         // Localization.
 
@@ -53,9 +70,9 @@ public class OptionsWindowController: NSWindowController, NSWindowDelegate {
                        name: NSNotification.Name.languageSwitchedManuallyNotification,
                        object: nil)
 
-        // Apperance.
+        // Appearance.
 
-        makeup()
+        makeUp()
         localize()
     }
 
@@ -65,8 +82,6 @@ public class OptionsWindowController: NSWindowController, NSWindowDelegate {
         log.message("[\(type(of: self))].\(#function)")
     }
 
-    // MARK: - Other methods
-
     public func windowShouldClose(_ sender: NSWindow) -> Bool {
 
         log.message("[\(type(of: self))].\(#function)")
@@ -74,59 +89,17 @@ public class OptionsWindowController: NSWindowController, NSWindowDelegate {
         self.window?.orderOut(sender)
         return false
     }
-}
 
-// MARK: - STORYBOARD INSTANCE
-
-extension OptionsWindowController {
-
-    class func storyboardInstance() -> OptionsWindowController {
-
-        log.message("[\(type(of: self))].\(#function)")
-
-        let sb = NSStoryboard(name: String(describing: self), bundle: nil)
-
-        guard
-            let screen = sb.instantiateInitialController() as? OptionsWindowController
-        else {
-
-            let text = "[\(type(of: self))].\(#function)"
-
-            log.message(text, .error)
-            fatalError(text)
-        }
-
-        // Do default setup; don't set any parameter causing loadWindow up, breaks unit tests.
-
-        return screen
-    }
-}
-
-// MARK: - DARK MODE
-
-extension OptionsWindowController {
-
-    public func makeup() {
-
-        guard
-            let screen = self.contentViewController as? OptionsViewController
-        else {
+    @objc private func makeUp() {
+        /*
+        guard let screen = self.contentViewController as? OptionsViewController else {
             return
         }
-
-        screen.makeup()
+        */
     }
-}
 
-// MARK: - LOCALIZATION
-
-extension OptionsWindowController: Localizable {
-
-    @objc func localize() {
-
-        guard
-            let screen = self.contentViewController as? OptionsViewController
-        else {
+    @objc private func localize() {
+        guard let screen = self.contentViewController as? OptionsViewController else {
             return
         }
 

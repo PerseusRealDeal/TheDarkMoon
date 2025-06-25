@@ -17,7 +17,7 @@
 
 import Foundation
 
-import OpenWeatherFreeClient
+import OpenWeatherAgent
 import ConsolePerseusLogger
 
 public class MeteoClientManager {
@@ -27,8 +27,8 @@ public class MeteoClientManager {
     private var isReadyToCall = false
     private var isReadyToCallForecast = false
 
-    private var serviceCurrentOpenWeatherMap = OpenWeatherFreeClient()
-    private var serviceForecastOpenWeatherMap = OpenWeatherFreeClient()
+    private var serviceCurrentOpenWeatherMap = OpenWeatherClient()
+    private var serviceForecastOpenWeatherMap = OpenWeatherClient()
 
     init(presenter: StatusMenusButtonPresenter) {
 
@@ -38,8 +38,8 @@ public class MeteoClientManager {
                          and: serviceForecastOpenWeatherMap)
     }
 
-    private func setupCallerLogic(for current: OpenWeatherFreeClient,
-                                  and forecast: OpenWeatherFreeClient) {
+    private func setupCallerLogic(for current: OpenWeatherClient,
+                                  and forecast: OpenWeatherClient) {
 
         log.message("[\(type(of: self))].\(#function)")
 
@@ -116,7 +116,7 @@ public class MeteoClientManager {
             return
         }
 
-        guard let location = AppGlobals.appDelegate?.location else {
+        guard let location = AppGlobals.currentLocation else {
             log.message("[\(type(of: self))].\(#function) location is nil.", .error)
             return
         }
@@ -131,13 +131,13 @@ public class MeteoClientManager {
         let key = AppGlobals.appKeyOpenWeather.isEmpty ?
             AppOptions.OpenWeatherAPIOption ?? "" : AppGlobals.appKeyOpenWeather
 
-        let callDetails = OpenWeatherDetails(appid: key,
-                                             format: .currentWeather,
-                                             lat: lat,
-                                             lon: lon,
-                                             units: .imperial,
-                                             lang: .init(rawValue: lang),
-                                             mode: .json)
+        let callDetails = OpenWeatherRequestData(appid: key,
+                                                 format: .currentWeather,
+                                                 lat: lat,
+                                                 lon: lon,
+                                                 units: .imperial,
+                                                 lang: .init(rawValue: lang),
+                                                 mode: .json)
 
         log.message(callDetails.urlString)
 
@@ -168,7 +168,7 @@ public class MeteoClientManager {
             return
         }
 
-        guard let location = AppGlobals.appDelegate?.location else {
+        guard let location = AppGlobals.currentLocation else {
             log.message("[\(type(of: self))].\(#function) location is nil.", .error)
             return
         }
@@ -183,13 +183,13 @@ public class MeteoClientManager {
         let key = AppGlobals.appKeyOpenWeather.isEmpty ?
             AppOptions.OpenWeatherAPIOption ?? "" : AppGlobals.appKeyOpenWeather
 
-        var callDetails = OpenWeatherDetails(appid: key,
-                                             format: .forecast,
-                                             lat: lat,
-                                             lon: lon,
-                                             units: .imperial,
-                                             lang: .init(rawValue: lang),
-                                             mode: .json)
+        var callDetails = OpenWeatherRequestData(appid: key,
+                                                 format: .forecast,
+                                                 lat: lat,
+                                                 lon: lon,
+                                                 units: .imperial,
+                                                 lang: .init(rawValue: lang),
+                                                 mode: .json)
         callDetails.cnt = 40
 
         log.message(callDetails.urlString)
@@ -224,7 +224,7 @@ public class MeteoClientManager {
 
         // Here, but for now it's matter >
 
-        AppGlobals.appDelegate?.weather = data
+        AppGlobals.weather = data
         globals.sourceCurrentWeather.meteoProvider = .serviceOpenWeatherMap
 
         DispatchQueue.main.async {
@@ -247,7 +247,7 @@ public class MeteoClientManager {
 
         // And here, but for now it's matter >
 
-        AppGlobals.appDelegate?.forecast = data
+        AppGlobals.forecast = data
         globals.sourceForecast.meteoProvider = .serviceOpenWeatherMap
 
         DispatchQueue.main.async {

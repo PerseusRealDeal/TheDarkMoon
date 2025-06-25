@@ -14,13 +14,16 @@
 //
 
 import AppKit
+
 import ConsolePerseusLogger
+import PerseusDarkMode
 
 public class StatusMenusButtonPresenter {
 
     // MARK: - Internals
 
     private var meteoClientManager: MeteoClientManager?
+    private let theDarknessTrigger = DarkModeObserver()
 
     // MARK: - Popover for Status Menus Item
 
@@ -54,7 +57,6 @@ public class StatusMenusButtonPresenter {
     // MARK: - Initialization
 
     init() {
-
         log.message("[\(type(of: self))].\(#function)")
 
         // Setup status menus button and popover.
@@ -69,16 +71,15 @@ public class StatusMenusButtonPresenter {
         statusItem?.button?.action = #selector(buttonStatusItemTapped)
 
         popover = NSPopover()
+
+        // Connect to Dark Mode explicitly
+        theDarknessTrigger.action = { _ in self.makeUp() }
     }
 
     @objc internal func buttonStatusItemTapped() {
-
         log.message("[\(type(of: self))].\(#function)")
 
-        guard
-            let popover = popover,
-            let button = statusItem?.button
-        else {
+        guard let popover = popover, let button = statusItem?.button else {
             return
         }
 
@@ -93,16 +94,18 @@ public class StatusMenusButtonPresenter {
     }
 
     public func callCurrentWeather(_ sender: Any?) {
-
         log.message("[\(type(of: self))].\(#function)")
-
         meteoClientManager?.fetchCurrent(sender)
     }
 
     public func callForecast(_ sender: Any?) {
-
         log.message("[\(type(of: self))].\(#function)")
-
         meteoClientManager?.fetchForecast(sender)
+    }
+
+    @objc private func makeUp() {
+        log.message("[\(type(of: self))].\(#function)")
+        statusMenusButtonPresenter.popover?.appearance = DarkModeAgent.shared.style == .light ?
+        LIGHT_APPEARANCE_DEFAULT_IN_USE : DARK_APPEARANCE_DEFAULT_IN_USE
     }
 }

@@ -45,7 +45,6 @@ class AboutConnectionsTests: XCTestCase {
         XCTAssertNotNil(sut.buttonPerseusDarkMode)
         XCTAssertNotNil(sut.buttonTheOpenWeatherClient)
         XCTAssertNotNil(sut.buttonPerseusGeoLocationKit)
-        XCTAssertNotNil(sut.buttonPerseusUISystemKit)
         XCTAssertNotNil(sut.buttonPerseusLogger)
 
         XCTAssertNotNil(sut.buttonLicense)

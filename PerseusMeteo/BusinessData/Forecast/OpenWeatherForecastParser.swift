@@ -240,7 +240,7 @@ public func getForecastHourTemp(from source: [String: Any]) -> String {
             log.message("[\(#function) [temp] wrong.", .error)
         }
     } else {
-        log.message("[\(#function) [main] wrong.", .error)
+        // log.message("[\(#function) [main] wrong.", .error)
     }
 
     guard value != "" else { return MeteoFactsDefaults.temperature }
@@ -267,7 +267,7 @@ public func getForecastHourTempMin(from source: [String: Any]) -> String {
             log.message("[\(#function) [temp_min] wrong.", .error)
         }
     } else {
-        log.message("[\(#function) [main] wrong.", .error)
+        // log.message("[\(#function) [main] wrong.", .error)
     }
 
     guard value != "" else { return MeteoFactsDefaults.temperature }
@@ -294,7 +294,7 @@ public func getForecastHourTempMax(from source: [String: Any]) -> String {
             log.message("[\(#function) [temp_max] wrong.", .error)
         }
     } else {
-        log.message("[\(#function) [main] wrong.", .error)
+        // log.message("[\(#function) [main] wrong.", .error)
     }
 
     guard value != "" else { return MeteoFactsDefaults.temperature }
@@ -321,7 +321,7 @@ public func getForecastHourTempKinda(from source: [String: Any]) -> String {
             log.message("[\(#function) [feels_like] wrong.", .error)
         }
     } else {
-        log.message("[\(#function) [main] wrong.", .error)
+        // log.message("[\(#function) [main] wrong.", .error)
     }
 
     guard value != "" else { return MeteoFactsDefaults.temperature }
@@ -450,7 +450,7 @@ public func getForecastHourPressure(from source: [String: Any]) -> String {
             log.message("[\(#function) [pressure] wrong.", .error)
         }
     } else {
-        log.message("[\(#function) [main] wrong.", .error)
+        // log.message("[\(#function) [main] wrong.", .error)
     }
 
     guard value != "" else { return MeteoFactsDefaults.pressure }
@@ -477,7 +477,7 @@ public func getForecastHourHumidity(from source: [String: Any]) -> String {
             log.message("[\(#function) [humidity] wrong.", .error)
         }
     } else {
-        log.message("[\(#function) [main] wrong.", .error)
+        // log.message("[\(#function) [main] wrong.", .error)
     }
 
     guard value != -1 else { return MeteoFactsDefaults.humidity }

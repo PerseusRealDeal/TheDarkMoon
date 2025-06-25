@@ -15,51 +15,20 @@
 
 import Cocoa
 
-import PerseusDarkMode
-import PerseusGeoLocationKit
-
 import ConsolePerseusLogger
+import PerseusDarkMode
+import PerseusGeoKit
 
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    // MARK: - Business Data
-
-    var location: PerseusLocation? {
-        didSet {
-            log.message(String(describing: location))
-        }
-    }
-
-    var weather: Data? {
-        didSet {
-            let text = "JSON:\n\(weather?.prettyPrinted ?? "")"
-            log.message("[\(type(of: self))].\(#function)\n\(text)")
-        }
-    }
-
-    var forecast: Data? {
-        didSet {
-            let text = "JSON:\n\(forecast?.prettyPrinted ?? "")"
-            log.message("[\(type(of: self))].\(#function)\n\(text)")
-
-            // Save the date and time of the last one.
-
-            let src = globals.statusMenusButtonPresenter.screenPopover.viewForecast.dataSource
-            let currentTimeInUTC = Date().timeIntervalSince1970
-
-            src.addResponseDateAndTime(dt: Int(currentTimeInUTC))
-        }
-    }
-
-    // MARK: - On Launch...
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-
-        log.message("Launching with business matter purpose...", .info)
         log.message("[\(type(of: self))].\(#function)")
 
-        AppearanceService.makeUp()
+        DarkModeAgent.force(DarkModeUserChoice)
+        GeoCoordinator.reloadGeoComponents()
 
         globals.languageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
+
+        log.message("> Ready with business matter purpose...", .info)
     }
 }

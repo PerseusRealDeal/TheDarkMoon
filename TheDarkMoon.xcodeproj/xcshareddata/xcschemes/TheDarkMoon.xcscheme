@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4B1483E02912892C0013B76E"
                BuildableName = "Snowman.app"
-               BlueprintName = "PerseusMeteo"
-               ReferencedContainer = "container:PerseusMeteo.xcodeproj">
+               BlueprintName = "TheDarkMoon"
+               ReferencedContainer = "container:TheDarkMoon.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,8 +32,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4B1483E02912892C0013B76E"
             BuildableName = "Snowman.app"
-            BlueprintName = "PerseusMeteo"
-            ReferencedContainer = "container:PerseusMeteo.xcodeproj">
+            BlueprintName = "TheDarkMoon"
+            ReferencedContainer = "container:TheDarkMoon.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <TestPlans>
@@ -50,7 +50,7 @@
                BlueprintIdentifier = "4B1483F22912892F0013B76E"
                BuildableName = "SnowmanTests.xctest"
                BlueprintName = "SnowmanTests"
-               ReferencedContainer = "container:PerseusMeteo.xcodeproj">
+               ReferencedContainer = "container:TheDarkMoon.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,8 +71,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4B1483E02912892C0013B76E"
             BuildableName = "Snowman.app"
-            BlueprintName = "PerseusMeteo"
-            ReferencedContainer = "container:PerseusMeteo.xcodeproj">
+            BlueprintName = "TheDarkMoon"
+            ReferencedContainer = "container:TheDarkMoon.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>

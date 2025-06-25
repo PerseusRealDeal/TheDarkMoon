@@ -18,6 +18,7 @@
 
 "Product Name" = "Snowman";
 "Greetings" = "Hello world!";
+"DeveloperRelease" = "Developer release, to become acquainted";
 
 "Default: N/A" = "N/A";
 
@@ -48,12 +49,12 @@
 "GeoAccess: .deniedForAllApps" = "Denied for all apps";
 "GeoAccess: .deniedForTheApp" = "Denied for the app";
 "GeoAccess: .allowed" = "Allowed";
+"GeoAccess: .notAllowed" = "Not allowed";
 
 "Geo Couple" = "Latitude, Longitude";
 
-"Button: Allow Geo..." = "Allow Geo Service";
-"Button: Go to Settings..." = "Go to Settings...";
-"Button: Refresh Current Location" = "Get Current Location";
+"Button: Update Geo Access" = "Update Geo Access";
+"Button: Refresh Current Location" = "Update Current Location";
 
 /* Current Weather View */
 
@@ -116,7 +117,7 @@
 
 /* Options Screen – OptionsWindowController, OptionsViewController */
 
-"Title: Options Screen" = "Product";
+"Title: Options Screen" = "Product Options";
 
 "Section: App Options" = "The App Setup";
 
@@ -206,8 +207,8 @@
 
 /* About Screen – AboutWindowController, AboutViewController */
 
-"Button: The App Source Code" = "The Product Source Code";
-"Button: The Technological Tree" = "The Oak Tree Greening by the Ocean";
+"Button: The App Source Code" = "The product source code";
+"Button: The Technological Tree" = "There is a tree greening by the ocean...";
 
 "Label: The App Version" = "Version";
 

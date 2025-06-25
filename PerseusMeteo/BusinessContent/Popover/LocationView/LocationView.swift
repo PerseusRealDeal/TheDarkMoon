@@ -12,20 +12,14 @@
 //
 //  See LICENSE for details. All rights reserved.
 //
-// swiftlint:disable file_length
-//
 
 import Cocoa
 
-import PerseusGeoLocationKit
 import ConsolePerseusLogger
+import PerseusGeoKit
 
 @IBDesignable
 class LocationView: NSView {
-
-    // MARK: - Internals
-
-    private(set) var refreshedForPermit: LocationDealerPermit?
 
     // MARK: - Outlets
 
@@ -42,7 +36,6 @@ class LocationView: NSView {
     // MARK: - Actions
 
     @IBAction func quitButtonTapped(_ sender: NSButton) {
-
         log.message("[\(type(of: self))].\(#function)")
 
         // AppOptions.removeAll()
@@ -50,43 +43,24 @@ class LocationView: NSView {
     }
 
     @IBAction func refreshButtonTapped(_ sender: NSButton) {
-
         log.message("[\(type(of: self))].\(#function)")
-
-        let permit = globals.locationDealer.locationPermit
-
-        if permit == .notDetermined {
-            // Allow geo service action.
-            globals.locationDealer.askForAuthorization { permit in
-                let text = "[\(type(of: self))].\(#function) — .\(permit)"
-                log.message(text, .error)
-            }
-        } else if permit == .allowed {
-            // Refresh geo data action.
-            try? globals.locationDealer.askForCurrentLocation()
-        } else {
-            // Open system options action.
-            AppGlobals.openTheApp(name: AppGlobals.systemOptionsAppName)
-        }
+        LocationDealer.requestCurrent()
     }
 
     // MARK: - Initialization
 
     override func viewWillDraw() {
         super.viewWillDraw()
-
         log.message("[\(type(of: self))].\(#function)")
     }
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-
         log.message("[\(type(of: self))].\(#function)")
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         log.message("[\(type(of: self))].\(#function)")
 
         localize()
@@ -94,7 +68,6 @@ class LocationView: NSView {
 
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-
         log.message("[\(type(of: self))].\(#function)")
 
         // Setup the view as a reusable control.
@@ -137,133 +110,62 @@ class LocationView: NSView {
 
         self.addConstraints(newConstraints)
 
-        // Setup location event handlers.
-
-        let nc = AppGlobals.notificationCenter
-
-        nc.addObserver(self, selector: #selector(locationDealerCurrentHandler(_:)),
-                       name: .locationDealerCurrentNotification,
-                       object: nil)
-
-        nc.addObserver(self, selector: #selector(locationDealerStatusChangedHandler),
-                       name: .locationDealerStatusChangedNotification,
-                       object: nil)
+        // Connect to Geo Coordinator
+        GeoCoordinator.register(stakeholder: self, selector: #selector(reloadData))
     }
 
     // MARK: - Contract
 
-    public func reloadData() {
-
-#if !TARGET_INTERFACE_BUILDER
-        // Run this code only in the app.
-        refreshedForPermit = globals.locationDealer.locationPermit
-#else
-        // Run this code only in Interface Builder.
-        refreshedForPermit = .deniedForAllAndRestricted
-#endif
+    @objc public func reloadData() {
 
         labelLocationNameValue.stringValue = "Greetings".localizedValue
         labelGeoCoupleDataValue.stringValue = geoCoupleDataLocalized
 
         labelPermissionTitle.stringValue = "Label: Permission".localizedValue + ":"
+        labelPermissionValue.stringValue = GeoAgent.currentStatus.localizedKey.localizedValue
 
-        let permissionLocalized = refreshedForPermit?.permissionLocalKey.localizedValue ?? ""
-        labelPermissionValue.stringValue = permissionLocalized
-
-        buttonRefresh.title = refreshedForPermit?.refreshLocalKey.localizedValue ?? ""
+        buttonRefresh.title = "Button: Refresh Current Location".localizedValue
     }
-}
-
-// MARK: - DARK MODE
-
-extension LocationView {
 
     public func makeup() {
-
         log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
     }
-}
-
-// MARK: - LOCALIZATION
-
-extension LocationView {
 
     public func localize() {
-
         log.message("[\(type(of: self))].\(#function)")
-
         reloadData()
     }
 }
 
-// MARK: - LOCATION DATA EVENT HANDLER
-
-extension LocationView {
-
-    @objc private func locationDealerCurrentHandler(_ notification: Notification) {
-
-        log.message("[\(type(of: self))].\(#function)")
-
-        guard
-            let result = notification.object as? Result<PerseusLocation, LocationDealerError>
-        else { return }
-
-        switch result {
-        case .success(let data):
-            AppGlobals.appDelegate?.location = data
-        case .failure(let error):
-            log.message("\(error)", .error)
-        }
-
-        reloadData()
-    }
-
-    @objc private func locationDealerStatusChangedHandler() {
-
-        log.message("[\(type(of: self))].\(#function)")
-
-        reloadData()
-    }
-}
-
-// MARK: - COMPLEX STRINGS LOCALIZED
+// MARK: - Extentions
 
 extension LocationView {
 
     private var geoCoupleDataLocalized: String {
-
-        guard
-            let location = AppGlobals.appDelegate?.location
-        else {
+        guard let location = AppGlobals.currentLocation else {
             return "Geo Couple".localizedValue
         }
-
         return "\(location.latitude.cut(.four)), \(location.longitude.cut(.four))"
     }
 }
 
-// MARK: - LOCALIZATION EXTENSIONS
+extension GeoStatusSimplified {
 
-extension LocationDealerPermit {
-
-    var refreshLocalKey: String {
+    var localizedKey: String {
         switch self {
         case .notDetermined:
-            return "Button: Allow Geo..."
-        case .deniedForAllAndRestricted:
-            return "Button: Go to Settings..."
-        case .restricted:
-            return "Button: Go to Settings..."
-        case .deniedForAllApps:
-            return "Button: Go to Settings..."
-        case .deniedForTheApp:
-            return "Button: Go to Settings..."
+            return "GeoAccess: .notDetermined"
+        case .notAllowed:
+            return "GeoAccess: .notAllowed"
         case .allowed:
-            return "Button: Refresh Current Location"
+            return "GeoAccess: .allowed"
         }
     }
+}
 
-    var permissionLocalKey: String {
+extension GeoStatus {
+
+    var localizedKey: String {
         switch self {
         case .notDetermined:
             return "GeoAccess: .notDetermined"

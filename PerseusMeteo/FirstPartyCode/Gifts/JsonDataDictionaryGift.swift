@@ -2,8 +2,10 @@
 //  JsonDataDictionaryGift.swift
 //  Gifts
 //
-//  Just a gift. Tested with Swift 4.2 compiler.
-//  https://gist.github.com/perseusrealdeal/918c25633122e64d51f363f00059f6f8
+//  Just a gift.
+//  <https://gist.github.com/perseusrealdeal/918c25633122e64d51f363f00059f6f8>
+//
+//  Unlicensed Free Software. For more information, <http://unlicense.org/>
 //
 
 /* Perseus Logger source code */

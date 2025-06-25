@@ -22,15 +22,13 @@ import XCTest
 class TestingAppDelegate: NSResponder, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
-        testlog.level = .info
-        log.turned = .off
+        applog.turned = .off
 
-        testlog.message("", .info)
-        testlog.message("The app's test bundle start point...", .info)
-        testlog.message("", .info)
-        testlog.message("Launching with testing matter purpose...", .info)
-        testlog.message("", .info)
+        log.message("[\(type(of: self))].\(#function)")
+        log.message("> The app's test bundle start point...", .info)
 
-        testlog.message("[\(type(of: self))].\(#function)")
+        // Common configuration
+
+        log.message("> Ready with testing matter purpose...", .info)
     }
 }

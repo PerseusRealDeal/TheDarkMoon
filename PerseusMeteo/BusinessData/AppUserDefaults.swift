@@ -1,5 +1,5 @@
 //
-//  AppOptions.swift
+//  AppUserDefaults.swift
 //  PerseusMeteo
 //
 //  Created by Mikhail Zhigulin in 7532.
@@ -22,6 +22,9 @@ import ConsolePerseusLogger
 
 // MARK: - Keys
 
+// TODO: Include DARK_MODE_SETTINGS_KEY to Perseus Dark Mode
+public let DARK_MODE_SETTINGS_KEY = "DarkModeSettingsKey"
+
 // public let OPEN_WEATHER_API_KEY_OPTION_KEY = "OPEN_WEATHER_API_OPTION_KEY"
 public let OPEN_WEATHER_API_KEY_TEXT_LIMIT = 32
 
@@ -43,7 +46,7 @@ public let TIME_OPTION_DEFAULT = TimeFormatOption.system
 public let DISTANCE_OPTION_KEY = "DISTANCE_OPTION_KEY"
 public let DISTANCE_OPTION_DEFAULT = LengthOption.mile
 
-// MARK: - Service for keeping options saved
+// MARK: - User Defaults
 
 class AppOptions {
 
