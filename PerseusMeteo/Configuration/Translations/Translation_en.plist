@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Product Name</key>
+	<string>Snowman</string>
+	<key>Greetings</key>
+	<string>Hello world!</string>
+	<key>DeveloperRelease</key>
+	<string>Developer release, to become acquainted</string>
+	<key>Location Usage Description</key>
+	<string>Geo information—latitude and longitude—is required to fetch meteo facts.</string>
+	<key>Copyright</key>
+	<string>Copyright © 2023 - 2024 Mikhail Zhigulin of Novosibirsk. All rights reserved.</string>
+	<key>Default: N/A</key>
+	<string>N/A</string>
+	<key>/* Popover Screen */</key>
+	<string>--</string>
+	<key>Button: Call Weather</key>
+	<string>Call Weather</string>
+	<key>Button: Call Forecast</key>
+	<string>Call Forecast</string>
+	<key>Label: Made with Love</key>
+	<string>Made with Love from Novosibirsk.</string>
+	<key>Tab: Current Weather</key>
+	<string>Current Weather</string>
+	<key>Tab: Forecast</key>
+	<string>Forecast</string>
+	<key>Button: Quit</key>
+	<string>Quit</string>
+	<key>Button: About</key>
+	<string>About</string>
+	<key>Button: Options</key>
+	<string>Options</string>
+	<key>Button: Hide</key>
+	<string>Hide</string>
+	<key>/* Location View */</key>
+	<string>--</string>
+	<key>Label: Permission</key>
+	<string>Location Access</string>
+	<key>GeoAccess: .notDetermined</key>
+	<string>Not determined</string>
+	<key>GeoAccess: .deniedForAllAndRestricted</key>
+	<string>Denied for all and restricted</string>
+	<key>GeoAccess: .restricted</key>
+	<string>Restricted</string>
+	<key>GeoAccess: .deniedForAllApps</key>
+	<string>Denied for all apps</string>
+	<key>GeoAccess: .deniedForTheApp</key>
+	<string>Denied for the app</string>
+	<key>GeoAccess: .allowed</key>
+	<string>Allowed</string>
+	<key>GeoAccess: .notAllowed</key>
+	<string>Not allowed</string>
+	<key>Geo Couple</key>
+	<string>Latitude, Longitude</string>
+	<key>Button: Update Geo Access</key>
+	<string>Update Geo Access</string>
+	<key>Button: Refresh Current Location</key>
+	<string>Update Current Location</string>
+	<key>/* Current Weather View */</key>
+	<string>--</string>
+	<key>Label: Meteo Data Provider</key>
+	<string>Meteo Data by</string>
+	<key>Label: Weather Conditions</key>
+	<string>Weather Conditions</string>
+	<key>Prefix: Curren Weather in Brief</key>
+	<string>In brief</string>
+	<key>Prefix: Feels Like</key>
+	<string>Kinda</string>
+	<key>Prefix: Min</key>
+	<string>L</string>
+	<key>Prefix: Max</key>
+	<string>H</string>
+	<key>Prefix: Humidity</key>
+	<string>Humidity</string>
+	<key>Prefix: Visibility</key>
+	<string>Visibility</string>
+	<key>Prefix: Cloudiness</key>
+	<string>Cloudiness</string>
+	<key>Unit: Meter</key>
+	<string>m</string>
+	<key>Unit: Kilometre</key>
+	<string>km</string>
+	<key>Unit: Mile</key>
+	<string>mi</string>
+	<key>Unit: Foot</key>
+	<string>ft</string>
+	<key>Label: Speed</key>
+	<string>Wind</string>
+	<key>Label: Direction</key>
+	<string>Direction</string>
+	<key>Label: Gust</key>
+	<string>Gust</string>
+	<key>Unit: m/s</key>
+	<string>m/s</string>
+	<key>Unit: km/h</key>
+	<string>km/h</string>
+	<key>Unit: mph</key>
+	<string>mph</string>
+	<key>Label: Pressure</key>
+	<string>Pressure</string>
+	<key>Unit: hPa</key>
+	<string>hPa</string>
+	<key>Unit: mmHg</key>
+	<string>mmHg</string>
+	<key>Unit: mb</key>
+	<string>mb</string>
+	<key>Label: Sunrise</key>
+	<string>SUNRISE</string>
+	<key>Label: Sunset</key>
+	<string>SUNSET</string>
+	<key>/* Time */</key>
+	<string>--</string>
+	<key>AM</key>
+	<string>AM</string>
+	<key>PM</key>
+	<string>PM</string>
+	<key>Postfix: Year</key>
+	<string></string>
+	<key>Prefix: Last One</key>
+	<string>Last One</string>
+	<key>/* Forecast View */</key>
+	<string>--</string>
+	<key>Label: DayItem Weather Conditions</key>
+	<string>Conditions</string>
+	<key>rain</key>
+	<string>rain</string>
+	<key>snow</key>
+	<string>snow</string>
+	<key>clear</key>
+	<string>clear</string>
+	<key>Label: Weekday short</key>
+	<string>Day</string>
+	<key>Label: Forecast Date</key>
+	<string>Date</string>
+	<key>/* Options Screen */</key>
+	<string>--</string>
+	<key>Title: Options Screen</key>
+	<string>Product Options</string>
+	<key>Section: App Options</key>
+	<string>The App Setup</string>
+	<key>Option: Dark Mode</key>
+	<string>Moon Side</string>
+	<key>Option: Language</key>
+	<string>Language</string>
+	<key>Option: OpenWeather Key</key>
+	<string>OpenWeather Key</string>
+	<key>Option: Time Format</key>
+	<string>Time</string>
+	<key>Section: Meteo Options</key>
+	<string>Meteo Viewing</string>
+	<key>Option: Temperature</key>
+	<string>Temperature</string>
+	<key>Option: Wind Speed</key>
+	<string>Wind Speed</string>
+	<key>Option: Pressure</key>
+	<string>Barometer</string>
+	<key>Option: Distance</key>
+	<string>Visibility</string>
+	<key>OpenWeather: Lock</key>
+	<string>Lock</string>
+	<key>OpenWeather: Unlock</key>
+	<string>Unlock</string>
+	<key>OpenWeather: Hidden</key>
+	<string>Hidden key-hole...</string>
+	<key>OpenWeather: Editable</key>
+	<string>Past the key (token)...</string>
+	<key>Unit: Light</key>
+	<string>Light</string>
+	<key>Unit: Dark</key>
+	<string>Dark</string>
+	<key>Unit: System</key>
+	<string>System</string>
+	<key>Unit: English</key>
+	<string>English</string>
+	<key>Unit: Russian</key>
+	<string>Russian</string>
+	<key>Unit: 24-hour</key>
+	<string>24-hour</string>
+	<key>Unit: 12-hour</key>
+	<string>12-hour</string>
+	<key>Unit: Kelvin</key>
+	<string>Kelvin</string>
+	<key>Unit: Celsius</key>
+	<string>Celsius</string>
+	<key>Unit: Fahrenheit</key>
+	<string>Fahrenheit</string>
+	<key>Unit: m/s long</key>
+	<string>meter/sec</string>
+	<key>Unit: km/h long</key>
+	<string>km/hour</string>
+	<key>Unit: mph long</key>
+	<string>miles per hour</string>
+	<key>Unit: Kilometre long</key>
+	<string>Kilometre</string>
+	<key>Unit: Mile long</key>
+	<string>Mile</string>
+	<key>Button: Close</key>
+	<string>Close</string>
+	<key>/* Compass Directions */</key>
+	<string>--</string>
+	<key>Compass: N</key>
+	<string>N</string>
+	<key>Compass: NNE</key>
+	<string>N/NE</string>
+	<key>Compass: NE</key>
+	<string>NE</string>
+	<key>Compass: ENE</key>
+	<string>E/NE</string>
+	<key>Compass: E</key>
+	<string>E</string>
+	<key>Compass: ESE</key>
+	<string>E/SE</string>
+	<key>Compass: SE</key>
+	<string>SE</string>
+	<key>Compass: SSE</key>
+	<string>S/SE</string>
+	<key>Compass: S</key>
+	<string>S</string>
+	<key>Compass: SSW</key>
+	<string>S/SW</string>
+	<key>Compass: SW</key>
+	<string>SW</string>
+	<key>Compass: WSW</key>
+	<string>W/SW</string>
+	<key>Compass: W</key>
+	<string>W</string>
+	<key>Compass: WNW</key>
+	<string>W/NW</string>
+	<key>Compass: NW</key>
+	<string>NW</string>
+	<key>Compass: NNW</key>
+	<string>N/NW</string>
+	<key>/* Months&apos; Names */</key>
+	<string>--</string>
+	<key>Month: December</key>
+	<string>Dec</string>
+	<key>Month: January</key>
+	<string>Jan</string>
+	<key>Month: February</key>
+	<string>Feb</string>
+	<key>Month: March</key>
+	<string>Mar</string>
+	<key>Month: April</key>
+	<string>Apr</string>
+	<key>Month: May</key>
+	<string>May</string>
+	<key>Month: June</key>
+	<string>Jun</string>
+	<key>Month: Jule</key>
+	<string>Jul</string>
+	<key>Month: August</key>
+	<string>Aug</string>
+	<key>Month: September</key>
+	<string>Sep</string>
+	<key>Month: October</key>
+	<string>Oct</string>
+	<key>Month: November</key>
+	<string>Nov</string>
+	<key>/* Days&apos; Names */</key>
+	<string>--</string>
+	<key>Day: Sun</key>
+	<string>Sun</string>
+	<key>Day: Mon</key>
+	<string>Mon</string>
+	<key>Day: Tue</key>
+	<string>Tue</string>
+	<key>Day: Wed</key>
+	<string>Wed</string>
+	<key>Day: Thu</key>
+	<string>Thu</string>
+	<key>Day: Fri</key>
+	<string>Fri</string>
+	<key>Day: Sat</key>
+	<string>Sat</string>
+	<key>/* About Screen */</key>
+	<string>--</string>
+	<key>Button: The App Source Code</key>
+	<string>The product source code</string>
+	<key>Button: The Technological Tree</key>
+	<string>There is a tree greening by the ocean...</string>
+	<key>Label: The App Version</key>
+	<string>Version</string>
+	<key>Label: Star Copyright Notice</key>
+	<string>Copyright © 7531 - 7532 Mikhail Zhigulin of Novosibirsk</string>
+	<key>Label: Copyright Details</key>
+	<string>The year starts from the creation of the world in the Star temple according to a Slavic calendar. September, the 1st of Slavic year</string>
+	<key>Label: Credits</key>
+	<string>Credits</string>
+	<key>Label: Balancing and Control</key>
+	<string>Balance and Control by</string>
+	<key>Label: Writing</key>
+	<string>Written by</string>
+	<key>Label: Documenting</key>
+	<string>Documented by</string>
+	<key>Label: Artworking</key>
+	<string>Artwork by</string>
+	<key>Label: EN Expectation</key>
+	<string>English by</string>
+	<key>Label: RU Expectation</key>
+	<string>Russian by</string>
+	<key>Label: Author</key>
+	<string>Mikhail Zhigulin</string>
+	<key>Button: License</key>
+	<string>License</string>
+	<key>Button: Terms &amp; Conditions</key>
+	<string>Terms &amp; Conditions</string>
+	<key>/* Weather-conditions descriptions */</key>
+	<string>--</string>
+	<key>Main: clear sky</key>
+	<string>clear sky</string>
+	<key>Main: few clouds</key>
+	<string>few clouds</string>
+	<key>Main: scattered clouds</key>
+	<string>scattered clouds</string>
+	<key>Main: broken clouds</key>
+	<string>broken clouds</string>
+	<key>Main: shower rain</key>
+	<string>shower rain</string>
+	<key>Main: rain</key>
+	<string>rain</string>
+	<key>Main: thunderstorm</key>
+	<string>thunderstorm</string>
+	<key>Main: snow</key>
+	<string>snow</string>
+	<key>Main: mist</key>
+	<string>mist</string>
+	<key>Code: thunderstormWithLightRain</key>
+	<string>thunderstorm with light rain</string>
+	<key>Code: thunderstormWithRain</key>
+	<string>thunderstorm with rain</string>
+	<key>Code: thunderstormWithHeavyRain</key>
+	<string>thunderstorm with heavy rain</string>
+	<key>Code: lightThunderstorm</key>
+	<string>light thunderstorm</string>
+	<key>Code: thunderstorm</key>
+	<string>thunderstorm</string>
+	<key>Code: heavyThunderstorm</key>
+	<string>heavy thunderstorm</string>
+	<key>Code: raggedThunderstorm</key>
+	<string>ragged thunderstorm</string>
+	<key>Code: thunderstormWithLightDrizzle</key>
+	<string>thunderstorm with light drizzle</string>
+	<key>Code: thunderstormWithDrizzle</key>
+	<string>thunderstorm with drizzle</string>
+	<key>Code: thunderstormWithHeavyDrizzle</key>
+	<string>thunderstorm with heavy drizzle</string>
+	<key>Code: lightIntensityDrizzle</key>
+	<string>light intensity drizzle</string>
+	<key>Code: drizzle</key>
+	<string>drizzle</string>
+	<key>Code: heavyIntensityDrizzle</key>
+	<string>heavy intensity drizzle</string>
+	<key>Code: lightIntensityDrizzleRain</key>
+	<string>light intensity drizzle rain</string>
+	<key>Code: drizzleRain</key>
+	<string>drizzle rain</string>
+	<key>Code: heavyIntensityDrizzleRain</key>
+	<string>heavy intensity drizzle rain</string>
+	<key>Code: showerRainAndDrizzle</key>
+	<string>shower rain and drizzle</string>
+	<key>Code: heavyShowerRainAndDrizzle</key>
+	<string>heavy shower rain and drizzle</string>
+	<key>Code: showerDrizzle</key>
+	<string>shower drizzle</string>
+	<key>Code: lightRain</key>
+	<string>light rain</string>
+	<key>Code: moderateRain</key>
+	<string>moderate rain</string>
+	<key>Code: heavyIntensityRain</key>
+	<string>heavy intensity rain</string>
+	<key>Code: veryHeavyRain</key>
+	<string>very heavy rain</string>
+	<key>Code: extremeRain</key>
+	<string>extreme rain</string>
+	<key>Code: freezingRain</key>
+	<string>freezing rain</string>
+	<key>Code: lightIntensityShowerRain</key>
+	<string>light intensity shower rain</string>
+	<key>Code: showerRain</key>
+	<string>shower rain</string>
+	<key>Code: heavyIntensityShowerRain</key>
+	<string>heavy intensity shower rain</string>
+	<key>Code: raggedShowerRain</key>
+	<string>ragged shower rain</string>
+	<key>Code: lightSnow</key>
+	<string>light snow</string>
+	<key>Code: snow</key>
+	<string>snow</string>
+	<key>Code: heavySnow</key>
+	<string>heavy snow</string>
+	<key>Code: sleet</key>
+	<string>sleet</string>
+	<key>Code: lightShowerSleet</key>
+	<string>light shower sleet</string>
+	<key>Code: showerSleet</key>
+	<string>shower sleet</string>
+	<key>Code: lightRainAndSnow</key>
+	<string>light rain and snow</string>
+	<key>Code: rainAndSnow</key>
+	<string>rain and snow</string>
+	<key>Code: lightShowerSnow</key>
+	<string>light shower snow</string>
+	<key>Code: showerSnow</key>
+	<string>shower snow</string>
+	<key>Code: heavyShowerSnow</key>
+	<string>heavy shower snow</string>
+	<key>Code: mist</key>
+	<string>mist</string>
+	<key>Code: smoke</key>
+	<string>smoke</string>
+	<key>Code: haze</key>
+	<string>haze</string>
+	<key>Code: sandDustWhirls</key>
+	<string>sand dust whirls</string>
+	<key>Code: fog</key>
+	<string>fog</string>
+	<key>Code: sand</key>
+	<string>sand</string>
+	<key>Code: dust</key>
+	<string>dust</string>
+	<key>Code: volcanicAsh</key>
+	<string>volcanic ash</string>
+	<key>Code: squalls</key>
+	<string>squalls</string>
+	<key>Code: tornado</key>
+	<string>tornado</string>
+	<key>Code: clearSky</key>
+	<string>clear sky</string>
+	<key>Code: fewClouds_11_25</key>
+	<string>few clouds: 11-25%</string>
+	<key>Code: scatteredClouds_25_50</key>
+	<string>scattered clouds: 25-50%</string>
+	<key>Code: brokenClouds_51_84</key>
+	<string>broken clouds: 51-84%</string>
+	<key>Code: overcastClouds_85_100</key>
+	<string>overcast clouds: 85-100%</string>
+</dict>
+</plist>

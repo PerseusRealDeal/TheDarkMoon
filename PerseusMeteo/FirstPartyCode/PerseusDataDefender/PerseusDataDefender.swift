@@ -19,6 +19,8 @@
 import Foundation
 import Security
 
+import ConsolePerseusLogger
+
 public protocol KeychainQueryable {
     var keychainQuery: [String: Any] { get } // To remove, update, or add a secret
     var keychainLoadQuery: [String: Any] { get } // To load a secret

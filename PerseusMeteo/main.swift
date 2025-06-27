@@ -7,31 +7,46 @@
 //  Copyright © 7531 - 7532 Mikhail Zhigulin of Novosibirsk
 //  Copyright © 7531 - 7532 PerseusRealDeal
 //
-//  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year.
+//  The year starts from the creation of the world in the Star temple
+//  according to a Slavic calendar. September, the 1st of Slavic year.
 //
 //  See LICENSE for details. All rights reserved.
 //
 
 import Cocoa
+import ConsolePerseusLogger
 
-// MARK: - Logger
+// MARK: - The Logger
 
-log.level = .info
+import class PerseusDarkMode.PerseusLogger
+import class PerseusGeoKit.PerseusLogger
+import class OpenWeatherAgent.PerseusLogger
 
-// MARK: - Construct the app's top elements
+// swiftlint:disable type_name
+typealias applog = ConsolePerseusLogger.PerseusLogger // For test bundle, log is for main.
+typealias pdmlog = PerseusDarkMode.PerseusLogger
+typealias pgklog = PerseusGeoKit.PerseusLogger
+typealias owclog = OpenWeatherAgent.PerseusLogger
+// swiftlint:enable type_name
 
-log.message("The app's start point...", .info)
-log.message("", .info)
+pdmlog.turned = .off
+pgklog.turned = .off
+owclog.turned = .off
+
+// MARK: - The Start Line
+
+log.message("> The app's start point...", .info)
+
+let globals = AppGlobals()
 
 let app = NSApplication.shared
 
 let appPurpose = NSClassFromString("TestingAppDelegate") as? NSObject.Type
 let appDelegate = appPurpose?.init() ?? AppDelegate()
 
-let globals = AppGlobals()
+let statusMenusButtonPresenter = StatusMenusButtonPresenter()
 
-// MARK: - Make the app run
+// MARK: - The Run
 
 /*
 
@@ -41,6 +56,8 @@ let globals = AppGlobals()
  activated programmatically or by clicking on one of its windows.
 
  */
+
+log.message("> The app in the beginning...", .info)
 
 app.setActivationPolicy(.accessory)
 

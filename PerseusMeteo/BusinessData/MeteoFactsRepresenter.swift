@@ -7,8 +7,8 @@
 //  Copyright © 7532 Mikhail Zhigulin of Novosibirsk
 //  Copyright © 7532 PerseusRealDeal
 //
-//  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year.
+//  The year starts from the creation of the world in the Star temple
+//  according to a Slavic calendar. September, the 1st of Slavic year.
 //
 //  See LICENSE for details. All rights reserved.
 //
@@ -19,6 +19,17 @@
 //
 
 import Foundation
+
+// MARK: - Probability of precipitation (pop)
+
+public func representProbabilityOfPrecipitation(_ value: Double?) -> String {
+
+    guard let probability = value else { return "" }
+
+    let calculated = probability * 100
+
+    return Int(calculated.cut(.two)).description
+}
 
 // MARK: - Temperature
 
@@ -171,7 +182,7 @@ public let months =
 public func representLastOneCalculationTime(_ value: Int,
                                             _ timezone: Int,
                                             toBe: TimeFormatOption)
-    -> (day: String?, time: String?) {
+    -> (day: String?, time: String?, theDayOfTheWeek: Int?) {
 
         // Calculate required time format.
         let current = Date.currentTimeFormat
@@ -187,26 +198,30 @@ public func representLastOneCalculationTime(_ value: Int,
 
         // Day.
 
-        guard let timezone = TimeZone(secondsFromGMT: timezone) else { return (nil, nil) }
+        guard let timezone = TimeZone(secondsFromGMT: timezone) else { return (nil, nil, nil) }
 
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = timezone
 
-        let components = calendar.dateComponents([.day, .month, .year], from: date)
+        let components = calendar.dateComponents([.day, .month, .year, .weekday], from: date)
 
         // Parse.
 
         guard
             let dayNumber = components.day,
             let monthNumber = components.month,
-            let yearNumber = components.year else { return (nil, nil) }
+            let yearNumber = components.year,
+            let theDayOfTheWeek = components.weekday
+        else {
+            return (nil, nil, nil)
+        }
 
         // Formate.
 
         let month = ("Month: " + months[monthNumber-1]).localizedValue
         let theDay = "\(dayNumber) \(month) \(yearNumber)"
 
-        return (theDay, theTime)
+        return (theDay, theTime, theDayOfTheWeek)
 }
 
 // MARK: - Icon name

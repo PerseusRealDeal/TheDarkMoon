@@ -46,6 +46,16 @@ public enum LanguageOption: Int, CustomStringConvertible {
     case ru     = 1
     case system = 2
 
+    // TODO: Reorder lang nums
+
+    /* should go like this
+
+    case ru     = 2
+    case en     = 1
+    case system = 0
+
+    */
+
     public var description: String {
         switch self {
         case .en:

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="LocationView" customModule="Snowman" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonRefresh" destination="dzE-ai-CbN" id="Vrg-ej-CLC"/>
+                <outlet property="labelGeoCoupleDataValue" destination="kTd-g8-roX" id="XGO-p8-V83"/>
+                <outlet property="labelLocationNameValue" destination="XdO-8w-GAc" id="jTk-YJ-qS7"/>
+                <outlet property="labelPermissionTitle" destination="6Bi-kF-QOm" id="UNg-EP-2Rz"/>
+                <outlet property="labelPermissionValue" destination="3WQ-1R-kmJ" id="GJd-1q-Cig"/>
+                <outlet property="viewContent" destination="c22-O7-iKe" id="hqr-Zc-of2"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="325" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XdO-8w-GAc">
+                    <rect key="frame" x="68" y="33" width="189" height="24"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Location Name Label" id="W3Q-Ei-Qtg">
+                        <font key="font" metaFont="system" size="20"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3WQ-1R-kmJ">
+                    <rect key="frame" x="73" y="69" width="43" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Status" id="oBr-sx-wHs">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kTd-g8-roX">
+                    <rect key="frame" x="0.0" y="7" width="122" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Latitude, Longitude" id="qc4-GJ-hVX">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dzE-ai-CbN">
+                    <rect key="frame" x="170" y="-2" width="162" height="32"/>
+                    <buttonCell key="cell" type="push" title="Get Current Location" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dNz-Wm-Pow">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="refreshButtonTapped:" target="-2" id="SPt-d4-add"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Bi-kF-QOm">
+                    <rect key="frame" x="0.0" y="69" width="75" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Permission:" id="nlB-9i-IAi">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="XdO-8w-GAc" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="390-18-IL3"/>
+                <constraint firstAttribute="bottom" secondItem="dzE-ai-CbN" secondAttribute="bottom" constant="5" id="BHf-sC-VcN"/>
+                <constraint firstItem="3WQ-1R-kmJ" firstAttribute="leading" secondItem="6Bi-kF-QOm" secondAttribute="trailing" constant="2" id="Fgf-di-xCz"/>
+                <constraint firstItem="6Bi-kF-QOm" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="2" id="PSp-oW-HYr"/>
+                <constraint firstItem="6Bi-kF-QOm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="5" id="TO9-gI-Zt2"/>
+                <constraint firstItem="3WQ-1R-kmJ" firstAttribute="centerY" secondItem="6Bi-kF-QOm" secondAttribute="centerY" id="bb1-2U-0b9"/>
+                <constraint firstItem="kTd-g8-roX" firstAttribute="centerY" secondItem="dzE-ai-CbN" secondAttribute="centerY" id="eBF-5F-Teo"/>
+                <constraint firstItem="kTd-g8-roX" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="2" id="fKf-IW-hHl"/>
+                <constraint firstItem="XdO-8w-GAc" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="gjg-aw-MWt"/>
+                <constraint firstAttribute="trailing" secondItem="dzE-ai-CbN" secondAttribute="trailing" id="yio-Ya-lDQ"/>
+            </constraints>
+            <point key="canvasLocation" x="43" y="-36"/>
+        </customView>
+    </objects>
+</document>

@@ -7,8 +7,8 @@
 //  Copyright © 7532 Mikhail Zhigulin of Novosibirsk
 //  Copyright © 7532 PerseusRealDeal
 //
-//  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year.
+//  The year starts from the creation of the world in the Star temple
+//  according to a Slavic calendar. September, the 1st of Slavic year.
 //
 //  See LICENSE for details. All rights reserved.
 //
@@ -37,6 +37,9 @@ class PopoverScreenLocalizationTests: XCTestCase {
 
         // assert
 
+        XCTAssertEqual(sut.buttonQuit.title,
+                       "Button: Quit".localizedValue)
+
         XCTAssertEqual(sut.buttonFetchMeteoFacts.title,
                        "Button: Call Weather".localizedValue)
 
@@ -48,9 +51,6 @@ class PopoverScreenLocalizationTests: XCTestCase {
 
         XCTAssertEqual(sut.tabForecast.label,
                        "Tab: Forecast".localizedValue)
-
-        XCTAssertEqual(sut.buttonQuit.title,
-                       "Button: Quit".localizedValue)
 
         XCTAssertEqual(sut.buttonAbout.title,
                        "Button: About".localizedValue)
@@ -78,14 +78,6 @@ class PopoverScreenLocalizationTests: XCTestCase {
 
         XCTAssertEqual(sut.viewLocation.labelPermissionTitle.stringValue,
                        "Label: Permission".localizedValue + ":")
-
-        let permit = sut.viewLocation.refreshedForPermit
-
-        XCTAssertEqual(sut.viewLocation.labelPermissionValue.stringValue,
-                       permit?.permissionLocalKey.localizedValue)
-
-        XCTAssertEqual(sut.viewLocation.buttonRefresh.title,
-                       permit?.refreshLocalKey.localizedValue)
     }
 
     func test_Localization_of_WeatherView() {
@@ -100,52 +92,80 @@ class PopoverScreenLocalizationTests: XCTestCase {
                        "Label: Meteo Data Provider".localizedValue)
 
         XCTAssertEqual(sut.viewCurrentWeather.labelMeteoProviderValue.stringValue,
-                       MeteoFacts.meteoDataProviderNameDefault)
+                       MeteoFactsDefaults.meteoDataProviderName)
 
-        XCTAssertEqual(sut.viewCurrentWeather.labelWeatherConditionValue.stringValue,
-                       "Label: About Current Weather".localizedValue)
-
-        let fl = "Prefix: Feels Like".localizedValue + ": \(MeteoFacts.temperatureDefault)"
-        XCTAssertEqual(sut.viewCurrentWeather.labelFeelsLike.stringValue, fl)
-
-        let min = "Prefix: Min".localizedValue + ": \(MeteoFacts.temperatureDefault)"
-        let max = "Prefix: Max".localizedValue + ": \(MeteoFacts.temperatureDefault)"
-        let minmax = min + " / " + max
-        XCTAssertEqual(sut.viewCurrentWeather.labelMiniMaxTemperature.stringValue, minmax)
-
-        let hum = "Prefix: Humidity".localizedValue + ": \(MeteoFacts.humidityDefault)"
-        XCTAssertEqual(sut.viewCurrentWeather.labelHumidity.stringValue, hum)
-
-        let vis = "Prefix: Visibility".localizedValue + ": \(MeteoFacts.visibilityDefault)"
-        XCTAssertEqual(sut.viewCurrentWeather.labelVisibility.stringValue, vis)
-
-        XCTAssertEqual(sut.viewCurrentWeather.labelWindSpeedTitle.stringValue,
-                       "Label: Speed".localizedValue)
-        XCTAssertEqual(sut.viewCurrentWeather.labelWindDirectionTitle.stringValue,
-                       "Label: Direction".localizedValue)
-        XCTAssertEqual(sut.viewCurrentWeather.labelWindGustsTitle.stringValue,
-                       "Label: Gust".localizedValue)
-
-        XCTAssertEqual(sut.viewCurrentWeather.labelWindSpeedValue.stringValue,
-                       MeteoFacts.windSpeedDefault)
-
-        XCTAssertEqual(sut.viewCurrentWeather.labelWindDirectionValue.stringValue,
-                       MeteoFacts.windDirectionDefault)
-
-        XCTAssertEqual(sut.viewCurrentWeather.labelWindGustsValue.stringValue,
-                       MeteoFacts.windSpeedDefault)
-
-        XCTAssertEqual(sut.viewCurrentWeather.labelPressureTitle.stringValue,
-                       "Label: Pressure".localizedValue)
-
-        XCTAssertEqual(sut.viewCurrentWeather.labelPressureValue.stringValue,
-                       MeteoFacts.pressureDefault)
+        let inFact = sut.viewCurrentWeather.labelWeatherConditionsDescriptionValue.stringValue
+        XCTAssertEqual(inFact, "Label: Weather Conditions".localizedValue)
 
         XCTAssertEqual(sut.viewCurrentWeather.labelSunriseTitle.stringValue,
                        "Label: Sunrise".localizedValue)
 
         XCTAssertEqual(sut.viewCurrentWeather.labelSunsetTitle.stringValue,
                        "Label: Sunset".localizedValue)
+
+    }
+
+    func test_Localization_of_WeatherView_MeteoGroupView() {
+
+        // arrange
+
+        sut.loadView()
+
+        // assert
+
+        let minmaxtitle = "Prefix: Min".localizedValue + ", " + "Prefix: Max".localizedValue
+        let minmaxvalue =
+            "\(MeteoFactsDefaults.temperature)" + " : " + "\(MeteoFactsDefaults.temperature)"
+
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.title1.stringValue, minmaxtitle)
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.value1.stringValue, minmaxvalue)
+
+        let fltitle = "Prefix: Feels Like".localizedValue
+        let flvalue = MeteoFactsDefaults.temperature
+
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.title2.stringValue, fltitle)
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.value2.stringValue, flvalue)
+
+        let vistitle = "Prefix: Visibility".localizedValue
+        let visvalue = MeteoFactsDefaults.visibility
+
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.title3.stringValue, vistitle)
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.value3.stringValue, visvalue)
+
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.title4.stringValue,
+                       "Label: Speed".localizedValue)
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.title5.stringValue,
+                       "Label: Direction".localizedValue)
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.title6.stringValue,
+                       "Label: Gust".localizedValue)
+
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.value4.stringValue,
+                       MeteoFactsDefaults.windSpeed)
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.value5.stringValue,
+                       MeteoFactsDefaults.windDirection)
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.value6.stringValue,
+                       MeteoFactsDefaults.windSpeed)
+
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.title7.stringValue,
+                       "Label: Pressure".localizedValue)
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.value7.stringValue,
+                       MeteoFactsDefaults.pressure)
+
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.title8.stringValue,
+                       "Prefix: Humidity".localizedValue)
+        XCTAssertEqual(sut.viewCurrentWeather.viewMeteoGroup.value8.stringValue,
+                       MeteoFactsDefaults.humidity)
+
+        // TODO: - Add cloudiness test
+    }
+
+    func test_Localization_of_ForecastView_MeteoGroupView() {
+
+        // arrange
+
+        sut.loadView()
+
+        // assert
 
     }
 
@@ -157,7 +177,7 @@ class PopoverScreenLocalizationTests: XCTestCase {
 
         // assert
 
-        XCTAssertEqual(sut.viewForecast.labelInDevelop.stringValue,
-                       "Label: Info".localizedValue)
+        XCTAssertEqual(sut.viewForecast.labelMeteoProviderTitle.stringValue,
+                       "Label: Meteo Data Provider".localizedValue)
     }
 }

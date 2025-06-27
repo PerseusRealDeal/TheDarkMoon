@@ -2,14 +2,17 @@
 //  JsonDataPrettyPrintedGift.swift
 //  Gifts
 //
-//  Just a gift, tested with Swift 4.2 compiler.
-//  https://gist.github.com/perseusrealdeal/945c9050cb9f7a19e00853f064acacca
+//  Just a gift.
+//  <https://gist.github.com/perseusrealdeal/945c9050cb9f7a19e00853f064acacca>
+//
+//  Unlicensed Free Software. For more information, <http://unlicense.org/>
 //
 
 /* Perseus Logger source code */
 /* https://gist.github.com/perseusrealdeal/df456a9825fcface44eca738056eb6d5 */
 
 import Foundation
+import ConsolePerseusLogger
 
 extension Data {
 

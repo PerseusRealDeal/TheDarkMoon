@@ -15,21 +15,26 @@
 
 "Product Name" = "Cнеговик";
 "Greetings" = "Рады приветствовать!";
+"DeveloperRelease" = "Выпуск разработчика, для ознакомления";
+
+"Default: N/A" = "нет";
 
 /* Popover Screen – PopoverViewController */
 
-"Button: Call Weather" = "Запроси Погоду";
+"Button: Call Weather" = "Запросить Погоду";
+"Button: Call Forecast" = "Запросить Прогноз";
+
 "Label: Made with Love" = "C любовью из Новосибирска.";
 
 "Tab: Current Weather" = "Наблюдение";
 "Tab: Forecast" = "Прогноз";
 
-"Button: Quit" = "Выйди";
+"Button: Quit" = "Завершить";
 
 "Button: About" = "Себяшка";
 "Button: Options" = "Настройки";
 
-"Button: Hide" = "Скройся";
+"Button: Hide" = "Скрыться";
 
 /* Location View */
 
@@ -41,17 +46,17 @@
 "GeoAccess: .deniedForAllApps" = "Заблокирован для всех";
 "GeoAccess: .deniedForTheApp" = "Заблокирован";
 "GeoAccess: .allowed" = "Предоставлен";
+"GeoAccess: .notAllowed" = "Запрещено";
 
 "Geo Couple" = "Широта, Долгота";
 
-"Button: Allow Geo..." = "Спроси Разрешение";
-"Button: Go to Settings..." = "Системные Настройки";
-"Button: Refresh Current Location" = "Обнови Геолокацию";
+"Button: Update Geo Access" = "Обновить Геодоступ";
+"Button: Refresh Current Location" = "Обновить Геолокацию";
 
 /* Current Weather View */
 
 "Label: Meteo Data Provider" = "Метео сведения от";
-"Label: About Current Weather" = "О погоде сейчас...";
+"Label: Weather Conditions" = "Погодные условия...";
 
 "Prefix: Curren Weather in Brief" = "Коротко";
 "Prefix: Feels Like" = "Наверное";
@@ -60,6 +65,7 @@
 
 "Prefix: Humidity" = "Влага";
 "Prefix: Visibility" = "Обзор";
+"Prefix: Cloudiness" = "Облака";
 
 "Unit: Meter" = "м";
 "Unit: Kilometre" = "км";
@@ -80,6 +86,8 @@
 "Unit: mmHg" = "мм.рт.ст.";
 "Unit: mb" = "мбар";
 
+"Unit: mm" = "мм";
+
 "Label: Sunrise" = "ВОСХОД";
 "Label: Sunset" = "ЗАХОД";
 
@@ -95,10 +103,18 @@
 /* Forecast View */
 
 "Label: Info" = "Секция в разработке выпуска версии 0.3.";
+"Label: DayItem Weather Conditions" = "Погода";
+
+"rain" = "дождь";
+"snow" = "снег";
+"clear" = "без осадков";
+
+"Label: Weekday short" = "День";
+"Label: Forecast Date" = "Дата";
 
 /* Options Screen – OptionsWindowController, OptionsViewController */
 
-"Title: Options Screen" = "Изделие";
+"Title: Options Screen" = "Настройки Изделия";
 
 "Section: App Options" = "Настройки Изделия";
 
@@ -140,7 +156,7 @@
 "Unit: Kilometre long" = "Километры";
 "Unit: Mile long" = "Мили";
 
-"Button: Close" = "Исчезни";
+"Button: Close" = "Исчезнуть";
 
 /* Compass Directions */
 
@@ -176,10 +192,20 @@
 "Month: October" = "окт.";
 "Month: November" = "нояб.";
 
+/* Days' Names */
+
+"Day: Sun" = "Вс";
+"Day: Mon" = "Пн";
+"Day: Tue" = "Вт";
+"Day: Wed" = "Ср";
+"Day: Thu" = "Чт";
+"Day: Fri" = "Пт";
+"Day: Sat" = "Сб";
+
 /* About Screen – AboutWindowController, AboutViewController */
 
-"Button: The App Source Code" = "Исходники Изделия";
-"Button: The Technological Tree" = "Лукоморья Дуб Зелёный";
+"Button: The App Source Code" = "Исходники изделия";
+"Button: The Technological Tree" = "Лукоморья дуб зелёный";
 
 "Label: The App Version" = "Выпуск";
 
@@ -200,3 +226,71 @@
 
 "Button: License" = "Текст лицензии";
 "Button: Terms & Conditions" = "Соглашение";
+
+/* OpenWeather weather-conditions descriptions */
+
+"Main: clear sky" = "без осадков";
+"Main: few clouds" = "малооблачно";
+"Main: scattered clouds" = "облачно";
+"Main: broken clouds" = "пасмурно";
+"Main: shower rain" = "ливень";
+"Main: rain" = "дождь";
+"Main: thunderstorm" = "гроза";
+"Main: snow" = "снег";
+"Main: mist" = "туман";
+
+"Code: thunderstormWithLightRain" = "гроза, дождливо";
+"Code: thunderstormWithRain" = "гроза и дождь";
+"Code: thunderstormWithHeavyRain" = "гроза и ливень";
+"Code: lightThunderstorm" = "гроза";
+"Code: thunderstorm" = "гроза";
+"Code: heavyThunderstorm" = "гроза";
+"Code: raggedThunderstorm" = "гроза";
+"Code: thunderstormWithLightDrizzle" = "гроза, мелкий дождь";
+"Code: thunderstormWithDrizzle" = "гроза, мелкий дождь";
+"Code: thunderstormWithHeavyDrizzle" = "гроза, мелкий дождь";
+"Code: lightIntensityDrizzle" = "моросит";
+"Code: drizzle" = "моросит";
+"Code: heavyIntensityDrizzle" = "моросит";
+"Code: lightIntensityDrizzleRain" = "моросит";
+"Code: drizzleRain" = "моросит";
+"Code: heavyIntensityDrizzleRain" = "дождик";
+"Code: showerRainAndDrizzle" = "дождь";
+"Code: heavyShowerRainAndDrizzle" = "дождь";
+"Code: showerDrizzle" = "дождик";
+"Code: lightRain" = "дождик";
+"Code: moderateRain" = "умеренный дождь";
+"Code: heavyIntensityRain" = "ливень";
+"Code: veryHeavyRain" = "ливень";
+"Code: extremeRain" = "ливень";
+"Code: freezingRain" = "холодный дождь";
+"Code: lightIntensityShowerRain" = "ливень";
+"Code: showerRain" = "ливень";
+"Code: heavyIntensityShowerRain" = "ливень";
+"Code: raggedShowerRain" = "ураганный ливень";
+"Code: lightSnow" = "местами снег";
+"Code: snow" = "снег";
+"Code: heavySnow" = "снегопад";
+"Code: sleet" = "гололедица";
+"Code: lightShowerSleet" = "гололедица";
+"Code: showerSleet" = "гололедица";
+"Code: lightRainAndSnow" = "снег с дождем";
+"Code: rainAndSnow" = "снег с дождем";
+"Code: lightShowerSnow" = "снег с дождем";
+"Code: showerSnow" = "мокрый снег";
+"Code: heavyShowerSnow" = "сырой снег";
+"Code: mist" = "туман";
+"Code: smoke" = "задымление";
+"Code: haze" = "мгла";
+"Code: sandDustWhirls" = "песчанный вихрь";
+"Code: fog" = "густой туман";
+"Code: sand" = "песчанно";
+"Code: dust" = "очень пыльно";
+"Code: volcanicAsh" = "вулканическая пыль";
+"Code: squalls" = "шквал ветра";
+"Code: tornado" = "ураган";
+"Code: clearSky" = "без осадков";
+"Code: fewClouds_11_25" = "облачно: 11-25%";
+"Code: scatteredClouds_25_50" = "облачно: 25-50%";
+"Code: brokenClouds_51_84" = "пасмурно: 51-84%";
+"Code: overcastClouds_85_100" = "пасмурно: 85-100%";

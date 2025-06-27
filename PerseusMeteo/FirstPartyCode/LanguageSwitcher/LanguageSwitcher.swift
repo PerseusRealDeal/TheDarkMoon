@@ -14,6 +14,7 @@
 //
 
 import Foundation
+import ConsolePerseusLogger
 
 class LanguageSwitcher: NSObject {
 

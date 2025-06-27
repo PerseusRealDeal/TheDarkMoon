@@ -1,0 +1,39 @@
+{
+  "configurations" : [
+    {
+      "id" : "3DC652D6-A369-4251-B68F-91F0EA4A84FE",
+      "name" : "English",
+      "options" : {
+        "language" : "en",
+        "region" : "US"
+      }
+    },
+    {
+      "id" : "09C04C3D-0061-4C4A-A5C8-B4A5D43374A0",
+      "name" : "Russian",
+      "options" : {
+        "language" : "ru",
+        "region" : "RU"
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "environmentVariableEntries" : [
+      {
+        "key" : "OS_ACTIVITY_MODE",
+        "value" : "disable"
+      }
+    ],
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:TheDarkMoon.xcodeproj",
+        "identifier" : "4B1483F22912892F0013B76E",
+        "name" : "SnowmanTests"
+      }
+    }
+  ],
+  "version" : 1
+}

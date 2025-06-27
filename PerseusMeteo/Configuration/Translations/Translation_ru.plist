@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Product Name</key>
+	<string>Cнеговик</string>
+	<key>Greetings</key>
+	<string>Рады приветствовать!</string>
+	<key>DeveloperRelease</key>
+	<string>Выпуск разработчика, для ознакомления</string>
+	<key>Location Usage Description</key>
+	<string>Гео сведения (широта и долгота) обязательны для получения метео данных.</string>
+	<key>Copyright</key>
+	<string>Охраняется авторским правом © 2023 - 2024 Михаил A. Жигулин из Новосибирска.</string>
+	<key>Default: N/A</key>
+	<string>нет</string>
+	<key>/* Popover Screen */</key>
+	<string>--</string>
+	<key>Button: Call Weather</key>
+	<string>Запросить Погоду</string>
+	<key>Button: Call Forecast</key>
+	<string>Запросить Прогноз</string>
+	<key>Label: Made with Love</key>
+	<string>C любовью из Новосибирска.</string>
+	<key>Tab: Current Weather</key>
+	<string>Наблюдение</string>
+	<key>Tab: Forecast</key>
+	<string>Прогноз</string>
+	<key>Button: Quit</key>
+	<string>Завершить</string>
+	<key>Button: About</key>
+	<string>Себяшка</string>
+	<key>Button: Options</key>
+	<string>Настройки</string>
+	<key>Button: Hide</key>
+	<string>Скрыться</string>
+	<key>/* Location View */</key>
+	<string>--</string>
+	<key>Label: Permission</key>
+	<string>Гео Доступ</string>
+	<key>GeoAccess: .notDetermined</key>
+	<string>Не определен</string>
+	<key>GeoAccess: .deniedForAllAndRestricted</key>
+	<string>Заблокирован для всех и ограничен</string>
+	<key>GeoAccess: .restricted</key>
+	<string>Ограничен</string>
+	<key>GeoAccess: .deniedForAllApps</key>
+	<string>Заблокирован для всех</string>
+	<key>GeoAccess: .deniedForTheApp</key>
+	<string>Заблокирован</string>
+	<key>GeoAccess: .allowed</key>
+	<string>Предоставлен</string>
+	<key>GeoAccess: .notAllowed</key>
+	<string>Запрещено</string>
+	<key>Geo Couple</key>
+	<string>Широта, Долгота</string>
+	<key>Button: Update Geo Access</key>
+	<string>Обновить Геодоступ</string>
+	<key>Button: Refresh Current Location</key>
+	<string>Обновить Геолокацию</string>
+	<key>/* Current Weather View */</key>
+	<string>--</string>
+	<key>Label: Meteo Data Provider</key>
+	<string>Метео сведения от</string>
+	<key>Label: Weather Conditions</key>
+	<string>Погодные условия...</string>
+	<key>Prefix: Curren Weather in Brief</key>
+	<string>Коротко</string>
+	<key>Prefix: Feels Like</key>
+	<string>Наверное</string>
+	<key>Prefix: Min</key>
+	<string>Мин</string>
+	<key>Prefix: Max</key>
+	<string>Макс</string>
+	<key>Prefix: Humidity</key>
+	<string>Влага</string>
+	<key>Prefix: Visibility</key>
+	<string>Обзор</string>
+	<key>Prefix: Cloudiness</key>
+	<string>Облака</string>
+	<key>Unit: Meter</key>
+	<string>м</string>
+	<key>Unit: Kilometre</key>
+	<string>км</string>
+	<key>Unit: Mile</key>
+	<string>ми</string>
+	<key>Unit: Foot</key>
+	<string>фт</string>
+	<key>Label: Speed</key>
+	<string>Ветер</string>
+	<key>Label: Direction</key>
+	<string>Направление</string>
+	<key>Label: Gust</key>
+	<string>Порывы</string>
+	<key>Unit: m/s</key>
+	<string>м/с</string>
+	<key>Unit: km/h</key>
+	<string>км/ч</string>
+	<key>Unit: mph</key>
+	<string>мили/ч</string>
+	<key>Label: Pressure</key>
+	<string>Давление</string>
+	<key>Unit: hPa</key>
+	<string>гПа</string>
+	<key>Unit: mmHg</key>
+	<string>мм.рт.ст.</string>
+	<key>Unit: mb</key>
+	<string>мбар</string>
+	<key>Label: Sunrise</key>
+	<string>ВОСХОД</string>
+	<key>Label: Sunset</key>
+	<string>ЗАХОД</string>
+	<key>/* Time */</key>
+	<string>--</string>
+	<key>AM</key>
+	<string>ДП</string>
+	<key>PM</key>
+	<string>ПП</string>
+	<key>Postfix: Year</key>
+	<string> г.</string>
+	<key>Prefix: Last One</key>
+	<string>Расчет от</string>
+	<key>/* Forecast View */</key>
+	<string>--</string>
+	<key>Label: DayItem Weather Conditions</key>
+	<string>Погода</string>
+	<key>rain</key>
+	<string>дождь</string>
+	<key>snow</key>
+	<string>снег</string>
+	<key>clear</key>
+	<string>без осадков</string>
+	<key>Label: Weekday short</key>
+	<string>День</string>
+	<key>Label: Forecast Date</key>
+	<string>Дата</string>
+	<key>/* Options Screen */</key>
+	<string>--</string>
+	<key>Title: Options Screen</key>
+	<string>Настройки Изделия</string>
+	<key>Section: App Options</key>
+	<string>Настройки Изделия</string>
+	<key>Option: Dark Mode</key>
+	<string>Сторона Луны</string>
+	<key>Option: Language</key>
+	<string>Язык</string>
+	<key>Option: OpenWeather Key</key>
+	<string>Ключ OpenWeather</string>
+	<key>Option: Time Format</key>
+	<string>Формат Времени</string>
+	<key>Section: Meteo Options</key>
+	<string>Метео Просмотр</string>
+	<key>Option: Temperature</key>
+	<string>Температура</string>
+	<key>Option: Wind Speed</key>
+	<string>Скорость Ветра</string>
+	<key>Option: Pressure</key>
+	<string>Барометр</string>
+	<key>Option: Distance</key>
+	<string>Дальность Обзора</string>
+	<key>OpenWeather: Lock</key>
+	<string>Скрыть</string>
+	<key>OpenWeather: Unlock</key>
+	<string>Открыть</string>
+	<key>OpenWeather: Hidden</key>
+	<string>Скрытая замочная скважина...</string>
+	<key>OpenWeather: Editable</key>
+	<string>Нужен токен (ключ)</string>
+	<key>Unit: Light</key>
+	<string>Cветлая</string>
+	<key>Unit: Dark</key>
+	<string>Темная</string>
+	<key>Unit: System</key>
+	<string>Среда</string>
+	<key>Unit: English</key>
+	<string>Английский</string>
+	<key>Unit: Russian</key>
+	<string>Русский</string>
+	<key>Unit: 24-hour</key>
+	<string>24-часовой</string>
+	<key>Unit: 12-hour</key>
+	<string>12-часовой</string>
+	<key>Unit: Kelvin</key>
+	<string>Кельвин</string>
+	<key>Unit: Celsius</key>
+	<string>Цельсий</string>
+	<key>Unit: Fahrenheit</key>
+	<string>Фаренгейт</string>
+	<key>Unit: m/s long</key>
+	<string>метр/сек</string>
+	<key>Unit: km/h long</key>
+	<string>км/час</string>
+	<key>Unit: mph long</key>
+	<string>мили в час</string>
+	<key>Unit: Kilometre long</key>
+	<string>Километры</string>
+	<key>Unit: Mile long</key>
+	<string>Мили</string>
+	<key>Button: Close</key>
+	<string>Исчезнуть</string>
+	<key>/* Compass Directions */</key>
+	<string>--</string>
+	<key>Compass: N</key>
+	<string>С</string>
+	<key>Compass: NNE</key>
+	<string>С/СВ</string>
+	<key>Compass: NE</key>
+	<string>СВ</string>
+	<key>Compass: ENE</key>
+	<string>В/СВ</string>
+	<key>Compass: E</key>
+	<string>В</string>
+	<key>Compass: ESE</key>
+	<string>В/ЮВ</string>
+	<key>Compass: SE</key>
+	<string>ЮВ</string>
+	<key>Compass: SSE</key>
+	<string>Ю/ЮВ</string>
+	<key>Compass: S</key>
+	<string>Ю</string>
+	<key>Compass: SSW</key>
+	<string>Ю/ЮЗ</string>
+	<key>Compass: SW</key>
+	<string>ЮЗ</string>
+	<key>Compass: WSW</key>
+	<string>З/ЮЗ</string>
+	<key>Compass: W</key>
+	<string>З</string>
+	<key>Compass: WNW</key>
+	<string>З/СЗ</string>
+	<key>Compass: NW</key>
+	<string>СЗ</string>
+	<key>Compass: NNW</key>
+	<string>С/СЗ</string>
+	<key>/* Months&apos; Names */</key>
+	<string>--</string>
+	<key>Month: December</key>
+	<string>дек.</string>
+	<key>Month: January</key>
+	<string>янв.</string>
+	<key>Month: February</key>
+	<string>фев.</string>
+	<key>Month: March</key>
+	<string>мар.</string>
+	<key>Month: April</key>
+	<string>апр.</string>
+	<key>Month: May</key>
+	<string>май</string>
+	<key>Month: June</key>
+	<string>июн.</string>
+	<key>Month: Jule</key>
+	<string>июл.</string>
+	<key>Month: August</key>
+	<string>авг.</string>
+	<key>Month: September</key>
+	<string>сен.</string>
+	<key>Month: October</key>
+	<string>окт.</string>
+	<key>Month: November</key>
+	<string>нояб.</string>
+	<key>/* Days&apos; Names */</key>
+	<string>--</string>
+	<key>Day: Sun</key>
+	<string>Вс</string>
+	<key>Day: Mon</key>
+	<string>Пн</string>
+	<key>Day: Tue</key>
+	<string>Вт</string>
+	<key>Day: Wed</key>
+	<string>Ср</string>
+	<key>Day: Thu</key>
+	<string>Чт</string>
+	<key>Day: Fri</key>
+	<string>Пт</string>
+	<key>Day: Sat</key>
+	<string>Сб</string>
+	<key>/* About Screen */</key>
+	<string>--</string>
+	<key>Button: The App Source Code</key>
+	<string>Исходники изделия</string>
+	<key>Button: The Technological Tree</key>
+	<string>Лукоморья дуб зелёный</string>
+	<key>Label: The App Version</key>
+	<string>Выпуск</string>
+	<key>Label: Star Copyright Notice</key>
+	<string>Охраняется авторским правом © 7531 - 7532 Михаил A. Жигулин из Новосибирска.</string>
+	<key>Label: Copyright Details</key>
+	<string>Летоисчесление ведется от Сотворения Мира в Звездном Храме в соответствии со славянским календарем в котором первый месяц сентябрь.</string>
+	<key>Label: Credits</key>
+	<string>Работы выполнены</string>
+	<key>Label: Balancing and Control</key>
+	<string>Контроль и Балансировка</string>
+	<key>Label: Writing</key>
+	<string>Кодирование</string>
+	<key>Label: Documenting</key>
+	<string>Документирование</string>
+	<key>Label: Artworking</key>
+	<string>Изобразительное Искусство</string>
+	<key>Label: EN Expectation</key>
+	<string>Английский</string>
+	<key>Label: RU Expectation</key>
+	<string>Русский</string>
+	<key>Label: Author</key>
+	<string>Михаил А. Жигулин</string>
+	<key>Button: License</key>
+	<string>Текст лицензии</string>
+	<key>Button: Terms &amp; Conditions</key>
+	<string>Соглашение</string>
+	<key>/* Weather-conditions descriptions */</key>
+	<string>--</string>
+	<key>Main: clear sky</key>
+	<string>без осадков</string>
+	<key>Main: few clouds</key>
+	<string>малооблачно</string>
+	<key>Main: scattered clouds</key>
+	<string>облачно</string>
+	<key>Main: broken clouds</key>
+	<string>пасмурно</string>
+	<key>Main: shower rain</key>
+	<string>ливень</string>
+	<key>Main: rain</key>
+	<string>дождь</string>
+	<key>Main: thunderstorm</key>
+	<string>гроза</string>
+	<key>Main: snow</key>
+	<string>снег</string>
+	<key>Main: mist</key>
+	<string>туман</string>
+	<key>Code: thunderstormWithLightRain</key>
+	<string>гроза, дождливо</string>
+	<key>Code: thunderstormWithRain</key>
+	<string>гроза и дождь</string>
+	<key>Code: thunderstormWithHeavyRain</key>
+	<string>гроза и ливень</string>
+	<key>Code: lightThunderstorm</key>
+	<string>гроза</string>
+	<key>Code: thunderstorm</key>
+	<string>гроза</string>
+	<key>Code: heavyThunderstorm</key>
+	<string>гроза</string>
+	<key>Code: raggedThunderstorm</key>
+	<string>гроза</string>
+	<key>Code: thunderstormWithLightDrizzle</key>
+	<string>гроза, мелкий дождь</string>
+	<key>Code: thunderstormWithDrizzle</key>
+	<string>гроза, мелкий дождь</string>
+	<key>Code: thunderstormWithHeavyDrizzle</key>
+	<string>гроза, мелкий дождь</string>
+	<key>Code: lightIntensityDrizzle</key>
+	<string>моросит</string>
+	<key>Code: drizzle</key>
+	<string>моросит</string>
+	<key>Code: heavyIntensityDrizzle</key>
+	<string>моросит</string>
+	<key>Code: lightIntensityDrizzleRain</key>
+	<string>моросит</string>
+	<key>Code: drizzleRain</key>
+	<string>моросит</string>
+	<key>Code: heavyIntensityDrizzleRain</key>
+	<string>дождик</string>
+	<key>Code: showerRainAndDrizzle</key>
+	<string>дождь</string>
+	<key>Code: heavyShowerRainAndDrizzle</key>
+	<string>дождь</string>
+	<key>Code: showerDrizzle</key>
+	<string>дождик</string>
+	<key>Code: lightRain</key>
+	<string>дождик</string>
+	<key>Code: moderateRain</key>
+	<string>умеренный дождь</string>
+	<key>Code: heavyIntensityRain</key>
+	<string>ливень</string>
+	<key>Code: veryHeavyRain</key>
+	<string>ливень</string>
+	<key>Code: extremeRain</key>
+	<string>ливень</string>
+	<key>Code: freezingRain</key>
+	<string>холодный дождь</string>
+	<key>Code: lightIntensityShowerRain</key>
+	<string>ливень</string>
+	<key>Code: showerRain</key>
+	<string>ливень</string>
+	<key>Code: heavyIntensityShowerRain</key>
+	<string>ливень</string>
+	<key>Code: raggedShowerRain</key>
+	<string>ураганный ливень</string>
+	<key>Code: lightSnow</key>
+	<string>местами снег</string>
+	<key>Code: snow</key>
+	<string>снег</string>
+	<key>Code: heavySnow</key>
+	<string>снегопад</string>
+	<key>Code: sleet</key>
+	<string>гололедица</string>
+	<key>Code: lightShowerSleet</key>
+	<string>гололедица</string>
+	<key>Code: showerSleet</key>
+	<string>гололедица</string>
+	<key>Code: lightRainAndSnow</key>
+	<string>снег с дождем</string>
+	<key>Code: rainAndSnow</key>
+	<string>снег с дождем</string>
+	<key>Code: lightShowerSnow</key>
+	<string>снег с дождем</string>
+	<key>Code: showerSnow</key>
+	<string>мокрый снег</string>
+	<key>Code: heavyShowerSnow</key>
+	<string>сырой снег</string>
+	<key>Code: mist</key>
+	<string>туман</string>
+	<key>Code: smoke</key>
+	<string>задымление</string>
+	<key>Code: haze</key>
+	<string>мгла</string>
+	<key>Code: sandDustWhirls</key>
+	<string>песчанный вихрь</string>
+	<key>Code: fog</key>
+	<string>густой туман</string>
+	<key>Code: sand</key>
+	<string>песчанно</string>
+	<key>Code: dust</key>
+	<string>очень пыльно</string>
+	<key>Code: volcanicAsh</key>
+	<string>вулканическая пыль</string>
+	<key>Code: squalls</key>
+	<string>шквал ветра</string>
+	<key>Code: tornado</key>
+	<string>ураган</string>
+	<key>Code: clearSky</key>
+	<string>без осадков</string>
+	<key>Code: fewClouds_11_25</key>
+	<string>облачно: 11-25%</string>
+	<key>Code: scatteredClouds_25_50</key>
+	<string>облачно: 25-50%</string>
+	<key>Code: brokenClouds_51_84</key>
+	<string>пасмурно: 51-84%</string>
+	<key>Code: overcastClouds_85_100</key>
+	<string>пасмурно: 85-100%</string>
+</dict>
+</plist>

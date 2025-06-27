@@ -7,8 +7,8 @@
 //  Copyright © 7531 - 7532 Mikhail Zhigulin of Novosibirsk
 //  Copyright © 7531 - 7532 PerseusRealDeal
 //
-//  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year.
+//  The year starts from the creation of the world in the Star temple
+//  according to a Slavic calendar. September, the 1st of Slavic year.
 //
 //  See LICENSE for details. All rights reserved.
 //
@@ -46,7 +46,7 @@ class OptionsLocalizationTests: XCTestCase {
         // assert
 
         let title = "Title: Options Screen".localizedValue
-        XCTAssertEqual(sut.view.window?.title, title + " — " + "Product Name".localizedValue)
+        XCTAssertEqual(sut.view.window?.title, "Product Name".localizedValue + " — " + title)
 
         let theAppOptions = "Section: App Options".localizedValue
         XCTAssertEqual(sut.controlAppOptionsSection.title, theAppOptions + ":")

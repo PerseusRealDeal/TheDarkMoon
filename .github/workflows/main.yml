@@ -5,71 +5,44 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-#  schedule:
-#    - cron: '30 5 * * 5'
+# schedule:
+#   - cron: '30 5 * * 5'
 
 jobs:
 
   build:
-    runs-on: macos-latest
+    runs-on: macos-14
     steps:
     - name: Checkout the code
-      uses: actions/checkout@v2
-    - name: Show xcodebuild version
-      run: xcodebuild -version
-    - name: Show xcode embedded SDKs
-      run: xcodebuild -showsdks
+      uses: actions/checkout@v4
+    - name: Select Xcode 15.4
+      run: sudo xcode-select -s "/Applications/Xcode_15.4.app"
     - name: Show buildable schemes
-      run: xcodebuild -list -project ./PerseusMeteo.xcodeproj
-    - uses: mxcl/xcodebuild@v1.9.2
+      run: xcodebuild -list -project ./TheDarkMoon.xcodeproj
+    - uses: mxcl/xcodebuild@v3
       with:
         platform: macOS
-        scheme: 'PerseusMeteo'
+        scheme: 'TheDarkMoon'
         action: build
         working-directory: ./
         verbosity: xcpretty
         upload-logs: always
         configuration: Release
 
-  test_EN:
-    runs-on: macos-latest
+  unit-tests:
+    runs-on: macos-14
     steps:
     - name: Checkout the code
-      uses: actions/checkout@v2
-    - name: Show xcodebuild version
-      run: xcodebuild -version
-    - name: Show xcode embedded SDKs
-      run: xcodebuild -showsdks
+      uses: actions/checkout@v4
+    - name: Select Xcode 15.4
+      run: sudo xcode-select -s "/Applications/Xcode_15.4.app"
     - name: Show buildable schemes
-      run: xcodebuild -list -project ./PerseusMeteo.xcodeproj
-    - uses: mxcl/xcodebuild@v1.9.2
+      run: xcodebuild -list -project ./TheDarkMoon.xcodeproj
+    - uses: mxcl/xcodebuild@v3
       with:
         platform: macOS
-        scheme: 'PerseusMeteo'
+        scheme: 'TheDarkMoon'
         action: test
-        code-coverage: true
-        working-directory: ./
-        verbosity: xcpretty
-        upload-logs: always
-        configuration: Release
-
-  test_RU:
-    runs-on: macos-latest
-    steps:
-    - name: Checkout the code
-      uses: actions/checkout@v2
-    - name: Show xcodebuild version
-      run: xcodebuild -version
-    - name: Show xcode embedded SDKs
-      run: xcodebuild -showsdks
-    - name: Show buildable schemes
-      run: xcodebuild -list -project ./PerseusMeteo.xcodeproj
-    - uses: mxcl/xcodebuild@v1.9.2
-      with:
-        platform: macOS
-        scheme: 'PerseusMeteoRU'
-        action: test
-        code-coverage: true
         working-directory: ./
         verbosity: xcpretty
         upload-logs: always

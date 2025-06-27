@@ -11,14 +11,22 @@
   September, the 1st of Slavic year.
 
   See LICENSE for details. All rights reserved.
+
+  Weather-conditions descriptions in EN are represented in original available from
+  OpenWeather provider docs https://openweathermap.org/weather-conditions
 */
 
 "Product Name" = "Snowman";
 "Greetings" = "Hello world!";
+"DeveloperRelease" = "Developer release, to become acquainted";
+
+"Default: N/A" = "N/A";
 
 /* Popover Screen – PopoverViewController */
 
 "Button: Call Weather" = "Call Weather";
+"Button: Call Forecast" = "Call Forecast";
+
 "Label: Made with Love" = "Made with Love from Novosibirsk.";
 
 "Tab: Current Weather" = "Current Weather";
@@ -41,17 +49,17 @@
 "GeoAccess: .deniedForAllApps" = "Denied for all apps";
 "GeoAccess: .deniedForTheApp" = "Denied for the app";
 "GeoAccess: .allowed" = "Allowed";
+"GeoAccess: .notAllowed" = "Not allowed";
 
 "Geo Couple" = "Latitude, Longitude";
 
-"Button: Allow Geo..." = "Allow Geo Service";
-"Button: Go to Settings..." = "Go to Settings...";
-"Button: Refresh Current Location" = "Get Current Location";
+"Button: Update Geo Access" = "Update Geo Access";
+"Button: Refresh Current Location" = "Update Current Location";
 
 /* Current Weather View */
 
 "Label: Meteo Data Provider" = "Meteo Data by";
-"Label: About Current Weather" = "About current weather...";
+"Label: Weather Conditions" = "Weather Conditions";
 
 "Prefix: Curren Weather in Brief" = "In brief";
 "Prefix: Feels Like" = "Kinda";
@@ -60,6 +68,7 @@
 
 "Prefix: Humidity" = "Humidity";
 "Prefix: Visibility" = "Visibility";
+"Prefix: Cloudiness" = "Cloudiness";
 
 "Unit: Meter" = "m";
 "Unit: Kilometre" = "km";
@@ -80,6 +89,8 @@
 "Unit: mmHg" = "mmHg";
 "Unit: mb" = "mb";
 
+"Unit: mm" = "mm";
+
 "Label: Sunrise" = "SUNRISE";
 "Label: Sunset" = "SUNSET";
 
@@ -95,10 +106,18 @@
 /* Forecast View */
 
 "Label: Info" = "This tab in release 0.3 developing.";
+"Label: DayItem Weather Conditions" = "Conditions";
+
+"rain" = "rain";
+"snow" = "snow";
+"clear" = "clear";
+
+"Label: Weekday short" = "Day";
+"Label: Forecast Date" = "Date";
 
 /* Options Screen – OptionsWindowController, OptionsViewController */
 
-"Title: Options Screen" = "Product";
+"Title: Options Screen" = "Product Options";
 
 "Section: App Options" = "The App Setup";
 
@@ -176,10 +195,20 @@
 "Month: October" = "Oct";
 "Month: November" = "Nov";
 
+/* Days' Names */
+
+"Day: Sun" = "Sun";
+"Day: Mon" = "Mon";
+"Day: Tue" = "Tue";
+"Day: Wed" = "Wed";
+"Day: Thu" = "Thu";
+"Day: Fri" = "Fri";
+"Day: Sat" = "Sat";
+
 /* About Screen – AboutWindowController, AboutViewController */
 
-"Button: The App Source Code" = "The Product Source Code";
-"Button: The Technological Tree" = "The Oak Tree Greening by the Ocean";
+"Button: The App Source Code" = "The product source code";
+"Button: The Technological Tree" = "There is a tree greening by the ocean...";
 
 "Label: The App Version" = "Version";
 
@@ -200,3 +229,71 @@
 
 "Button: License" = "License";
 "Button: Terms & Conditions" = "Terms & Conditions";
+
+/* OpenWeather weather-conditions descriptions */
+
+"Main: clear sky" = "clear sky";
+"Main: few clouds" = "few clouds";
+"Main: scattered clouds" = "scattered clouds";
+"Main: broken clouds" = "broken clouds";
+"Main: shower rain" = "shower rain";
+"Main: rain" = "rain";
+"Main: thunderstorm" = "thunderstorm";
+"Main: snow" = "snow";
+"Main: mist" = "mist";
+
+"Code: thunderstormWithLightRain" = "thunderstorm with light rain";
+"Code: thunderstormWithRain" = "thunderstorm with rain";
+"Code: thunderstormWithHeavyRain" = "thunderstorm with heavy rain";
+"Code: lightThunderstorm" = "light thunderstorm";
+"Code: thunderstorm" = "thunderstorm";
+"Code: heavyThunderstorm" = "heavy thunderstorm";
+"Code: raggedThunderstorm" = "ragged thunderstorm";
+"Code: thunderstormWithLightDrizzle" = "thunderstorm with light drizzle";
+"Code: thunderstormWithDrizzle" = "thunderstorm with drizzle";
+"Code: thunderstormWithHeavyDrizzle" = "thunderstorm with heavy drizzle";
+"Code: lightIntensityDrizzle" = "light intensity drizzle";
+"Code: drizzle" = "drizzle";
+"Code: heavyIntensityDrizzle" = "heavy intensity drizzle";
+"Code: lightIntensityDrizzleRain" = "light intensity drizzle rain";
+"Code: drizzleRain" = "drizzle rain";
+"Code: heavyIntensityDrizzleRain" = "heavy intensity drizzle rain";
+"Code: showerRainAndDrizzle" = "shower rain and drizzle";
+"Code: heavyShowerRainAndDrizzle" = "heavy shower rain and drizzle";
+"Code: showerDrizzle" = "shower drizzle";
+"Code: lightRain" = "light rain";
+"Code: moderateRain" = "moderate rain";
+"Code: heavyIntensityRain" = "heavy intensity rain";
+"Code: veryHeavyRain" = "very heavy rain";
+"Code: extremeRain" = "extreme rain";
+"Code: freezingRain" = "freezing rain";
+"Code: lightIntensityShowerRain" = "light intensity shower rain";
+"Code: showerRain" = "shower rain";
+"Code: heavyIntensityShowerRain" = "heavy intensity shower rain";
+"Code: raggedShowerRain" = "ragged shower rain";
+"Code: lightSnow" = "light snow";
+"Code: snow" = "snow";
+"Code: heavySnow" = "heavy snow";
+"Code: sleet" = "sleet";
+"Code: lightShowerSleet" = "light shower sleet";
+"Code: showerSleet" = "shower sleet";
+"Code: lightRainAndSnow" = "light rain and snow";
+"Code: rainAndSnow" = "rain and snow";
+"Code: lightShowerSnow" = "light shower snow";
+"Code: showerSnow" = "shower snow";
+"Code: heavyShowerSnow" = "heavy shower snow";
+"Code: mist" = "mist";
+"Code: smoke" = "smoke";
+"Code: haze" = "haze";
+"Code: sandDustWhirls" = "sand dust whirls";
+"Code: fog" = "fog";
+"Code: sand" = "sand";
+"Code: dust" = "dust";
+"Code: volcanicAsh" = "volcanic ash";
+"Code: squalls" = "squalls";
+"Code: tornado" = "tornado";
+"Code: clearSky" = "clear sky";
+"Code: fewClouds_11_25" = "few clouds: 11-25%";
+"Code: scatteredClouds_25_50" = "scattered clouds: 25-50%";
+"Code: brokenClouds_51_84" = "broken clouds: 51-84%";
+"Code: overcastClouds_85_100" = "overcast clouds: 85-100%";

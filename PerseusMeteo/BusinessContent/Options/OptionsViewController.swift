@@ -7,8 +7,8 @@
 //  Copyright © 7531 - 7532 Mikhail Zhigulin of Novosibirsk
 //  Copyright © 7531 - 7532 PerseusRealDeal
 //
-//  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year.
+//  The year starts from the creation of the world in the Star temple
+//  according to a Slavic calendar. September, the 1st of Slavic year.
 //
 //  See LICENSE for details. All rights reserved.
 //
@@ -16,6 +16,9 @@
 //
 
 import Cocoa
+
+import PerseusDarkMode
+import ConsolePerseusLogger
 
 class OptionsViewController: NSViewController, NSTextFieldDelegate {
 
@@ -49,23 +52,21 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     // MARK: - Actions
 
     @IBAction func controlDarkModeDidChanged(_ sender: NSSegmentedControl) {
-
         log.message("[\(type(of: self))].\(#function) - \(controlDarkMode.selectedSegment)")
 
         switch sender.selectedSegment {
         case 0:
-            changeDarkModeManually(.off)
+            DarkModeAgent.force(.off)
         case 1:
-            changeDarkModeManually(.on)
+            DarkModeAgent.force(.on)
         case 2:
-            changeDarkModeManually(.auto)
+            DarkModeAgent.force(.auto)
         default:
             break
         }
     }
 
     @IBAction func controlLanguageDidChanged(_ sender: NSSegmentedControl) {
-
         log.message("[\(type(of: self))].\(#function) - \(controlLanguage.selectedSegment)")
 
         switch sender.selectedSegment {
@@ -83,7 +84,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     @IBAction func controlTimeFormatDidChanged(_ sender: NSSegmentedControl) {
-
         log.message("[\(type(of: self))].\(#function) - \(controlTimeFormat.selectedSegment)")
 
         switch sender.selectedSegment {
@@ -102,7 +102,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     @IBAction func controlUnlockButtonTapped(_ sender: NSButton) {
-
         log.message("[\(type(of: self))].\(#function) - \(controlUnlockButton.stringValue)")
 
         if self.controlOpenWeatherKey.isEditable {
@@ -116,7 +115,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     @IBAction func controlTemperatureDidChanged(_ sender: NSSegmentedControl) {
-
         log.message("[\(type(of: self))].\(#function) - \(controlTemperature.selectedSegment)")
 
         switch sender.selectedSegment {
@@ -135,7 +133,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     @IBAction func controlWindSpeedDidChanged(_ sender: NSSegmentedControl) {
-
         log.message("[\(type(of: self))].\(#function) - \(controlWindSpeed.selectedSegment)")
 
         switch sender.selectedSegment {
@@ -154,7 +151,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     @IBAction func controlPressureDidChanged(_ sender: NSSegmentedControl) {
-
         log.message("[\(type(of: self))].\(#function) - \(controlPressure.selectedSegment)")
 
         switch sender.selectedSegment {
@@ -173,7 +169,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     @IBAction func controlDistanceDidChanged(_ sender: NSSegmentedControl) {
-
         log.message("[\(type(of: self))].\(#function) - \(controlDistance.selectedSegment)")
 
         switch sender.selectedSegment {
@@ -190,21 +185,18 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     @IBAction func closeOptionsWindow(_ sender: NSButton) {
-
-        globals.statusMenusButtonPresenter.screenOptions.close()
+        statusMenusButtonPresenter.screenOptions.close()
     }
 
     // MARK: - Initialization
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         log.message("[\(type(of: self))].\(#function)")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         log.message("[\(type(of: self))].\(#function)")
 
         // Setup content options.
@@ -213,13 +205,18 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         self.preferredContentSize = NSSize(width: self.view.frame.size.width,
                                            height: self.view.frame.size.height)
 
-        configure()
+        if #unavailable(macOS 10.14) { // For HighSierra only.
+            controlAppOptionsSection.isTransparent = true
+            controlWeatherOptionsSection.isTransparent = true
+        }
+
+        controlOpenWeatherKey.delegate = self
+
         lockOpenWeatherKeyHole()
     }
 
     override func viewDidAppear() {
         super.viewDidAppear()
-
         log.message("[\(type(of: self))].\(#function)")
 
         updateControlDarkMode()
@@ -234,25 +231,14 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
 
     override func viewWillDisappear() {
         super.viewWillDisappear()
-
         log.message("[\(type(of: self))].\(#function)")
 
         lockOpenWeatherKeyHole()
     }
 
-    // MARK: - Start up Configuration
-
-    private func configure() {
-
-        log.message("[\(type(of: self))].\(#function)")
-
-        controlOpenWeatherKey.delegate = self
-    }
-
     // MARK: - Events
 
     func controlTextDidChange(_ obj: Notification) {
-
         log.message("[\(type(of: self))].\(#function)")
 
         guard let tf = obj.object as? NSTextField else { return }
@@ -277,13 +263,12 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         }
     }
 
-    // MARK: - Realization, private methods
+    // MARK: - Realization
 
     private func updateControlDarkMode() {
+        log.message("[\(type(of: self))].\(#function) \(DarkModeAgent.DarkModeUserChoice)")
 
-        log.message("[\(type(of: self))].\(#function) \(AppearanceService.DarkModeUserChoice)")
-
-        switch AppearanceService.DarkModeUserChoice {
+        switch DarkModeAgent.DarkModeUserChoice {
         case .auto:
             controlDarkMode.selectedSegment = 2
         case .on:
@@ -294,7 +279,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     private func updateControlLanguage() {
-
         log.message("[\(type(of: self))].\(#function) \(AppOptions.languageOption)")
 
         switch AppOptions.languageOption {
@@ -330,7 +314,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     private func updateControlTemperature() {
-
         log.message("[\(type(of: self))].\(#function) \(AppOptions.temperatureOption)")
 
         switch AppOptions.temperatureOption {
@@ -344,7 +327,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     private func updateControlWindSpeed() {
-
         log.message("[\(type(of: self))].\(#function) \(AppOptions.windSpeedOption)")
 
         switch AppOptions.windSpeedOption {
@@ -358,7 +340,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     private func updateControlPressure() {
-
         log.message("[\(type(of: self))].\(#function) \(AppOptions.pressureOption)")
 
         switch AppOptions.pressureOption {
@@ -372,7 +353,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     private func updateControlTimeFormat() {
-
         log.message("[\(type(of: self))].\(#function) \(AppOptions.timeFormatOption)")
 
         switch AppOptions.timeFormatOption {
@@ -386,7 +366,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     private func updateControlDistance() {
-
         log.message("[\(type(of: self))].\(#function) \(AppOptions.distanceOption)")
 
         switch AppOptions.distanceOption {
@@ -400,24 +379,13 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 }
 
-// MARK: - DARK MODE
+// MARK: - Extensions
 
 extension OptionsViewController {
 
-    public func makeup() {
-
-        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
-
-        // view.layer?.backgroundColor = NSColor.perseusBlue.cgColor
-    }
-}
-
-// MARK: - LOCALIZATION
-
-extension OptionsViewController {
+    // MARK: - Localization
 
     public func localize() {
-
         log.message("[\(type(of: self))].\(#function)")
 
         self.view.window?.title = self.windowTitleLocalized
@@ -475,6 +443,6 @@ extension OptionsViewController {
     }
 
     private var windowTitleLocalized: String {
-        return "Title: Options Screen".localizedValue + " — " + "Product Name".localizedValue
+        return "Product Name".localizedValue + " — " + "Title: Options Screen".localizedValue
     }
 }

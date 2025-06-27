@@ -7,19 +7,23 @@
 //  Copyright © 7532 Mikhail Zhigulin of Novosibirsk
 //  Copyright © 7532 PerseusRealDeal
 //
-//  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year.
+//  The year starts from the creation of the world in the Star temple
+//  according to a Slavic calendar. September, the 1st of Slavic year.
 //
 //  See LICENSE for details. All rights reserved.
 //
 
 import AppKit
 
+import ConsolePerseusLogger
+import PerseusDarkMode
+
 public class StatusMenusButtonPresenter {
 
     // MARK: - Internals
 
     private var meteoClientManager: MeteoClientManager?
+    private let theDarknessTrigger = DarkModeObserver()
 
     // MARK: - Popover for Status Menus Item
 
@@ -53,7 +57,6 @@ public class StatusMenusButtonPresenter {
     // MARK: - Initialization
 
     init() {
-
         log.message("[\(type(of: self))].\(#function)")
 
         // Setup status menus button and popover.
@@ -68,16 +71,15 @@ public class StatusMenusButtonPresenter {
         statusItem?.button?.action = #selector(buttonStatusItemTapped)
 
         popover = NSPopover()
+
+        // Connect to Dark Mode explicitly
+        theDarknessTrigger.action = { _ in self.makeUp() }
     }
 
     @objc internal func buttonStatusItemTapped() {
-
         log.message("[\(type(of: self))].\(#function)")
 
-        guard
-            let popover = popover,
-            let button = statusItem?.button
-        else {
+        guard let popover = popover, let button = statusItem?.button else {
             return
         }
 
@@ -91,10 +93,19 @@ public class StatusMenusButtonPresenter {
         }
     }
 
-    public func callWeather(_ sender: Any?) {
-
+    public func callCurrentWeather(_ sender: Any?) {
         log.message("[\(type(of: self))].\(#function)")
+        meteoClientManager?.fetchCurrent(sender)
+    }
 
-        meteoClientManager?.fetchMeteoData(sender)
+    public func callForecast(_ sender: Any?) {
+        log.message("[\(type(of: self))].\(#function)")
+        meteoClientManager?.fetchForecast(sender)
+    }
+
+    @objc private func makeUp() {
+        log.message("[\(type(of: self))].\(#function)")
+        statusMenusButtonPresenter.popover?.appearance = DarkModeAgent.shared.style == .light ?
+        LIGHT_APPEARANCE_DEFAULT_IN_USE : DARK_APPEARANCE_DEFAULT_IN_USE
     }
 }

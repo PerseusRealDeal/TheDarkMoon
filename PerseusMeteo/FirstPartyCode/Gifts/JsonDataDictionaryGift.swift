@@ -2,32 +2,35 @@
 //  JsonDataDictionaryGift.swift
 //  Gifts
 //
-//  Just a gift. Tested with Swift 4.2 compiler.
-//  https://gist.github.com/perseusrealdeal/918c25633122e64d51f363f00059f6f8
+//  Just a gift.
+//  <https://gist.github.com/perseusrealdeal/918c25633122e64d51f363f00059f6f8>
+//
+//  Unlicensed Free Software. For more information, <http://unlicense.org/>
 //
 
 /* Perseus Logger source code */
 /* https://gist.github.com/perseusrealdeal/df456a9825fcface44eca738056eb6d5 */
 
 import Foundation
+import ConsolePerseusLogger
 
-public class JsonDataDictionary {
+public class DataDictionarySource {
 
     // MARK: - Internals
 
-    private var data: (() -> Data)?
+    private var json: (() -> Data)?
 
     // MARK: - Contract
 
     public var path: (() -> Data)? {
         didSet {
-            data = path
+            json = path
         }
     }
 
-    public var json: [String: Any]? {
+    public var data: [String: Any]? {
 
-        guard let source = data else { return nil }
+        guard let source = json else { return nil }
 
         let dataSource = source()
         let opts: JSONSerialization.ReadingOptions = [.mutableContainers]

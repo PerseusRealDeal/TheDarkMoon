@@ -7,15 +7,14 @@
 //  Copyright © 7532 Mikhail Zhigulin of Novosibirsk
 //  Copyright © 7532 PerseusRealDeal
 //
-//  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year.
+//  The year starts from the creation of the world in the Star temple
+//  according to a Slavic calendar. September, the 1st of Slavic year.
 //
 //  See LICENSE for details. All rights reserved.
 //
-// swiftlint:disable file_length
-//
 
 import Cocoa
+import ConsolePerseusLogger
 
 class AboutViewController: NSViewController {
 
@@ -27,11 +26,11 @@ class AboutViewController: NSViewController {
     @IBOutlet private(set) weak var buttonPerseusDarkMode: NSButton!
     @IBOutlet private(set) weak var buttonTheOpenWeatherClient: NSButton!
     @IBOutlet private(set) weak var buttonPerseusGeoLocationKit: NSButton!
-    @IBOutlet private(set) weak var buttonPerseusUISystemKit: NSButton!
 
     @IBOutlet private(set) weak var buttonPerseusCompassDirection: NSButton!
     @IBOutlet private(set) weak var buttonPerseusTimeFormat: NSButton!
     @IBOutlet private(set) weak var buttonPerseusLogger: NSButton!
+    @IBOutlet private(set) weak var buttonConsolePerseusLogger: NSButton!
 
     @IBOutlet private(set) weak var buttonLicense: NSButton!
     @IBOutlet private(set) weak var buttonTerms: NSButton!
@@ -50,80 +49,62 @@ class AboutViewController: NSViewController {
     // MARK: - Actions
 
     @IBAction func buttonCloseTapped(_ sender: NSButton) {
-
-        globals.statusMenusButtonPresenter.screenAbout.close()
+        statusMenusButtonPresenter.screenAbout.close()
     }
 
     @IBAction func buttonLicenseTapped(_ sender: NSButton) {
-
-        log.message("[\(type(of: self))].\(#function)")
-
         AppGlobals.openDefaultBrowser(string: linkLicense)
     }
 
     @IBAction func buttonTermsAndConditionsTapped(_ sender: NSButton) {
-
-        log.message("[\(type(of: self))].\(#function)")
-
         AppGlobals.openDefaultBrowser(string: linkTermsAndConditions)
     }
 
-    // MARK: - Other Actions
-
     @IBAction func buttonTheAppSourceCodeTapped(_ sender: NSButton) {
-
         AppGlobals.openDefaultBrowser(string: linkTheAppSourceCode)
     }
 
     @IBAction func buttonTheTechnologicalTreeTapped(_ sender: NSButton) {
-
         AppGlobals.openDefaultBrowser(string: linkTheTechnologicalTree)
     }
 
     @IBAction func buttonPerseusDarkModeTapped(_ sender: NSButton) {
-
         AppGlobals.openDefaultBrowser(string: linkPerseusDarkMode)
     }
 
     @IBAction func buttonTheOpenWeatherClientTapped(_ sender: NSButton) {
-
         AppGlobals.openDefaultBrowser(string: linkTheOpenWeatherClient)
     }
 
     @IBAction func buttonPerseusGeoLocationKitTapped(_ sender: NSButton) {
-
         AppGlobals.openDefaultBrowser(string: linkPerseusGeoLocationKit)
     }
 
-    @IBAction func buttonPerseusUISystemKitTapped(_ sender: NSButton) {
-
-        AppGlobals.openDefaultBrowser(string: linkPerseusUISystemKit)
-    }
-
     @IBAction func buttonPerseusCompassDirectionTapped(_ sender: NSButton) {
-
         AppGlobals.openDefaultBrowser(string: linkPerseusCompassDirection)
     }
 
     @IBAction func buttonPerseusTimeFormatTapped(_ sender: NSButton) {
-
         AppGlobals.openDefaultBrowser(string: linkPerseusTimeFormat)
     }
 
     @IBAction func buttonPerseusLoggerTapped(_ sender: NSButton) {
-
         AppGlobals.openDefaultBrowser(string: linkPerseusLogger)
+    }
+
+    @IBAction func buttonConsolePerseusLoggerTapped(_ sender: NSButton) {
+        AppGlobals.openDefaultBrowser(string: linkConsolePerseusLogger)
     }
 
     // MARK: - Initialization
 
     override func awakeFromNib() {
-
+        super.awakeFromNib()
         log.message("[\(type(of: self))].\(#function)")
     }
 
     override func viewDidLoad() {
-
+        super.viewDidLoad()
         log.message("[\(type(of: self))].\(#function)")
 
         // Setup content options.
@@ -131,11 +112,10 @@ class AboutViewController: NSViewController {
         self.view.wantsLayer = true
         self.preferredContentSize = NSSize(width: self.view.frame.size.width,
                                            height: self.view.frame.size.height)
-
         configure()
     }
 
-    // MARK: - Start up Configuration
+    // MARK: - Configuration
 
     private func configure() {
 
@@ -157,34 +137,31 @@ class AboutViewController: NSViewController {
         buttonPerseusDarkMode.toolTip = linkPerseusDarkMode
         buttonTheOpenWeatherClient.toolTip = linkTheOpenWeatherClient
         buttonPerseusGeoLocationKit.toolTip = linkPerseusGeoLocationKit
-        buttonPerseusUISystemKit.toolTip = linkPerseusUISystemKit
 
         buttonPerseusCompassDirection.toolTip = linkPerseusCompassDirection
         buttonPerseusTimeFormat.toolTip = linkPerseusTimeFormat
         buttonPerseusLogger.toolTip = linkPerseusLogger
+        buttonConsolePerseusLogger.toolTip = linkConsolePerseusLogger
     }
 }
 
-// MARK: - DARK MODE
+// MARK: - Extensions
 
 extension AboutViewController {
 
-    public func makeup() {
+    // MARK: - Dark Mode
 
-        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+    public func makeUp() {
+        log.message("[\(type(of: self))].\(#function)")
 
         viewCopyrightText.textColor = .perseusGray
         viewCopyrightDetailsText.textColor = .perseusGray
         viewTheCreditsText.textColor = .perseusGray
     }
-}
 
-// MARK: - LOCALIZATION
-
-extension AboutViewController {
+    // MARK: - Localization
 
     @objc func localize() {
-
         log.message("[\(type(of: self))].\(#function)")
 
         buttonTheAppSourceCode.title = "Button: The App Source Code".localizedValue

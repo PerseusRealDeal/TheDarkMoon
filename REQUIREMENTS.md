@@ -1,19 +1,3 @@
-<!--
-
-REQUIREMENTS.md
-PerseusWeather
-
-Created by Mikhail Zhigulin in 7531.
-
-Copyright © 7531 - 7532 Mikhail Zhigulin of Novosibirsk
-Copyright © 7531 - 7532 PerseusRealDeal
-
-The year starts from the creation of the world according to a Slavic calendar.
-September, the 1st of Slavic year.
-
-See LICENSE for details. All rights reserved.
-
--->
 > # The App's Name: Snowman
 
 > # Idea history
@@ -24,20 +8,33 @@ See LICENSE for details. All rights reserved.
         <th>Short description</th>
     </tr>
     <tr>
-        <td>0.2</td>
+        <td>0.3</td>
+        <td>Developer release (candidate) with minimum functionality (forecast).</td>
+    </tr>
+    <tr>
+        <td>Reject, Change</td>
+        <td>—</td>
+    </tr>
+    <tr>
+        <td>0.2+</td>
         <td>Developer release (candidate) with minimum functionality (current weather).</td>
     </tr>
     <tr>
-        <td>Rejected / Changed</td>
-        <td>Option 00-3 Starts on login had been canceled.</td>
+        <td>* Change</td>
+        <td>DATA-1: Temperature default changed from Celsius to Fahrenheit.</td>
+    </tr>
+    <tr>
+        <td>** Reject</td>
+        <td>00-3: Starts on login had been canceled.</td>
     </tr>
 </table>
 
 > # Business Tasks:
 
-| ID   | Description                 | Operations |
-| ---- | --------------------------- | ---------- |
-| BT-1 | Fetching current weather    | OP-1, OP-2 |
+| ID   | Description                 | Operations | API product                          |
+| ---- | --------------------------- | ---------- | ------------------------------------ |
+| BT-1 | Fetching current weather    | OP-1, OP-2 | https://openweathermap.org/current   |
+| BT-2 | Fetching forecast           | OP-2, OP-3 | https://openweathermap.org/forecast5 |
 
 > # Sketches (GUI requirements)
 
@@ -95,6 +92,10 @@ See LICENSE for details. All rights reserved.
         <td nowrap>US-4</td>
         <td>As Mikhail, I want to be able to quit the app, so I can feel more comfortable in the app usage.</td>
     </tr>
+    <tr>
+        <td nowrap>US-5</td>
+        <td>As Mikhail, I want to be aware of the forecast, so I can feel more in selfcare.</td>
+    </tr>
 </table>
 
 > # Features (specials)
@@ -105,10 +106,11 @@ See LICENSE for details. All rights reserved.
 
 > # Operations
 
-| ID   | Description                               | Must have  | Data                 | Rules  |
-| ---- | ----------------------------------------- | ---------- | -------------------- | ------ |
-| OP-1 | Call current weather with OpenWeather API | API key    | DATA-1, DATA-2, OO-2 | RULE-1 |
-| OP-2 | Ask for current location                  | Permission | DATA-2               | - |
+| ID   | Description                                       | Must have  | In Use               | Result | Rules  |
+| ---- | ------------------------------------------------- | ---------- | -------------------- | ------ | ------ |
+| OP-1 | Call current weather with OpenWeather API         | API key    | DATA-2, OO-2         | DATA-1 | RULE-1 |
+| OP-2 | Ask for current location                          | Permission |                      | DATA-2 | -      |
+| OP-3 | Call 5 day / 3 hour forecast with OpenWeather API | API key    | DATA-2, OO-2         | DATA-1 | RULE-1 |
 
 > # Rules
 
@@ -120,17 +122,19 @@ See LICENSE for details. All rights reserved.
 
 > ## Business matter attributes
 
-| ID     | Name             | Details                                                 | Defaults        |
-| ------ | ---------------- | ------------------------------------------------------- | --------------- |
-| DATA-1 | Temperature      | Standard: Kelvin, Metric: Celsius, Imperial: Fahrenheit | Apply: Celsius  |
-| DATA-2 | Current location | Couple: (latitude, longitude)                           | - |
+| ID     | Name             | Details                                                 | Defaults            |
+| ------ | ---------------- | ------------------------------------------------------- | ------------------- |
+| DATA-1 | Temperature      | Standard: Kelvin, Metric: Celsius, Imperial: Fahrenheit | Apply: Fahrenheit\* |
+| DATA-2 | Current location | Couple: (latitude, longitude)                           | -                   |
 
 > ## Other Options
 
-| ID   | Name                | Details          | Defaults    |
-| ---- | ------------------- | ---------------- | ----------- |
-| OO-1 | Dark Mode           | Auto, On, Off    | Apply: Auto |
-| OO-2 | OpenWeather API key | User Input       | -           |
-| OO-3* | Starts on login     | True, False      | Apply: True |
+| ID       | Name                | Details          | Defaults    |
+| -------- | ------------------- | ---------------- | ----------- |
+| OO-1     | Dark Mode           | Auto, On, Off    | Apply: Auto |
+| OO-2     | OpenWeather API key | User Input       | -           |
+| OO-3\*\* | Starts on login     | True, False      | Apply: True |
 
-> \* rejected
+> \* changed
+
+> \*\* rejected

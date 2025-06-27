@@ -7,26 +7,45 @@
 //  Copyright © 7532 Mikhail Zhigulin of Novosibirsk
 //  Copyright © 7532 PerseusRealDeal
 //
-//  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year.
+//  The year starts from the creation of the world in the Star temple
+//  according to a Slavic calendar. September, the 1st of Slavic year.
 //
 //  See LICENSE for details. All rights reserved.
 //
 
 import Cocoa
 
+import PerseusDarkMode
+import ConsolePerseusLogger
+
 public class AboutWindowController: NSWindowController {
 
     // MARK: - Internals
 
     private var alwaysOnTop: Any?
-    private let darkModeObserver = DarkModeObserver()
+
+    // MARK: - Storyboard Instance
+
+    class func storyboardInstance() -> AboutWindowController {
+        log.message("[\(type(of: self))].\(#function)")
+
+        let sb = NSStoryboard(name: String(describing: self), bundle: nil)
+
+        guard let screen = sb.instantiateInitialController() as? AboutWindowController else {
+            let text = "[\(type(of: self))].\(#function)"
+            log.message(text, .error)
+            fatalError(text)
+        }
+
+        // Do default setup; don't set any parameter causing loadWindow up, breaks unit tests.
+
+        return screen
+    }
 
     // MARK: - Initialization
 
     public override func awakeFromNib() {
         super.awakeFromNib()
-
         log.message("[\(type(of: self))].\(#function)")
 
         let nc = AppGlobals.notificationCenter
@@ -36,13 +55,13 @@ public class AboutWindowController: NSWindowController {
         let notification = NSApplication.didResignActiveNotification
         let queue = OperationQueue.main
 
-        alwaysOnTop = nc.addObserver(forName: notification,
-                                     object: nil,
-                                     queue: queue) { _ in self.window?.level = .floating }
+        alwaysOnTop = nc.addObserver(forName: notification, object: nil, queue: queue) { _ in
+            self.window?.level = .floating
+        }
 
-        // Dark Mode.
+        // Connect to Dark Mode.
 
-        darkModeObserver.action = { _ in self.makeup() }
+        DarkModeAgent.register(stakeholder: self, selector: #selector(makeUp))
 
         // Localization.
 
@@ -50,83 +69,36 @@ public class AboutWindowController: NSWindowController {
                        name: NSNotification.Name.languageSwitchedManuallyNotification,
                        object: nil)
 
-        // Apperance.
+        // Appearance.
 
-        makeup()
+        makeUp()
         localize()
     }
 
     public override func windowDidLoad() {
         super.windowDidLoad()
-
         log.message("[\(type(of: self))].\(#function)")
 
         // No title for the app screen.
         self.window?.title = ""
     }
 
-    // MARK: - Other methods
-
     func windowShouldClose(_ sender: NSWindow) -> Bool {
-
         log.message("[\(type(of: self))].\(#function)")
 
         self.window?.orderOut(sender)
         return false
     }
-}
 
-// MARK: - STORYBOARD INSTANCE
-
-extension AboutWindowController {
-
-    class func storyboardInstance() -> AboutWindowController {
-
-        log.message("[\(type(of: self))].\(#function)")
-
-        let sb = NSStoryboard(name: String(describing: self), bundle: nil)
-
-        guard
-            let screen = sb.instantiateInitialController() as? AboutWindowController
-        else {
-
-            let text = "[\(type(of: self))].\(#function)"
-
-            log.message(text, .error)
-            fatalError(text)
-        }
-
-        // Do default setup; don't set any parameter causing loadWindow up, breaks unit tests.
-
-        return screen
-    }
-}
-
-// MARK: - DARK MODE
-
-extension AboutWindowController {
-
-    public func makeup() {
-
-        guard
-            let screen = self.contentViewController as? AboutViewController
-        else {
+    @objc private func makeUp() {
+        guard let screen = self.contentViewController as? AboutViewController else {
             return
         }
-
-        screen.makeup()
+        screen.makeUp()
     }
-}
 
-// MARK: - LOCALIZATION
-
-extension AboutWindowController: Localizable {
-
-    @objc func localize() {
-
-        guard
-            let screen = self.contentViewController as? AboutViewController
-        else {
+    @objc private func localize() {
+        guard let screen = self.contentViewController as? AboutViewController else {
             return
         }
 

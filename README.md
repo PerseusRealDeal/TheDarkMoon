@@ -1,115 +1,193 @@
-# Snowman — Weather — Status Menus app
+# Snowman — Weather Status Menus app — Xcode 14.2+
 
 > Home-made weather macOS app that runs in the Status Menus (top-right).
 
-[![Actions Status](https://github.com/perseusrealdeal/Apple.macOSWeather/actions/workflows/main.yml/badge.svg)](https://github.com/perseusrealdeal/Apple.macOSWeather/actions)
-[![Version](https://img.shields.io/badge/Version-0.2-green.svg)](/CHANGELOG.md)
-[![Platform macOS](https://img.shields.io/badge/Platform-macOS%2010.11+-orange.svg)](https://en.wikipedia.org/wiki/MacOS_version_history)
-[![Xcode 10.1](https://img.shields.io/badge/Xcode-10.1+-red.svg)](https://en.wikipedia.org/wiki/Xcode)
-[![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg)](https://docs.swift.org/swift-book/RevisionHistory/RevisionHistory.html)
-[![SDK UIKit](https://img.shields.io/badge/SDK-UIKit%20-blueviolet.svg)](https://developer.apple.com/documentation/uikit)
-[![License](http://img.shields.io/:The_Clear_BSD_License-blue.svg)](/LICENSE)
+- To request current weather.
+- To request `5 Day / 3 Hour` forecast.
 
-> The final usage tests: macOS 10.13.6 and macOS 13.6.4.
+> [`OpenWeather Agent`](https://github.com/perseusrealdeal/OpenWeatherAgent) in use to fetch weather data. `Individual API key` is required.
+
+[![Actions Status](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/main.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions)
+[![Style](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml)
+[![Version](https://img.shields.io/badge/Version-0.3-green.svg)](/CHANGELOG.md)
+[![Platforms](https://img.shields.io/badge/Platform-macOS%2010.13+-orange.svg)](https://en.wikipedia.org/wiki/MacOS_version_history)
+[![Xcode](https://img.shields.io/badge/Xcode-14.2+-red.svg)](https://en.wikipedia.org/wiki/Xcode)
+[![Swift](https://img.shields.io/badge/Swift-5-orange.svg)](https://docs.swift.org/swift-book/RevisionHistory/RevisionHistory.html)
+[![SDK](https://img.shields.io/badge/SDK-UIKit%20-blueviolet.svg)](https://developer.apple.com/documentation/uikit)
+[![License](http://img.shields.io/:License-Clear_BSD-blue.svg)](/LICENSE)
 
 ## Dependencies
 
-[![PerseusDarkMode](http://img.shields.io/:PerseusDarkMode-1.1.5-green.svg)](https://github.com/perseusrealdeal/PerseusDarkMode/tree/1.1.5)
-[![PerseusUISystemKit](http://img.shields.io/:PerseusUISystemKit-1.1.4-green.svg)](https://github.com/perseusrealdeal/PerseusUISystemKit/tree/1.1.4)
-[![OpenWeatherFreeClient](http://img.shields.io/:OpenWeatherFreeClient-0.1.1-green.svg)](https://github.com/perseusrealdeal/OpenWeatherFreeClient/tree/0.1.1)
+> Swift Package Manager.
+
+[![ConsolePerseusLogger](http://img.shields.io/:ConsolePerseusLogger-1.5.0-green.svg)](https://github.com/perseusrealdeal/ConsolePerseusLogger.git)
+[![PerseusDarkMode](http://img.shields.io/:PerseusDarkMode-2.0.3-green.svg)](https://github.com/perseusrealdeal/PerseusDarkMode.git)
+[![PerseusGeoKit](http://img.shields.io/:PerseusGeoKit-1.0.3-green.svg)](https://github.com/perseusrealdeal/PerseusGeoKit.git)
+[![OpenWeatherAgent](http://img.shields.io/:OpenWeatherAgent-0.2.0-green.svg)](https://github.com/perseusrealdeal/OpenWeatherAgent)
 
 # In brief > Idea to use, the Why
 
-> [CHANGELOG](/CHANGELOG.md) for details. The Why of this app cannot, and need not, be put into words.
+> The Why of this app cannot, and need not, be put into words.
 
-<img src="https://github.com/perseusrealdeal/macOS.Weather/assets/50202963/5be1a549-79a9-4da3-9b13-7220c49c9481" width="800" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+<table>
+  <tr>
+    <th>The Dark Moon in English</th>
+    <th>The Dark Moon in Russian</th>
+  </tr>
+  <tr>
+    <td>
+        <img src="https://github.com/user-attachments/assets/29b9f77b-db9e-4750-a5f1-b80ac1843d8e" width="350" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/></br>
+        <img src="https://github.com/user-attachments/assets/8d47fbf6-1bcc-4775-a826-98376fa2d21e" width="350" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+    </td>
+    <td>
+        <img src="https://github.com/user-attachments/assets/6cdaf651-0b8a-4277-b04d-10cbef5c3bb2" width="350" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/></br>
+        <img src="https://github.com/user-attachments/assets/2f8a465a-d298-4695-8098-18926b9586a3" width="350" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+    </td>
+  </tr>
+</table>
 
-# Installation
+## Approbation Matrix
 
-The current app project edition is represented in source code only, Developer edition. <br/>
-To install the app use the appropriate build-system.
+<!-- > [`A3 Environment and Approbation`](/APPROBATION.md). [CHANGELOG](/CHANGELOG.md) for details. -->
+> [CHANGELOG](/CHANGELOG.md) for details.
 
-# Build system requirements
+## Build system requirements
 
-- [macOS 10.13.6+](https://apps.apple.com/us/app/macos-high-sierra/id1246284741?ls=1)
-- [Xcode 10.1+](https://stackoverflow.com/questions/10335747/how-to-download-xcode-dmg-or-xip-file)
-- Swift 4.2+
-- macOS: 10.11+, AppKit SDK
+- [macOS Monterey 12.7.6+](https://apps.apple.com/by/app/macos-monterey/id1576738294) / [Xcode 14.2+](https://developer.apple.com/services-account/download?path=/Developer_Tools/Xcode_14.2/Xcode_14.2.xip)
+
+> [!NOTE]
+> The current app project is represented in source code only, it's a developer edition.
 
 # Software requirements
 
 - [Functional specification](/REQUIREMENTS.md)
-- Localization requirements [[EN](/PerseusMeteo/Configuration/CustomerExpectations/Expectations_en.plist), [RU](/PerseusMeteo/Configuration/CustomerExpectations/Expectations_ru.plist)]
+- Translations [EN](/PerseusMeteo/Configuration/Translations/Translation_en.plist), [RU](/PerseusMeteo/Configuration/Translations/Translation_ru.plist)
 
 # First-party software
 
-- [Perseus Dark Mode](https://github.com/perseusrealdeal/PerseusDarkMode.git) / [1.1.5](https://github.com/perseusrealdeal/perseusdarkmode/releases/tag/1.1.5)
-- [Perseus UI System Kit](https://github.com/perseusrealdeal/PerseusUISystemKit.git) / [1.1.4](https://github.com/perseusrealdeal/perseusuisystemkit/releases/tag/1.1.4)
-- [Dark Mode switching functions](https://gist.github.com/perseusrealdeal/11b1bab47f13134832b859f49d9af706)
-- [OpenWeather Free Client](https://github.com/perseusrealdeal/OpenWeatherFreeClient.git) / [0.1.1](https://github.com/perseusrealdeal/OpenWeatherFreeClient/releases/tag/0.1.1)
-- [PerseusCompassDirection](https://gist.github.com/perseusrealdeal/3b053b2390d704f561ec52c6477b5cf2)
-- [PerseusTimeFormat](https://gist.github.com/perseusrealdeal/7aa89d78d9b1c220cc06682be8908a97)
-- [PerseusLogger](https://gist.github.com/perseusrealdeal/df456a9825fcface44eca738056eb6d5)
+| Type     | Name                                                                                                                                                                  | License |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| Package  | [ConsolePerseusLogger](https://github.com/perseusrealdeal/ConsolePerseusLogger) / [1.5.0](https://github.com/perseusrealdeal/ConsolePerseusLogger/releases/tag/1.5.0) | MIT     |
+| Class    | [PerseusLogger](https://gist.github.com/perseusrealdeal/df456a9825fcface44eca738056eb6d5)                                                                             | MIT     |
+| Package  | [PerseusDarkMode](https://github.com/perseusrealdeal/PerseusDarkMode) / [2.0.3](https://github.com/perseusrealdeal/PerseusDarkMode/releases/tag/2.0.3)                | MIT     |
+| Package  | [PerseusGeoKit](https://github.com/perseusrealdeal/PerseusGeoKit) / [1.0.3](https://github.com/perseusrealdeal/PerseusGeoKit/releases/tag/1.0.3)                      | MIT     |
+| Class    | [PerseusCompassDirection](https://gist.github.com/perseusrealdeal/3b053b2390d704f561ec52c6477b5cf2)                                                                   | MIT     |
+| Variable | [PerseusTimeFormat](https://gist.github.com/perseusrealdeal/7aa89d78d9b1c220cc06682be8908a97)                                                                         | MIT     |
+| Package  | [OpenWeatherAgent](https://github.com/perseusrealdeal/OpenWeatherAgent) / [0.1.1](https://github.com/perseusrealdeal/OpenWeatherAgent/releases/tag/0.2.0)             | MIT     |
 
 # Gifts
 
-- [CurrentSystemLanguageGift.swift](https://gist.github.com/perseusrealdeal/98b082b136d574dd1b5aa760036dac8b)
-- [JsonDataDictionaryGift.swift](https://gist.github.com/perseusrealdeal/918c25633122e64d51f363f00059f6f8)
-- [JsonDataPrettyPrintedGift.swift](https://gist.github.com/perseusrealdeal/945c9050cb9f7a19e00853f064acacca)
+| Type     | Name                                                                                                                              | License                            |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| Variable | [CurrentSystemLanguageGift.swift](https://gist.github.com/perseusrealdeal/98b082b136d574dd1b5aa760036dac8b)                       | [Unlicense](https://unlicense.org) |
+| Class    | [JsonDataDictionaryGift.swift](https://gist.github.com/perseusrealdeal/918c25633122e64d51f363f00059f6f8)                          | [Unlicense](https://unlicense.org) |
+| Variable | [JsonDataPrettyPrintedGift.swift](https://gist.github.com/perseusrealdeal/945c9050cb9f7a19e00853f064acacca)                       | [Unlicense](https://unlicense.org) |
+| Variable | [LocalizedInfoPlistGift.swift](/SnowmanTests/GiftsAndHelpers/LocalizedInfoPlistGift.swift)                                        | [Unlicense](https://unlicense.org) |
+| Variable | [LocalizedExpectationGift.swift](/SnomanTests/GiftsAndHelpers/LocalizedExpectationGift.swift)                                     | [Unlicense](https://unlicense.org) |
 
 # Third-party software
 
-- [SwiftLint](https://github.com/realm/SwiftLint) / [0.31.0: Busy Laundromat](https://github.com/realm/SwiftLint/releases/tag/0.31.0) for macOS High Sierra
+| Type   | Name                                                                                                                              | License                            |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| Style  | [SwiftLint](https://github.com/realm/SwiftLint) / [v0.57.0 for Monterey+](https://github.com/realm/SwiftLint/releases/tag/0.57.0) | MIT                                |
+| Action | [mxcl/xcodebuild@v3](https://github.com/mxcl/xcodebuild)                                                                          | [Unlicense](https://unlicense.org) |
+| Action | [cirruslabs/swiftlint-action@v1](https://github.com/cirruslabs/swiftlint-action/)                                                 | MIT                                |
 
 # Points taken into account
 
-- Explicit start point placed in main.swift file
-- Explicit testing app delegate with test bundle
-- Localization test schemes for EN and RU as well
-- SwiftLint shell script as a build phase
+- Explicit start point placed in [main.swift](/PerseusMeteo/main.swift)
+- Explicit app delegate [TestingAppDelegate.swift](/SnowmanTests/TestingAppDelegate.swift) with test bundle
+- Explicit app globals placed in [AppGlobals.swift](/PerseusMeteo/Configuration/AppGlobals.swift)
+- Localization based on Localizable.strings approach
+- [Test Plan](/SnowmanTests/TestPlan.xctestplan) configured for EN and RU as well
+- [Changelog](/CHANGELOG.md)
+- [Software Requirements](/REQUIREMENTS.md)
+- [GitHub CI build & test](/main.yml)
+- [GitHub CI SwiftLint](/swiftlint.yml)
+- [SwiftLint Rules](/.swiftlint.yml)
+- [Git Config](/.gitignore)
+- SwiftLint shell script as a build phase (preinstallation required)
+<!-- [A3 Environment Specification](/APPROBATION.md) -->
 
 # The Clear BSD License
 
-Copyright © 7531 - 7532 Mikhail Zhigulin of Novosibirsk <br/>
-Copyright © 7531 - 7532 PerseusRealDeal
+Copyright © 7531 - 7533 Mikhail A. Zhigulin of Novosibirsk<br/>
+Copyright © 7531 - 7533 PerseusRealDeal
 
-- The year starts from the creation of the world in the Star temple according to a Slavic calendar.
-- September, the 1st of Slavic year.
+- The year starts from the creation of the world according to a Slavic calendar.
+- September, the 1st of Slavic year. It means that "Sep 01, 2024" is the beginning of 7533.
 
 [LICENSE](/LICENSE) for details.
 
-# Author
-
-> Mikhail Zhigulin of Novosibirsk
-
 # Credits
 
-Project Balance and Control kept by Mikhail Zhigulin<br/>
-Source Code written by Mikhail Zhigulin<br/>
-Project documented by Mikhail Zhigulin<br/>
-Artwork by Mikhail Zhigulin<br/>
-English Localization by Mikhail Zhigulin<br/>
-Russian Localization by Mikhail Zhigulin<br/>
+<table>
+<tr>
+    <td>Balance and Control</td>
+    <td>kept by</td>
+    <td>Mikhail A. Zhigulin</td>
+</tr>
+<tr>
+    <td>Source Code</td>
+    <td>written by</td>
+    <td>Mikhail A. Zhigulin</td>
+</tr>
+<tr>
+    <td>Documentation</td>
+    <td>prepared by</td>
+    <td>Mikhail A. Zhigulin</td>
+</tr>
+<tr>
+    <td>Product Approbation</td>
+    <td>tested by</td>
+    <td>Mikhail A. Zhigulin</td>
+</tr>
+<tr>
+    <td>Artwork</td>
+    <td>expressed by</td>
+    <td>Mikhail A. Zhigulin</td>
+</tr>
+<tr>
+    <td>Russian Translation</td>
+    <td>prepared by</td>
+    <td>Mikhail A. Zhigulin</td>
+</tr>
+<tr>
+    <td>English Translation</td>
+    <td>prepared by</td>
+    <td>Mikhail A. Zhigulin</td>
+</tr>
+</table>
+
+> [!IMPORTANT]
+> The `OpenWeather` Icons taken from `https://openweathermap.org` to represent weather condition that also available online by OpenWeatherMap API request.
 
 - Artwork tool: [GIMP](https://www.gimp.org/) / [2.10.36](https://download.gimp.org/gimp/v2.10/osx/) for macOS 10.12 Sierra or newer
 - Language support: [Reverso](https://www.reverso.net/) 
+- Git clients: [SmartGit](https://syntevo.com/) and [GitHub Desktop](https://github.com/apps/desktop)
 
-# Contributing localization
+# Author
 
-Localizations in other languages are very welcome from the app version 1.0, please consider [customer expectations for EN](/PerseusMeteo/Configuration/CustomerExpectations/Expectations_en.plist) as a template.
+> © Mikhail A. Zhigulin of Novosibirsk
+
+# Contributing Translations
+
+Localizations in other languages are very welcome from the app version 1.0.0<br/>
+Please consider [translation for EN](/PerseusMeteo/Configuration/Translations/Translation_en.plist) as a template.
 
 # Acknowledgements
 
-> During the dev process of the release v0.2 there're several things were also taken into the account.
+> During the dev process of the releases v0.2..0.3 there're several things were also taken into the account.
 
-Thanks Google Inc. for [convertion formulas](https://www.google.com/search?q=temperature+converter) easy seachable in public.</br>
-- Convertion formulas applied in [MeteoFactsRepresenter.swift](/PerseusMeteo/BusinessData/MeteoFactsRepresenter.swift)
+***Thanks Google Inc.*** for [convertion formulas](https://www.google.com/search?q=temperature+converter) easy seachable in public.</br>
+Convertion formulas applied in [MeteoFactsRepresenter.swift](/PerseusMeteo/BusinessData/MeteoFactsRepresenter.swift)
 
-Thanks Lorenzo Boaro for [the Keychain API tutorial](https://www.kodeco.com/9240-keychain-services-api-tutorial-for-passwords-in-swift).<br/>
-- Keychain API applied in [PerseusDataDefender.swift](/PerseusMeteo/FirstPartyCode/PerseusDataDefender/PerseusDataDefender.swift)
+***Thanks Lorenzo Boaro*** for [the Keychain API tutorial](https://www.kodeco.com/9240-keychain-services-api-tutorial-for-passwords-in-swift).<br/>
+Keychain API applied in [PerseusDataDefender.swift](/PerseusMeteo/FirstPartyCode/PerseusDataDefender/PerseusDataDefender.swift)
 
-Thanks Gabriel Theodoropoulos for [the macos-status-bar-apps tutorial](https://www.appcoda.com/macos-status-bar-apps/).<br/>
-- [StatusMenusButtonPresenter.swift](/PerseusMeteo/BusinessLogic/StatusMenusButtonPresenter.swift)
+***Thanks Gabriel Theodoropoulos*** for [the macos-status-bar-apps tutorial](https://www.appcoda.com/macos-status-bar-apps/).<br/>
+[StatusMenusButtonPresenter.swift](/PerseusMeteo/BusinessLogic/StatusMenusButtonPresenter.swift)
 
-Thanks Bill Waggoner for the SwiftCustomControl [sample](https://github.com/ctgreybeard/SwiftCustomControl).<br/>
-- Ideas applied in LocationView.swift, [WeatherView.swift](/PerseusMeteo/BusinessContent/Popover/WeatherView.swift), and ForecastView.swift
+***Thanks Bill Waggoner*** for the SwiftCustomControl [sample](https://github.com/ctgreybeard/SwiftCustomControl).<br/>
+Constrainting custom control's content view approach has been applied in a such components like [WeatherView.swift](/PerseusMeteo/BusinessContent/Popover/WeatherView.swift)
+
