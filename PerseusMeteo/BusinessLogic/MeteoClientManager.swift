@@ -17,9 +17,6 @@
 
 import Foundation
 
-import OpenWeatherAgent
-import ConsolePerseusLogger
-
 public class MeteoClientManager {
 
     private var theAppPresenter: StatusMenusButtonPresenter?
@@ -132,7 +129,6 @@ public class MeteoClientManager {
             AppOptions.OpenWeatherAPIOption ?? "" : AppGlobals.appKeyOpenWeather
 
         let callDetails = OpenWeatherRequestData(appid: key,
-                                                 format: .currentWeather,
                                                  lat: lat,
                                                  lon: lon,
                                                  units: .imperial,
@@ -184,7 +180,7 @@ public class MeteoClientManager {
             AppOptions.OpenWeatherAPIOption ?? "" : AppGlobals.appKeyOpenWeather
 
         var callDetails = OpenWeatherRequestData(appid: key,
-                                                 format: .forecast,
+                                                 request: .forecast,
                                                  lat: lat,
                                                  lon: lon,
                                                  units: .imperial,

@@ -15,9 +15,6 @@
 
 import Cocoa
 
-import ConsolePerseusLogger
-import PerseusGeoKit
-
 // MARK: - App Globals
 
 struct AppGlobals {

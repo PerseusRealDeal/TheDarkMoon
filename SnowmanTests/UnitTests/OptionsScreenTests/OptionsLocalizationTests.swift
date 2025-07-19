@@ -119,12 +119,12 @@ class OptionsLocalizationTests: XCTestCase {
 
         // assert
 
-        XCTAssertEqual(sut.controlLanguage.label(forSegment: 0),
-                       "Unit: English".localizedValue)
-        XCTAssertEqual(sut.controlLanguage.label(forSegment: 1),
-                       "Unit: Russian".localizedValue)
         XCTAssertEqual(sut.controlLanguage.label(forSegment: 2),
                        "Unit: System".localizedValue)
+        XCTAssertEqual(sut.controlLanguage.label(forSegment: 1),
+                       "Unit: Russian".localizedValue)
+        XCTAssertEqual(sut.controlLanguage.label(forSegment: 0),
+                       "Unit: English".localizedValue)
     }
 
     func test_Localization_of_OptionsScreen_controlTimeFormat() {

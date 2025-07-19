@@ -14,7 +14,6 @@
 //
 
 import Foundation
-import ConsolePerseusLogger
 
 public class MeteoDataSource: DataDictionarySource {
 

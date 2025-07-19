@@ -14,7 +14,6 @@
 //
 
 import Foundation
-import ConsolePerseusLogger
 
 /* OpenWeatherMap JSON forecast hour sample in case if cnt = 1
 

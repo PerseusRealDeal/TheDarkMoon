@@ -43,9 +43,6 @@
 // swiftlint:disable file_length
 //
 
-import ConsolePerseusLogger
-import PerseusGeoKit
-
 #if os(iOS)
 import UIKit
 #endif

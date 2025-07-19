@@ -14,9 +14,7 @@
 //
 
 import Cocoa
-
 import PerseusDarkMode
-import ConsolePerseusLogger
 
 public class AboutWindowController: NSWindowController {
 
