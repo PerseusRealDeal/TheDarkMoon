@@ -131,7 +131,7 @@
 "Option: Distance" = "Дальность Обзора";
 
 "OpenWeather: Lock" = "Скрыть";
-"OpenWeather: Unlock" = "Открыть";
+"OpenWeather: Unlock" = "Показать";
 "OpenWeather: Hidden" = "Скрытая замочная скважина...";
 "OpenWeather: Editable" = "Нужен токен (ключ)";
 

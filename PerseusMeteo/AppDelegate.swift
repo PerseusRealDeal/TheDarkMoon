@@ -15,10 +15,6 @@
 
 import Cocoa
 
-import ConsolePerseusLogger
-import PerseusDarkMode
-import PerseusGeoKit
-
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {

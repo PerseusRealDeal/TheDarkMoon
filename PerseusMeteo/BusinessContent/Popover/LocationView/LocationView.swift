@@ -15,9 +15,6 @@
 
 import Cocoa
 
-import ConsolePerseusLogger
-import PerseusGeoKit
-
 @IBDesignable
 class LocationView: NSView {
 

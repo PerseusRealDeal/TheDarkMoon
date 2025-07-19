@@ -15,9 +15,6 @@
 
 import AppKit
 
-import ConsolePerseusLogger
-import PerseusDarkMode
-
 public class StatusMenusButtonPresenter {
 
     // MARK: - Internals

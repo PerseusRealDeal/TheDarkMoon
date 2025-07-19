@@ -17,13 +17,7 @@
 
 import Foundation
 
-import PerseusDarkMode
-import ConsolePerseusLogger
-
 // MARK: - Keys
-
-// TODO: Include DARK_MODE_SETTINGS_KEY to Perseus Dark Mode
-public let DARK_MODE_SETTINGS_KEY = "DarkModeSettingsKey"
 
 // public let OPEN_WEATHER_API_KEY_OPTION_KEY = "OPEN_WEATHER_API_OPTION_KEY"
 public let OPEN_WEATHER_API_KEY_TEXT_LIMIT = 32

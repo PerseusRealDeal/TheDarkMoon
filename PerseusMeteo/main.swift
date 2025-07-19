@@ -14,24 +14,6 @@
 //
 
 import Cocoa
-import ConsolePerseusLogger
-
-// MARK: - The Logger
-
-import class PerseusDarkMode.PerseusLogger
-import class PerseusGeoKit.PerseusLogger
-import class OpenWeatherAgent.PerseusLogger
-
-// swiftlint:disable type_name
-typealias applog = ConsolePerseusLogger.PerseusLogger // For test bundle, log is for main.
-typealias pdmlog = PerseusDarkMode.PerseusLogger
-typealias pgklog = PerseusGeoKit.PerseusLogger
-typealias owclog = OpenWeatherAgent.PerseusLogger
-// swiftlint:enable type_name
-
-pdmlog.turned = .off
-pgklog.turned = .off
-owclog.turned = .off
 
 // MARK: - The Start Line
 
@@ -57,7 +39,7 @@ let statusMenusButtonPresenter = StatusMenusButtonPresenter()
 
  */
 
-log.message("> The app in the beginning...", .info)
+log.message("> The app's beginning...", .info)
 
 app.setActivationPolicy(.accessory)
 

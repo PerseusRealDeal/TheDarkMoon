@@ -5,7 +5,7 @@
 - To request current weather.
 - To request `5 Day / 3 Hour` forecast.
 
-> [`OpenWeather Agent`](https://github.com/perseusrealdeal/OpenWeatherAgent) in use to fetch weather data. `Individual API key` is required.
+> [`OpenWeather Agent`](https://github.com/perseusrealdeal/OpenWeatherAgent) in use to fetch weather data. [`Individual API key`](https://openweathermap.org/appid) is required.
 
 [![Actions Status](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/main.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions)
 [![Style](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml)

@@ -15,9 +15,6 @@
 
 import Cocoa
 
-import PerseusDarkMode
-import ConsolePerseusLogger
-
 class ForecastDaysViewItem: NSCollectionViewItem {
 
     // MARK: - Internals

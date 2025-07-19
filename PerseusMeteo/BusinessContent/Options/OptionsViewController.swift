@@ -17,9 +17,6 @@
 
 import Cocoa
 
-import PerseusDarkMode
-import ConsolePerseusLogger
-
 class OptionsViewController: NSViewController, NSTextFieldDelegate {
 
     // MARK: - Outlets
@@ -416,9 +413,9 @@ extension OptionsViewController {
         controlDarkMode.setLabel("Unit: Dark".localizedValue, forSegment: 1)
         controlDarkMode.setLabel("Unit: System".localizedValue, forSegment: 2)
 
-        controlLanguage.setLabel("Unit: English".localizedValue, forSegment: 0)
-        controlLanguage.setLabel("Unit: Russian".localizedValue, forSegment: 1)
         controlLanguage.setLabel("Unit: System".localizedValue, forSegment: 2)
+        controlLanguage.setLabel("Unit: Russian".localizedValue, forSegment: 1)
+        controlLanguage.setLabel("Unit: English".localizedValue, forSegment: 0)
 
         controlTimeFormat.setLabel("Unit: 24-hour".localizedValue, forSegment: 0)
         controlTimeFormat.setLabel("Unit: 12-hour".localizedValue, forSegment: 1)

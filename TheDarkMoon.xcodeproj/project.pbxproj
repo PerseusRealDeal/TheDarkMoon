@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E0D04DB2E0D3B6B00B00D1B /* OpenWeatherAgent in Frameworks */ = {isa = PBXBuildFile; productRef = 2E0D04DA2E0D3B6B00B00D1B /* OpenWeatherAgent */; };
-		2E1A2D4C2CB267BD009F13AD /* ConsolePerseusLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 2E1A2D4B2CB267BD009F13AD /* ConsolePerseusLogger */; };
+		2E0A5EBC2E2F7C9A002BC1F5 /* PDMStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0A5EBB2E2F7C9A002BC1F5 /* PDMStar.swift */; };
+		2E1083D42E2B65F400400180 /* OpenWeatherStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1083D32E2B65F400400180 /* OpenWeatherStar.swift */; };
+		2E1083D62E2B667000400180 /* CPLStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1083D52E2B667000400180 /* CPLStar.swift */; };
+		2E1083D82E2B739000400180 /* PGKStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1083D72E2B739000400180 /* PGKStar.swift */; };
 		2E54FDE62CA67D7F003EABDE /* swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2E54FDE52CA67D7F003EABDE /* swiftlint.yml */; };
-		2EEF314E2E06DEFD006E5693 /* PerseusDarkMode in Frameworks */ = {isa = PBXBuildFile; productRef = 2EEF314D2E06DEFD006E5693 /* PerseusDarkMode */; };
-		2EEF31512E06DF13006E5693 /* PerseusGeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2EEF31502E06DF13006E5693 /* PerseusGeoKit */; };
 		2EEF31532E07B8E4006E5693 /* PGKSupportingStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF31522E07B8E4006E5693 /* PGKSupportingStar.swift */; };
 		2EEF31552E07B8F4006E5693 /* PDMSupportingStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF31542E07B8F4006E5693 /* PDMSupportingStar.swift */; };
 		4B030E752B27738800ED9018 /* AboutWindowController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B030E742B27738800ED9018 /* AboutWindowController.storyboard */; };
@@ -110,6 +110,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E0A5EBB2E2F7C9A002BC1F5 /* PDMStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDMStar.swift; sourceTree = "<group>"; };
+		2E1083D32E2B65F400400180 /* OpenWeatherStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherStar.swift; sourceTree = "<group>"; };
+		2E1083D52E2B667000400180 /* CPLStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPLStar.swift; sourceTree = "<group>"; };
+		2E1083D72E2B739000400180 /* PGKStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGKStar.swift; sourceTree = "<group>"; };
 		2E54FDE52CA67D7F003EABDE /* swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; name = swiftlint.yml; path = .github/workflows/swiftlint.yml; sourceTree = "<group>"; };
 		2E54FDE72CA68BAC003EABDE /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = TestPlan.xctestplan; path = SnowmanTests/TestPlan.xctestplan; sourceTree = SOURCE_ROOT; };
 		2EEF31522E07B8E4006E5693 /* PGKSupportingStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGKSupportingStar.swift; sourceTree = "<group>"; };
@@ -211,10 +215,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EEF314E2E06DEFD006E5693 /* PerseusDarkMode in Frameworks */,
-				2E0D04DB2E0D3B6B00B00D1B /* OpenWeatherAgent in Frameworks */,
-				2E1A2D4C2CB267BD009F13AD /* ConsolePerseusLogger in Frameworks */,
-				2EEF31512E06DF13006E5693 /* PerseusGeoKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +228,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E1083D12E2B617500400180 /* TheCrownOfStars */ = {
+			isa = PBXGroup;
+			children = (
+				2E1083D22E2B624E00400180 /* SupportingStars */,
+				2E1083D52E2B667000400180 /* CPLStar.swift */,
+				2E1083D72E2B739000400180 /* PGKStar.swift */,
+				2E0A5EBB2E2F7C9A002BC1F5 /* PDMStar.swift */,
+				2E1083D32E2B65F400400180 /* OpenWeatherStar.swift */,
+			);
+			path = TheCrownOfStars;
+			sourceTree = "<group>";
+		};
+		2E1083D22E2B624E00400180 /* SupportingStars */ = {
+			isa = PBXGroup;
+			children = (
+				4B84263B2B19CE2600C86E8A /* OpenWeatherStarModels.swift */,
+				2EEF31522E07B8E4006E5693 /* PGKSupportingStar.swift */,
+				2EEF31542E07B8F4006E5693 /* PDMSupportingStar.swift */,
+			);
+			path = SupportingStars;
+			sourceTree = "<group>";
+		};
 		4B030E712B27729C00ED9018 /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,11 +289,12 @@
 		4B1483E32912892C0013B76E /* PerseusMeteo */ = {
 			isa = PBXGroup;
 			children = (
+				2E1083D12E2B617500400180 /* TheCrownOfStars */,
 				4BBE90662912931A008F734D /* main.swift */,
 				4B0A49F229F631CD00CAE8A0 /* AppGlobals.swift */,
 				4B1483E42912892C0013B76E /* AppDelegate.swift */,
-				4B6F98752927E7C600ADB03A /* FirstPartyCode */,
 				4B14840229128A930013B76E /* Configuration */,
+				4B6F98752927E7C600ADB03A /* FirstPartyCode */,
 				4B684C6D2B438A370063E359 /* BusinessData */,
 				4B3384652B5428CA004682DF /* BusinessLogic */,
 				4B14840429128E460013B76E /* BusinessContent */,
@@ -298,6 +321,7 @@
 				4B6F98632927DDA300ADB03A /* Localization */,
 				4B1483E82912892F0013B76E /* Assets.xcassets */,
 				4B1483ED2912892F0013B76E /* Info.plist */,
+				4BEE281C2B4AE07700F06A69 /* AppUserDefaults.swift */,
 				4B1483EE2912892F0013B76E /* PerseusMeteo.entitlements */,
 			);
 			path = Configuration;
@@ -409,7 +433,6 @@
 		4B684C6D2B438A370063E359 /* BusinessData */ = {
 			isa = PBXGroup;
 			children = (
-				4BEE281C2B4AE07700F06A69 /* AppUserDefaults.swift */,
 				4BB2045A2B7029FC007E0308 /* ForecastDataSource.swift */,
 				4B5F7D382B98CA3900121946 /* CurrentDataSource.swift */,
 				4B1073942B4607CE008A692D /* MeteoFactsRepresenter.swift */,
@@ -436,9 +459,6 @@
 				4B1CA6A12B54927E003F3EBF /* Helpers */,
 				4B8426372B1880A800C86E8A /* PerseusDataDefender */,
 				4B84263E2B19D0DC00C86E8A /* LanguageSwitcher */,
-				4B84263B2B19CE2600C86E8A /* OpenWeatherStarModels.swift */,
-				2EEF31522E07B8E4006E5693 /* PGKSupportingStar.swift */,
-				2EEF31542E07B8F4006E5693 /* PDMSupportingStar.swift */,
 			);
 			path = FirstPartyCode;
 			sourceTree = "<group>";
@@ -576,10 +596,6 @@
 			);
 			name = TheDarkMoon;
 			packageProductDependencies = (
-				2E1A2D4B2CB267BD009F13AD /* ConsolePerseusLogger */,
-				2EEF314D2E06DEFD006E5693 /* PerseusDarkMode */,
-				2EEF31502E06DF13006E5693 /* PerseusGeoKit */,
-				2E0D04DA2E0D3B6B00B00D1B /* OpenWeatherAgent */,
 			);
 			productName = XcodeTemplateProject;
 			productReference = 4B1483E12912892C0013B76E /* Snowman.app */;
@@ -638,10 +654,6 @@
 			);
 			mainGroup = 4B1483D82912892C0013B76E;
 			packageReferences = (
-				2E1A2D4A2CB267BD009F13AD /* XCRemoteSwiftPackageReference "ConsolePerseusLogger" */,
-				2EEF314C2E06DEFD006E5693 /* XCRemoteSwiftPackageReference "PerseusDarkMode" */,
-				2EEF314F2E06DF13006E5693 /* XCRemoteSwiftPackageReference "PerseusGeoKit" */,
-				2E0D04D92E0D3B6B00B00D1B /* XCRemoteSwiftPackageReference "OpenWeatherAgent" */,
 			);
 			productRefGroup = 4B1483E22912892C0013B76E /* Products */;
 			projectDirPath = "";
@@ -726,6 +738,7 @@
 				4B030E772B277DD600ED9018 /* AboutWindowController.swift in Sources */,
 				4BEF7A442C2D377A0028C6EA /* TheDayOfTheWeekLocalized.swift in Sources */,
 				4B5D62342C418E2F0064EFB8 /* WeatherConditions.swift in Sources */,
+				2E1083D82E2B739000400180 /* PGKStar.swift in Sources */,
 				4BA719872AF0D5E10074F7CD /* StatusMenusButtonPresenter.swift in Sources */,
 				4BE29E922B3A23340027515A /* ForecastView.swift in Sources */,
 				4B5F7D2F2B89243800121946 /* MeteoFactsDefaults.swift in Sources */,
@@ -753,6 +766,7 @@
 				4B993DC52B380EF9008C1FE7 /* LocationView.swift in Sources */,
 				4B684C712B446A560063E359 /* JsonDataDictionaryGift.swift in Sources */,
 				4BB2046A2B753A47007E0308 /* ForecastDaysViewItem.swift in Sources */,
+				2E1083D62E2B667000400180 /* CPLStar.swift in Sources */,
 				4B5F7D352B96394600121946 /* ForecastDataSourceReader.swift in Sources */,
 				4B993DC92B380FDD008C1FE7 /* WeatherView.swift in Sources */,
 				4B5F7D3B2B98EACA00121946 /* MeteoCategory.swift in Sources */,
@@ -766,6 +780,8 @@
 				4B5F7D392B98CA3900121946 /* CurrentDataSource.swift in Sources */,
 				4B1483E52912892C0013B76E /* AppDelegate.swift in Sources */,
 				4B84263C2B19CE2600C86E8A /* OpenWeatherStarModels.swift in Sources */,
+				2E1083D42E2B65F400400180 /* OpenWeatherStar.swift in Sources */,
+				2E0A5EBC2E2F7C9A002BC1F5 /* PDMStar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1068,64 +1084,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		2E0D04D92E0D3B6B00B00D1B /* XCRemoteSwiftPackageReference "OpenWeatherAgent" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/PerseusRealDeal/OpenWeatherAgent";
-			requirement = {
-				kind = exactVersion;
-				version = 0.2.0;
-			};
-		};
-		2E1A2D4A2CB267BD009F13AD /* XCRemoteSwiftPackageReference "ConsolePerseusLogger" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/perseusrealdeal/ConsolePerseusLogger";
-			requirement = {
-				kind = exactVersion;
-				version = 1.5.0;
-			};
-		};
-		2EEF314C2E06DEFD006E5693 /* XCRemoteSwiftPackageReference "PerseusDarkMode" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/perseusrealdeal/PerseusDarkMode";
-			requirement = {
-				kind = exactVersion;
-				version = 2.0.3;
-			};
-		};
-		2EEF314F2E06DF13006E5693 /* XCRemoteSwiftPackageReference "PerseusGeoKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/perseusrealdeal/PerseusGeoKit/";
-			requirement = {
-				kind = exactVersion;
-				version = 1.0.3;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		2E0D04DA2E0D3B6B00B00D1B /* OpenWeatherAgent */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2E0D04D92E0D3B6B00B00D1B /* XCRemoteSwiftPackageReference "OpenWeatherAgent" */;
-			productName = OpenWeatherAgent;
-		};
-		2E1A2D4B2CB267BD009F13AD /* ConsolePerseusLogger */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2E1A2D4A2CB267BD009F13AD /* XCRemoteSwiftPackageReference "ConsolePerseusLogger" */;
-			productName = ConsolePerseusLogger;
-		};
-		2EEF314D2E06DEFD006E5693 /* PerseusDarkMode */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2EEF314C2E06DEFD006E5693 /* XCRemoteSwiftPackageReference "PerseusDarkMode" */;
-			productName = PerseusDarkMode;
-		};
-		2EEF31502E06DF13006E5693 /* PerseusGeoKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2EEF314F2E06DF13006E5693 /* XCRemoteSwiftPackageReference "PerseusGeoKit" */;
-			productName = PerseusGeoKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4B1483D92912892C0013B76E /* Project object */;
 }

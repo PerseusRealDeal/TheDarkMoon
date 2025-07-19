@@ -70,7 +70,6 @@
 */
 
 import Foundation
-import ConsolePerseusLogger
 
 public class OpenWeatherCurrentParser: CurrentParserProtocol {
 

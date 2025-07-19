@@ -12,7 +12,6 @@
 /* https://gist.github.com/perseusrealdeal/df456a9825fcface44eca738056eb6d5 */
 
 import Foundation
-import ConsolePerseusLogger
 
 extension Data {
 

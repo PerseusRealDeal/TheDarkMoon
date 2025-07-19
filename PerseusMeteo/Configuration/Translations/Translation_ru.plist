@@ -161,7 +161,7 @@
 	<key>OpenWeather: Lock</key>
 	<string>Скрыть</string>
 	<key>OpenWeather: Unlock</key>
-	<string>Открыть</string>
+	<string>Показать</string>
 	<key>OpenWeather: Hidden</key>
 	<string>Скрытая замочная скважина...</string>
 	<key>OpenWeather: Editable</key>
