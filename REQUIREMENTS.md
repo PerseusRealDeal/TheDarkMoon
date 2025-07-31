@@ -7,21 +7,21 @@
         <th>Related to versions</th>
         <th>Short description</th>
     </tr>
-    <tr>
-        <td>0.3</td>
-        <td>Developer release (candidate) with minimum functionality (forecast).</td>
+        <tr>
+        <td>0.4</td>
+        <td>Geocoding, reverse and direct. Developer release (candidate).</td>
     </tr>
     <tr>
-        <td>Reject, Change</td>
-        <td>—</td>
+        <td>0.3+</td>
+        <td>Forecast. Developer release (candidate).</td>
     </tr>
     <tr>
         <td>0.2+</td>
-        <td>Developer release (candidate) with minimum functionality (current weather).</td>
+        <td>Current weather. Developer release (candidate).</td>
     </tr>
     <tr>
         <td>* Change</td>
-        <td>DATA-1: Temperature default changed from Celsius to Fahrenheit.</td>
+        <td>DATA-1: Default Temperature changed from Celsius to Fahrenheit.</td>
     </tr>
     <tr>
         <td>** Reject</td>
@@ -31,10 +31,12 @@
 
 > # Business Tasks:
 
-| ID   | Description                 | Operations | API product                          |
-| ---- | --------------------------- | ---------- | ------------------------------------ |
-| BT-1 | Fetching current weather    | OP-1, OP-2 | https://openweathermap.org/current   |
-| BT-2 | Fetching forecast           | OP-2, OP-3 | https://openweathermap.org/forecast5 |
+| ID   | Description                 | Operations | API product                                  |
+| ---- | --------------------------- | ---------- | -------------------------------------------- |
+| BT-1 | Fetching current weather    | OP-1, OP-2 | https://openweathermap.org/current           |
+| BT-2 | Fetching forecast           | OP-2, OP-3 | https://openweathermap.org/forecast5         |
+| BT-3 | Reverse geocoding           | OP-2, OP-3 | https://openweathermap.org/api/geocoding-api |
+| BT-4 | Direct geocoding            | OP-2, OP-3 | https://openweathermap.org/api/geocoding-api |
 
 > # Sketches (GUI requirements)
 
@@ -96,6 +98,14 @@
         <td nowrap>US-5</td>
         <td>As Mikhail, I want to be aware of the forecast, so I can feel more in selfcare.</td>
     </tr>
+    <tr>
+        <td nowrap>US-6</td>
+        <td>As Mikhail, I want to see my current geographical coordinates converted into the name of the nearby location by request weather data (reverse geocoding.)</td>
+    </tr>
+    <tr>
+        <td nowrap>US-7</td>
+        <td>As Mikhail, I want to use the name of a location with requesting weather data (direct geocoding.)</td>
+    </tr>
 </table>
 
 > # Features (specials)
@@ -111,6 +121,8 @@
 | OP-1 | Call current weather with OpenWeather API         | API key    | DATA-2, OO-2         | DATA-1 | RULE-1 |
 | OP-2 | Ask for current location                          | Permission |                      | DATA-2 | -      |
 | OP-3 | Call 5 day / 3 hour forecast with OpenWeather API | API key    | DATA-2, OO-2         | DATA-1 | RULE-1 |
+| OP-4 | Reverse geocoding with OpenWeather API            | API key    |                      |        |        |
+| OP-4 | Direct geocoding with OpenWeather API             | API key    |                      |        |        |
 
 > # Rules
 
