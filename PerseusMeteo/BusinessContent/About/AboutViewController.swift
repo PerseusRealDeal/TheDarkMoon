@@ -96,15 +96,15 @@ class AboutViewController: NSViewController {
     }
 
     // MARK: - Initialization
-
+/*
     override func awakeFromNib() {
         super.awakeFromNib()
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
     }
-
+*/
     override func viewDidLoad() {
         super.viewDidLoad()
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         // Setup content options.
 
@@ -151,7 +151,7 @@ extension AboutViewController {
     // MARK: - Dark Mode
 
     public func makeUp() {
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         viewCopyrightText.textColor = .perseusGray
         viewCopyrightDetailsText.textColor = .perseusGray
@@ -161,7 +161,7 @@ extension AboutViewController {
     // MARK: - Localization
 
     @objc func localize() {
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         buttonTheAppSourceCode.title = "Button: The App Source Code".localizedValue
         buttonTheTechnologicalTree.title = "Button: The Technological Tree".localizedValue

@@ -1,5 +1,5 @@
 //
-//  CurrentDataSourceReader.swift
+//  WeatherDataSourceReader.swift
 //  PerseusMeteo
 //
 //  Created by Mikhail Zhigulin in 7532.
@@ -15,9 +15,9 @@
 
 import Foundation
 
-public class CurrentDataSourceReader: MeteoDataSourceReader {
+public class WeatherDataSourceReader: MeteoDataSourceReader {
 
-    public var parser: CurrentParserProtocol?
+    public var parser: WeatherParserProtocol?
 
     // MARK: - Properties
 

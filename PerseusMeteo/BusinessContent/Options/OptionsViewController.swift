@@ -186,15 +186,15 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     // MARK: - Initialization
-
+/*
     override func awakeFromNib() {
         super.awakeFromNib()
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
     }
-
+*/
     override func viewDidLoad() {
         super.viewDidLoad()
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         // Setup content options.
 
@@ -214,7 +214,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         updateControlDarkMode()
         updateControlLanguage()
@@ -228,7 +228,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
 
     override func viewWillDisappear() {
         super.viewWillDisappear()
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         lockOpenWeatherKeyHole()
     }
@@ -383,7 +383,7 @@ extension OptionsViewController {
     // MARK: - Localization
 
     public func localize() {
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         self.view.window?.title = self.windowTitleLocalized
 

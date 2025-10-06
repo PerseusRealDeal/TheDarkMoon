@@ -12,60 +12,190 @@
 //
 //  See LICENSE for details. All rights reserved.
 //
+//  swiftlint:disable file_length
+//
 
 import Cocoa
 
+extension String {
+    public func cut(length: Int = 27, ending: String = "...") -> String {
+        guard self.count > length else {
+            return self
+        }
+        return self.prefix(length) + ending
+    }
+}
+
 @IBDesignable
-class LocationView: NSView {
+class LocationView: NSView, NSTextFieldDelegate {
+
+    // MARK: - Internals
+
+    private let useSuggestionsSample = false
+    private var typeDeepCounter: Int = 0 // Suggestion request delay shift (offset)
+
+    private var geocodingDirectOpenWeatherMap = OpenWeatherClient()
+    private var isReadyToGetSuggestions = false
+
+    private var locationNameLocalized: String {
+        switch locationCard {
+        case .suggestion:
+            if let suggestionName = AppGlobals.suggestion?.localName {
+                return suggestionName
+            } else {
+                return "Suggestion Location".localizedValue
+            }
+        case .favorite:
+            if let favoriteName = AppOptions.favoriteLocationsOption.first(
+                where: { $0.isOnDisplay })?.localName {
+                return favoriteName
+            } else {
+                return "Favorite Location".localizedValue
+            }
+        case .current:
+            return "Current Location".localizedValue
+        }
+    }
+
+    private var geoCoordinatesLocalized: String {
+        var locationPoint = "Geo Couple".localizedValue
+        switch locationCard {
+        case .suggestion:
+            if let point = AppGlobals.suggestion?.point {
+                locationPoint = "\(point.latitude.cut(.four)), \(point.longitude.cut(.four))"
+            }
+        case .favorite:
+            if let point = AppOptions.favoriteLocationsOption.first(
+                where: { $0.isOnDisplay })?.point {
+                locationPoint = "\(point.latitude.cut(.four)), \(point.longitude.cut(.four))"
+            }
+        case .current:
+            if let point = AppGlobals.currentLocation {
+                locationPoint = "\(point.latitude.cut(.four)), \(point.longitude.cut(.four))"
+            }
+        }
+        return locationPoint
+    }
+
+    private var permissionStatusLocalized: String {
+        return "Label: Permission".localizedValue + ": " +
+        GeoAgent.currentStatus.localizedKey.localizedValue
+    }
+
+    // MARK: - Properties
+
+    public var locationCard: LocationCardType = .current
 
     // MARK: - Outlets
 
     @IBOutlet private(set) var viewContent: NSView!
 
-    @IBOutlet private(set) weak var labelLocationNameValue: NSTextField!
-    @IBOutlet private(set) weak var labelGeoCoupleDataValue: NSTextField!
+    @IBOutlet private(set) weak var textFieldLocationNameSearch: NSTextField!
 
-    @IBOutlet private(set) weak var labelPermissionTitle: NSTextField!
-    @IBOutlet private(set) weak var labelPermissionValue: NSTextField!
+    @IBOutlet private(set) weak var viewSuggestions: SuggestionsView!
+    @IBOutlet private(set) weak var collectionSuggestions: NSCollectionView!
+    @IBOutlet private(set) weak var indicatorCircular: NSProgressIndicator!
+    @IBOutlet public weak var constraintViewSuggestionsHeight: NSLayoutConstraint!
 
-    @IBOutlet private(set) weak var buttonRefresh: NSButton!
+    @IBOutlet private(set) weak var labelLocationName: NSTextField!
+    @IBOutlet private(set) weak var labelGeoCoordinates: NSTextField!
+    @IBOutlet private(set) weak var labelPermissionStatus: NSTextField!
+    @IBOutlet private(set) weak var labelAutoSuggestionsRequest: NSTextField!
+
+    @IBOutlet private(set) weak var buttonUpdateCurrentLocation: NSButton!
+    @IBOutlet private(set) weak var checkBoxAutoSuggestionsRequest: NSButton!
+    @IBOutlet private(set) weak var buttonSuggestionsRequest: NSButton!
+
+    @IBOutlet private(set) weak var comboBoxFavorites: NSComboBox!
+    @IBOutlet private(set) weak var buttonBookmark: NSButton!
 
     // MARK: - Actions
 
-    @IBAction func quitButtonTapped(_ sender: NSButton) {
-        log.message("[\(type(of: self))].\(#function)")
+    @IBAction func updateCurrentLocationButtonTapped(_ sender: NSButton) {
+        guard locationCard == .current else {
+            let text = "Current Location should be selected".localizedValue
+            log.message(text, .notice, .custom)
+            return
+        }
 
-        // AppOptions.removeAll()
-        AppGlobals.quitTheApp()
+        LocationDealer.requestCurrent()
     }
 
-    @IBAction func refreshButtonTapped(_ sender: NSButton) {
-        log.message("[\(type(of: self))].\(#function)")
-        LocationDealer.requestCurrent()
+    @IBAction func autoSuggestionsRequestTapped(_ sender: NSButton) {
+        AppOptions.autoSuggestionsRequestOption = sender.state == .on ? true : false
+    }
+
+    @IBAction func suggestionsRequestButtonTapped(_ sender: Any) {
+
+        log.message("[\(type(of: self))].\(#function)", .notice)
+
+        if textFieldLocationNameSearch.stringValue.isEmpty {
+            log.message("Location Name should be typed".localizedValue, .notice, .custom)
+            return
+        }
+
+        if AppOptions.autoSuggestionsRequestOption {
+            log.message("Auto requesting suggestions is on!".localizedValue, .notice, .custom)
+            return
+        }
+
+        getOpenWeatherMapSuggestions()
+    }
+
+    @IBAction func bookmarkButtonTapped(_ sender: NSButton) {
+        AppGlobals.notificationCenter.post(Notification.init(name: .bookmarkNotification))
+    }
+
+    @IBAction func favoritesComboBoxDidChange(_ sender: NSComboBox) {
+
+        let index = sender.indexOfSelectedItem
+
+        if index >= AppOptions.favoriteLocationsOption.count {
+            log.message("[\(type(of: self))].\(#function) out of index", .error)
+            return
+        }
+
+        let favorite = AppOptions.favoriteLocationsOption[index]
+
+        // Send a notification with the favorite tapped
+
+        let nc = AppGlobals.notificationCenter
+        let key = Notification.Name.favoriteNotification.rawValue
+
+        nc.post(Notification.init(name: .favoriteNotification,
+                                  object: self,
+                                  userInfo: [key: favorite, "index": index]))
+        return
     }
 
     // MARK: - Initialization
 
-    override func viewWillDraw() {
-        super.viewWillDraw()
-        log.message("[\(type(of: self))].\(#function)")
-    }
-
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-        log.message("[\(type(of: self))].\(#function)")
-    }
-
     override func awakeFromNib() {
         super.awakeFromNib()
-        log.message("[\(type(of: self))].\(#function)")
+
+        indicatorCircular.isHidden = true
+        textFieldLocationNameSearch.delegate = self
+
+        viewSuggestions.wantsLayer = true
+        viewSuggestions.collectionView = collectionSuggestions
+
+        collectionSuggestions.delegate = viewSuggestions
+        collectionSuggestions.dataSource = viewSuggestions
+        collectionSuggestions.backgroundColors = [NSColor.clear]
+
+        constraintViewSuggestionsHeight.constant = 0
+        viewSuggestions.alphaValue = 0.0
+
+        checkBoxAutoSuggestionsRequest.state =
+        AppOptions.autoSuggestionsRequestOption == true ? .on : .off
 
         localize()
+
+        self.isReadyToGetSuggestions = true
     }
 
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        log.message("[\(type(of: self))].\(#function)")
 
         // Setup the view as a reusable control.
 
@@ -73,10 +203,10 @@ class LocationView: NSView {
               let nib = NSNib(nibNamed: className, bundle: Bundle(for: type(of: self)))
         else {
             let text = "[\(type(of: self))].\(#function) No nib loaded."
-            log.message(text, .error); fatalError(text)
+            log.message(text, .fault); fatalError(text)
         }
 
-        log.message("[\(type(of: self))].\(#function) \(className)")
+        // log.message("[\(type(of: self))].\(#function) \(className)")
 
         nib.instantiate(withOwner: self, topLevelObjects: nil)
 
@@ -107,75 +237,255 @@ class LocationView: NSView {
 
         self.addConstraints(newConstraints)
 
+        initSetupView()
+    }
+
+    private func initSetupView() {
+
+        // Determine location card type
+
+        locationCard = AppOptions.favoriteLocationsOption.first(where: {
+            $0.isOnDisplay && $0.isCurrentLocation }) != nil ? .current : .favorite
+
         // Connect to Geo Coordinator
+
         GeoCoordinator.register(stakeholder: self, selector: #selector(reloadData))
+
+        // Direct Geo Coding with OpenWeatherMap
+
+        geocodingDirectOpenWeatherMap.onDataGiven = { response in
+
+            DispatchQueue.main.async {
+
+                // stopAnimationIndicator
+                self.indicatorCircular.isHidden = true
+                self.indicatorCircular.stopAnimation(nil)
+
+                var suggestions: Data?
+
+                switch response {
+                case .success(let data):
+                    suggestions = data
+
+                case .failure(let error):
+                    switch error {
+                    case .failedRequest(let message):
+                        log.message(message, .error)
+
+                    default:
+                        log.message("[\(type(of: self))].\(#function) \(error)", .error)
+                    }
+                }
+
+                self.suggestionsOpenWeatherMapHandler(suggestions)
+            }
+        }
     }
 
     // MARK: - Contract
 
     @objc public func reloadData() {
+        labelPermissionStatus.stringValue = permissionStatusLocalized
 
-        labelLocationNameValue.stringValue = "Greetings".localizedValue
-        labelGeoCoupleDataValue.stringValue = geoCoupleDataLocalized
+        let locationNameLocalizedFull = locationNameLocalized
+        let lengthLimit = 28
 
-        labelPermissionTitle.stringValue = "Label: Permission".localizedValue + ":"
-        labelPermissionValue.stringValue = GeoAgent.currentStatus.localizedKey.localizedValue
+        labelLocationName.toolTip = locationNameLocalizedFull.count > lengthLimit ?
+        locationNameLocalizedFull : nil
 
-        buttonRefresh.title = "Button: Refresh Current Location".localizedValue
+        labelLocationName.stringValue = locationNameLocalizedFull.cut(length: lengthLimit)
+        labelGeoCoordinates.stringValue = geoCoordinatesLocalized
+
+        labelAutoSuggestionsRequest.stringValue = "Auto".localizedValue
+
+        buttonSuggestionsRequest.title = "Button: Request Suggestions".localizedValue
+        buttonUpdateCurrentLocation.title = "Button: Refresh Current Location".localizedValue
+
+        reloadComboBox()
+        reloadBookmarkButton()
     }
 
     public func makeup() {
-        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+        // log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+        viewSuggestions.collectionView?.reloadData()
     }
 
     public func localize() {
-        log.message("[\(type(of: self))].\(#function)")
         reloadData()
     }
-}
 
-// MARK: - Extentions
+    private func reloadComboBox() {
+
+        let locations = AppOptions.favoriteLocationsOption
+
+        if let indexToDisplay = locations.firstIndex(where: { $0.isOnDisplay == true }) {
+            comboBoxFavorites.removeAllItems()
+
+            for item in locations {
+                comboBoxFavorites.addItem(withObjectValue: item)
+            }
+
+            comboBoxFavorites.selectItem(at: indexToDisplay)
+        }
+    }
+
+    private func reloadBookmarkButton() {
+        switch self.locationCard {
+        case .suggestion:
+            buttonBookmark.image = NSImage(named: NSImage.Name("NSAddTemplate"))
+        case .favorite:
+            buttonBookmark.image = NSImage(named: NSImage.Name("NSRemoveTemplate"))
+        case .current:
+            buttonBookmark.image = NSImage(named: NSImage.Name("NSBookmarksTemplate"))
+        }
+    }
+
+    // MARK: - NSTextFieldDelegate Protocol
+
+    func controlTextDidChange(_ obj: Notification) {
+
+        if textFieldLocationNameSearch.stringValue.isEmpty {
+
+            // reset suggestion request delay shift
+            typeDeepCounter = 0
+
+            // stop indicator
+            indicatorCircular.isHidden = true
+            indicatorCircular.stopAnimation(nil)
+
+            // hide suggestions view
+            SuggestionsView.shouldProcessVisisbility = false
+            viewSuggestions.alphaValue = 0.0
+            constraintViewSuggestionsHeight.constant = 0
+
+            // remove all suggestions items
+            viewSuggestions.suggestionsArray.removeAll()
+            collectionSuggestions.reloadData()
+
+            log.message("[\(type(of: self))].\(#function) deepCounter : \(typeDeepCounter)")
+
+            return
+        }
+
+        guard AppOptions.autoSuggestionsRequestOption == true else { return }
+
+        typeDeepCounter += 1
+
+        log.message("[\(type(of: self))].\(#function) : \(typeDeepCounter)")
+
+        // start indicator
+        self.indicatorCircular.isHidden = false
+        self.indicatorCircular.startAnimation(nil)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000), execute: {
+
+            if self.typeDeepCounter > 0 {
+                self.typeDeepCounter -= 1
+
+                let logText = "deepCounter > 0 : \(self.typeDeepCounter)"
+                log.message("[\(type(of: self))].\(#function) \(logText)")
+            }
+
+            guard
+                self.typeDeepCounter == 0,
+                self.textFieldLocationNameSearch.stringValue.isEmpty != true,
+                AppOptions.autoSuggestionsRequestOption == true
+            else {
+                log.message("[\(type(of: self))].\(#function) guard : \(self.typeDeepCounter)")
+                return
+            }
+
+            if self.useSuggestionsSample {
+
+                // stop indicator
+                self.indicatorCircular.isHidden = false
+                self.indicatorCircular.startAnimation(nil)
+
+                self.suggestionsOpenWeatherMapHandler(Data())
+            } else {
+                self.getOpenWeatherMapSuggestions()
+            }
+        })
+    }
+}
 
 extension LocationView {
 
-    private var geoCoupleDataLocalized: String {
-        guard let location = AppGlobals.currentLocation else {
-            return "Geo Couple".localizedValue
+    private func getOpenWeatherMapSuggestions() {
+        guard
+            self.isReadyToGetSuggestions,
+            textFieldLocationNameSearch.stringValue.isEmpty != true
+        else { return }
+
+        self.isReadyToGetSuggestions = false
+
+        let name = self.textFieldLocationNameSearch.stringValue
+        let limit = 5
+        let id = AppGlobals.appKeyOpenWeather
+
+        let urlString = prepareDirectURLString(cityName: name, limit: limit, appid: id)
+        let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+
+        var preparedURL: URL?
+
+        if let url = URL(string: urlString) {
+            preparedURL = url
+        } else if let encodedString = encoded, let urlEncoded = URL(string: encodedString) {
+            preparedURL = urlEncoded
         }
-        return "\(location.latitude.cut(.four)), \(location.longitude.cut(.four))"
-    }
-}
 
-extension GeoStatusSimplified {
+        guard let requestURL = preparedURL else {
 
-    var localizedKey: String {
-        switch self {
-        case .notDetermined:
-            return "GeoAccess: .notDetermined"
-        case .notAllowed:
-            return "GeoAccess: .notAllowed"
-        case .allowed:
-            return "GeoAccess: .allowed"
+            // WRONG: URL cann't be created at all
+            log.message("[\(type(of: self))].\(#function) no URL prepared", .error)
+
+            // stopAnimationIndicator
+            self.indicatorCircular.isHidden = true
+            self.indicatorCircular.stopAnimation(nil)
+
+            self.isReadyToGetSuggestions = true
+
+            return
         }
+
+        // startAnimationIndicator
+        self.indicatorCircular.isHidden = false
+        self.indicatorCircular.startAnimation(nil)
+
+        // request
+        geocodingDirectOpenWeatherMap.requestData(url: requestURL)
     }
-}
 
-extension GeoStatus {
+    private func suggestionsOpenWeatherMapHandler(_ data: Data?) {
 
-    var localizedKey: String {
-        switch self {
-        case .notDetermined:
-            return "GeoAccess: .notDetermined"
-        case .deniedForAllAndRestricted:
-            return "GeoAccess: .deniedForAllAndRestricted"
-        case .restricted:
-            return "GeoAccess: .restricted"
-        case .deniedForAllApps:
-            return "GeoAccess: .deniedForAllApps"
-        case .deniedForTheApp:
-            return "GeoAccess: .deniedForTheApp"
-        case .allowed:
-            return "GeoAccess: .allowed"
+        DispatchQueue.main.async {
+
+            guard let data = data else { return }
+
+            var suggestions: [Location]?
+
+            if self.useSuggestionsSample {
+                suggestions = prepareSuggestionsSample()
+            } else {
+                suggestions = prepareSuggestions(json: data)
+            }
+
+            guard let suggestions = suggestions else { return }
+
+            self.viewSuggestions.suggestionsArray = suggestions
+
+            self.constraintViewSuggestionsHeight.constant =
+            self.viewSuggestions.heightCalculated
+
+            self.collectionSuggestions.reloadData()
+
+            NSAnimationContext.runAnimationGroup({ context in
+                context.duration = 0.5
+
+                self.viewSuggestions.animator().alphaValue = 1.0
+            }, completionHandler: nil)
+
+            self.isReadyToGetSuggestions = true
         }
     }
 }

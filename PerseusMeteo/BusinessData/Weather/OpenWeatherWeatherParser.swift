@@ -1,5 +1,5 @@
 //
-//  OpenWeatherCurrentParser.swift
+//  OpenWeatherWeatherParser.swift
 //  PerseusMeteo
 //
 //  Created by Mikhail Zhigulin in 7532.
@@ -71,7 +71,7 @@
 
 import Foundation
 
-public class OpenWeatherCurrentParser: CurrentParserProtocol {
+public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getTimeZone(from dictionary: [String: Any]) -> Int? {
 

@@ -40,11 +40,58 @@ public let TIME_OPTION_DEFAULT = TimeFormatOption.system
 public let DISTANCE_OPTION_KEY = "DISTANCE_OPTION_KEY"
 public let DISTANCE_OPTION_DEFAULT = LengthOption.mile
 
+public let SUGGESTIONS_REQUEST_OPTION_KEY = "SUGGESTIONS_REQUEST_OPTION_KEY"
+public let SUGGESTIONS_REQUEST_OPTION_DEFAULT = true
+
+public let FAVORITE_LOCATIONS_OPTION_KEY = "FAVORITE_LOCATIONS_OPTION_KEY"
+public let FAVORITE_LOCATIONS_OPTION_DEFAULT: [Location] =
+[
+    Location(isCurrent: true, isOnDisplay: true)
+]
+
 // MARK: - User Defaults
 
 class AppOptions {
 
-    // MARK: OpenWeather API Key Option
+    // MARK: - Special options
+
+    public static var autoSuggestionsRequestOption: Bool {
+        get {
+            let ud = AppGlobals.userDefaults
+
+            let result = ud.valueExists(forKey: SUGGESTIONS_REQUEST_OPTION_KEY) ?
+            ud.bool(forKey: SUGGESTIONS_REQUEST_OPTION_KEY) :
+            SUGGESTIONS_REQUEST_OPTION_DEFAULT
+
+            return result
+        }
+        set {
+            let ud = AppGlobals.userDefaults
+            ud.setValue(newValue, forKey: SUGGESTIONS_REQUEST_OPTION_KEY)
+        }
+    }
+
+    public static var favoriteLocationsOption: [Location] {
+        get {
+            let ud = AppGlobals.userDefaults
+            if let savedArray = ud.data(forKey: FAVORITE_LOCATIONS_OPTION_KEY) {
+                let decoder = JSONDecoder()
+                if let loadedArray = try? decoder.decode([Location].self, from: savedArray) {
+                    return loadedArray
+                }
+            }
+            return FAVORITE_LOCATIONS_OPTION_DEFAULT
+        }
+        set {
+            let ud = AppGlobals.userDefaults
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(newValue) {
+                ud.set(encoded, forKey: FAVORITE_LOCATIONS_OPTION_KEY)
+            }
+        }
+    }
+
+    // MARK: - OpenWeather API Key Option
 
     public static var OpenWeatherAPIOption: String? {
         get {
@@ -269,6 +316,7 @@ extension AppOptions {
         ud.removeObject(forKey: WINDSPEED_OPTION_KEY)
         ud.removeObject(forKey: PRESSURE_OPTION_KEY)
         ud.removeObject(forKey: TIME_OPTION_KEY)
+        ud.removeObject(forKey: SUGGESTIONS_REQUEST_OPTION_KEY)
 
         self.OpenWeatherAPIOption = nil
     }

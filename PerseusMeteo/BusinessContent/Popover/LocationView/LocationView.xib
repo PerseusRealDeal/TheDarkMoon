@@ -8,31 +8,40 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="LocationView" customModule="Snowman" customModuleProvider="target">
             <connections>
-                <outlet property="buttonRefresh" destination="dzE-ai-CbN" id="Vrg-ej-CLC"/>
-                <outlet property="labelGeoCoupleDataValue" destination="kTd-g8-roX" id="XGO-p8-V83"/>
-                <outlet property="labelLocationNameValue" destination="XdO-8w-GAc" id="jTk-YJ-qS7"/>
-                <outlet property="labelPermissionTitle" destination="6Bi-kF-QOm" id="UNg-EP-2Rz"/>
-                <outlet property="labelPermissionValue" destination="3WQ-1R-kmJ" id="GJd-1q-Cig"/>
+                <outlet property="buttonBookmark" destination="hdm-J3-DtV" id="1sC-lh-UHJ"/>
+                <outlet property="buttonSuggestionsRequest" destination="3tP-nC-EJ4" id="V2s-In-8YJ"/>
+                <outlet property="buttonUpdateCurrentLocation" destination="dzE-ai-CbN" id="B9R-ec-GKg"/>
+                <outlet property="checkBoxAutoSuggestionsRequest" destination="Iyc-oz-9My" id="JES-Sg-SdT"/>
+                <outlet property="collectionSuggestions" destination="OzP-rT-i4B" id="dEZ-Ja-awx"/>
+                <outlet property="comboBoxFavorites" destination="b6G-QQ-NM1" id="ARL-Fr-EMY"/>
+                <outlet property="constraintViewSuggestionsHeight" destination="BXS-fE-27A" id="Hna-R2-qxq"/>
+                <outlet property="indicatorCircular" destination="hqy-xq-2kg" id="oSI-fs-8Uy"/>
+                <outlet property="labelAutoSuggestionsRequest" destination="90S-jS-UkF" id="Ew0-19-5vl"/>
+                <outlet property="labelGeoCoordinates" destination="kTd-g8-roX" id="W4j-3K-OKo"/>
+                <outlet property="labelLocationName" destination="TAU-CR-D1I" id="bHy-hx-tYJ"/>
+                <outlet property="labelPermissionStatus" destination="6Bi-kF-QOm" id="dG8-7k-KJh"/>
+                <outlet property="textFieldLocationNameSearch" destination="Rpg-d7-viE" id="8R0-Wv-vHB"/>
                 <outlet property="viewContent" destination="c22-O7-iKe" id="hqr-Zc-of2"/>
+                <outlet property="viewSuggestions" destination="1ES-ZP-RZQ" id="spV-pP-F8M"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="325" height="90"/>
+            <rect key="frame" x="0.0" y="0.0" width="352" height="113"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XdO-8w-GAc">
-                    <rect key="frame" x="68" y="33" width="189" height="24"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Location Name Label" id="W3Q-Ei-Qtg">
-                        <font key="font" metaFont="system" size="20"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Bi-kF-QOm">
+                    <rect key="frame" x="0.0" y="92" width="117" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Permission: Status" id="nlB-9i-IAi">
+                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3WQ-1R-kmJ">
-                    <rect key="frame" x="73" y="69" width="43" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Status" id="oBr-sx-wHs">
+                <textField verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="TAU-CR-D1I">
+                    <rect key="frame" x="0.0" y="33" width="95" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Location Name" id="3Ma-Dd-zy7">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -47,37 +56,158 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dzE-ai-CbN">
-                    <rect key="frame" x="170" y="-2" width="162" height="32"/>
-                    <buttonCell key="cell" type="push" title="Get Current Location" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dNz-Wm-Pow">
+                    <rect key="frame" x="180" y="-2" width="179" height="32"/>
+                    <buttonCell key="cell" type="push" title="Get Current Location" bezelStyle="rounded" alignment="left" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dNz-Wm-Pow">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="refreshButtonTapped:" target="-2" id="SPt-d4-add"/>
+                        <action selector="updateCurrentLocationButtonTapped:" target="-2" id="FpL-sy-Ls6"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Bi-kF-QOm">
-                    <rect key="frame" x="0.0" y="69" width="75" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Permission:" id="nlB-9i-IAi">
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3tP-nC-EJ4">
+                    <rect key="frame" x="180" y="24" width="179" height="32"/>
+                    <buttonCell key="cell" type="push" title="Get Search Suggestions" bezelStyle="rounded" alignment="left" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Tyn-BU-V2P">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="suggestionsRequestButtonTapped:" target="-2" id="wd7-IW-9BZ"/>
+                    </connections>
+                </button>
+                <progressIndicator maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="hqy-xq-2kg">
+                    <rect key="frame" x="166" y="64" width="16" height="16"/>
+                </progressIndicator>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Iyc-oz-9My">
+                    <rect key="frame" x="132" y="32" width="18" height="18"/>
+                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zFn-QD-aSO">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="autoSuggestionsRequestTapped:" target="-2" id="54N-pq-VHy"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="90S-jS-UkF">
+                    <rect key="frame" x="151" y="33" width="33" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Auto" id="a4U-fY-sIk">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hdm-J3-DtV">
+                    <rect key="frame" x="320" y="55" width="39" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="Z6l-n1-uCK"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSBookmarksTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="5Aa-Sf-eQi">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="bookmarkButtonTapped:" target="-2" id="Suh-0M-EUX"/>
+                    </connections>
+                </button>
+                <comboBox horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b6G-QQ-NM1">
+                    <rect key="frame" x="187" y="58" width="138" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="135" id="5cD-M2-XeT"/>
+                    </constraints>
+                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="TeX-2T-AOm">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <objectValues>
+                            <string>Current Location</string>
+                        </objectValues>
+                    </comboBoxCell>
+                    <connections>
+                        <action selector="favoritesComboBoxDidChange:" target="-2" id="gby-UB-PdG"/>
+                    </connections>
+                </comboBox>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="3DI-NV-P6G" userLabel="Search Custom View">
+                    <rect key="frame" x="0.0" y="51" width="182" height="41"/>
+                    <subviews>
+                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rpg-d7-viE">
+                            <rect key="frame" x="0.0" y="10" width="182" height="21"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="zyH-fg-xMN">
+                                <font key="font" usesAppearanceFont="YES"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Rpg-d7-viE" firstAttribute="width" secondItem="3DI-NV-P6G" secondAttribute="width" id="PNN-c0-BMk"/>
+                        <constraint firstItem="Rpg-d7-viE" firstAttribute="centerY" secondItem="3DI-NV-P6G" secondAttribute="centerY" id="VcC-pZ-FiN"/>
+                        <constraint firstItem="Rpg-d7-viE" firstAttribute="centerX" secondItem="3DI-NV-P6G" secondAttribute="centerX" id="b4R-R0-35H"/>
+                    </constraints>
+                </customView>
+                <scrollView wantsLayer="YES" borderType="none" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="1ES-ZP-RZQ" customClass="SuggestionsView" customModule="Snowman" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="51" width="182" height="5"/>
+                    <clipView key="contentView" copiesOnScroll="NO" id="xhY-jC-QUD">
+                        <rect key="frame" x="0.0" y="0.0" width="182" height="5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView selectable="YES" id="OzP-rT-i4B">
+                                <rect key="frame" x="0.0" y="0.0" width="182" height="5"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" id="a3P-Dd-R3U">
+                                    <size key="itemSize" width="50" height="50"/>
+                                </collectionViewFlowLayout>
+                                <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </collectionView>
+                        </subviews>
+                    </clipView>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="5" id="BXS-fE-27A"/>
+                    </constraints>
+                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="NqP-wp-7Vy">
+                        <rect key="frame" x="-100" y="-100" width="185" height="16"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="LGy-U8-GKq">
+                        <rect key="frame" x="166" y="0.0" width="16" height="5"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
             </subviews>
             <constraints>
-                <constraint firstItem="XdO-8w-GAc" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="390-18-IL3"/>
+                <constraint firstItem="b6G-QQ-NM1" firstAttribute="centerY" secondItem="hdm-J3-DtV" secondAttribute="centerY" id="0Gm-j3-GZd"/>
+                <constraint firstItem="hqy-xq-2kg" firstAttribute="centerY" secondItem="3DI-NV-P6G" secondAttribute="centerY" id="0Xf-dU-Ram"/>
+                <constraint firstItem="b6G-QQ-NM1" firstAttribute="leading" secondItem="3tP-nC-EJ4" secondAttribute="leading" id="1R9-NU-fvA"/>
+                <constraint firstItem="90S-jS-UkF" firstAttribute="centerY" secondItem="3tP-nC-EJ4" secondAttribute="centerY" id="4um-Do-xOb"/>
+                <constraint firstItem="TAU-CR-D1I" firstAttribute="centerY" secondItem="3tP-nC-EJ4" secondAttribute="centerY" id="5Cm-rd-6CK"/>
                 <constraint firstAttribute="bottom" secondItem="dzE-ai-CbN" secondAttribute="bottom" constant="5" id="BHf-sC-VcN"/>
-                <constraint firstItem="3WQ-1R-kmJ" firstAttribute="leading" secondItem="6Bi-kF-QOm" secondAttribute="trailing" constant="2" id="Fgf-di-xCz"/>
+                <constraint firstItem="1ES-ZP-RZQ" firstAttribute="top" secondItem="Rpg-d7-viE" secondAttribute="bottom" constant="5" id="D2q-2c-ClO"/>
+                <constraint firstItem="1ES-ZP-RZQ" firstAttribute="centerX" secondItem="Rpg-d7-viE" secondAttribute="centerX" id="DIR-gj-iDz"/>
+                <constraint firstItem="hdm-J3-DtV" firstAttribute="leading" secondItem="b6G-QQ-NM1" secondAttribute="trailing" constant="5" id="Gp2-t1-s31"/>
+                <constraint firstItem="1ES-ZP-RZQ" firstAttribute="width" secondItem="3DI-NV-P6G" secondAttribute="width" id="Gzt-N3-Zcf"/>
+                <constraint firstItem="dzE-ai-CbN" firstAttribute="top" secondItem="3tP-nC-EJ4" secondAttribute="bottom" constant="6" id="JJx-Br-FrZ"/>
+                <constraint firstItem="3DI-NV-P6G" firstAttribute="top" secondItem="6Bi-kF-QOm" secondAttribute="bottom" id="K6D-NB-9K2"/>
+                <constraint firstItem="3tP-nC-EJ4" firstAttribute="leading" secondItem="90S-jS-UkF" secondAttribute="trailing" constant="5" id="NqV-4V-UKk"/>
                 <constraint firstItem="6Bi-kF-QOm" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="2" id="PSp-oW-HYr"/>
                 <constraint firstItem="6Bi-kF-QOm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="5" id="TO9-gI-Zt2"/>
-                <constraint firstItem="3WQ-1R-kmJ" firstAttribute="centerY" secondItem="6Bi-kF-QOm" secondAttribute="centerY" id="bb1-2U-0b9"/>
+                <constraint firstItem="TAU-CR-D1I" firstAttribute="leading" secondItem="kTd-g8-roX" secondAttribute="leading" id="V75-7U-qvs"/>
+                <constraint firstItem="3tP-nC-EJ4" firstAttribute="width" secondItem="dzE-ai-CbN" secondAttribute="width" id="Wd0-hz-P5P"/>
+                <constraint firstItem="b6G-QQ-NM1" firstAttribute="leading" secondItem="3DI-NV-P6G" secondAttribute="trailing" constant="5" id="Xdq-EF-P8v"/>
+                <constraint firstItem="90S-jS-UkF" firstAttribute="leading" secondItem="Iyc-oz-9My" secondAttribute="trailing" constant="5" id="Xfl-KE-naf"/>
+                <constraint firstItem="3tP-nC-EJ4" firstAttribute="leading" secondItem="dzE-ai-CbN" secondAttribute="leading" id="Zhr-OW-s8b"/>
                 <constraint firstItem="kTd-g8-roX" firstAttribute="centerY" secondItem="dzE-ai-CbN" secondAttribute="centerY" id="eBF-5F-Teo"/>
                 <constraint firstItem="kTd-g8-roX" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="2" id="fKf-IW-hHl"/>
-                <constraint firstItem="XdO-8w-GAc" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="gjg-aw-MWt"/>
+                <constraint firstAttribute="trailing" secondItem="hdm-J3-DtV" secondAttribute="trailing" id="qlf-r6-WpX"/>
+                <constraint firstItem="3tP-nC-EJ4" firstAttribute="top" secondItem="3DI-NV-P6G" secondAttribute="bottom" id="r67-x0-HrU"/>
+                <constraint firstItem="3DI-NV-P6G" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="t2I-E3-czG"/>
+                <constraint firstItem="Iyc-oz-9My" firstAttribute="centerY" secondItem="90S-jS-UkF" secondAttribute="centerY" id="t8n-RC-ofb"/>
+                <constraint firstItem="hqy-xq-2kg" firstAttribute="trailing" secondItem="3DI-NV-P6G" secondAttribute="trailing" id="tUl-B1-yLJ"/>
+                <constraint firstItem="hdm-J3-DtV" firstAttribute="centerY" secondItem="3DI-NV-P6G" secondAttribute="centerY" id="wTv-Qw-9HZ"/>
                 <constraint firstAttribute="trailing" secondItem="dzE-ai-CbN" secondAttribute="trailing" id="yio-Ya-lDQ"/>
             </constraints>
-            <point key="canvasLocation" x="43" y="-36"/>
+            <point key="canvasLocation" x="89" y="-24.5"/>
         </customView>
     </objects>
+    <resources>
+        <image name="NSBookmarksTemplate" width="19" height="14"/>
+    </resources>
 </document>

@@ -17,6 +17,7 @@ import Cocoa
 
 // MARK: - The Start Line
 
+log.level = .info
 log.message("> The app's start point...", .info)
 
 let globals = AppGlobals()

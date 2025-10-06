@@ -24,14 +24,17 @@ class TranslationTests: XCTestCase {
     // func test_zero() { XCTFail("Tests not yet implemented in \(type(of: self)).") }
     // func test_the_first_success() { XCTAssertTrue(true, "It's done!") }
 
-    // MARK: -
+    // MARK: - Greeting
 
     func test_translation_common() {
 
         // assert
 
-        XCTAssertEqual("Default: N/A".localizedExpectation,
-                       "Default: N/A".localizedValue)
+        XCTAssertEqual("Have a great time.".localizedExpectation,
+                       "Have a great time.".localizedValue)
+
+        XCTAssertEqual("Greetings".localizedExpectation,
+                       "Greetings".localizedValue)
     }
 
     // MARK: - Popover Screen
@@ -66,6 +69,46 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Button: Hide".localizedExpectation,
                        "Button: Hide".localizedValue)
+
+        XCTAssertEqual("Default: N/A".localizedExpectation,
+                       "Default: N/A".localizedValue)
+    }
+
+    // MARK: - End-User Messages
+
+    func test_translation_of_end_user_messages() {
+
+        // assert
+
+        XCTAssertEqual("Coordinates update is required".localizedExpectation,
+                       "Coordinates update is required".localizedValue)
+
+        XCTAssertEqual("Location card is switched".localizedExpectation,
+                       "Location card is switched".localizedValue)
+
+        XCTAssertEqual("Location card is cleared".localizedExpectation,
+                       "Location card is cleared".localizedValue)
+
+        XCTAssertEqual("Item removed from favorites".localizedExpectation,
+                       "Item removed from favorites".localizedValue)
+
+        XCTAssertEqual("Item added to favorites".localizedExpectation,
+                       "Item added to favorites".localizedValue)
+
+        XCTAssertEqual("Location Name should be typed".localizedExpectation,
+                       "Location Name should be typed".localizedValue)
+
+        XCTAssertEqual("Auto requesting suggestions is on!".localizedExpectation,
+                       "Auto requesting suggestions is on!".localizedValue)
+
+        XCTAssertEqual("Current Location should be selected".localizedExpectation,
+                       "Current Location should be selected".localizedValue)
+
+        XCTAssertEqual("Favorites limited to".localizedExpectation,
+                       "Favorites limited to".localizedValue)
+
+        XCTAssertEqual("Current neither to add nor to remove!".localizedExpectation,
+                       "Current neither to add nor to remove!".localizedValue)
     }
 
     // MARK: - LocationView
@@ -107,6 +150,14 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("Button: Refresh Current Location".localizedExpectation,
                        "Button: Refresh Current Location".localizedValue)
 
+        XCTAssertEqual("Button: Request Suggestions".localizedExpectation,
+                       "Button: Request Suggestions".localizedValue)
+
+        XCTAssertEqual("Current Location".localizedExpectation,
+                       "Current Location".localizedValue)
+
+        XCTAssertEqual("Auto".localizedExpectation,
+                       "Auto".localizedValue)
     }
 
     // MARK: - WeatherView

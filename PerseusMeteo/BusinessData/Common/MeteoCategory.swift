@@ -16,6 +16,6 @@
 import Foundation
 
 public enum MeteoCategory {
-    case current
+    case weather
     case forecast
 }

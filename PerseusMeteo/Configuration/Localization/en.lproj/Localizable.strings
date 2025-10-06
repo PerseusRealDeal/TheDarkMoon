@@ -18,6 +18,7 @@
 
 "Product Name" = "Snowman";
 "Greetings" = "Hello world!";
+"Have a great time." = "Have a great time";
 "DeveloperRelease" = "Developer release, to become acquainted";
 
 "Default: N/A" = "N/A";
@@ -27,9 +28,9 @@
 "Button: Call Weather" = "Call Weather";
 "Button: Call Forecast" = "Call Forecast";
 
-"Label: Made with Love" = "Made with Love from Novosibirsk.";
+"Label: Made with Love" = "Made with Love from Novosibirsk";
 
-"Tab: Current Weather" = "Current Weather";
+"Tab: Current Weather" = "Weather";
 "Tab: Forecast" = "Forecast";
 
 "Button: Quit" = "Quit";
@@ -38,6 +39,19 @@
 "Button: Options" = "Options";
 
 "Button: Hide" = "Hide";
+
+/* End-User Messages */
+
+"Coordinates update is required" = "Coordinates update is required";
+"Location card is switched" = "Location card is switched";
+"Location card is cleared" = "Location card is cleared";
+"Item removed from favorites" = "Item removed from favorites";
+"Item added to favorites" = "Item added to favorites";
+"Location Name should be typed" = "Location Name should be typed";
+"Auto requesting suggestions is on!" = "Auto requesting suggestions is on!";
+"Current Location should be selected" = "Current Location should be selected";
+"Favorites limited to" = "Favorites limited to";
+"Current neither to add nor to remove!" = "Current neither to add nor to remove!";
 
 /* Location View */
 
@@ -55,6 +69,10 @@
 
 "Button: Update Geo Access" = "Update Geo Access";
 "Button: Refresh Current Location" = "Update Current Location";
+"Button: Request Suggestions" = "Request Suggestions";
+
+"Current Location" = "Current Location";
+"Auto" = "Auto";
 
 /* Current Weather View */
 

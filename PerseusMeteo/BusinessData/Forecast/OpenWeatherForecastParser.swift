@@ -182,7 +182,7 @@ public func getForecastDay(from source: [String: Any], timezone: Int) -> String 
         value = dt
 
     } else {
-        log.message("[\(#function) [dt] wrong.", .error)
+        // log.message("[\(#function) [dt] wrong.", .error)
     }
 
     guard value != -1 else { return MeteoFactsDefaults.forecastDate }
@@ -212,7 +212,7 @@ public func getForecastHourDt(from source: [String: Any], timezone: Int) -> Stri
         value = dt
 
     } else {
-        log.message("[\(#function) [dt] wrong.", .error)
+        // log.message("[\(#function) [dt] wrong.", .error)
     }
 
     guard value != -1 else { return MeteoFactsDefaults.sunrizesunset }
@@ -549,7 +549,7 @@ public func getPrecipitation(from source: [String: Any]) -> String {
         precipitation.0 = probability
 
     } else {
-        log.message("[\(#function) [pop] wrong.", .error)
+        // log.message("[\(#function) [pop] wrong.", .error)
     }
 
 /*
@@ -565,7 +565,7 @@ public func getPrecipitation(from source: [String: Any]) -> String {
             precipitation.2 = mm
 
         } else {
-            log.message("[\(#function) [rain 3h] wrong.", .error)
+            // log.message("[\(#function) [rain 3h] wrong.", .error)
         }
     } else if let snow = source["snow"] as? [String: Any] {
         if let mm = snow["3h"] as? Double {
@@ -574,10 +574,10 @@ public func getPrecipitation(from source: [String: Any]) -> String {
             precipitation.2 = mm
 
         } else {
-            log.message("[\(#function) [snow 3h] wrong.", .error)
+            // log.message("[\(#function) [snow 3h] wrong.", .error)
         }
     } else {
-        log.message("[\(#function) [rain], [snow] wrong.", .error)
+        // log.message("[\(#function) [rain], [snow] wrong.", .error)
     }
 
     // MeteoFactsDefaults.conditions

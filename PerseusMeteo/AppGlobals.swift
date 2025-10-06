@@ -17,6 +17,12 @@ import Cocoa
 
 // MARK: - App Globals
 
+extension Notification.Name {
+    public static let suggestionNotification = Notification.Name("suggestionNotification")
+    public static let favoriteNotification = Notification.Name("favoriteNotification")
+    public static let bookmarkNotification = Notification.Name("bookmarkNotification")
+}
+
 struct AppGlobals {
 
     // MARK: - Constants
@@ -27,26 +33,44 @@ struct AppGlobals {
     static let statusMenusButtonTitle = "Snowman"
     static let meteoProviderName = "/\\__/\\"
 
+    static let favoritesLimit: Int = 7
+
     // MARK: - Business Data
 
     static var currentLocation: GeoPoint? {
         didSet {
             let location = currentLocation?.description ?? "current location is erased"
-            log.message("\(location) \(#function)", .info)
-            // geolog.message("\(location) \(#function)", .debug, .custom)
+            log.message("[\(type(of: self))].\(#function): \(location)", .info)
+        }
+    }
+
+    static var suggestion: Location? {
+        didSet {
+            let suggestion = suggestion?.description ?? "suggestion is removed"
+            log.message("[\(type(of: self))].\(#function): \(suggestion)", .info)
         }
     }
 
     static var weather: Data? {
         didSet {
-            let text = "JSON:\n\(weather?.prettyPrinted ?? "")"
+            guard let weather = weather else {
+                globals.sourceWeather.resetDataCach()
+                return
+            }
+
+            let text = "JSON:\n\(weather.prettyPrinted ?? "")"
             log.message("[\(type(of: self))].\(#function)\n\(text)")
         }
     }
 
     static var forecast: Data? {
         didSet {
-            let text = "JSON:\n\(forecast?.prettyPrinted ?? "")"
+            guard let forecast = forecast else {
+                globals.sourceForecast.resetDataCach()
+                return
+            }
+
+            let text = "JSON:\n\(forecast.prettyPrinted ?? "")"
             log.message("[\(type(of: self))].\(#function)\n\(text)")
 
             // Save the date and time of the last one.
@@ -70,7 +94,7 @@ struct AppGlobals {
 
     // MARK: - UI Data Parsers
 
-    public let sourceCurrentWeather = CurrentDataSource()
+    public let sourceWeather = WeatherDataSource()
     public let sourceForecast = ForecastDataSource()
 
     init() {
@@ -80,7 +104,7 @@ struct AppGlobals {
         self.languageSwitcher = LanguageSwitcher.shared
         self.dataDefender = PerseusDataDefender.shared
 
-        self.sourceCurrentWeather.path = { AppGlobals.weather ?? Data() }
+        self.sourceWeather.path = { AppGlobals.weather ?? Data() }
         self.sourceForecast.path = { AppGlobals.forecast ?? Data() }
 
         // Geo Logic Setup

@@ -6,7 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Version in format MAJOR.MINOR where MINOR includes PATCH that means any patch increments MINOR.
 - Dates in this file meets Gregorian calendar. Date in format YYYY-MM-DD.
 
-## [0.3] - [2025-06-NN], The Dark Moon
+## [0.4] - [2025-NN-NN], The Dark Moon
+
+### Added
+
+- Message Label class for extra short message showing.
+
+### Reorginized
+
+- The crown of stars: major first-party dependencies in use as standalone.
+
+## [0.3] - [2025-06-27], The Dark Moon
 
 ### Added
 

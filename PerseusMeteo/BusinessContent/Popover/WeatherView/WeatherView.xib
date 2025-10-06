@@ -9,8 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="WeatherView" customModule="Snowman" customModuleProvider="target">
             <connections>
                 <outlet property="indicator" destination="lEf-fh-mLw" id="jkg-HB-omu"/>
-                <outlet property="labelMeteoProviderTitle" destination="FU5-4g-xR5" id="QMw-Ed-L2E"/>
-                <outlet property="labelMeteoProviderValue" destination="UOG-l0-JFY" id="Veq-BY-bDt"/>
+                <outlet property="labelMeteoProvider" destination="FU5-4g-xR5" id="Fe9-vI-Nkq"/>
                 <outlet property="labelSunriseTitle" destination="Mc7-Qe-7uR" id="5mc-7k-a5A"/>
                 <outlet property="labelSunriseValue" destination="vWh-dP-4Gl" id="Etj-oc-iFI"/>
                 <outlet property="labelSunsetTitle" destination="qqV-2W-t83" id="p1G-Vg-0Zb"/>
@@ -99,16 +98,8 @@
                     </constraints>
                 </box>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FU5-4g-xR5">
-                    <rect key="frame" x="3" y="204" width="96" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Meteo Data by:" id="itt-Dm-qlk">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UOG-l0-JFY">
-                    <rect key="frame" x="100" y="204" width="136" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Meteo Provider Name" id="FdZ-xx-QOa">
+                    <rect key="frame" x="3" y="204" width="227" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Meteo Data by Meteo Provider Name" id="itt-Dm-qlk">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -133,7 +124,6 @@
                 <constraint firstItem="lEf-fh-mLw" firstAttribute="trailing" secondItem="c22-O7-iKe" secondAttribute="trailing" constant="-2" id="4iM-xy-vF8"/>
                 <constraint firstItem="qqV-2W-t83" firstAttribute="top" secondItem="Mc7-Qe-7uR" secondAttribute="bottom" id="5eX-73-seN"/>
                 <constraint firstItem="qBw-SP-YLr" firstAttribute="leading" secondItem="vWh-dP-4Gl" secondAttribute="leading" id="6NK-if-DjZ"/>
-                <constraint firstItem="UOG-l0-JFY" firstAttribute="centerY" secondItem="FU5-4g-xR5" secondAttribute="centerY" id="89O-He-XhW"/>
                 <constraint firstItem="GQy-nj-ciG" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="8mi-Uh-qnK"/>
                 <constraint firstItem="vWh-dP-4Gl" firstAttribute="leading" secondItem="Mc7-Qe-7uR" secondAttribute="trailing" constant="5" id="9hh-zC-7Rt"/>
                 <constraint firstItem="qqV-2W-t83" firstAttribute="leading" secondItem="Mc7-Qe-7uR" secondAttribute="leading" id="AXV-Me-QQL"/>
@@ -148,7 +138,6 @@
                 <constraint firstAttribute="trailing" secondItem="1ak-U7-0E6" secondAttribute="trailing" id="VkU-J9-mSU"/>
                 <constraint firstItem="1ak-U7-0E6" firstAttribute="centerY" secondItem="7ou-eL-RIc" secondAttribute="centerY" constant="20" id="a4k-CN-GgL"/>
                 <constraint firstAttribute="bottom" secondItem="GQy-nj-ciG" secondAttribute="bottom" id="aPv-g9-kUU"/>
-                <constraint firstItem="UOG-l0-JFY" firstAttribute="leading" secondItem="FU5-4g-xR5" secondAttribute="trailing" constant="5" id="aXW-7o-BzW"/>
                 <constraint firstAttribute="trailing" secondItem="Mc7-Qe-7uR" secondAttribute="trailing" constant="70" id="bd6-oY-2dx"/>
                 <constraint firstItem="FU5-4g-xR5" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="ifv-Rg-1Ia"/>
                 <constraint firstItem="vWh-dP-4Gl" firstAttribute="centerY" secondItem="Mc7-Qe-7uR" secondAttribute="centerY" id="nRM-J6-1TT"/>

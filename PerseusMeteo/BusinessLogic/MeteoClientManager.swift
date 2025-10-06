@@ -24,21 +24,21 @@ public class MeteoClientManager {
     private var isReadyToCall = false
     private var isReadyToCallForecast = false
 
-    private var serviceCurrentOpenWeatherMap = OpenWeatherClient()
+    private var serviceWeatherOpenWeatherMap = OpenWeatherClient()
     private var serviceForecastOpenWeatherMap = OpenWeatherClient()
 
     init(presenter: StatusMenusButtonPresenter) {
 
         theAppPresenter = presenter
 
-        setupCallerLogic(for: serviceCurrentOpenWeatherMap,
+        setupCallerLogic(for: serviceWeatherOpenWeatherMap,
                          and: serviceForecastOpenWeatherMap)
     }
 
     private func setupCallerLogic(for current: OpenWeatherClient,
                                   and forecast: OpenWeatherClient) {
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         // Decide what to do with data given.
 
@@ -50,7 +50,7 @@ public class MeteoClientManager {
         current.onDataGiven = { response in
 
             DispatchQueue.main.async {
-                presenter.screenPopover.stopAnimationProgressIndicator(.current)
+                presenter.screenPopover.stopAnimationProgressIndicator(.weather)
             }
 
             var meteoData: Data?
@@ -69,7 +69,7 @@ public class MeteoClientManager {
                 }
             }
 
-            self.serviceCurrentOpenWeatherMapHandler(meteoData ?? Data())
+            self.serviceWeatherOpenWeatherMapHandler(meteoData ?? Data())
         }
 
         forecast.onDataGiven = { response in
@@ -101,7 +101,7 @@ public class MeteoClientManager {
         isReadyToCallForecast = true
     }
 
-    public func fetchCurrent(_ sender: Any?) {
+    public func fetchWeather(_ sender: Any?) {
 
         guard isReadyToCall else {
             log.message("[\(type(of: self))].\(#function) \(isReadyToCall)", .error)
@@ -113,15 +113,15 @@ public class MeteoClientManager {
             return
         }
 
-        guard let location = AppGlobals.currentLocation else {
+        guard let point = getLocationPoint() else {
             log.message("[\(type(of: self))].\(#function) location is nil.", .error)
             return
         }
 
         isReadyToCall = false
 
-        let lat = location.latitude.cut(.two).description
-        let lon = location.longitude.cut(.two).description
+        let lat = point.latitude.cut(.two).description
+        let lon = point.longitude.cut(.two).description
 
         let lang = globals.languageSwitcher.currentAppLanguage
 
@@ -138,15 +138,15 @@ public class MeteoClientManager {
         log.message(callDetails.urlString)
 
         do {
-            presenter.screenPopover.startAnimationProgressIndicator(.current)
+            presenter.screenPopover.startAnimationProgressIndicator(.weather)
 
-            try serviceCurrentOpenWeatherMap.call(with: callDetails)
+            try serviceWeatherOpenWeatherMap.call(with: callDetails)
 
         } catch {
 
             log.message("[\(type(of: self))].\(#function) \(error)", .error)
 
-            presenter.screenPopover.stopAnimationProgressIndicator(.current)
+            presenter.screenPopover.stopAnimationProgressIndicator(.weather)
 
             isReadyToCall = true
         }
@@ -164,15 +164,15 @@ public class MeteoClientManager {
             return
         }
 
-        guard let location = AppGlobals.currentLocation else {
+        guard let point = getLocationPoint() else {
             log.message("[\(type(of: self))].\(#function) location is nil.", .error)
             return
         }
 
         isReadyToCallForecast = false
 
-        let lat = location.latitude.cut(.two).description
-        let lon = location.longitude.cut(.two).description
+        let lat = point.latitude.cut(.two).description
+        let lon = point.longitude.cut(.two).description
 
         let lang = globals.languageSwitcher.currentAppLanguage
 
@@ -207,7 +207,7 @@ public class MeteoClientManager {
 
     // MARK: - Event handlers
 
-    private func serviceCurrentOpenWeatherMapHandler(_ data: Data) {
+    private func serviceWeatherOpenWeatherMapHandler(_ data: Data) {
 
         log.message("[\(type(of: self))].\(#function)")
 
@@ -221,12 +221,13 @@ public class MeteoClientManager {
         // Here, but for now it's matter >
 
         AppGlobals.weather = data
-        globals.sourceCurrentWeather.meteoProvider = .serviceOpenWeatherMap
+
+        globals.sourceWeather.meteoProvider = .serviceOpenWeatherMap
 
         DispatchQueue.main.async {
 
-            presenter.screenPopover.stopAnimationProgressIndicator(.current)
-            presenter.screenPopover.reloadCurrentWeatherData()
+            presenter.screenPopover.stopAnimationProgressIndicator(.weather)
+            presenter.screenPopover.reloadWeatherData()
 
             self.isReadyToCall = true
         }
@@ -253,5 +254,23 @@ public class MeteoClientManager {
 
             self.isReadyToCallForecast = true
         }
+    }
+
+    private func getLocationPoint() -> GeoPoint? {
+        guard let locationCardType = theAppPresenter?.screenPopover.viewLocation.locationCard
+        else { return nil }
+
+        var point: GeoPoint?
+
+        switch locationCardType {
+        case .suggestion:
+            point = AppGlobals.suggestion?.point
+        case .favorite:
+            point = AppOptions.favoriteLocationsOption.first(where: { $0.isOnDisplay })?.point
+        case .current:
+            point = AppGlobals.currentLocation
+        }
+
+        return point
     }
 }

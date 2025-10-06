@@ -6,6 +6,8 @@
 	<string>Snowman</string>
 	<key>Greetings</key>
 	<string>Hello world!</string>
+	<key>Have a great time.</key>
+	<string>Have a great time</string>
 	<key>DeveloperRelease</key>
 	<string>Developer release, to become acquainted</string>
 	<key>Location Usage Description</key>
@@ -21,9 +23,9 @@
 	<key>Button: Call Forecast</key>
 	<string>Call Forecast</string>
 	<key>Label: Made with Love</key>
-	<string>Made with Love from Novosibirsk.</string>
+	<string>Made with Love from Novosibirsk</string>
 	<key>Tab: Current Weather</key>
-	<string>Current Weather</string>
+	<string>Weather</string>
 	<key>Tab: Forecast</key>
 	<string>Forecast</string>
 	<key>Button: Quit</key>
@@ -34,6 +36,28 @@
 	<string>Options</string>
 	<key>Button: Hide</key>
 	<string>Hide</string>
+	<key>/* End-User Messages */</key>
+	<string>--</string>
+	<key>Coordinates update is required</key>
+	<string>Coordinates update is required</string>
+	<key>Location card is switched</key>
+	<string>Location card is switched</string>
+	<key>Location card is cleared</key>
+	<string>Location card is cleared</string>
+	<key>Item removed from favorites</key>
+	<string>Item removed from favorites</string>
+	<key>Item added to favorites</key>
+	<string>Item added to favorites</string>
+	<key>Location Name should be typed</key>
+	<string>Location Name should be typed</string>
+	<key>Auto requesting suggestions is on!</key>
+	<string>Auto requesting suggestions is on!</string>
+	<key>Current Location should be selected</key>
+	<string>Current Location should be selected</string>
+	<key>Favorites limited to</key>
+	<string>Favorites limited to</string>
+	<key>Current neither to add nor to remove!</key>
+	<string>Current neither to add nor to remove!</string>
 	<key>/* Location View */</key>
 	<string>--</string>
 	<key>Label: Permission</key>
@@ -58,6 +82,12 @@
 	<string>Update Geo Access</string>
 	<key>Button: Refresh Current Location</key>
 	<string>Update Current Location</string>
+	<key>Button: Request Suggestions</key>
+	<string>Request Suggestions</string>
+	<key>Current Location</key>
+	<string>Current Location</string>
+	<key>Auto</key>
+	<string>Auto</string>
 	<key>/* Current Weather View */</key>
 	<string>--</string>
 	<key>Label: Meteo Data Provider</key>

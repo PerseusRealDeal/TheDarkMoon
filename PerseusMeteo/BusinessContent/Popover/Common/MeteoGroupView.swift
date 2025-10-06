@@ -55,17 +55,16 @@ class MeteoGroupView: NSView {
     @IBOutlet private(set) weak var value9: NSTextField!
 
     // MARK: - Initialization
-
+/*
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
     }
-
+*/
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         // Create a new instance from *xib and reference it to contentView outlet.
 
@@ -77,7 +76,7 @@ class MeteoGroupView: NSView {
                 log.message(text, .error); fatalError(text)
         }
 
-        log.message("[\(type(of: self))].\(#function) \(className)")
+        // log.message("[\(type(of: self))].\(#function) \(className)")
 
         nib.instantiate(withOwner: self, topLevelObjects: nil)
 
@@ -109,10 +108,7 @@ class MeteoGroupView: NSView {
         self.addConstraints(newConstraints)
     }
 
-    func applyCompactFonts() {
-
-        let fontSizeTitle: CGFloat = 10
-        let fontSizeValue: CGFloat = 8
+    public func applyFonts(fontSizeTitle: CGFloat = 12, fontSizeValue: CGFloat = 12) {
 
         title1.font = NSFont.boldSystemFont(ofSize: fontSizeTitle)
         value1.font = NSFont.systemFont(ofSize: fontSizeValue)
@@ -142,7 +138,7 @@ class MeteoGroupView: NSView {
         value9.font = NSFont.systemFont(ofSize: fontSizeValue)
     }
 
-    func reload() {
+    public func reload() {
 
         let title1str = "Prefix: Min".localizedValue + ", " + "Prefix: Max".localizedValue
         let value1str = "\(MeteoFactsDefaults.temperature) : \(MeteoFactsDefaults.temperature)"

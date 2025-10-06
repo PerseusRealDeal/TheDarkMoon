@@ -6,6 +6,8 @@
 	<string>Cнеговик</string>
 	<key>Greetings</key>
 	<string>Рады приветствовать!</string>
+	<key>Have a great time.</key>
+	<string>Не скучного времяпрепровождения</string>
 	<key>DeveloperRelease</key>
 	<string>Выпуск разработчика, для ознакомления</string>
 	<key>Location Usage Description</key>
@@ -21,7 +23,7 @@
 	<key>Button: Call Forecast</key>
 	<string>Запросить Прогноз</string>
 	<key>Label: Made with Love</key>
-	<string>C любовью из Новосибирска.</string>
+	<string>C любовью из Новосибирска</string>
 	<key>Tab: Current Weather</key>
 	<string>Наблюдение</string>
 	<key>Tab: Forecast</key>
@@ -34,6 +36,28 @@
 	<string>Настройки</string>
 	<key>Button: Hide</key>
 	<string>Скрыться</string>
+	<key>/* End-User Messages */</key>
+	<string>--</string>
+	<key>Coordinates update is required</key>
+	<string>Координаты нужно обновить</string>
+	<key>Location card is switched</key>
+	<string>Свдеения о месте обновлены</string>
+	<key>Location card is cleared</key>
+	<string>Сведения о месте удалены</string>
+	<key>Item removed from favorites</key>
+	<string>Список избранных мест обновлен</string>
+	<key>Item added to favorites</key>
+	<string>Список избранных мест обновлен</string>
+	<key>Location Name should be typed</key>
+	<string>Название места нужно начать вводить</string>
+	<key>Auto requesting suggestions is on!</key>
+	<string>Авто уточнение включено!</string>
+	<key>Current Location should be selected</key>
+	<string>Координаты на месте обновляются</string>
+	<key>Favorites limited to</key>
+	<string>Список ограничен до</string>
+	<key>Current neither to add nor to remove!</key>
+	<string>Ни добавить, ни убавить!</string>
 	<key>/* Location View */</key>
 	<string>--</string>
 	<key>Label: Permission</key>
@@ -57,7 +81,13 @@
 	<key>Button: Update Geo Access</key>
 	<string>Обновить Геодоступ</string>
 	<key>Button: Refresh Current Location</key>
-	<string>Обновить Геолокацию</string>
+	<string>Обновить Координаты</string>
+	<key>Button: Request Suggestions</key>
+	<string>Уточнить Название</string>
+	<key>Current Location</key>
+	<string>На Месте</string>
+	<key>Auto</key>
+	<string>Авт.</string>
 	<key>/* Current Weather View */</key>
 	<string>--</string>
 	<key>Label: Meteo Data Provider</key>

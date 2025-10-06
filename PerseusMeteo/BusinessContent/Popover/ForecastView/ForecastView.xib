@@ -10,8 +10,7 @@
             <connections>
                 <outlet property="contentView" destination="c22-O7-iKe" id="Sgz-HJ-2z6"/>
                 <outlet property="indicator" destination="QGQ-z2-uOh" id="G9m-IL-HY4"/>
-                <outlet property="labelMeteoProviderTitle" destination="RqP-Rv-nzd" id="jsg-nl-hPw"/>
-                <outlet property="labelMeteoProviderValue" destination="YyR-ui-s1a" id="Ge5-2y-yzh"/>
+                <outlet property="labelMeteoProvider" destination="RqP-Rv-nzd" id="2lD-Wz-RPe"/>
                 <outlet property="labelWeatherDescription" destination="FBr-DI-wL7" id="7WX-SE-6ga"/>
                 <outlet property="viewForecastDays" destination="HMb-ib-xly" id="j3N-zd-Zuj"/>
                 <outlet property="viewForecastHours" destination="0YB-xy-CuN" id="BFj-5A-r84"/>
@@ -25,17 +24,9 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RqP-Rv-nzd">
-                    <rect key="frame" x="3" y="204" width="96" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Meteo Data by:" id="WyF-eG-QYY">
+                    <rect key="frame" x="3" y="204" width="219" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Meteo Data by Meteo Provider Nick" id="WyF-eG-QYY">
                         <font key="font" usesAppearanceFont="YES"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YyR-ui-s1a">
-                    <rect key="frame" x="100" y="204" width="127" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Meteo Provider Nick" id="eay-U8-hkg">
-                        <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -129,11 +120,9 @@
                 <constraint firstItem="C3U-jg-8cN" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="Buc-us-SAf"/>
                 <constraint firstAttribute="bottom" secondItem="cUv-Pj-QKs" secondAttribute="bottom" id="H1R-bB-G0A"/>
                 <constraint firstItem="RqP-Rv-nzd" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="5" id="NVq-lK-6jY"/>
-                <constraint firstItem="YyR-ui-s1a" firstAttribute="centerY" secondItem="RqP-Rv-nzd" secondAttribute="centerY" id="PSf-nR-17p"/>
                 <constraint firstAttribute="trailing" secondItem="C3U-jg-8cN" secondAttribute="trailing" id="Q4o-jf-gIO"/>
                 <constraint firstItem="klC-xc-C8u" firstAttribute="top" secondItem="C3U-jg-8cN" secondAttribute="bottom" id="Qla-NA-nYg"/>
                 <constraint firstItem="klC-xc-C8u" firstAttribute="leading" secondItem="cUv-Pj-QKs" secondAttribute="trailing" id="W5m-VU-2jf"/>
-                <constraint firstItem="YyR-ui-s1a" firstAttribute="leading" secondItem="RqP-Rv-nzd" secondAttribute="trailing" constant="5" id="aoV-qb-U3Y"/>
                 <constraint firstItem="C3U-jg-8cN" firstAttribute="leading" secondItem="HMb-ib-xly" secondAttribute="trailing" id="cYl-Xd-bMH"/>
                 <constraint firstItem="hhL-fD-lWA" firstAttribute="leading" secondItem="HMb-ib-xly" secondAttribute="trailing" id="nVQ-rT-1S8"/>
                 <constraint firstItem="hhL-fD-lWA" firstAttribute="top" secondItem="klC-xc-C8u" secondAttribute="bottom" id="q2v-a6-0DF"/>

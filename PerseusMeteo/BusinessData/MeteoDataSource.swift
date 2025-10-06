@@ -25,18 +25,18 @@ public class MeteoDataSource: DataDictionarySource {
 
             guard
                 let reader = self.reader,
-                let dict = data,
+                let jsonSerialized = data,
                 let provider = meteoProvider
             else {
                 return
             }
 
-            reader.data = dict
+            reader.data = jsonSerialized // Data caching
 
-            if meteoCategory == .current, let reader = reader as? CurrentDataSourceReader {
+            if meteoCategory == .weather, let reader = reader as? WeatherDataSourceReader {
                 switch provider {
                 case .serviceOpenWeatherMap:
-                    reader.parser = OpenWeatherCurrentParser()
+                    reader.parser = OpenWeatherWeatherParser()
                 }
             }
 
@@ -55,16 +55,17 @@ public class MeteoDataSource: DataDictionarySource {
 
     init(contant: MeteoCategory) {
         self.meteoCategory = contant
-
         super.init()
 
-        if contant == .current {
-            self.reader = CurrentDataSourceReader()
-        }
+        resetDataCach()
+    }
 
-        if contant == .forecast {
-            self.reader = ForecastDataSourceReader()
+    public func resetDataCach() {
+        switch meteoCategory {
+        case .weather:
+            reader = WeatherDataSourceReader()
+        case .forecast:
+            reader = ForecastDataSourceReader()
         }
-
     }
 }

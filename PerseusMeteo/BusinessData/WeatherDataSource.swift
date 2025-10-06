@@ -1,5 +1,5 @@
 //
-//  CurrentDataSource.swift
+//  WeatherDataSource.swift
 //  PerseusMeteo
 //
 //  Created by Mikhail Zhigulin in 7532.
@@ -19,13 +19,12 @@ import Foundation
 
 // MARK: - Weather App values ready for reading, viewing on a screen
 
-public class CurrentDataSource: MeteoDataSource {
+public class WeatherDataSource: MeteoDataSource {
 
     // MARK: - Init
 
     init() {
-        super.init(contant: .current)
-
+        super.init(contant: .weather)
     }
 
     // MARK: - Properties
@@ -44,7 +43,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var lastOne: String { // Last time API request response.
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.lastOne,
             let timezone = reader.timezone
         else {
@@ -65,7 +64,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var weatherIconName: String {
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.weatherIconName
         else {
             return MeteoFactsDefaults.weatherIconName
@@ -77,7 +76,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var weatherDescription: String {
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.weatherDescription
         else {
             return MeteoFactsDefaults.forecastDaysItemWeatherDescription
@@ -88,7 +87,7 @@ public class CurrentDataSource: MeteoDataSource {
 
     public var weatherConditions: WeatherConditions {
 
-        guard let reader = self.reader as? CurrentDataSourceReader
+        guard let reader = self.reader as? WeatherDataSourceReader
         else {
             return MeteoFactsDefaults.weatherConditions
         }
@@ -99,7 +98,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var temperature: String {
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.temperature
         else {
             return MeteoFactsDefaults.temperature
@@ -116,7 +115,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var temperatureFeelsLike: String {
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.temperatureFeelsLike
         else {
             return MeteoFactsDefaults.temperature
@@ -133,7 +132,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var temperatureMinimum: String {
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.temperatureMinimum
         else {
             return MeteoFactsDefaults.temperature
@@ -150,7 +149,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var temperatureMaximum: String {
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.temperatureMaximum
         else {
             return MeteoFactsDefaults.temperature
@@ -167,7 +166,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var windSpeed: String {
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.windSpeed
         else {
             return MeteoFactsDefaults.windSpeed
@@ -184,7 +183,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var windGusts: String {
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.windGusts
         else {
             return MeteoFactsDefaults.windSpeed
@@ -201,7 +200,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var windDirection: String {
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.windDirection,
             let point = try? WindDegree(value)
         else {
@@ -214,7 +213,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var pressure: String {
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.pressure
         else {
             return MeteoFactsDefaults.pressure
@@ -231,7 +230,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var humidity: String {
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.humidity
         else {
             return MeteoFactsDefaults.humidity
@@ -243,7 +242,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var cloudiness: String {
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.cloudiness
         else {
                 return MeteoFactsDefaults.cloudiness
@@ -255,7 +254,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var visibility: String {
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.visibility
         else {
             return MeteoFactsDefaults.visibility
@@ -272,7 +271,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var sunrise: String {
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.sunrise,
             let timezone = reader.timezone
         else {
@@ -290,7 +289,7 @@ public class CurrentDataSource: MeteoDataSource {
     public var sunset: String {
 
         guard
-            let reader = self.reader as? CurrentDataSourceReader,
+            let reader = self.reader as? WeatherDataSourceReader,
             let value = reader.sunset,
             let timezone = reader.timezone
         else {

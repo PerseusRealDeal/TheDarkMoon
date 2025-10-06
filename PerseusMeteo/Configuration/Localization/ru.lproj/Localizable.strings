@@ -15,6 +15,7 @@
 
 "Product Name" = "Cнеговик";
 "Greetings" = "Рады приветствовать!";
+"Have a great time." = "Не скучного времяпрепровождения";
 "DeveloperRelease" = "Выпуск разработчика, для ознакомления";
 
 "Default: N/A" = "нет";
@@ -24,7 +25,7 @@
 "Button: Call Weather" = "Запросить Погоду";
 "Button: Call Forecast" = "Запросить Прогноз";
 
-"Label: Made with Love" = "C любовью из Новосибирска.";
+"Label: Made with Love" = "C любовью из Новосибирска";
 
 "Tab: Current Weather" = "Наблюдение";
 "Tab: Forecast" = "Прогноз";
@@ -35,6 +36,19 @@
 "Button: Options" = "Настройки";
 
 "Button: Hide" = "Скрыться";
+
+/* End-User Messages */
+
+"Coordinates update is required" = "Координаты нужно обновить";
+"Location card is switched" = "Свдеения о месте обновлены";
+"Location card is cleared" = "Сведения о месте удалены";
+"Item removed from favorites" = "Список избранных мест обновлен";
+"Item added to favorites" = "Список избранных мест обновлен";
+"Location Name should be typed" = "Название места нужно начать вводить";
+"Auto requesting suggestions is on!" = "Авто уточнение включено!";
+"Current Location should be selected" = "Координаты на месте обновляются";
+"Favorites limited to" = "Список ограничен до";
+"Current neither to add nor to remove!" = "Ни добавить, ни убавить!";
 
 /* Location View */
 
@@ -51,7 +65,11 @@
 "Geo Couple" = "Широта, Долгота";
 
 "Button: Update Geo Access" = "Обновить Геодоступ";
-"Button: Refresh Current Location" = "Обновить Геолокацию";
+"Button: Refresh Current Location" = "Обновить Координаты";
+"Button: Request Suggestions" = "Уточнить Название";
+
+"Current Location" = "На Месте";
+"Auto" = "Авт.";
 
 /* Current Weather View */
 

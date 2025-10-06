@@ -43,6 +43,9 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 //
+//  Mikhail Zhigulin of Novosibirsk added init(_ latitude: Double, _ longitude: Double)
+//  to GeoPoint class on 03.10.2025.
+//
 // swiftlint:disable file_length
 //
 
@@ -508,7 +511,7 @@ extension GeoAgent: CLLocationManagerDelegate {
     public func locationManager(_ manager: CLLocationManager,
                                 didChangeAuthorization status: CLAuthorizationStatus) {
 
-        log.message("[\(type(of: self))].\(#function) [STATUS CHANGED ENTERED]")
+        // log.message("[\(type(of: self))].\(#function) [STATUS CHANGED ENTERED]")
 
 #if os(iOS)
         if [.authorizedAlways, .authorizedWhenInUse].contains(status) {
@@ -528,12 +531,12 @@ extension GeoAgent: CLLocationManagerDelegate {
             // HOTFIX: Location Services Status in OpenCore usage case.
 
             let note = "[CASE - OPENCORE]"
-            log.message("[\(type(of: self))].\(#function) \(note) \(details)", .notice)
+            log.message("[\(type(of: self))].\(#function) \(note) \(details)", .info)
 
             return
         }
 
-        log.message("[\(type(of: self))].\(#function) \(details)", .notice)
+        log.message("[\(type(of: self))].\(#function) \(details)")
 
         notificationCenter.post(name: GeoEvent.locationStatus.name, object: status)
     }
@@ -709,6 +712,10 @@ public struct GeoPoint: CustomStringConvertible, Equatable {
 
     public init(_ location: CLLocation) {
         self.location = location
+    }
+
+    public init(_ latitude: Double, _ longitude: Double) {
+        self.location = CLLocation(latitude: latitude, longitude: longitude)
     }
 
     // MARK: - Equatable

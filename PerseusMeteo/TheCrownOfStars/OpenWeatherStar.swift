@@ -93,7 +93,7 @@ public class NetworkClientFree {
     }
 
     public init(_ session: URLSession = URLSession.shared) {
-        log.message("[\(type(of: self))].\(#function)", .info)
+        // log.message("[\(type(of: self))].\(#function)", .info)
         self.session = session
     }
 
@@ -148,6 +148,19 @@ public class NetworkClientFree {
 
 public let weatherSchemeBase = "https://api.openweathermap.org/data/2.5/"
 public let weatherSchemeAttributes = "%@?lat=%@&lon=%@&appid=%@"
+
+public let geocodingDirectSchemeBase = "http://api.openweathermap.org/geo/1.0/"
+public let geocodingDirectSchemeAttributes = "direct?q=%@&limit=%@&appid=%@"
+
+public func prepareDirectURLString(cityName: String, limit: Int, appid: String) -> String {
+
+    let args: [String] = [cityName, "\(limit)", appid]
+    let attributes = String(format: geocodingDirectSchemeAttributes, arguments: args)
+
+    let urlString = geocodingDirectSchemeBase + attributes
+
+    return urlString
+}
 
 public enum OpenWeatherRequest: String {
     case currentWeather = "weather" // Default.

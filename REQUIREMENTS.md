@@ -31,12 +31,12 @@
 
 > # Business Tasks:
 
-| ID   | Description                 | Operations | API product                                  |
-| ---- | --------------------------- | ---------- | -------------------------------------------- |
-| BT-1 | Fetching current weather    | OP-1, OP-2 | https://openweathermap.org/current           |
-| BT-2 | Fetching forecast           | OP-2, OP-3 | https://openweathermap.org/forecast5         |
-| BT-3 | Reverse geocoding           | OP-2, OP-3 | https://openweathermap.org/api/geocoding-api |
-| BT-4 | Direct geocoding            | OP-2, OP-3 | https://openweathermap.org/api/geocoding-api |
+| ID   | Description                 | Operations                     | API product                                  |
+| ---- | --------------------------- | ------------------------------ | -------------------------------------------- |
+| BT-1 | Fetching current weather    | OP-1, OP-2, OP-4, OP-5, REST-3 | https://openweathermap.org/current           |
+| BT-2 | Fetching forecast           | OP-2, OP-3, OP-4, OP-5, REST-3 | https://openweathermap.org/forecast5         |
+| BT-3 | Reverse geocoding           | OP-4, REST-3                   | https://openweathermap.org/api/geocoding-api |
+| BT-4 | Direct geocoding            | OP-5                           | https://openweathermap.org/api/geocoding-api |
 
 > # Sketches (GUI requirements)
 
@@ -68,6 +68,10 @@
     <tr>
         <td nowrap>REST-2</td>
         <td>The app should have no Main menu.</td>
+    </tr>
+    <tr>
+        <td nowrap>REST-3</td>
+        <td>The app should produce an opportunity to restrict sending geo coordinates from location manager to weather data provider's server.</td>
     </tr>
 </table>
 
@@ -116,13 +120,13 @@
 
 > # Operations
 
-| ID   | Description                                       | Must have  | In Use               | Result | Rules  |
-| ---- | ------------------------------------------------- | ---------- | -------------------- | ------ | ------ |
-| OP-1 | Call current weather with OpenWeather API         | API key    | DATA-2, OO-2         | DATA-1 | RULE-1 |
-| OP-2 | Ask for current location                          | Permission |                      | DATA-2 | -      |
-| OP-3 | Call 5 day / 3 hour forecast with OpenWeather API | API key    | DATA-2, OO-2         | DATA-1 | RULE-1 |
-| OP-4 | Reverse geocoding with OpenWeather API            | API key    |                      |        |        |
-| OP-4 | Direct geocoding with OpenWeather API             | API key    |                      |        |        |
+| ID   | Description                                       | Must have  | In Use       | Result | Rules  |
+| ---- | ------------------------------------------------- | ---------- | ------------ | ------ | ------ |
+| OP-1 | Call current weather with OpenWeather API         | API key    | DATA-2, OO-2 | DATA-1 | RULE-1 |
+| OP-2 | Ask for current location                          | Permission |              | DATA-2 | -      |
+| OP-3 | Call 5 day / 3 hour forecast with OpenWeather API | API key    | DATA-2, OO-2 | DATA-1 | RULE-1 |
+| OP-4 | Reverse geocoding with OpenWeather API            | API key    |              |        |        |
+| OP-5 | Direct geocoding with OpenWeather API             | API key    |              |        |        |
 
 > # Rules
 

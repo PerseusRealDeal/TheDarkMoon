@@ -83,7 +83,7 @@ class ForecastDaysViewItem: NSCollectionViewItem {
 
         guard let day = self.data else { return }
 
-        log.message("[\(type(of: self))].\(#function) day \(day.label)")
+        // log.message("[\(type(of: self))].\(#function) day \(day.label)")
 
         // textField?.stringValue = day.date
         view.layer?.backgroundColor = NSColor.clear.cgColor
