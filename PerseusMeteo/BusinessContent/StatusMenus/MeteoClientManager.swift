@@ -19,7 +19,7 @@ import Foundation
 
 public class MeteoClientManager {
 
-    private var theAppPresenter: StatusMenusButtonPresenter?
+    private var theAppPresenter: StatusMenusPresenter?
 
     private var isReadyToCall = false
     private var isReadyToCallForecast = false
@@ -27,7 +27,7 @@ public class MeteoClientManager {
     private var serviceWeatherOpenWeatherMap = OpenWeatherClient()
     private var serviceForecastOpenWeatherMap = OpenWeatherClient()
 
-    init(presenter: StatusMenusButtonPresenter) {
+    init(presenter: StatusMenusPresenter) {
 
         theAppPresenter = presenter
 
@@ -37,8 +37,6 @@ public class MeteoClientManager {
 
     private func setupCallerLogic(for current: OpenWeatherClient,
                                   and forecast: OpenWeatherClient) {
-
-        // log.message("[\(type(of: self))].\(#function)")
 
         // Decide what to do with data given.
 
@@ -101,7 +99,7 @@ public class MeteoClientManager {
         isReadyToCallForecast = true
     }
 
-    public func fetchWeather(_ sender: Any?) {
+    public func fetchWeather() {
 
         guard isReadyToCall else {
             log.message("[\(type(of: self))].\(#function) \(isReadyToCall)", .error)
@@ -135,7 +133,7 @@ public class MeteoClientManager {
                                                  lang: .init(rawValue: lang),
                                                  mode: .json)
 
-        log.message(callDetails.urlString)
+        // log.message(callDetails.urlString)
 
         do {
             presenter.screenPopover.startAnimationProgressIndicator(.weather)
@@ -152,7 +150,7 @@ public class MeteoClientManager {
         }
     }
 
-    public func fetchForecast(_ sender: Any?) {
+    public func fetchForecast() {
 
         guard isReadyToCallForecast else {
             log.message("[\(type(of: self))].\(#function) \(isReadyToCall)", .error)
@@ -188,7 +186,7 @@ public class MeteoClientManager {
                                                  mode: .json)
         callDetails.cnt = 40
 
-        log.message(callDetails.urlString)
+        // log.message(callDetails.urlString)
 
         do {
             presenter.screenPopover.startAnimationProgressIndicator(.forecast)
@@ -209,8 +207,6 @@ public class MeteoClientManager {
 
     private func serviceWeatherOpenWeatherMapHandler(_ data: Data) {
 
-        log.message("[\(type(of: self))].\(#function)")
-
         guard let presenter = theAppPresenter else {
             log.message("[\(type(of: self))].\(#function)", .error)
             return
@@ -228,14 +224,13 @@ public class MeteoClientManager {
 
             presenter.screenPopover.stopAnimationProgressIndicator(.weather)
             presenter.screenPopover.reloadWeatherData()
+            presenter.reloadData()
 
             self.isReadyToCall = true
         }
     }
 
     private func serviceForecastOpenWeatherMapHandler(_ data: Data) {
-
-        log.message("[\(type(of: self))].\(#function)")
 
         guard let presenter = theAppPresenter else {
             log.message("[\(type(of: self))].\(#function)", .error)
@@ -257,12 +252,21 @@ public class MeteoClientManager {
     }
 
     private func getLocationPoint() -> GeoPoint? {
-        guard let locationCardType = theAppPresenter?.screenPopover.viewLocation.locationCard
-        else { return nil }
+
+        var locationCardType: LocationCardType?
+
+        if let type = theAppPresenter?.screenPopover.viewLocation?.locationCard {
+            locationCardType = type
+        } else {
+            locationCardType = AppOptions.favoriteLocationsOption.first(where: {
+                $0.isOnDisplay && $0.isCurrentLocation }) != nil ? .current : .favorite
+        }
+
+        guard let locationCard = locationCardType else { return nil }
 
         var point: GeoPoint?
 
-        switch locationCardType {
+        switch locationCard {
         case .suggestion:
             point = AppGlobals.suggestion?.point
         case .favorite:

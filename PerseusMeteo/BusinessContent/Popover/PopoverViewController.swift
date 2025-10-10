@@ -27,8 +27,13 @@ typealias Level = PerseusLogger.Level
 
 public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
+    deinit {
+        statusMenusPresenter.deinitTimer()
+    }
+
     func display(_ text: String, _ type: Level, _ localTime: LocalTime, _ owner: PIDandTID) {
         if type == .notice {
+
             let substringToRemove = "[NOTE ] "
             let message = text.replacingOccurrences(of: substringToRemove, with: "")
 
@@ -43,10 +48,11 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     private let tabCurrentWeatherID = "CurrentWeather"
     private let tabForecastID = "Forecast"
 
+    private var updateStatusMenusItemTimer: Timer?
+
     // MARK: - Storyboard Instance
 
     public class func storyboardInstance() -> PopoverViewController {
-        // log.message("[\(type(of: self))].\(#function)")
 
         let sb = NSStoryboard(name: String(describing: self), bundle: nil)
 
@@ -99,28 +105,27 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
             let tabId = tabSelected.identifier as? String {
 
             if tabId == tabCurrentWeatherID {
-                statusMenusButtonPresenter.callWeather(sender)
+                statusMenusPresenter.callWeather()
             } else if tabId == tabForecastID {
-                statusMenusButtonPresenter.callForecast(sender)
+                statusMenusPresenter.callForecast()
             }
         }
     }
 
     @IBAction func aboutButtonTapped(_ sender: NSButton) {
-        statusMenusButtonPresenter.screenAbout.showWindow(sender)
+        statusMenusPresenter.screenAbout.showWindow(sender)
     }
 
     @IBAction func optionsButtonTapped(_ sender: NSButton) {
-        statusMenusButtonPresenter.screenOptions.showWindow(sender)
+        statusMenusPresenter.screenOptions.showWindow(sender)
     }
 
     @IBAction func hideAppScreensButtonTapped(_ sender: NSButton) {
-        log.message("[\(type(of: self))].\(#function)")
 
-        guard let popover = statusMenusButtonPresenter.popover else { return }
+        guard let popover = statusMenusPresenter.popover else { return }
 
-        statusMenusButtonPresenter.screenAbout.close()
-        statusMenusButtonPresenter.screenOptions.close()
+        statusMenusPresenter.screenAbout.close()
+        statusMenusPresenter.screenOptions.close()
 
         popover.performClose(sender)
     }
@@ -130,15 +135,9 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     }
 
     // MARK: - Initialization
-/*
-    public override func awakeFromNib() {
-        super.awakeFromNib()
-        // log.message("[\(type(of: self))].\(#function)")
-    }
-*/
+
     public override func viewDidLoad() {
         super.viewDidLoad()
-        // log.message("[\(type(of: self))].\(#function)")
 
         // Setup content size
 
@@ -172,7 +171,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
         // Meteo data event
 
         nc.addObserver(self, selector: #selector(reloadData),
-                       name: NSNotification.Name.meteoDataOptionsDidChanged,
+                       name: NSNotification.Name.meteoDataOptionsNotification,
                        object: nil)
 
         // Suggestion selected event
@@ -199,6 +198,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
             SuggestionsView.shouldProcessVisisbility = true
             return $0
         }
+
         // Forecast items selected by default
 
         viewForecast.selectTheFirstForecastDay()
@@ -246,6 +246,8 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
             return
         }
 
+        statusMenusPresenter.reloadData()
+
         weather.reloadData()
         forecast.reloadData(saveSelection: true)
 
@@ -277,9 +279,9 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
                                                 _ sender: Any? = nil) {
         switch section {
         case .weather:
-            viewWeather.progressIndicator = true
+            viewWeather?.progressIndicator = true
         case .forecast:
-            viewForecast.progressIndicator = true
+            viewForecast?.progressIndicator = true
         }
     }
 
@@ -287,9 +289,9 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
                                                _ sender: Any? = nil) {
         switch section {
         case .weather:
-            viewWeather.progressIndicator = false
+            viewWeather?.progressIndicator = false
         case .forecast:
-            viewForecast.progressIndicator = false
+            viewForecast?.progressIndicator = false
         }
     }
 
@@ -321,6 +323,8 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
         viewLocation?.reloadData()
         viewWeather?.reloadData()
         viewForecast?.reloadData()
+
+        statusMenusPresenter.reloadData()
 
         actualizeCallingSection()
     }
@@ -355,6 +359,8 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
         viewLocation?.reloadData()
         viewWeather?.reloadData()
         viewForecast?.reloadData()
+
+        statusMenusPresenter.reloadData()
 
         actualizeCallingSection()
 
@@ -446,8 +452,6 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 extension PopoverViewController: Localizable {
 
     @objc func localize() {
-
-        // log.message("[\(type(of: self))].\(#function)")
 
         // Subviews
 

@@ -39,12 +39,12 @@
 
 /* End-User Messages */
 
-"Coordinates update is required" = "Координаты нужно обновить";
-"Location card is switched" = "Свдеения о месте обновлены";
+"Coordinates update is required" = "Координаты следует обновить";
+"Location card is switched" = "Сведения о месте обновлены";
 "Location card is cleared" = "Сведения о месте удалены";
 "Item removed from favorites" = "Список избранных мест обновлен";
 "Item added to favorites" = "Список избранных мест обновлен";
-"Location Name should be typed" = "Название места нужно начать вводить";
+"Location Name should be typed" = "Название места можно начать вводить";
 "Auto requesting suggestions is on!" = "Авто уточнение включено!";
 "Current Location should be selected" = "Координаты на месте обновляются";
 "Favorites limited to" = "Список ограничен до";
@@ -148,11 +148,6 @@
 "Option: Pressure" = "Барометр";
 "Option: Distance" = "Дальность Обзора";
 
-"OpenWeather: Lock" = "Скрыть";
-"OpenWeather: Unlock" = "Показать";
-"OpenWeather: Hidden" = "Скрытая замочная скважина...";
-"OpenWeather: Editable" = "Нужен токен (ключ)";
-
 "Unit: Light" = "Cветлая";
 "Unit: Dark" = "Темная";
 "Unit: System" = "Среда";
@@ -173,6 +168,21 @@
 
 "Unit: Kilometre long" = "Километры";
 "Unit: Mile long" = "Мили";
+
+"Section: Special Options" = "Дополнительные Настройки";
+
+"OpenWeather: Lock" = "Скрыть";
+"OpenWeather: Unlock" = "Показать";
+"OpenWeather: Hidden" = "Скрытая замочная скважина...";
+"OpenWeather: Editable" = "Нужен токен (ключ)";
+
+"Option: StatusMenus" = "Наблюдение";
+"Button: CheckBox StatusMenus" = "Системный Статус";
+
+"Option: StatusMenus Update" = "Период";
+"StatusMenus: per 12 hours" = "12 часов";
+"StatusMenus: per 3 hours" = "3 часа";
+"StatusMenus: per hour" = "каждый час";
 
 "Button: Close" = "Исчезнуть";
 

@@ -30,7 +30,6 @@ struct AppGlobals {
     static let appKeyOpenWeather = "79eefe16f6e4714470502074369fc77b"
 
     static let statusMenusButtonIconName = "Icon"
-    static let statusMenusButtonTitle = "Snowman"
     static let meteoProviderName = "/\\__/\\"
 
     static let favoritesLimit: Int = 7
@@ -59,7 +58,7 @@ struct AppGlobals {
             }
 
             let text = "JSON:\n\(weather.prettyPrinted ?? "")"
-            log.message("[\(type(of: self))].\(#function)\n\(text)")
+            log.message("[\(type(of: self))].\(#function)\n\(text)", .info)
         }
     }
 
@@ -75,7 +74,7 @@ struct AppGlobals {
 
             // Save the date and time of the last one.
 
-            let src = statusMenusButtonPresenter.screenPopover.viewForecast.dataSource
+            let src = statusMenusPresenter.screenPopover.viewForecast.dataSource
             let currentTimeInUTC = Date().timeIntervalSince1970
 
             src.addResponseDateAndTime(dt: Int(currentTimeInUTC))
@@ -132,6 +131,7 @@ struct AppGlobals {
     }
 
     static func quitTheApp() {
+        statusMenusPresenter.deinitTimer()
         app.terminate(appDelegate)
     }
 

@@ -21,6 +21,8 @@
 		2ED8FE1D2E40F36C00C65619 /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED8FE1C2E40F36C00C65619 /* MessageLabel.swift */; };
 		2EEF31532E07B8E4006E5693 /* PGKSupportingStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF31522E07B8E4006E5693 /* PGKSupportingStar.swift */; };
 		2EEF31552E07B8F4006E5693 /* PDMSupportingStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF31542E07B8F4006E5693 /* PDMSupportingStar.swift */; };
+		2EF147E62E966E6400BE657C /* CustomStatusButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EF147E52E966E6400BE657C /* CustomStatusButtonView.xib */; };
+		2EF147E92E966E8800BE657C /* CustomStatusButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF147E82E966E8800BE657C /* CustomStatusButtonView.swift */; };
 		4B030E752B27738800ED9018 /* AboutWindowController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B030E742B27738800ED9018 /* AboutWindowController.storyboard */; };
 		4B030E772B277DD600ED9018 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B030E762B277DD600ED9018 /* AboutWindowController.swift */; };
 		4B030E792B277E6500ED9018 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B030E782B277E6500ED9018 /* AboutViewController.swift */; };
@@ -78,7 +80,7 @@
 		4B993DC92B380FDD008C1FE7 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B993DC82B380FDD008C1FE7 /* WeatherView.swift */; };
 		4B993DCB2B38170E008C1FE7 /* LocationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B993DCA2B38170E008C1FE7 /* LocationView.xib */; };
 		4B993DCD2B383AA2008C1FE7 /* WeatherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B993DCC2B383AA2008C1FE7 /* WeatherView.xib */; };
-		4BA719872AF0D5E10074F7CD /* StatusMenusButtonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA719862AF0D5E10074F7CD /* StatusMenusButtonPresenter.swift */; };
+		4BA719872AF0D5E10074F7CD /* StatusMenusPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA719862AF0D5E10074F7CD /* StatusMenusPresenter.swift */; };
 		4BB2045B2B7029FC007E0308 /* ForecastDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2045A2B7029FC007E0308 /* ForecastDataSource.swift */; };
 		4BB2045D2B70EE3A007E0308 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2045C2B70EE3A007E0308 /* Protocols.swift */; };
 		4BB2045F2B70EE69007E0308 /* MeteoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB2045E2B70EE69007E0308 /* MeteoProvider.swift */; };
@@ -132,6 +134,8 @@
 		2ED8FE1C2E40F36C00C65619 /* MessageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabel.swift; sourceTree = "<group>"; };
 		2EEF31522E07B8E4006E5693 /* PGKSupportingStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGKSupportingStar.swift; sourceTree = "<group>"; };
 		2EEF31542E07B8F4006E5693 /* PDMSupportingStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDMSupportingStar.swift; sourceTree = "<group>"; };
+		2EF147E52E966E6400BE657C /* CustomStatusButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomStatusButtonView.xib; sourceTree = "<group>"; };
+		2EF147E82E966E8800BE657C /* CustomStatusButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStatusButtonView.swift; sourceTree = "<group>"; };
 		4B030E742B27738800ED9018 /* AboutWindowController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutWindowController.storyboard; sourceTree = "<group>"; };
 		4B030E762B277DD600ED9018 /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 		4B030E782B277E6500ED9018 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -196,7 +200,7 @@
 		4B993DC82B380FDD008C1FE7 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		4B993DCA2B38170E008C1FE7 /* LocationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationView.xib; sourceTree = "<group>"; };
 		4B993DCC2B383AA2008C1FE7 /* WeatherView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherView.xib; sourceTree = "<group>"; };
-		4BA719862AF0D5E10074F7CD /* StatusMenusButtonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenusButtonPresenter.swift; sourceTree = "<group>"; };
+		4BA719862AF0D5E10074F7CD /* StatusMenusPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenusPresenter.swift; sourceTree = "<group>"; };
 		4BB2045A2B7029FC007E0308 /* ForecastDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDataSource.swift; sourceTree = "<group>"; };
 		4BB2045C2B70EE3A007E0308 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		4BB2045E2B70EE69007E0308 /* MeteoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoProvider.swift; sourceTree = "<group>"; };
@@ -264,6 +268,17 @@
 			path = SupportingStars;
 			sourceTree = "<group>";
 		};
+		2EF147E42E966E3600BE657C /* StatusMenus */ = {
+			isa = PBXGroup;
+			children = (
+				2EF147E52E966E6400BE657C /* CustomStatusButtonView.xib */,
+				2EF147E82E966E8800BE657C /* CustomStatusButtonView.swift */,
+				4BA719862AF0D5E10074F7CD /* StatusMenusPresenter.swift */,
+				4B1CA6A22B549358003F3EBF /* MeteoClientManager.swift */,
+			);
+			path = StatusMenus;
+			sourceTree = "<group>";
+		};
 		4B030E712B27729C00ED9018 /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,7 +326,6 @@
 				4B14840229128A930013B76E /* Configuration */,
 				4B6F98752927E7C600ADB03A /* FirstPartyCode */,
 				4B684C6D2B438A370063E359 /* BusinessData */,
-				4B3384652B5428CA004682DF /* BusinessLogic */,
 				4B14840429128E460013B76E /* BusinessContent */,
 			);
 			path = PerseusMeteo;
@@ -344,6 +358,7 @@
 		4B14840429128E460013B76E /* BusinessContent */ = {
 			isa = PBXGroup;
 			children = (
+				2EF147E42E966E3600BE657C /* StatusMenus */,
 				4B993DB62B37382D008C1FE7 /* Popover */,
 				4BFA5FD8298974FA00AC09F5 /* Options */,
 				4B030E712B27729C00ED9018 /* About */,
@@ -368,15 +383,6 @@
 				4B5921BB2B5C38F000D312B9 /* OptionsAppearanceTests.swift */,
 			);
 			path = OptionsScreenTests;
-			sourceTree = "<group>";
-		};
-		4B3384652B5428CA004682DF /* BusinessLogic */ = {
-			isa = PBXGroup;
-			children = (
-				4BA719862AF0D5E10074F7CD /* StatusMenusButtonPresenter.swift */,
-				4B1CA6A22B549358003F3EBF /* MeteoClientManager.swift */,
-			);
-			path = BusinessLogic;
 			sourceTree = "<group>";
 		};
 		4B3384662B5475E7004682DF /* Gifts */ = {
@@ -700,6 +706,7 @@
 				4BB2047A2B79368A007E0308 /* ForecastHoursViewItem.xib in Resources */,
 				4B993DCD2B383AA2008C1FE7 /* WeatherView.xib in Resources */,
 				4BBE906D291293F6008F734D /* README.md in Resources */,
+				2EF147E62E966E6400BE657C /* CustomStatusButtonView.xib in Resources */,
 				2E54FDE62CA67D7F003EABDE /* swiftlint.yml in Resources */,
 				4BE29E902B3A23120027515A /* ForecastView.xib in Resources */,
 				4B993DCB2B38170E008C1FE7 /* LocationView.xib in Resources */,
@@ -762,7 +769,7 @@
 				4BEF7A442C2D377A0028C6EA /* TheDayOfTheWeekLocalized.swift in Sources */,
 				4B5D62342C418E2F0064EFB8 /* WeatherConditions.swift in Sources */,
 				2E1083D82E2B739000400180 /* PGKStar.swift in Sources */,
-				4BA719872AF0D5E10074F7CD /* StatusMenusButtonPresenter.swift in Sources */,
+				4BA719872AF0D5E10074F7CD /* StatusMenusPresenter.swift in Sources */,
 				4BE29E922B3A23340027515A /* ForecastView.swift in Sources */,
 				4B5F7D2F2B89243800121946 /* MeteoFactsDefaults.swift in Sources */,
 				4B5F7D482BBBDAE800121946 /* MeteoGroupData.swift in Sources */,
@@ -773,6 +780,7 @@
 				4BB2046E2B755BDB007E0308 /* ForecastDay.swift in Sources */,
 				4B5F7D412B9AD05900121946 /* MeteoDataSourceReader.swift in Sources */,
 				2E2020092E891BE200D8D496 /* SuggestionsView.swift in Sources */,
+				2EF147E92E966E8800BE657C /* CustomStatusButtonView.swift in Sources */,
 				4BEE281D2B4AE07700F06A69 /* AppUserDefaults.swift in Sources */,
 				4B030E792B277E6500ED9018 /* AboutViewController.swift in Sources */,
 				4B993DB82B3738A7008C1FE7 /* PopoverViewController.swift in Sources */,

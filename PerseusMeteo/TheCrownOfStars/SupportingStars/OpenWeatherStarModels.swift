@@ -18,8 +18,10 @@
 import Foundation
 
 extension Notification.Name {
-    public static let meteoDataOptionsDidChanged =
-        Notification.Name("meteoDataOptionsDidChanged")
+    public static let meteoDataOptionsNotification =
+        Notification.Name("meteoDataOptionsNotification")
+    public static let updateStatusMenusItemNotification =
+        Notification.Name("updateStatusMenusItemNotification")
 }
 
 // MARK: - TEMPERATURE
@@ -242,4 +244,35 @@ public struct SuggestionOpenWeatherMap: Codable {
     public let lon: Double
 
     public let state: String?
+}
+
+// MARK: - Current Weather StatusMenus Update Period
+
+public enum StatusMenusUpdatePeriodOption: Int, CaseIterable, CustomStringConvertible {
+
+    case per12Hours = 0
+    case per3Hours  = 1
+    case perHour    = 2
+
+    public var description: String {
+        switch self {
+        case .per12Hours:
+            return "StatusMenus: per 12 hours"
+        case .per3Hours:
+            return "StatusMenus: per 3 hours"
+        case .perHour:
+            return "StatusMenus: per hour"
+        }
+    }
+
+    public var timeInterval: TimeInterval {
+        switch self {
+        case .per12Hours:
+            return 43200.0
+        case .per3Hours:
+            return 10800.0
+        case .perHour:
+            return 3600.0
+        }
+    }
 }

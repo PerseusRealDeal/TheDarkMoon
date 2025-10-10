@@ -49,6 +49,12 @@ public let FAVORITE_LOCATIONS_OPTION_DEFAULT: [Location] =
     Location(isCurrent: true, isOnDisplay: true)
 ]
 
+public let STATUSMENUS_OPTION_KEY = "STATUSMENUS_OPTION_KEY"
+public let STATUSMENUS_OPTION_DEFAULT = true
+
+public let STATUSMENUS_PERIOD_OPTION_KEY = "STATUSMENUS_PERIOD_OPTION_KEY"
+public let STATUSMENUS_PERIOD_OPTION_DEFAULT = StatusMenusUpdatePeriodOption.per12Hours
+
 // MARK: - User Defaults
 
 class AppOptions {
@@ -88,6 +94,49 @@ class AppOptions {
             if let encoded = try? encoder.encode(newValue) {
                 ud.set(encoded, forKey: FAVORITE_LOCATIONS_OPTION_KEY)
             }
+        }
+    }
+
+    public static var statusMenusOption: Bool {
+        get {
+            let ud = AppGlobals.userDefaults
+
+            let result = ud.valueExists(forKey: STATUSMENUS_OPTION_KEY) ?
+            ud.bool(forKey: STATUSMENUS_OPTION_KEY) : STATUSMENUS_OPTION_DEFAULT
+
+            return result
+        }
+        set {
+            let ud = AppGlobals.userDefaults
+            ud.setValue(newValue, forKey: STATUSMENUS_OPTION_KEY)
+        }
+    }
+
+    public static var statusMenusPeriodOption: StatusMenusUpdatePeriodOption {
+        get {
+            // Load enum Int value
+
+            let ud = AppGlobals.userDefaults
+
+            let rawValue = ud.valueExists(forKey: STATUSMENUS_PERIOD_OPTION_KEY) ?
+            ud.integer(forKey: STATUSMENUS_PERIOD_OPTION_KEY) :
+            STATUSMENUS_PERIOD_OPTION_DEFAULT.rawValue
+
+            // Try to cast Int value to enum
+
+            if let result = StatusMenusUpdatePeriodOption.init(rawValue: rawValue) {
+                return result
+            }
+
+            // Return default saved value in any other case
+
+            ud.setValue(STATUSMENUS_PERIOD_OPTION_DEFAULT.rawValue,
+                        forKey: STATUSMENUS_PERIOD_OPTION_KEY)
+            return STATUSMENUS_PERIOD_OPTION_DEFAULT
+        }
+        set {
+            let ud = AppGlobals.userDefaults
+            ud.setValue(newValue.rawValue, forKey: STATUSMENUS_PERIOD_OPTION_KEY)
         }
     }
 

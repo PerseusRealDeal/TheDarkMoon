@@ -27,7 +27,7 @@ let app = NSApplication.shared
 let appPurpose = NSClassFromString("TestingAppDelegate") as? NSObject.Type
 let appDelegate = appPurpose?.init() ?? AppDelegate()
 
-let statusMenusButtonPresenter = StatusMenusButtonPresenter()
+let statusMenusPresenter = StatusMenusPresenter()
 
 // MARK: - The Run
 

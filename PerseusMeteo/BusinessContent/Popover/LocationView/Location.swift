@@ -20,10 +20,10 @@ public struct Location: CustomStringConvertible, Codable {
     public var description: String {
 
         if isCurrentLocation {
-            return "Current Location".localizedValue
+            return "Current Location"
         }
 
-        return localName ?? "No name".localizedValue
+        return localName ?? "No name"
     }
 
     public var name: String?

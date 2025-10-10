@@ -26,5 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         globals.languageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
 
         log.message("> Ready with business matter purpose...", .info)
+
+        statusMenusPresenter.startUpdateTimerIfNeeded()
     }
 }

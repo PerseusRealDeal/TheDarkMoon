@@ -169,17 +169,15 @@
 	<key>Title: Options Screen</key>
 	<string>Product Options</string>
 	<key>Section: App Options</key>
-	<string>The App Setup</string>
+	<string>Base Options</string>
 	<key>Option: Dark Mode</key>
 	<string>Moon Side</string>
 	<key>Option: Language</key>
 	<string>Language</string>
-	<key>Option: OpenWeather Key</key>
-	<string>OpenWeather Key</string>
 	<key>Option: Time Format</key>
 	<string>Time</string>
 	<key>Section: Meteo Options</key>
-	<string>Meteo Viewing</string>
+	<string>Meteo Options</string>
 	<key>Option: Temperature</key>
 	<string>Temperature</string>
 	<key>Option: Wind Speed</key>
@@ -226,6 +224,22 @@
 	<string>Kilometre</string>
 	<key>Unit: Mile long</key>
 	<string>Mile</string>
+	<key>Section: Special Options</key>
+	<string>Special Options</string>
+	<key>Option: OpenWeather Key</key>
+	<string>OpenWeather Key</string>
+	<key>Option: StatusMenus</key>
+	<string>Current Weather</string>
+    <key>Button: CheckBox StatusMenus</key>
+    <string>Show in StatusMenus</string>
+	<key>Option: StatusMenus Update</key>
+	<string>Update</string>
+	<key>StatusMenus: per 12 hours</key>
+	<string>per 12 hours</string>
+	<key>StatusMenus: per 3 hours</key>
+	<string>per 3 hours</string>
+	<key>StatusMenus: per hour</key>
+	<string>per hour</string>
 	<key>Button: Close</key>
 	<string>Close</string>
 	<key>/* Compass Directions */</key>

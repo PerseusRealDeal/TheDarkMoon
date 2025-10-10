@@ -48,7 +48,7 @@ class AboutViewController: NSViewController {
     // MARK: - Actions
 
     @IBAction func buttonCloseTapped(_ sender: NSButton) {
-        statusMenusButtonPresenter.screenAbout.close()
+        statusMenusPresenter.screenAbout.close()
     }
 
     @IBAction func buttonLicenseTapped(_ sender: NSButton) {

@@ -287,6 +287,9 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("Section: App Options".localizedExpectation,
                        "Section: App Options".localizedValue)
 
+        XCTAssertEqual("Section: Meteo Options".localizedExpectation,
+                       "Section: Meteo Options".localizedValue)
+
         XCTAssertEqual("Option: Language".localizedExpectation,
                        "Option: Language".localizedValue)
 
@@ -310,18 +313,6 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Option: Distance".localizedExpectation,
                        "Option: Distance".localizedValue)
-
-        XCTAssertEqual("OpenWeather: Lock".localizedExpectation,
-                       "OpenWeather: Lock".localizedValue)
-
-        XCTAssertEqual("OpenWeather: Unlock".localizedExpectation,
-                       "OpenWeather: Unlock".localizedValue)
-
-        XCTAssertEqual("OpenWeather: Hidden".localizedExpectation,
-                       "OpenWeather: Hidden".localizedValue)
-
-        XCTAssertEqual("OpenWeather: Editable".localizedExpectation,
-                       "OpenWeather: Editable".localizedValue)
 
         XCTAssertEqual("Unit: Light".localizedExpectation,
                        "Unit: Light".localizedValue)
@@ -370,6 +361,44 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Button: Close".localizedExpectation,
                        "Button: Close".localizedValue)
+    }
+
+    func test_translation_of_OptionsScreen_SpecialOptions() {
+
+        // assert
+
+        XCTAssertEqual("Section: Special Options".localizedExpectation,
+                       "Section: Special Options".localizedValue)
+
+        XCTAssertEqual("OpenWeather: Lock".localizedExpectation,
+                       "OpenWeather: Lock".localizedValue)
+
+        XCTAssertEqual("OpenWeather: Unlock".localizedExpectation,
+                       "OpenWeather: Unlock".localizedValue)
+
+        XCTAssertEqual("OpenWeather: Hidden".localizedExpectation,
+                       "OpenWeather: Hidden".localizedValue)
+
+        XCTAssertEqual("OpenWeather: Editable".localizedExpectation,
+                       "OpenWeather: Editable".localizedValue)
+
+        XCTAssertEqual("Option: StatusMenus".localizedExpectation,
+                       "Option: StatusMenus".localizedValue)
+
+        XCTAssertEqual("Button: CheckBox StatusMenus".localizedExpectation,
+                       "Button: CheckBox StatusMenus".localizedValue)
+
+        XCTAssertEqual("Option: StatusMenus Update".localizedExpectation,
+                       "Option: StatusMenus Update".localizedValue)
+
+        XCTAssertEqual("StatusMenus: per 12 hours".localizedExpectation,
+                       "StatusMenus: per 12 hours".localizedValue)
+
+        XCTAssertEqual("StatusMenus: per 3 hours".localizedExpectation,
+                       "StatusMenus: per 3 hours".localizedValue)
+
+        XCTAssertEqual("StatusMenus: per hour".localizedExpectation,
+                       "StatusMenus: per hour".localizedValue)
     }
 
     // MARK: - Compass Directions

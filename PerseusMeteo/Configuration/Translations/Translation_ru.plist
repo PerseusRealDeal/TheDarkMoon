@@ -39,9 +39,9 @@
 	<key>/* End-User Messages */</key>
 	<string>--</string>
 	<key>Coordinates update is required</key>
-	<string>Координаты нужно обновить</string>
+	<string>Координаты следует обновить</string>
 	<key>Location card is switched</key>
-	<string>Свдеения о месте обновлены</string>
+	<string>Сведения о месте обновлены</string>
 	<key>Location card is cleared</key>
 	<string>Сведения о месте удалены</string>
 	<key>Item removed from favorites</key>
@@ -49,7 +49,7 @@
 	<key>Item added to favorites</key>
 	<string>Список избранных мест обновлен</string>
 	<key>Location Name should be typed</key>
-	<string>Название места нужно начать вводить</string>
+	<string>Название места можно начать вводить</string>
 	<key>Auto requesting suggestions is on!</key>
 	<string>Авто уточнение включено!</string>
 	<key>Current Location should be selected</key>
@@ -174,8 +174,6 @@
 	<string>Сторона Луны</string>
 	<key>Option: Language</key>
 	<string>Язык</string>
-	<key>Option: OpenWeather Key</key>
-	<string>Ключ OpenWeather</string>
 	<key>Option: Time Format</key>
 	<string>Формат Времени</string>
 	<key>Section: Meteo Options</key>
@@ -226,6 +224,22 @@
 	<string>Километры</string>
 	<key>Unit: Mile long</key>
 	<string>Мили</string>
+	<key>Section: Special Options</key>
+	<string>Дополнительные Настройки</string>
+	<key>Option: OpenWeather Key</key>
+	<string>Ключ OpenWeather</string>
+	<key>Option: StatusMenus</key>
+	<string>Наблюдение</string>
+	<key>Button: CheckBox StatusMenus</key>
+	<string>Системный Статус</string>
+	<key>Option: StatusMenus Update</key>
+	<string>Период</string>
+	<key>StatusMenus: per 12 hours</key>
+	<string>12 часов</string>
+	<key>StatusMenus: per 3 hours</key>
+	<string>3 часа</string>
+	<key>StatusMenus: per hour</key>
+	<string>каждый час</string>
 	<key>Button: Close</key>
 	<string>Исчезнуть</string>
 	<key>/* Compass Directions */</key>

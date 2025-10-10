@@ -39,20 +39,25 @@ class OptionsConnectionsTests: XCTestCase {
 
         // assert
 
-        XCTAssertNotNil(sut.controlAppOptionsSection)
-        XCTAssertNotNil(sut.controlWeatherOptionsSection)
-        XCTAssertNotNil(sut.controlCloseButton)
+        XCTAssertNotNil(sut.boxAppOptions)
+        XCTAssertNotNil(sut.boxWeatherOptions)
+        XCTAssertNotNil(sut.boxSpecialOptions)
+        XCTAssertNotNil(sut.buttonClose)
 
         XCTAssertNotNil(sut.labelDarkMode)
         XCTAssertNotNil(sut.labelLanguage)
         XCTAssertNotNil(sut.labelTimeFormat)
         XCTAssertNotNil(sut.labelOpenWeatherKey)
+        XCTAssertNotNil(sut.labelStatusMenus)
+        XCTAssertNotNil(sut.labelStatusMenusUpdate)
 
         XCTAssertNotNil(sut.controlDarkMode)
         XCTAssertNotNil(sut.controlLanguage)
         XCTAssertNotNil(sut.controlTimeFormat)
         XCTAssertNotNil(sut.controlOpenWeatherKey)
         XCTAssertNotNil(sut.controlUnlockButton)
+        XCTAssertNotNil(sut.checkBoxStatusMenus)
+        XCTAssertNotNil(sut.comboBoxStatusMenusUpdatePeriod)
 
         XCTAssertNotNil(sut.labelTemperature)
         XCTAssertNotNil(sut.labelWindSpeed)

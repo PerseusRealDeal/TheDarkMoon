@@ -322,7 +322,7 @@ class LocationView: NSView, NSTextFieldDelegate {
             comboBoxFavorites.removeAllItems()
 
             for item in locations {
-                comboBoxFavorites.addItem(withObjectValue: item)
+                comboBoxFavorites.addItem(withObjectValue: "\(item)".localizedValue)
             }
 
             comboBoxFavorites.selectItem(at: indexToDisplay)

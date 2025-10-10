@@ -137,24 +137,19 @@
 
 "Title: Options Screen" = "Product Options";
 
-"Section: App Options" = "The App Setup";
+"Section: App Options" = "Base Options";
 
 "Option: Dark Mode" = "Moon Side";
 "Option: Language" = "Language";
 "Option: OpenWeather Key" = "OpenWeather Key";
 "Option: Time Format" = "Time";
 
-"Section: Meteo Options" = "Meteo Viewing";
+"Section: Meteo Options" = "Meteo Options";
 
 "Option: Temperature" = "Temperature";
 "Option: Wind Speed" = "Wind Speed";
 "Option: Pressure" = "Barometer";
 "Option: Distance" = "Visibility";
-
-"OpenWeather: Lock" = "Lock";
-"OpenWeather: Unlock" = "Unlock";
-"OpenWeather: Hidden" = "Hidden key-hole...";
-"OpenWeather: Editable" = "Past the key (token)...";
 
 "Unit: Light" = "Light";
 "Unit: Dark" = "Dark";
@@ -176,6 +171,21 @@
 
 "Unit: Kilometre long" = "Kilometre";
 "Unit: Mile long" = "Mile";
+
+"Section: Special Options" = "Special Options";
+
+"OpenWeather: Lock" = "Lock";
+"OpenWeather: Unlock" = "Unlock";
+"OpenWeather: Hidden" = "Hidden key-hole...";
+"OpenWeather: Editable" = "Past the key (token)...";
+
+"Option: StatusMenus" = "Current Weather";
+"Button: CheckBox StatusMenus" = "Show in StatusMenus";
+
+"Option: StatusMenus Update" = "Update";
+"StatusMenus: per 12 hours" = "per 12 hours";
+"StatusMenus: per 3 hours" = "per 3 hours";
+"StatusMenus: per hour" = "per hour";
 
 "Button: Close" = "Close";
 

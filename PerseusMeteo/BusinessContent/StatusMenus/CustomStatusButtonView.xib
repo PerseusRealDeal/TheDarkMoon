@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CustomStatusButtonView" customModule="Snowman" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="c22-O7-iKe" id="t4B-ig-5DA"/>
+                <outlet property="imageOutlet" destination="NU6-Fd-eHz" id="LS2-bP-7g5"/>
+                <outlet property="labelOneOutlet" destination="ZFv-eB-cbM" id="YeC-fw-gkW"/>
+                <outlet property="labelTwoOutlet" destination="6W3-hm-v4O" id="eZA-cG-Qo8"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="55" height="22"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZFv-eB-cbM">
+                    <rect key="frame" x="29" y="8" width="18" height="10"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="top" id="bgd-ra-n9K">
+                        <font key="font" metaFont="system" size="8"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6W3-hm-v4O">
+                    <rect key="frame" x="21" y="1" width="33" height="10"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="bottom" id="VDh-4A-kiQ">
+                        <font key="font" metaFont="system" size="8"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NU6-Fd-eHz">
+                    <rect key="frame" x="1" y="0.0" width="22" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="NU6-Fd-eHz" secondAttribute="height" multiplier="1:1" id="MWu-wP-Mkp"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Icon" id="z4p-K5-Afv"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="6W3-hm-v4O" firstAttribute="leading" secondItem="NU6-Fd-eHz" secondAttribute="trailing" id="0Kb-9X-Ayc"/>
+                <constraint firstItem="NU6-Fd-eHz" firstAttribute="height" secondItem="c22-O7-iKe" secondAttribute="height" id="2ph-qZ-CYL"/>
+                <constraint firstItem="6W3-hm-v4O" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" constant="5" id="B5j-bb-4OW"/>
+                <constraint firstItem="6W3-hm-v4O" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" constant="10" id="Qtr-fn-4bY"/>
+                <constraint firstItem="NU6-Fd-eHz" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="hhx-IL-zPF"/>
+                <constraint firstItem="ZFv-eB-cbM" firstAttribute="bottom" secondItem="6W3-hm-v4O" secondAttribute="top" constant="3" id="iff-sO-c5N"/>
+                <constraint firstItem="ZFv-eB-cbM" firstAttribute="centerX" secondItem="6W3-hm-v4O" secondAttribute="centerX" id="jHe-bH-4I8"/>
+            </constraints>
+            <point key="canvasLocation" x="138.5" y="-105"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="Icon" width="16" height="16"/>
+    </resources>
+</document>
