@@ -58,6 +58,7 @@ public struct Location: CustomStringConvertible, Codable {
 
     public var zip: String?
     public var country: String?
+    public var state: String?
 
     public let isCurrentLocation: Bool
     public var isOnDisplay: Bool
@@ -138,8 +139,8 @@ public func prepareSuggestionsSample() -> [Location] {
 
 public func prepareSuggestions(json: Data) -> [Location]? {
 
-    // let text = "JSON:\n\(json.prettyPrinted ?? "")"
-    // log.message("\(#function)\n\(text)")
+    let prettyjson = "\(json.prettyPrinted ?? "")"
+    log.message("JSON Suggestion:\n\(prettyjson)", .info)
 
     // return prepareSuggestionsSample()
 
@@ -160,6 +161,7 @@ public func prepareSuggestions(json: Data) -> [Location]? {
         location.country = item.country
         location.latitude = item.lat
         location.longitude = item.lon
+        location.state = item.state
 
         suggestions.append(location)
     }

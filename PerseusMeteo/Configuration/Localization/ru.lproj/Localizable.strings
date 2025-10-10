@@ -20,6 +20,9 @@
 
 "Default: N/A" = "нет";
 
+"P2P" = "P2P";
+"P2P stands for Person to Person" = "P2P значит от личности к личности";
+
 /* Popover Screen – PopoverViewController */
 
 "Button: Call Weather" = "Запросить Погоду";
@@ -49,6 +52,7 @@
 "Current Location should be selected" = "Координаты на месте обновляются";
 "Favorites limited to" = "Список ограничен до";
 "Current neither to add nor to remove!" = "Ни добавить, ни убавить!";
+"API key either rejected or empty" = "API ключ не загружен или отсутствует";
 
 /* Location View */
 
@@ -254,6 +258,9 @@
 
 "Button: License" = "Текст лицензии";
 "Button: Terms & Conditions" = "Соглашение";
+
+"Tab: Essentials" = "Заменяемое";
+"Tab: Log" = "Журнал";
 
 /* OpenWeather weather-conditions descriptions */
 

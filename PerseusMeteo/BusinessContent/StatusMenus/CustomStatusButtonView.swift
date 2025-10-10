@@ -71,12 +71,14 @@ class CustomStatusButtonView: NSView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        log.message("[\(type(of: self))].\(#function)")
 
         commonInit()
     }
 
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
+        log.message("[\(type(of: self))].\(#function)")
 
         commonInit()
     }

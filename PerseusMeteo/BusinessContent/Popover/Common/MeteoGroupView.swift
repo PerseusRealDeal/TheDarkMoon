@@ -108,7 +108,7 @@ class MeteoGroupView: NSView {
         self.addConstraints(newConstraints)
     }
 
-    public func applyFonts(fontSizeTitle: CGFloat = 12, fontSizeValue: CGFloat = 12) {
+    public func applyFonts(fontSizeTitle: CGFloat = 12.0, fontSizeValue: CGFloat = 12.0) {
 
         title1.font = NSFont.boldSystemFont(ofSize: fontSizeTitle)
         value1.font = NSFont.systemFont(ofSize: fontSizeValue)

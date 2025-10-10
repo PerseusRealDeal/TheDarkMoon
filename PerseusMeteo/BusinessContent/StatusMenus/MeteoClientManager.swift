@@ -15,40 +15,44 @@
 // swiftlint:disable file_length
 //
 
-import Foundation
+import Cocoa
 
 public class MeteoClientManager {
 
-    private var theAppPresenter: StatusMenusPresenter?
+    private let presenter: StatusMenusPresenter
 
     private var isReadyToCall = false
     private var isReadyToCallForecast = false
+    private var isReadyToGetSuggestions = false
 
-    private var serviceWeatherOpenWeatherMap = OpenWeatherClient()
-    private var serviceForecastOpenWeatherMap = OpenWeatherClient()
+    private let serviceWeatherOpenWeatherMap: OpenWeatherClient
+    private let serviceForecastOpenWeatherMap: OpenWeatherClient
+    private let serviceSuggestionsOpenWeatherMap: OpenWeatherClient
 
     init(presenter: StatusMenusPresenter) {
 
-        theAppPresenter = presenter
+        log.message("[\(type(of: self))].\(#function)", .info)
 
-        setupCallerLogic(for: serviceWeatherOpenWeatherMap,
-                         and: serviceForecastOpenWeatherMap)
+        self.presenter = presenter
+
+        serviceWeatherOpenWeatherMap = OpenWeatherClient()
+        serviceForecastOpenWeatherMap = OpenWeatherClient()
+        serviceSuggestionsOpenWeatherMap = OpenWeatherClient()
+
+        configureCurrentClient()
+        configureForecastClient()
+        configureSuggestionsClient()
+
+        isReadyToCall = true
+        isReadyToCallForecast = true
+        isReadyToGetSuggestions = true
     }
 
-    private func setupCallerLogic(for current: OpenWeatherClient,
-                                  and forecast: OpenWeatherClient) {
-
-        // Decide what to do with data given.
-
-        guard let presenter = theAppPresenter else {
-            log.message("[\(type(of: self))].\(#function)", .error)
-            return
-        }
-
-        current.onDataGiven = { response in
+    private func configureCurrentClient() {
+        serviceWeatherOpenWeatherMap.onDataGiven = { response in
 
             DispatchQueue.main.async {
-                presenter.screenPopover.stopAnimationProgressIndicator(.weather)
+                self.presenter.screenPopover.stopAnimationProgressIndicator(.weather)
             }
 
             var meteoData: Data?
@@ -69,11 +73,13 @@ public class MeteoClientManager {
 
             self.serviceWeatherOpenWeatherMapHandler(meteoData ?? Data())
         }
+    }
 
-        forecast.onDataGiven = { response in
+    private func configureForecastClient() {
+        serviceForecastOpenWeatherMap.onDataGiven = { response in
 
             DispatchQueue.main.async {
-                presenter.screenPopover.stopAnimationProgressIndicator(.forecast)
+                self.presenter.screenPopover.stopAnimationProgressIndicator(.forecast)
             }
 
             var meteoData: Data?
@@ -94,25 +100,60 @@ public class MeteoClientManager {
 
             self.serviceForecastOpenWeatherMapHandler(meteoData ?? Data())
         }
+    }
 
-        isReadyToCall = true
-        isReadyToCallForecast = true
+    private func configureSuggestionsClient() {
+        serviceSuggestionsOpenWeatherMap.onDataGiven = { response in
+
+            DispatchQueue.main.async {
+
+                // stopAnimationIndicator
+                self.presenter.screenPopover.viewLocation.indicatorCircular?.isHidden = true
+                self.presenter.screenPopover.viewLocation.indicatorCircular?.stopAnimation(nil)
+
+                var suggestions: Data?
+
+                switch response {
+                case .success(let data):
+                    suggestions = data
+
+                case .failure(let error):
+                    switch error {
+                    case .failedRequest(let message):
+                        log.message(message, .error)
+
+                    default:
+                        log.message("[\(type(of: self))].\(#function) \(error)", .error)
+                    }
+                }
+
+                self.serviceSuggestionsOpenWeatherMapHandler(suggestions ?? Data())
+            }
+        }
     }
 
     public func fetchWeather() {
 
         guard isReadyToCall else {
-            log.message("[\(type(of: self))].\(#function) \(isReadyToCall)", .error)
-            return
-        }
 
-        guard let presenter = theAppPresenter else {
-            log.message("[\(type(of: self))].\(#function) presenter is nil.", .error)
+            // TODO: Implement a timeout logic to cancel previous request
+
+            log.message("[\(type(of: self))].\(#function) \(isReadyToCall)", .error)
             return
         }
 
         guard let point = getLocationPoint() else {
             log.message("[\(type(of: self))].\(#function) location is nil.", .error)
+            return
+        }
+
+        let keyLoaded = AppOptions.OpenWeatherAPIOption ?? ""
+        let key = keyLoaded.isEmpty ? AppGlobals.appKeyOpenWeather : keyLoaded
+
+        guard key.isEmpty == false else {
+            let message = "API key either rejected or empty".localizedValue
+            log.message("[\(type(of: self))].\(#function) \(message)", .error)
+            log.message(message, .notice, .custom)
             return
         }
 
@@ -122,10 +163,6 @@ public class MeteoClientManager {
         let lon = point.longitude.cut(.two).description
 
         let lang = globals.languageSwitcher.currentAppLanguage
-
-        let key = AppGlobals.appKeyOpenWeather.isEmpty ?
-            AppOptions.OpenWeatherAPIOption ?? "" : AppGlobals.appKeyOpenWeather
-
         let callDetails = OpenWeatherRequestData(appid: key,
                                                  lat: lat,
                                                  lon: lon,
@@ -133,7 +170,7 @@ public class MeteoClientManager {
                                                  lang: .init(rawValue: lang),
                                                  mode: .json)
 
-        // log.message(callDetails.urlString)
+        log.message(callDetails.urlString)
 
         do {
             presenter.screenPopover.startAnimationProgressIndicator(.weather)
@@ -157,13 +194,18 @@ public class MeteoClientManager {
             return
         }
 
-        guard let presenter = theAppPresenter else {
-            log.message("[\(type(of: self))].\(#function) presenter is nil.", .error)
+        guard let point = getLocationPoint() else {
+            log.message("[\(type(of: self))].\(#function) location is nil.", .error)
             return
         }
 
-        guard let point = getLocationPoint() else {
-            log.message("[\(type(of: self))].\(#function) location is nil.", .error)
+        let keyLoaded = AppOptions.OpenWeatherAPIOption ?? ""
+        let key = keyLoaded.isEmpty ? AppGlobals.appKeyOpenWeather : keyLoaded
+
+        guard key.isEmpty == false else {
+            let message = "API key either rejected or empty".localizedValue
+            log.message("[\(type(of: self))].\(#function) \(message)", .error)
+            log.message(message, .notice, .custom)
             return
         }
 
@@ -173,10 +215,6 @@ public class MeteoClientManager {
         let lon = point.longitude.cut(.two).description
 
         let lang = globals.languageSwitcher.currentAppLanguage
-
-        let key = AppGlobals.appKeyOpenWeather.isEmpty ?
-            AppOptions.OpenWeatherAPIOption ?? "" : AppGlobals.appKeyOpenWeather
-
         var callDetails = OpenWeatherRequestData(appid: key,
                                                  request: .forecast,
                                                  lat: lat,
@@ -186,7 +224,7 @@ public class MeteoClientManager {
                                                  mode: .json)
         callDetails.cnt = 40
 
-        // log.message(callDetails.urlString)
+        log.message(callDetails.urlString)
 
         do {
             presenter.screenPopover.startAnimationProgressIndicator(.forecast)
@@ -203,14 +241,75 @@ public class MeteoClientManager {
         }
     }
 
+    public func fetchSuggestions(_ search: String) {
+
+        guard
+            self.isReadyToGetSuggestions,
+            search.isEmpty == false,
+            let viewLocation = presenter.screenPopover.viewLocation
+        else { return }
+
+        guard AppGlobals.useSuggestionsSample == false
+        else {
+            viewLocation.indicatorCircular.isHidden = true
+            viewLocation.indicatorCircular.stopAnimation(nil)
+            serviceWeatherOpenWeatherMapHandler(Data())
+            return
+        }
+
+        let keyLoaded = AppOptions.OpenWeatherAPIOption ?? ""
+        let key = keyLoaded.isEmpty ? AppGlobals.appKeyOpenWeather : keyLoaded
+
+        guard key.isEmpty == false
+        else {
+            let message = "API key either rejected or empty".localizedValue
+            log.message("[\(type(of: self))].\(#function) \(message)", .error)
+            log.message(message, .notice, .custom)
+            return
+        }
+
+        self.isReadyToGetSuggestions = false
+
+        let name = search
+        let limit = 5
+
+        let urlString = prepareDirectURLString(cityName: name, limit: limit, appid: key)
+        let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+
+        var preparedURL: URL?
+
+        if let url = URL(string: urlString) {
+            preparedURL = url
+        } else if let encodedString = encoded, let urlEncoded = URL(string: encodedString) {
+            preparedURL = urlEncoded
+        }
+
+        guard let requestURL = preparedURL
+        else {
+
+            // WRONG: URL cann't be created at all
+            log.message("[\(type(of: self))].\(#function) no URL prepared", .error)
+
+            // stopAnimationIndicator
+            viewLocation.indicatorCircular.isHidden = true
+            viewLocation.indicatorCircular.stopAnimation(nil)
+
+            self.isReadyToGetSuggestions = true
+
+            return
+        }
+
+        // startAnimationIndicator
+        viewLocation.indicatorCircular.isHidden = false
+        viewLocation.indicatorCircular.startAnimation(nil)
+
+        // request
+        serviceSuggestionsOpenWeatherMap.requestData(url: requestURL)
+    }
+
     // MARK: - Event handlers
 
     private func serviceWeatherOpenWeatherMapHandler(_ data: Data) {
-
-        guard let presenter = theAppPresenter else {
-            log.message("[\(type(of: self))].\(#function)", .error)
-            return
-        }
 
         // TODO: - Make no matter what order of the two following instraction below
 
@@ -222,20 +321,15 @@ public class MeteoClientManager {
 
         DispatchQueue.main.async {
 
-            presenter.screenPopover.stopAnimationProgressIndicator(.weather)
-            presenter.screenPopover.reloadWeatherData()
-            presenter.reloadData()
+            self.presenter.screenPopover.stopAnimationProgressIndicator(.weather)
+            self.presenter.screenPopover.reloadWeatherData()
+            self.presenter.reloadData()
 
             self.isReadyToCall = true
         }
     }
 
     private func serviceForecastOpenWeatherMapHandler(_ data: Data) {
-
-        guard let presenter = theAppPresenter else {
-            log.message("[\(type(of: self))].\(#function)", .error)
-            return
-        }
 
         // And here, but for now it's matter >
 
@@ -244,10 +338,51 @@ public class MeteoClientManager {
 
         DispatchQueue.main.async {
 
-            presenter.screenPopover.stopAnimationProgressIndicator(.forecast)
-            presenter.screenPopover.reloadForecastData()
+            self.presenter.screenPopover.stopAnimationProgressIndicator(.forecast)
+            self.presenter.screenPopover.reloadForecastData()
 
             self.isReadyToCallForecast = true
+        }
+    }
+
+    private func serviceSuggestionsOpenWeatherMapHandler(_ data: Data) {
+
+        DispatchQueue.main.async {
+
+            guard data.isEmpty == false
+            else {
+                return
+            }
+
+            var suggestions: [Location]?
+
+            if AppGlobals.useSuggestionsSample {
+                suggestions = prepareSuggestionsSample()
+            } else {
+                suggestions = prepareSuggestions(json: data)
+            }
+
+            guard
+                let suggestions = suggestions,
+                let viewLocation = self.presenter.screenPopover.viewLocation
+            else {
+                return
+            }
+
+            viewLocation.viewSuggestions.suggestionsArray = suggestions
+
+            viewLocation.constraintViewSuggestionsHeight?.constant =
+            viewLocation.viewSuggestions.heightCalculated
+
+            viewLocation.collectionSuggestions?.reloadData()
+
+            NSAnimationContext.runAnimationGroup({ context in
+                context.duration = 0.5
+
+                viewLocation.viewSuggestions.animator().alphaValue = 1.0
+            }, completionHandler: nil)
+
+            self.isReadyToGetSuggestions = true
         }
     }
 
@@ -255,14 +390,17 @@ public class MeteoClientManager {
 
         var locationCardType: LocationCardType?
 
-        if let type = theAppPresenter?.screenPopover.viewLocation?.locationCard {
+        if let type = presenter.screenPopover.viewLocation?.locationCard {
             locationCardType = type
         } else {
             locationCardType = AppOptions.favoriteLocationsOption.first(where: {
                 $0.isOnDisplay && $0.isCurrentLocation }) != nil ? .current : .favorite
         }
 
-        guard let locationCard = locationCardType else { return nil }
+        guard let locationCard = locationCardType
+        else {
+            return nil
+        }
 
         var point: GeoPoint?
 

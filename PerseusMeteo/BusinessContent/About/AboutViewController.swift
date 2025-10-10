@@ -12,10 +12,21 @@
 //
 //  See LICENSE for details. All rights reserved.
 //
+// swiftlint:disable file_length
+//
 
 import Cocoa
 
 class AboutViewController: NSViewController {
+
+    // MARK: - Internals
+
+    private let tabEssentialsID = "Essentials"
+    private let tabLogID = "Log"
+
+    private let fontSizeCopyrightText: CGFloat = 10.0
+    private let fontSizeCopyrightDetailsText: CGFloat = 10.0
+    private let fontSizeTheCreditsText: CGFloat = 10.0
 
     // MARK: - Outlets
 
@@ -40,10 +51,14 @@ class AboutViewController: NSViewController {
     @IBOutlet private(set) weak var labelTheAppVersionTitle: NSTextField!
     @IBOutlet private(set) weak var labelTheAppVersionValue: NSTextField!
 
-    @IBOutlet private(set) var viewCopyrightText: NSTextView!
-    @IBOutlet private(set) var viewCopyrightDetailsText: NSTextView!
+    @IBOutlet private(set) weak var viewCopyrightText: NSTextView!
+    @IBOutlet private(set) weak var viewCopyrightDetailsText: NSTextView!
 
-    @IBOutlet private(set) var viewTheCreditsText: NSTextView!
+    @IBOutlet private(set) weak var viewTheCreditsText: NSTextView!
+
+    @IBOutlet private(set) weak var tabView: NSTabView!
+    @IBOutlet private(set) weak var tabEssentials: NSTabViewItem!
+    @IBOutlet private(set) weak var tabLog: NSTabViewItem!
 
     // MARK: - Actions
 
@@ -96,15 +111,15 @@ class AboutViewController: NSViewController {
     }
 
     // MARK: - Initialization
-/*
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)")
     }
-*/
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)")
 
         // Setup content options.
 
@@ -120,15 +135,18 @@ class AboutViewController: NSViewController {
 
         viewCopyrightText.backgroundColor = .clear
         viewCopyrightText.isEditable = false
-        viewCopyrightText.alignment = .center
+        viewCopyrightText.alignment = .left
+        viewCopyrightText.font = NSFont.systemFont(ofSize: fontSizeCopyrightText)
 
         viewCopyrightDetailsText.backgroundColor = .clear
         viewCopyrightDetailsText.isEditable = false
-        viewCopyrightDetailsText.alignment = .center
+        viewCopyrightDetailsText.alignment = .justified
+        viewCopyrightDetailsText.font = NSFont.systemFont(ofSize: fontSizeCopyrightDetailsText)
 
         viewTheCreditsText.backgroundColor = .clear
         viewTheCreditsText.isEditable = false
         viewTheCreditsText.alignment = .left
+        viewTheCreditsText.font = NSFont.systemFont(ofSize: fontSizeTheCreditsText)
 
         buttonTheAppSourceCode.toolTip = linkTheAppSourceCode
         buttonTheTechnologicalTree.toolTip = linkTheTechnologicalTree
@@ -151,7 +169,7 @@ extension AboutViewController {
     // MARK: - Dark Mode
 
     public func makeUp() {
-        // log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)")
 
         viewCopyrightText.textColor = .perseusGray
         viewCopyrightDetailsText.textColor = .perseusGray
@@ -161,7 +179,7 @@ extension AboutViewController {
     // MARK: - Localization
 
     @objc func localize() {
-        // log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)")
 
         buttonTheAppSourceCode.title = "Button: The App Source Code".localizedValue
         buttonTheTechnologicalTree.title = "Button: The Technological Tree".localizedValue
@@ -182,18 +200,21 @@ extension AboutViewController {
         buttonLicense.title = "Button: License".localizedValue
         buttonTerms.title = "Button: Terms & Conditions".localizedValue
         buttonClose.title = "Button: Close".localizedValue
+
+        tabEssentials.label = "Tab: Essentials".localizedValue
+        tabLog.label = "Tab: Log".localizedValue
     }
 
     private func combineCredits() -> String {
 
         return """
         \("Label: Credits".localizedValue):
-          \("Label: Balancing and Control".localizedValue) \("Label: Author".localizedValue)
-          \("Label: Writing".localizedValue) \("Label: Author".localizedValue)
-          \("Label: Documenting".localizedValue) \("Label: Author".localizedValue)
-          \("Label: Artworking".localizedValue) \("Label: Author".localizedValue)
-          \("Label: EN Expectation".localizedValue) \("Label: Author".localizedValue)
-          \("Label: RU Expectation".localizedValue) \("Label: Author".localizedValue)
+        \("Label: Balancing and Control".localizedValue) \("Label: Author".localizedValue)
+        \("Label: Writing".localizedValue) \("Label: Author".localizedValue)
+        \("Label: Documenting".localizedValue) \("Label: Author".localizedValue)
+        \("Label: Artworking".localizedValue) \("Label: Author".localizedValue)
+        \("Label: EN Expectation".localizedValue) \("Label: Author".localizedValue)
+        \("Label: RU Expectation".localizedValue) \("Label: Author".localizedValue)
         """
     }
 }

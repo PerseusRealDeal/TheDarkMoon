@@ -15,10 +15,12 @@
 
 import Cocoa
 
-// MARK: - The Start Line
+// MARK: - The Start
 
-log.level = .info
-log.message("> The app's start point...", .info)
+log.level = .debug
+log.message("> The start point...", .info)
+
+// AppOptions.removeAll()
 
 let globals = AppGlobals()
 

@@ -27,26 +27,27 @@ struct AppGlobals {
 
     // MARK: - Constants
 
-    static let appKeyOpenWeather = "79eefe16f6e4714470502074369fc77b"
+    static let appKeyOpenWeather = "" // 79eefe16f6e4714470502074369fc77b
 
     static let statusMenusButtonIconName = "Icon"
     static let meteoProviderName = "/\\__/\\"
 
     static let favoritesLimit: Int = 7
+    static let useSuggestionsSample = false
 
     // MARK: - Business Data
 
     static var currentLocation: GeoPoint? {
         didSet {
             let location = currentLocation?.description ?? "current location is erased"
-            log.message("[\(type(of: self))].\(#function): \(location)", .info)
+            log.message("[\(type(of: self))].\(#function): \(location)")
         }
     }
 
     static var suggestion: Location? {
         didSet {
             let suggestion = suggestion?.description ?? "suggestion is removed"
-            log.message("[\(type(of: self))].\(#function): \(suggestion)", .info)
+            log.message("[\(type(of: self))].\(#function): \(suggestion)")
         }
     }
 
@@ -58,7 +59,7 @@ struct AppGlobals {
             }
 
             let text = "JSON:\n\(weather.prettyPrinted ?? "")"
-            log.message("[\(type(of: self))].\(#function)\n\(text)", .info)
+            log.message("[\(type(of: self))].\(#function)\n\(text)")
         }
     }
 
@@ -123,7 +124,7 @@ struct AppGlobals {
 
         GeoCoordinator.shared.locationUpdatesRecieved = { updates in
             if let thelastone = updates.last {
-                log.message("Location Updates: \(updates.count)")
+                // log.message("Location Updates: \(updates.count)")
                 // geolog.message("Location Updates: \(updates.count)", .debug, .custom)
                 AppGlobals.currentLocation = thelastone
             }

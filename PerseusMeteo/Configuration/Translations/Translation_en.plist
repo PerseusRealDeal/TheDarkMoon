@@ -16,6 +16,10 @@
 	<string>Copyright © 2023 - 2024 Mikhail Zhigulin of Novosibirsk. All rights reserved.</string>
 	<key>Default: N/A</key>
 	<string>N/A</string>
+	<key>P2P</key>
+	<string>P2P</string>
+	<key>P2P stands for Person to Person</key>
+	<string>P2P stands for Person to Person</string>
 	<key>/* Popover Screen */</key>
 	<string>--</string>
 	<key>Button: Call Weather</key>
@@ -31,7 +35,7 @@
 	<key>Button: Quit</key>
 	<string>Quit</string>
 	<key>Button: About</key>
-	<string>About</string>
+	<string>Selfie</string>
 	<key>Button: Options</key>
 	<string>Options</string>
 	<key>Button: Hide</key>
@@ -58,6 +62,8 @@
 	<string>Favorites limited to</string>
 	<key>Current neither to add nor to remove!</key>
 	<string>Current neither to add nor to remove!</string>
+	<key>API key either rejected or empty</key>
+	<string>API key either rejected or empty</string>
 	<key>/* Location View */</key>
 	<string>--</string>
 	<key>Label: Permission</key>
@@ -230,8 +236,8 @@
 	<string>OpenWeather Key</string>
 	<key>Option: StatusMenus</key>
 	<string>Current Weather</string>
-    <key>Button: CheckBox StatusMenus</key>
-    <string>Show in StatusMenus</string>
+	<key>Button: CheckBox StatusMenus</key>
+	<string>Show in StatusMenus</string>
 	<key>Option: StatusMenus Update</key>
 	<string>Update</string>
 	<key>StatusMenus: per 12 hours</key>
@@ -350,6 +356,10 @@
 	<string>License</string>
 	<key>Button: Terms &amp; Conditions</key>
 	<string>Terms &amp; Conditions</string>
+	<key>Tab: Essentials</key>
+	<string>Essentials</string>
+	<key>Tab: Log</key>
+	<string>Log</string>
 	<key>/* Weather-conditions descriptions */</key>
 	<string>--</string>
 	<key>Main: clear sky</key>

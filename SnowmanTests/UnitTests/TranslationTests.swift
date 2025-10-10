@@ -72,6 +72,15 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Default: N/A".localizedExpectation,
                        "Default: N/A".localizedValue)
+
+        XCTAssertEqual("P2P".localizedExpectation,
+                       "P2P".localizedValue)
+
+        XCTAssertEqual("P2P stands for Person to Person".localizedExpectation,
+                       "P2P stands for Person to Person".localizedValue)
+
+        XCTAssertEqual("API key either rejected or empty".localizedExpectation,
+                       "API key either rejected or empty".localizedValue)
     }
 
     // MARK: - End-User Messages
@@ -515,6 +524,10 @@ class TranslationTests: XCTestCase {
                        "Button: License".localizedValue)
         XCTAssertEqual("Button: Terms & Conditions".localizedExpectation,
                        "Button: Terms & Conditions".localizedValue)
+        XCTAssertEqual("Tab: Essentials".localizedExpectation,
+                       "Tab: Essentials".localizedValue)
+        XCTAssertEqual("Tab: Log".localizedExpectation,
+                       "Tab: Log".localizedValue)
     }
 
     // MARK: - Weather-conditions descriptions

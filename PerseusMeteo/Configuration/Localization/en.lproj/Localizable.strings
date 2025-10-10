@@ -23,6 +23,9 @@
 
 "Default: N/A" = "N/A";
 
+"P2P" = "P2P";
+"P2P stands for Person to Person" = "P2P stands for Person to Person";
+
 /* Popover Screen – PopoverViewController */
 
 "Button: Call Weather" = "Call Weather";
@@ -35,7 +38,7 @@
 
 "Button: Quit" = "Quit";
 
-"Button: About" = "About";
+"Button: About" = "Selfie";
 "Button: Options" = "Options";
 
 "Button: Hide" = "Hide";
@@ -52,6 +55,7 @@
 "Current Location should be selected" = "Current Location should be selected";
 "Favorites limited to" = "Favorites limited to";
 "Current neither to add nor to remove!" = "Current neither to add nor to remove!";
+"API key either rejected or empty" = "API key either rejected or empty";
 
 /* Location View */
 
@@ -257,6 +261,9 @@
 
 "Button: License" = "License";
 "Button: Terms & Conditions" = "Terms & Conditions";
+
+"Tab: Essentials" = "Essentials";
+"Tab: Log" = "Log";
 
 /* OpenWeather weather-conditions descriptions */
 
