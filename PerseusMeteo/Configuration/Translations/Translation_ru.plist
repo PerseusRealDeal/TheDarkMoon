@@ -58,8 +58,8 @@
 	<string>Авто уточнение включено!</string>
 	<key>Current Location should be selected</key>
 	<string>Координаты на месте обновляются</string>
-	<key>Favorites limited to</key>
-	<string>Список ограничен до</string>
+	<key>Favorites are limited</key>
+	<string>Список до дома!</string>
 	<key>Current neither to add nor to remove!</key>
 	<string>Ни добавить, ни убавить!</string>
 	<key>API key either rejected or empty</key>

@@ -311,6 +311,40 @@
                                         <view key="view" id="jLN-Ax-Iit">
                                             <rect key="frame" x="10" y="33" width="494" height="158"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8AJ-vi-hO7">
+                                                    <rect key="frame" x="0.0" y="0.0" width="494" height="158"/>
+                                                    <clipView key="contentView" drawsBackground="NO" id="LSB-6q-W1W">
+                                                        <rect key="frame" x="0.0" y="0.0" width="494" height="158"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="uDj-aZ-BNE">
+                                                                <rect key="frame" x="0.0" y="0.0" width="494" height="158"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                <size key="minSize" width="494" height="158"/>
+                                                                <size key="maxSize" width="494" height="10000000"/>
+                                                                <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                            </textView>
+                                                        </subviews>
+                                                    </clipView>
+                                                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="unV-pP-G0I">
+                                                        <rect key="frame" x="-100" y="-100" width="240" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    </scroller>
+                                                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="IeG-aW-PHO">
+                                                        <rect key="frame" x="478" y="0.0" width="16" height="158"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    </scroller>
+                                                </scrollView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="8AJ-vi-hO7" secondAttribute="bottom" id="56G-lh-Vqp"/>
+                                                <constraint firstAttribute="trailing" secondItem="8AJ-vi-hO7" secondAttribute="trailing" id="5gV-gT-IzC"/>
+                                                <constraint firstItem="8AJ-vi-hO7" firstAttribute="top" secondItem="jLN-Ax-Iit" secondAttribute="top" id="b5V-bl-c7Y"/>
+                                                <constraint firstItem="8AJ-vi-hO7" firstAttribute="leading" secondItem="jLN-Ax-Iit" secondAttribute="leading" id="tIc-j7-f6v"/>
+                                            </constraints>
                                         </view>
                                     </tabViewItem>
                                 </tabViewItems>
@@ -379,6 +413,7 @@
                         <outlet property="tabEssentials" destination="3Pd-bU-bxL" id="She-5v-qBd"/>
                         <outlet property="tabLog" destination="bz2-I9-ruF" id="8hk-vC-Tkk"/>
                         <outlet property="tabView" destination="6DN-E0-ZSC" id="2a7-3y-a7B"/>
+                        <outlet property="textViewLog" destination="uDj-aZ-BNE" id="YQN-PU-czg"/>
                         <outlet property="viewCopyrightDetailsText" destination="8sx-8U-nLg" id="YF6-K3-1Tb"/>
                         <outlet property="viewCopyrightText" destination="H1o-hz-CwQ" id="jwG-jM-mGc"/>
                         <outlet property="viewTheCreditsText" destination="Z1x-HX-wOa" id="CRF-fJ-rur"/>

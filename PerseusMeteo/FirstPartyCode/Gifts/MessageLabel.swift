@@ -52,7 +52,7 @@ public typealias MyCustomLabel = NSTextField
 
 public let DEFAULT_MESSAGE_LABEL_TEXT = "Have a great time."
 
-public class MessageLabel: MyCustomLabel {
+public class MessageLabel: MyCustomLabel, EndUserMessageObject {
 
     private var messageDeepCounter: Int = 0
 

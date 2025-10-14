@@ -15,10 +15,61 @@
 
 import Cocoa
 
+// MARK: - Log Report
+
+public let END_USER_MESSAGE_PREFIX = "End-User: "
+
+public protocol EndUserMessageObject {
+    var message: String { get set }
+}
+
+class LogReport: NSObject {
+
+    public var objectEndUser: EndUserMessageObject?
+    public var text: String { report }
+
+    @objc dynamic var lastMessage: String = "" {
+        didSet {
+            let count = report.count
+            if count > LIMIT {
+                report = report.dropFirst(count - LIMIT).description
+
+                if let position = report.range(of: newline)?.upperBound {
+                    report.removeFirst(position.utf16Offset(in: report)-2)
+                }
+            }
+
+            report.append(lastMessage + newline)
+        }
+    }
+
+    private var report = ""
+
+    private let LIMIT = 1000
+    private let newline = "\r\n--\r\n"
+
+}
+
+typealias LogLevel = PerseusLogger.Level
+
+func report(_ text: String, _ type: LogLevel, _ localTime: LocalTime, _ owner: PIDandTID) {
+    geoReport.lastMessage = "[\(localTime.date)] [\(localTime.time)]\r\n> \(text)"
+
+    if text.contains(END_USER_MESSAGE_PREFIX) {
+        let tagRemoved = text.replacingOccurrences(of: type.tag + " ", with: "")
+        let edited = tagRemoved .replacingOccurrences(of: END_USER_MESSAGE_PREFIX, with: "")
+        geoReport.objectEndUser?.message = edited
+    }
+}
+
+let geoReport = LogReport()
+
 // MARK: - The Start
 
 log.level = .debug
 log.message("> The start point...", .info)
+
+log.customActionOnMessage = report(_:_:_:_:)
 
 // AppOptions.removeAll()
 

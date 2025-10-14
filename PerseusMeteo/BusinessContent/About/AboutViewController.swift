@@ -21,6 +21,8 @@ class AboutViewController: NSViewController {
 
     // MARK: - Internals
 
+    private var logReportObservation: NSKeyValueObservation?
+
     private let tabEssentialsID = "Essentials"
     private let tabLogID = "Log"
 
@@ -59,6 +61,8 @@ class AboutViewController: NSViewController {
     @IBOutlet private(set) weak var tabView: NSTabView!
     @IBOutlet private(set) weak var tabEssentials: NSTabViewItem!
     @IBOutlet private(set) weak var tabLog: NSTabViewItem!
+
+    @IBOutlet private(set) weak var textViewLog: NSTextView!
 
     // MARK: - Actions
 
@@ -127,6 +131,20 @@ class AboutViewController: NSViewController {
         self.preferredContentSize = NSSize(width: self.view.frame.size.width,
                                            height: self.view.frame.size.height)
         configure()
+
+        // Connect to Log Reporting
+        logReportObservation = geoReport.observe(\.lastMessage, options: .new) { _, _ in
+            self.refreshLogReportTextView()
+        }
+
+        textViewLog.backgroundColor = .clear
+        textViewLog.textColor = .darkGray
+    }
+
+    override func viewDidAppear() {
+        super.viewDidAppear()
+
+        refreshLogReportTextView()
     }
 
     // MARK: - Configuration
@@ -216,5 +234,11 @@ extension AboutViewController {
         \("Label: EN Expectation".localizedValue) \("Label: Author".localizedValue)
         \("Label: RU Expectation".localizedValue) \("Label: Author".localizedValue)
         """
+    }
+
+    private func refreshLogReportTextView() {
+        textViewLog.string = geoReport.text
+
+        // TODO: - Scroll to bottom
     }
 }

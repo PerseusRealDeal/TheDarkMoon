@@ -58,8 +58,8 @@
 	<string>Auto requesting suggestions is on!</string>
 	<key>Current Location should be selected</key>
 	<string>Current Location should be selected</string>
-	<key>Favorites limited to</key>
-	<string>Favorites limited to</string>
+	<key>Favorites are limited</key>
+	<string>Favorites are limited</string>
 	<key>Current neither to add nor to remove!</key>
 	<string>Current neither to add nor to remove!</string>
 	<key>API key either rejected or empty</key>

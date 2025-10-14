@@ -50,7 +50,7 @@
 "Location Name should be typed" = "Название места можно начать вводить";
 "Auto requesting suggestions is on!" = "Авто уточнение включено!";
 "Current Location should be selected" = "Координаты на месте обновляются";
-"Favorites limited to" = "Список ограничен до";
+"Favorites are limited" = "Список до дома!";
 "Current neither to add nor to remove!" = "Ни добавить, ни убавить!";
 "API key either rejected or empty" = "API ключ не загружен или отсутствует";
 
