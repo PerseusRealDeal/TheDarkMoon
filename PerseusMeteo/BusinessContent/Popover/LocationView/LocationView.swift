@@ -115,7 +115,7 @@ class LocationView: NSView, NSTextFieldDelegate {
     @IBAction func updateCurrentLocationButtonTapped(_ sender: NSButton) {
         guard locationCard == .current else {
             let text = "Current Location should be selected".localizedValue
-            log.message(END_USER_MESSAGE_PREFIX + text, .notice, .custom)
+            log.message(text, .notice, .custom, .enduser)
             return
         }
 
@@ -132,13 +132,13 @@ class LocationView: NSView, NSTextFieldDelegate {
 
         if textFieldLocationNameSearch.stringValue.isEmpty {
             let text = "Location Name should be typed".localizedValue
-            log.message(END_USER_MESSAGE_PREFIX + text, .notice, .custom)
+            log.message(text, .notice, .custom, .enduser)
             return
         }
 
         if AppOptions.autoSuggestionsRequestOption {
             let text = "Auto requesting suggestions is on!".localizedValue
-            log.message(END_USER_MESSAGE_PREFIX + text, .notice, .custom)
+            log.message(text, .notice, .custom, .enduser)
             return
         }
 

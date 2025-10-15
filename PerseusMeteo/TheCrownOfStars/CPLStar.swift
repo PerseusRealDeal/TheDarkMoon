@@ -1,6 +1,6 @@
 //
 //  CPLStar.swift
-//  Version: 1.5.1
+//  Version: 1.6.0
 //
 //  Standalone ConsolePerseusLogger.
 //
@@ -13,16 +13,16 @@
 //
 //  Created by Mikhail Zhigulin in 7531.
 //
-//  Copyright © 7531 - 7533 Mikhail A. Zhigulin of Novosibirsk
-//  Copyright © 7531 - 7533 PerseusRealDeal
+//  Copyright © 7531 - 7534 Mikhail A. Zhigulin of Novosibirsk
+//  Copyright © 7531 - 7534 PerseusRealDeal
 //
 //  All rights reserved.
 //
 //
 //  MIT License
 //
-//  Copyright © 7531 - 7533 Mikhail A. Zhigulin of Novosibirsk
-//  Copyright © 7531 - 7533 PerseusRealDeal
+//  Copyright © 7531 - 7534 Mikhail A. Zhigulin of Novosibirsk
+//  Copyright © 7531 - 7534 PerseusRealDeal
 //
 //  The year starts from the creation of the world according to a Slavic calendar.
 //  September, the 1st of Slavic year.
@@ -52,7 +52,7 @@ import Foundation
 import os
 
 // swiftlint:disable type_name
-public typealias log = PerseusLogger // In SPM package should be not public except TheOne.
+typealias log = PerseusLogger // In SPM package should be not public except TheOne.
 // swiftlint:enable type_name
 
 public typealias ConsoleObject = (subsystem: String, category: String)
@@ -60,7 +60,7 @@ public typealias LocalTime = (date: String, time: String)
 public typealias PIDandTID = (pid: String, tid: String) // PID and Thread ID.
 
 public typealias MessageDelegate = (
-    (String, PerseusLogger.Level, LocalTime, PIDandTID) -> Void
+    (String, PerseusLogger.Level, LocalTime, PIDandTID, PerseusLogger.User) -> Void
 )
 
 public class PerseusLogger {
@@ -80,7 +80,13 @@ public class PerseusLogger {
     public enum Output: String, Decodable {
         case standard // In Use: Swift.print("").
         case consoleapp
-        case custom // In Use: customActionOnMessage?(_:_:_:_:).
+        case custom // In Use: customActionOnMessage?(_:_:_:_:_:).
+    }
+
+    // log.message("This message for an end-user.", .notice, .custom, .enduser)
+    public enum User: String, Decodable {
+        case enduser // Ignores status turned == .off; level == .notice is recommended.
+        case operative
     }
 
     public enum Level: Int, CustomStringConvertible, Decodable {
@@ -237,43 +243,17 @@ public class PerseusLogger {
 
     // MARK: - Contract
 
-    public static func loadConfig(_ profile: ProfileCPL) -> Bool {
-        if let data = profile.json.data(using: .utf8) {
-            if let jsonConfig = decodeJsonProfile(data) {
-                reloadOptions(jsonConfig)
-                return true
-            }
-            log.message("Failed to decode CPL json config data!", .error)
-            return false
-        }
-        log.message("Failed to load CPL config data!", .error)
-        return false
-    }
-
-    public static func loadConfig(_ json: URL) -> Bool {
-        if FileManager.default.fileExists(atPath: json.relativePath) {
-            if let data = try? Data(contentsOf: json) {
-                if let jsonConfig = decodeJsonProfile(data) {
-                    reloadOptions(jsonConfig)
-                    return true
-                }
-                log.message("Failed to decode CPL json config data!", .error)
-                return false
-            }
-            log.message("Failed to load CPL config data!", .error)
-            return false
-        }
-        log.message("CPL config file doesn't exist!", .error)
-        return false
-    }
-
     public static func message(_ text: @autoclosure () -> String,
                                _ type: Level = .debug,
                                _ oput: Output = PerseusLogger.output,
+                               _ user: User = .operative,
                                _ file: StaticString = #file,
                                _ line: UInt = #line) {
 
-        guard turned == .on, type.rawValue <= level.rawValue else { return }
+        guard turned == .on || user == .enduser, type.rawValue <= level.rawValue
+        else {
+            return
+        }
 
         var message = ""
 
@@ -314,10 +294,40 @@ public class PerseusLogger {
         // Print.
 
         if oput == .custom {
-            customActionOnMessage?(message, type, localTime, idtuple)
+            customActionOnMessage?(message, type, localTime, idtuple, user)
         } else {
             print(message, type, oput)
         }
+    }
+
+    public static func loadConfig(_ profile: ProfileCPL) -> Bool {
+        if let data = profile.json.data(using: .utf8) {
+            if let jsonConfig = decodeJsonProfile(data) {
+                reloadOptions(jsonConfig)
+                return true
+            }
+            log.message("Failed to decode CPL json config data!", .error)
+            return false
+        }
+        log.message("Failed to load CPL config data!", .error)
+        return false
+    }
+
+    public static func loadConfig(_ json: URL) -> Bool {
+        if FileManager.default.fileExists(atPath: json.relativePath) {
+            if let data = try? Data(contentsOf: json) {
+                if let jsonConfig = decodeJsonProfile(data) {
+                    reloadOptions(jsonConfig)
+                    return true
+                }
+                log.message("Failed to decode CPL json config data!", .error)
+                return false
+            }
+            log.message("Failed to load CPL config data!", .error)
+            return false
+        }
+        log.message("CPL config file doesn't exist!", .error)
+        return false
     }
 
     // MARK: - Implementation
@@ -481,7 +491,7 @@ private extension UInt64 {
     }
 }
 
-// MARK: - Configuration Profiles
+// MARK: - JSON Profiles
 
 private struct JsonOptionsCPL: CustomStringConvertible, Decodable {
     let subsystem: String
@@ -594,3 +604,63 @@ private let defaultDebugProfile =
     "debugIsInfo" : true
 }
 """
+
+// MARK: - Log Report
+
+public protocol PerseusDelegatedMessage {
+    var message: String { get set }
+}
+
+public class PerseusLogReport: NSObject {
+
+    public var delegate: PerseusDelegatedMessage? // Delegate for end-user messages.
+    public var text: String { report }
+
+    @objc public dynamic var lastMessage: String = "" {
+        didSet {
+            let count = report.count
+            if count > limit {
+                report = report.dropFirst(count - limit).description
+
+                if let position = report.range(of: newLine)?.upperBound {
+                    report.removeFirst(position.utf16Offset(in: report)-2)
+                }
+            }
+
+            report.append(lastMessage + newLine)
+        }
+    }
+
+    private var report = "" // Last messages.
+
+    public let limit: Int
+    public let newLine: String
+
+    public static let newLineDefault = "\r\n--\r\n"
+#if os(iOS)
+    public static let limitDefault = 1000
+#elseif os(macOS)
+    public static let limitDefault = 3000
+#endif
+
+    public init(_ limit: Int = PerseusLogReport.limitDefault,
+                _ newLine: String = PerseusLogReport.newLineDefault) {
+        self.limit = limit
+        self.newLine = newLine
+    }
+
+    // swiftlint:disable:next function_parameter_count
+    public func report(_ text: String,
+                       _ type: PerseusLogger.Level,
+                       _ localTime: LocalTime,
+                       _ owner: PIDandTID,
+                       _ user: PerseusLogger.User) {
+
+        if user == .enduser {
+            delegate?.message = text.replacingOccurrences(of: "\(type.tag) ", with: "")
+            return
+        }
+
+        lastMessage = "[\(localTime.date)] [\(localTime.time)]\r\n> \(text)"
+    }
+}

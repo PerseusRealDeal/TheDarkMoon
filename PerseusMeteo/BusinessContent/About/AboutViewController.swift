@@ -133,7 +133,7 @@ class AboutViewController: NSViewController {
         configure()
 
         // Connect to Log Reporting
-        logReportObservation = geoReport.observe(\.lastMessage, options: .new) { _, _ in
+        logReportObservation = logReport.observe(\.lastMessage, options: .new) { _, _ in
             self.refreshLogReportTextView()
         }
 
@@ -237,7 +237,7 @@ extension AboutViewController {
     }
 
     private func refreshLogReportTextView() {
-        textViewLog.string = geoReport.text
+        textViewLog.string = logReport.text
 
         // TODO: - Scroll to bottom
     }

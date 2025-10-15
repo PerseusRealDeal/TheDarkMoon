@@ -85,7 +85,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     @IBAction func fetchMeteoFactsButtonTapped(_ sender: NSButton) {
         if viewLocation.locationCard == .current, AppGlobals.currentLocation == nil {
             let text = "Coordinates update is required".localizedValue
-            log.message(END_USER_MESSAGE_PREFIX + text, .notice, .custom)
+            log.message(text, .notice, .custom, .enduser)
             return
         }
 
@@ -136,7 +136,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
         // End-user messages
 
-        geoReport.objectEndUser = labelGreeting
+        logReport.delegate = labelGreeting
 
         // Tabs event delegate
 
@@ -353,7 +353,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
         actualizeCallingSection()
 
-        log.message(END_USER_MESSAGE_PREFIX + userMessage, .notice, .custom)
+        log.message(userMessage, .notice, .custom, .enduser)
     }
 
     @objc func bookmarkTapped() {
@@ -369,7 +369,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
             if itemsCount == limit {
                 let text = "Favorites are limited".localizedValue
-                log.message(END_USER_MESSAGE_PREFIX + text, .notice, .custom)
+                log.message(text, .notice, .custom, .enduser)
                 return
             }
 
@@ -387,7 +387,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
                 viewLocation?.reloadData()
 
                 let text = "Item added to favorites".localizedValue
-                log.message(END_USER_MESSAGE_PREFIX + text, .notice, .custom)
+                log.message(text, .notice, .custom, .enduser)
             }
 
             return
@@ -397,7 +397,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
         if viewLocation?.locationCard == .current {
             let text = "Current neither to add nor to remove!".localizedValue
-            log.message(END_USER_MESSAGE_PREFIX + text, .notice, .custom)
+            log.message(text, .notice, .custom, .enduser)
             return
         }
 
@@ -427,7 +427,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
             actualizeCallingSection()
 
             let text = "Item removed from favorites".localizedValue
-            log.message(END_USER_MESSAGE_PREFIX + text, .notice, .custom)
+            log.message(text, .notice, .custom, .enduser)
 
             return
         }

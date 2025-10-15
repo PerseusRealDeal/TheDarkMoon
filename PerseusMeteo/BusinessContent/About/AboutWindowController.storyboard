@@ -312,13 +312,13 @@
                                             <rect key="frame" x="10" y="33" width="494" height="158"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8AJ-vi-hO7">
+                                                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" translatesAutoresizingMaskIntoConstraints="NO" id="8AJ-vi-hO7">
                                                     <rect key="frame" x="0.0" y="0.0" width="494" height="158"/>
                                                     <clipView key="contentView" drawsBackground="NO" id="LSB-6q-W1W">
                                                         <rect key="frame" x="0.0" y="0.0" width="494" height="158"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="uDj-aZ-BNE">
+                                                            <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="uDj-aZ-BNE">
                                                                 <rect key="frame" x="0.0" y="0.0" width="494" height="158"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -330,10 +330,10 @@
                                                         </subviews>
                                                     </clipView>
                                                     <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="unV-pP-G0I">
-                                                        <rect key="frame" x="-100" y="-100" width="240" height="16"/>
+                                                        <rect key="frame" x="0.0" y="142" width="494" height="16"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
-                                                    <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="IeG-aW-PHO">
+                                                    <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="IeG-aW-PHO">
                                                         <rect key="frame" x="478" y="0.0" width="16" height="158"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
