@@ -4,26 +4,42 @@
 
 <table>
     <tr>
-        <th>Related to versions</th>
+        <th>Versions</th>
+        <th>Product</th>
         <th>Short description</th>
     </tr>
-        <tr>
-        <td>0.4</td>
-        <td>Geocoding, reverse and direct. Developer release (candidate).</td>
+    <tr>
+        <td>0.4+</td>
+        <td>Developer release (candidate).</td>
+        <td>Current weather (StatusMenusButton). Developer release (candidate).</td>
+    </tr>
+    <tr>
+        <td>0.4+</td>
+        <td>Developer release (candidate).</td>
+        <td>City search by name (direct geocoding).</td>
+    </tr>
+    <tr>
+        <td>0.4+</td>
+        <td>Developer release (candidate).</td>
+        <td>Favorites (collection of places).</td>
     </tr>
     <tr>
         <td>0.3+</td>
-        <td>Forecast. Developer release (candidate).</td>
+        <td>Developer release (candidate).</td>
+        <td>Forecast.(*)(**)</td>
     </tr>
     <tr>
         <td>0.2+</td>
-        <td>Current weather. Developer release (candidate).</td>
+        <td>Developer release (candidate).</td>
+        <td>Current weather (Popover).</td>
     </tr>
     <tr>
+        <td></td>
         <td>* Change</td>
         <td>DATA-1: Default Temperature changed from Celsius to Fahrenheit.</td>
     </tr>
     <tr>
+        <td></td>
         <td>** Reject</td>
         <td>00-3: Starts on login had been canceled.</td>
     </tr>
@@ -31,12 +47,12 @@
 
 > # Business Tasks:
 
-| ID   | Description                 | Operations                     | API product                                  |
-| ---- | --------------------------- | ------------------------------ | -------------------------------------------- |
-| BT-1 | Fetching current weather    | OP-1, OP-2, OP-4, OP-5, REST-3 | https://openweathermap.org/current           |
-| BT-2 | Fetching forecast           | OP-2, OP-3, OP-4, OP-5, REST-3 | https://openweathermap.org/forecast5         |
-| BT-3 | Reverse geocoding           | OP-4, REST-3                   | https://openweathermap.org/api/geocoding-api |
-| BT-4 | Direct geocoding            | OP-5                           | https://openweathermap.org/api/geocoding-api |
+| ID   | Description                 | Operations                          | API product                                  |
+| ---- | --------------------------- | ----------------------------------- | -------------------------------------------- |
+| BT-1 | Fetching current weather    | OP-1, OP-2, OP-4, OP-5, OP-6 REST-3 | https://openweathermap.org/current           |
+| BT-2 | Fetching forecast           | OP-2, OP-3, OP-4, OP-5, REST-3      | https://openweathermap.org/forecast5         |
+| BT-3 | City search by name         | OP-4                                | https://openweathermap.org/api/geocoding-api |
+| BT-4 | Favorites                   | REST-4                              |                                              |
 
 > # Sketches (GUI requirements)
 
@@ -73,6 +89,10 @@
         <td nowrap>REST-3</td>
         <td>The app should produce an opportunity to restrict sending geo coordinates from location manager to weather data provider's server.</td>
     </tr>
+    <tr>
+        <td nowrap>REST-4</td>
+        <td>The list of favorite places should have "current location" item as the first item and can't be removed, but coordinates can be actualized.</td>
+    </tr>
 </table>
 
 > # User Stories
@@ -84,11 +104,11 @@
     </tr>
     <tr>
         <td nowrap>US-1</td>
-        <td>As Mikhail, I want to be aware of the current weather condition, so I can feel more in selfcare.</td>
+        <td>As Mikhail, I want to be aware of the current weather condition (popover), so I can feel more in selfcare.</td>
     </tr>
     <tr>
         <td nowrap>US-2</td>
-        <td>As Mikhail, I want to be able to call weather condition again, so I can be sure about the current weather.</td>
+        <td>As Mikhail, I want to be able to call weather condition again (manually), so I can be sure about the current weather.</td>
     </tr>
     <tr>
         <td nowrap>US-3</td>
@@ -104,12 +124,22 @@
     </tr>
     <tr>
         <td nowrap>US-6</td>
-        <td>As Mikhail, I want to see my current geographical coordinates converted into the name of the nearby location by request weather data (reverse geocoding.)</td>
+        <td>As Mikhail, I want to use the name of a location with requesting weather data (direct geocoding.)</td>
     </tr>
     <tr>
         <td nowrap>US-7</td>
-        <td>As Mikhail, I want to use the name of a location with requesting weather data (direct geocoding.)</td>
+        <td>As Mikhail, I want to enjoy list of favorite places (CRUD operations.)</td>
     </tr>
+    <tr>
+        <td nowrap>US-8</td>
+        <td>As Mikhail, I want to be aware of the current weather condition (StatusMenusButton), so I can feel more in selfcare.</td>
+    </tr>
+<!--
+    <tr>
+        <td nowrap>US-N</td>
+        <td>As Mikhail, I want to see my current geographical coordinates converted into the name of the nearby location by request weather data (reverse geocoding.)</td>
+    </tr>
+-->
 </table>
 
 > # Features (specials)
@@ -120,13 +150,15 @@
 
 > # Operations
 
-| ID   | Description                                       | Must have  | In Use       | Result | Rules  |
-| ---- | ------------------------------------------------- | ---------- | ------------ | ------ | ------ |
-| OP-1 | Call current weather with OpenWeather API         | API key    | DATA-2, OO-2 | DATA-1 | RULE-1 |
-| OP-2 | Ask for current location                          | Permission |              | DATA-2 | -      |
-| OP-3 | Call 5 day / 3 hour forecast with OpenWeather API | API key    | DATA-2, OO-2 | DATA-1 | RULE-1 |
-| OP-4 | Reverse geocoding with OpenWeather API            | API key    |              |        |        |
-| OP-5 | Direct geocoding with OpenWeather API             | API key    |              |        |        |
+| ID   | Description                                                   | Must have  | In Use       | Result | Rules  |
+| ---- | ------------------------------------------------------------- | ---------- | ------------ | ------ | ------ |
+| OP-1 | Call current weather with OpenWeather API (Popover)           | API key    | DATA-2, OO-2 | DATA-1 | RULE-1 |
+| OP-2 | Ask for current location                                      | Permission |              | DATA-2 | -      |
+| OP-3 | Call 5 day / 3 hour forecast with OpenWeather API             | API key    | DATA-2, OO-2 | DATA-1 | RULE-1 |
+| OP-4 | Direct geocoding with OpenWeather API                         | API key    | OO-2         |        |        |
+| OP-5 | CRUD Favorites                                                |            |              |        |        |
+| OP-6 | Call current weather with OpenWeather API (StatusMenusButton) | API key    | DATA-2, OO-2 | DATA-1 | RULE-1 |
+
 
 > # Rules
 

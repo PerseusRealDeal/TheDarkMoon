@@ -10,11 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Message Label class for extra short message showing.
-- Log viewer (a part of About screen).
-- Favorites.
-- Direct geocoding, city search by name.
-- Approbation report.
+- Current Weather (StatuaMenusButton).
+- Message Label for extra short message showing, end-user notifications.
+- City search by name, direct geocoding.
+- The list of favorite places, favorites.
+- Log viewer as a part of About screen.
+- [APPROBATION](/APPROBATION.md) report.
 
 ### Reorginized
 

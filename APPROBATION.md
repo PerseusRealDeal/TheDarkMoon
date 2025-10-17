@@ -1,10 +1,10 @@
-# Approbation Matrix / The Dark Moon project
+# Approbation Matrix / Snowman v0.4
 
 > Build System: macOS Monterey 12.7.6 / Xcode 14.2
 
 ## macOS
 
-> Approbated capability: current weather (Popover and StatusMenusButton)<br/>
+> Approbated capability: current weather (Popover and StatusMenusButton with OpenWeather)<br/>
 
 | macOS       | Version  | Ok? | Details |
 | ----------- | -------- | --- | ------- |
@@ -56,7 +56,7 @@
 | Sonoma      | 14.7.4   | ??  | -       |
 | Sequoia     | 15.3.1   | ??  | -       |
 
-> Approbated capability: options (window with the app's options)<br/>
+> Approbated capability: options (window with the app's options, also and all other options)<br/>
 
 | macOS       | Version  | Ok? | Details |
 | ----------- | -------- | --- | ------- |
