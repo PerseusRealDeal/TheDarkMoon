@@ -17,12 +17,12 @@ import Cocoa
 
 // MARK: - The Start Line
 
-let logReport = PerseusLogReport()
+let localReport = PerseusLogger.Report()
 
-log.customActionOnMessage = logReport.report(_:_:_:_:_:)
+log.customActionOnMessage = localReport.report(_:_:_:_:_:_:)
 
 log.level = .debug
-log.output = .standard
+log.output = .consoleapp
 
 log.turned = .on
 

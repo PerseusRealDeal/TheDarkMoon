@@ -323,7 +323,9 @@
 			children = (
 				2E1083D12E2B617500400180 /* TheCrownOfStars */,
 				4BBE90662912931A008F734D /* main.swift */,
+				4B0A49F229F631CD00CAE8A0 /* AppGlobals.swift */,
 				4B1483E42912892C0013B76E /* AppDelegate.swift */,
+				4BEE281C2B4AE07700F06A69 /* AppUserDefaults.swift */,
 				4B14840229128A930013B76E /* Configuration */,
 				4B6F98752927E7C600ADB03A /* FirstPartyCode */,
 				4B684C6D2B438A370063E359 /* BusinessData */,
@@ -352,8 +354,6 @@
 				4B1483E82912892F0013B76E /* Assets.xcassets */,
 				4B1483ED2912892F0013B76E /* Info.plist */,
 				4B1483EE2912892F0013B76E /* PerseusMeteo.entitlements */,
-				4B0A49F229F631CD00CAE8A0 /* AppGlobals.swift */,
-				4BEE281C2B4AE07700F06A69 /* AppUserDefaults.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -372,6 +372,7 @@
 		4B1CA6A12B54927E003F3EBF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				2ED8FE1C2E40F36C00C65619 /* MessageLabel.swift */,
 				4B76913B2B5011DD007F09D9 /* PerseusCompassDirection.swift */,
 				4B7690D32B4CA82A007F09D9 /* PerseusTimeFormat.swift */,
 			);
@@ -394,7 +395,6 @@
 				4B3384672B547609004682DF /* JsonDataPrettyPrintedGift.swift */,
 				4B684C702B446A560063E359 /* JsonDataDictionaryGift.swift */,
 				4BEAB2E42B66D1C100AEACF5 /* CurrentSystemLanguageGift.swift */,
-				2ED8FE1C2E40F36C00C65619 /* MessageLabel.swift */,
 			);
 			path = Gifts;
 			sourceTree = "<group>";

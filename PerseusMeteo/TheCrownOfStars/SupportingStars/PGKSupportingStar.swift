@@ -1,6 +1,6 @@
 //
 //  PGKSupportingStar.swift
-//  Version: 1.0.4
+//  Version: 1.1.0
 //
 //  PerseusGeoKit Support Code
 //

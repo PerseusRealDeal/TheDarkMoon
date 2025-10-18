@@ -18,7 +18,7 @@
 
 "Product Name" = "Snowman";
 "Greetings" = "Hello world!";
-"Have a great time." = "Have a great time";
+"Have a great time" = "Have a great time";
 "DeveloperRelease" = "Developer release, to become acquainted";
 
 "Default: N/A" = "N/A";
@@ -55,7 +55,7 @@
 "Current Location should be selected" = "Current Location should be selected";
 "Favorites are limited" = "Favorites are limited";
 "Current neither to add nor to remove!" = "Current neither to add nor to remove!";
-"API key either rejected or empty" = "API key either rejected or empty";
+"API key is either rejected or empty" = "API key is either rejected or empty";
 
 /* Location View */
 
@@ -240,7 +240,7 @@
 /* About Screen – AboutWindowController, AboutViewController */
 
 "Button: The App Source Code" = "The product source code";
-"Button: The Technological Tree" = "There is a tree greening by the ocean...";
+"Button: The Technological Tree" = "The golden tree";
 
 "Label: The App Version" = "Version";
 

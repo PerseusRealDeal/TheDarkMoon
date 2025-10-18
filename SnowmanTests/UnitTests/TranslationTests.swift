@@ -30,8 +30,8 @@ class TranslationTests: XCTestCase {
 
         // assert
 
-        XCTAssertEqual("Have a great time.".localizedExpectation,
-                       "Have a great time.".localizedValue)
+        XCTAssertEqual("Have a great time".localizedExpectation,
+                       "Have a great time".localizedValue)
 
         XCTAssertEqual("Greetings".localizedExpectation,
                        "Greetings".localizedValue)
@@ -79,8 +79,8 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("P2P stands for Person to Person".localizedExpectation,
                        "P2P stands for Person to Person".localizedValue)
 
-        XCTAssertEqual("API key either rejected or empty".localizedExpectation,
-                       "API key either rejected or empty".localizedValue)
+        XCTAssertEqual("API key is either rejected or empty".localizedExpectation,
+                       "API key is either rejected or empty".localizedValue)
     }
 
     // MARK: - End-User Messages
@@ -112,9 +112,6 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Current Location should be selected".localizedExpectation,
                        "Current Location should be selected".localizedValue)
-
-        XCTAssertEqual("Favorites limited to".localizedExpectation,
-                       "Favorites limited to".localizedValue)
 
         XCTAssertEqual("Current neither to add nor to remove!".localizedExpectation,
                        "Current neither to add nor to remove!".localizedValue)

@@ -15,7 +15,7 @@
 
 "Product Name" = "Cнеговик";
 "Greetings" = "Рады приветствовать!";
-"Have a great time." = "Не скучного времяпрепровождения";
+"Have a great time" = "Не скучного времяпрепровождения";
 "DeveloperRelease" = "Выпуск разработчика, для ознакомления";
 
 "Default: N/A" = "нет";
@@ -52,7 +52,7 @@
 "Current Location should be selected" = "Координаты на месте обновляются";
 "Favorites are limited" = "Список до дома!";
 "Current neither to add nor to remove!" = "Ни добавить, ни убавить!";
-"API key either rejected or empty" = "API ключ не загружен или отсутствует";
+"API key is either rejected or empty" = "API ключ не загружен или отсутствует";
 
 /* Location View */
 
@@ -237,7 +237,7 @@
 /* About Screen – AboutWindowController, AboutViewController */
 
 "Button: The App Source Code" = "Исходники изделия";
-"Button: The Technological Tree" = "Лукоморья дуб зелёный";
+"Button: The Technological Tree" = "Золотое дерево";
 
 "Label: The App Version" = "Выпуск";
 

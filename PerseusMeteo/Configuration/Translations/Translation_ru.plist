@@ -6,7 +6,7 @@
 	<string>Cнеговик</string>
 	<key>Greetings</key>
 	<string>Рады приветствовать!</string>
-	<key>Have a great time.</key>
+	<key>Have a great time</key>
 	<string>Не скучного времяпрепровождения</string>
 	<key>DeveloperRelease</key>
 	<string>Выпуск разработчика, для ознакомления</string>
@@ -62,7 +62,7 @@
 	<string>Список до дома!</string>
 	<key>Current neither to add nor to remove!</key>
 	<string>Ни добавить, ни убавить!</string>
-	<key>API key either rejected or empty</key>
+	<key>API key is either rejected or empty</key>
 	<string>API ключ не загружен или отсутствует</string>
 	<key>/* Location View */</key>
 	<string>--</string>
@@ -329,7 +329,7 @@
 	<key>Button: The App Source Code</key>
 	<string>Исходники изделия</string>
 	<key>Button: The Technological Tree</key>
-	<string>Лукоморья дуб зелёный</string>
+	<string>Золотое дерево</string>
 	<key>Label: The App Version</key>
 	<string>Выпуск</string>
 	<key>Label: Star Copyright Notice</key>

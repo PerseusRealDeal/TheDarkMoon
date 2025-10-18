@@ -136,7 +136,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
         // End-user messages
 
-        logReport.delegate = labelGreeting
+        localReport.messageDelegate = labelGreeting
 
         // Tabs event delegate
 

@@ -62,7 +62,14 @@ class AboutViewController: NSViewController {
     @IBOutlet private(set) weak var tabEssentials: NSTabViewItem!
     @IBOutlet private(set) weak var tabLog: NSTabViewItem!
 
+    // MARK: - Outlets Log Viewer
+
     @IBOutlet private(set) weak var textViewLog: NSTextView!
+
+    @IBOutlet weak var buttonLogTurned: NSButton!
+    @IBOutlet weak var buttonLogOutput: NSComboBox!
+    @IBOutlet weak var buttonLogLevel: NSComboBox!
+    @IBOutlet weak var buttonLogMessageFormat: NSComboBox!
 
     // MARK: - Actions
 
@@ -114,6 +121,44 @@ class AboutViewController: NSViewController {
         AppGlobals.openDefaultBrowser(string: linkConsolePerseusLogger)
     }
 
+    // MARK: - Actions Log Viewer
+
+    @IBAction func buttonLogTurnedTapped(_ sender: NSButton) {
+        log.turned = sender.state == .on ? .on : .off
+
+        if sender.state == .off {
+            localReport.clear()
+            textViewLog.string = ""
+        }
+    }
+
+    @IBAction func buttonLogOutputTapped(_ sender: NSComboBox) {
+        guard let item = PerseusLogger.Output(rawValue: sender.stringValue)
+        else {
+            return
+        }
+
+        log.output = item
+    }
+
+    @IBAction func buttonLogLevelTapped(_ sender: NSComboBox) {
+        guard let item = PerseusLogger.Level(rawValue: abs(sender.indexOfSelectedItem - 5))
+        else {
+            return
+        }
+
+        log.level = item
+    }
+
+    @IBAction func buttonLogMessageFormatTapped(_ sender: NSComboBox) {
+        guard let item = PerseusLogger.MessageFormat(rawValue: sender.stringValue)
+        else {
+            return
+        }
+
+        log.format = item
+    }
+
     // MARK: - Initialization
 
     override func awakeFromNib() {
@@ -125,20 +170,22 @@ class AboutViewController: NSViewController {
         super.viewDidLoad()
         log.message("[\(type(of: self))].\(#function)")
 
-        // Setup content options.
+        // Setup content options
 
         self.view.wantsLayer = true
         self.preferredContentSize = NSSize(width: self.view.frame.size.width,
                                            height: self.view.frame.size.height)
-        configure()
 
         // Connect to Log Reporting
-        logReportObservation = logReport.observe(\.lastMessage, options: .new) { _, _ in
+        logReportObservation = localReport.observe(\.lastMessage, options: .new) { _, _ in
             self.refreshLogReportTextView()
         }
 
         textViewLog.backgroundColor = .clear
         textViewLog.textColor = .darkGray
+
+        // All other configurations
+        onViewDidLoad()
     }
 
     override func viewDidAppear() {
@@ -149,7 +196,7 @@ class AboutViewController: NSViewController {
 
     // MARK: - Configuration
 
-    private func configure() {
+    private func onViewDidLoad() {
 
         viewCopyrightText.backgroundColor = .clear
         viewCopyrightText.isEditable = false
@@ -177,6 +224,36 @@ class AboutViewController: NSViewController {
         buttonPerseusTimeFormat.toolTip = linkPerseusTimeFormat
         buttonPerseusLogger.toolTip = linkPerseusLogger
         buttonConsolePerseusLogger.toolTip = linkConsolePerseusLogger
+
+        // Log Viewer configuration
+
+        buttonLogTurned.state = log.turned == .on ? .on : .off
+
+        buttonLogOutput.removeAllItems()
+        buttonLogLevel.removeAllItems()
+        buttonLogMessageFormat.removeAllItems()
+
+        for item in PerseusLogger.Output.allCases {
+            buttonLogOutput.addItem(withObjectValue: "\(item)")
+        }
+
+        for item in PerseusLogger.Level.allCases {
+            buttonLogLevel.addItem(withObjectValue: "\(item)")
+        }
+
+        for item in PerseusLogger.MessageFormat.allCases {
+            buttonLogMessageFormat.addItem(withObjectValue: "\(item)")
+        }
+
+        buttonLogOutput.selectItem(withObjectValue: "\(log.output)")
+        buttonLogLevel.selectItem(withObjectValue: "\(log.level)")
+        buttonLogMessageFormat.selectItem(withObjectValue: "\(log.format)")
+    }
+
+    private func refreshLogReportTextView() {
+        textViewLog.string = localReport.text
+
+        // TODO: - Scroll to bottom
     }
 }
 
@@ -234,11 +311,5 @@ extension AboutViewController {
         \("Label: EN Expectation".localizedValue) \("Label: Author".localizedValue)
         \("Label: RU Expectation".localizedValue) \("Label: Author".localizedValue)
         """
-    }
-
-    private func refreshLogReportTextView() {
-        textViewLog.string = logReport.text
-
-        // TODO: - Scroll to bottom
     }
 }

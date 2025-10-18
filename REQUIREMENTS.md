@@ -11,7 +11,7 @@
     <tr>
         <td>0.4+</td>
         <td>Developer release (candidate).</td>
-        <td>Current weather (StatusMenusButton). Developer release (candidate).</td>
+        <td>Current weather (StatusMenusButton).</td>
     </tr>
     <tr>
         <td>0.4+</td>

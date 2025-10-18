@@ -6,7 +6,7 @@
 	<string>Snowman</string>
 	<key>Greetings</key>
 	<string>Hello world!</string>
-	<key>Have a great time.</key>
+	<key>Have a great time</key>
 	<string>Have a great time</string>
 	<key>DeveloperRelease</key>
 	<string>Developer release, to become acquainted</string>
@@ -62,8 +62,8 @@
 	<string>Favorites are limited</string>
 	<key>Current neither to add nor to remove!</key>
 	<string>Current neither to add nor to remove!</string>
-	<key>API key either rejected or empty</key>
-	<string>API key either rejected or empty</string>
+	<key>API key is either rejected or empty</key>
+	<string>API key is either rejected or empty</string>
 	<key>/* Location View */</key>
 	<string>--</string>
 	<key>Label: Permission</key>
@@ -329,7 +329,7 @@
 	<key>Button: The App Source Code</key>
 	<string>The product source code</string>
 	<key>Button: The Technological Tree</key>
-	<string>There is a tree greening by the ocean...</string>
+	<string>The golden tree</string>
 	<key>Label: The App Version</key>
 	<string>Version</string>
 	<key>Label: Star Copyright Notice</key>

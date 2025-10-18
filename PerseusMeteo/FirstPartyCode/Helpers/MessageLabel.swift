@@ -50,7 +50,7 @@ public typealias MyCustomLabel = UILabel
 public typealias MyCustomLabel = NSTextField
 #endif
 
-public let DEFAULT_MESSAGE_LABEL_TEXT = "Have a great time."
+public let DEFAULT_MESSAGE_LABEL_TEXT = "Have a great time"
 
 public class MessageLabel: MyCustomLabel, PerseusDelegatedMessage {
 

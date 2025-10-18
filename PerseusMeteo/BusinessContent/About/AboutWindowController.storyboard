@@ -312,18 +312,108 @@
                                             <rect key="frame" x="10" y="33" width="494" height="158"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
+                                                <box boxType="custom" borderType="none" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="As2-1f-D2L">
+                                                    <rect key="frame" x="102" y="131" width="290" height="27"/>
+                                                    <view key="contentView" id="V5v-2x-Few">
+                                                        <rect key="frame" x="0.0" y="0.0" width="290" height="27"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zPZ-bR-Qrz">
+                                                                <rect key="frame" x="3" y="5" width="18" height="18"/>
+                                                                <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="gsv-tH-0xV">
+                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="buttonLogTurnedTapped:" target="RC6-y6-TVr" id="LAE-sl-eHD"/>
+                                                                </connections>
+                                                            </button>
+                                                            <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ONP-g0-ND6">
+                                                                <rect key="frame" x="24" y="0.0" width="88" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="85" id="SN0-gU-xaI"/>
+                                                                </constraints>
+                                                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="Nol-T0-o3D">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    <objectValues>
+                                                                        <string>Item 1</string>
+                                                                        <string>Item 2</string>
+                                                                        <string>Item 3</string>
+                                                                    </objectValues>
+                                                                </comboBoxCell>
+                                                                <connections>
+                                                                    <action selector="buttonLogOutputTapped:" target="RC6-y6-TVr" id="b8P-Kx-5VH"/>
+                                                                </connections>
+                                                            </comboBox>
+                                                            <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GFx-E3-naY">
+                                                                <rect key="frame" x="114" y="0.0" width="88" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="85" id="pjX-MO-V9Q"/>
+                                                                </constraints>
+                                                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="juH-Fk-sbn">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    <objectValues>
+                                                                        <string>Item 1</string>
+                                                                        <string>Item 2</string>
+                                                                        <string>Item 3</string>
+                                                                    </objectValues>
+                                                                </comboBoxCell>
+                                                                <connections>
+                                                                    <action selector="buttonLogLevelTapped:" target="RC6-y6-TVr" id="nPk-Xs-Dck"/>
+                                                                </connections>
+                                                            </comboBox>
+                                                            <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xOX-Fd-5uJ">
+                                                                <rect key="frame" x="204" y="0.0" width="88" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="85" id="K7r-sB-ayQ"/>
+                                                                </constraints>
+                                                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="feP-9f-1Nb">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    <objectValues>
+                                                                        <string>Item 1</string>
+                                                                        <string>Item 2</string>
+                                                                        <string>Item 3</string>
+                                                                    </objectValues>
+                                                                </comboBoxCell>
+                                                                <connections>
+                                                                    <action selector="buttonLogMessageFormatTapped:" target="RC6-y6-TVr" id="P7s-uU-bZR"/>
+                                                                </connections>
+                                                            </comboBox>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="GFx-E3-naY" firstAttribute="leading" secondItem="ONP-g0-ND6" secondAttribute="trailing" constant="5" id="Ats-HT-ldC"/>
+                                                            <constraint firstItem="ONP-g0-ND6" firstAttribute="centerY" secondItem="zPZ-bR-Qrz" secondAttribute="centerY" id="NWR-aF-75j"/>
+                                                            <constraint firstItem="zPZ-bR-Qrz" firstAttribute="leading" secondItem="V5v-2x-Few" secondAttribute="leading" constant="5" id="UkK-Ef-X6g"/>
+                                                            <constraint firstItem="xOX-Fd-5uJ" firstAttribute="centerY" secondItem="zPZ-bR-Qrz" secondAttribute="centerY" id="XdX-zV-1Ti"/>
+                                                            <constraint firstItem="GFx-E3-naY" firstAttribute="centerY" secondItem="zPZ-bR-Qrz" secondAttribute="centerY" id="YVa-yf-laH"/>
+                                                            <constraint firstItem="ONP-g0-ND6" firstAttribute="leading" secondItem="zPZ-bR-Qrz" secondAttribute="trailing" constant="5" id="dEy-2p-nFF"/>
+                                                            <constraint firstItem="xOX-Fd-5uJ" firstAttribute="leading" secondItem="GFx-E3-naY" secondAttribute="trailing" constant="5" id="gKt-PQ-zes"/>
+                                                            <constraint firstItem="zPZ-bR-Qrz" firstAttribute="centerY" secondItem="V5v-2x-Few" secondAttribute="centerY" id="q1X-hB-mT4"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="290" id="jHM-3B-drR"/>
+                                                        <constraint firstAttribute="height" constant="27" id="ldr-3q-Jpb"/>
+                                                    </constraints>
+                                                </box>
                                                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" translatesAutoresizingMaskIntoConstraints="NO" id="8AJ-vi-hO7">
-                                                    <rect key="frame" x="0.0" y="0.0" width="494" height="158"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="494" height="131"/>
                                                     <clipView key="contentView" drawsBackground="NO" id="LSB-6q-W1W">
-                                                        <rect key="frame" x="0.0" y="0.0" width="494" height="158"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="494" height="131"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="uDj-aZ-BNE">
-                                                                <rect key="frame" x="0.0" y="0.0" width="494" height="158"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="494" height="131"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                <size key="minSize" width="494" height="158"/>
+                                                                <size key="minSize" width="494" height="131"/>
                                                                 <size key="maxSize" width="494" height="10000000"/>
                                                                 <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                             </textView>
@@ -334,7 +424,7 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="IeG-aW-PHO">
-                                                        <rect key="frame" x="478" y="0.0" width="16" height="158"/>
+                                                        <rect key="frame" x="478" y="0.0" width="16" height="0.0"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -342,7 +432,9 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="8AJ-vi-hO7" secondAttribute="bottom" id="56G-lh-Vqp"/>
                                                 <constraint firstAttribute="trailing" secondItem="8AJ-vi-hO7" secondAttribute="trailing" id="5gV-gT-IzC"/>
-                                                <constraint firstItem="8AJ-vi-hO7" firstAttribute="top" secondItem="jLN-Ax-Iit" secondAttribute="top" id="b5V-bl-c7Y"/>
+                                                <constraint firstItem="As2-1f-D2L" firstAttribute="centerX" secondItem="jLN-Ax-Iit" secondAttribute="centerX" id="RkB-RK-hCB"/>
+                                                <constraint firstItem="As2-1f-D2L" firstAttribute="top" secondItem="jLN-Ax-Iit" secondAttribute="top" id="Svr-iY-hi3"/>
+                                                <constraint firstItem="As2-1f-D2L" firstAttribute="bottom" secondItem="8AJ-vi-hO7" secondAttribute="top" id="Urb-WM-GAQ"/>
                                                 <constraint firstItem="8AJ-vi-hO7" firstAttribute="leading" secondItem="jLN-Ax-Iit" secondAttribute="leading" id="tIc-j7-f6v"/>
                                             </constraints>
                                         </view>
@@ -398,6 +490,10 @@
                         <outlet property="buttonClose" destination="KfQ-oh-9OF" id="ToA-cR-xVJ"/>
                         <outlet property="buttonConsolePerseusLogger" destination="fWC-VV-W1J" id="6bk-vr-Bxo"/>
                         <outlet property="buttonLicense" destination="zAV-1R-ssA" id="b34-HC-zkA"/>
+                        <outlet property="buttonLogLevel" destination="GFx-E3-naY" id="9Sh-Fi-OX9"/>
+                        <outlet property="buttonLogMessageFormat" destination="xOX-Fd-5uJ" id="ZvW-YR-13V"/>
+                        <outlet property="buttonLogOutput" destination="ONP-g0-ND6" id="26b-AL-UZF"/>
+                        <outlet property="buttonLogTurned" destination="zPZ-bR-Qrz" id="mrf-yb-0tV"/>
                         <outlet property="buttonPerseusCompassDirection" destination="Tjb-8m-XI0" id="2dJ-Su-gDc"/>
                         <outlet property="buttonPerseusDarkMode" destination="r29-7J-ObJ" id="ETf-hC-xLl"/>
                         <outlet property="buttonPerseusGeoLocationKit" destination="2Ly-vU-eF6" id="Io7-pv-EvR"/>

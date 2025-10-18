@@ -14,6 +14,7 @@
 //
 
 import Cocoa
+import CoreLocation
 
 // MARK: - App Globals
 
@@ -21,6 +22,12 @@ extension Notification.Name {
     public static let suggestionNotification = Notification.Name("suggestionNotification")
     public static let favoriteNotification = Notification.Name("favoriteNotification")
     public static let bookmarkNotification = Notification.Name("bookmarkNotification")
+}
+
+extension GeoPoint {
+    public init(_ latitude: Double, _ longitude: Double) {
+        self.location = CLLocation(latitude: latitude, longitude: longitude)
+    }
 }
 
 struct AppGlobals {

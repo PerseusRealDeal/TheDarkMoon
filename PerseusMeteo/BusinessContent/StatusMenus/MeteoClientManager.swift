@@ -151,7 +151,7 @@ public class MeteoClientManager {
         let key = keyLoaded.isEmpty ? AppGlobals.appKeyOpenWeather : keyLoaded
 
         guard key.isEmpty == false else {
-            let message = "API key either rejected or empty".localizedValue
+            let message = "API key is either rejected or empty".localizedValue
             log.message("[\(type(of: self))].\(#function) \(message)", .error)
             log.message(message, .notice, .custom, .enduser)
             return
@@ -203,7 +203,7 @@ public class MeteoClientManager {
         let key = keyLoaded.isEmpty ? AppGlobals.appKeyOpenWeather : keyLoaded
 
         guard key.isEmpty == false else {
-            let message = "API key either rejected or empty".localizedValue
+            let message = "API key is either rejected or empty".localizedValue
             log.message("[\(type(of: self))].\(#function) \(message)", .error)
             log.message(message, .notice, .custom, .enduser)
             return
@@ -262,7 +262,7 @@ public class MeteoClientManager {
 
         guard key.isEmpty == false
         else {
-            let message = "API key either rejected or empty".localizedValue
+            let message = "API key is either rejected or empty".localizedValue
             log.message("[\(type(of: self))].\(#function) \(message)", .error)
             log.message(message, .notice, .custom, .enduser)
             return
