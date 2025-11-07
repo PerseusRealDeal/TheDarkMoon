@@ -12,6 +12,8 @@
 //
 //  See LICENSE for details. All rights reserved.
 //
+// swiftlint:disable file_length
+//
 
 import AppKit
 
@@ -91,7 +93,7 @@ public class StatusMenusPresenter {
             button.addSubview(content)
         }
 
-        // Content refresh for StatusMenusItem
+        // Refresh for StatusMenusItem
         refresh()
 
         // Update task for StatusMenusItem
@@ -114,6 +116,10 @@ public class StatusMenusPresenter {
 
     public func callForecast() {
         meteoClientManager?.fetchForecast()
+    }
+
+    public func fetchSuggestions(_ search: String) {
+        meteoClientManager?.fetchSuggestions(search)
     }
 
     public func reloadData() {
@@ -148,17 +154,18 @@ public class StatusMenusPresenter {
 
     @objc private func updateStatusMenusItemTask() {
 
+        reset()
+        updateTimer?.invalidate()
+
         guard AppOptions.statusMenusOption else {
-            updateTimer?.invalidate()
             return
         }
 
-        updateTimer?.invalidate()
         let period = AppOptions.statusMenusPeriodOption.timeInterval
 
         updateTimer = Timer.scheduledTimer(withTimeInterval: period, repeats: true) { _ in
             self.meteoClientManager?.fetchWeather()
-            // log.message("The timer fired!")
+            log.message("The timer fired!")
         }
 
         meteoClientManager?.fetchWeather()
@@ -170,10 +177,7 @@ public class StatusMenusPresenter {
     }
 
     @objc private func localize() {
-        customStatusMenusItemContent?.titleOne = dataSource.temperature
-        customStatusMenusItemContent?.titleTwo = dataSource.windSpeed
-
-        statusItem?.button?.toolTip = "\(dataSource.windDirection) \(dataSource.windGusts)"
+        reset()
     }
 
     private func refresh() {
@@ -184,12 +188,31 @@ public class StatusMenusPresenter {
             customStatusMenusItemContent?.frame = newFrame
         }
 
-        customStatusMenusItemContent?.image = NSImage(named: dataSource.weatherConditions.icon)
-
-        localize()
+        reset()
     }
 
     private func calcWidth() -> CGFloat {
         return 77.0
+    }
+
+    private func reset() {
+
+        guard AppOptions.statusMenusOption else {
+            customStatusMenusItemContent?.image = NSImage(
+                named: AppGlobals.statusMenusButtonIconName
+            )
+            customStatusMenusItemContent?.titleOne = "P2P".localizedValue
+            customStatusMenusItemContent?.titleTwo = "Product Name".localizedValue
+
+            statusItem?.button?.toolTip = "P2P stands for Person to Person".localizedValue
+            return
+        }
+
+        customStatusMenusItemContent?.image = NSImage(named: dataSource.weatherConditions.icon)
+
+        customStatusMenusItemContent?.titleOne = dataSource.temperature
+        customStatusMenusItemContent?.titleTwo = dataSource.windSpeed
+
+        statusItem?.button?.toolTip = "\(dataSource.windDirection) \(dataSource.windGusts)"
     }
 }

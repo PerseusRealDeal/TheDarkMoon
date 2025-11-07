@@ -72,15 +72,19 @@ class SuggestionsViewItem: NSCollectionViewItem {
         guard let location = self.data, let name = location.localName  else { return }
 
         let country = location.country ?? "##"
+        let state = location.state ?? ""
+
         var coordinates = "Geo Couple".localizedValue
 
         if let lat = location.latitude, let lon = location.longitude {
-            coordinates = "\(lat.cut(.four)), \(lon.cut(.four))"
+            coordinates = "\(lat.cut(.two)), \(lon.cut(.two))"
         }
+
+        let coordinatesWithState = state.isEmpty ? coordinates : "\(coordinates) > \(state)"
 
         labelCountry.stringValue = country + ":"
         labelLocationName.stringValue = name
-        labelCoordinates.stringValue = coordinates
+        labelCoordinates.stringValue = coordinatesWithState
     }
 
     private func makeup() {

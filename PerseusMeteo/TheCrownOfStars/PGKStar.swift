@@ -1,6 +1,6 @@
 //
 //  PerseusGeoKitStar.swift
-//  Version: 1.0.4
+//  Version: 1.1.0
 //
 //  Standalone PerseusGeoKit
 //
@@ -11,16 +11,16 @@
 //
 //  Created by Mikhail Zhigulin in 7531.
 //
-//  Copyright © 7531 - 7533 Mikhail A. Zhigulin of Novosibirsk
-//  Copyright © 7533 PerseusRealDeal
+//  Copyright © 7531 - 7534 Mikhail A. Zhigulin of Novosibirsk
+//  Copyright © 7533 - 7534 PerseusRealDeal
 //
 //  All rights reserved.
 //
 //
 //  MIT License
 //
-//  Copyright © 7531 - 7533 Mikhail A. Zhigulin of Novosibirsk
-//  Copyright © 7533 PerseusRealDeal
+//  Copyright © 7531 - 7534 Mikhail A. Zhigulin of Novosibirsk
+//  Copyright © 7533 - 7534 PerseusRealDeal
 //
 //  The year starts from the creation of the world according to a Slavic calendar.
 //  September, the 1st of Slavic year.
@@ -42,9 +42,6 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
-//
-//  Mikhail Zhigulin of Novosibirsk added init(_ latitude: Double, _ longitude: Double)
-//  to GeoPoint class on 03.10.2025.
 //
 // swiftlint:disable file_length
 //
@@ -511,7 +508,7 @@ extension GeoAgent: CLLocationManagerDelegate {
     public func locationManager(_ manager: CLLocationManager,
                                 didChangeAuthorization status: CLAuthorizationStatus) {
 
-        // log.message("[\(type(of: self))].\(#function) [STATUS CHANGED ENTERED]")
+        log.message("[\(type(of: self))].\(#function) [STATUS CHANGED ENTERED]")
 
 #if os(iOS)
         if [.authorizedAlways, .authorizedWhenInUse].contains(status) {
@@ -531,12 +528,12 @@ extension GeoAgent: CLLocationManagerDelegate {
             // HOTFIX: Location Services Status in OpenCore usage case.
 
             let note = "[CASE - OPENCORE]"
-            log.message("[\(type(of: self))].\(#function) \(note) \(details)", .info)
+            log.message("[\(type(of: self))].\(#function) \(note) \(details)", .notice)
 
             return
         }
 
-        log.message("[\(type(of: self))].\(#function) \(details)")
+        log.message("[\(type(of: self))].\(#function) \(details)", .notice)
 
         notificationCenter.post(name: GeoEvent.locationStatus.name, object: status)
     }
@@ -712,10 +709,6 @@ public struct GeoPoint: CustomStringConvertible, Equatable {
 
     public init(_ location: CLLocation) {
         self.location = location
-    }
-
-    public init(_ latitude: Double, _ longitude: Double) {
-        self.location = CLLocation(latitude: latitude, longitude: longitude)
     }
 
     // MARK: - Equatable

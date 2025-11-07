@@ -34,8 +34,8 @@ class LocationView: NSView, NSTextFieldDelegate {
     private let useSuggestionsSample = false
     private var typeDeepCounter: Int = 0 // Suggestion request delay shift (offset)
 
-    private var geocodingDirectOpenWeatherMap = OpenWeatherClient()
-    private var isReadyToGetSuggestions = false
+    // private var geocodingDirectOpenWeatherMap = OpenWeatherClient()
+    // private var isReadyToGetSuggestions = false
 
     private var locationNameLocalized: String {
         switch locationCard {
@@ -58,23 +58,24 @@ class LocationView: NSView, NSTextFieldDelegate {
     }
 
     private var geoCoordinatesLocalized: String {
-        var locationPoint = "Geo Couple".localizedValue
+
+        var point: GeoPoint?
+
         switch locationCard {
         case .suggestion:
-            if let point = AppGlobals.suggestion?.point {
-                locationPoint = "\(point.latitude.cut(.four)), \(point.longitude.cut(.four))"
-            }
+            point = AppGlobals.suggestion?.point
         case .favorite:
-            if let point = AppOptions.favoriteLocationsOption.first(
-                where: { $0.isOnDisplay })?.point {
-                locationPoint = "\(point.latitude.cut(.four)), \(point.longitude.cut(.four))"
-            }
+            point = AppOptions.favoriteLocationsOption.first(
+                where: { $0.isOnDisplay })?.point
         case .current:
-            if let point = AppGlobals.currentLocation {
-                locationPoint = "\(point.latitude.cut(.four)), \(point.longitude.cut(.four))"
-            }
+            point = AppGlobals.currentLocation
         }
-        return locationPoint
+
+        if let point = point {
+            return "\(point.latitude.cut(.two)), \(point.longitude.cut(.two))"
+        }
+
+        return "Geo Couple".localizedValue
     }
 
     private var permissionStatusLocalized: String {
@@ -93,8 +94,8 @@ class LocationView: NSView, NSTextFieldDelegate {
     @IBOutlet private(set) weak var textFieldLocationNameSearch: NSTextField!
 
     @IBOutlet private(set) weak var viewSuggestions: SuggestionsView!
-    @IBOutlet private(set) weak var collectionSuggestions: NSCollectionView!
-    @IBOutlet private(set) weak var indicatorCircular: NSProgressIndicator!
+    @IBOutlet public weak var collectionSuggestions: NSCollectionView!
+    @IBOutlet public weak var indicatorCircular: NSProgressIndicator!
     @IBOutlet public weak var constraintViewSuggestionsHeight: NSLayoutConstraint!
 
     @IBOutlet private(set) weak var labelLocationName: NSTextField!
@@ -114,7 +115,7 @@ class LocationView: NSView, NSTextFieldDelegate {
     @IBAction func updateCurrentLocationButtonTapped(_ sender: NSButton) {
         guard locationCard == .current else {
             let text = "Current Location should be selected".localizedValue
-            log.message(text, .notice, .custom)
+            log.message(text, .notice, .custom, .enduser)
             return
         }
 
@@ -130,16 +131,18 @@ class LocationView: NSView, NSTextFieldDelegate {
         log.message("[\(type(of: self))].\(#function)", .notice)
 
         if textFieldLocationNameSearch.stringValue.isEmpty {
-            log.message("Location Name should be typed".localizedValue, .notice, .custom)
+            let text = "Location Name should be typed".localizedValue
+            log.message(text, .notice, .custom, .enduser)
             return
         }
 
         if AppOptions.autoSuggestionsRequestOption {
-            log.message("Auto requesting suggestions is on!".localizedValue, .notice, .custom)
+            let text = "Auto requesting suggestions is on!".localizedValue
+            log.message(text, .notice, .custom, .enduser)
             return
         }
 
-        getOpenWeatherMapSuggestions()
+        statusMenusPresenter.fetchSuggestions(textFieldLocationNameSearch.stringValue)
     }
 
     @IBAction func bookmarkButtonTapped(_ sender: NSButton) {
@@ -190,8 +193,6 @@ class LocationView: NSView, NSTextFieldDelegate {
         AppOptions.autoSuggestionsRequestOption == true ? .on : .off
 
         localize()
-
-        self.isReadyToGetSuggestions = true
     }
 
     required public init?(coder: NSCoder) {
@@ -250,36 +251,6 @@ class LocationView: NSView, NSTextFieldDelegate {
         // Connect to Geo Coordinator
 
         GeoCoordinator.register(stakeholder: self, selector: #selector(reloadData))
-
-        // Direct Geo Coding with OpenWeatherMap
-
-        geocodingDirectOpenWeatherMap.onDataGiven = { response in
-
-            DispatchQueue.main.async {
-
-                // stopAnimationIndicator
-                self.indicatorCircular.isHidden = true
-                self.indicatorCircular.stopAnimation(nil)
-
-                var suggestions: Data?
-
-                switch response {
-                case .success(let data):
-                    suggestions = data
-
-                case .failure(let error):
-                    switch error {
-                    case .failedRequest(let message):
-                        log.message(message, .error)
-
-                    default:
-                        log.message("[\(type(of: self))].\(#function) \(error)", .error)
-                    }
-                }
-
-                self.suggestionsOpenWeatherMapHandler(suggestions)
-            }
-        }
     }
 
     // MARK: - Contract
@@ -388,104 +359,14 @@ class LocationView: NSView, NSTextFieldDelegate {
 
             guard
                 self.typeDeepCounter == 0,
-                self.textFieldLocationNameSearch.stringValue.isEmpty != true,
+                self.textFieldLocationNameSearch.stringValue.isEmpty == false,
                 AppOptions.autoSuggestionsRequestOption == true
             else {
                 log.message("[\(type(of: self))].\(#function) guard : \(self.typeDeepCounter)")
                 return
             }
 
-            if self.useSuggestionsSample {
-
-                // stop indicator
-                self.indicatorCircular.isHidden = false
-                self.indicatorCircular.startAnimation(nil)
-
-                self.suggestionsOpenWeatherMapHandler(Data())
-            } else {
-                self.getOpenWeatherMapSuggestions()
-            }
+            statusMenusPresenter.fetchSuggestions(self.textFieldLocationNameSearch.stringValue)
         })
-    }
-}
-
-extension LocationView {
-
-    private func getOpenWeatherMapSuggestions() {
-        guard
-            self.isReadyToGetSuggestions,
-            textFieldLocationNameSearch.stringValue.isEmpty != true
-        else { return }
-
-        self.isReadyToGetSuggestions = false
-
-        let name = self.textFieldLocationNameSearch.stringValue
-        let limit = 5
-        let id = AppGlobals.appKeyOpenWeather
-
-        let urlString = prepareDirectURLString(cityName: name, limit: limit, appid: id)
-        let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-
-        var preparedURL: URL?
-
-        if let url = URL(string: urlString) {
-            preparedURL = url
-        } else if let encodedString = encoded, let urlEncoded = URL(string: encodedString) {
-            preparedURL = urlEncoded
-        }
-
-        guard let requestURL = preparedURL else {
-
-            // WRONG: URL cann't be created at all
-            log.message("[\(type(of: self))].\(#function) no URL prepared", .error)
-
-            // stopAnimationIndicator
-            self.indicatorCircular.isHidden = true
-            self.indicatorCircular.stopAnimation(nil)
-
-            self.isReadyToGetSuggestions = true
-
-            return
-        }
-
-        // startAnimationIndicator
-        self.indicatorCircular.isHidden = false
-        self.indicatorCircular.startAnimation(nil)
-
-        // request
-        geocodingDirectOpenWeatherMap.requestData(url: requestURL)
-    }
-
-    private func suggestionsOpenWeatherMapHandler(_ data: Data?) {
-
-        DispatchQueue.main.async {
-
-            guard let data = data else { return }
-
-            var suggestions: [Location]?
-
-            if self.useSuggestionsSample {
-                suggestions = prepareSuggestionsSample()
-            } else {
-                suggestions = prepareSuggestions(json: data)
-            }
-
-            guard let suggestions = suggestions else { return }
-
-            self.viewSuggestions.suggestionsArray = suggestions
-
-            self.constraintViewSuggestionsHeight.constant =
-            self.viewSuggestions.heightCalculated
-
-            self.collectionSuggestions.reloadData()
-
-            NSAnimationContext.runAnimationGroup({ context in
-                context.duration = 0.5
-
-                self.viewSuggestions.animator().alphaValue = 1.0
-            }, completionHandler: nil)
-
-            self.isReadyToGetSuggestions = true
-        }
     }
 }

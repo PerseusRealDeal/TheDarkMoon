@@ -6,11 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Version in format MAJOR.MINOR where MINOR includes PATCH that means any patch increments MINOR.
 - Dates in this file meets Gregorian calendar. Date in format YYYY-MM-DD.
 
-## [0.4] - [2025-NN-NN], The Dark Moon
+## [0.4] - [2025-11-NN], The Dark Moon
 
 ### Added
 
-- Message Label class for extra short message showing.
+- Current Weather (StatuaMenusButton).
+- Message Label for extra short message showing, end-user notifications.
+- City search by name, direct geocoding.
+- The list of favorite places, favorites.
+- Log viewer as a part of About screen.
+- [APPROBATION](/APPROBATION.md) report.
 
 ### Reorginized
 

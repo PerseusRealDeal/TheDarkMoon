@@ -1,12 +1,5 @@
 # Snowman — Weather Status Menus app — Xcode 14.2+
 
-> Home-made weather macOS app that runs in the Status Menus (top-right).
-
-- To request current weather.
-- To request `5 Day / 3 Hour` forecast.
-
-> [`OpenWeather Agent`](https://github.com/perseusrealdeal/OpenWeatherAgent) in use to fetch weather data. [`Individual API key`](https://openweathermap.org/appid) is required.
-
 [![Actions Status](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/main.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions)
 [![Style](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml)
 [![Version](https://img.shields.io/badge/Version-0.4-green.svg)](/CHANGELOG.md)
@@ -16,13 +9,22 @@
 [![SDK](https://img.shields.io/badge/SDK-UIKit%20-blueviolet.svg)](https://developer.apple.com/documentation/uikit)
 [![License](http://img.shields.io/:License-Clear_BSD-blue.svg)](/LICENSE)
 
+> Home-made weather macOS app that runs in the Status Menus (top-right).
+
+> `1:` Request current weather.</br>
+> `2:` Request `5 Day / 3 Hour` forecast.
+
+> [`OpenWeather Agent`](https://github.com/perseusrealdeal/OpenWeatherAgent) in use to fetch weather data. [`Individual API key`](https://openweathermap.org/appid) is required.
+
+> For details: [`Approbation and A3 Environment`](/APPROBATION.md) / [`CHANGELOG`](/CHANGELOG.md)
+
 ## Dependencies
 
 > The Crown of Stars:
 
-[![ConsolePerseusLogger](http://img.shields.io/:ConsolePerseusLogger-1.5.1-green.svg)](https://github.com/perseusrealdeal/ConsolePerseusLogger.git)
-[![PerseusDarkMode](http://img.shields.io/:PerseusDarkMode-2.0.4-green.svg)](https://github.com/perseusrealdeal/PerseusDarkMode.git)
-[![PerseusGeoKit](http://img.shields.io/:PerseusGeoKit-1.0.4-green.svg)](https://github.com/perseusrealdeal/PerseusGeoKit.git)
+[![ConsolePerseusLogger](http://img.shields.io/:ConsolePerseusLogger-1.6.0-green.svg)](https://github.com/perseusrealdeal/ConsolePerseusLogger.git)
+[![PerseusDarkMode](http://img.shields.io/:PerseusDarkMode-2.1.0-green.svg)](https://github.com/perseusrealdeal/PerseusDarkMode.git)
+[![PerseusGeoKit](http://img.shields.io/:PerseusGeoKit-1.1.0-green.svg)](https://github.com/perseusrealdeal/PerseusGeoKit.git)
 [![OpenWeatherAgent](http://img.shields.io/:OpenWeatherAgent-0.3.5-green.svg)](https://github.com/perseusrealdeal/OpenWeatherAgent)
 
 # In brief > Idea to use, the Why
@@ -46,11 +48,6 @@
   </tr>
 </table>
 
-## Approbation Matrix
-
-<!-- > [`A3 Environment and Approbation`](/APPROBATION.md). [CHANGELOG](/CHANGELOG.md) for details. -->
-> [CHANGELOG](/CHANGELOG.md) for details.
-
 ## Build system requirements
 
 - [macOS Monterey 12.7.6+](https://apps.apple.com/by/app/macos-monterey/id1576738294) / [Xcode 14.2+](https://developer.apple.com/services-account/download?path=/Developer_Tools/Xcode_14.2/Xcode_14.2.xip)
@@ -69,10 +66,10 @@
 
 | Type     | Name                                                                                                                                                                  | License |
 | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Package  | [ConsolePerseusLogger](https://github.com/perseusrealdeal/ConsolePerseusLogger) / [1.5.1](https://github.com/perseusrealdeal/ConsolePerseusLogger/releases/tag/1.5.1) | MIT     |
+| Package  | [ConsolePerseusLogger](https://github.com/perseusrealdeal/ConsolePerseusLogger) / [1.6.0](https://github.com/perseusrealdeal/ConsolePerseusLogger/releases/tag/1.6.0) | MIT     |
 | Class    | [PerseusLogger](https://gist.github.com/perseusrealdeal/df456a9825fcface44eca738056eb6d5)                                                                             | MIT     |
-| Package  | [PerseusDarkMode](https://github.com/perseusrealdeal/PerseusDarkMode) / [2.0.4](https://github.com/perseusrealdeal/PerseusDarkMode/releases/tag/2.0.3)                | MIT     |
-| Package  | [PerseusGeoKit](https://github.com/perseusrealdeal/PerseusGeoKit) / [1.0.4](https://github.com/perseusrealdeal/PerseusGeoKit/releases/tag/1.0.3)                      | MIT     |
+| Package  | [PerseusDarkMode](https://github.com/perseusrealdeal/PerseusDarkMode) / [2.1.0](https://github.com/perseusrealdeal/PerseusDarkMode/releases/tag/2.1.0)                | MIT     |
+| Package  | [PerseusGeoKit](https://github.com/perseusrealdeal/PerseusGeoKit) / [1.1.0](https://github.com/perseusrealdeal/PerseusGeoKit/releases/tag/1.1.0)                      | MIT     |
 | Class    | [PerseusCompassDirection](https://gist.github.com/perseusrealdeal/3b053b2390d704f561ec52c6477b5cf2)                                                                   | MIT     |
 | Variable | [PerseusTimeFormat](https://gist.github.com/perseusrealdeal/7aa89d78d9b1c220cc06682be8908a97)                                                                         | MIT     |
 | Package  | [OpenWeatherAgent](https://github.com/perseusrealdeal/OpenWeatherAgent) / [0.3.5](https://github.com/perseusrealdeal/OpenWeatherAgent/releases/tag/0.3.5)             | MIT     |
@@ -114,8 +111,8 @@
 
 # The Clear BSD License
 
-Copyright © 7531 - 7533 Mikhail A. Zhigulin of Novosibirsk<br/>
-Copyright © 7531 - 7533 PerseusRealDeal
+Copyright © 7531 - 7534 Mikhail A. Zhigulin of Novosibirsk<br/>
+Copyright © 7531 - 7534 PerseusRealDeal
 
 - The year starts from the creation of the world according to a Slavic calendar.
 - September, the 1st of Slavic year. It means that "Sep 01, 2024" is the beginning of 7533.
@@ -163,7 +160,7 @@ Copyright © 7531 - 7533 PerseusRealDeal
 </table>
 
 > [!IMPORTANT]
-> The `OpenWeather` Icons taken from `https://openweathermap.org` to represent weather condition that also available online by OpenWeatherMap API request.
+> The `OpenWeather` icons taken from `https://openweathermap.org` to represent weather condition that also available online by OpenWeatherMap API request.
 
 - Artwork tool: [GIMP](https://www.gimp.org/) / [2.10.36](https://download.gimp.org/gimp/v2.10/osx/) for macOS 10.12 Sierra or newer
 - Language support: [Reverso](https://www.reverso.net/) 

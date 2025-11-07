@@ -212,15 +212,15 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     // MARK: - Initialization
-/*
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)")
     }
-*/
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)")
 
         // Setup content options.
 
@@ -241,7 +241,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
 
     override func viewDidAppear() {
         super.viewDidAppear()
-        // log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)")
 
         updateControlDarkMode()
         updateControlLanguage()
@@ -258,7 +258,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
 
     override func viewWillDisappear() {
         super.viewWillDisappear()
-        // log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)")
 
         lockOpenWeatherKeyHole()
     }
@@ -266,6 +266,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     // MARK: - Events
 
     func controlTextDidChange(_ obj: Notification) {
+
         log.message("[\(type(of: self))].\(#function)")
 
         guard let tf = obj.object as? NSTextField else { return }
@@ -411,10 +412,12 @@ extension OptionsViewController {
     }
 
     private func udpateCheckBoxStatusMenus() {
+        log.message("[\(type(of: self))].\(#function) \(AppOptions.statusMenusOption)")
         checkBoxStatusMenus.state = AppOptions.statusMenusOption ? .on : .off
     }
 
     private func udpateComboBoxStatusMenusUpdatePeriod() {
+        log.message("[\(type(of: self))].\(#function)")
         comboBoxStatusMenusUpdatePeriod.removeAllItems()
 
         for item in StatusMenusUpdatePeriodOption.allCases {
@@ -431,7 +434,7 @@ extension OptionsViewController {
 extension OptionsViewController {
 
     public func localize() {
-        // log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)")
 
         self.view.window?.title = self.windowTitleLocalized
 

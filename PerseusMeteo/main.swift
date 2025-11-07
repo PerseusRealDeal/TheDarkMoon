@@ -17,8 +17,18 @@ import Cocoa
 
 // MARK: - The Start Line
 
-log.level = .info
-log.message("> The app's start point...", .info)
+let localReport = PerseusLogger.Report()
+
+log.customActionOnMessage = localReport.report(_:_:_:_:_:_:)
+
+log.level = .debug
+log.output = .consoleapp
+
+log.turned = .on
+
+log.message("> The start line...", .info)
+
+// AppOptions.removeAll()
 
 let globals = AppGlobals()
 
@@ -40,11 +50,12 @@ let statusMenusPresenter = StatusMenusPresenter()
 
  */
 
-log.message("> The app's beginning...", .info)
-
 app.setActivationPolicy(.accessory)
 
 app.delegate = appDelegate as? NSApplicationDelegate
 
 app.activate(ignoringOtherApps: true)
+
+log.message("> The app is ready to run...", .info)
+
 app.run()
