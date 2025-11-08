@@ -64,7 +64,8 @@ class SuggestionsViewItem: NSCollectionViewItem {
         view.wantsLayer = true
 
         labelCountry.font = NSFont.systemFont(ofSize: 10)
-        labelLocationName.font = NSFont.boldSystemFont(ofSize: 10)
+        // labelLocationName.font = NSFont.boldSystemFont(ofSize: 10)
+        labelLocationName.font = NSFont.systemFont(ofSize: 10)
         labelCoordinates.font = NSFont.systemFont(ofSize: 9)
     }
 
@@ -80,7 +81,7 @@ class SuggestionsViewItem: NSCollectionViewItem {
             coordinates = "\(lat.cut(.two)), \(lon.cut(.two))"
         }
 
-        let coordinatesWithState = state.isEmpty ? coordinates : "\(coordinates) > \(state)"
+        let coordinatesWithState = state.isEmpty ? coordinates : "\(coordinates) \(state)"
 
         labelCountry.stringValue = country + ":"
         labelLocationName.stringValue = name
@@ -94,7 +95,7 @@ class SuggestionsViewItem: NSCollectionViewItem {
         labelLocationName.textColor = .labelPerseus
         labelCountry.textColor = .labelPerseus
 
-        view.layer?.backgroundColor = Color.perseusGray3.cgColor
+        view.layer?.backgroundColor = Color.perseusBlue.cgColor
     }
 
     public override func mouseDown(with event: NSEvent) {

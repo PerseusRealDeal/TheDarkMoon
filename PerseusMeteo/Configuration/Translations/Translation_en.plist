@@ -13,7 +13,7 @@
 	<key>Location Usage Description</key>
 	<string>Geo information—latitude and longitude—is required to fetch meteo facts.</string>
 	<key>Copyright</key>
-	<string>Copyright © 2023 - 2024 Mikhail Zhigulin of Novosibirsk. All rights reserved.</string>
+	<string>Copyright © 2023 - 2025 Mikhail Zhigulin of Novosibirsk. All rights reserved.</string>
 	<key>Default: N/A</key>
 	<string>N/A</string>
 	<key>P2P</key>
@@ -246,8 +246,12 @@
 	<string>per 3 hours</string>
 	<key>StatusMenus: per hour</key>
 	<string>per hour</string>
+	<key>StatusMenus: none</key>
+	<string>--</string>
 	<key>Button: Close</key>
 	<string>Close</string>
+	<key>Button: Reset All Settings</key>
+	<string>Reset All Settings</string>
 	<key>/* Compass Directions */</key>
 	<string>--</string>
 	<key>Compass: N</key>
@@ -333,7 +337,7 @@
 	<key>Label: The App Version</key>
 	<string>Version</string>
 	<key>Label: Star Copyright Notice</key>
-	<string>Copyright © 7531 - 7532 Mikhail Zhigulin of Novosibirsk</string>
+	<string>Copyright © 7531 - 7534 Mikhail Zhigulin of Novosibirsk</string>
 	<key>Label: Copyright Details</key>
 	<string>The year starts from the creation of the world in the Star temple according to a Slavic calendar. September, the 1st of Slavic year</string>
 	<key>Label: Credits</key>

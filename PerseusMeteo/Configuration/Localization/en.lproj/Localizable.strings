@@ -190,8 +190,10 @@
 "StatusMenus: per 12 hours" = "per 12 hours";
 "StatusMenus: per 3 hours" = "per 3 hours";
 "StatusMenus: per hour" = "per hour";
+"StatusMenus: none" = "--";
 
 "Button: Close" = "Close";
+"Button: Reset All Settings" = "Reset All Settings";
 
 /* Compass Directions */
 
@@ -244,7 +246,7 @@
 
 "Label: The App Version" = "Version";
 
-"Label: Star Copyright Notice" = "Copyright © 7531 - 7532 Mikhail Zhigulin of Novosibirsk";
+"Label: Star Copyright Notice" = "Copyright © 7531 - 7534 Mikhail Zhigulin of Novosibirsk";
 
 "Label: Copyright Details" = "The year starts from the creation of the world in the Star temple according to a Slavic calendar. September, the 1st of Slavic year";
 

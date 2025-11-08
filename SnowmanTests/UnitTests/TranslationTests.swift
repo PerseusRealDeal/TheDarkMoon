@@ -367,6 +367,9 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Button: Close".localizedExpectation,
                        "Button: Close".localizedValue)
+
+        XCTAssertEqual("Button: Reset All Settings".localizedExpectation,
+                       "Button: Reset All Settings".localizedValue)
     }
 
     func test_translation_of_OptionsScreen_SpecialOptions() {
@@ -405,6 +408,9 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("StatusMenus: per hour".localizedExpectation,
                        "StatusMenus: per hour".localizedValue)
+
+        XCTAssertEqual("StatusMenus: none".localizedExpectation,
+                       "StatusMenus: none".localizedValue)
     }
 
     // MARK: - Compass Directions

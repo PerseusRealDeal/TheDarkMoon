@@ -9,9 +9,8 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ForecastDaysViewItem" customModule="Snowman" customModuleProvider="target">
             <connections>
                 <outlet property="date" destination="s8f-Ug-kfR" id="hXB-iJ-ash"/>
-                <outlet property="dayTemperature" destination="2sa-qX-qWf" id="REA-WS-QIT"/>
                 <outlet property="labelWeatherConditionValue" destination="zax-ey-164" id="bJu-al-k7c"/>
-                <outlet property="nightTemperature" destination="gvT-0f-XvS" id="7He-9E-erF"/>
+                <outlet property="temperature" destination="gvT-0f-XvS" id="sBJ-52-QEE"/>
                 <outlet property="view" destination="c22-O7-iKe" id="GOK-h3-0W7"/>
                 <outlet property="viewWeatherConditionIcon" destination="Nkt-hG-g5x" id="F9Y-vg-FGR"/>
             </connections>
@@ -47,16 +46,8 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gvT-0f-XvS">
-                    <rect key="frame" x="-2" y="2" width="62" height="15"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="263.72 K" id="auq-ql-BvF">
-                        <font key="font" metaFont="cellTitle"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2sa-qX-qWf">
-                    <rect key="frame" x="56" y="2" width="61" height="15"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="263.72 K" id="b3n-AS-hpq">
+                    <rect key="frame" x="5" y="3" width="106" height="15"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="263.72K 263.72K" id="auq-ql-BvF">
                         <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -65,17 +56,13 @@
             </subviews>
             <constraints>
                 <constraint firstItem="zax-ey-164" firstAttribute="top" secondItem="s8f-Ug-kfR" secondAttribute="bottom" id="3N6-hU-qJ7"/>
-                <constraint firstItem="gvT-0f-XvS" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="JAb-Fh-Hm7"/>
-                <constraint firstItem="2sa-qX-qWf" firstAttribute="centerY" secondItem="gvT-0f-XvS" secondAttribute="centerY" id="PD8-Sx-dfh"/>
-                <constraint firstItem="2sa-qX-qWf" firstAttribute="width" secondItem="c22-O7-iKe" secondAttribute="width" multiplier="0.5" id="Pvi-9a-pVB"/>
                 <constraint firstItem="s8f-Ug-kfR" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="2" id="QPt-vc-ejF"/>
-                <constraint firstAttribute="trailing" secondItem="2sa-qX-qWf" secondAttribute="trailing" id="QSv-eM-XCv"/>
-                <constraint firstItem="gvT-0f-XvS" firstAttribute="bottom" secondItem="c22-O7-iKe" secondAttribute="bottom" constant="-2" id="WUC-1f-m4w"/>
+                <constraint firstItem="gvT-0f-XvS" firstAttribute="bottom" secondItem="c22-O7-iKe" secondAttribute="bottom" constant="-3" id="WUC-1f-m4w"/>
                 <constraint firstItem="s8f-Ug-kfR" firstAttribute="leading" secondItem="Nkt-hG-g5x" secondAttribute="trailing" constant="4" id="XRr-MJ-DyX"/>
                 <constraint firstItem="Nkt-hG-g5x" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="4" id="jPU-Zv-RYW"/>
                 <constraint firstItem="Nkt-hG-g5x" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="4" id="kZ0-UW-fWH"/>
                 <constraint firstItem="zax-ey-164" firstAttribute="leading" secondItem="s8f-Ug-kfR" secondAttribute="leading" id="lD8-jm-MNT"/>
-                <constraint firstItem="gvT-0f-XvS" firstAttribute="width" secondItem="c22-O7-iKe" secondAttribute="width" multiplier="0.5" id="we8-iD-tfK"/>
+                <constraint firstItem="gvT-0f-XvS" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="tTH-7T-AbW"/>
             </constraints>
             <point key="canvasLocation" x="138" y="153"/>
         </customView>

@@ -13,7 +13,7 @@
 	<key>Location Usage Description</key>
 	<string>Гео сведения (широта и долгота) обязательны для получения метео данных.</string>
 	<key>Copyright</key>
-	<string>Охраняется авторским правом © 2023 - 2024 Михаил A. Жигулин из Новосибирска.</string>
+	<string>Охраняется авторским правом © 2023 - 2025 Михаил A. Жигулин из Новосибирска.</string>
 	<key>Default: N/A</key>
 	<string>нет</string>
 	<key>P2P</key>
@@ -246,8 +246,12 @@
 	<string>3 часа</string>
 	<key>StatusMenus: per hour</key>
 	<string>каждый час</string>
+	<key>StatusMenus: none</key>
+	<string>--</string>
 	<key>Button: Close</key>
 	<string>Исчезнуть</string>
+	<key>Button: Reset All Settings</key>
+	<string>Всё по умолчанию</string>
 	<key>/* Compass Directions */</key>
 	<string>--</string>
 	<key>Compass: N</key>
@@ -333,7 +337,7 @@
 	<key>Label: The App Version</key>
 	<string>Выпуск</string>
 	<key>Label: Star Copyright Notice</key>
-	<string>Охраняется авторским правом © 7531 - 7532 Михаил A. Жигулин из Новосибирска.</string>
+	<string>Охраняется авторским правом © 7531 - 7534 Михаил A. Жигулин из Новосибирска.</string>
 	<key>Label: Copyright Details</key>
 	<string>Летоисчесление ведется от Сотворения Мира в Звездном Храме в соответствии со славянским календарем в котором первый месяц сентябрь.</string>
 	<key>Label: Credits</key>

@@ -53,7 +53,7 @@ public let STATUSMENUS_OPTION_KEY = "STATUSMENUS_OPTION_KEY"
 public let STATUSMENUS_OPTION_DEFAULT = false
 
 public let STATUSMENUS_PERIOD_OPTION_KEY = "STATUSMENUS_PERIOD_OPTION_KEY"
-public let STATUSMENUS_PERIOD_OPTION_DEFAULT = StatusMenusUpdatePeriodOption.per12Hours
+public let STATUSMENUS_PERIOD_OPTION_DEFAULT = StatusMenusUpdatePeriodOption.none
 
 // MARK: - User Defaults
 

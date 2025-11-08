@@ -249,7 +249,7 @@ public func getForecastHourTemp(from source: [String: Any]) -> String {
                                            asIs: TemperatureOption.imperial,
                                            toBe: AppOptions.temperatureOption)
 
-    return "\(represented) \(AppOptions.temperatureOption.unit)"
+    return "\(represented)\(AppOptions.temperatureOption.unit)"
 }
 
 public func getForecastHourTempMin(from source: [String: Any]) -> String {
@@ -276,7 +276,7 @@ public func getForecastHourTempMin(from source: [String: Any]) -> String {
                                            asIs: TemperatureOption.imperial,
                                            toBe: AppOptions.temperatureOption)
 
-    return "\(represented) \(AppOptions.temperatureOption.unit)"
+    return "\(represented)\(AppOptions.temperatureOption.unit)"
 }
 
 public func getForecastHourTempMax(from source: [String: Any]) -> String {
@@ -303,7 +303,7 @@ public func getForecastHourTempMax(from source: [String: Any]) -> String {
                                            asIs: TemperatureOption.imperial,
                                            toBe: AppOptions.temperatureOption)
 
-    return "\(represented) \(AppOptions.temperatureOption.unit)"
+    return "\(represented)\(AppOptions.temperatureOption.unit)"
 }
 
 public func getForecastHourTempKinda(from source: [String: Any]) -> String {
@@ -330,7 +330,7 @@ public func getForecastHourTempKinda(from source: [String: Any]) -> String {
                                            asIs: TemperatureOption.imperial,
                                            toBe: AppOptions.temperatureOption)
 
-    return "\(represented) \(AppOptions.temperatureOption.unit)"
+    return "\(represented)\(AppOptions.temperatureOption.unit)"
 }
 
 public func getForecastHourVisibility(from source: [String: Any]) -> String {
@@ -406,7 +406,7 @@ public func getForecastHourWindDirection(from source: [String: Any]) -> String {
         return MeteoFactsDefaults.windDirection
     }
 
-    return "\(Int(point.degree))°: \(point.common.abbreviation.localizedValue)"
+    return "\(Int(point.degree))° : \(point.common.abbreviation.localizedValue)"
 }
 
 public func getForecastHourWindGusts(from source: [String: Any]) -> String {
@@ -481,7 +481,7 @@ public func getForecastHourHumidity(from source: [String: Any]) -> String {
 
     guard value != -1 else { return MeteoFactsDefaults.humidity }
 
-    return "\(value) %"
+    return "\(value)%"
 }
 
 public func getForecastHourCloudiness(from source: [String: Any]) -> String {
@@ -503,7 +503,7 @@ public func getForecastHourCloudiness(from source: [String: Any]) -> String {
 
     guard value != -1 else { return MeteoFactsDefaults.cloudiness }
 
-    return "\(value) %"
+    return "\(value)%"
 }
 
 /*
@@ -609,7 +609,7 @@ public func getWeatherConditions(from source: [String: Any]) -> WeatherCondition
                 let icon = wFirst["icon"] as? String,
                 let code = WeatherCode(rawValue: id) {
 
-                value = WeatherConditions(code: code, name: "\(icon)@4x")
+                value = WeatherConditions(code: code, name: icon)
 
             } else {
                 log.message("\(#function) [id / icon] wrong.", .error)

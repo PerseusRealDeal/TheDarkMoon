@@ -253,6 +253,7 @@ public enum StatusMenusUpdatePeriodOption: Int, CaseIterable, CustomStringConver
     case per12Hours = 0
     case per3Hours  = 1
     case perHour    = 2
+    case none       = 3
 
     public var description: String {
         switch self {
@@ -262,6 +263,8 @@ public enum StatusMenusUpdatePeriodOption: Int, CaseIterable, CustomStringConver
             return "StatusMenus: per 3 hours"
         case .perHour:
             return "StatusMenus: per hour"
+        case .none:
+            return "StatusMenus: none"
         }
     }
 
@@ -273,6 +276,8 @@ public enum StatusMenusUpdatePeriodOption: Int, CaseIterable, CustomStringConver
             return 10800.0
         case .perHour:
             return 3600.0
+        case .none:
+            return 0.0
         }
     }
 }

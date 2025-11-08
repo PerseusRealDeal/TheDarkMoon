@@ -28,6 +28,10 @@ public class StatusMenusPresenter {
     private let dataSource = globals.sourceWeather
     private let theDarknessTrigger = DarkModeObserver()
 
+    private var buttonWidth: CGFloat {
+        return 78.0
+    }
+
     // MARK: - Popover for Status Menus Item
 
     public var statusItem: NSStatusItem?
@@ -56,11 +60,22 @@ public class StatusMenusPresenter {
 
     init() {
 
+        // Meteo data fetcher
+        meteoClientManager = MeteoClientManager(presenter: self)
+
         // Localization
         AppGlobals.notificationCenter.addObserver(
             self,
             selector: #selector(localize),
             name: NSNotification.Name.languageSwitchedManuallyNotification,
+            object: nil
+        )
+
+        // Update task for StatusMenusItem
+        AppGlobals.notificationCenter.addObserver(
+            self,
+            selector: #selector(updateStatusMenusItemTask),
+            name: NSNotification.Name.updateStatusMenusItemNotification,
             object: nil
         )
 
@@ -75,37 +90,30 @@ public class StatusMenusPresenter {
 
         // StatusMenusItem button
         guard let button = statusItem?.button else {
+            log.message("[\(type(of: self))].\(#function) statusItem?.button is nil", .error)
             return
         }
 
         button.target = self
         button.action = #selector(buttonStatusItemTapped)
 
-        // Custom StatusMenusItem view
-        let newFrame = CGRect(x: 0, y: 0, width: calcWidth(), height: button.frame.height)
+        if legacy == false {
 
-        button.frame = newFrame
-        customStatusMenusItemContent = CustomStatusButtonView(frame: newFrame)
+            // Custom StatusMenusItem view
+            let newFrame = CGRect(x: 0, y: 0, width: buttonWidth, height: button.frame.height)
 
-        if let content = customStatusMenusItemContent {
-            // content.titleOneFontSize = 10
-            content.titleTwoFontSize = 9
-            button.addSubview(content)
+            button.frame = newFrame
+            customStatusMenusItemContent = CustomStatusButtonView(frame: newFrame)
+
+            if let content = customStatusMenusItemContent {
+                content.titleOneFontSize = 10
+                content.titleTwoFontSize = 9
+
+                button.addSubview(content)
+            }
         }
 
-        // Refresh for StatusMenusItem
         refresh()
-
-        // Update task for StatusMenusItem
-        AppGlobals.notificationCenter.addObserver(
-            self,
-            selector: #selector(updateStatusMenusItemTask),
-            name: NSNotification.Name.updateStatusMenusItemNotification,
-            object: nil
-        )
-
-        // Meteo data fetcher
-        meteoClientManager = MeteoClientManager(presenter: self)
     }
 
     // MARK: - Contract
@@ -123,6 +131,7 @@ public class StatusMenusPresenter {
     }
 
     public func reloadData() {
+        log.message("[\(type(of: self))].\(#function)")
         refresh()
     }
 
@@ -157,7 +166,7 @@ public class StatusMenusPresenter {
         reset()
         updateTimer?.invalidate()
 
-        guard AppOptions.statusMenusOption else {
+        guard AppOptions.statusMenusOption, AppOptions.statusMenusPeriodOption != .none else {
             return
         }
 
@@ -181,37 +190,57 @@ public class StatusMenusPresenter {
     }
 
     private func refresh() {
+        log.message("[\(type(of: self))].\(#function)")
 
-        if let button = statusItem?.button {
-            let newFrame = CGRect(x: 0, y: 0, width: calcWidth(), height: button.frame.height)
-            button.frame = newFrame
-            customStatusMenusItemContent?.frame = newFrame
+        if legacy == false {
+            if let button = statusItem?.button {
+                let newFrame = CGRect(x: 0, y: 0,
+                                      width: buttonWidth,
+                                      height: button.frame.height)
+
+                button.frame = newFrame
+                customStatusMenusItemContent?.frame = newFrame
+            }
         }
 
         reset()
     }
 
-    private func calcWidth() -> CGFloat {
-        return 77.0
-    }
-
     private func reset() {
+        log.message("[\(type(of: self))].\(#function)")
 
-        guard AppOptions.statusMenusOption else {
-            customStatusMenusItemContent?.image = NSImage(
-                named: AppGlobals.statusMenusButtonIconName
-            )
-            customStatusMenusItemContent?.titleOne = "P2P".localizedValue
-            customStatusMenusItemContent?.titleTwo = "Product Name".localizedValue
+        if AppOptions.statusMenusOption == false {
+            if legacy {
+                statusItem?.button?.imagePosition = .imageLeading
+                statusItem?.button?.image = NSImage(
+                    named: AppGlobals.statusMenusButtonIconName
+                )
+
+                statusItem?.button?.title = "Product Name".localizedValue
+            } else {
+                customStatusMenusItemContent?.image = NSImage(
+                    named: AppGlobals.statusMenusButtonIconName
+                )
+                customStatusMenusItemContent?.titleOne = "P2P".localizedValue
+                customStatusMenusItemContent?.titleTwo = "Product Name".localizedValue
+            }
 
             statusItem?.button?.toolTip = "P2P stands for Person to Person".localizedValue
             return
         }
 
-        customStatusMenusItemContent?.image = NSImage(named: dataSource.weatherConditions.icon)
+        let image = NSImage(named: dataSource.weatherConditions.icon)
+        let temperature = dataSource.temperature
 
-        customStatusMenusItemContent?.titleOne = dataSource.temperature
-        customStatusMenusItemContent?.titleTwo = dataSource.windSpeed
+        if legacy {
+            statusItem?.button?.imagePosition = .imageLeading
+            statusItem?.button?.image = image
+            statusItem?.button?.title = temperature
+        } else {
+            customStatusMenusItemContent?.image = image
+            customStatusMenusItemContent?.titleOne = temperature
+            customStatusMenusItemContent?.titleTwo = dataSource.windSpeed
+        }
 
         statusItem?.button?.toolTip = "\(dataSource.windDirection) \(dataSource.windGusts)"
     }

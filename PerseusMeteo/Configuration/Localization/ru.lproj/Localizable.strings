@@ -187,8 +187,10 @@
 "StatusMenus: per 12 hours" = "12 часов";
 "StatusMenus: per 3 hours" = "3 часа";
 "StatusMenus: per hour" = "каждый час";
+"StatusMenus: none" = "--";
 
 "Button: Close" = "Исчезнуть";
+"Button: Reset All Settings" = "Всё по умолчанию";
 
 /* Compass Directions */
 
@@ -241,7 +243,7 @@
 
 "Label: The App Version" = "Выпуск";
 
-"Label: Star Copyright Notice" = "Охраняется авторским правом © 7531 - 7532 Михаил A. Жигулин из Новосибирска.";
+"Label: Star Copyright Notice" = "Охраняется авторским правом © 7531 - 7534 Михаил A. Жигулин из Новосибирска.";
 
 "Label: Copyright Details" = "Летоисчесление ведется от Сотворения Мира в Звездном Храме в соответствии со славянским календарем в котором первый месяц сентябрь.";
 

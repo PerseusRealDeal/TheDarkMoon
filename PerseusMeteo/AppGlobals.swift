@@ -30,11 +30,20 @@ extension GeoPoint {
     }
 }
 
+var legacy: Bool { // High Sierra, Mojave , Catalina
+    if #available(macOS 11.0, *) {
+        return false
+    }
+
+    return true
+}
+
 struct AppGlobals {
 
     // MARK: - Constants
 
-    static let appKeyOpenWeather = "" // 79eefe16f6e4714470502074369fc77b
+    // 79eefe16f6e4714470502074369fc77b
+    static let appKeyOpenWeather = ""
 
     static let statusMenusButtonIconName = "Icon"
     static let meteoProviderName = "/\\__/\\"

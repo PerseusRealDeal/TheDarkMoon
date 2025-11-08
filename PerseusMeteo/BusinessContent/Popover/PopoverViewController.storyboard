@@ -60,7 +60,7 @@
                                         <rect key="frame" x="0.0" y="320" width="434" height="40"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1oS-xB-Iag">
-                                                <rect key="frame" x="-7" y="-3" width="112" height="44"/>
+                                                <rect key="frame" x="-7" y="3" width="112" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Call Weather" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fAD-io-zUq">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -81,7 +81,6 @@
                                         <constraints>
                                             <constraint firstItem="1oS-xB-Iag" firstAttribute="centerY" secondItem="II3-Ni-sjv" secondAttribute="centerY" id="1Z4-xe-VXw"/>
                                             <constraint firstAttribute="height" constant="40" id="9Xh-H2-1x7"/>
-                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="top" secondItem="zay-Cg-HHE" secondAttribute="top" constant="4" id="C1i-xE-U2p"/>
                                             <constraint firstItem="1oS-xB-Iag" firstAttribute="leading" secondItem="zay-Cg-HHE" secondAttribute="leading" id="Ji1-dy-DYR"/>
                                             <constraint firstAttribute="trailing" secondItem="II3-Ni-sjv" secondAttribute="trailing" id="Nt8-Ol-CYs"/>
                                             <constraint firstItem="1oS-xB-Iag" firstAttribute="centerY" secondItem="zay-Cg-HHE" secondAttribute="centerY" id="eJi-Bn-Pg3"/>

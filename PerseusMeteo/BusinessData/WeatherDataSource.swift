@@ -109,7 +109,7 @@ public class WeatherDataSource: MeteoDataSource {
                                                asIs: TemperatureOption.imperial,
                                                toBe: AppOptions.temperatureOption)
 
-        return "\(represented) \(AppOptions.temperatureOption.unit)"
+        return "\(represented)\(AppOptions.temperatureOption.unit)"
     }
 
     public var temperatureFeelsLike: String {
@@ -126,7 +126,7 @@ public class WeatherDataSource: MeteoDataSource {
                                                asIs: TemperatureOption.imperial,
                                                toBe: AppOptions.temperatureOption)
 
-        return "\(represented) \(AppOptions.temperatureOption.unit)"
+        return "\(represented)\(AppOptions.temperatureOption.unit)"
     }
 
     public var temperatureMinimum: String {
@@ -143,7 +143,7 @@ public class WeatherDataSource: MeteoDataSource {
                                                asIs: TemperatureOption.imperial,
                                                toBe: AppOptions.temperatureOption)
 
-        return "\(represented) \(AppOptions.temperatureOption.unit)"
+        return "\(represented)\(AppOptions.temperatureOption.unit)"
     }
 
     public var temperatureMaximum: String {
@@ -160,7 +160,7 @@ public class WeatherDataSource: MeteoDataSource {
                                                asIs: TemperatureOption.imperial,
                                                toBe: AppOptions.temperatureOption)
 
-        return "\(represented) \(AppOptions.temperatureOption.unit)"
+        return "\(represented)\(AppOptions.temperatureOption.unit)"
     }
 
     public var windSpeed: String {
@@ -207,7 +207,7 @@ public class WeatherDataSource: MeteoDataSource {
             return MeteoFactsDefaults.windDirection
         }
 
-        return "\(Int(point.degree))°: \(point.common.abbreviation.localizedValue)"
+        return "\(Int(point.degree))° : \(point.common.abbreviation.localizedValue)"
     }
 
     public var pressure: String {
@@ -236,7 +236,7 @@ public class WeatherDataSource: MeteoDataSource {
             return MeteoFactsDefaults.humidity
         }
 
-        return "\(value) %"
+        return "\(value)%"
     }
 
     public var cloudiness: String {
@@ -248,7 +248,7 @@ public class WeatherDataSource: MeteoDataSource {
                 return MeteoFactsDefaults.cloudiness
         }
 
-        return "\(value) %"
+        return "\(value)%"
     }
 
     public var visibility: String {

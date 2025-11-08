@@ -144,7 +144,7 @@
                         <constraint firstItem="Rpg-d7-viE" firstAttribute="centerX" secondItem="3DI-NV-P6G" secondAttribute="centerX" id="b4R-R0-35H"/>
                     </constraints>
                 </customView>
-                <scrollView wantsLayer="YES" borderType="none" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="1ES-ZP-RZQ" customClass="SuggestionsView" customModule="Snowman" customModuleProvider="target">
+                <scrollView wantsLayer="YES" borderType="none" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="1ES-ZP-RZQ" customClass="SuggestionsView" customModule="Snowman" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="51" width="182" height="5"/>
                     <clipView key="contentView" copiesOnScroll="NO" id="xhY-jC-QUD">
                         <rect key="frame" x="0.0" y="0.0" width="182" height="5"/>

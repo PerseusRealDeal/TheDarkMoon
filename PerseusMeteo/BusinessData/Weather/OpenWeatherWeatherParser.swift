@@ -382,7 +382,7 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
                     let icon = wFirst["icon"] as? String,
                     let code = WeatherCode(rawValue: id) {
 
-                    value = WeatherConditions(code: code, name: "\(icon)@4x")
+                    value = WeatherConditions(code: code, name: icon)
 
                 } else {
                     log.message("\(#function) [id / icon] wrong.", .error)

@@ -370,11 +370,23 @@
                                     <action selector="closeOptionsWindow:" target="NdM-46-oIE" id="w5E-9U-KbF"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Np-Hh-uIh">
+                                <rect key="frame" x="419" y="3" width="98" height="32"/>
+                                <buttonCell key="cell" type="push" title="By Default" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="95y-LH-6Je">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="resetAllSettingsTapped:" target="NdM-46-oIE" id="Q0F-hp-u81"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Jvm-O9-bm1" firstAttribute="leading" secondItem="Zo1-hM-qgJ" secondAttribute="leading" constant="10" id="0nM-uS-iNp"/>
                             <constraint firstAttribute="bottom" secondItem="Jvm-O9-bm1" secondAttribute="bottom" constant="10" id="8cA-Eg-MZG"/>
                             <constraint firstAttribute="trailing" secondItem="qzI-oB-87E" secondAttribute="trailing" constant="10" id="IiS-nf-mNx"/>
+                            <constraint firstItem="0Np-Hh-uIh" firstAttribute="centerY" secondItem="Jvm-O9-bm1" secondAttribute="centerY" id="dlD-Pf-0Z9"/>
+                            <constraint firstAttribute="trailing" secondItem="0Np-Hh-uIh" secondAttribute="trailing" constant="10" id="eRX-n0-EVm"/>
                             <constraint firstItem="Jvm-O9-bm1" firstAttribute="width" secondItem="0SC-Zc-u6t" secondAttribute="width" id="rmF-im-7MX"/>
                             <constraint firstItem="Jvm-O9-bm1" firstAttribute="top" secondItem="qzI-oB-87E" secondAttribute="bottom" constant="10" id="rwN-sZ-ZQf"/>
                             <constraint firstItem="qzI-oB-87E" firstAttribute="top" secondItem="Zo1-hM-qgJ" secondAttribute="top" constant="25" id="ylc-OL-Cz3"/>
@@ -386,6 +398,7 @@
                         <outlet property="boxSpecialOptions" destination="NDz-2Q-PSN" id="kAZ-KT-Law"/>
                         <outlet property="boxWeatherOptions" destination="xlu-T9-4Dc" id="mm8-Kf-AOW"/>
                         <outlet property="buttonClose" destination="Jvm-O9-bm1" id="YvW-Mp-EzB"/>
+                        <outlet property="buttonResetAllSettings" destination="0Np-Hh-uIh" id="b2W-Nb-no5"/>
                         <outlet property="checkBoxStatusMenus" destination="jET-Am-2AY" id="kKs-LM-ruV"/>
                         <outlet property="comboBoxStatusMenusUpdatePeriod" destination="kRt-m6-cQf" id="sVC-wq-jgc"/>
                         <outlet property="controlDarkMode" destination="Qnu-8q-EXi" id="mbN-G1-bYK"/>

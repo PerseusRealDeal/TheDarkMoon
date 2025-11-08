@@ -26,6 +26,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet private(set) weak var boxSpecialOptions: NSBox!
 
     @IBOutlet private(set) weak var buttonClose: NSButton!
+    @IBOutlet private(set) weak var buttonResetAllSettings: NSButton!
 
     @IBOutlet private(set) weak var labelDarkMode: NSTextField!
     @IBOutlet private(set) weak var labelLanguage: NSTextField!
@@ -211,6 +212,31 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         statusMenusPresenter.screenOptions.close()
     }
 
+    @IBAction func resetAllSettingsTapped(_ sender: NSButton) {
+
+        let ud = AppGlobals.userDefaults
+
+        ud.removeObject(forKey: DARK_MODE_SETTINGS_KEY)
+        ud.removeObject(forKey: LANGUAGE_OPTION_KEY)
+        ud.removeObject(forKey: TEMPERATURE_OPTION_KEY)
+        ud.removeObject(forKey: WINDSPEED_OPTION_KEY)
+        ud.removeObject(forKey: PRESSURE_OPTION_KEY)
+        ud.removeObject(forKey: TIME_OPTION_KEY)
+        ud.removeObject(forKey: DISTANCE_OPTION_KEY)
+        ud.removeObject(forKey: SUGGESTIONS_REQUEST_OPTION_KEY)
+        ud.removeObject(forKey: STATUSMENUS_OPTION_KEY)
+        ud.removeObject(forKey: STATUSMENUS_PERIOD_OPTION_KEY)
+
+        ud.removeObject(forKey: DARK_MODE_USER_CHOICE_KEY)
+        DarkModeAgent.force(DARK_MODE_USER_CHOICE_DEFAULT)
+
+        viewDidAppear()
+
+        let nc = AppGlobals.notificationCenter
+
+        nc.post(Notification.init(name: .updateStatusMenusItemNotification))
+        nc.post(Notification.init(name: .meteoDataOptionsNotification))
+    }
     // MARK: - Initialization
 
     override func awakeFromNib() {
@@ -237,6 +263,11 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         controlOpenWeatherKey.delegate = self
 
         lockOpenWeatherKeyHole()
+
+        // For HighSierra dark mode is .system only
+        if #unavailable(macOS 10.14) {
+            controlDarkMode.isEnabled = false
+        }
     }
 
     override func viewDidAppear() {
@@ -499,6 +530,7 @@ extension OptionsViewController {
         udpateComboBoxStatusMenusUpdatePeriod()
 
         buttonClose.title = "Button: Close".localizedValue
+        buttonResetAllSettings.title = "Button: Reset All Settings".localizedValue
     }
 
     private var windowTitleLocalized: String {

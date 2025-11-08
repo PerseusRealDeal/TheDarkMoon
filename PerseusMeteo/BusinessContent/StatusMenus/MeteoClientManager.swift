@@ -147,8 +147,11 @@ public class MeteoClientManager {
             return
         }
 
-        let keyLoaded = AppOptions.OpenWeatherAPIOption ?? ""
-        let key = keyLoaded.isEmpty ? AppGlobals.appKeyOpenWeather : keyLoaded
+        // let keyLoaded = AppOptions.OpenWeatherAPIOption ?? ""
+        // let key = keyLoaded.isEmpty ? AppGlobals.appKeyOpenWeather : keyLoaded
+
+        let keySaved = AppGlobals.appKeyOpenWeather
+        let key = keySaved.isEmpty ? AppOptions.OpenWeatherAPIOption ?? "" : keySaved
 
         guard key.isEmpty == false else {
             let message = "API key is either rejected or empty".localizedValue
@@ -199,8 +202,11 @@ public class MeteoClientManager {
             return
         }
 
-        let keyLoaded = AppOptions.OpenWeatherAPIOption ?? ""
-        let key = keyLoaded.isEmpty ? AppGlobals.appKeyOpenWeather : keyLoaded
+        // let keyLoaded = AppOptions.OpenWeatherAPIOption ?? ""
+        // let key = keyLoaded.isEmpty ? AppGlobals.appKeyOpenWeather : keyLoaded
+
+        let keySaved = AppGlobals.appKeyOpenWeather
+        let key = keySaved.isEmpty ? AppOptions.OpenWeatherAPIOption ?? "" : keySaved
 
         guard key.isEmpty == false else {
             let message = "API key is either rejected or empty".localizedValue
@@ -257,8 +263,11 @@ public class MeteoClientManager {
             return
         }
 
-        let keyLoaded = AppOptions.OpenWeatherAPIOption ?? ""
-        let key = keyLoaded.isEmpty ? AppGlobals.appKeyOpenWeather : keyLoaded
+        // let keyLoaded = AppOptions.OpenWeatherAPIOption ?? ""
+        // let key = keyLoaded.isEmpty ? AppGlobals.appKeyOpenWeather : keyLoaded
+
+        let keySaved = AppGlobals.appKeyOpenWeather
+        let key = keySaved.isEmpty ? AppOptions.OpenWeatherAPIOption ?? "" : keySaved
 
         guard key.isEmpty == false
         else {

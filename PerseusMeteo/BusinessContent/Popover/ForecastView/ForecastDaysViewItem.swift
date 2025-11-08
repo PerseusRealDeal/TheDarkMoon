@@ -44,9 +44,7 @@ class ForecastDaysViewItem: NSCollectionViewItem {
     @IBOutlet private(set) weak var date: NSTextField!
 
     @IBOutlet private(set) weak var labelWeatherConditionValue: NSTextField!
-
-    @IBOutlet private(set) weak var nightTemperature: NSTextField!
-    @IBOutlet private(set) weak var dayTemperature: NSTextField!
+    @IBOutlet private(set) weak var temperature: NSTextField!
 
     // MARK: - Init
 
@@ -95,8 +93,6 @@ class ForecastDaysViewItem: NSCollectionViewItem {
         self.labelWeatherConditionValue?.stringValue = day.weatherConditions
 
         self.date?.stringValue = "\(day.dateDayOfTheWeek), \(day.dateDayMonth)"
-
-        self.nightTemperature?.stringValue = day.minimumTemperature
-        self.dayTemperature?.stringValue = day.maximumTemperature
+        self.temperature?.stringValue = "\(day.minimumTemperature) \(day.maximumTemperature)"
     }
 }
