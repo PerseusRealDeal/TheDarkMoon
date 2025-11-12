@@ -18,10 +18,10 @@ import Foundation
 // MARK: - Protocols
 
 public protocol CurrentDataSourceReaderProtocol {
-    var parser: CurrentParserProtocol? { get set }
+    var parser: WeatherParserProtocol? { get set }
 }
 
-public protocol CurrentParserProtocol {
+public protocol WeatherParserProtocol {
 
     func getTimeZone(from dictionary: [String: Any]) -> Int?
     func getLastOne(from dictionary: [String: Any]) -> Int?

@@ -14,47 +14,84 @@
 //
 
 import Cocoa
-
-import ConsolePerseusLogger
-import PerseusGeoKit
+import CoreLocation
 
 // MARK: - App Globals
+
+extension Notification.Name {
+    public static let suggestionNotification = Notification.Name("suggestionNotification")
+    public static let favoriteNotification = Notification.Name("favoriteNotification")
+    public static let bookmarkNotification = Notification.Name("bookmarkNotification")
+}
+
+extension GeoPoint {
+    public init(_ latitude: Double, _ longitude: Double) {
+        self.location = CLLocation(latitude: latitude, longitude: longitude)
+    }
+}
+
+var legacy: Bool { // High Sierra, Mojave , Catalina
+    if #available(macOS 11.0, *) {
+        return false
+    }
+
+    return true
+}
 
 struct AppGlobals {
 
     // MARK: - Constants
 
-    static let appKeyOpenWeather = "79eefe16f6e4714470502074369fc77b"
+    // 79eefe16f6e4714470502074369fc77b
+    static let appKeyOpenWeather = ""
 
     static let statusMenusButtonIconName = "Icon"
-    static let statusMenusButtonTitle = "Snowman"
     static let meteoProviderName = "/\\__/\\"
+
+    static let favoritesLimit: Int = 7
+    static let useSuggestionsSample = false
 
     // MARK: - Business Data
 
     static var currentLocation: GeoPoint? {
         didSet {
             let location = currentLocation?.description ?? "current location is erased"
-            log.message("\(location) \(#function)", .info)
-            // geolog.message("\(location) \(#function)", .debug, .custom)
+            log.message("[\(type(of: self))].\(#function): \(location)")
+        }
+    }
+
+    static var suggestion: Location? {
+        didSet {
+            let suggestion = suggestion?.description ?? "suggestion is removed"
+            log.message("[\(type(of: self))].\(#function): \(suggestion)")
         }
     }
 
     static var weather: Data? {
         didSet {
-            let text = "JSON:\n\(weather?.prettyPrinted ?? "")"
+            guard let weather = weather else {
+                globals.sourceWeather.resetDataCach()
+                return
+            }
+
+            let text = "JSON:\n\(weather.prettyPrinted ?? "")"
             log.message("[\(type(of: self))].\(#function)\n\(text)")
         }
     }
 
     static var forecast: Data? {
         didSet {
-            let text = "JSON:\n\(forecast?.prettyPrinted ?? "")"
+            guard let forecast = forecast else {
+                globals.sourceForecast.resetDataCach()
+                return
+            }
+
+            let text = "JSON:\n\(forecast.prettyPrinted ?? "")"
             log.message("[\(type(of: self))].\(#function)\n\(text)")
 
             // Save the date and time of the last one.
 
-            let src = statusMenusButtonPresenter.screenPopover.viewForecast.dataSource
+            let src = statusMenusPresenter.screenPopover.viewForecast.dataSource
             let currentTimeInUTC = Date().timeIntervalSince1970
 
             src.addResponseDateAndTime(dt: Int(currentTimeInUTC))
@@ -73,7 +110,7 @@ struct AppGlobals {
 
     // MARK: - UI Data Parsers
 
-    public let sourceCurrentWeather = CurrentDataSource()
+    public let sourceWeather = WeatherDataSource()
     public let sourceForecast = ForecastDataSource()
 
     init() {
@@ -83,7 +120,7 @@ struct AppGlobals {
         self.languageSwitcher = LanguageSwitcher.shared
         self.dataDefender = PerseusDataDefender.shared
 
-        self.sourceCurrentWeather.path = { AppGlobals.weather ?? Data() }
+        self.sourceWeather.path = { AppGlobals.weather ?? Data() }
         self.sourceForecast.path = { AppGlobals.forecast ?? Data() }
 
         // Geo Logic Setup
@@ -103,7 +140,7 @@ struct AppGlobals {
 
         GeoCoordinator.shared.locationUpdatesRecieved = { updates in
             if let thelastone = updates.last {
-                log.message("Location Updates: \(updates.count)")
+                // log.message("Location Updates: \(updates.count)")
                 // geolog.message("Location Updates: \(updates.count)", .debug, .custom)
                 AppGlobals.currentLocation = thelastone
             }
@@ -111,6 +148,7 @@ struct AppGlobals {
     }
 
     static func quitTheApp() {
+        statusMenusPresenter.deinitTimer()
         app.terminate(appDelegate)
     }
 

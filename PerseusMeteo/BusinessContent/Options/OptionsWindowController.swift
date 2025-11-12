@@ -15,9 +15,6 @@
 
 import Cocoa
 
-import PerseusDarkMode
-import ConsolePerseusLogger
-
 public class OptionsWindowController: NSWindowController, NSWindowDelegate {
 
     // MARK: - Internals
@@ -27,7 +24,7 @@ public class OptionsWindowController: NSWindowController, NSWindowDelegate {
     // MARK: - Storyboard Instance
 
     class func storyboardInstance() -> OptionsWindowController {
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         let sb = NSStoryboard(name: String(describing: self), bundle: nil)
 
@@ -47,7 +44,7 @@ public class OptionsWindowController: NSWindowController, NSWindowDelegate {
     public override func awakeFromNib() {
         super.awakeFromNib()
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         let nc = AppGlobals.notificationCenter
 
@@ -75,13 +72,12 @@ public class OptionsWindowController: NSWindowController, NSWindowDelegate {
         makeUp()
         localize()
     }
-
+/*
     public override func windowDidLoad() {
         super.windowDidLoad()
-
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
     }
-
+*/
     public func windowShouldClose(_ sender: NSWindow) -> Bool {
 
         log.message("[\(type(of: self))].\(#function)")

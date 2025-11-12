@@ -16,7 +16,6 @@
 //
 
 import Foundation
-import ConsolePerseusLogger
 
 /* OpenWeatherMap JSON forecast list items sample
 
@@ -80,7 +79,7 @@ public struct ForecastDay {
 
         guard let icon = self.iconName else { return MeteoFactsDefaults.weatherIconName }
 
-        return "\(icon)@4x"
+        return icon
     }
 
     public var weatherConditions: String {
@@ -126,7 +125,7 @@ public struct ForecastDay {
                                                asIs: TemperatureOption.imperial,
                                                toBe: AppOptions.temperatureOption)
 
-        return "\(represented) \(AppOptions.temperatureOption.unit)"
+        return "\(represented)\(AppOptions.temperatureOption.unit)"
     }
 
     public var maximumTemperature: String {
@@ -140,7 +139,7 @@ public struct ForecastDay {
                                                asIs: TemperatureOption.imperial,
                                                toBe: AppOptions.temperatureOption)
 
-        return "\(represented) \(AppOptions.temperatureOption.unit)"
+        return "\(represented)\(AppOptions.temperatureOption.unit)"
     }
 
     // MARK: - Realization

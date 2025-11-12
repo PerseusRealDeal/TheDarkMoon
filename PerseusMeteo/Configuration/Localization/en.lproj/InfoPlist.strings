@@ -22,4 +22,4 @@
 "CFBundleName" = "Snowman";
 
 "NSLocationUsageDescription" = "Geo information—latitude and longitude—is required to fetch meteo facts.";
-"NSHumanReadableCopyright" = "Copyright © 2023 - 2024 Mikhail Zhigulin of Novosibirsk. All rights reserved.";
+"NSHumanReadableCopyright" = "Copyright © 2023 - 2025 Mikhail Zhigulin of Novosibirsk. All rights reserved.";

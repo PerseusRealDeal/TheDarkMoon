@@ -34,7 +34,7 @@ public struct MeteoFactsDefaults {
     }
 
     public static var temperature: String {
-        return "\(temperatureCurrentFormat) \(AppOptions.temperatureOption.unit)"
+        return "\(temperatureCurrentFormat)\(AppOptions.temperatureOption.unit)"
     }
 
     public static var windSpeed: String {
@@ -42,7 +42,7 @@ public struct MeteoFactsDefaults {
     }
 
     public static var windDirection: String {
-        return  "___°: _/__"
+        return  "___° : _/__"
     }
 
     public static var pressure: String {
@@ -50,11 +50,11 @@ public struct MeteoFactsDefaults {
     }
 
     public static var humidity: String {
-        return  "___ %"
+        return  "___%"
     }
 
     public static var cloudiness: String {
-        return  "___ %"
+        return  "___%"
     }
 
     public static var visibility: String {
@@ -95,7 +95,7 @@ public struct MeteoFactsDefaults {
 
     // MARK: - Private Properties
 
-    private static var temperatureCurrentFormat: String {
+    public static var temperatureCurrentFormat: String {
 
         var format = ""
 

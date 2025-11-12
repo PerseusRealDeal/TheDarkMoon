@@ -6,14 +6,20 @@
 	<string>Snowman</string>
 	<key>Greetings</key>
 	<string>Hello world!</string>
+	<key>Have a great time</key>
+	<string>Have a great time</string>
 	<key>DeveloperRelease</key>
 	<string>Developer release, to become acquainted</string>
 	<key>Location Usage Description</key>
 	<string>Geo information—latitude and longitude—is required to fetch meteo facts.</string>
 	<key>Copyright</key>
-	<string>Copyright © 2023 - 2024 Mikhail Zhigulin of Novosibirsk. All rights reserved.</string>
+	<string>Copyright © 2023 - 2025 Mikhail Zhigulin of Novosibirsk. All rights reserved.</string>
 	<key>Default: N/A</key>
 	<string>N/A</string>
+	<key>P2P</key>
+	<string>P2P</string>
+	<key>P2P stands for Person to Person</key>
+	<string>P2P stands for Person to Person</string>
 	<key>/* Popover Screen */</key>
 	<string>--</string>
 	<key>Button: Call Weather</key>
@@ -21,19 +27,43 @@
 	<key>Button: Call Forecast</key>
 	<string>Call Forecast</string>
 	<key>Label: Made with Love</key>
-	<string>Made with Love from Novosibirsk.</string>
+	<string>Made with Love from Novosibirsk</string>
 	<key>Tab: Current Weather</key>
-	<string>Current Weather</string>
+	<string>Weather</string>
 	<key>Tab: Forecast</key>
 	<string>Forecast</string>
 	<key>Button: Quit</key>
 	<string>Quit</string>
 	<key>Button: About</key>
-	<string>About</string>
+	<string>Selfie</string>
 	<key>Button: Options</key>
 	<string>Options</string>
 	<key>Button: Hide</key>
 	<string>Hide</string>
+	<key>/* End-User Messages */</key>
+	<string>--</string>
+	<key>Coordinates update is required</key>
+	<string>Coordinates update is required</string>
+	<key>Location card is switched</key>
+	<string>Location card is switched</string>
+	<key>Location card is cleared</key>
+	<string>Location card is cleared</string>
+	<key>Item removed from favorites</key>
+	<string>Item removed from favorites</string>
+	<key>Item added to favorites</key>
+	<string>Item added to favorites</string>
+	<key>Location Name should be typed</key>
+	<string>Location Name should be typed</string>
+	<key>Auto requesting suggestions is on!</key>
+	<string>Auto requesting suggestions is on!</string>
+	<key>Current Location should be selected</key>
+	<string>Current Location should be selected</string>
+	<key>Favorites are limited</key>
+	<string>Favorites are limited</string>
+	<key>Current neither to add nor to remove!</key>
+	<string>Current neither to add nor to remove!</string>
+	<key>API key is either rejected or empty</key>
+	<string>API key is either rejected or empty</string>
 	<key>/* Location View */</key>
 	<string>--</string>
 	<key>Label: Permission</key>
@@ -58,6 +88,12 @@
 	<string>Update Geo Access</string>
 	<key>Button: Refresh Current Location</key>
 	<string>Update Current Location</string>
+	<key>Button: Request Suggestions</key>
+	<string>Request Suggestions</string>
+	<key>Current Location</key>
+	<string>Current Location</string>
+	<key>Auto</key>
+	<string>Auto</string>
 	<key>/* Current Weather View */</key>
 	<string>--</string>
 	<key>Label: Meteo Data Provider</key>
@@ -139,17 +175,15 @@
 	<key>Title: Options Screen</key>
 	<string>Product Options</string>
 	<key>Section: App Options</key>
-	<string>The App Setup</string>
+	<string>Base Options</string>
 	<key>Option: Dark Mode</key>
 	<string>Moon Side</string>
 	<key>Option: Language</key>
 	<string>Language</string>
-	<key>Option: OpenWeather Key</key>
-	<string>OpenWeather Key</string>
 	<key>Option: Time Format</key>
 	<string>Time</string>
 	<key>Section: Meteo Options</key>
-	<string>Meteo Viewing</string>
+	<string>Meteo Options</string>
 	<key>Option: Temperature</key>
 	<string>Temperature</string>
 	<key>Option: Wind Speed</key>
@@ -196,8 +230,28 @@
 	<string>Kilometre</string>
 	<key>Unit: Mile long</key>
 	<string>Mile</string>
+	<key>Section: Special Options</key>
+	<string>Special Options</string>
+	<key>Option: OpenWeather Key</key>
+	<string>OpenWeather Key</string>
+	<key>Option: StatusMenus</key>
+	<string>Current Weather</string>
+	<key>Button: CheckBox StatusMenus</key>
+	<string>Show in StatusMenus</string>
+	<key>Option: StatusMenus Update</key>
+	<string>Update</string>
+	<key>StatusMenus: per 12 hours</key>
+	<string>per 12 hours</string>
+	<key>StatusMenus: per 3 hours</key>
+	<string>per 3 hours</string>
+	<key>StatusMenus: per hour</key>
+	<string>per hour</string>
+	<key>StatusMenus: none</key>
+	<string>--</string>
 	<key>Button: Close</key>
 	<string>Close</string>
+	<key>Button: Reset All Settings</key>
+	<string>Reset All Settings</string>
 	<key>/* Compass Directions */</key>
 	<string>--</string>
 	<key>Compass: N</key>
@@ -279,11 +333,11 @@
 	<key>Button: The App Source Code</key>
 	<string>The product source code</string>
 	<key>Button: The Technological Tree</key>
-	<string>There is a tree greening by the ocean...</string>
+	<string>The golden tree</string>
 	<key>Label: The App Version</key>
 	<string>Version</string>
 	<key>Label: Star Copyright Notice</key>
-	<string>Copyright © 7531 - 7532 Mikhail Zhigulin of Novosibirsk</string>
+	<string>Copyright © 7531 - 7534 Mikhail Zhigulin of Novosibirsk</string>
 	<key>Label: Copyright Details</key>
 	<string>The year starts from the creation of the world in the Star temple according to a Slavic calendar. September, the 1st of Slavic year</string>
 	<key>Label: Credits</key>
@@ -306,6 +360,10 @@
 	<string>License</string>
 	<key>Button: Terms &amp; Conditions</key>
 	<string>Terms &amp; Conditions</string>
+	<key>Tab: Essentials</key>
+	<string>Essentials</string>
+	<key>Tab: Log</key>
+	<string>Log</string>
 	<key>/* Weather-conditions descriptions */</key>
 	<string>--</string>
 	<key>Main: clear sky</key>

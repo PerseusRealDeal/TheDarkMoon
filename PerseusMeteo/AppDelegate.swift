@@ -15,10 +15,6 @@
 
 import Cocoa
 
-import ConsolePerseusLogger
-import PerseusDarkMode
-import PerseusGeoKit
-
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -30,5 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         globals.languageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
 
         log.message("> Ready with business matter purpose...", .info)
+
+        statusMenusPresenter.startUpdateTimerIfNeeded()
     }
 }

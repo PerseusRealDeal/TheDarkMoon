@@ -11,11 +11,11 @@
             <objects>
                 <viewController id="bU7-R8-ocO" customClass="PopoverViewController" customModule="Snowman" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="tOy-S4-hL0">
-                        <rect key="frame" x="0.0" y="0.0" width="454" height="508"/>
+                        <rect key="frame" x="0.0" y="0.0" width="454" height="550"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="nuV-nB-E1H" userLabel="Top Greeting View">
-                                <rect key="frame" x="0.0" y="468" width="454" height="40"/>
+                                <rect key="frame" x="0.0" y="510" width="454" height="40"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3AG-Tj-6c2">
                                         <rect key="frame" x="3" y="3" width="104" height="32"/>
@@ -30,9 +30,9 @@
                                             <action selector="quitButtonTapped:" target="bU7-R8-ocO" id="kMD-E6-RsV"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vs7-Lz-WvA">
-                                        <rect key="frame" x="108" y="12" width="37" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="46e-Ab-C6v">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vs7-Lz-WvA" customClass="MessageLabel" customModule="Snowman" customModuleProvider="target">
+                                        <rect key="frame" x="108" y="12" width="93" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Greeting Label" id="46e-Ab-C6v">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -48,19 +48,19 @@
                                 </constraints>
                             </customView>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yf8-y3-HSv" userLabel="Middle Business View">
-                                <rect key="frame" x="10" y="40" width="434" height="428"/>
+                                <rect key="frame" x="10" y="40" width="434" height="470"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="KvG-58-2dT" userLabel="Location Section" customClass="LocationView" customModule="Snowman" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="338" width="434" height="90"/>
+                                        <rect key="frame" x="0.0" y="360" width="434" height="110"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="90" id="8yO-Yf-08x"/>
+                                            <constraint firstAttribute="height" constant="110" id="8yO-Yf-08x"/>
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="zay-Cg-HHE" userLabel="Calling Section">
-                                        <rect key="frame" x="0.0" y="298" width="434" height="40"/>
+                                        <rect key="frame" x="0.0" y="320" width="434" height="40"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1oS-xB-Iag">
-                                                <rect key="frame" x="-7" y="-3" width="112" height="44"/>
+                                                <rect key="frame" x="-7" y="3" width="112" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Call Weather" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fAD-io-zUq">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -81,19 +81,18 @@
                                         <constraints>
                                             <constraint firstItem="1oS-xB-Iag" firstAttribute="centerY" secondItem="II3-Ni-sjv" secondAttribute="centerY" id="1Z4-xe-VXw"/>
                                             <constraint firstAttribute="height" constant="40" id="9Xh-H2-1x7"/>
-                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="top" secondItem="zay-Cg-HHE" secondAttribute="top" constant="4" id="C1i-xE-U2p"/>
                                             <constraint firstItem="1oS-xB-Iag" firstAttribute="leading" secondItem="zay-Cg-HHE" secondAttribute="leading" id="Ji1-dy-DYR"/>
                                             <constraint firstAttribute="trailing" secondItem="II3-Ni-sjv" secondAttribute="trailing" id="Nt8-Ol-CYs"/>
                                             <constraint firstItem="1oS-xB-Iag" firstAttribute="centerY" secondItem="zay-Cg-HHE" secondAttribute="centerY" id="eJi-Bn-Pg3"/>
                                         </constraints>
                                     </customView>
                                     <tabView focusRingType="none" initialItem="g1D-Zn-Myw" translatesAutoresizingMaskIntoConstraints="NO" id="CfE-8B-27I" userLabel="Meteo Data Section">
-                                        <rect key="frame" x="-7" y="-10" width="448" height="314"/>
+                                        <rect key="frame" x="-7" y="-10" width="448" height="336"/>
                                         <font key="font" metaFont="system"/>
                                         <tabViewItems>
                                             <tabViewItem label="Current Weather" id="g1D-Zn-Myw">
                                                 <view key="view" id="4E9-lB-SpT" customClass="WeatherView" customModule="Snowman" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="33" width="428" height="268"/>
+                                                    <rect key="frame" x="10" y="33" width="428" height="290"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </view>
                                             </tabViewItem>
@@ -198,14 +197,14 @@
                         <outlet property="buttonHideAppScreens" destination="Ub5-ci-hl1" id="jUj-ke-nTb"/>
                         <outlet property="buttonOptions" destination="lEc-RC-GkU" id="9WS-WU-GoL"/>
                         <outlet property="buttonQuit" destination="3AG-Tj-6c2" id="Lh0-xY-ekv"/>
-                        <outlet property="labelGreeting" destination="Vs7-Lz-WvA" id="3Hn-E6-21W"/>
+                        <outlet property="labelGreeting" destination="Vs7-Lz-WvA" id="Ixk-im-rBZ"/>
                         <outlet property="labelMadeWithLove" destination="II3-Ni-sjv" id="ohb-Gv-dHz"/>
                         <outlet property="tabCurrentWeather" destination="g1D-Zn-Myw" id="7uf-lK-bWC"/>
                         <outlet property="tabForecast" destination="XwN-hq-rQ0" id="rKh-up-612"/>
-                        <outlet property="viewCurrentWeather" destination="4E9-lB-SpT" id="aA7-4n-QTL"/>
                         <outlet property="viewForecast" destination="SkI-S3-94P" id="VgG-5a-zdo"/>
                         <outlet property="viewLocation" destination="KvG-58-2dT" id="7Zz-c3-eNb"/>
                         <outlet property="viewTabs" destination="CfE-8B-27I" id="yUI-bj-cYS"/>
+                        <outlet property="viewWeather" destination="4E9-lB-SpT" id="e6x-4A-tLe"/>
                     </connections>
                 </viewController>
                 <customObject id="9uD-mB-xHs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

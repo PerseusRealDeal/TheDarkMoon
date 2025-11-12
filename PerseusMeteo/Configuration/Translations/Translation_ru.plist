@@ -6,14 +6,20 @@
 	<string>Cнеговик</string>
 	<key>Greetings</key>
 	<string>Рады приветствовать!</string>
+	<key>Have a great time</key>
+	<string>Не скучного времяпрепровождения</string>
 	<key>DeveloperRelease</key>
 	<string>Выпуск разработчика, для ознакомления</string>
 	<key>Location Usage Description</key>
 	<string>Гео сведения (широта и долгота) обязательны для получения метео данных.</string>
 	<key>Copyright</key>
-	<string>Охраняется авторским правом © 2023 - 2024 Михаил A. Жигулин из Новосибирска.</string>
+	<string>Охраняется авторским правом © 2023 - 2025 Михаил A. Жигулин из Новосибирска.</string>
 	<key>Default: N/A</key>
 	<string>нет</string>
+	<key>P2P</key>
+	<string>P2P</string>
+	<key>P2P stands for Person to Person</key>
+	<string>P2P значит от личности к личности</string>
 	<key>/* Popover Screen */</key>
 	<string>--</string>
 	<key>Button: Call Weather</key>
@@ -21,7 +27,7 @@
 	<key>Button: Call Forecast</key>
 	<string>Запросить Прогноз</string>
 	<key>Label: Made with Love</key>
-	<string>C любовью из Новосибирска.</string>
+	<string>C любовью из Новосибирска</string>
 	<key>Tab: Current Weather</key>
 	<string>Наблюдение</string>
 	<key>Tab: Forecast</key>
@@ -34,6 +40,30 @@
 	<string>Настройки</string>
 	<key>Button: Hide</key>
 	<string>Скрыться</string>
+	<key>/* End-User Messages */</key>
+	<string>--</string>
+	<key>Coordinates update is required</key>
+	<string>Координаты следует обновить</string>
+	<key>Location card is switched</key>
+	<string>Сведения о месте обновлены</string>
+	<key>Location card is cleared</key>
+	<string>Сведения о месте удалены</string>
+	<key>Item removed from favorites</key>
+	<string>Список избранных мест обновлен</string>
+	<key>Item added to favorites</key>
+	<string>Список избранных мест обновлен</string>
+	<key>Location Name should be typed</key>
+	<string>Название места можно начать вводить</string>
+	<key>Auto requesting suggestions is on!</key>
+	<string>Авто уточнение включено!</string>
+	<key>Current Location should be selected</key>
+	<string>Координаты на месте обновляются</string>
+	<key>Favorites are limited</key>
+	<string>Список до дома!</string>
+	<key>Current neither to add nor to remove!</key>
+	<string>Ни добавить, ни убавить!</string>
+	<key>API key is either rejected or empty</key>
+	<string>API ключ не загружен или отсутствует</string>
 	<key>/* Location View */</key>
 	<string>--</string>
 	<key>Label: Permission</key>
@@ -57,7 +87,13 @@
 	<key>Button: Update Geo Access</key>
 	<string>Обновить Геодоступ</string>
 	<key>Button: Refresh Current Location</key>
-	<string>Обновить Геолокацию</string>
+	<string>Обновить Координаты</string>
+	<key>Button: Request Suggestions</key>
+	<string>Уточнить Название</string>
+	<key>Current Location</key>
+	<string>На Месте</string>
+	<key>Auto</key>
+	<string>Авт.</string>
 	<key>/* Current Weather View */</key>
 	<string>--</string>
 	<key>Label: Meteo Data Provider</key>
@@ -144,8 +180,6 @@
 	<string>Сторона Луны</string>
 	<key>Option: Language</key>
 	<string>Язык</string>
-	<key>Option: OpenWeather Key</key>
-	<string>Ключ OpenWeather</string>
 	<key>Option: Time Format</key>
 	<string>Формат Времени</string>
 	<key>Section: Meteo Options</key>
@@ -161,7 +195,7 @@
 	<key>OpenWeather: Lock</key>
 	<string>Скрыть</string>
 	<key>OpenWeather: Unlock</key>
-	<string>Открыть</string>
+	<string>Показать</string>
 	<key>OpenWeather: Hidden</key>
 	<string>Скрытая замочная скважина...</string>
 	<key>OpenWeather: Editable</key>
@@ -196,8 +230,28 @@
 	<string>Километры</string>
 	<key>Unit: Mile long</key>
 	<string>Мили</string>
+	<key>Section: Special Options</key>
+	<string>Дополнительные Настройки</string>
+	<key>Option: OpenWeather Key</key>
+	<string>Ключ OpenWeather</string>
+	<key>Option: StatusMenus</key>
+	<string>Наблюдение</string>
+	<key>Button: CheckBox StatusMenus</key>
+	<string>Системный Статус</string>
+	<key>Option: StatusMenus Update</key>
+	<string>Период</string>
+	<key>StatusMenus: per 12 hours</key>
+	<string>12 часов</string>
+	<key>StatusMenus: per 3 hours</key>
+	<string>3 часа</string>
+	<key>StatusMenus: per hour</key>
+	<string>каждый час</string>
+	<key>StatusMenus: none</key>
+	<string>--</string>
 	<key>Button: Close</key>
 	<string>Исчезнуть</string>
+	<key>Button: Reset All Settings</key>
+	<string>Всё по умолчанию</string>
 	<key>/* Compass Directions */</key>
 	<string>--</string>
 	<key>Compass: N</key>
@@ -279,11 +333,11 @@
 	<key>Button: The App Source Code</key>
 	<string>Исходники изделия</string>
 	<key>Button: The Technological Tree</key>
-	<string>Лукоморья дуб зелёный</string>
+	<string>Золотое дерево</string>
 	<key>Label: The App Version</key>
 	<string>Выпуск</string>
 	<key>Label: Star Copyright Notice</key>
-	<string>Охраняется авторским правом © 7531 - 7532 Михаил A. Жигулин из Новосибирска.</string>
+	<string>Охраняется авторским правом © 7531 - 7534 Михаил A. Жигулин из Новосибирска.</string>
 	<key>Label: Copyright Details</key>
 	<string>Летоисчесление ведется от Сотворения Мира в Звездном Храме в соответствии со славянским календарем в котором первый месяц сентябрь.</string>
 	<key>Label: Credits</key>
@@ -306,6 +360,10 @@
 	<string>Текст лицензии</string>
 	<key>Button: Terms &amp; Conditions</key>
 	<string>Соглашение</string>
+	<key>Tab: Essentials</key>
+	<string>Заменяемое</string>
+	<key>Tab: Log</key>
+	<string>Журнал</string>
 	<key>/* Weather-conditions descriptions */</key>
 	<string>--</string>
 	<key>Main: clear sky</key>

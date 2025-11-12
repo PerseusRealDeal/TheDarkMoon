@@ -23,7 +23,6 @@ public class ForecastDataSource: MeteoDataSource {
 
     init() {
         super.init(contant: .forecast)
-
     }
 
     // MARK: - Contract

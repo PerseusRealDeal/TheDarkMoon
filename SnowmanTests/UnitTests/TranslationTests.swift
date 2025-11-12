@@ -24,14 +24,17 @@ class TranslationTests: XCTestCase {
     // func test_zero() { XCTFail("Tests not yet implemented in \(type(of: self)).") }
     // func test_the_first_success() { XCTAssertTrue(true, "It's done!") }
 
-    // MARK: -
+    // MARK: - Greeting
 
     func test_translation_common() {
 
         // assert
 
-        XCTAssertEqual("Default: N/A".localizedExpectation,
-                       "Default: N/A".localizedValue)
+        XCTAssertEqual("Have a great time".localizedExpectation,
+                       "Have a great time".localizedValue)
+
+        XCTAssertEqual("Greetings".localizedExpectation,
+                       "Greetings".localizedValue)
     }
 
     // MARK: - Popover Screen
@@ -66,6 +69,52 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Button: Hide".localizedExpectation,
                        "Button: Hide".localizedValue)
+
+        XCTAssertEqual("Default: N/A".localizedExpectation,
+                       "Default: N/A".localizedValue)
+
+        XCTAssertEqual("P2P".localizedExpectation,
+                       "P2P".localizedValue)
+
+        XCTAssertEqual("P2P stands for Person to Person".localizedExpectation,
+                       "P2P stands for Person to Person".localizedValue)
+
+        XCTAssertEqual("API key is either rejected or empty".localizedExpectation,
+                       "API key is either rejected or empty".localizedValue)
+    }
+
+    // MARK: - End-User Messages
+
+    func test_translation_of_end_user_messages() {
+
+        // assert
+
+        XCTAssertEqual("Coordinates update is required".localizedExpectation,
+                       "Coordinates update is required".localizedValue)
+
+        XCTAssertEqual("Location card is switched".localizedExpectation,
+                       "Location card is switched".localizedValue)
+
+        XCTAssertEqual("Location card is cleared".localizedExpectation,
+                       "Location card is cleared".localizedValue)
+
+        XCTAssertEqual("Item removed from favorites".localizedExpectation,
+                       "Item removed from favorites".localizedValue)
+
+        XCTAssertEqual("Item added to favorites".localizedExpectation,
+                       "Item added to favorites".localizedValue)
+
+        XCTAssertEqual("Location Name should be typed".localizedExpectation,
+                       "Location Name should be typed".localizedValue)
+
+        XCTAssertEqual("Auto requesting suggestions is on!".localizedExpectation,
+                       "Auto requesting suggestions is on!".localizedValue)
+
+        XCTAssertEqual("Current Location should be selected".localizedExpectation,
+                       "Current Location should be selected".localizedValue)
+
+        XCTAssertEqual("Current neither to add nor to remove!".localizedExpectation,
+                       "Current neither to add nor to remove!".localizedValue)
     }
 
     // MARK: - LocationView
@@ -107,6 +156,14 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("Button: Refresh Current Location".localizedExpectation,
                        "Button: Refresh Current Location".localizedValue)
 
+        XCTAssertEqual("Button: Request Suggestions".localizedExpectation,
+                       "Button: Request Suggestions".localizedValue)
+
+        XCTAssertEqual("Current Location".localizedExpectation,
+                       "Current Location".localizedValue)
+
+        XCTAssertEqual("Auto".localizedExpectation,
+                       "Auto".localizedValue)
     }
 
     // MARK: - WeatherView
@@ -236,6 +293,9 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("Section: App Options".localizedExpectation,
                        "Section: App Options".localizedValue)
 
+        XCTAssertEqual("Section: Meteo Options".localizedExpectation,
+                       "Section: Meteo Options".localizedValue)
+
         XCTAssertEqual("Option: Language".localizedExpectation,
                        "Option: Language".localizedValue)
 
@@ -259,18 +319,6 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Option: Distance".localizedExpectation,
                        "Option: Distance".localizedValue)
-
-        XCTAssertEqual("OpenWeather: Lock".localizedExpectation,
-                       "OpenWeather: Lock".localizedValue)
-
-        XCTAssertEqual("OpenWeather: Unlock".localizedExpectation,
-                       "OpenWeather: Unlock".localizedValue)
-
-        XCTAssertEqual("OpenWeather: Hidden".localizedExpectation,
-                       "OpenWeather: Hidden".localizedValue)
-
-        XCTAssertEqual("OpenWeather: Editable".localizedExpectation,
-                       "OpenWeather: Editable".localizedValue)
 
         XCTAssertEqual("Unit: Light".localizedExpectation,
                        "Unit: Light".localizedValue)
@@ -319,6 +367,50 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Button: Close".localizedExpectation,
                        "Button: Close".localizedValue)
+
+        XCTAssertEqual("Button: Reset All Settings".localizedExpectation,
+                       "Button: Reset All Settings".localizedValue)
+    }
+
+    func test_translation_of_OptionsScreen_SpecialOptions() {
+
+        // assert
+
+        XCTAssertEqual("Section: Special Options".localizedExpectation,
+                       "Section: Special Options".localizedValue)
+
+        XCTAssertEqual("OpenWeather: Lock".localizedExpectation,
+                       "OpenWeather: Lock".localizedValue)
+
+        XCTAssertEqual("OpenWeather: Unlock".localizedExpectation,
+                       "OpenWeather: Unlock".localizedValue)
+
+        XCTAssertEqual("OpenWeather: Hidden".localizedExpectation,
+                       "OpenWeather: Hidden".localizedValue)
+
+        XCTAssertEqual("OpenWeather: Editable".localizedExpectation,
+                       "OpenWeather: Editable".localizedValue)
+
+        XCTAssertEqual("Option: StatusMenus".localizedExpectation,
+                       "Option: StatusMenus".localizedValue)
+
+        XCTAssertEqual("Button: CheckBox StatusMenus".localizedExpectation,
+                       "Button: CheckBox StatusMenus".localizedValue)
+
+        XCTAssertEqual("Option: StatusMenus Update".localizedExpectation,
+                       "Option: StatusMenus Update".localizedValue)
+
+        XCTAssertEqual("StatusMenus: per 12 hours".localizedExpectation,
+                       "StatusMenus: per 12 hours".localizedValue)
+
+        XCTAssertEqual("StatusMenus: per 3 hours".localizedExpectation,
+                       "StatusMenus: per 3 hours".localizedValue)
+
+        XCTAssertEqual("StatusMenus: per hour".localizedExpectation,
+                       "StatusMenus: per hour".localizedValue)
+
+        XCTAssertEqual("StatusMenus: none".localizedExpectation,
+                       "StatusMenus: none".localizedValue)
     }
 
     // MARK: - Compass Directions
@@ -435,6 +527,10 @@ class TranslationTests: XCTestCase {
                        "Button: License".localizedValue)
         XCTAssertEqual("Button: Terms & Conditions".localizedExpectation,
                        "Button: Terms & Conditions".localizedValue)
+        XCTAssertEqual("Tab: Essentials".localizedExpectation,
+                       "Tab: Essentials".localizedValue)
+        XCTAssertEqual("Tab: Log".localizedExpectation,
+                       "Tab: Log".localizedValue)
     }
 
     // MARK: - Weather-conditions descriptions

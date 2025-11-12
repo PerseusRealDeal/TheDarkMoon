@@ -23,20 +23,24 @@
 
 import Cocoa
 
-import PerseusDarkMode
-import ConsolePerseusLogger
+typealias Level = PerseusLogger.Level
 
 public class PopoverViewController: NSViewController, NSTabViewDelegate {
+
+    deinit {
+        statusMenusPresenter.deinitTimer()
+    }
 
     // MARK: - Internals
 
     private let tabCurrentWeatherID = "CurrentWeather"
     private let tabForecastID = "Forecast"
 
+    private var updateStatusMenusItemTimer: Timer?
+
     // MARK: - Storyboard Instance
 
     public class func storyboardInstance() -> PopoverViewController {
-        log.message("[\(type(of: self))].\(#function)")
 
         let sb = NSStoryboard(name: String(describing: self), bundle: nil)
 
@@ -54,10 +58,10 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     // MARK: - Outlets
 
     @IBOutlet private(set) weak var buttonQuit: NSButton!
-    @IBOutlet private(set) weak var labelGreeting: NSTextField!
+    @IBOutlet private(set) weak var labelGreeting: MessageLabel!
 
     @IBOutlet private(set) weak var viewLocation: LocationView!
-    @IBOutlet private(set) weak var viewCurrentWeather: WeatherView!
+    @IBOutlet private(set) weak var viewWeather: WeatherView!
     @IBOutlet private(set) weak var viewForecast: ForecastView!
 
     @IBOutlet private(set) weak var buttonFetchMeteoFacts: NSButton!
@@ -79,74 +83,73 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     }
 
     @IBAction func fetchMeteoFactsButtonTapped(_ sender: NSButton) {
-        log.message("[\(type(of: self))].\(#function)")
+        if viewLocation.locationCard == .current, AppGlobals.currentLocation == nil {
+            let text = "Coordinates update is required".localizedValue
+            log.message(text, .notice, .custom, .enduser)
+            return
+        }
+
         if
             let tabSelected = viewTabs.selectedTabViewItem,
             let tabId = tabSelected.identifier as? String {
 
             if tabId == tabCurrentWeatherID {
-                statusMenusButtonPresenter.callCurrentWeather(sender)
+                statusMenusPresenter.callWeather()
             } else if tabId == tabForecastID {
-                statusMenusButtonPresenter.callForecast(sender)
+                statusMenusPresenter.callForecast()
             }
         }
     }
 
     @IBAction func aboutButtonTapped(_ sender: NSButton) {
-        log.message("[\(type(of: self))].\(#function)")
-        statusMenusButtonPresenter.screenAbout.showWindow(sender)
+        statusMenusPresenter.screenAbout.showWindow(sender)
     }
 
     @IBAction func optionsButtonTapped(_ sender: NSButton) {
-        log.message("[\(type(of: self))].\(#function)")
-        statusMenusButtonPresenter.screenOptions.showWindow(sender)
+        statusMenusPresenter.screenOptions.showWindow(sender)
     }
 
     @IBAction func hideAppScreensButtonTapped(_ sender: NSButton) {
-        log.message("[\(type(of: self))].\(#function)")
 
-        guard let popover = statusMenusButtonPresenter.popover else { return }
+        guard let popover = statusMenusPresenter.popover else { return }
 
-        statusMenusButtonPresenter.screenAbout.close()
-        statusMenusButtonPresenter.screenOptions.close()
+        statusMenusPresenter.screenAbout.close()
+        statusMenusPresenter.screenOptions.close()
 
         popover.performClose(sender)
     }
 
     public func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
-        log.message("[\(type(of: self))].\(#function)")
         actualizeCallingSection()
     }
 
     // MARK: - Initialization
 
-    public override func awakeFromNib() {
-        super.awakeFromNib()
-        log.message("[\(type(of: self))].\(#function)")
-    }
-
     public override func viewDidLoad() {
         super.viewDidLoad()
-        log.message("[\(type(of: self))].\(#function)")
 
-        // Setup content size.
+        // Setup content size
 
         self.view.wantsLayer = true
         self.preferredContentSize = NSSize(width: self.view.frame.size.width,
                                            height: self.view.frame.size.height)
 
-        // Tabs event delegate.
+        // End-user messages
+
+        localReport.messageDelegate = labelGreeting
+
+        // Tabs event delegate
 
         tabCurrentWeather.identifier = tabCurrentWeatherID
         tabForecast.identifier = tabForecastID
 
         viewTabs.delegate = self
 
-        // Connect to Dark Mode
+        // Dark Mode event
 
         DarkModeAgent.register(stakeholder: self, selector: #selector(makeUp))
 
-        // Localization, option changed event.
+        // Localization event
 
         let nc = AppGlobals.notificationCenter
 
@@ -154,31 +157,85 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
                        name: NSNotification.Name.languageSwitchedManuallyNotification,
                        object: nil)
 
-        // Meteo data, view options changed event.
+        // Meteo data event
 
         nc.addObserver(self, selector: #selector(reloadData),
-                       name: NSNotification.Name.meteoDataOptionsDidChanged,
+                       name: NSNotification.Name.meteoDataOptionsNotification,
                        object: nil)
 
-        // Appearance.
+        // Suggestion selected event
 
-        makeUp()
-        localize()
+        nc.addObserver(self, selector: #selector(suggestionSelected(_:)),
+                       name: NSNotification.Name.suggestionNotification,
+                       object: nil)
 
-        // Forecast items selected by default.
+        // Fovorite selected event
+
+        nc.addObserver(self, selector: #selector(favoriteSelected(_:)),
+                       name: NSNotification.Name.favoriteNotification,
+                       object: nil)
+
+        // Bookmark button tapped event (to add or remove fovorite item)
+
+        nc.addObserver(self, selector: #selector(bookmarkTapped),
+                       name: NSNotification.Name.bookmarkNotification,
+                       object: nil)
+
+        // Hide suggestions view event mark
+
+        NSEvent.addLocalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) {
+            SuggestionsView.shouldProcessVisisbility = true
+            return $0
+        }
+
+        // Forecast items selected by default
 
         viewForecast.selectTheFirstForecastDay()
 
-        // Locks hours collection scrolling, it's an issue
+        // TODO: ISSUE - Locks hours collection scrolling
         // viewForecast.selectTheFirstForecastHour()
+
+        // Appearance
+
+        makeUp()
+        localize()
+    }
+
+    public override func mouseDown(with event: NSEvent) {
+        super.mouseDown(with: event)
+        hideSuggestionsViewIfNeeded()
+    }
+
+    public override func rightMouseDown(with event: NSEvent) {
+        super.rightMouseDown(with: event)
+        hideSuggestionsViewIfNeeded()
+    }
+
+    private func hideSuggestionsViewIfNeeded() {
+
+        guard SuggestionsView.shouldProcessVisisbility else { return }
+        guard self.viewLocation.viewSuggestions.alphaValue > 0.0 else { return }
+
+        DispatchQueue.main.async {
+            NSAnimationContext.runAnimationGroup({ context in
+                context.duration = 0.5
+
+                self.viewLocation.viewSuggestions.animator().alphaValue = 0.0
+            }, completionHandler: {
+                self.viewLocation.constraintViewSuggestionsHeight?.constant = 0
+                SuggestionsView.shouldProcessVisisbility = false
+            })
+        }
     }
 
     // MARK: - Contract
 
     @objc public func reloadData() {
-        guard let weather = self.viewCurrentWeather, let forecast = self.viewForecast else {
+        guard let weather = self.viewWeather, let forecast = self.viewForecast else {
             return
         }
+
+        statusMenusPresenter.reloadData()
 
         weather.reloadData()
         forecast.reloadData(saveSelection: true)
@@ -186,8 +243,8 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
         self.actualizeCallingSection()
     }
 
-    public func reloadCurrentWeatherData() {
-        guard let weather = self.viewCurrentWeather else {
+    public func reloadWeatherData() {
+        guard let weather = self.viewWeather else {
             return
         }
 
@@ -210,31 +267,170 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     public func startAnimationProgressIndicator(_ section: MeteoCategory,
                                                 _ sender: Any? = nil) {
         switch section {
-        case .current:
-            viewCurrentWeather.progressIndicator = true
+        case .weather:
+            viewWeather?.progressIndicator = true
         case .forecast:
-            viewForecast.progressIndicator = true
+            viewForecast?.progressIndicator = true
         }
     }
 
     public func stopAnimationProgressIndicator(_ section: MeteoCategory,
                                                _ sender: Any? = nil) {
         switch section {
-        case .current:
-            viewCurrentWeather.progressIndicator = false
+        case .weather:
+            viewWeather?.progressIndicator = false
         case .forecast:
-            viewForecast.progressIndicator = false
+            viewForecast?.progressIndicator = false
         }
     }
 
     @objc private func makeUp() {
-        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
-
-        // Subviews.
+        // log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
 
         viewLocation?.makeup()
-        viewCurrentWeather?.makeup()
+        viewWeather?.makeup()
         viewForecast?.makeup()
+    }
+
+    @objc func suggestionSelected(_ notification: Notification) {
+
+        SuggestionsView.shouldProcessVisisbility = true
+        hideSuggestionsViewIfNeeded()
+
+        let key = Notification.Name.suggestionNotification.rawValue
+
+        guard let location = notification.userInfo?[key] as? Location else { return }
+
+        AppGlobals.currentLocation = nil
+        AppGlobals.suggestion = location
+
+        AppGlobals.weather = nil
+        AppGlobals.forecast = nil
+
+        viewLocation?.locationCard = .suggestion
+
+        viewLocation?.reloadData()
+        viewWeather?.reloadData()
+        viewForecast?.reloadData()
+
+        statusMenusPresenter.reloadData()
+
+        actualizeCallingSection()
+    }
+
+    @objc func favoriteSelected(_ notification: Notification) {
+        guard
+            let selectedIndex = notification.userInfo?["index"] as? Int,
+            let currentIndex = AppOptions.favoriteLocationsOption.firstIndex(
+                where: { $0.isOnDisplay }),
+            selectedIndex < AppOptions.favoriteLocationsOption.count
+        else { return }
+
+        var userMessage = ""
+
+        if selectedIndex != currentIndex { // Change flag isOnDisplay
+            AppOptions.favoriteLocationsOption[currentIndex].isOnDisplay = false
+            AppOptions.favoriteLocationsOption[selectedIndex].isOnDisplay = true
+            userMessage = "Location card is switched".localizedValue
+        } else {
+            userMessage = "Location card is cleared".localizedValue
+        }
+
+        viewLocation?.locationCard = AppOptions.favoriteLocationsOption.first(where: {
+            $0.isOnDisplay && $0.isCurrentLocation }) != nil ? .current : .favorite
+
+        AppGlobals.currentLocation = nil
+        AppGlobals.suggestion = nil
+
+        AppGlobals.weather = nil
+        AppGlobals.forecast = nil
+
+        viewLocation?.reloadData()
+        viewWeather?.reloadData()
+        viewForecast?.reloadData()
+
+        statusMenusPresenter.reloadData()
+
+        actualizeCallingSection()
+
+        log.message(userMessage, .notice, .custom, .enduser)
+    }
+
+    @objc func bookmarkTapped() {
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        // Add item to favorites
+
+        if viewLocation?.locationCard == .suggestion {
+
+            let limit = AppGlobals.favoritesLimit
+            let itemsCount = AppOptions.favoriteLocationsOption.count
+
+            if itemsCount == limit {
+                let text = "Favorites are limited".localizedValue
+                log.message(text, .notice, .custom, .enduser)
+                return
+            }
+
+            if var suggestion = AppGlobals.suggestion,
+               let favoriteIndex = AppOptions.favoriteLocationsOption.firstIndex(
+                where: { $0.isOnDisplay }) {
+
+                AppOptions.favoriteLocationsOption[favoriteIndex].isOnDisplay = false
+                suggestion.isOnDisplay = true
+
+                AppOptions.favoriteLocationsOption.append(suggestion)
+                AppGlobals.suggestion = nil
+
+                viewLocation?.locationCard = .favorite
+                viewLocation?.reloadData()
+
+                let text = "Item added to favorites".localizedValue
+                log.message(text, .notice, .custom, .enduser)
+            }
+
+            return
+        }
+
+        // Remove item from favorites
+
+        if viewLocation?.locationCard == .current {
+            let text = "Current neither to add nor to remove!".localizedValue
+            log.message(text, .notice, .custom, .enduser)
+            return
+        }
+
+        if viewLocation?.locationCard == .favorite {
+
+            if let removedOneIndex = AppOptions.favoriteLocationsOption.firstIndex(
+                where: { $0.isOnDisplay && $0.isCurrentLocation == false }) {
+
+                AppOptions.favoriteLocationsOption.remove(at: removedOneIndex)
+                AppOptions.favoriteLocationsOption[0].isOnDisplay = true
+
+                viewLocation?.locationCard = .current
+            } else {
+                return
+            }
+
+            AppGlobals.currentLocation = nil
+            AppGlobals.suggestion = nil
+
+            AppGlobals.weather = nil
+            AppGlobals.forecast = nil
+
+            viewLocation?.reloadData()
+            viewWeather?.reloadData()
+            viewForecast?.reloadData()
+
+            actualizeCallingSection()
+
+            let text = "Item removed from favorites".localizedValue
+            log.message(text, .notice, .custom, .enduser)
+
+            return
+        }
     }
 }
 
@@ -243,18 +439,17 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 extension PopoverViewController: Localizable {
 
     @objc func localize() {
-        log.message("[\(type(of: self))].\(#function)")
 
-        // Subviews.
+        // Subviews
 
         viewLocation?.localize()
-        viewCurrentWeather?.localize()
+        viewWeather?.localize()
         viewForecast?.localize()
 
-        // Buttons and labels.
+        // Buttons and labels
 
         buttonQuit.title = "Button: Quit".localizedValue
-        labelGreeting.stringValue = "DeveloperRelease".localizedValue
+        labelGreeting.message = "DeveloperRelease".localizedValue
 
         actualizeCallingSection()
 
@@ -274,7 +469,7 @@ extension PopoverViewController: Localizable {
 
             if tabId == tabCurrentWeatherID {
                 buttonFetchMeteoFacts.title = "Button: Call Weather".localizedValue
-                labelMadeWithLove.stringValue = globals.sourceCurrentWeather.lastOne
+                labelMadeWithLove.stringValue = globals.sourceWeather.lastOne
             } else if tabId == tabForecastID {
                 buttonFetchMeteoFacts.title = "Button: Call Forecast".localizedValue
                 labelMadeWithLove.stringValue = globals.sourceForecast.lastOne

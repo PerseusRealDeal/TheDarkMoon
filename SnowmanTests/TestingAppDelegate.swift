@@ -22,7 +22,7 @@ import XCTest
 class TestingAppDelegate: NSResponder, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
-        applog.turned = .off
+        Snowman.log.turned = .off
 
         log.message("[\(type(of: self))].\(#function)")
         log.message("> The app's test bundle start point...", .info)

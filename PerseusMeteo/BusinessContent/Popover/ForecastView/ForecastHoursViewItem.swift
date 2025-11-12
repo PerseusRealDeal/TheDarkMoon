@@ -15,9 +15,6 @@
 
 import Cocoa
 
-import PerseusDarkMode
-import ConsolePerseusLogger
-
 class ForecastHoursViewItem: NSCollectionViewItem {
 
     // MARK: - Internals
@@ -80,7 +77,7 @@ class ForecastHoursViewItem: NSCollectionViewItem {
 
         guard let hour = self.data else { return }
 
-        log.message("[\(type(of: self))].\(#function) hour \(hour.label)")
+        // log.message("[\(type(of: self))].\(#function) hour \(hour.label)")
 
         // textField?.stringValue = hour.label
         // view.layer?.backgroundColor = NSColor.clear.cgColor

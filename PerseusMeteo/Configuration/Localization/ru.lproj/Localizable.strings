@@ -15,16 +15,20 @@
 
 "Product Name" = "Cнеговик";
 "Greetings" = "Рады приветствовать!";
+"Have a great time" = "Не скучного времяпрепровождения";
 "DeveloperRelease" = "Выпуск разработчика, для ознакомления";
 
 "Default: N/A" = "нет";
+
+"P2P" = "P2P";
+"P2P stands for Person to Person" = "P2P значит от личности к личности";
 
 /* Popover Screen – PopoverViewController */
 
 "Button: Call Weather" = "Запросить Погоду";
 "Button: Call Forecast" = "Запросить Прогноз";
 
-"Label: Made with Love" = "C любовью из Новосибирска.";
+"Label: Made with Love" = "C любовью из Новосибирска";
 
 "Tab: Current Weather" = "Наблюдение";
 "Tab: Forecast" = "Прогноз";
@@ -35,6 +39,20 @@
 "Button: Options" = "Настройки";
 
 "Button: Hide" = "Скрыться";
+
+/* End-User Messages */
+
+"Coordinates update is required" = "Координаты следует обновить";
+"Location card is switched" = "Сведения о месте обновлены";
+"Location card is cleared" = "Сведения о месте удалены";
+"Item removed from favorites" = "Список избранных мест обновлен";
+"Item added to favorites" = "Список избранных мест обновлен";
+"Location Name should be typed" = "Название места можно начать вводить";
+"Auto requesting suggestions is on!" = "Авто уточнение включено!";
+"Current Location should be selected" = "Координаты на месте обновляются";
+"Favorites are limited" = "Список до дома!";
+"Current neither to add nor to remove!" = "Ни добавить, ни убавить!";
+"API key is either rejected or empty" = "API ключ не загружен или отсутствует";
 
 /* Location View */
 
@@ -51,7 +69,11 @@
 "Geo Couple" = "Широта, Долгота";
 
 "Button: Update Geo Access" = "Обновить Геодоступ";
-"Button: Refresh Current Location" = "Обновить Геолокацию";
+"Button: Refresh Current Location" = "Обновить Координаты";
+"Button: Request Suggestions" = "Уточнить Название";
+
+"Current Location" = "На Месте";
+"Auto" = "Авт.";
 
 /* Current Weather View */
 
@@ -130,11 +152,6 @@
 "Option: Pressure" = "Барометр";
 "Option: Distance" = "Дальность Обзора";
 
-"OpenWeather: Lock" = "Скрыть";
-"OpenWeather: Unlock" = "Открыть";
-"OpenWeather: Hidden" = "Скрытая замочная скважина...";
-"OpenWeather: Editable" = "Нужен токен (ключ)";
-
 "Unit: Light" = "Cветлая";
 "Unit: Dark" = "Темная";
 "Unit: System" = "Среда";
@@ -156,7 +173,24 @@
 "Unit: Kilometre long" = "Километры";
 "Unit: Mile long" = "Мили";
 
+"Section: Special Options" = "Дополнительные Настройки";
+
+"OpenWeather: Lock" = "Скрыть";
+"OpenWeather: Unlock" = "Показать";
+"OpenWeather: Hidden" = "Скрытая замочная скважина...";
+"OpenWeather: Editable" = "Нужен токен (ключ)";
+
+"Option: StatusMenus" = "Наблюдение";
+"Button: CheckBox StatusMenus" = "Системный Статус";
+
+"Option: StatusMenus Update" = "Период";
+"StatusMenus: per 12 hours" = "12 часов";
+"StatusMenus: per 3 hours" = "3 часа";
+"StatusMenus: per hour" = "каждый час";
+"StatusMenus: none" = "--";
+
 "Button: Close" = "Исчезнуть";
+"Button: Reset All Settings" = "Всё по умолчанию";
 
 /* Compass Directions */
 
@@ -205,11 +239,11 @@
 /* About Screen – AboutWindowController, AboutViewController */
 
 "Button: The App Source Code" = "Исходники изделия";
-"Button: The Technological Tree" = "Лукоморья дуб зелёный";
+"Button: The Technological Tree" = "Золотое дерево";
 
 "Label: The App Version" = "Выпуск";
 
-"Label: Star Copyright Notice" = "Охраняется авторским правом © 7531 - 7532 Михаил A. Жигулин из Новосибирска.";
+"Label: Star Copyright Notice" = "Охраняется авторским правом © 7531 - 7534 Михаил A. Жигулин из Новосибирска.";
 
 "Label: Copyright Details" = "Летоисчесление ведется от Сотворения Мира в Звездном Храме в соответствии со славянским календарем в котором первый месяц сентябрь.";
 
@@ -226,6 +260,9 @@
 
 "Button: License" = "Текст лицензии";
 "Button: Terms & Conditions" = "Соглашение";
+
+"Tab: Essentials" = "Заменяемое";
+"Tab: Log" = "Журнал";
 
 /* OpenWeather weather-conditions descriptions */
 

@@ -15,9 +15,6 @@
 
 import Cocoa
 
-import PerseusDarkMode
-import ConsolePerseusLogger
-
 public class AboutWindowController: NSWindowController {
 
     // MARK: - Internals
@@ -27,7 +24,7 @@ public class AboutWindowController: NSWindowController {
     // MARK: - Storyboard Instance
 
     class func storyboardInstance() -> AboutWindowController {
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         let sb = NSStoryboard(name: String(describing: self), bundle: nil)
 
@@ -46,7 +43,7 @@ public class AboutWindowController: NSWindowController {
 
     public override func awakeFromNib() {
         super.awakeFromNib()
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         let nc = AppGlobals.notificationCenter
 
@@ -77,7 +74,7 @@ public class AboutWindowController: NSWindowController {
 
     public override func windowDidLoad() {
         super.windowDidLoad()
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         // No title for the app screen.
         self.window?.title = ""

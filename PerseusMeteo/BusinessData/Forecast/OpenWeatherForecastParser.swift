@@ -42,7 +42,6 @@
 */
 
 import Foundation
-import ConsolePerseusLogger
 
 public class OpenWeatherForecastParser: ForecastParserProtocol {
 
@@ -183,7 +182,7 @@ public func getForecastDay(from source: [String: Any], timezone: Int) -> String 
         value = dt
 
     } else {
-        log.message("[\(#function) [dt] wrong.", .error)
+        // log.message("[\(#function) [dt] wrong.", .error)
     }
 
     guard value != -1 else { return MeteoFactsDefaults.forecastDate }
@@ -213,7 +212,7 @@ public func getForecastHourDt(from source: [String: Any], timezone: Int) -> Stri
         value = dt
 
     } else {
-        log.message("[\(#function) [dt] wrong.", .error)
+        // log.message("[\(#function) [dt] wrong.", .error)
     }
 
     guard value != -1 else { return MeteoFactsDefaults.sunrizesunset }
@@ -250,7 +249,7 @@ public func getForecastHourTemp(from source: [String: Any]) -> String {
                                            asIs: TemperatureOption.imperial,
                                            toBe: AppOptions.temperatureOption)
 
-    return "\(represented) \(AppOptions.temperatureOption.unit)"
+    return "\(represented)\(AppOptions.temperatureOption.unit)"
 }
 
 public func getForecastHourTempMin(from source: [String: Any]) -> String {
@@ -277,7 +276,7 @@ public func getForecastHourTempMin(from source: [String: Any]) -> String {
                                            asIs: TemperatureOption.imperial,
                                            toBe: AppOptions.temperatureOption)
 
-    return "\(represented) \(AppOptions.temperatureOption.unit)"
+    return "\(represented)\(AppOptions.temperatureOption.unit)"
 }
 
 public func getForecastHourTempMax(from source: [String: Any]) -> String {
@@ -304,7 +303,7 @@ public func getForecastHourTempMax(from source: [String: Any]) -> String {
                                            asIs: TemperatureOption.imperial,
                                            toBe: AppOptions.temperatureOption)
 
-    return "\(represented) \(AppOptions.temperatureOption.unit)"
+    return "\(represented)\(AppOptions.temperatureOption.unit)"
 }
 
 public func getForecastHourTempKinda(from source: [String: Any]) -> String {
@@ -331,7 +330,7 @@ public func getForecastHourTempKinda(from source: [String: Any]) -> String {
                                            asIs: TemperatureOption.imperial,
                                            toBe: AppOptions.temperatureOption)
 
-    return "\(represented) \(AppOptions.temperatureOption.unit)"
+    return "\(represented)\(AppOptions.temperatureOption.unit)"
 }
 
 public func getForecastHourVisibility(from source: [String: Any]) -> String {
@@ -407,7 +406,7 @@ public func getForecastHourWindDirection(from source: [String: Any]) -> String {
         return MeteoFactsDefaults.windDirection
     }
 
-    return "\(Int(point.degree))°: \(point.common.abbreviation.localizedValue)"
+    return "\(Int(point.degree))° : \(point.common.abbreviation.localizedValue)"
 }
 
 public func getForecastHourWindGusts(from source: [String: Any]) -> String {
@@ -482,7 +481,7 @@ public func getForecastHourHumidity(from source: [String: Any]) -> String {
 
     guard value != -1 else { return MeteoFactsDefaults.humidity }
 
-    return "\(value) %"
+    return "\(value)%"
 }
 
 public func getForecastHourCloudiness(from source: [String: Any]) -> String {
@@ -504,7 +503,7 @@ public func getForecastHourCloudiness(from source: [String: Any]) -> String {
 
     guard value != -1 else { return MeteoFactsDefaults.cloudiness }
 
-    return "\(value) %"
+    return "\(value)%"
 }
 
 /*
@@ -550,7 +549,7 @@ public func getPrecipitation(from source: [String: Any]) -> String {
         precipitation.0 = probability
 
     } else {
-        log.message("[\(#function) [pop] wrong.", .error)
+        // log.message("[\(#function) [pop] wrong.", .error)
     }
 
 /*
@@ -566,7 +565,7 @@ public func getPrecipitation(from source: [String: Any]) -> String {
             precipitation.2 = mm
 
         } else {
-            log.message("[\(#function) [rain 3h] wrong.", .error)
+            // log.message("[\(#function) [rain 3h] wrong.", .error)
         }
     } else if let snow = source["snow"] as? [String: Any] {
         if let mm = snow["3h"] as? Double {
@@ -575,10 +574,10 @@ public func getPrecipitation(from source: [String: Any]) -> String {
             precipitation.2 = mm
 
         } else {
-            log.message("[\(#function) [snow 3h] wrong.", .error)
+            // log.message("[\(#function) [snow 3h] wrong.", .error)
         }
     } else {
-        log.message("[\(#function) [rain], [snow] wrong.", .error)
+        // log.message("[\(#function) [rain], [snow] wrong.", .error)
     }
 
     // MeteoFactsDefaults.conditions
@@ -610,7 +609,7 @@ public func getWeatherConditions(from source: [String: Any]) -> WeatherCondition
                 let icon = wFirst["icon"] as? String,
                 let code = WeatherCode(rawValue: id) {
 
-                value = WeatherConditions(code: code, name: "\(icon)@4x")
+                value = WeatherConditions(code: code, name: icon)
 
             } else {
                 log.message("\(#function) [id / icon] wrong.", .error)

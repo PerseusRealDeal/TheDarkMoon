@@ -18,26 +18,44 @@
 
 "Product Name" = "Snowman";
 "Greetings" = "Hello world!";
+"Have a great time" = "Have a great time";
 "DeveloperRelease" = "Developer release, to become acquainted";
 
 "Default: N/A" = "N/A";
+
+"P2P" = "P2P";
+"P2P stands for Person to Person" = "P2P stands for Person to Person";
 
 /* Popover Screen – PopoverViewController */
 
 "Button: Call Weather" = "Call Weather";
 "Button: Call Forecast" = "Call Forecast";
 
-"Label: Made with Love" = "Made with Love from Novosibirsk.";
+"Label: Made with Love" = "Made with Love from Novosibirsk";
 
-"Tab: Current Weather" = "Current Weather";
+"Tab: Current Weather" = "Weather";
 "Tab: Forecast" = "Forecast";
 
 "Button: Quit" = "Quit";
 
-"Button: About" = "About";
+"Button: About" = "Selfie";
 "Button: Options" = "Options";
 
 "Button: Hide" = "Hide";
+
+/* End-User Messages */
+
+"Coordinates update is required" = "Coordinates update is required";
+"Location card is switched" = "Location card is switched";
+"Location card is cleared" = "Location card is cleared";
+"Item removed from favorites" = "Item removed from favorites";
+"Item added to favorites" = "Item added to favorites";
+"Location Name should be typed" = "Location Name should be typed";
+"Auto requesting suggestions is on!" = "Auto requesting suggestions is on!";
+"Current Location should be selected" = "Current Location should be selected";
+"Favorites are limited" = "Favorites are limited";
+"Current neither to add nor to remove!" = "Current neither to add nor to remove!";
+"API key is either rejected or empty" = "API key is either rejected or empty";
 
 /* Location View */
 
@@ -55,6 +73,10 @@
 
 "Button: Update Geo Access" = "Update Geo Access";
 "Button: Refresh Current Location" = "Update Current Location";
+"Button: Request Suggestions" = "Request Suggestions";
+
+"Current Location" = "Current Location";
+"Auto" = "Auto";
 
 /* Current Weather View */
 
@@ -119,24 +141,19 @@
 
 "Title: Options Screen" = "Product Options";
 
-"Section: App Options" = "The App Setup";
+"Section: App Options" = "Base Options";
 
 "Option: Dark Mode" = "Moon Side";
 "Option: Language" = "Language";
 "Option: OpenWeather Key" = "OpenWeather Key";
 "Option: Time Format" = "Time";
 
-"Section: Meteo Options" = "Meteo Viewing";
+"Section: Meteo Options" = "Meteo Options";
 
 "Option: Temperature" = "Temperature";
 "Option: Wind Speed" = "Wind Speed";
 "Option: Pressure" = "Barometer";
 "Option: Distance" = "Visibility";
-
-"OpenWeather: Lock" = "Lock";
-"OpenWeather: Unlock" = "Unlock";
-"OpenWeather: Hidden" = "Hidden key-hole...";
-"OpenWeather: Editable" = "Past the key (token)...";
 
 "Unit: Light" = "Light";
 "Unit: Dark" = "Dark";
@@ -159,7 +176,24 @@
 "Unit: Kilometre long" = "Kilometre";
 "Unit: Mile long" = "Mile";
 
+"Section: Special Options" = "Special Options";
+
+"OpenWeather: Lock" = "Lock";
+"OpenWeather: Unlock" = "Unlock";
+"OpenWeather: Hidden" = "Hidden key-hole...";
+"OpenWeather: Editable" = "Past the key (token)...";
+
+"Option: StatusMenus" = "Current Weather";
+"Button: CheckBox StatusMenus" = "Show in StatusMenus";
+
+"Option: StatusMenus Update" = "Update";
+"StatusMenus: per 12 hours" = "per 12 hours";
+"StatusMenus: per 3 hours" = "per 3 hours";
+"StatusMenus: per hour" = "per hour";
+"StatusMenus: none" = "--";
+
 "Button: Close" = "Close";
+"Button: Reset All Settings" = "Reset All Settings";
 
 /* Compass Directions */
 
@@ -208,11 +242,11 @@
 /* About Screen – AboutWindowController, AboutViewController */
 
 "Button: The App Source Code" = "The product source code";
-"Button: The Technological Tree" = "There is a tree greening by the ocean...";
+"Button: The Technological Tree" = "The golden tree";
 
 "Label: The App Version" = "Version";
 
-"Label: Star Copyright Notice" = "Copyright © 7531 - 7532 Mikhail Zhigulin of Novosibirsk";
+"Label: Star Copyright Notice" = "Copyright © 7531 - 7534 Mikhail Zhigulin of Novosibirsk";
 
 "Label: Copyright Details" = "The year starts from the creation of the world in the Star temple according to a Slavic calendar. September, the 1st of Slavic year";
 
@@ -229,6 +263,9 @@
 
 "Button: License" = "License";
 "Button: Terms & Conditions" = "Terms & Conditions";
+
+"Tab: Essentials" = "Essentials";
+"Tab: Log" = "Log";
 
 /* OpenWeather weather-conditions descriptions */
 

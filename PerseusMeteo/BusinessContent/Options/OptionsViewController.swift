@@ -17,27 +17,31 @@
 
 import Cocoa
 
-import PerseusDarkMode
-import ConsolePerseusLogger
-
 class OptionsViewController: NSViewController, NSTextFieldDelegate {
 
     // MARK: - Outlets
 
-    @IBOutlet private(set) weak var controlAppOptionsSection: NSBox!
-    @IBOutlet private(set) weak var controlWeatherOptionsSection: NSBox!
-    @IBOutlet private(set) weak var controlCloseButton: NSButton!
+    @IBOutlet private(set) weak var boxAppOptions: NSBox!
+    @IBOutlet private(set) weak var boxWeatherOptions: NSBox!
+    @IBOutlet private(set) weak var boxSpecialOptions: NSBox!
+
+    @IBOutlet private(set) weak var buttonClose: NSButton!
+    @IBOutlet private(set) weak var buttonResetAllSettings: NSButton!
 
     @IBOutlet private(set) weak var labelDarkMode: NSTextField!
     @IBOutlet private(set) weak var labelLanguage: NSTextField!
     @IBOutlet private(set) weak var labelTimeFormat: NSTextField!
     @IBOutlet private(set) weak var labelOpenWeatherKey: NSTextField!
+    @IBOutlet private(set) weak var labelStatusMenus: NSTextField!
+    @IBOutlet private(set) weak var labelStatusMenusUpdate: NSTextField!
 
     @IBOutlet private(set) weak var controlDarkMode: NSSegmentedControl!
     @IBOutlet private(set) weak var controlLanguage: NSSegmentedControl!
     @IBOutlet private(set) weak var controlTimeFormat: NSSegmentedControl!
     @IBOutlet private(set) weak var controlOpenWeatherKey: NSTextField!
     @IBOutlet private(set) weak var controlUnlockButton: NSButton!
+    @IBOutlet private(set) weak var checkBoxStatusMenus: NSButton!
+    @IBOutlet private(set) weak var comboBoxStatusMenusUpdatePeriod: NSComboBox!
 
     @IBOutlet private(set) weak var labelTemperature: NSTextField!
     @IBOutlet private(set) weak var labelWindSpeed: NSTextField!
@@ -98,20 +102,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         }
 
         let nc = AppGlobals.notificationCenter
-        nc.post(Notification.init(name: .meteoDataOptionsDidChanged))
-    }
-
-    @IBAction func controlUnlockButtonTapped(_ sender: NSButton) {
-        log.message("[\(type(of: self))].\(#function) - \(controlUnlockButton.stringValue)")
-
-        if self.controlOpenWeatherKey.isEditable {
-            lockOpenWeatherKeyHole()
-        } else {
-            let secret = AppOptions.OpenWeatherAPIOption
-            if let secret = secret {
-                unlockOpenWeatherKeyHole(stringValue: secret)
-            }
-        }
+        nc.post(Notification.init(name: .meteoDataOptionsNotification))
     }
 
     @IBAction func controlTemperatureDidChanged(_ sender: NSSegmentedControl) {
@@ -129,7 +120,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         }
 
         let nc = AppGlobals.notificationCenter
-        nc.post(Notification.init(name: .meteoDataOptionsDidChanged))
+        nc.post(Notification.init(name: .meteoDataOptionsNotification))
     }
 
     @IBAction func controlWindSpeedDidChanged(_ sender: NSSegmentedControl) {
@@ -147,7 +138,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         }
 
         let nc = AppGlobals.notificationCenter
-        nc.post(Notification.init(name: .meteoDataOptionsDidChanged))
+        nc.post(Notification.init(name: .meteoDataOptionsNotification))
     }
 
     @IBAction func controlPressureDidChanged(_ sender: NSSegmentedControl) {
@@ -165,7 +156,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         }
 
         let nc = AppGlobals.notificationCenter
-        nc.post(Notification.init(name: .meteoDataOptionsDidChanged))
+        nc.post(Notification.init(name: .meteoDataOptionsNotification))
     }
 
     @IBAction func controlDistanceDidChanged(_ sender: NSSegmentedControl) {
@@ -181,13 +172,71 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         }
 
         let nc = AppGlobals.notificationCenter
-        nc.post(Notification.init(name: .meteoDataOptionsDidChanged))
+        nc.post(Notification.init(name: .meteoDataOptionsNotification))
+    }
+
+    @IBAction func controlUnlockButtonTapped(_ sender: NSButton) {
+        log.message("[\(type(of: self))].\(#function) - \(controlUnlockButton.stringValue)")
+
+        if self.controlOpenWeatherKey.isEditable {
+            lockOpenWeatherKeyHole()
+        } else {
+            let secret = AppOptions.OpenWeatherAPIOption
+            if let secret = secret {
+                unlockOpenWeatherKeyHole(stringValue: secret)
+            }
+        }
+    }
+
+    @IBAction func checkBoxStatusMenusDidChanged(_ sender: NSButton) {
+        AppOptions.statusMenusOption = sender.state == .on ? true : false
+
+        let nc = AppGlobals.notificationCenter
+        nc.post(Notification.init(name: .updateStatusMenusItemNotification))
+    }
+
+    @IBAction func comboBoxStatusMenusUpdatePeriodDidChanged(_ sender: NSComboBox) {
+        guard let period = StatusMenusUpdatePeriodOption(rawValue: sender.indexOfSelectedItem)
+        else {
+            udpateComboBoxStatusMenusUpdatePeriod()
+            return
+        }
+
+        AppOptions.statusMenusPeriodOption = period
+
+        let nc = AppGlobals.notificationCenter
+        nc.post(Notification.init(name: .updateStatusMenusItemNotification))
     }
 
     @IBAction func closeOptionsWindow(_ sender: NSButton) {
-        statusMenusButtonPresenter.screenOptions.close()
+        statusMenusPresenter.screenOptions.close()
     }
 
+    @IBAction func resetAllSettingsTapped(_ sender: NSButton) {
+
+        let ud = AppGlobals.userDefaults
+
+        ud.removeObject(forKey: DARK_MODE_SETTINGS_KEY)
+        ud.removeObject(forKey: LANGUAGE_OPTION_KEY)
+        ud.removeObject(forKey: TEMPERATURE_OPTION_KEY)
+        ud.removeObject(forKey: WINDSPEED_OPTION_KEY)
+        ud.removeObject(forKey: PRESSURE_OPTION_KEY)
+        ud.removeObject(forKey: TIME_OPTION_KEY)
+        ud.removeObject(forKey: DISTANCE_OPTION_KEY)
+        ud.removeObject(forKey: SUGGESTIONS_REQUEST_OPTION_KEY)
+        ud.removeObject(forKey: STATUSMENUS_OPTION_KEY)
+        ud.removeObject(forKey: STATUSMENUS_PERIOD_OPTION_KEY)
+
+        ud.removeObject(forKey: DARK_MODE_USER_CHOICE_KEY)
+        DarkModeAgent.force(DARK_MODE_USER_CHOICE_DEFAULT)
+
+        viewDidAppear()
+
+        let nc = AppGlobals.notificationCenter
+
+        nc.post(Notification.init(name: .updateStatusMenusItemNotification))
+        nc.post(Notification.init(name: .meteoDataOptionsNotification))
+    }
     // MARK: - Initialization
 
     override func awakeFromNib() {
@@ -206,13 +255,19 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
                                            height: self.view.frame.size.height)
 
         if #unavailable(macOS 10.14) { // For HighSierra only.
-            controlAppOptionsSection.isTransparent = true
-            controlWeatherOptionsSection.isTransparent = true
+            boxAppOptions.isTransparent = true
+            boxWeatherOptions.isTransparent = true
+            boxSpecialOptions.isTransparent = true
         }
 
         controlOpenWeatherKey.delegate = self
 
         lockOpenWeatherKeyHole()
+
+        // For HighSierra dark mode is .system only
+        if #unavailable(macOS 10.14) {
+            controlDarkMode.isEnabled = false
+        }
     }
 
     override func viewDidAppear() {
@@ -227,6 +282,9 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         updateControlWindSpeed()
         updateControlPressure()
         updateControlDistance()
+
+        udpateCheckBoxStatusMenus()
+        udpateComboBoxStatusMenusUpdatePeriod()
     }
 
     override func viewWillDisappear() {
@@ -239,6 +297,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     // MARK: - Events
 
     func controlTextDidChange(_ obj: Notification) {
+
         log.message("[\(type(of: self))].\(#function)")
 
         guard let tf = obj.object as? NSTextField else { return }
@@ -265,6 +324,33 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
 
     // MARK: - Realization
 
+    private func lockOpenWeatherKeyHole() {
+        controlOpenWeatherKey.isEditable = false
+
+        controlOpenWeatherKey.stringValue = ""
+        controlOpenWeatherKey.placeholderString = "OpenWeather: Hidden".localizedValue
+
+        controlUnlockButton.title = "OpenWeather: Unlock".localizedValue
+    }
+
+    private func unlockOpenWeatherKeyHole(stringValue: String = "") {
+        controlOpenWeatherKey.isEditable = true
+
+        if stringValue.isEmpty {
+            controlOpenWeatherKey.stringValue = ""
+            controlOpenWeatherKey.placeholderString = "OpenWeather: Editable".localizedValue
+        } else {
+            controlOpenWeatherKey.stringValue = stringValue
+        }
+
+        controlUnlockButton.title = "OpenWeather: Lock".localizedValue
+    }
+}
+
+// MARK: - Updates
+
+extension OptionsViewController {
+
     private func updateControlDarkMode() {
         log.message("[\(type(of: self))].\(#function) \(DarkModeAgent.DarkModeUserChoice)")
 
@@ -289,28 +375,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         case .en:
             controlLanguage.selectedSegment = 0
         }
-    }
-
-    private func lockOpenWeatherKeyHole() {
-        controlOpenWeatherKey.isEditable = false
-
-        controlOpenWeatherKey.stringValue = ""
-        controlOpenWeatherKey.placeholderString = "OpenWeather: Hidden".localizedValue
-
-        controlUnlockButton.title = "OpenWeather: Unlock".localizedValue
-    }
-
-    private func unlockOpenWeatherKeyHole(stringValue: String = "") {
-        controlOpenWeatherKey.isEditable = true
-
-        if stringValue.isEmpty {
-            controlOpenWeatherKey.stringValue = ""
-            controlOpenWeatherKey.placeholderString = "OpenWeather: Editable".localizedValue
-        } else {
-            controlOpenWeatherKey.stringValue = stringValue
-        }
-
-        controlUnlockButton.title = "OpenWeather: Lock".localizedValue
     }
 
     private func updateControlTemperature() {
@@ -377,48 +441,54 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
             controlDistance.isEnabled = false
         }
     }
+
+    private func udpateCheckBoxStatusMenus() {
+        log.message("[\(type(of: self))].\(#function) \(AppOptions.statusMenusOption)")
+        checkBoxStatusMenus.state = AppOptions.statusMenusOption ? .on : .off
+    }
+
+    private func udpateComboBoxStatusMenusUpdatePeriod() {
+        log.message("[\(type(of: self))].\(#function)")
+        comboBoxStatusMenusUpdatePeriod.removeAllItems()
+
+        for item in StatusMenusUpdatePeriodOption.allCases {
+            comboBoxStatusMenusUpdatePeriod.addItem(withObjectValue: "\(item)".localizedValue)
+        }
+
+        let selectedIndex = AppOptions.statusMenusPeriodOption.rawValue
+        comboBoxStatusMenusUpdatePeriod.selectItem(at: selectedIndex)
+    }
 }
 
-// MARK: - Extensions
+// MARK: - Localization
 
 extension OptionsViewController {
-
-    // MARK: - Localization
 
     public func localize() {
         log.message("[\(type(of: self))].\(#function)")
 
         self.view.window?.title = self.windowTitleLocalized
 
-        controlAppOptionsSection.title = "Section: App Options".localizedValue + ":"
+        boxAppOptions.title = "Section: App Options".localizedValue + ":"
 
         labelDarkMode.stringValue = "Option: Dark Mode".localizedValue
         labelLanguage.stringValue = "Option: Language".localizedValue
-        labelOpenWeatherKey.stringValue = "Option: OpenWeather Key".localizedValue
         labelTimeFormat.stringValue = "Option: Time Format".localizedValue
 
-        controlWeatherOptionsSection.title = "Section: Meteo Options".localizedValue + ":"
+        boxWeatherOptions.title = "Section: Meteo Options".localizedValue + ":"
 
         labelTemperature.stringValue = "Option: Temperature".localizedValue
         labelWindSpeed.stringValue = "Option: Wind Speed".localizedValue
         labelPressure.stringValue = "Option: Pressure".localizedValue
         labelDistance.stringValue = "Option: Distance".localizedValue
 
-        controlOpenWeatherKey.placeholderString = controlOpenWeatherKey.isEditable ?
-            "OpenWeather: Editable".localizedValue :
-            "OpenWeather: Hidden".localizedValue
-
-        controlUnlockButton.title = controlOpenWeatherKey.isEditable ?
-            "OpenWeather: Lock".localizedValue :
-            "OpenWeather: Unlock".localizedValue
-
         controlDarkMode.setLabel("Unit: Light".localizedValue, forSegment: 0)
         controlDarkMode.setLabel("Unit: Dark".localizedValue, forSegment: 1)
         controlDarkMode.setLabel("Unit: System".localizedValue, forSegment: 2)
 
-        controlLanguage.setLabel("Unit: English".localizedValue, forSegment: 0)
-        controlLanguage.setLabel("Unit: Russian".localizedValue, forSegment: 1)
         controlLanguage.setLabel("Unit: System".localizedValue, forSegment: 2)
+        controlLanguage.setLabel("Unit: Russian".localizedValue, forSegment: 1)
+        controlLanguage.setLabel("Unit: English".localizedValue, forSegment: 0)
 
         controlTimeFormat.setLabel("Unit: 24-hour".localizedValue, forSegment: 0)
         controlTimeFormat.setLabel("Unit: 12-hour".localizedValue, forSegment: 1)
@@ -439,7 +509,28 @@ extension OptionsViewController {
         controlDistance.setLabel("Unit: Kilometre long".localizedValue, forSegment: 0)
         controlDistance.setLabel("Unit: Mile long".localizedValue, forSegment: 1)
 
-        controlCloseButton.title = "Button: Close".localizedValue
+        boxSpecialOptions.title = "Section: Special Options".localizedValue + ":"
+
+        labelOpenWeatherKey.stringValue = "Option: OpenWeather Key".localizedValue
+        labelStatusMenus.stringValue = "Option: StatusMenus".localizedValue
+
+        let weatherStatusMenusUpdate = "Option: StatusMenus Update".localizedValue + ":"
+        labelStatusMenusUpdate.stringValue = weatherStatusMenusUpdate
+
+        controlOpenWeatherKey.placeholderString = controlOpenWeatherKey.isEditable ?
+            "OpenWeather: Editable".localizedValue :
+            "OpenWeather: Hidden".localizedValue
+
+        controlUnlockButton.title = controlOpenWeatherKey.isEditable ?
+            "OpenWeather: Lock".localizedValue :
+            "OpenWeather: Unlock".localizedValue
+
+        checkBoxStatusMenus.title = "Button: CheckBox StatusMenus".localizedValue
+
+        udpateComboBoxStatusMenusUpdatePeriod()
+
+        buttonClose.title = "Button: Close".localizedValue
+        buttonResetAllSettings.title = "Button: Reset All Settings".localizedValue
     }
 
     private var windowTitleLocalized: String {

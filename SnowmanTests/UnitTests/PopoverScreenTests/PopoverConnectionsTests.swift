@@ -40,7 +40,7 @@ class PopoverConnectionsTests: XCTestCase {
         XCTAssertNotNil(sut.buttonQuit)
 
         XCTAssertNotNil(sut.viewLocation)
-        XCTAssertNotNil(sut.viewCurrentWeather)
+        XCTAssertNotNil(sut.viewWeather)
         XCTAssertNotNil(sut.viewForecast)
 
         XCTAssertNotNil(sut.buttonFetchMeteoFacts)
@@ -65,13 +65,10 @@ class PopoverConnectionsTests: XCTestCase {
 
         XCTAssertNotNil(sut.viewLocation.viewContent)
 
-        XCTAssertNotNil(sut.viewLocation.labelLocationNameValue)
-        XCTAssertNotNil(sut.viewLocation.labelGeoCoupleDataValue)
+        XCTAssertNotNil(sut.viewLocation.labelGeoCoordinates)
+        XCTAssertNotNil(sut.viewLocation.labelPermissionStatus)
 
-        XCTAssertNotNil(sut.viewLocation.labelPermissionTitle)
-        XCTAssertNotNil(sut.viewLocation.labelPermissionValue)
-
-        XCTAssertNotNil(sut.viewLocation.buttonRefresh)
+        XCTAssertNotNil(sut.viewLocation.buttonUpdateCurrentLocation)
     }
 
     func test_ConnectionsNotNil_WeatherView() {
@@ -82,21 +79,20 @@ class PopoverConnectionsTests: XCTestCase {
 
         // assert
 
-        XCTAssertNotNil(sut.viewCurrentWeather.viewContent)
+        XCTAssertNotNil(sut.viewWeather.viewContent)
 
-        XCTAssertNotNil(sut.viewCurrentWeather.labelMeteoProviderTitle)
-        XCTAssertNotNil(sut.viewCurrentWeather.labelMeteoProviderValue)
+        XCTAssertNotNil(sut.viewWeather.labelMeteoProvider)
 
-        XCTAssertNotNil(sut.viewCurrentWeather.indicator)
+        XCTAssertNotNil(sut.viewWeather.indicator)
 
-        XCTAssertNotNil(sut.viewCurrentWeather.viewWeatherConditionsIcon)
-        XCTAssertNotNil(sut.viewCurrentWeather.labelTemperatureValue)
-        XCTAssertNotNil(sut.viewCurrentWeather.labelWeatherConditionsDescriptionValue)
+        XCTAssertNotNil(sut.viewWeather.viewWeatherConditionsIcon)
+        XCTAssertNotNil(sut.viewWeather.labelTemperatureValue)
+        XCTAssertNotNil(sut.viewWeather.labelWeatherConditionsDescriptionValue)
 
-        XCTAssertNotNil(sut.viewCurrentWeather.labelSunriseTitle)
-        XCTAssertNotNil(sut.viewCurrentWeather.labelSunriseValue)
-        XCTAssertNotNil(sut.viewCurrentWeather.labelSunsetTitle)
-        XCTAssertNotNil(sut.viewCurrentWeather.labelSunsetValue)
+        XCTAssertNotNil(sut.viewWeather.labelSunriseTitle)
+        XCTAssertNotNil(sut.viewWeather.labelSunriseValue)
+        XCTAssertNotNil(sut.viewWeather.labelSunsetTitle)
+        XCTAssertNotNil(sut.viewWeather.labelSunsetValue)
     }
 
     func test_ConnectionsNotNil_ForecastView() {
@@ -107,8 +103,7 @@ class PopoverConnectionsTests: XCTestCase {
 
         // assert
 
-        XCTAssertNotNil(sut.viewForecast.labelMeteoProviderTitle)
-        XCTAssertNotNil(sut.viewForecast.labelMeteoProviderValue)
+        XCTAssertNotNil(sut.viewForecast.labelMeteoProvider)
 
         XCTAssertNotNil(sut.viewForecast.indicator)
     }
@@ -121,25 +116,25 @@ class PopoverConnectionsTests: XCTestCase {
 
         // assert
 
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.title1)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.title2)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.title3)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.title4)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.title5)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.title5)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.title6)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.title7)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.title9)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.title1)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.title2)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.title3)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.title4)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.title5)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.title5)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.title6)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.title7)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.title9)
 
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.value1)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.value2)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.value3)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.value4)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.value5)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.value6)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.value7)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.value8)
-        XCTAssertNotNil(sut.viewCurrentWeather.viewMeteoGroup.value9)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.value1)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.value2)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.value3)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.value4)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.value5)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.value6)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.value7)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.value8)
+        XCTAssertNotNil(sut.viewWeather.viewMeteoGroup.value9)
 
         // assert
 

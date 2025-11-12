@@ -49,18 +49,14 @@ class OptionsLocalizationTests: XCTestCase {
         XCTAssertEqual(sut.view.window?.title, "Product Name".localizedValue + " — " + title)
 
         let theAppOptions = "Section: App Options".localizedValue
-        XCTAssertEqual(sut.controlAppOptionsSection.title, theAppOptions + ":")
+        XCTAssertEqual(sut.boxAppOptions.title, theAppOptions + ":")
 
         XCTAssertEqual(sut.labelDarkMode.stringValue, "Option: Dark Mode".localizedValue)
         XCTAssertEqual(sut.labelLanguage.stringValue, "Option: Language".localizedValue)
-
-        let labelKey = "Option: OpenWeather Key".localizedValue
-        XCTAssertEqual(sut.labelOpenWeatherKey.stringValue, labelKey)
-
         XCTAssertEqual(sut.labelTimeFormat.stringValue, "Option: Time Format".localizedValue)
 
         let meteoOptions = "Section: Meteo Options".localizedValue
-        XCTAssertEqual(sut.controlWeatherOptionsSection.title, meteoOptions + ":")
+        XCTAssertEqual(sut.boxWeatherOptions.title, meteoOptions + ":")
 
         XCTAssertEqual(sut.labelTemperature.stringValue, "Option: Temperature".localizedValue)
         XCTAssertEqual(sut.labelWindSpeed.stringValue, "Option: Wind Speed".localizedValue)
@@ -70,7 +66,20 @@ class OptionsLocalizationTests: XCTestCase {
         XCTAssertEqual(sut.labelPressure.stringValue, "Option: Pressure".localizedValue)
         XCTAssertEqual(sut.labelDistance.stringValue, "Option: Distance".localizedValue)
 
-        XCTAssertEqual(sut.controlCloseButton.title, "Button: Close".localizedValue)
+        let specialOptions = "Section: Special Options".localizedValue
+        XCTAssertEqual(sut.boxSpecialOptions.title, specialOptions + ":")
+
+        let labelKey = "Option: OpenWeather Key".localizedValue
+        XCTAssertEqual(sut.labelOpenWeatherKey.stringValue, labelKey)
+        let labelStatusMenus = "Option: StatusMenus".localizedValue
+        XCTAssertEqual(sut.labelStatusMenus.stringValue, labelStatusMenus)
+        let labelStatusMenusUpdate = "Option: StatusMenus Update".localizedValue + ":"
+        XCTAssertEqual(sut.labelStatusMenusUpdate.stringValue, labelStatusMenusUpdate)
+
+        let checkBoxStatusMenus = "Button: CheckBox StatusMenus".localizedValue
+        XCTAssertEqual(sut.checkBoxStatusMenus.title, checkBoxStatusMenus)
+
+        XCTAssertEqual(sut.buttonClose.title, "Button: Close".localizedValue)
     }
 
     func test_Localization_of_OptionsScreen_controlOpenWeatherKey() {
@@ -119,12 +128,12 @@ class OptionsLocalizationTests: XCTestCase {
 
         // assert
 
-        XCTAssertEqual(sut.controlLanguage.label(forSegment: 0),
-                       "Unit: English".localizedValue)
-        XCTAssertEqual(sut.controlLanguage.label(forSegment: 1),
-                       "Unit: Russian".localizedValue)
         XCTAssertEqual(sut.controlLanguage.label(forSegment: 2),
                        "Unit: System".localizedValue)
+        XCTAssertEqual(sut.controlLanguage.label(forSegment: 1),
+                       "Unit: Russian".localizedValue)
+        XCTAssertEqual(sut.controlLanguage.label(forSegment: 0),
+                       "Unit: English".localizedValue)
     }
 
     func test_Localization_of_OptionsScreen_controlTimeFormat() {

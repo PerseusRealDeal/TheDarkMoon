@@ -16,10 +16,17 @@
 //
 
 import Cocoa
-import ConsolePerseusLogger
 
 @IBDesignable
 class ForecastView: NSView {
+
+    // MARK: Internals
+
+    private var meteoProviderNickLocalized: String {
+        let title = "Label: Meteo Data Provider".localizedValue
+        let nick = dataSource.meteoDataProviderName
+        return "\(title) \(nick)"
+    }
 
     private let daysID = NSUserInterfaceItemIdentifier(rawValue: "ForecastDays")
     private let hoursID = NSUserInterfaceItemIdentifier(rawValue: "ForecastHours")
@@ -43,9 +50,7 @@ class ForecastView: NSView {
 
     @IBOutlet private(set) var contentView: NSView!
 
-    @IBOutlet private(set) weak var labelMeteoProviderTitle: NSTextField!
-    @IBOutlet private(set) weak var labelMeteoProviderValue: NSTextField!
-
+    @IBOutlet private(set) weak var labelMeteoProvider: NSTextField!
     @IBOutlet private(set) weak var indicator: NSProgressIndicator!
 
     @IBOutlet private(set) weak var viewForecastDays: NSCollectionView!
@@ -55,23 +60,21 @@ class ForecastView: NSView {
     @IBOutlet private(set) weak var viewMeteoGroup: MeteoGroupView!
 
     // MARK: - Initialization
-
+/*
     override func viewWillDraw() {
         super.viewWillDraw()
-
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
     }
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
     }
-
+*/
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         localize()
 
@@ -97,13 +100,13 @@ class ForecastView: NSView {
         // self.selectTheFirstForecastDay()
         // self.selectTheFirstForecastHour()
 
-        viewMeteoGroup.applyCompactFonts()
+        viewMeteoGroup.applyFonts()
     }
 
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         // Create a new instance from *xib and reference it to contentView outlet.
 
@@ -115,7 +118,7 @@ class ForecastView: NSView {
             log.message(text, .error); fatalError(text)
         }
 
-        log.message("[\(type(of: self))].\(#function) \(className)")
+        // log.message("[\(type(of: self))].\(#function) \(className)")
 
         nib.instantiate(withOwner: self, topLevelObjects: nil)
 
@@ -151,7 +154,7 @@ class ForecastView: NSView {
 
     public func reloadData(saveSelection: Bool = false) {
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         // dataSource.refresh()
 
@@ -162,13 +165,12 @@ class ForecastView: NSView {
 
         // Meteo Data Provider.
 
-        labelMeteoProviderTitle.stringValue = "Label: Meteo Data Provider".localizedValue
-        labelMeteoProviderValue.stringValue = dataSource.meteoDataProviderName
+        labelMeteoProvider.stringValue = meteoProviderNickLocalized
     }
 
     public func selectTheFirstForecastDay() {
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         let indexPath = IndexPath(item: 0, section: 0)
         let indexes: Set<IndexPath> = [indexPath]
@@ -178,7 +180,7 @@ class ForecastView: NSView {
 
     public func selectTheFirstForecastHour() {
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         let indexPath = IndexPath(item: 0, section: 0)
         let indexes: Set<IndexPath> = [indexPath]
@@ -187,10 +189,10 @@ class ForecastView: NSView {
         let daySelected = viewForecastDays.selectionIndexPaths
 
         if !dataSource.forecastDays.isEmpty {
-            log.message("[\(type(of: self))].\(#function) forecastDays not empty")
+            // log.message("[\(type(of: self))].\(#function) forecastDays not empty")
 
             if !dataSource.forecastDays[0].hours.isEmpty {
-                log.message("[\(type(of: self))].\(#function) hours not empty")
+                // log.message("[\(type(of: self))].\(#function) hours not empty")
 
                 if let daySelectedIndex = daySelected.first {
                     let index = daySelectedIndex.item
@@ -212,7 +214,7 @@ class ForecastView: NSView {
 
     private func reloadDaysCollection(selectionSaved: Bool) {
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         let paths = viewForecastDays.selectionIndexPaths
 
@@ -225,7 +227,7 @@ class ForecastView: NSView {
 
     private func reloadHoursCollection(selectionSaved: Bool) {
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         labelWeatherDescription.stringValue = MeteoFactsDefaults.conditions
 
@@ -251,12 +253,12 @@ class ForecastView: NSView {
         let indexHour = paths.first
 
         if !dataSource.forecastDays.isEmpty && indexDay != nil {
-            log.message("[\(type(of: self))].\(#function) forecastDays not empty")
+            // log.message("[\(type(of: self))].\(#function) forecastDays not empty")
 
             let dayItem = indexDay!.item
 
             if !dataSource.forecastDays[dayItem].hours.isEmpty && indexHour != nil {
-                log.message("[\(type(of: self))].\(#function) hours not empty")
+                // log.message("[\(type(of: self))].\(#function) hours not empty")
 
                 let hourItem = indexHour!.item
                 let item = dataSource.forecastDays[dayItem].hours[hourItem]
@@ -279,7 +281,7 @@ extension ForecastView: NSCollectionViewDataSource {
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection
         section: Int) -> Int {
 
-        log.message("[\(type(of: self))].\(#function) : \(dataSource.forecastDays.count)")
+        // log.message("[\(type(of: self))].\(#function) : \(dataSource.forecastDays.count)")
 
         // Amount of items in the Forecast Days collection.
 
@@ -319,7 +321,7 @@ extension ForecastView: NSCollectionViewDataSource {
             let index = (indexPath as NSIndexPath).item
             var data = dataSource.forecastDays[index]
 
-            log.message("day \(index) : \(dataSource.forecastDays.count)", .info)
+            // log.message("day \(index) : \(dataSource.forecastDays.count)", .info)
 
             data.label = "\(index)"
 
@@ -352,7 +354,7 @@ extension ForecastView: NSCollectionViewDataSource {
                 let index = (indexPath as NSIndexPath).item
                 var data = day.hours[index]
 
-                log.message("hour \(index) : \(dataSource.forecastDays.count)", .info)
+                // log.message("hour \(index) : \(dataSource.forecastDays.count)", .info)
 
                 data.label = "\(index)"
 
@@ -380,7 +382,7 @@ extension ForecastView: NSCollectionViewDelegate {
     func collectionView(_ collectionView: NSCollectionView,
                         didSelectItemsAt indexPaths: Set<IndexPath>) {
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         if collectionView.identifier == daysID {
             viewMeteoGroup.data = nil
@@ -417,7 +419,7 @@ extension ForecastView {
 
     public func makeup() {
 
-        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+        // log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
     }
 }
 
@@ -427,7 +429,7 @@ extension ForecastView {
 
     public func localize() {
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         reloadData(saveSelection: true)
     }

@@ -16,14 +16,21 @@
 //
 
 import Cocoa
-import ConsolePerseusLogger
 
 @IBDesignable
 class WeatherView: NSView {
 
+    // MARK: Internals
+
+    private var meteoProviderNickLocalized: String {
+        let title = "Label: Meteo Data Provider".localizedValue
+        let nick = dataSource.meteoDataProviderName
+        return "\(title) \(nick)"
+    }
+
     // MARK: - View Data Source
 
-    public let dataSource = globals.sourceCurrentWeather
+    public let dataSource = globals.sourceWeather
     public var progressIndicator: Bool = false {
         didSet {
             if progressIndicator {
@@ -42,8 +49,7 @@ class WeatherView: NSView {
 
     @IBOutlet private(set) weak var viewMeteoGroup: MeteoGroupView!
 
-    @IBOutlet private(set) weak var labelMeteoProviderTitle: NSTextField!
-    @IBOutlet private(set) weak var labelMeteoProviderValue: NSTextField!
+    @IBOutlet private(set) weak var labelMeteoProvider: NSTextField!
     @IBOutlet private(set) weak var indicator: NSProgressIndicator!
 
     @IBOutlet private(set) weak var viewWeatherConditionsIcon: NSImageView!
@@ -61,7 +67,7 @@ class WeatherView: NSView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         localize()
         progressIndicator = false
@@ -70,7 +76,7 @@ class WeatherView: NSView {
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         // Create a new instance from *xib and reference it to contentView outlet.
 
@@ -81,7 +87,7 @@ class WeatherView: NSView {
             log.message(text, .error); fatalError(text)
         }
 
-        log.message("[\(type(of: self))].\(#function) \(className)")
+        // log.message("[\(type(of: self))].\(#function) \(className)")
 
         nib.instantiate(withOwner: self, topLevelObjects: nil)
 
@@ -117,26 +123,25 @@ class WeatherView: NSView {
 
     public func reloadData() {
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
-        // Meteo Data Provider.
+        // Meteo data provider name
 
-        labelMeteoProviderTitle.stringValue = "Label: Meteo Data Provider".localizedValue
-        labelMeteoProviderValue.stringValue = dataSource.meteoDataProviderName
+        labelMeteoProvider.stringValue = meteoProviderNickLocalized
 
-        // Temperature, Weather Icon, and Short desc.
+        // Temperature, Weather Icon, and Short desc
 
-        labelTemperatureValue.stringValue = dataSource.temperature
+        let temperature = dataSource.temperature
 
         let wcs = dataSource.weatherConditions
+        let img = NSImage(named: wcs.icon)
 
-        // viewWeatherConditionIcon.image = NSImage(named: dataSource.weatherIconName)
-        // labelWeatherConditionValue.stringValue = dataSource.weatherDescription
+        labelTemperatureValue.stringValue = temperature
+        viewWeatherConditionsIcon.image = img
 
-        viewWeatherConditionsIcon.image = NSImage(named: wcs.icon)
         labelWeatherConditionsDescriptionValue.stringValue = wcs.description
 
-        // Sunrise and sunset.
+        // Sunrise and sunset
 
         labelSunriseTitle.stringValue = "Label: Sunrise".localizedValue
         labelSunsetTitle.stringValue = "Label: Sunset".localizedValue
@@ -144,7 +149,7 @@ class WeatherView: NSView {
         labelSunriseValue.stringValue = dataSource.sunrise
         labelSunsetValue.stringValue = dataSource.sunset
 
-        // Meteo group
+        // Prepare Meteo group
 
         var meteogroup = MeteoGroupData()
 
@@ -184,6 +189,8 @@ class WeatherView: NSView {
         meteogroup.title9 = "Prefix: Cloudiness".localizedValue
         meteogroup.value9 = dataSource.cloudiness
 
+        // Set meteo group
+
         self.viewMeteoGroup.data = meteogroup
     }
 }
@@ -194,7 +201,7 @@ extension WeatherView {
 
     public func makeup() {
 
-        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+        // log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
     }
 }
 
@@ -204,7 +211,7 @@ extension WeatherView {
 
     public func localize() {
 
-        log.message("[\(type(of: self))].\(#function)")
+        // log.message("[\(type(of: self))].\(#function)")
 
         reloadData()
     }
