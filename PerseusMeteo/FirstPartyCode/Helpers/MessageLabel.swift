@@ -54,7 +54,8 @@ public let DEFAULT_MESSAGE_LABEL_TEXT = "Have a great time"
 
 public class MessageLabel: MyCustomLabel, PerseusDelegatedMessage {
 
-    private var messageDeepCounter: Int = 0
+    private(set) var messageDeepCounter: Int = 0
+    private(set) var theDarknessTrigger: DarkModeObserver?
 
     public var messageDefaultGetter: (() -> String)?
     public var messageDefault: String {
@@ -65,6 +66,7 @@ public class MessageLabel: MyCustomLabel, PerseusDelegatedMessage {
         return getter()
     }
 
+    public var messageTextColor: Color? = .perseusIndigo
     public var message = "" {
         didSet {
 
@@ -77,6 +79,8 @@ public class MessageLabel: MyCustomLabel, PerseusDelegatedMessage {
             self.stringValue = self.message
             self.alphaValue = 1.0
 #endif
+
+            self.textColor = messageTextColor ?? .labelPerseus
 
             // for after now
 
@@ -121,6 +125,7 @@ public class MessageLabel: MyCustomLabel, PerseusDelegatedMessage {
                         // do nothing
                     } else {
                         self.text = messageDefaultTemp
+                        self.textColor = .labelPerseus
                         self.alpha = 1.0
                     }
                 }
@@ -132,11 +137,28 @@ public class MessageLabel: MyCustomLabel, PerseusDelegatedMessage {
                         // do nothing
                     } else {
                         self.stringValue = messageDefaultTemp
+                        self.textColor = .labelPerseus
                         self.animator().alphaValue = 1.0
                     }
                 }, completionHandler: nil)
 #endif
             })
+        }
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        configure()
+    }
+
+    private func configure() {
+        theDarknessTrigger = DarkModeObserver { _ in
+            self.textColor = .labelPerseus
         }
     }
 }
