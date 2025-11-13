@@ -14,9 +14,6 @@
 //
 //  Before start unit tests, make sure that previous app's installation is removed.
 //
-//
-// swiftlint:disable file_length
-//
 
 import XCTest
 @testable import Snowman

@@ -530,7 +530,7 @@ extension OptionsViewController {
         udpateComboBoxStatusMenusUpdatePeriod()
 
         buttonClose.title = "Button: Close".localizedValue
-        buttonResetAllSettings.title = "Button: Reset All Settings".localizedValue
+        buttonResetAllSettings.title = "Button: Reset to Defaults".localizedValue
     }
 
     private var windowTitleLocalized: String {

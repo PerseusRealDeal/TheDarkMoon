@@ -250,8 +250,8 @@
 	<string>--</string>
 	<key>Button: Close</key>
 	<string>Close</string>
-	<key>Button: Reset All Settings</key>
-	<string>Reset All Settings</string>
+	<key>Button: Reset to Defaults</key>
+	<string>Reset to Defaults</string>
 	<key>/* Compass Directions */</key>
 	<string>--</string>
 	<key>Compass: N</key>

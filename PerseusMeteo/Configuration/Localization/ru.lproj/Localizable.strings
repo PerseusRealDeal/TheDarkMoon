@@ -190,7 +190,7 @@
 "StatusMenus: none" = "--";
 
 "Button: Close" = "Исчезнуть";
-"Button: Reset All Settings" = "Всё по умолчанию";
+"Button: Reset to Defaults" = "Всё сбросить";
 
 /* Compass Directions */
 

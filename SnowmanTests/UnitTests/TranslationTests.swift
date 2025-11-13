@@ -368,8 +368,8 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("Button: Close".localizedExpectation,
                        "Button: Close".localizedValue)
 
-        XCTAssertEqual("Button: Reset All Settings".localizedExpectation,
-                       "Button: Reset All Settings".localizedValue)
+        XCTAssertEqual("Button: Reset to Defaults".localizedExpectation,
+                       "Button: Reset to Defaults".localizedValue)
     }
 
     func test_translation_of_OptionsScreen_SpecialOptions() {

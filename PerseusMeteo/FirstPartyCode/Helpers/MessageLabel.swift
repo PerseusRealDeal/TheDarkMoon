@@ -6,15 +6,15 @@
 //
 //  INFO: Origionally from my "repost.maker" closed source project.
 //
-//  Copyright © 7530 - 7533 Mikhail A. Zhigulin of Novosibirsk
-//  Copyright © 7530 - 7533 PerseusRealDeal
+//  Copyright © 7530 - 7534 Mikhail A. Zhigulin of Novosibirsk
+//  Copyright © 7530 - 7534 PerseusRealDeal
 //
 //  All rights reserved.
 //
 //  MIT License
 //
-//  Copyright © 7530 - 7533 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7530 - 7533 PerseusRealDeal
+//  Copyright © 7530 - 7534 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7530 - 7534 PerseusRealDeal
 //
 //  The year starts from the creation of the world according to a Slavic calendar.
 //  September, the 1st of Slavic year. It means that "Sep 01, 2024" is the beginning of 7533.
