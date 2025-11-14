@@ -240,6 +240,6 @@ public class StatusMenusPresenter {
             customStatusMenusItemContent?.titleTwo = dataSource.windSpeed
         }
 
-        statusItem?.button?.toolTip = "\(dataSource.windDirection) \(dataSource.windGusts)"
+        statusItem?.button?.toolTip = "\(dataSource.windDirection), \(dataSource.windGusts)"
     }
 }
