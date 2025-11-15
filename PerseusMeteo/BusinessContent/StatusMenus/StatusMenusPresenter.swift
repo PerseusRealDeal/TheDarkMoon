@@ -61,7 +61,7 @@ public class StatusMenusPresenter {
         // Meteo data fetcher
         meteoClientManager = MeteoClientManager(presenter: self)
 
-        // Localization
+        // Observe localization events
         AppGlobals.notificationCenter.addObserver(
             self,
             selector: #selector(localize),
@@ -69,7 +69,7 @@ public class StatusMenusPresenter {
             object: nil
         )
 
-        // Update task for StatusMenusItem
+        // Observe StatusMenusItem events
         AppGlobals.notificationCenter.addObserver(
             self,
             selector: #selector(updateStatusMenusItemTask),
@@ -160,6 +160,8 @@ public class StatusMenusPresenter {
     }
 
     @objc private func updateStatusMenusItemTask() {
+
+        log.message("[\(type(of: self))].\(#function)")
 
         reset()
         updateTimer?.invalidate()

@@ -94,7 +94,11 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
             let tabId = tabSelected.identifier as? String {
 
             if tabId == tabCurrentWeatherID {
-                statusMenusPresenter.callWeather()
+                if AppOptions.statusMenusPeriodOption == .none {
+                    statusMenusPresenter.callWeather()
+                } else {
+                    statusMenusPresenter.startUpdateTimerIfNeeded()
+                }
             } else if tabId == tabForecastID {
                 statusMenusPresenter.callForecast()
             }
@@ -352,6 +356,8 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
         statusMenusPresenter.reloadData()
 
         actualizeCallingSection()
+
+        statusMenusPresenter.startUpdateTimerIfNeeded()
 
         log.message(userMessage, .notice, .custom, .enduser)
     }
