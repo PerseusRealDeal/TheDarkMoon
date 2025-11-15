@@ -28,5 +28,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         log.message("> Ready with business matter purpose...", .info)
 
         statusMenusPresenter.startUpdateTimerIfNeeded()
+
+        // Observe system sleep events
+        NSWorkspace.shared.notificationCenter.addObserver(
+            self,
+            selector: #selector(systemWillSleep),
+            name: NSWorkspace.willSleepNotification,
+            object: nil
+        )
+
+        // Observe system wake events
+        NSWorkspace.shared.notificationCenter.addObserver(
+            self,
+            selector: #selector(systemDidWake),
+            name: NSWorkspace.didWakeNotification,
+            object: nil
+        )
+    }
+
+    @objc func systemWillSleep(_ notification: Notification) {
+        log.message("[\(type(of: self))].\(#function) System is about to sleep.")
+        statusMenusPresenter.deinitTimer()
+    }
+
+    @objc func systemDidWake(_ notification: Notification) {
+        log.message("[\(type(of: self))].\(#function) System has woken up.")
+        statusMenusPresenter.startUpdateTimerIfNeeded()
+    }
+
+    func applicationWillTerminate(_ aNotification: Notification) {
+        // Unregister observers when the application terminates
+        NSWorkspace.shared.notificationCenter.removeObserver(self)
     }
 }

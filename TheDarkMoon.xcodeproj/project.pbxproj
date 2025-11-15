@@ -281,14 +281,14 @@
 			path = StatusMenus;
 			sourceTree = "<group>";
 		};
-		4B030E712B27729C00ED9018 /* About */ = {
+		4B030E712B27729C00ED9018 /* Selfie */ = {
 			isa = PBXGroup;
 			children = (
 				4B030E742B27738800ED9018 /* AboutWindowController.storyboard */,
 				4B030E762B277DD600ED9018 /* AboutWindowController.swift */,
 				4B030E782B277E6500ED9018 /* AboutViewController.swift */,
 			);
-			path = About;
+			path = Selfie;
 			sourceTree = "<group>";
 		};
 		4B1483D82912892C0013B76E = {
@@ -364,7 +364,7 @@
 				2EF147E42E966E3600BE657C /* StatusMenus */,
 				4B993DB62B37382D008C1FE7 /* Popover */,
 				4BFA5FD8298974FA00AC09F5 /* Options */,
-				4B030E712B27729C00ED9018 /* About */,
+				4B030E712B27729C00ED9018 /* Selfie */,
 			);
 			path = BusinessContent;
 			sourceTree = "<group>";
