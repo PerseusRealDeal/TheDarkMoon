@@ -25,7 +25,7 @@ identifier_name: # Variable name
     error: 45
 
 file_length:
-  warning: 200
+  warning: 300
   error: 300
   ignore_comment_only_lines: false
 

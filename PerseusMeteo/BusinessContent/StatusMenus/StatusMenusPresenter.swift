@@ -4,15 +4,13 @@
 //
 //  Created by Mikhail Zhigulin in 7532.
 //
-//  Copyright © 7532 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7532 PerseusRealDeal
+//  Copyright © 7532 - 7534 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7532 - 7534 PerseusRealDeal
 //
 //  The year starts from the creation of the world in the Star temple
 //  according to a Slavic calendar. September, the 1st of Slavic year.
 //
 //  See LICENSE for details. All rights reserved.
-//
-// swiftlint:disable file_length
 //
 
 import AppKit
@@ -63,7 +61,7 @@ public class StatusMenusPresenter {
         // Meteo data fetcher
         meteoClientManager = MeteoClientManager(presenter: self)
 
-        // Localization
+        // Observe localization events
         AppGlobals.notificationCenter.addObserver(
             self,
             selector: #selector(localize),
@@ -71,7 +69,7 @@ public class StatusMenusPresenter {
             object: nil
         )
 
-        // Update task for StatusMenusItem
+        // Observe StatusMenusItem events
         AppGlobals.notificationCenter.addObserver(
             self,
             selector: #selector(updateStatusMenusItemTask),
@@ -163,6 +161,8 @@ public class StatusMenusPresenter {
 
     @objc private func updateStatusMenusItemTask() {
 
+        log.message("[\(type(of: self))].\(#function)")
+
         reset()
         updateTimer?.invalidate()
 
@@ -242,6 +242,6 @@ public class StatusMenusPresenter {
             customStatusMenusItemContent?.titleTwo = dataSource.windSpeed
         }
 
-        statusItem?.button?.toolTip = "\(dataSource.windDirection) \(dataSource.windGusts)"
+        statusItem?.button?.toolTip = "\(dataSource.windDirection), \(dataSource.windGusts)"
     }
 }

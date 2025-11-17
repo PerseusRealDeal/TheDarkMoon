@@ -250,8 +250,8 @@
 	<string>--</string>
 	<key>Button: Close</key>
 	<string>Исчезнуть</string>
-	<key>Button: Reset All Settings</key>
-	<string>Всё по умолчанию</string>
+	<key>Button: Reset to Defaults</key>
+	<string>Всё сбросить</string>
 	<key>/* Compass Directions */</key>
 	<string>--</string>
 	<key>Compass: N</key>

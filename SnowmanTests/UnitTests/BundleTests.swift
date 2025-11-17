@@ -4,8 +4,8 @@
 //
 //  Created by Mikhail Zhigulin in 7531.
 //
-//  Copyright © 7531 - 7532 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7531 - 7532 PerseusRealDeal
+//  Copyright © 7531 - 7534 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7531 - 7534 PerseusRealDeal
 //
 //  The year starts from the creation of the world in the Star temple
 //  according to a Slavic calendar. September, the 1st of Slavic year.
@@ -20,7 +20,7 @@ import Cocoa
 
 // MARK: - Release notes
 
-let bundleShortVersion = "0.4"
+let bundleShortVersion = "0.4.1"
 let bundleVersion = "0"
 let theAppIsAgent = true
 let category = "public.app-category.weather"

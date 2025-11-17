@@ -4,8 +4,8 @@
 //
 //  Created by Mikhail Zhigulin in 7532.
 //
-//  Copyright © 7532 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7532 PerseusRealDeal
+//  Copyright © 7532 - 7534 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7532 - 7534 PerseusRealDeal
 //
 //  The year starts from the creation of the world in the Star temple
 //  according to a Slavic calendar. September, the 1st of Slavic year.
@@ -94,7 +94,11 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
             let tabId = tabSelected.identifier as? String {
 
             if tabId == tabCurrentWeatherID {
-                statusMenusPresenter.callWeather()
+                if AppOptions.statusMenusPeriodOption == .none {
+                    statusMenusPresenter.callWeather()
+                } else {
+                    statusMenusPresenter.startUpdateTimerIfNeeded()
+                }
             } else if tabId == tabForecastID {
                 statusMenusPresenter.callForecast()
             }
@@ -352,6 +356,8 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
         statusMenusPresenter.reloadData()
 
         actualizeCallingSection()
+
+        statusMenusPresenter.startUpdateTimerIfNeeded()
 
         log.message(userMessage, .notice, .custom, .enduser)
     }

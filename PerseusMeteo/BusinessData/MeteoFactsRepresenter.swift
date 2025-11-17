@@ -15,8 +15,6 @@
 //  Special thanks for common convertion weather values formulas goes to Google Inc.
 //  https://www.google.com/search?q=temperature+converter
 //
-// swiftlint:disable file_length
-//
 
 import Foundation
 

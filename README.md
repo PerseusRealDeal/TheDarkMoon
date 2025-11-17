@@ -2,14 +2,14 @@
 
 [![Actions Status](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/main.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions)
 [![Style](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml)
-[![Version](https://img.shields.io/badge/Version-0.4-green.svg)](/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-0.4.1-green.svg)](/CHANGELOG.md)
 [![Platforms](https://img.shields.io/badge/Platform-macOS%2010.13+-orange.svg)](https://en.wikipedia.org/wiki/MacOS_version_history)
 [![Xcode](https://img.shields.io/badge/Xcode-14.2+-red.svg)](https://en.wikipedia.org/wiki/Xcode)
 [![Swift](https://img.shields.io/badge/Swift-5-orange.svg)](https://docs.swift.org/swift-book/RevisionHistory/RevisionHistory.html)
 [![SDK](https://img.shields.io/badge/SDK-UIKit%20-blueviolet.svg)](https://developer.apple.com/documentation/uikit)
 [![License](http://img.shields.io/:License-Clear_BSD-blue.svg)](/LICENSE)
 
-> Home-made weather macOS app that runs in the Status Menus (top-right).
+> This is the great home-made macOS weather app project. The app runs in the Status Menus (top-right).
 
 > `1:` Request current weather.</br>
 > `2:` Request `5 Day / 3 Hour` forecast.
@@ -27,7 +27,21 @@
 [![PerseusGeoKit](http://img.shields.io/:PerseusGeoKit-1.1.0-green.svg)](https://github.com/perseusrealdeal/PerseusGeoKit.git)
 [![OpenWeatherAgent](http://img.shields.io/:OpenWeatherAgent-0.3.5-green.svg)](https://github.com/perseusrealdeal/OpenWeatherAgent)
 
-# In brief > Idea to use, the Why
+# Contents
+
+* [The Why](#The-Why)
+* [Build requirements](#Build-requirements)
+* [Software requirements](#Software-requirements)
+* [Gifts](#Gifts)
+* [First-party software](#First-party-software)
+* [Third-party software](#Third-party-software)
+* [Points taken into account](#Points-taken-into-account)
+* [License](#License)
+    * [Other Required Licenses Details](#Other-Required-Licenses-Details)
+* [Credits](#Credits)
+* [Author](#Author)
+
+# The Why
 
 > The Why of this app cannot, and need not, be put into words.
 
@@ -46,7 +60,7 @@
   </tr>
 </table>
 
-## Build system requirements
+# Build requirements
 
 - [macOS Monterey 12.7.6+](https://apps.apple.com/by/app/macos-monterey/id1576738294) / [Xcode 14.2+](https://developer.apple.com/services-account/download?path=/Developer_Tools/Xcode_14.2/Xcode_14.2.xip)
 
@@ -99,23 +113,32 @@
 - Localization based on Localizable.strings approach
 - [Test Plan](/SnowmanTests/TestPlan.xctestplan) configured for EN and RU as well
 - [Changelog](/CHANGELOG.md)
+- [A3 Environment Specification Template](/APPROBATION.md)
 - [Software Requirements](/REQUIREMENTS.md)
 - [GitHub CI build & test](/main.yml)
 - [GitHub CI SwiftLint](/swiftlint.yml)
 - [SwiftLint Rules](/.swiftlint.yml)
 - [Git Config](/.gitignore)
-- SwiftLint shell script as a build phase (preinstallation required)
-<!-- [A3 Environment Specification](/APPROBATION.md) -->
+- SwiftLint shell script as a build phase (SwiftLint preinstallation required)
 
-# The Clear BSD License
+# License
+
+`License:` The Clear BSD License
 
 Copyright © 7531 - 7534 Mikhail A. Zhigulin of Novosibirsk<br/>
 Copyright © 7531 - 7534 PerseusRealDeal
 
 - The year starts from the creation of the world according to a Slavic calendar.
-- September, the 1st of Slavic year. It means that "Sep 01, 2024" is the beginning of 7533.
+- September, the 1st of Slavic year. It means that "Sep 01, 2025" is the beginning of 7534.
 
 [LICENSE](/LICENSE) for details.
+
+## Other Required Licenses Details
+
+© Mikhail A. Zhigulin of Novosibirsk **for** ConsolePerseusLogger, PerseusDarkMode, PerseusGeoKit, OpenWeatherAgent</br>
+© PerseusRealDeal **for** ConsolePerseusLogger, PerseusDarkMode, PerseusGeoKit, OpenWeatherAgent</br>
+© 2025 The SwiftLint Contributors **for** SwiftLint</br>
+© GitHub **for** GitHub Action cirruslabs/swiftlint-action@v1</br>
 
 # Credits
 

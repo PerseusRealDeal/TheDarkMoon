@@ -193,7 +193,7 @@
 "StatusMenus: none" = "--";
 
 "Button: Close" = "Close";
-"Button: Reset All Settings" = "Reset All Settings";
+"Button: Reset to Defaults" = "Reset to Defaults";
 
 /* Compass Directions */
 

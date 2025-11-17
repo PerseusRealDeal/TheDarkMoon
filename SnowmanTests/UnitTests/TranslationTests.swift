@@ -4,8 +4,8 @@
 //
 //  Created by Mikhail Zhigulin in 7532.
 //
-//  Copyright © 7532 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7532 PerseusRealDeal
+//  Copyright © 7532 - 7534 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7532 - 7534 PerseusRealDeal
 //
 //  The year starts from the creation of the world in the Star temple
 //  according to a Slavic calendar. September, the 1st of Slavic year.
@@ -368,8 +368,8 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("Button: Close".localizedExpectation,
                        "Button: Close".localizedValue)
 
-        XCTAssertEqual("Button: Reset All Settings".localizedExpectation,
-                       "Button: Reset All Settings".localizedValue)
+        XCTAssertEqual("Button: Reset to Defaults".localizedExpectation,
+                       "Button: Reset to Defaults".localizedValue)
     }
 
     func test_translation_of_OptionsScreen_SpecialOptions() {
