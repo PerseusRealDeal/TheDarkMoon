@@ -18,6 +18,7 @@ import Foundation
 // MARK: - Common Delegating Communication
 
 protocol MVPViewDelegate: AnyObject {
+    func setupUI()
     func makeUp()
     func localize()
 }

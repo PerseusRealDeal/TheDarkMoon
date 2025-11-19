@@ -26,5 +26,16 @@ class MVPPresenter {
         self.view = view
 
         darkModeObserver.action = { _ in self.view?.makeUp() }
+
+        AppGlobals.notificationCenter.addObserver(
+            self,
+            selector: #selector(self.localize),
+            name: NSNotification.Name.languageSwitchedManuallyNotification,
+            object: nil
+        )
+    }
+
+    @objc private func localize() {
+        view?.localize()
     }
 }

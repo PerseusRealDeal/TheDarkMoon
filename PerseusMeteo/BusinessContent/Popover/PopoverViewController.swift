@@ -106,7 +106,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     }
 
     @IBAction func aboutButtonTapped(_ sender: NSButton) {
-        statusMenusPresenter.screenAbout.showWindow(sender)
+        statusMenusPresenter.screenSelfie.showWindow(sender)
     }
 
     @IBAction func optionsButtonTapped(_ sender: NSButton) {
@@ -117,7 +117,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
         guard let popover = statusMenusPresenter.popover else { return }
 
-        statusMenusPresenter.screenAbout.close()
+        statusMenusPresenter.screenSelfie.close()
         statusMenusPresenter.screenOptions.close()
 
         popover.performClose(sender)

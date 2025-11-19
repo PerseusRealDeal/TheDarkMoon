@@ -1,5 +1,5 @@
 //
-//  AboutViewController.swift, AboutWindowController.storyboard
+//  SelfieViewController.swift
 //  PerseusMeteo
 //
 //  Created by Mikhail Zhigulin in 7532.
@@ -17,11 +17,13 @@
 
 import Cocoa
 
-class AboutViewController: NSViewController {
+class SelfieViewController: NSViewController {
+
+    // MARK: - Presenter
+
+    var presenter: SelfieViewPresenter?
 
     // MARK: - Internals
-
-    private var logReportObservation: NSKeyValueObservation?
 
     private let tabEssentialsID = "Essentials"
     private let tabLogID = "Log"
@@ -29,6 +31,28 @@ class AboutViewController: NSViewController {
     private let fontSizeCopyrightText: CGFloat = 10.0
     private let fontSizeCopyrightDetailsText: CGFloat = 10.0
     private let fontSizeTheCreditsText: CGFloat = 10.0
+
+    // MARK: - Initialization
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        // Setup content options
+
+        self.view.wantsLayer = true
+        self.preferredContentSize = NSSize(width: self.view.frame.size.width,
+                                           height: self.view.frame.size.height)
+    }
+
+    override func viewDidAppear() {
+        super.viewDidAppear()
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        presenter?.viewDidAppear()
+    }
 
     // MARK: - Outlets
 
@@ -62,19 +86,19 @@ class AboutViewController: NSViewController {
     @IBOutlet private(set) weak var tabEssentials: NSTabViewItem!
     @IBOutlet private(set) weak var tabLog: NSTabViewItem!
 
-    // MARK: - Outlets Log Viewer
+    // MARK: - Outlets, Log Viewer
 
     @IBOutlet private(set) weak var textViewLog: NSTextView!
 
-    @IBOutlet weak var buttonLogTurned: NSButton!
-    @IBOutlet weak var buttonLogOutput: NSComboBox!
-    @IBOutlet weak var buttonLogLevel: NSComboBox!
-    @IBOutlet weak var buttonLogMessageFormat: NSComboBox!
+    @IBOutlet private(set) weak var buttonLogTurned: NSButton!
+    @IBOutlet private(set) weak var buttonLogOutput: NSComboBox!
+    @IBOutlet private(set) weak var buttonLogLevel: NSComboBox!
+    @IBOutlet private(set) weak var buttonLogMessageFormat: NSComboBox!
 
-    // MARK: - Actions
+    // MARK: - Actions, Links
 
     @IBAction func buttonCloseTapped(_ sender: NSButton) {
-        statusMenusPresenter.screenAbout.close()
+        statusMenusPresenter.screenSelfie.close()
     }
 
     @IBAction func buttonLicenseTapped(_ sender: NSButton) {
@@ -121,7 +145,7 @@ class AboutViewController: NSViewController {
         AppGlobals.openDefaultBrowser(string: linkConsolePerseusLogger)
     }
 
-    // MARK: - Actions Log Viewer
+    // MARK: - Actions, Log Viewer
 
     @IBAction func buttonLogTurnedTapped(_ sender: NSButton) {
         log.turned = sender.state == .on ? .on : .off
@@ -158,74 +182,31 @@ class AboutViewController: NSViewController {
 
         log.format = item
     }
+}
 
-    // MARK: - Initialization
+// MARK: - MVP View
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+extension SelfieViewController: SelfieViewDelegate {
+
+    // MARK: - SelfieViewDelegate
+
+    func refreshLogTextView() {
+
         log.message("[\(type(of: self))].\(#function)")
+
+        textViewLog.string = localReport.text
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // MARK: - MVPViewDelegate
+
+    func setupUI() {
+
         log.message("[\(type(of: self))].\(#function)")
 
-        // Setup content options
-
-        self.view.wantsLayer = true
-        self.preferredContentSize = NSSize(width: self.view.frame.size.width,
-                                           height: self.view.frame.size.height)
-
-        // Connect to Log Reporting
-        logReportObservation = localReport.observe(\.lastMessage, options: .new) { _, _ in
-            self.refreshLogReportTextView()
-        }
+        // LogView Setup
 
         textViewLog.backgroundColor = .clear
         textViewLog.textColor = .darkGray
-
-        // All other configurations
-        onViewDidLoad()
-    }
-
-    override func viewDidAppear() {
-        super.viewDidAppear()
-
-        refreshLogReportTextView()
-    }
-
-    // MARK: - Configuration
-
-    private func onViewDidLoad() {
-
-        viewCopyrightText.backgroundColor = .clear
-        viewCopyrightText.isEditable = false
-        viewCopyrightText.alignment = .left
-        viewCopyrightText.font = NSFont.systemFont(ofSize: fontSizeCopyrightText)
-
-        viewCopyrightDetailsText.backgroundColor = .clear
-        viewCopyrightDetailsText.isEditable = false
-        viewCopyrightDetailsText.alignment = .justified
-        viewCopyrightDetailsText.font = NSFont.systemFont(ofSize: fontSizeCopyrightDetailsText)
-
-        viewTheCreditsText.backgroundColor = .clear
-        viewTheCreditsText.isEditable = false
-        viewTheCreditsText.alignment = .left
-        viewTheCreditsText.font = NSFont.systemFont(ofSize: fontSizeTheCreditsText)
-
-        buttonTheAppSourceCode.toolTip = linkTheAppSourceCode
-        buttonTheTechnologicalTree.toolTip = linkTheTechnologicalTree
-
-        buttonPerseusDarkMode.toolTip = linkPerseusDarkMode
-        buttonTheOpenWeatherClient.toolTip = linkTheOpenWeatherClient
-        buttonPerseusGeoLocationKit.toolTip = linkPerseusGeoLocationKit
-
-        buttonPerseusCompassDirection.toolTip = linkPerseusCompassDirection
-        buttonPerseusTimeFormat.toolTip = linkPerseusTimeFormat
-        buttonPerseusLogger.toolTip = linkPerseusLogger
-        buttonConsolePerseusLogger.toolTip = linkConsolePerseusLogger
-
-        // Log Viewer configuration
 
         buttonLogTurned.state = log.turned == .on ? .on : .off
 
@@ -248,22 +229,43 @@ class AboutViewController: NSViewController {
         buttonLogOutput.selectItem(withObjectValue: "\(log.output)")
         buttonLogLevel.selectItem(withObjectValue: "\(log.level)")
         buttonLogMessageFormat.selectItem(withObjectValue: "\(log.format)")
+
+        // CopyrightText Setup
+
+        viewCopyrightText.backgroundColor = .clear
+        viewCopyrightText.isEditable = false
+        viewCopyrightText.alignment = .left
+        viewCopyrightText.font = NSFont.systemFont(ofSize: fontSizeCopyrightText)
+
+        viewCopyrightDetailsText.backgroundColor = .clear
+        viewCopyrightDetailsText.isEditable = false
+        viewCopyrightDetailsText.alignment = .justified
+        viewCopyrightDetailsText.font = NSFont.systemFont(ofSize: fontSizeCopyrightDetailsText)
+
+        // CreditsText Setup
+
+        viewTheCreditsText.backgroundColor = .clear
+        viewTheCreditsText.isEditable = false
+        viewTheCreditsText.alignment = .left
+        viewTheCreditsText.font = NSFont.systemFont(ofSize: fontSizeTheCreditsText)
+
+        // ButtonLinks Setup
+
+        buttonTheAppSourceCode.toolTip = linkTheAppSourceCode
+        buttonTheTechnologicalTree.toolTip = linkTheTechnologicalTree
+
+        buttonPerseusDarkMode.toolTip = linkPerseusDarkMode
+        buttonTheOpenWeatherClient.toolTip = linkTheOpenWeatherClient
+        buttonPerseusGeoLocationKit.toolTip = linkPerseusGeoLocationKit
+
+        buttonPerseusCompassDirection.toolTip = linkPerseusCompassDirection
+        buttonPerseusTimeFormat.toolTip = linkPerseusTimeFormat
+        buttonPerseusLogger.toolTip = linkPerseusLogger
+        buttonConsolePerseusLogger.toolTip = linkConsolePerseusLogger
     }
 
-    private func refreshLogReportTextView() {
-        textViewLog.string = localReport.text
+    func makeUp() {
 
-        // TODO: - Scroll to bottom
-    }
-}
-
-// MARK: - Extensions
-
-extension AboutViewController {
-
-    // MARK: - Dark Mode
-
-    public func makeUp() {
         log.message("[\(type(of: self))].\(#function)")
 
         viewCopyrightText.textColor = .perseusGray
@@ -271,26 +273,24 @@ extension AboutViewController {
         viewTheCreditsText.textColor = .perseusGray
     }
 
-    // MARK: - Localization
+    func localize() {
 
-    @objc func localize() {
         log.message("[\(type(of: self))].\(#function)")
 
         buttonTheAppSourceCode.title = "Button: The App Source Code".localizedValue
         buttonTheTechnologicalTree.title = "Button: The Technological Tree".localizedValue
 
         labelTheAppName.stringValue = "Product Name".localizedValue
-
         labelTheAppVersionTitle.stringValue = "Label: The App Version".localizedValue + ":"
 
-        // InfoPlist.strings.
+        // InfoPlist
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
         labelTheAppVersionValue.stringValue = (version as? String) ?? "Number"
 
         viewCopyrightText.string = "Label: Star Copyright Notice".localizedValue
         viewCopyrightDetailsText.string = "Label: Copyright Details".localizedValue
 
-        viewTheCreditsText.string = combineCredits()
+        viewTheCreditsText.string = combineCredits
 
         buttonLicense.title = "Button: License".localizedValue
         buttonTerms.title = "Button: Terms & Conditions".localizedValue
@@ -299,17 +299,16 @@ extension AboutViewController {
         tabEssentials.label = "Tab: Essentials".localizedValue
         tabLog.label = "Tab: Log".localizedValue
     }
+}
 
-    private func combineCredits() -> String {
-
-        return """
-        \("Label: Credits".localizedValue):
-        \("Label: Balancing and Control".localizedValue) \("Label: Author".localizedValue)
-        \("Label: Writing".localizedValue) \("Label: Author".localizedValue)
-        \("Label: Documenting".localizedValue) \("Label: Author".localizedValue)
-        \("Label: Artworking".localizedValue) \("Label: Author".localizedValue)
-        \("Label: EN Expectation".localizedValue) \("Label: Author".localizedValue)
-        \("Label: RU Expectation".localizedValue) \("Label: Author".localizedValue)
-        """
-    }
+private var combineCredits: String {
+    return """
+    \("Label: Credits".localizedValue):
+    \("Label: Balancing and Control".localizedValue) \("Label: Author".localizedValue)
+    \("Label: Writing".localizedValue) \("Label: Author".localizedValue)
+    \("Label: Documenting".localizedValue) \("Label: Author".localizedValue)
+    \("Label: Artworking".localizedValue) \("Label: Author".localizedValue)
+    \("Label: EN Expectation".localizedValue) \("Label: Author".localizedValue)
+    \("Label: RU Expectation".localizedValue) \("Label: Author".localizedValue)
+    """
 }

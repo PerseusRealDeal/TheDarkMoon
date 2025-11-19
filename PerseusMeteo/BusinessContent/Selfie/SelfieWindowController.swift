@@ -1,5 +1,5 @@
 //
-//  AboutWindowController.swift, AboutWindowController.storyboard
+//  SelfieWindowController.swift, SelfieWindowController.storyboard
 //  PerseusMeteo
 //
 //  Created by Mikhail Zhigulin in 7532.
@@ -15,29 +15,38 @@
 
 import Cocoa
 
-public class AboutWindowController: NSWindowController {
+extension SelfieWindowController {
 
-    // MARK: - Internals
-
-    private var alwaysOnTop: Any?
-
-    // MARK: - Storyboard Instance
-
-    class func storyboardInstance() -> AboutWindowController {
-        // log.message("[\(type(of: self))].\(#function)")
+    class func storyboardInstance() -> SelfieWindowController {
 
         let sb = NSStoryboard(name: String(describing: self), bundle: nil)
 
-        guard let screen = sb.instantiateInitialController() as? AboutWindowController else {
+        guard
+            let screen = sb.instantiateInitialController() as? SelfieWindowController,
+            let vc = screen.contentViewController as? SelfieViewController
+        else {
             let text = "[\(type(of: self))].\(#function)"
             log.message(text, .error)
             fatalError(text)
         }
 
-        // Do default setup; don't set any parameter causing loadWindow up, breaks unit tests.
+        vc.presenter = SelfieViewPresenter(view: vc)
+        vc.presenter?.viewDidLoad()
+
+        // Do default setup; don't set any parameter causing loadView up, breaks unit tests
+
+        // screen?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
+        // screen?.view.backgroundColor = UIColor.yellow
 
         return screen
     }
+}
+
+public class SelfieWindowController: NSWindowController {
+
+    // MARK: - Internals
+
+    private var alwaysOnTop: Any?
 
     // MARK: - Initialization
 
@@ -55,21 +64,6 @@ public class AboutWindowController: NSWindowController {
         alwaysOnTop = nc.addObserver(forName: notification, object: nil, queue: queue) { _ in
             self.window?.level = .floating
         }
-
-        // Connect to Dark Mode.
-
-        DarkModeAgent.register(stakeholder: self, selector: #selector(makeUp))
-
-        // Localization.
-
-        nc.addObserver(self, selector: #selector(self.localize),
-                       name: NSNotification.Name.languageSwitchedManuallyNotification,
-                       object: nil)
-
-        // Appearance.
-
-        makeUp()
-        localize()
     }
 
     public override func windowDidLoad() {
@@ -85,20 +79,5 @@ public class AboutWindowController: NSWindowController {
 
         self.window?.orderOut(sender)
         return false
-    }
-
-    @objc private func makeUp() {
-        guard let screen = self.contentViewController as? AboutViewController else {
-            return
-        }
-        screen.makeUp()
-    }
-
-    @objc private func localize() {
-        guard let screen = self.contentViewController as? AboutViewController else {
-            return
-        }
-
-        screen.localize()
     }
 }

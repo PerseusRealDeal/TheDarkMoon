@@ -9,7 +9,7 @@
         <!--Window Controller-->
         <scene sceneID="HUD-sS-zlR">
             <objects>
-                <windowController id="qVI-uV-xDV" customClass="AboutWindowController" customModule="Snowman" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController id="qVI-uV-xDV" customClass="SelfieWindowController" customModule="Snowman" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="Az4-Bv-Rv1">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES"/>
@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="122" y="139"/>
         </scene>
-        <!--About View Controller-->
+        <!--Selfie View Controller-->
         <scene sceneID="jnn-qu-dN4">
             <objects>
-                <viewController id="RC6-y6-TVr" customClass="AboutViewController" customModule="Snowman" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="RC6-y6-TVr" customClass="SelfieViewController" customModule="Snowman" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="afq-ju-bEo">
                         <rect key="frame" x="0.0" y="0.0" width="520" height="500"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -438,7 +438,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="494" height="146"/>
                                                     <clipView key="contentView" drawsBackground="NO" id="LSB-6q-W1W">
                                                         <rect key="frame" x="0.0" y="0.0" width="494" height="146"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="uDj-aZ-BNE">
                                                                 <rect key="frame" x="0.0" y="0.0" width="494" height="146"/>
