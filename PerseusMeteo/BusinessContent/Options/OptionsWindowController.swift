@@ -15,29 +15,38 @@
 
 import Cocoa
 
-public class OptionsWindowController: NSWindowController, NSWindowDelegate {
-
-    // MARK: - Internals
-
-    private var alwaysOnTop: Any?
-
-    // MARK: - Storyboard Instance
+extension OptionsWindowController {
 
     class func storyboardInstance() -> OptionsWindowController {
-        // log.message("[\(type(of: self))].\(#function)")
 
         let sb = NSStoryboard(name: String(describing: self), bundle: nil)
 
-        guard let screen = sb.instantiateInitialController() as? OptionsWindowController else {
+        guard
+            let screen = sb.instantiateInitialController() as? OptionsWindowController,
+            let vc = screen.contentViewController as? OptionsViewController
+        else {
             let text = "[\(type(of: self))].\(#function)"
             log.message(text, .error)
             fatalError(text)
         }
 
-        // Do default setup; don't set any parameter causing loadWindow up, breaks unit tests.
+        vc.presenter = OptionsViewPresenter(view: vc)
+        vc.presenter?.viewDidLoad()
+
+        // Do default setup; don't set any parameter causing loadView up, breaks unit tests
+
+        // screen?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
+        // screen?.view.backgroundColor = UIColor.yellow
 
         return screen
     }
+}
+
+public class OptionsWindowController: NSWindowController, NSWindowDelegate {
+
+    // MARK: - Internals
+
+    private var alwaysOnTop: Any?
 
     // MARK: - Initialization
 
@@ -56,49 +65,13 @@ public class OptionsWindowController: NSWindowController, NSWindowDelegate {
         alwaysOnTop = nc.addObserver(forName: notification, object: nil, queue: queue) { _ in
             self.window?.level = .floating
         }
-
-        // Connect to Dark Mode.
-
-        DarkModeAgent.register(stakeholder: self, selector: #selector(makeUp))
-
-        // Localization.
-
-        nc.addObserver(self, selector: #selector(self.localize),
-                       name: NSNotification.Name.languageSwitchedManuallyNotification,
-                       object: nil)
-
-        // Appearance.
-
-        makeUp()
-        localize()
     }
-/*
-    public override func windowDidLoad() {
-        super.windowDidLoad()
-        // log.message("[\(type(of: self))].\(#function)")
-    }
-*/
+
     public func windowShouldClose(_ sender: NSWindow) -> Bool {
 
         log.message("[\(type(of: self))].\(#function)")
 
         self.window?.orderOut(sender)
         return false
-    }
-
-    @objc private func makeUp() {
-        /*
-        guard let screen = self.contentViewController as? OptionsViewController else {
-            return
-        }
-        */
-    }
-
-    @objc private func localize() {
-        guard let screen = self.contentViewController as? OptionsViewController else {
-            return
-        }
-
-        screen.localize()
     }
 }
