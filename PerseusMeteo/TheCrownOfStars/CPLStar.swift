@@ -1,6 +1,6 @@
 //
 //  CPLStar.swift
-//  Version: 1.6.0
+//  Version: 1.6.1
 //
 //  Standalone ConsolePerseusLogger.
 //
@@ -270,6 +270,7 @@ public class PerseusLogger {
             return
         }
 
+        let text = text()
         var message = ""
 
         // Path.
@@ -278,9 +279,9 @@ public class PerseusLogger {
         let fileName = (file.description as NSString).lastPathComponent
 
         if withDirectives {
-            message = "\(text()), file: \(fileName), line: \(line)"
+            message = "\(text), file: \(fileName), line: \(line)"
         } else {
-            message = "\(text())"
+            message = "\(text)"
         }
 
         // PID and TID.
@@ -310,7 +311,7 @@ public class PerseusLogger {
 
         if oput == .custom {
             let directives: Directives = (fileName: fileName, line: line)
-            customActionOnMessage?(message, type, localTime, idTuple, user, directives)
+            customActionOnMessage?(text, type, localTime, idTuple, user, directives)
         } else {
             print(message, type, oput)
         }
@@ -692,7 +693,6 @@ extension PerseusLogger {
                            _ user: User,
                            _ dirs: Directives) {
 
-            let text = text.replacingOccurrences(of: "\(type.tag) ", with: "")
             lastMessage = "[\(localTime.date)] [\(localTime.time)] \(type.tag)\r\n\(text)"
 
             if user == .enduser {
