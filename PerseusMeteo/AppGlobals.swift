@@ -162,15 +162,15 @@ struct AppGlobals {
         }
 
         _ = NSWorkspace.shared.open(url) ?
-        log.message("[\(type(of: self))].\(#function) - Default browser was opened.") :
-        log.message("[\(type(of: self))].\(#function) - Default browser wasn't opened.")
+        log.message("[\(type(of: self))].\(#function) - default browser opened") :
+        log.message("[\(type(of: self))].\(#function) - default browser not opened")
     }
 }
 
 // MARK: - Constant Links
 
 let linkTheAppSourceCode =
-"https://github.com/perseusrealdeal/macOS.Weather"
+"https://github.com/PerseusRealDeal/TheDarkMoon"
 
 let linkTheTechnologicalTree =
 "https://github.com/perseusrealdeal/TheTechnologicalTree"

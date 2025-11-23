@@ -36,9 +36,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KfQ-oh-9OF">
-                                <rect key="frame" x="3" y="3" width="125" height="32"/>
+                                <rect key="frame" x="3" y="3" width="124" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="111" id="eRZ-t7-jcP"/>
+                                    <constraint firstAttribute="width" constant="110" id="eRZ-t7-jcP"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="ghO-su-a11">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
