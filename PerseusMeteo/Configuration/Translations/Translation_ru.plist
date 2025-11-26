@@ -330,13 +330,15 @@
 	<string>Сб</string>
 	<key>/* About Screen */</key>
 	<string>--</string>
+	<key>Title: The Dark Moon</key>
+	<string>The Dark Moon</string>
 	<key>Button: The App Source Code</key>
 	<string>Исходники изделия</string>
 	<key>Button: The Technological Tree</key>
 	<string>Золотое дерево</string>
 	<key>Label: The App Version</key>
 	<string>Выпуск</string>
-	<key>Label: Star Copyright Notice</key>
+	<key>Label: Copyright Notice</key>
 	<string>Охраняется авторским правом © 7531 - 7534 Михаил A. Жигулин из Новосибирска.</string>
 	<key>Label: Copyright Details</key>
 	<string>Летоисчесление ведется от Сотворения Мира в Звездном Храме в соответствии со славянским календарем в котором первый месяц сентябрь.</string>

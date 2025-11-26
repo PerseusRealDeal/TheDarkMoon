@@ -1,16 +1,44 @@
 //
-//  SelfieWindowController.swift, SelfieWindowController.storyboard
-//  PerseusMeteo
+//  SelfieViewController.swift, SelfieWindowController.storyboard
+//  The Technological Tree
 //
-//  Created by Mikhail Zhigulin in 7532.
-//
-//  Copyright © 7532 - 7534 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7532 - 7534 PerseusRealDeal
+//  Created by Mikhail Zhigulin of Novosibirsk in 7534 (7.11.2025).
 //
 //  The year starts from the creation of the world in the Star temple
 //  according to a Slavic calendar. September, the 1st of Slavic year.
 //
-//  See LICENSE for details. All rights reserved.
+//  Unlicensed Free Software
+//
+//  INFO:
+//   Architectural points. MVP.
+//   Based on [Gist](https://gist.github.com/PerseusRealDeal/5301e90881732f0cd0040e2083a78a3d).
+//
+//  This is SelfieViewController.swift, SelfieWindowController.storyboard
+//
+//  This is free and unencumbered software released into the public domain.
+//
+//  Anyone is free to copy, modify, publish, use, compile, sell, or
+//  distribute this software, either in source code form or as a compiled
+//  binary, for any purpose, commercial or non-commercial, and by any
+//  means.
+//
+//  In jurisdictions that recognize copyright laws, the author or authors
+//  of this software dedicate any and all copyright interest in the
+//  software to the public domain. We make this dedication for the benefit
+//  of the public at large and to the detriment of our heirs and
+//  successors. We intend this dedication to be an overt act of
+//  relinquishment in perpetuity of all present and future rights to this
+//  software under copyright law.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+//  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+//  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+//  IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+//  OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+//  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+//  OTHER DEALINGS IN THE SOFTWARE.
+//
+//  For more information, please refer to <http://unlicense.org/>
 //
 
 import Cocoa
@@ -19,65 +47,42 @@ extension SelfieWindowController {
 
     class func storyboardInstance() -> SelfieWindowController {
 
-        let sb = NSStoryboard(name: String(describing: self), bundle: nil)
+        let storyboard = NSStoryboard(name: String(describing: self), bundle: nil)
+        let screen = storyboard.instantiateInitialController() as? SelfieWindowController
 
-        guard
-            let screen = sb.instantiateInitialController() as? SelfieWindowController,
-            let vc = screen.contentViewController as? SelfieViewController
-        else {
-            let text = "[\(type(of: self))].\(#function)"
-            log.message(text, .error)
-            fatalError(text)
+        if let vc = screen?.contentViewController as? SelfieViewController {
+            vc.presenter = SelfieViewPresenter(view: vc)
+            vc.presenter?.viewDidLoad()
         }
-
-        vc.presenter = SelfieViewPresenter(view: vc)
-        vc.presenter?.viewDidLoad()
 
         // Do default setup; don't set any parameter causing loadView up, breaks unit tests
 
         // screen?.modalTransitionStyle = UIModalTransitionStyle.partialCurl
         // screen?.view.backgroundColor = UIColor.yellow
 
-        return screen
+        return screen ?? SelfieWindowController()
     }
 }
 
-public class SelfieWindowController: NSWindowController {
-
-    // MARK: - Internals
-
-    private var alwaysOnTop: Any?
-
-    // MARK: - Initialization
-
-    public override func awakeFromNib() {
-        super.awakeFromNib()
-        // log.message("[\(type(of: self))].\(#function)")
-
-        let nc = AppGlobals.notificationCenter
-
-        // Always on top.
-
-        let notification = NSApplication.didResignActiveNotification
-        let queue = OperationQueue.main
-
-        alwaysOnTop = nc.addObserver(forName: notification, object: nil, queue: queue) { _ in
-            self.window?.level = .floating
-        }
-    }
+public class SelfieWindowController: NSWindowController, NSWindowDelegate {
 
     public override func windowDidLoad() {
         super.windowDidLoad()
-        // log.message("[\(type(of: self))].\(#function)")
 
-        // No title for the app screen.
-        self.window?.title = ""
-    }
-
-    func windowShouldClose(_ sender: NSWindow) -> Bool {
         log.message("[\(type(of: self))].\(#function)")
 
+        if let window = self.window {
+            window.delegate = self
+        } else {
+            log.message("[\(type(of: self))].\(#function) window instance is nil", .error)
+        }
+    }
+
+    public func windowShouldClose(_ sender: NSWindow) -> Bool {
+
+        log.message("[\(type(of: self))].\(#function)")
         self.window?.orderOut(sender)
+
         return false
     }
 }
