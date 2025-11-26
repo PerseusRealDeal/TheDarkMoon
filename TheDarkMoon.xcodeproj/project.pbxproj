@@ -24,6 +24,10 @@
 		2EBB4CA62ED73C4F00C44504 /* SelfieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB4CA22ED73C4F00C44504 /* SelfieViewController.swift */; };
 		2EBB4CA72ED73C4F00C44504 /* SelfieViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB4CA32ED73C4F00C44504 /* SelfieViewPresenter.swift */; };
 		2EBB4CA92ED73C7A00C44504 /* AppLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB4CA82ED73C7A00C44504 /* AppLinks.swift */; };
+		2EBB4CAF2ED73E0E00C44504 /* LoggerWindowController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EBB4CAB2ED73E0E00C44504 /* LoggerWindowController.storyboard */; };
+		2EBB4CB02ED73E0E00C44504 /* LoggerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB4CAC2ED73E0E00C44504 /* LoggerViewController.swift */; };
+		2EBB4CB12ED73E0E00C44504 /* LoggerViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB4CAD2ED73E0E00C44504 /* LoggerViewPresenter.swift */; };
+		2EBB4CB22ED73E0E00C44504 /* LoggerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB4CAE2ED73E0E00C44504 /* LoggerWindowController.swift */; };
 		2EC294342ECDE1A200FC06F1 /* MVPPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC294332ECDE1A200FC06F1 /* MVPPresenter.swift */; };
 		2EC294362ECDE1B400FC06F1 /* MVPViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC294352ECDE1B400FC06F1 /* MVPViewDelegate.swift */; };
 		2ED6C7F82ECEDF50009EF57D /* OptionsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED6C7F72ECEDF50009EF57D /* OptionsViewPresenter.swift */; };
@@ -140,6 +144,10 @@
 		2EBB4CA22ED73C4F00C44504 /* SelfieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfieViewController.swift; sourceTree = "<group>"; };
 		2EBB4CA32ED73C4F00C44504 /* SelfieViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfieViewPresenter.swift; sourceTree = "<group>"; };
 		2EBB4CA82ED73C7A00C44504 /* AppLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinks.swift; sourceTree = "<group>"; };
+		2EBB4CAB2ED73E0E00C44504 /* LoggerWindowController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoggerWindowController.storyboard; sourceTree = "<group>"; };
+		2EBB4CAC2ED73E0E00C44504 /* LoggerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerViewController.swift; sourceTree = "<group>"; };
+		2EBB4CAD2ED73E0E00C44504 /* LoggerViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerViewPresenter.swift; sourceTree = "<group>"; };
+		2EBB4CAE2ED73E0E00C44504 /* LoggerWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerWindowController.swift; sourceTree = "<group>"; };
 		2EC294332ECDE1A200FC06F1 /* MVPPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPPresenter.swift; sourceTree = "<group>"; };
 		2EC294352ECDE1B400FC06F1 /* MVPViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPViewDelegate.swift; sourceTree = "<group>"; };
 		2ED6C7F72ECEDF50009EF57D /* OptionsViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewPresenter.swift; sourceTree = "<group>"; };
@@ -285,6 +293,17 @@
 			path = Selfie;
 			sourceTree = "<group>";
 		};
+		2EBB4CAA2ED73E0E00C44504 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				2EBB4CAB2ED73E0E00C44504 /* LoggerWindowController.storyboard */,
+				2EBB4CAC2ED73E0E00C44504 /* LoggerViewController.swift */,
+				2EBB4CAD2ED73E0E00C44504 /* LoggerViewPresenter.swift */,
+				2EBB4CAE2ED73E0E00C44504 /* LoggerWindowController.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
 		2EC294322ECDE17D00FC06F1 /* MVPPattern */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +400,7 @@
 				4B993DB62B37382D008C1FE7 /* Popover */,
 				4BFA5FD8298974FA00AC09F5 /* Options */,
 				2EBB4C9F2ED73C4F00C44504 /* Selfie */,
+				2EBB4CAA2ED73E0E00C44504 /* Logger */,
 			);
 			path = BusinessContent;
 			sourceTree = "<group>";
@@ -722,6 +742,7 @@
 				2EBB4CA52ED73C4F00C44504 /* SelfieWindowController.storyboard in Resources */,
 				4BB2046C2B753CC7007E0308 /* ForecastDaysViewItem.xib in Resources */,
 				4BBE9069291293E8008F734D /* .gitignore in Resources */,
+				2EBB4CAF2ED73E0E00C44504 /* LoggerWindowController.storyboard in Resources */,
 				4B1483E92912892F0013B76E /* Assets.xcassets in Resources */,
 				4BFA5FDA2989A12800AC09F5 /* OptionsWindowController.storyboard in Resources */,
 				4BBE906B291293F0008F734D /* LICENSE in Resources */,
@@ -790,12 +811,14 @@
 				4BB2045D2B70EE3A007E0308 /* Protocols.swift in Sources */,
 				4BB2046E2B755BDB007E0308 /* ForecastDay.swift in Sources */,
 				4B5F7D412B9AD05900121946 /* MeteoDataSourceReader.swift in Sources */,
+				2EBB4CB22ED73E0E00C44504 /* LoggerWindowController.swift in Sources */,
 				2E2020092E891BE200D8D496 /* SuggestionsView.swift in Sources */,
 				2EF147E92E966E8800BE657C /* CustomStatusButtonView.swift in Sources */,
 				4BEE281D2B4AE07700F06A69 /* AppUserDefaults.swift in Sources */,
 				4B993DB82B3738A7008C1FE7 /* PopoverViewController.swift in Sources */,
 				4BBE90672912931A008F734D /* main.swift in Sources */,
 				2E2020112E8A871C00D8D496 /* LocationStatusLocalized.swift in Sources */,
+				2EBB4CB02ED73E0E00C44504 /* LoggerViewController.swift in Sources */,
 				4BFA5FDC2989A16400AC09F5 /* OptionsWindowController.swift in Sources */,
 				2EBB4CA72ED73C4F00C44504 /* SelfieViewPresenter.swift in Sources */,
 				4BB204632B70F2FE007E0308 /* OpenWeatherForecastParser.swift in Sources */,
@@ -813,6 +836,7 @@
 				2EC294342ECDE1A200FC06F1 /* MVPPresenter.swift in Sources */,
 				4B993DC52B380EF9008C1FE7 /* LocationView.swift in Sources */,
 				4B684C712B446A560063E359 /* JsonDataDictionaryGift.swift in Sources */,
+				2EBB4CB12ED73E0E00C44504 /* LoggerViewPresenter.swift in Sources */,
 				4BB2046A2B753A47007E0308 /* ForecastDaysViewItem.swift in Sources */,
 				2E1083D62E2B667000400180 /* CPLStar.swift in Sources */,
 				4B5F7D352B96394600121946 /* ForecastDataSourceReader.swift in Sources */,

@@ -166,12 +166,27 @@
                                             <action selector="aboutButtonTapped:" target="bU7-R8-ocO" id="oYs-Gg-GNo"/>
                                         </connections>
                                     </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xlo-RM-Wg8">
+                                        <rect key="frame" x="203" y="3" width="104" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="JG4-Y2-FR6"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="Logger" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uvJ-dU-1gc">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="buttonLoggerTapped:" target="bU7-R8-ocO" id="w3V-bz-ojm"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Ub5-ci-hl1" secondAttribute="bottom" constant="10" id="8FX-HC-3Pi"/>
+                                    <constraint firstItem="Xlo-RM-Wg8" firstAttribute="leading" secondItem="lEc-RC-GkU" secondAttribute="trailing" constant="10" id="BYY-qH-0XW"/>
                                     <constraint firstAttribute="trailing" secondItem="Ub5-ci-hl1" secondAttribute="trailing" constant="10" id="K5N-1V-UX7"/>
                                     <constraint firstAttribute="height" constant="40" id="KaB-uv-vTK"/>
                                     <constraint firstItem="MSy-7h-iOl" firstAttribute="leading" secondItem="0Xu-O6-hXQ" secondAttribute="leading" constant="10" id="UQc-8s-SGB"/>
+                                    <constraint firstItem="Xlo-RM-Wg8" firstAttribute="centerY" secondItem="MSy-7h-iOl" secondAttribute="centerY" id="apU-K8-jws"/>
                                     <constraint firstAttribute="bottom" secondItem="MSy-7h-iOl" secondAttribute="bottom" constant="10" id="mWg-lX-Uxk"/>
                                     <constraint firstItem="lEc-RC-GkU" firstAttribute="centerY" secondItem="MSy-7h-iOl" secondAttribute="centerY" id="q4V-bv-Vnk"/>
                                     <constraint firstItem="lEc-RC-GkU" firstAttribute="leading" secondItem="MSy-7h-iOl" secondAttribute="trailing" constant="10" id="rVf-47-wbk"/>
@@ -195,6 +210,7 @@
                         <outlet property="buttonAbout" destination="MSy-7h-iOl" id="BK1-jA-Yg4"/>
                         <outlet property="buttonFetchMeteoFacts" destination="1oS-xB-Iag" id="f1j-sg-RGY"/>
                         <outlet property="buttonHideAppScreens" destination="Ub5-ci-hl1" id="jUj-ke-nTb"/>
+                        <outlet property="buttonLogger" destination="Xlo-RM-Wg8" id="EVa-k7-ZC8"/>
                         <outlet property="buttonOptions" destination="lEc-RC-GkU" id="9WS-WU-GoL"/>
                         <outlet property="buttonQuit" destination="3AG-Tj-6c2" id="Lh0-xY-ekv"/>
                         <outlet property="labelGreeting" destination="Vs7-Lz-WvA" id="Ixk-im-rBZ"/>

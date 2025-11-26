@@ -17,9 +17,9 @@ import Cocoa
 
 // MARK: - The Start Line
 
-let localReport = PerseusLogger.Report()
+let report = PerseusLogger.Report()
 
-log.customActionOnMessage = localReport.report(_:_:_:_:_:_:)
+log.customActionOnMessage = report.report(_:)
 
 log.level = .debug
 log.output = .consoleapp

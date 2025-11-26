@@ -54,6 +54,10 @@ public class StatusMenusPresenter {
         return SelfieWindowController.storyboardInstance()
     }()
 
+    public lazy var screenLogger = { () -> LoggerWindowController in
+        return LoggerWindowController.storyboardInstance()
+    }()
+
     // MARK: - Initialization
 
     init() {

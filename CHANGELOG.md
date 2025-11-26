@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Version in format MAJOR.MINOR where MINOR includes PATCH that means any patch increments MINOR.
 - Dates in this file meets Gregorian calendar. Date in format YYYY-MM-DD.
 
+## [0.4.2] - [2025-11-NN], The Dark Moon
+
+### Fixed
+
+- Infinite recursion in log viewer (issue [#45](https://github.com/PerseusRealDeal/TheDarkMoon/issues/45).)
+
+### Added
+
+- Logger window.
+- Architectural points. MVP. Based on [Gist](https://gist.github.com/PerseusRealDeal/5301e90881732f0cd0040e2083a78a3d).
+
+## Updated
+
+- Selfie window.
+- Dependcies.
+
 ## [0.4.1] - [2025-11-17], The Dark Moon
 
 ### Fixed

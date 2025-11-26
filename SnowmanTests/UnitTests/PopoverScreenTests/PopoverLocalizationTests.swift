@@ -58,6 +58,9 @@ class PopoverScreenLocalizationTests: XCTestCase {
         XCTAssertEqual(sut.buttonOptions.title,
                        "Button: Options".localizedValue)
 
+        XCTAssertEqual(sut.buttonLogger.title,
+                       "Button: Logger".localizedValue)
+
         XCTAssertEqual(sut.buttonHideAppScreens.title,
                        "Button: Hide".localizedValue)
     }
