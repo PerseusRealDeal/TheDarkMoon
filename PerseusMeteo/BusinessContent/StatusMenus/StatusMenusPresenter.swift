@@ -50,8 +50,12 @@ public class StatusMenusPresenter {
         return OptionsWindowController.storyboardInstance()
     }()
 
-    public lazy var screenAbout = { () -> AboutWindowController in
-        return AboutWindowController.storyboardInstance()
+    public lazy var screenSelfie = { () -> SelfieWindowController in
+        return SelfieWindowController.storyboardInstance()
+    }()
+
+    public lazy var screenLogger = { () -> LoggerWindowController in
+        return LoggerWindowController.storyboardInstance()
     }()
 
     // MARK: - Initialization
@@ -151,7 +155,7 @@ public class StatusMenusPresenter {
 
         if popover.isShown {
             popover.performClose(button)
-            screenAbout.close()
+            screenSelfie.close()
             screenOptions.close()
         } else {
             popover.contentViewController = screenPopover

@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="aWf-Ue-Llq">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="DZA-gq-dmb">
+            <objects>
+                <windowController id="aWf-Ue-Llq" customClass="SelfieWindowController" customModule="Snowman" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Title: Selfie" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="3bI-iy-iR7">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+                        <connections>
+                            <outlet property="delegate" destination="aWf-Ue-Llq" id="wca-CV-Ff2"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="NdM-46-oIE" kind="relationship" relationship="window.shadowedContentViewController" id="Kco-19-hJE"/>
+                    </connections>
+                </windowController>
+                <customObject id="uu8-KA-eJO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-122" y="304"/>
+        </scene>
+        <!--Selfie View Controller-->
+        <scene sceneID="3ou-hb-cGC">
+            <objects>
+                <viewController id="NdM-46-oIE" customClass="SelfieViewController" customModule="Snowman" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Zo1-hM-qgJ">
+                        <rect key="frame" x="0.0" y="0.0" width="553" height="487"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pTY-Tb-nnu">
+                                <rect key="frame" x="3" y="3" width="124" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="4cz-zN-RIi"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PiJ-Zk-UVo">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="buttonCloseTapped:" target="NdM-46-oIE" id="gpf-8C-BYU"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hhC-mI-IUr">
+                                <rect key="frame" x="318" y="3" width="154" height="32"/>
+                                <buttonCell key="cell" type="push" title="Terms &amp; Conditions" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zKR-3q-y7n">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="buttonTermsTapped:" target="NdM-46-oIE" id="c61-TA-65p"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tyk-gI-2S1">
+                                <rect key="frame" x="468" y="3" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="License" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6Jx-eZ-R2B">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="buttonLicenseTapped:" target="NdM-46-oIE" id="yXX-ec-zYl"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I16-ly-hgL">
+                                <rect key="frame" x="413" y="459" width="130" height="18"/>
+                                <buttonCell key="cell" type="inline" title="The App Source Code" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wST-EU-a1T">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystemBold"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="buttonTheAppSourceCodeTapped:" target="NdM-46-oIE" id="pcj-NU-GfE"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qdG-g3-O7i">
+                                <rect key="frame" x="405" y="431" width="138" height="18"/>
+                                <buttonCell key="cell" type="inline" title="The Technological Tree" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="61b-bl-v4e">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystemBold"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="buttonTheTechnologicalTreeTapped:" target="NdM-46-oIE" id="nF1-Bh-wpq"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yEY-rb-2hz">
+                                <rect key="frame" x="95" y="417" width="198" height="35"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="The App Name" id="nrt-Wn-dV0">
+                                    <font key="font" metaFont="system" size="30"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zt6-eZ-dJw">
+                                <rect key="frame" x="95" y="398" width="56" height="19"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Version" id="EcQ-ui-Rby">
+                                    <font key="font" metaFont="system" size="15"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BJc-2m-C2t">
+                                <rect key="frame" x="10" y="385" width="77" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="77" id="TWa-eG-gzC"/>
+                                    <constraint firstAttribute="width" constant="77" id="a2t-wg-6vk"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSApplicationIcon" id="3DS-Vl-YAd"/>
+                            </imageView>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6XP-dj-lG5">
+                                <rect key="frame" x="10" y="40" width="533" height="345"/>
+                                <subviews>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1XN-ke-8xC">
+                                        <rect key="frame" x="-2" y="329" width="537" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="t59-Eq-aG7"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" selectable="YES" alignment="center" title="Copyright ©" id="dPq-wg-32p">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="VkC-i9-Le5">
+                                        <rect key="frame" x="-2" y="289" width="537" height="32"/>
+                                        <textFieldCell key="cell" selectable="YES" alignment="center" id="ovL-lL-IL2">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <string key="title">Copyright ©
+Details</string>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ms-6J-HpA">
+                                        <rect key="frame" x="0.0" y="107" width="533" height="174"/>
+                                        <clipView key="contentView" drawsBackground="NO" id="zrk-03-tWg">
+                                            <rect key="frame" x="0.0" y="0.0" width="533" height="174"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="XFN-1f-L1G">
+                                                    <rect key="frame" x="0.0" y="0.0" width="533" height="174"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    <size key="minSize" width="533" height="174"/>
+                                                    <size key="maxSize" width="533" height="10000000"/>
+                                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                </textView>
+                                            </subviews>
+                                        </clipView>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="Yfw-Zf-VFQ"/>
+                                        </constraints>
+                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="uYB-nK-5Az">
+                                            <rect key="frame" x="-100" y="-100" width="240" height="16"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="a3o-6W-dG2">
+                                            <rect key="frame" x="517" y="0.0" width="16" height="174"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                    </scrollView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="R5a-tQ-Ie5" userLabel="Tags Cloud View">
+                                        <rect key="frame" x="0.0" y="0.0" width="533" height="99"/>
+                                        <subviews>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xcb-6K-Pyy">
+                                                <rect key="frame" x="11" y="67" width="110" height="18"/>
+                                                <buttonCell key="cell" type="inline" title="PerseusDarkMode" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uEf-CA-lae">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="buttonPerseusDarkModeTapped:" target="NdM-46-oIE" id="Lgi-Jw-ntN"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ixh-or-pgj">
+                                                <rect key="frame" x="27" y="20" width="138" height="18"/>
+                                                <buttonCell key="cell" type="inline" title="PerseusGeoLocationKit" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IIT-UO-8UP">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="buttonPerseusGeoLocationKitTapped:" target="NdM-46-oIE" id="cRe-3T-pTD"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0On-JL-j5Z">
+                                                <rect key="frame" x="159" y="52" width="156" height="18"/>
+                                                <buttonCell key="cell" type="inline" title="PerseusCompassDirection" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CWk-V0-1X5">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="smallSystemBold"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="buttonPerseusCompassDirectionTapped:" target="NdM-46-oIE" id="0y7-WK-Crd"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XIW-3m-Ni3">
+                                                <rect key="frame" x="402" y="7" width="94" height="18"/>
+                                                <buttonCell key="cell" type="inline" title="PerseusLogger" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2aN-uw-PnY">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="buttonPerseusLoggerTapped:" target="NdM-46-oIE" id="ps9-wg-CCD"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FrY-gG-aRp">
+                                                <rect key="frame" x="329" y="67" width="138" height="18"/>
+                                                <buttonCell key="cell" type="inline" title="ConsolePerseusLogger" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BF3-FU-Vn7">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="smallSystemBold"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="buttonConsolePerseusLoggerTapped:" target="NdM-46-oIE" id="MoA-N0-4QL"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aAh-nN-G9I">
+                                                <rect key="frame" x="237" y="26" width="120" height="18"/>
+                                                <buttonCell key="cell" type="inline" title="PerseusTimeFormat" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="n2t-2k-1sN">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="smallSystemBold"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="buttonPerseusTimeFormatTapped:" target="NdM-46-oIE" id="LY1-L9-C9S"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="teG-GX-fqX">
+                                                <rect key="frame" x="449" y="41" width="64" height="18"/>
+                                                <buttonCell key="cell" type="inline" title="Snowman" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jnd-eY-WSX">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="smallSystemBold"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="buttonSnowmanTapped:" target="NdM-46-oIE" id="MUN-1G-fSN"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Smd-Wv-reS">
+                                                <rect key="frame" x="173" y="7" width="112" height="18"/>
+                                                <buttonCell key="cell" type="inline" title="ConvertorMov2Gif" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="53K-Fu-tfy">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="smallSystemBold"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="buttonConvertorMov2GifTapped:" target="NdM-46-oIE" id="DBG-Uu-pNp"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="aAh-nN-G9I" secondAttribute="bottom" constant="26" id="2gt-m9-jOU"/>
+                                            <constraint firstItem="ixh-or-pgj" firstAttribute="leading" secondItem="R5a-tQ-Ie5" secondAttribute="leading" constant="27" id="32v-5s-Pdn"/>
+                                            <constraint firstItem="Xcb-6K-Pyy" firstAttribute="leading" secondItem="R5a-tQ-Ie5" secondAttribute="leading" constant="11" id="63X-mK-Iho"/>
+                                            <constraint firstAttribute="trailing" secondItem="teG-GX-fqX" secondAttribute="trailing" constant="20" symbolic="YES" id="7Wt-7D-5BY"/>
+                                            <constraint firstItem="FrY-gG-aRp" firstAttribute="top" secondItem="R5a-tQ-Ie5" secondAttribute="top" constant="14" id="AjA-lq-MZh"/>
+                                            <constraint firstAttribute="trailing" secondItem="FrY-gG-aRp" secondAttribute="trailing" constant="66" id="C5T-AG-wtp"/>
+                                            <constraint firstItem="Xcb-6K-Pyy" firstAttribute="top" secondItem="R5a-tQ-Ie5" secondAttribute="top" constant="14" id="ECy-ec-OKS"/>
+                                            <constraint firstItem="Smd-Wv-reS" firstAttribute="leading" secondItem="ixh-or-pgj" secondAttribute="trailing" constant="8" symbolic="YES" id="EfA-a2-hRg"/>
+                                            <constraint firstItem="teG-GX-fqX" firstAttribute="top" secondItem="R5a-tQ-Ie5" secondAttribute="top" constant="40" id="PWc-b1-byl"/>
+                                            <constraint firstItem="aAh-nN-G9I" firstAttribute="centerX" secondItem="R5a-tQ-Ie5" secondAttribute="centerX" constant="30" id="RqE-9I-oYK"/>
+                                            <constraint firstAttribute="bottom" secondItem="ixh-or-pgj" secondAttribute="bottom" constant="20" symbolic="YES" id="Rr9-Wa-1sa"/>
+                                            <constraint firstItem="0On-JL-j5Z" firstAttribute="centerX" secondItem="R5a-tQ-Ie5" secondAttribute="centerX" constant="-30" id="Sm4-Dl-nMp"/>
+                                            <constraint firstAttribute="bottom" secondItem="Smd-Wv-reS" secondAttribute="bottom" constant="7" id="eVO-Ns-HqP"/>
+                                            <constraint firstAttribute="trailing" secondItem="XIW-3m-Ni3" secondAttribute="trailing" constant="37" id="fPh-sW-JIA"/>
+                                            <constraint firstItem="0On-JL-j5Z" firstAttribute="top" secondItem="R5a-tQ-Ie5" secondAttribute="top" constant="29" id="nbc-5c-4ze"/>
+                                            <constraint firstAttribute="height" constant="99" id="qgX-3p-GHN"/>
+                                            <constraint firstAttribute="bottom" secondItem="XIW-3m-Ni3" secondAttribute="bottom" constant="7" id="tsk-M4-7gb"/>
+                                        </constraints>
+                                    </customView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="1XN-ke-8xC" secondAttribute="trailing" id="3Ee-ds-oam"/>
+                                    <constraint firstItem="R5a-tQ-Ie5" firstAttribute="leading" secondItem="6XP-dj-lG5" secondAttribute="leading" id="6pP-vN-6cw"/>
+                                    <constraint firstItem="VkC-i9-Le5" firstAttribute="leading" secondItem="6XP-dj-lG5" secondAttribute="leading" id="Awy-92-E4T"/>
+                                    <constraint firstItem="7Ms-6J-HpA" firstAttribute="leading" secondItem="6XP-dj-lG5" secondAttribute="leading" id="Lw3-5T-Hh0"/>
+                                    <constraint firstAttribute="trailing" secondItem="7Ms-6J-HpA" secondAttribute="trailing" id="Vwk-Pg-IpQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="VkC-i9-Le5" secondAttribute="trailing" id="YSg-nX-pxl"/>
+                                    <constraint firstAttribute="trailing" secondItem="R5a-tQ-Ie5" secondAttribute="trailing" id="hCr-ej-ErH"/>
+                                    <constraint firstItem="1XN-ke-8xC" firstAttribute="leading" secondItem="6XP-dj-lG5" secondAttribute="leading" id="vZJ-zh-Tso"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="pTY-Tb-nnu" firstAttribute="top" secondItem="6XP-dj-lG5" secondAttribute="bottom" constant="10" id="2Mw-Wx-UbP"/>
+                            <constraint firstAttribute="trailing" secondItem="Tyk-gI-2S1" secondAttribute="trailing" constant="10" id="7Mm-gC-YKC"/>
+                            <constraint firstItem="Tyk-gI-2S1" firstAttribute="leading" secondItem="hhC-mI-IUr" secondAttribute="trailing" constant="10" id="7gq-px-8OD"/>
+                            <constraint firstItem="Zt6-eZ-dJw" firstAttribute="top" secondItem="yEY-rb-2hz" secondAttribute="bottom" id="9QI-sR-zYJ"/>
+                            <constraint firstItem="pTY-Tb-nnu" firstAttribute="centerY" secondItem="Tyk-gI-2S1" secondAttribute="centerY" id="Bpr-35-tYd"/>
+                            <constraint firstItem="I16-ly-hgL" firstAttribute="trailing" secondItem="Tyk-gI-2S1" secondAttribute="trailing" id="EWN-n5-D99"/>
+                            <constraint firstItem="qdG-g3-O7i" firstAttribute="top" secondItem="I16-ly-hgL" secondAttribute="bottom" constant="10" id="Ghs-pr-Su5"/>
+                            <constraint firstItem="Zt6-eZ-dJw" firstAttribute="leading" secondItem="yEY-rb-2hz" secondAttribute="leading" id="Lbi-F9-3Ie"/>
+                            <constraint firstItem="BJc-2m-C2t" firstAttribute="top" secondItem="Zo1-hM-qgJ" secondAttribute="top" constant="25" id="Lrp-Zv-22D"/>
+                            <constraint firstItem="I16-ly-hgL" firstAttribute="top" secondItem="Zo1-hM-qgJ" secondAttribute="top" constant="10" id="NGl-iA-31i"/>
+                            <constraint firstItem="yEY-rb-2hz" firstAttribute="top" secondItem="Zo1-hM-qgJ" secondAttribute="top" constant="35" id="RFP-Bt-G2c"/>
+                            <constraint firstItem="BJc-2m-C2t" firstAttribute="leading" secondItem="pTY-Tb-nnu" secondAttribute="leading" id="d7b-ca-gpL"/>
+                            <constraint firstItem="qdG-g3-O7i" firstAttribute="trailing" secondItem="I16-ly-hgL" secondAttribute="trailing" id="dXk-6O-MUZ"/>
+                            <constraint firstItem="6XP-dj-lG5" firstAttribute="leading" secondItem="Zo1-hM-qgJ" secondAttribute="leading" constant="10" id="hKo-cm-E2n"/>
+                            <constraint firstItem="hhC-mI-IUr" firstAttribute="centerY" secondItem="Tyk-gI-2S1" secondAttribute="centerY" id="lop-ds-YpA"/>
+                            <constraint firstAttribute="trailing" secondItem="6XP-dj-lG5" secondAttribute="trailing" constant="10" id="nVQ-m0-99G"/>
+                            <constraint firstItem="6XP-dj-lG5" firstAttribute="top" secondItem="BJc-2m-C2t" secondAttribute="bottom" id="pgA-fS-tbE"/>
+                            <constraint firstItem="yEY-rb-2hz" firstAttribute="leading" secondItem="Zo1-hM-qgJ" secondAttribute="leading" constant="97" id="sc8-ia-B0v"/>
+                            <constraint firstItem="pTY-Tb-nnu" firstAttribute="leading" secondItem="Zo1-hM-qgJ" secondAttribute="leading" constant="10" id="tVn-TT-vw4"/>
+                            <constraint firstAttribute="bottom" secondItem="Tyk-gI-2S1" secondAttribute="bottom" constant="10" id="vtt-D2-wdb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonClose" destination="pTY-Tb-nnu" id="SpY-6a-fjm"/>
+                        <outlet property="buttonConsolePerseusLogger" destination="FrY-gG-aRp" id="9mD-T0-ucI"/>
+                        <outlet property="buttonConvertorMov2Gif" destination="Smd-Wv-reS" id="MOz-pS-j4F"/>
+                        <outlet property="buttonLicense" destination="Tyk-gI-2S1" id="Chh-RW-MGk"/>
+                        <outlet property="buttonPerseusCompassDirection" destination="0On-JL-j5Z" id="ZiD-5s-46c"/>
+                        <outlet property="buttonPerseusDarkMode" destination="Xcb-6K-Pyy" id="LOL-Rp-Ti3"/>
+                        <outlet property="buttonPerseusGeoLocationKit" destination="ixh-or-pgj" id="HCR-cM-zRK"/>
+                        <outlet property="buttonPerseusLogger" destination="XIW-3m-Ni3" id="asx-xZ-NtQ"/>
+                        <outlet property="buttonPerseusTimeFormat" destination="aAh-nN-G9I" id="wNX-mk-swq"/>
+                        <outlet property="buttonSnowman" destination="teG-GX-fqX" id="jil-X3-rnR"/>
+                        <outlet property="buttonTerms" destination="hhC-mI-IUr" id="8KD-O1-DP9"/>
+                        <outlet property="buttonTheAppSourceCode" destination="I16-ly-hgL" id="5uA-3V-C7j"/>
+                        <outlet property="buttonTheTechnologicalTree" destination="qdG-g3-O7i" id="i7b-fh-ygu"/>
+                        <outlet property="labelCopyrightDetailsText" destination="VkC-i9-Le5" id="VCA-dd-tVO"/>
+                        <outlet property="labelCopyrightText" destination="1XN-ke-8xC" id="azR-pz-Rzp"/>
+                        <outlet property="labelTheAppName" destination="yEY-rb-2hz" id="nkQ-Pf-5Aw"/>
+                        <outlet property="labelTheAppVersion" destination="Zt6-eZ-dJw" id="rbn-gQ-C7w"/>
+                        <outlet property="viewTheCreditsText" destination="XFN-1f-L1G" id="Qbd-AX-PW4"/>
+                    </connections>
+                </viewController>
+                <customObject id="wub-Iw-l7t" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-120.5" y="881.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="NSApplicationIcon" width="32" height="32"/>
+    </resources>
+</document>

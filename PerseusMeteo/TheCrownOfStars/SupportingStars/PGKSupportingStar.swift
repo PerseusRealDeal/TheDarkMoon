@@ -1,6 +1,6 @@
 //
 //  PGKSupportingStar.swift
-//  Version: 1.1.0
+//  Version: 1.1.1
 //
 //  PerseusGeoKit Support Code
 //
@@ -10,7 +10,7 @@
 //  Created by Mikhail Zhigulin of Novosibirsk in 7533.
 //
 //  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year.
+//  September, the 1st of Slavic year. It means that "Sep 01, 2025" is the beginning of 7534.
 //
 //
 //  Unlicensed Free Software

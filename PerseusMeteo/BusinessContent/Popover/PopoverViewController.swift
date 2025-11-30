@@ -73,6 +73,8 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
     @IBOutlet private(set) weak var buttonAbout: NSButton!
     @IBOutlet private(set) weak var buttonOptions: NSButton!
+    @IBOutlet private(set) weak var buttonLogger: NSButton!
+
     @IBOutlet private(set) weak var buttonHideAppScreens: NSButton!
 
     // MARK: - Actions
@@ -106,18 +108,22 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     }
 
     @IBAction func aboutButtonTapped(_ sender: NSButton) {
-        statusMenusPresenter.screenAbout.showWindow(sender)
+        statusMenusPresenter.screenSelfie.showWindow(sender)
     }
 
     @IBAction func optionsButtonTapped(_ sender: NSButton) {
         statusMenusPresenter.screenOptions.showWindow(sender)
     }
 
+    @IBAction func buttonLoggerTapped(_ sender: Any) {
+        statusMenusPresenter.screenLogger.showWindow(sender)
+    }
+
     @IBAction func hideAppScreensButtonTapped(_ sender: NSButton) {
 
         guard let popover = statusMenusPresenter.popover else { return }
 
-        statusMenusPresenter.screenAbout.close()
+        statusMenusPresenter.screenSelfie.close()
         statusMenusPresenter.screenOptions.close()
 
         popover.performClose(sender)
@@ -140,7 +146,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
         // End-user messages
 
-        localReport.messageDelegate = labelGreeting
+        report.messageDelegate = labelGreeting
 
         // Tabs event delegate
 
@@ -464,6 +470,7 @@ extension PopoverViewController: Localizable {
 
         buttonAbout.title = "Button: About".localizedValue
         buttonOptions.title = "Button: Options".localizedValue
+        buttonLogger.title = "Button: Logger".localizedValue
 
         buttonHideAppScreens.title = "Button: Hide".localizedValue
     }

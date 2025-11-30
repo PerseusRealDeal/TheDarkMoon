@@ -84,11 +84,11 @@ class OptionsLocalizationTests: XCTestCase {
         // arrange
 
         sut.loadView()
+        sut.controlOpenWeatherKey.isEditable = false
+
         sut.localize()
 
         // assert
-
-        sut.controlOpenWeatherKey.isEditable = false
 
         XCTAssertEqual(sut.controlOpenWeatherKey.placeholderString,
                        "OpenWeather: Hidden".localizedValue)

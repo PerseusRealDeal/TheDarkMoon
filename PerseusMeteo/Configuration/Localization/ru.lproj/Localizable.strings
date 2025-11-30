@@ -37,6 +37,7 @@
 
 "Button: About" = "Себяшка";
 "Button: Options" = "Настройки";
+"Button: Logger" = "Журнал";
 
 "Button: Hide" = "Скрыться";
 
@@ -238,12 +239,14 @@
 
 /* About Screen – AboutWindowController, AboutViewController */
 
+"Title: The Dark Moon" = "Чёрная луна";
+
 "Button: The App Source Code" = "Исходники изделия";
 "Button: The Technological Tree" = "Золотое дерево";
 
 "Label: The App Version" = "Выпуск";
 
-"Label: Star Copyright Notice" = "Охраняется авторским правом © 7531 - 7534 Михаил A. Жигулин из Новосибирска.";
+"Label: Copyright Notice" = "Охраняется авторским правом © 7531 - 7534 Михаил A. Жигулин из Новосибирска.";
 
 "Label: Copyright Details" = "Летоисчесление ведется от Сотворения Мира в Звездном Храме в соответствии со славянским календарем в котором первый месяц сентябрь.";
 

@@ -2,7 +2,7 @@
 
 [![Actions Status](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/main.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions)
 [![Style](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml)
-[![Version](https://img.shields.io/badge/Version-0.4.1-green.svg)](/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-0.4.2-green.svg)](/CHANGELOG.md)
 [![Platforms](https://img.shields.io/badge/Platform-macOS%2010.13+-orange.svg)](https://en.wikipedia.org/wiki/MacOS_version_history)
 [![Xcode](https://img.shields.io/badge/Xcode-14.2+-red.svg)](https://en.wikipedia.org/wiki/Xcode)
 [![Swift](https://img.shields.io/badge/Swift-5-orange.svg)](https://docs.swift.org/swift-book/RevisionHistory/RevisionHistory.html)
@@ -22,9 +22,9 @@
 
 > The Crown of Stars:
 
-[![ConsolePerseusLogger](http://img.shields.io/:ConsolePerseusLogger-1.6.0-green.svg)](https://github.com/perseusrealdeal/ConsolePerseusLogger.git)
-[![PerseusDarkMode](http://img.shields.io/:PerseusDarkMode-2.1.0-green.svg)](https://github.com/perseusrealdeal/PerseusDarkMode.git)
-[![PerseusGeoKit](http://img.shields.io/:PerseusGeoKit-1.1.0-green.svg)](https://github.com/perseusrealdeal/PerseusGeoKit.git)
+[![ConsolePerseusLogger](http://img.shields.io/:ConsolePerseusLogger-1.7.0-green.svg)](https://github.com/perseusrealdeal/ConsolePerseusLogger.git)
+[![PerseusDarkMode](http://img.shields.io/:PerseusDarkMode-2.1.1-green.svg)](https://github.com/perseusrealdeal/PerseusDarkMode.git)
+[![PerseusGeoKit](http://img.shields.io/:PerseusGeoKit-1.1.1-green.svg)](https://github.com/perseusrealdeal/PerseusGeoKit.git)
 [![OpenWeatherAgent](http://img.shields.io/:OpenWeatherAgent-0.3.5-green.svg)](https://github.com/perseusrealdeal/OpenWeatherAgent)
 
 # Contents
@@ -37,7 +37,7 @@
 * [Third-party software](#Third-party-software)
 * [Points taken into account](#Points-taken-into-account)
 * [License](#License)
-    * [Other Required Licenses Details](#Other-Required-Licenses-Details)
+    * [Other required licenses details](#Other-required-licenses-details)
 * [Credits](#Credits)
 * [Author](#Author)
 
@@ -78,10 +78,10 @@
 
 | Type     | Name                                                                                                                                                                  | License |
 | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| Package  | [ConsolePerseusLogger](https://github.com/perseusrealdeal/ConsolePerseusLogger) / [1.6.0](https://github.com/perseusrealdeal/ConsolePerseusLogger/releases/tag/1.6.0) | MIT     |
+| Package  | [ConsolePerseusLogger](https://github.com/perseusrealdeal/ConsolePerseusLogger) / [1.7.0](https://github.com/perseusrealdeal/ConsolePerseusLogger/releases/tag/1.7.0) | MIT     |
 | Class    | [PerseusLogger](https://gist.github.com/perseusrealdeal/df456a9825fcface44eca738056eb6d5)                                                                             | MIT     |
-| Package  | [PerseusDarkMode](https://github.com/perseusrealdeal/PerseusDarkMode) / [2.1.0](https://github.com/perseusrealdeal/PerseusDarkMode/releases/tag/2.1.0)                | MIT     |
-| Package  | [PerseusGeoKit](https://github.com/perseusrealdeal/PerseusGeoKit) / [1.1.0](https://github.com/perseusrealdeal/PerseusGeoKit/releases/tag/1.1.0)                      | MIT     |
+| Package  | [PerseusDarkMode](https://github.com/perseusrealdeal/PerseusDarkMode) / [2.1.1](https://github.com/perseusrealdeal/PerseusDarkMode/releases/tag/2.1.1)                | MIT     |
+| Package  | [PerseusGeoKit](https://github.com/perseusrealdeal/PerseusGeoKit) / [1.1.1](https://github.com/perseusrealdeal/PerseusGeoKit/releases/tag/1.1.1)                      | MIT     |
 | Class    | [PerseusCompassDirection](https://gist.github.com/perseusrealdeal/3b053b2390d704f561ec52c6477b5cf2)                                                                   | MIT     |
 | Variable | [PerseusTimeFormat](https://gist.github.com/perseusrealdeal/7aa89d78d9b1c220cc06682be8908a97)                                                                         | MIT     |
 | Package  | [OpenWeatherAgent](https://github.com/perseusrealdeal/OpenWeatherAgent) / [0.3.5](https://github.com/perseusrealdeal/OpenWeatherAgent/releases/tag/0.3.5)             | MIT     |
@@ -120,6 +120,7 @@
 - [SwiftLint Rules](/.swiftlint.yml)
 - [Git Config](/.gitignore)
 - SwiftLint shell script as a build phase (SwiftLint preinstallation required)
+- Architectural points. MVP applied. Based on [Gist](https://gist.github.com/PerseusRealDeal/5301e90881732f0cd0040e2083a78a3d).
 
 # License
 
@@ -133,7 +134,7 @@ Copyright © 7531 - 7534 PerseusRealDeal
 
 [LICENSE](/LICENSE) for details.
 
-## Other Required Licenses Details
+## Other required licenses details
 
 © Mikhail A. Zhigulin of Novosibirsk **for** ConsolePerseusLogger, PerseusDarkMode, PerseusGeoKit, OpenWeatherAgent</br>
 © PerseusRealDeal **for** ConsolePerseusLogger, PerseusDarkMode, PerseusGeoKit, OpenWeatherAgent</br>

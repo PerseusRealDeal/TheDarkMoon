@@ -19,6 +19,40 @@ import Cocoa
 
 class OptionsViewController: NSViewController, NSTextFieldDelegate {
 
+    // MARK: - Presenter
+
+    var presenter: OptionsViewPresenter?
+
+    // MARK: - Initialization
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        // Setup content options.
+
+        self.view.wantsLayer = true
+        self.preferredContentSize = NSSize(width: self.view.frame.size.width,
+                                           height: self.view.frame.size.height)
+    }
+
+    override func viewDidAppear() {
+        super.viewDidAppear()
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        presenter?.viewDidAppear()
+    }
+
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        presenter?.viewWillDisappear()
+    }
+
     // MARK: - Outlets
 
     @IBOutlet private(set) weak var boxAppOptions: NSBox!
@@ -55,127 +89,65 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
 
     // MARK: - Actions
 
+    @IBAction func closeOptionsWindow(_ sender: NSButton) {
+        statusMenusPresenter.screenOptions.close()
+    }
+
+    @IBAction func resetAllSettingsTapped(_ sender: NSButton) {
+        presenter?.resetToDefaults()
+    }
+
     @IBAction func controlDarkModeDidChanged(_ sender: NSSegmentedControl) {
         log.message("[\(type(of: self))].\(#function) - \(controlDarkMode.selectedSegment)")
-
-        switch sender.selectedSegment {
-        case 0:
-            DarkModeAgent.force(.off)
-        case 1:
-            DarkModeAgent.force(.on)
-        case 2:
-            DarkModeAgent.force(.auto)
-        default:
-            break
-        }
+        presenter?.forceDarkMode(sender.selectedSegment)
     }
 
     @IBAction func controlLanguageDidChanged(_ sender: NSSegmentedControl) {
         log.message("[\(type(of: self))].\(#function) - \(controlLanguage.selectedSegment)")
-
-        switch sender.selectedSegment {
-        case 0:
-            AppOptions.languageOption = .en
-        case 1:
-            AppOptions.languageOption = .ru
-        case 2:
-            AppOptions.languageOption = .system
-        default:
-            break
-        }
-
-        globals.languageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
+        presenter?.forceLanguage(sender.selectedSegment)
     }
 
     @IBAction func controlTimeFormatDidChanged(_ sender: NSSegmentedControl) {
         log.message("[\(type(of: self))].\(#function) - \(controlTimeFormat.selectedSegment)")
-
-        switch sender.selectedSegment {
-        case 0:
-            AppOptions.timeFormatOption = .hour24
-        case 1:
-            AppOptions.timeFormatOption = .hour12
-        case 2:
-            AppOptions.timeFormatOption = .system
-        default:
-            break
-        }
-
-        let nc = AppGlobals.notificationCenter
-        nc.post(Notification.init(name: .meteoDataOptionsNotification))
+        presenter?.forceTimeFormat(sender.selectedSegment)
     }
 
     @IBAction func controlTemperatureDidChanged(_ sender: NSSegmentedControl) {
         log.message("[\(type(of: self))].\(#function) - \(controlTemperature.selectedSegment)")
-
-        switch sender.selectedSegment {
-        case 0:
-            AppOptions.temperatureOption = .standard
-        case 1:
-            AppOptions.temperatureOption = .metric
-        case 2:
-            AppOptions.temperatureOption = .imperial
-        default:
-            break
-        }
-
-        let nc = AppGlobals.notificationCenter
-        nc.post(Notification.init(name: .meteoDataOptionsNotification))
+        presenter?.forceTemperatureUnit(sender.selectedSegment)
     }
 
     @IBAction func controlWindSpeedDidChanged(_ sender: NSSegmentedControl) {
         log.message("[\(type(of: self))].\(#function) - \(controlWindSpeed.selectedSegment)")
-
-        switch sender.selectedSegment {
-        case 0:
-            AppOptions.windSpeedOption = .ms
-        case 1:
-            AppOptions.windSpeedOption = .kmh
-        case 2:
-            AppOptions.windSpeedOption = .mph
-        default:
-            break
-        }
-
-        let nc = AppGlobals.notificationCenter
-        nc.post(Notification.init(name: .meteoDataOptionsNotification))
+        presenter?.forceWindSpeedUnit(sender.selectedSegment)
     }
 
     @IBAction func controlPressureDidChanged(_ sender: NSSegmentedControl) {
         log.message("[\(type(of: self))].\(#function) - \(controlPressure.selectedSegment)")
-
-        switch sender.selectedSegment {
-        case 0:
-            AppOptions.pressureOption = .hPa
-        case 1:
-            AppOptions.pressureOption = .mmHg
-        case 2:
-            AppOptions.pressureOption = .mb
-        default:
-            break
-        }
-
-        let nc = AppGlobals.notificationCenter
-        nc.post(Notification.init(name: .meteoDataOptionsNotification))
+        presenter?.forcePressureUnit(sender.selectedSegment)
     }
 
     @IBAction func controlDistanceDidChanged(_ sender: NSSegmentedControl) {
         log.message("[\(type(of: self))].\(#function) - \(controlDistance.selectedSegment)")
-
-        switch sender.selectedSegment {
-        case 0:
-            AppOptions.distanceOption = .kilometre
-        case 1:
-            AppOptions.distanceOption = .mile
-        default:
-            break
-        }
-
-        let nc = AppGlobals.notificationCenter
-        nc.post(Notification.init(name: .meteoDataOptionsNotification))
+        presenter?.forceDistanceUnit(sender.selectedSegment)
     }
 
+    @IBAction func checkBoxStatusMenusDidChanged(_ sender: NSButton) {
+        log.message("[\(type(of: self))].\(#function) - \(checkBoxStatusMenus.state)")
+        presenter?.forceStatusMenus(sender.state == .on ? true : false)
+    }
+
+    @IBAction func comboBoxStatusMenusUpdatePeriodDidChanged(_ sender: NSComboBox) {
+        let index = comboBoxStatusMenusUpdatePeriod.indexOfSelectedItem
+        log.message("[\(type(of: self))].\(#function) - \(index)")
+
+        presenter?.forceStatusMenusUpdatePeriod(sender.indexOfSelectedItem)
+    }
+
+    // MARK: - OpenWeatherKey Input
+
     @IBAction func controlUnlockButtonTapped(_ sender: NSButton) {
+
         log.message("[\(type(of: self))].\(#function) - \(controlUnlockButton.stringValue)")
 
         if self.controlOpenWeatherKey.isEditable {
@@ -187,114 +159,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
             }
         }
     }
-
-    @IBAction func checkBoxStatusMenusDidChanged(_ sender: NSButton) {
-        AppOptions.statusMenusOption = sender.state == .on ? true : false
-
-        let nc = AppGlobals.notificationCenter
-        nc.post(Notification.init(name: .updateStatusMenusItemNotification))
-    }
-
-    @IBAction func comboBoxStatusMenusUpdatePeriodDidChanged(_ sender: NSComboBox) {
-        guard let period = StatusMenusUpdatePeriodOption(rawValue: sender.indexOfSelectedItem)
-        else {
-            udpateComboBoxStatusMenusUpdatePeriod()
-            return
-        }
-
-        AppOptions.statusMenusPeriodOption = period
-
-        let nc = AppGlobals.notificationCenter
-        nc.post(Notification.init(name: .updateStatusMenusItemNotification))
-    }
-
-    @IBAction func closeOptionsWindow(_ sender: NSButton) {
-        statusMenusPresenter.screenOptions.close()
-    }
-
-    @IBAction func resetAllSettingsTapped(_ sender: NSButton) {
-
-        let ud = AppGlobals.userDefaults
-
-        ud.removeObject(forKey: DARK_MODE_SETTINGS_KEY)
-        ud.removeObject(forKey: LANGUAGE_OPTION_KEY)
-        ud.removeObject(forKey: TEMPERATURE_OPTION_KEY)
-        ud.removeObject(forKey: WINDSPEED_OPTION_KEY)
-        ud.removeObject(forKey: PRESSURE_OPTION_KEY)
-        ud.removeObject(forKey: TIME_OPTION_KEY)
-        ud.removeObject(forKey: DISTANCE_OPTION_KEY)
-        ud.removeObject(forKey: SUGGESTIONS_REQUEST_OPTION_KEY)
-        ud.removeObject(forKey: STATUSMENUS_OPTION_KEY)
-        ud.removeObject(forKey: STATUSMENUS_PERIOD_OPTION_KEY)
-
-        ud.removeObject(forKey: DARK_MODE_USER_CHOICE_KEY)
-        DarkModeAgent.force(DARK_MODE_USER_CHOICE_DEFAULT)
-
-        viewDidAppear()
-
-        let nc = AppGlobals.notificationCenter
-
-        nc.post(Notification.init(name: .updateStatusMenusItemNotification))
-        nc.post(Notification.init(name: .meteoDataOptionsNotification))
-    }
-    // MARK: - Initialization
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        log.message("[\(type(of: self))].\(#function)")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        log.message("[\(type(of: self))].\(#function)")
-
-        // Setup content options.
-
-        self.view.wantsLayer = true
-        self.preferredContentSize = NSSize(width: self.view.frame.size.width,
-                                           height: self.view.frame.size.height)
-
-        if #unavailable(macOS 10.14) { // For HighSierra only.
-            boxAppOptions.isTransparent = true
-            boxWeatherOptions.isTransparent = true
-            boxSpecialOptions.isTransparent = true
-        }
-
-        controlOpenWeatherKey.delegate = self
-
-        lockOpenWeatherKeyHole()
-
-        // For HighSierra dark mode is .system only
-        if #unavailable(macOS 10.14) {
-            controlDarkMode.isEnabled = false
-        }
-    }
-
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        log.message("[\(type(of: self))].\(#function)")
-
-        updateControlDarkMode()
-        updateControlLanguage()
-        updateControlTimeFormat()
-
-        updateControlTemperature()
-        updateControlWindSpeed()
-        updateControlPressure()
-        updateControlDistance()
-
-        udpateCheckBoxStatusMenus()
-        udpateComboBoxStatusMenusUpdatePeriod()
-    }
-
-    override func viewWillDisappear() {
-        super.viewWillDisappear()
-        log.message("[\(type(of: self))].\(#function)")
-
-        lockOpenWeatherKeyHole()
-    }
-
-    // MARK: - Events
 
     func controlTextDidChange(_ obj: Notification) {
 
@@ -322,8 +186,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         }
     }
 
-    // MARK: - Realization
-
     private func lockOpenWeatherKeyHole() {
         controlOpenWeatherKey.isEditable = false
 
@@ -347,124 +209,52 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 }
 
-// MARK: - Updates
+// MARK: - MVP View
 
-extension OptionsViewController {
+extension OptionsViewController: OptionsViewDelegate {
 
-    private func updateControlDarkMode() {
-        log.message("[\(type(of: self))].\(#function) \(DarkModeAgent.DarkModeUserChoice)")
+    // MARK: - OptionsViewDelegate
 
-        switch DarkModeAgent.DarkModeUserChoice {
-        case .auto:
-            controlDarkMode.selectedSegment = 2
-        case .on:
-            controlDarkMode.selectedSegment = 1
-        case .off:
-            controlDarkMode.selectedSegment = 0
-        }
+    func onViewWillDisappear() {
+        lockOpenWeatherKeyHole()
     }
 
-    private func updateControlLanguage() {
-        log.message("[\(type(of: self))].\(#function) \(AppOptions.languageOption)")
-
-        switch AppOptions.languageOption {
-        case .system:
-            controlLanguage.selectedSegment = 2
-        case .ru:
-            controlLanguage.selectedSegment = 1
-        case .en:
-            controlLanguage.selectedSegment = 0
-        }
+    func onViewDidAppear() {
+        refreshOptionsViewStates()
     }
 
-    private func updateControlTemperature() {
-        log.message("[\(type(of: self))].\(#function) \(AppOptions.temperatureOption)")
-
-        switch AppOptions.temperatureOption {
-        case .imperial:
-            controlTemperature.selectedSegment = 2
-        case .metric:
-            controlTemperature.selectedSegment = 1
-        case .standard:
-            controlTemperature.selectedSegment = 0
-        }
+    func refreshStatusMenusUpdatePeriod() {
+        udpateComboBoxStatusMenusUpdatePeriod()
     }
 
-    private func updateControlWindSpeed() {
-        log.message("[\(type(of: self))].\(#function) \(AppOptions.windSpeedOption)")
+    // MARK: - MVPViewDelegate
 
-        switch AppOptions.windSpeedOption {
-        case .mph:
-            controlWindSpeed.selectedSegment = 2
-        case .kmh:
-            controlWindSpeed.selectedSegment = 1
-        case .ms:
-            controlWindSpeed.selectedSegment = 0
-        }
-    }
+    func setupUI() {
 
-    private func updateControlPressure() {
-        log.message("[\(type(of: self))].\(#function) \(AppOptions.pressureOption)")
-
-        switch AppOptions.pressureOption {
-        case .mb:
-            controlPressure.selectedSegment = 2
-        case .mmHg:
-            controlPressure.selectedSegment = 1
-        case .hPa:
-            controlPressure.selectedSegment = 0
-        }
-    }
-
-    private func updateControlTimeFormat() {
-        log.message("[\(type(of: self))].\(#function) \(AppOptions.timeFormatOption)")
-
-        switch AppOptions.timeFormatOption {
-        case .system:
-            controlTimeFormat.selectedSegment = 2
-        case .hour12:
-            controlTimeFormat.selectedSegment = 1
-        case .hour24:
-            controlTimeFormat.selectedSegment = 0
-        }
-    }
-
-    private func updateControlDistance() {
-        log.message("[\(type(of: self))].\(#function) \(AppOptions.distanceOption)")
-
-        switch AppOptions.distanceOption {
-        case .mile:
-            controlDistance.selectedSegment = 1
-        case .kilometre:
-            controlDistance.selectedSegment = 0
-        default:
-            controlDistance.isEnabled = false
-        }
-    }
-
-    private func udpateCheckBoxStatusMenus() {
-        log.message("[\(type(of: self))].\(#function) \(AppOptions.statusMenusOption)")
-        checkBoxStatusMenus.state = AppOptions.statusMenusOption ? .on : .off
-    }
-
-    private func udpateComboBoxStatusMenusUpdatePeriod() {
         log.message("[\(type(of: self))].\(#function)")
-        comboBoxStatusMenusUpdatePeriod.removeAllItems()
 
-        for item in StatusMenusUpdatePeriodOption.allCases {
-            comboBoxStatusMenusUpdatePeriod.addItem(withObjectValue: "\(item)".localizedValue)
+        if #unavailable(macOS 10.14) { // For HighSierra only.
+            boxAppOptions.isTransparent = true
+            boxWeatherOptions.isTransparent = true
+            boxSpecialOptions.isTransparent = true
         }
 
-        let selectedIndex = AppOptions.statusMenusPeriodOption.rawValue
-        comboBoxStatusMenusUpdatePeriod.selectItem(at: selectedIndex)
+        controlOpenWeatherKey.delegate = self
+
+        lockOpenWeatherKeyHole()
+
+        // For HighSierra dark mode is .system only
+        if #unavailable(macOS 10.14) {
+            controlDarkMode.isEnabled = false
+        }
     }
-}
 
-// MARK: - Localization
+    func makeUp() {
+        // code here
+    }
 
-extension OptionsViewController {
+    func localize() {
 
-    public func localize() {
         log.message("[\(type(of: self))].\(#function)")
 
         self.view.window?.title = self.windowTitleLocalized
@@ -535,5 +325,142 @@ extension OptionsViewController {
 
     private var windowTitleLocalized: String {
         return "Product Name".localizedValue + " — " + "Title: Options Screen".localizedValue
+    }
+}
+
+// MARK: - Updates
+
+extension OptionsViewController {
+
+    private func updateControlDarkMode() {
+
+        log.message("[\(type(of: self))].\(#function) \(DarkModeAgent.DarkModeUserChoice)")
+
+        switch DarkModeAgent.DarkModeUserChoice {
+        case .auto:
+            controlDarkMode.selectedSegment = 2
+        case .on:
+            controlDarkMode.selectedSegment = 1
+        case .off:
+            controlDarkMode.selectedSegment = 0
+        }
+    }
+
+    private func updateControlLanguage() {
+
+        log.message("[\(type(of: self))].\(#function) \(AppOptions.languageOption)")
+
+        switch AppOptions.languageOption {
+        case .system:
+            controlLanguage.selectedSegment = 2
+        case .ru:
+            controlLanguage.selectedSegment = 1
+        case .en:
+            controlLanguage.selectedSegment = 0
+        }
+    }
+
+    private func updateControlTemperature() {
+
+        log.message("[\(type(of: self))].\(#function) \(AppOptions.temperatureOption)")
+
+        switch AppOptions.temperatureOption {
+        case .imperial:
+            controlTemperature.selectedSegment = 2
+        case .metric:
+            controlTemperature.selectedSegment = 1
+        case .standard:
+            controlTemperature.selectedSegment = 0
+        }
+    }
+
+    private func updateControlWindSpeed() {
+
+        log.message("[\(type(of: self))].\(#function) \(AppOptions.windSpeedOption)")
+
+        switch AppOptions.windSpeedOption {
+        case .mph:
+            controlWindSpeed.selectedSegment = 2
+        case .kmh:
+            controlWindSpeed.selectedSegment = 1
+        case .ms:
+            controlWindSpeed.selectedSegment = 0
+        }
+    }
+
+    private func updateControlPressure() {
+
+        log.message("[\(type(of: self))].\(#function) \(AppOptions.pressureOption)")
+
+        switch AppOptions.pressureOption {
+        case .mb:
+            controlPressure.selectedSegment = 2
+        case .mmHg:
+            controlPressure.selectedSegment = 1
+        case .hPa:
+            controlPressure.selectedSegment = 0
+        }
+    }
+
+    private func updateControlTimeFormat() {
+
+        log.message("[\(type(of: self))].\(#function) \(AppOptions.timeFormatOption)")
+
+        switch AppOptions.timeFormatOption {
+        case .system:
+            controlTimeFormat.selectedSegment = 2
+        case .hour12:
+            controlTimeFormat.selectedSegment = 1
+        case .hour24:
+            controlTimeFormat.selectedSegment = 0
+        }
+    }
+
+    private func updateControlDistance() {
+
+        log.message("[\(type(of: self))].\(#function) \(AppOptions.distanceOption)")
+
+        switch AppOptions.distanceOption {
+        case .mile:
+            controlDistance.selectedSegment = 1
+        case .kilometre:
+            controlDistance.selectedSegment = 0
+        default:
+            controlDistance.isEnabled = false
+        }
+    }
+
+    private func udpateCheckBoxStatusMenus() {
+        log.message("[\(type(of: self))].\(#function) \(AppOptions.statusMenusOption)")
+        checkBoxStatusMenus.state = AppOptions.statusMenusOption ? .on : .off
+    }
+
+    private func udpateComboBoxStatusMenusUpdatePeriod() {
+        log.message("[\(type(of: self))].\(#function)")
+        comboBoxStatusMenusUpdatePeriod.removeAllItems()
+
+        for item in StatusMenusUpdatePeriodOption.allCases {
+            comboBoxStatusMenusUpdatePeriod.addItem(withObjectValue: "\(item)".localizedValue)
+        }
+
+        let selectedIndex = AppOptions.statusMenusPeriodOption.rawValue
+        comboBoxStatusMenusUpdatePeriod.selectItem(at: selectedIndex)
+    }
+
+    private func refreshOptionsViewStates() {
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        updateControlDarkMode()
+        updateControlLanguage()
+        updateControlTimeFormat()
+
+        updateControlTemperature()
+        updateControlWindSpeed()
+        updateControlPressure()
+        updateControlDistance()
+
+        udpateCheckBoxStatusMenus()
+        udpateComboBoxStatusMenusUpdatePeriod()
     }
 }

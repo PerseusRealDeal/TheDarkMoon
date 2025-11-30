@@ -37,7 +37,7 @@
                     </textFieldCell>
                 </textField>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NU6-Fd-eHz">
-                    <rect key="frame" x="1" y="0.0" width="22" height="22"/>
+                    <rect key="frame" x="-1" y="0.0" width="22" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="NU6-Fd-eHz" secondAttribute="height" multiplier="1:1" id="MWu-wP-Mkp"/>
                     </constraints>
@@ -45,7 +45,7 @@
                 </imageView>
             </subviews>
             <constraints>
-                <constraint firstItem="6W3-hm-v4O" firstAttribute="leading" secondItem="NU6-Fd-eHz" secondAttribute="trailing" id="0Kb-9X-Ayc"/>
+                <constraint firstItem="6W3-hm-v4O" firstAttribute="leading" secondItem="NU6-Fd-eHz" secondAttribute="trailing" constant="2" id="0Kb-9X-Ayc"/>
                 <constraint firstItem="NU6-Fd-eHz" firstAttribute="height" secondItem="c22-O7-iKe" secondAttribute="height" id="2ph-qZ-CYL"/>
                 <constraint firstItem="6W3-hm-v4O" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" constant="5" id="B5j-bb-4OW"/>
                 <constraint firstItem="6W3-hm-v4O" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" constant="10" id="Qtr-fn-4bY"/>

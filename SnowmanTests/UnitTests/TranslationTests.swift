@@ -497,14 +497,16 @@ class TranslationTests: XCTestCase {
 
         // assert
 
+        XCTAssertEqual("Title: The Dark Moon".localizedExpectation,
+                       "Title: The Dark Moon".localizedValue)
         XCTAssertEqual("Button: The App Source Code".localizedExpectation,
                        "Button: The App Source Code".localizedValue)
         XCTAssertEqual("Button: The Technological Tree".localizedExpectation,
                        "Button: The Technological Tree".localizedValue)
         XCTAssertEqual("Label: The App Version".localizedExpectation,
                        "Label: The App Version".localizedValue)
-        XCTAssertEqual("Label: Star Copyright Notice".localizedExpectation,
-                       "Label: Star Copyright Notice".localizedValue)
+        XCTAssertEqual("Label: Copyright Notice".localizedExpectation,
+                       "Label: Copyright Notice".localizedValue)
         XCTAssertEqual("Label: Copyright Details".localizedExpectation,
                        "Label: Copyright Details".localizedValue)
         XCTAssertEqual("Label: Credits".localizedExpectation,

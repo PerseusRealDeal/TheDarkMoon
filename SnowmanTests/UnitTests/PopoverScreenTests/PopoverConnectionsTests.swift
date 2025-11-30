@@ -52,6 +52,7 @@ class PopoverConnectionsTests: XCTestCase {
 
         XCTAssertNotNil(sut.buttonAbout)
         XCTAssertNotNil(sut.buttonOptions)
+        XCTAssertNotNil(sut.buttonLogger)
         XCTAssertNotNil(sut.buttonHideAppScreens)
     }
 
