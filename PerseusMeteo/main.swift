@@ -15,7 +15,7 @@
 
 import Cocoa
 
-// MARK: - The Start Line
+// MARK: - The logger
 
 let report = PerseusLogger.Report()
 
@@ -26,9 +26,9 @@ log.output = .consoleapp
 
 log.turned = .on
 
-log.message("> The start line...", .info)
+// MARK: - The start line
 
-// AppOptions.removeAll()
+log.message("> The start line...", .info)
 
 let globals = AppGlobals()
 
@@ -39,7 +39,7 @@ let appDelegate = appPurpose?.init() ?? AppDelegate()
 
 let statusMenusPresenter = StatusMenusPresenter()
 
-// MARK: - The Run
+// MARK: - The app's run
 
 /*
 

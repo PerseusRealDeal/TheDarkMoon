@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Version in format MAJOR.MINOR where MINOR includes PATCH that means any patch increments MINOR.
 - Dates in this file meets Gregorian calendar. Date in format YYYY-MM-DD.
 
-## [0.4.2] - [2025-11-NN], The Dark Moon
+## [0.4.2] - [2025-11-30], The Dark Moon
 
 ### Fixed
 
@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Updated
 
 - Selfie window.
-- Dependcies.
+- Dependecies.
 
 ## [0.4.1] - [2025-11-17], The Dark Moon
 

@@ -297,9 +297,9 @@
 			isa = PBXGroup;
 			children = (
 				2EBB4CAB2ED73E0E00C44504 /* LoggerWindowController.storyboard */,
+				2EBB4CAE2ED73E0E00C44504 /* LoggerWindowController.swift */,
 				2EBB4CAC2ED73E0E00C44504 /* LoggerViewController.swift */,
 				2EBB4CAD2ED73E0E00C44504 /* LoggerViewPresenter.swift */,
-				2EBB4CAE2ED73E0E00C44504 /* LoggerWindowController.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";

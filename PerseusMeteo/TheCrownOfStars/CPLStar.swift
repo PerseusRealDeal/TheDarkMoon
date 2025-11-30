@@ -27,7 +27,7 @@
 //  Copyright © 7531 - 7534 PerseusRealDeal
 //
 //  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year.
+//  September, the 1st of Slavic year. It means that "Sep 01, 2025" is the beginning of 7534.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -62,14 +62,14 @@ protocol PerseusDelegatedMessage: AnyObject {
     var message: String { get set }
 }
 
-public struct LogDetails {
+public struct LogMessage {
 
-    let text: String
-    let level: PerseusLogger.Level
-    let localTime: PerseusLogger.LocalTime
-    let pidAndTid: PerseusLogger.PIDandTID
-    let user: PerseusLogger.User
-    let fileline: PerseusLogger.Directives
+    public let text: String
+    public let level: PerseusLogger.Level
+    public let localTime: PerseusLogger.LocalTime
+    public let owner: PerseusLogger.PIDandTID
+    public let user: PerseusLogger.User
+    public let fileline: PerseusLogger.Directives
 
     public func getMessage(mode: PerseusLogger.LineMode = .singleLine) -> String {
 
@@ -98,7 +98,7 @@ public struct LogDetails {
         (log.format == .full) ? true : log.owner && (log.format != .textonly)
 
         if withOwnerId {
-            let tag = "[\(pidAndTid.pid):\(pidAndTid.tid)]"
+            let tag = "[\(owner.pid):\(owner.tid)]"
             tags = tags.isEmpty ? "\(tag)" : "\(tags) \(tag)"
         }
 
@@ -128,7 +128,7 @@ public class PerseusLogger {
     public typealias PIDandTID = (pid: String, tid: String) // PID and Thread ID.
     public typealias Directives = (fileName: String, line: UInt) // #file and #line.
 
-    public typealias MessageDelegate = ((_ instance: LogDetails) -> Void)
+    public typealias MessageDelegate = ((_ instance: LogMessage) -> Void)
 
     // MARK: - Constants
 
@@ -333,11 +333,11 @@ public class PerseusLogger {
 
         // Get message details.
 
-        let details = LogDetails(
+        let details = LogMessage(
             text: text(),
             level: type,
             localTime: getLocalTime(),
-            pidAndTid: getPIDandTID(),
+            owner: getPIDandTID(),
             user: user,
             fileline: (fileName: (file.description as NSString).lastPathComponent, line: line)
         )
@@ -393,7 +393,7 @@ extension PerseusLogger {
 extension PerseusLogger {
 
     // swiftlint:disable:next cyclomatic_complexity
-    private static func print(_ instance: LogDetails, _ type: Level, _ output: Output) {
+    private static func print(_ instance: LogMessage, _ type: Level, _ output: Output) {
 
         let text = instance.getMessage(mode: log.linemode)
         let message = (text: text, type: type)
@@ -734,7 +734,7 @@ extension PerseusLogger {
 
         // MARK: - Contract
 
-        public func report(_ instance: LogDetails) {
+        public func report(_ instance: LogMessage) {
 
             lastMessage = instance.getMessage(mode: self.linemode)
 
@@ -759,7 +759,7 @@ extension PerseusLogger {
             let nlCount = newLine.count
 
             // Can the last message be reported?
-            guard lmCount != 0, lmCount < limit else {
+            guard lmCount != 0, lmCount <= limit else {
                 return
             }
 
@@ -771,7 +771,7 @@ extension PerseusLogger {
 
             // What length to remove?
             let messages = report.components(separatedBy: newLine)
-            let messagesCount = messages.count - 1
+            let messagesCount = messages.count
 
             var lengthToRemove = 0
             var itemCount = 0
@@ -779,11 +779,11 @@ extension PerseusLogger {
             for item in messages {
 
                 itemCount += 1
-                let newLineLength = messagesCount == 0 ? 0 : nlCount
+                let newLineLength = messagesCount == 1 ? 0 : nlCount
 
                 lengthToRemove += (item.count + newLineLength)
 
-                if itemCount == messagesCount, messagesCount > 2 {
+                if itemCount == messagesCount, messagesCount >= 2 {
                     lengthToRemove -= nlCount // There's no new line in the report end
                 }
 
@@ -807,7 +807,7 @@ extension PerseusLogger {
 
         private func appendLastMessageToReport() {
 
-            guard lastMessage.isEmpty == false, lastMessage.count < limit else {
+            guard lastMessage.isEmpty == false, lastMessage.count <= limit else {
                 return
             }
 
