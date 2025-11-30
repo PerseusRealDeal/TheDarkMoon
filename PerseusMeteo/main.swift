@@ -18,13 +18,9 @@ import Cocoa
 // MARK: - The logger
 
 let report = PerseusLogger.Report()
-
 log.customActionOnMessage = report.report(_:)
 
-log.level = .debug
-log.output = .consoleapp
-
-log.turned = .on
+log.output = .custom
 
 // MARK: - The start line
 
@@ -33,27 +29,14 @@ log.message("> The start line...", .info)
 let globals = AppGlobals()
 
 let app = NSApplication.shared
-
 let appPurpose = NSClassFromString("TestingAppDelegate") as? NSObject.Type
 let appDelegate = appPurpose?.init() ?? AppDelegate()
-
 let statusMenusPresenter = StatusMenusPresenter()
 
 // MARK: - The app's run
 
-/*
-
- .accessory
-
- The application doesn’t appear in the Dock and doesn’t have a menu bar, but it may be
- activated programmatically or by clicking on one of its windows.
-
- */
-
 app.setActivationPolicy(.accessory)
-
 app.delegate = appDelegate as? NSApplicationDelegate
-
 app.activate(ignoringOtherApps: true)
 
 log.message("> The app is ready to run...", .info)
