@@ -239,7 +239,7 @@
 
 /* About Screen – AboutWindowController, AboutViewController */
 
-"Title: The Dark Moon" = "Чёрная луна";
+"Title: The Dark Moon" = "Проект — Чёрная луна";
 
 "Button: The App Source Code" = "Исходники изделия";
 "Button: The Technological Tree" = "Золотое дерево";

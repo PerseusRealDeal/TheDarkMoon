@@ -87,7 +87,6 @@ class LoggerViewPresenter: MVPPresenter {
     }
 
     func viewDidAppear() {
-
         log.message("[\(type(of: self))].\(#function)")
         (view as? LoggerViewDelegate)?.onViewDidAppear()
     }

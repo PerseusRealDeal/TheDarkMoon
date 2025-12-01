@@ -132,9 +132,7 @@ extension LoggerViewController: LoggerViewDelegate {
     // MARK: - MVPViewDelegate
 
     func setupUI() {
-
         log.message("[\(type(of: self))].\(#function)")
-
         texViewMessages.backgroundColor = .clear
     }
 

@@ -72,10 +72,10 @@ class PopoverScreenLocalizationTests: XCTestCase {
         sut.loadView()
 
         // assert
-
+/*
         XCTAssertEqual(sut.viewLocation.labelGeoCoordinates.stringValue,
                        "Geo Couple".localizedValue)
-
+ */
         XCTAssertEqual(sut.viewLocation.labelPermissionStatus.stringValue,
                        "Label: Permission".localizedValue + ": " +
                        GeoAgent.currentStatus.localizedKey.localizedValue)

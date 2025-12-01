@@ -18,15 +18,13 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+
         log.message("[\(type(of: self))].\(#function)")
 
         DarkModeAgent.force(DarkModeUserChoice)
         GeoCoordinator.reloadGeoComponents()
 
         globals.languageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
-
-        log.message("> Ready with business matter purpose...", .info)
-
         statusMenusPresenter.startUpdateTimerIfNeeded()
 
         // Observe system sleep events
@@ -44,6 +42,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             name: NSWorkspace.didWakeNotification,
             object: nil
         )
+
+        log.message("Started with business matter purpose...", .info)
     }
 
     @objc func systemWillSleep(_ notification: Notification) {

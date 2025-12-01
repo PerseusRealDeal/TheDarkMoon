@@ -18,13 +18,13 @@ import Cocoa
 // MARK: - The logger
 
 let report = PerseusLogger.Report()
-log.customActionOnMessage = report.report(_:)
 
-log.output = .custom
+log.customActionOnMessage = report.report(_:)
+log.message(loadCPLProfile("CPLConfig").info)
 
 // MARK: - The start line
 
-log.message("> The start line...", .info)
+log.message("The start line...", .info)
 
 let globals = AppGlobals()
 
@@ -35,10 +35,10 @@ let statusMenusPresenter = StatusMenusPresenter()
 
 // MARK: - The app's run
 
+log.message("The app is about to run...", .info)
+
 app.setActivationPolicy(.accessory)
 app.delegate = appDelegate as? NSApplicationDelegate
 app.activate(ignoringOtherApps: true)
-
-log.message("> The app is ready to run...", .info)
 
 app.run()
