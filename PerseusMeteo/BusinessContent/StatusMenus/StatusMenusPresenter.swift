@@ -40,24 +40,6 @@ public class StatusMenusPresenter {
         }
     }
 
-    // MARK: - Screens
-
-    public lazy var screenPopover = { () -> PopoverViewController in
-        return PopoverViewController.storyboardInstance()
-    }()
-
-    public lazy var screenOptions = { () -> OptionsWindowController in
-        return OptionsWindowController.storyboardInstance()
-    }()
-
-    public lazy var screenSelfie = { () -> SelfieWindowController in
-        return SelfieWindowController.storyboardInstance()
-    }()
-
-    public lazy var screenLogger = { () -> LoggerWindowController in
-        return LoggerWindowController.storyboardInstance()
-    }()
-
     // MARK: - Initialization
 
     init() {
@@ -155,10 +137,10 @@ public class StatusMenusPresenter {
 
         if popover.isShown {
             popover.performClose(button)
-            screenSelfie.close()
-            screenOptions.close()
+            Coordinator.shared.screenSelfie.close()
+            Coordinator.shared.screenOptions.close()
         } else {
-            popover.contentViewController = screenPopover
+            popover.contentViewController = Coordinator.shared.screenPopover
             popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         }
     }

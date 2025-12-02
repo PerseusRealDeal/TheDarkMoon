@@ -90,7 +90,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     // MARK: - Actions
 
     @IBAction func closeOptionsWindow(_ sender: NSButton) {
-        statusMenusPresenter.screenOptions.close()
+        Coordinator.shared.screenOptions.close()
     }
 
     @IBAction func resetAllSettingsTapped(_ sender: NSButton) {

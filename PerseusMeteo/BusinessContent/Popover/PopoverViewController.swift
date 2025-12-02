@@ -108,23 +108,23 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     }
 
     @IBAction func aboutButtonTapped(_ sender: NSButton) {
-        statusMenusPresenter.screenSelfie.showWindow(sender)
+        Coordinator.shared.screenSelfie.showWindow(sender)
     }
 
     @IBAction func optionsButtonTapped(_ sender: NSButton) {
-        statusMenusPresenter.screenOptions.showWindow(sender)
+        Coordinator.shared.screenOptions.showWindow(sender)
     }
 
     @IBAction func buttonLoggerTapped(_ sender: Any) {
-        statusMenusPresenter.screenLogger.showWindow(sender)
+        Coordinator.shared.screenLogger.showWindow(sender)
     }
 
     @IBAction func hideAppScreensButtonTapped(_ sender: NSButton) {
 
         guard let popover = statusMenusPresenter.popover else { return }
 
-        statusMenusPresenter.screenSelfie.close()
-        statusMenusPresenter.screenOptions.close()
+        Coordinator.shared.screenSelfie.close()
+        Coordinator.shared.screenOptions.close()
 
         popover.performClose(sender)
     }
