@@ -155,7 +155,7 @@ struct AppGlobals {
     }
 
     static func quitTheApp() {
-        statusMenusPresenter.deinitTimer()
+        Coordinator.shared.statusMenus.deinitTimer()
         app.terminate(appDelegate)
     }
 

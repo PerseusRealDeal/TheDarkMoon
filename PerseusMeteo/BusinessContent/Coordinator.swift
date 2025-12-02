@@ -13,7 +13,9 @@
 //  See LICENSE for details. All rights reserved.
 //
 
-class Coordinator {
+import Foundation
+
+class Coordinator: NSObject {
 
     // MARK: - Screens
 
@@ -33,13 +35,26 @@ class Coordinator {
         return LoggerWindowController.storyboardInstance()
     }()
 
+    // MARK: - Components
+
+    let statusMenus: StatusMenusPresenter
+
     // MARK: - Singletone
 
     static let shared = Coordinator()
 
+    // MARK: - Initialization
+
+    override init() {
+        statusMenus = StatusMenusPresenter()
+
+        super.init()
+        log.message("[\(type(of: self))].\(#function)")
+    }
+
     // MARK: - Contract
 
     static func start() {
-
+        log.message("[\(type(of: self))].\(#function)")
     }
 }

@@ -31,7 +31,8 @@ let globals = AppGlobals()
 let app = NSApplication.shared
 let appPurpose = NSClassFromString("TestingAppDelegate") as? NSObject.Type
 let appDelegate = appPurpose?.init() ?? AppDelegate()
-let statusMenusPresenter = StatusMenusPresenter()
+
+Coordinator.start()
 
 // MARK: - The app's run
 

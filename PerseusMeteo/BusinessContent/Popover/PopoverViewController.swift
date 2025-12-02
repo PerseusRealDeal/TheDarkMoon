@@ -28,7 +28,7 @@ typealias Level = PerseusLogger.Level
 public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
     deinit {
-        statusMenusPresenter.deinitTimer()
+        Coordinator.shared.statusMenus.deinitTimer()
     }
 
     // MARK: - Internals
@@ -97,12 +97,12 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
             if tabId == tabCurrentWeatherID {
                 if AppOptions.statusMenusPeriodOption == .none {
-                    statusMenusPresenter.callWeather()
+                    Coordinator.shared.statusMenus.callWeather()
                 } else {
-                    statusMenusPresenter.startUpdateTimerIfNeeded()
+                    Coordinator.shared.statusMenus.startUpdateTimerIfNeeded()
                 }
             } else if tabId == tabForecastID {
-                statusMenusPresenter.callForecast()
+                Coordinator.shared.statusMenus.callForecast()
             }
         }
     }
@@ -121,7 +121,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
     @IBAction func hideAppScreensButtonTapped(_ sender: NSButton) {
 
-        guard let popover = statusMenusPresenter.popover else { return }
+        guard let popover = Coordinator.shared.statusMenus.popover else { return }
 
         Coordinator.shared.screenSelfie.close()
         Coordinator.shared.screenOptions.close()
@@ -245,7 +245,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
             return
         }
 
-        statusMenusPresenter.reloadData()
+        Coordinator.shared.statusMenus.reloadData()
 
         weather.reloadData()
         forecast.reloadData(saveSelection: true)
@@ -323,7 +323,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
         viewWeather?.reloadData()
         viewForecast?.reloadData()
 
-        statusMenusPresenter.reloadData()
+        Coordinator.shared.statusMenus.reloadData()
 
         actualizeCallingSection()
     }
@@ -359,11 +359,11 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
         viewWeather?.reloadData()
         viewForecast?.reloadData()
 
-        statusMenusPresenter.reloadData()
+        Coordinator.shared.statusMenus.reloadData()
 
         actualizeCallingSection()
 
-        statusMenusPresenter.startUpdateTimerIfNeeded()
+        Coordinator.shared.statusMenus.startUpdateTimerIfNeeded()
 
         log.message(userMessage, .notice, .custom, .enduser)
     }

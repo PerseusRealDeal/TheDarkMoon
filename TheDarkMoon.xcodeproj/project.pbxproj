@@ -322,8 +322,8 @@
 			children = (
 				2EF147E52E966E6400BE657C /* CustomStatusButtonView.xib */,
 				2EF147E82E966E8800BE657C /* CustomStatusButtonView.swift */,
-				4BA719862AF0D5E10074F7CD /* StatusMenusPresenter.swift */,
 				4B1CA6A22B549358003F3EBF /* MeteoClientManager.swift */,
+				4BA719862AF0D5E10074F7CD /* StatusMenusPresenter.swift */,
 			);
 			path = StatusMenus;
 			sourceTree = "<group>";
