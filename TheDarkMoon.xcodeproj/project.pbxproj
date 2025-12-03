@@ -322,7 +322,6 @@
 			children = (
 				2EF147E52E966E6400BE657C /* CustomStatusButtonView.xib */,
 				2EF147E82E966E8800BE657C /* CustomStatusButtonView.swift */,
-				4B1CA6A22B549358003F3EBF /* MeteoClientManager.swift */,
 				4BA719862AF0D5E10074F7CD /* StatusMenusPresenter.swift */,
 			);
 			path = StatusMenus;
@@ -488,6 +487,7 @@
 		4B684C6D2B438A370063E359 /* BusinessServices */ = {
 			isa = PBXGroup;
 			children = (
+				4B1CA6A22B549358003F3EBF /* MeteoClientManager.swift */,
 				4B5F7D382B98CA3900121946 /* WeatherDataSource.swift */,
 				4BB2045A2B7029FC007E0308 /* ForecastDataSource.swift */,
 				4B5F7D362B985C5D00121946 /* MeteoDataSource.swift */,
