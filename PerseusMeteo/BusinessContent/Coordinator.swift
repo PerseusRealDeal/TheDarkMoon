@@ -13,9 +13,7 @@
 //  See LICENSE for details. All rights reserved.
 //
 
-import Foundation
-
-class Coordinator: NSObject {
+class Coordinator {
 
     // MARK: - Screens
 
@@ -45,16 +43,17 @@ class Coordinator: NSObject {
 
     // MARK: - Initialization
 
-    override init() {
-        statusMenus = StatusMenusPresenter()
-
-        super.init()
+    init() {
         log.message("[\(type(of: self))].\(#function)")
+
+        statusMenus = StatusMenusPresenter()
     }
 
     // MARK: - Contract
 
     static func start() {
         log.message("[\(type(of: self))].\(#function)")
+
+        // The statements before the app's delegate called put here
     }
 }

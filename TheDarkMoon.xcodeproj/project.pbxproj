@@ -21,6 +21,7 @@
 		2E54FDE62CA67D7F003EABDE /* swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2E54FDE52CA67D7F003EABDE /* swiftlint.yml */; };
 		2E558B312EDD60B000AFF695 /* CPLConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 2E558B302EDD60B000AFF695 /* CPLConfig.json */; };
 		2E9845882EDF11030079F726 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9845872EDF11030079F726 /* Coordinator.swift */; };
+		2E98458C2EE044110079F726 /* PopoverViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E98458B2EE044110079F726 /* PopoverViewPresenter.swift */; };
 		2EBB4CA42ED73C4F00C44504 /* SelfieWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB4CA02ED73C4F00C44504 /* SelfieWindowController.swift */; };
 		2EBB4CA52ED73C4F00C44504 /* SelfieWindowController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EBB4CA12ED73C4F00C44504 /* SelfieWindowController.storyboard */; };
 		2EBB4CA62ED73C4F00C44504 /* SelfieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB4CA22ED73C4F00C44504 /* SelfieViewController.swift */; };
@@ -143,6 +144,7 @@
 		2E54FDE72CA68BAC003EABDE /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = TestPlan.xctestplan; path = SnowmanTests/TestPlan.xctestplan; sourceTree = SOURCE_ROOT; };
 		2E558B302EDD60B000AFF695 /* CPLConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CPLConfig.json; sourceTree = "<group>"; };
 		2E9845872EDF11030079F726 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		2E98458B2EE044110079F726 /* PopoverViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewPresenter.swift; sourceTree = "<group>"; };
 		2EBB4CA02ED73C4F00C44504 /* SelfieWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfieWindowController.swift; sourceTree = "<group>"; };
 		2EBB4CA12ED73C4F00C44504 /* SelfieWindowController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SelfieWindowController.storyboard; sourceTree = "<group>"; };
 		2EBB4CA22ED73C4F00C44504 /* SelfieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfieViewController.swift; sourceTree = "<group>"; };
@@ -565,6 +567,7 @@
 			children = (
 				4B993DB92B3738CF008C1FE7 /* PopoverViewController.storyboard */,
 				4B993DB72B3738A7008C1FE7 /* PopoverViewController.swift */,
+				2E98458B2EE044110079F726 /* PopoverViewPresenter.swift */,
 				4BB204662B7536BA007E0308 /* LocationView */,
 				4BB204672B7536D0007E0308 /* WeatherView */,
 				4BB204682B7536E5007E0308 /* ForecastView */,
@@ -861,6 +864,7 @@
 				4B8426402B19D11B00C86E8A /* LanguageSwitcherModels.swift in Sources */,
 				2EBB4CA42ED73C4F00C44504 /* SelfieWindowController.swift in Sources */,
 				4B5F7D392B98CA3900121946 /* WeatherDataSource.swift in Sources */,
+				2E98458C2EE044110079F726 /* PopoverViewPresenter.swift in Sources */,
 				4B1483E52912892C0013B76E /* AppDelegate.swift in Sources */,
 				4B84263C2B19CE2600C86E8A /* OpenWeatherStarModels.swift in Sources */,
 				2E1083D42E2B65F400400180 /* OpenWeatherStar.swift in Sources */,

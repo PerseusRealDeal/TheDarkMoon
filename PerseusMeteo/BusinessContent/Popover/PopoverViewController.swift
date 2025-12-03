@@ -31,6 +31,10 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
         Coordinator.shared.statusMenus.deinitTimer()
     }
 
+    // MARK: - Presenter
+
+    var presenter: PopoverViewPresenter?
+
     // MARK: - Internals
 
     private let tabCurrentWeatherID = "CurrentWeather"
