@@ -365,7 +365,7 @@
 				4BEE281C2B4AE07700F06A69 /* AppUserDefaults.swift */,
 				4B14840229128A930013B76E /* Configuration */,
 				4B6F98752927E7C600ADB03A /* FirstPartyCode */,
-				4B684C6D2B438A370063E359 /* BusinessData */,
+				4B684C6D2B438A370063E359 /* BusinessServices */,
 				4B14840429128E460013B76E /* BusinessContent */,
 			);
 			path = PerseusMeteo;
@@ -485,7 +485,7 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		4B684C6D2B438A370063E359 /* BusinessData */ = {
+		4B684C6D2B438A370063E359 /* BusinessServices */ = {
 			isa = PBXGroup;
 			children = (
 				4B5F7D382B98CA3900121946 /* WeatherDataSource.swift */,
@@ -497,7 +497,7 @@
 				4BB204582B702384007E0308 /* Weather */,
 				4BB204592B7023C3007E0308 /* Forecast */,
 			);
-			path = BusinessData;
+			path = BusinessServices;
 			sourceTree = "<group>";
 		};
 		4B6F98632927DDA300ADB03A /* Localization */ = {
