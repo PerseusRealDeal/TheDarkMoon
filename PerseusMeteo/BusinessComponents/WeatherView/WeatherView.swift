@@ -82,7 +82,7 @@ class WeatherView: NSView {
               let nib = NSNib(nibNamed: className, bundle: Bundle(for: type(of: self)))
         else {
             let text = "[\(type(of: self))].\(#function) No nib loaded."
-            log.message(text, .error); fatalError(text)
+            log.message(text, .fault); fatalError(text)
         }
 
         // log.message("[\(type(of: self))].\(#function) \(className)")
