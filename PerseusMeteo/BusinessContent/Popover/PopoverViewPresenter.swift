@@ -17,7 +17,7 @@ import Foundation
 
 // MARK: - PopoverView Communication
 
-protocol PopoverViewDelegate: MVPViewDelegate {}
+protocol PopoverViewDelegate: MVPViewDelegate { }
 
 // MARK: - PopoverView Business Logic
 
@@ -42,4 +42,25 @@ class PopoverViewPresenter: MVPPresenter {
     }
 
     // MARK: - Business Contract
+
+    func performQuit() {
+        // AppOptions.removeAll()
+        AppGlobals.quitTheApp()
+    }
+
+    func performFetchMeteo(info: OpenWeatherRequest) {
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        switch info {
+        case .currentWeather:
+            if AppOptions.statusMenusPeriodOption == .none {
+                Coordinator.shared.statusMenus.callWeather()
+            } else {
+                Coordinator.shared.statusMenus.startUpdateTimerIfNeeded()
+            }
+        case .forecast:
+            Coordinator.shared.statusMenus.callForecast()
+        }
+    }
 }

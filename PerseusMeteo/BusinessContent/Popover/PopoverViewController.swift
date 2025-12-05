@@ -86,8 +86,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     // MARK: - Actions
 
     @IBAction func quitButtonTapped(_ sender: NSButton) {
-        // AppOptions.removeAll()
-        AppGlobals.quitTheApp()
+        presenter?.performQuit()
     }
 
     @IBAction func fetchMeteoFactsButtonTapped(_ sender: NSButton) {
@@ -102,13 +101,9 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
             let tabId = tabSelected.identifier as? String {
 
             if tabId == tabCurrentWeatherID {
-                if AppOptions.statusMenusPeriodOption == .none {
-                    Coordinator.shared.statusMenus.callWeather()
-                } else {
-                    Coordinator.shared.statusMenus.startUpdateTimerIfNeeded()
-                }
+                presenter?.performFetchMeteo(info: .currentWeather)
             } else if tabId == tabForecastID {
-                Coordinator.shared.statusMenus.callForecast()
+                presenter?.performFetchMeteo(info: .forecast)
             }
         }
     }
