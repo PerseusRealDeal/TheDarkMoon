@@ -319,6 +319,17 @@
 			path = MVPPattern;
 			sourceTree = "<group>";
 		};
+		2EDC74D62EE2E4E500073C94 /* BusinessComponents */ = {
+			isa = PBXGroup;
+			children = (
+				4BB204662B7536BA007E0308 /* LocationView */,
+				4BB204672B7536D0007E0308 /* WeatherView */,
+				4BB204682B7536E5007E0308 /* ForecastView */,
+				4B5F7D422BB6980600121946 /* MeteoInformation */,
+			);
+			path = BusinessComponents;
+			sourceTree = "<group>";
+		};
 		2EF147E42E966E3600BE657C /* StatusMenus */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,8 +377,9 @@
 				4BEE281C2B4AE07700F06A69 /* AppUserDefaults.swift */,
 				4B14840229128A930013B76E /* Configuration */,
 				4B6F98752927E7C600ADB03A /* FirstPartyCode */,
-				4B684C6D2B438A370063E359 /* BusinessServices */,
 				4B14840429128E460013B76E /* BusinessContent */,
+				4B684C6D2B438A370063E359 /* BusinessServices */,
+				2EDC74D62EE2E4E500073C94 /* BusinessComponents */,
 			);
 			path = PerseusMeteo;
 			sourceTree = "<group>";
@@ -476,14 +488,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		4B5F7D422BB6980600121946 /* Common */ = {
+		4B5F7D422BB6980600121946 /* MeteoInformation */ = {
 			isa = PBXGroup;
 			children = (
 				4B5F7D452BB6986B00121946 /* MeteoGroupView.xib */,
 				4B5F7D432BB6984D00121946 /* MeteoGroupView.swift */,
 				4B5F7D472BBBDAE800121946 /* MeteoGroupData.swift */,
 			);
-			path = Common;
+			path = MeteoInformation;
 			sourceTree = "<group>";
 		};
 		4B684C6D2B438A370063E359 /* BusinessServices */ = {
@@ -568,10 +580,6 @@
 				4B993DB92B3738CF008C1FE7 /* PopoverViewController.storyboard */,
 				4B993DB72B3738A7008C1FE7 /* PopoverViewController.swift */,
 				2E98458B2EE044110079F726 /* PopoverViewPresenter.swift */,
-				4BB204662B7536BA007E0308 /* LocationView */,
-				4BB204672B7536D0007E0308 /* WeatherView */,
-				4BB204682B7536E5007E0308 /* ForecastView */,
-				4B5F7D422BB6980600121946 /* Common */,
 			);
 			path = Popover;
 			sourceTree = "<group>";
