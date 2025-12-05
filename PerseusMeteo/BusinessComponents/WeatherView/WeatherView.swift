@@ -18,14 +18,6 @@ import Cocoa
 @IBDesignable
 class WeatherView: NSView {
 
-    // MARK: Internals
-
-    private var meteoProviderNickLocalized: String {
-        let title = "Label: Meteo Data Provider".localizedValue
-        let nick = dataSource.meteoDataProviderName
-        return "\(title) \(nick)"
-    }
-
     // MARK: - View Data Source
 
     public let dataSource = globals.sourceWeather
@@ -48,6 +40,8 @@ class WeatherView: NSView {
     @IBOutlet private(set) weak var viewMeteoGroup: MeteoGroupView!
 
     @IBOutlet private(set) weak var labelMeteoProvider: NSTextField!
+    @IBOutlet private(set) weak var labelMeteoProviderWebLink: WebLabel!
+
     @IBOutlet private(set) weak var indicator: NSProgressIndicator!
 
     @IBOutlet private(set) weak var viewWeatherConditionsIcon: NSImageView!
@@ -125,7 +119,8 @@ class WeatherView: NSView {
 
         // Meteo data provider name
 
-        labelMeteoProvider.stringValue = meteoProviderNickLocalized
+        labelMeteoProvider.stringValue = "Label: Meteo Data Provider".localizedValue
+        labelMeteoProviderWebLink.text = dataSource.meteoDataProviderName
 
         // Temperature, Weather Icon, and Short desc
 

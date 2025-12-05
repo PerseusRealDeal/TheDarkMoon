@@ -19,11 +19,13 @@ import XCTest
 class PopoverScreenLocalizationTests: XCTestCase {
 
     private var sut: PopoverViewController!
+    private var presenter: PopoverViewPresenter!
 
     override func setUp() {
         super.setUp()
 
         sut = PopoverViewController.storyboardInstance()
+        presenter = PopoverViewPresenter(view: sut)
     }
 
     // func test_zero() { XCTFail("Tests not yet implemented in \(type(of: self)).") }
@@ -34,6 +36,7 @@ class PopoverScreenLocalizationTests: XCTestCase {
         // arrange
 
         sut.loadView()
+        presenter.viewDidLoad()
 
         // assert
 
@@ -92,8 +95,8 @@ class PopoverScreenLocalizationTests: XCTestCase {
         let title = "Label: Meteo Data Provider".localizedValue
         let nick = globals.sourceWeather.meteoDataProviderName
 
-        XCTAssertEqual(sut.viewWeather.labelMeteoProvider.stringValue,
-                       "\(title) \(nick)")
+        XCTAssertEqual(sut.viewWeather.labelMeteoProvider.stringValue, title)
+        XCTAssertEqual(sut.viewWeather.labelMeteoProviderWebLink.text, nick)
 
         let inFact = sut.viewWeather.labelWeatherConditionsDescriptionValue.stringValue
         XCTAssertEqual(inFact, "Label: Weather Conditions".localizedValue)
@@ -181,6 +184,7 @@ class PopoverScreenLocalizationTests: XCTestCase {
         let title = "Label: Meteo Data Provider".localizedValue
         let nick = globals.sourceForecast.meteoDataProviderName
 
-        XCTAssertEqual(sut.viewForecast.labelMeteoProvider.stringValue, "\(title) \(nick)")
+        XCTAssertEqual(sut.viewForecast.labelMeteoProvider.stringValue, title)
+        XCTAssertEqual(sut.viewForecast.labelMeteoProviderWebLink.text, nick)
     }
 }

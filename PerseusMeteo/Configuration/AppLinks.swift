@@ -47,3 +47,9 @@ let linkTermsAndConditions =
 
 let linkLicense =
 "https://docs.google.com/document/d/1V9n-IQYl9VQeoQxXDdgohgXgGkDSGe5yWOGizOGr6a0/"
+
+let linkAuthor =
+"https://github.com/perseusrealdeal"
+
+let linkOpenWeather =
+"https://openweathermap.org/"

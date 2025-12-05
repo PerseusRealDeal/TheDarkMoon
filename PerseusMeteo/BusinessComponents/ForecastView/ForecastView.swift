@@ -22,12 +22,6 @@ class ForecastView: NSView {
 
     // MARK: Internals
 
-    private var meteoProviderNickLocalized: String {
-        let title = "Label: Meteo Data Provider".localizedValue
-        let nick = dataSource.meteoDataProviderName
-        return "\(title) \(nick)"
-    }
-
     private let daysID = NSUserInterfaceItemIdentifier(rawValue: "ForecastDays")
     private let hoursID = NSUserInterfaceItemIdentifier(rawValue: "ForecastHours")
 
@@ -51,6 +45,8 @@ class ForecastView: NSView {
     @IBOutlet private(set) var contentView: NSView!
 
     @IBOutlet private(set) weak var labelMeteoProvider: NSTextField!
+    @IBOutlet private(set) weak var labelMeteoProviderWebLink: WebLabel!
+
     @IBOutlet private(set) weak var indicator: NSProgressIndicator!
 
     @IBOutlet private(set) weak var viewForecastDays: NSCollectionView!
@@ -165,7 +161,8 @@ class ForecastView: NSView {
 
         // Meteo Data Provider.
 
-        labelMeteoProvider.stringValue = meteoProviderNickLocalized
+        labelMeteoProvider.stringValue = "Label: Meteo Data Provider".localizedValue
+        labelMeteoProviderWebLink.text = dataSource.meteoDataProviderName
     }
 
     public func selectTheFirstForecastDay() {
