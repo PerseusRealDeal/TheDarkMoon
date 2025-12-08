@@ -132,11 +132,8 @@ extension LoggerViewController: LoggerViewDelegate {
     // MARK: - MVPViewDelegate
 
     func setupUI() {
-
         log.message("[\(type(of: self))].\(#function)")
-
         texViewMessages.backgroundColor = .clear
-        texViewMessages.textColor = .darkGray
     }
 
     func makeUp() {
@@ -149,6 +146,8 @@ extension LoggerViewController: LoggerViewDelegate {
             view.window?.appearance = DarkModeAgent.DarkModeUserChoice == .on ?
             DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
         }
+
+        texViewMessages.textColor = DarkMode.style == .dark ? .perseusGreen : .perseusGray
     }
 
     func localize() {

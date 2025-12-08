@@ -23,12 +23,12 @@
 "P2P" = "P2P";
 "P2P stands for Person to Person" = "P2P значит от личности к личности";
 
+"Label: Made with Love" = "C любовью из Новосибирска";
+
 /* Popover Screen – PopoverViewController */
 
 "Button: Call Weather" = "Запросить Погоду";
 "Button: Call Forecast" = "Запросить Прогноз";
-
-"Label: Made with Love" = "C любовью из Новосибирска";
 
 "Tab: Current Weather" = "Наблюдение";
 "Tab: Forecast" = "Прогноз";
@@ -239,7 +239,7 @@
 
 /* About Screen – AboutWindowController, AboutViewController */
 
-"Title: The Dark Moon" = "Чёрная луна";
+"Title: The Dark Moon" = "Проект — Чёрная луна";
 
 "Button: The App Source Code" = "Исходники изделия";
 "Button: The Technological Tree" = "Золотое дерево";

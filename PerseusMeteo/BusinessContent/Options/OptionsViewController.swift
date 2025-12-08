@@ -90,7 +90,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     // MARK: - Actions
 
     @IBAction func closeOptionsWindow(_ sender: NSButton) {
-        statusMenusPresenter.screenOptions.close()
+        Coordinator.shared.screenOptions.close()
     }
 
     @IBAction func resetAllSettingsTapped(_ sender: NSButton) {
@@ -233,24 +233,30 @@ extension OptionsViewController: OptionsViewDelegate {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        if #unavailable(macOS 10.14) { // For HighSierra only.
+        controlOpenWeatherKey.delegate = self
+
+        if #unavailable(macOS 10.14) {  // For HighSierra only.
             boxAppOptions.isTransparent = true
             boxWeatherOptions.isTransparent = true
             boxSpecialOptions.isTransparent = true
-        }
 
-        controlOpenWeatherKey.delegate = self
+            // Dark Mode is .system (by default) only
+            // controlDarkMode.isEnabled = false
+        }
 
         lockOpenWeatherKeyHole()
-
-        // For HighSierra dark mode is .system only
-        if #unavailable(macOS 10.14) {
-            controlDarkMode.isEnabled = false
-        }
     }
 
     func makeUp() {
-        // code here
+
+        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+
+        // view.layer?.backgroundColor = NSColor.perseusBlue.cgColor
+
+        if isHighSierra {
+            view.window?.appearance = DarkModeAgent.DarkModeUserChoice == .on ?
+            DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
+        }
     }
 
     func localize() {

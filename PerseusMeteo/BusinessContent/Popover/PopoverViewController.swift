@@ -23,13 +23,36 @@
 
 import Cocoa
 
-typealias Level = PerseusLogger.Level
+extension PopoverViewController {
+
+    public class func storyboardInstance() -> PopoverViewController {
+
+        let sb = NSStoryboard(name: String(describing: self), bundle: nil)
+
+        guard let vc = sb.instantiateInitialController() as? PopoverViewController else {
+            let text = "[\(type(of: self))].\(#function)"
+            log.message(text, .fault)
+            fatalError(text)
+        }
+
+        vc.presenter = PopoverViewPresenter(view: vc)
+        vc.presenter?.viewDidLoad()
+
+        // Do default setup; don't set any parameter causing loadWindow up, breaks unit tests.
+
+        return vc
+    }
+}
 
 public class PopoverViewController: NSViewController, NSTabViewDelegate {
 
     deinit {
-        statusMenusPresenter.deinitTimer()
+        Coordinator.shared.statusMenus.deinitTimer()
     }
+
+    // MARK: - Presenter
+
+    var presenter: PopoverViewPresenter?
 
     // MARK: - Internals
 
@@ -37,23 +60,6 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     private let tabForecastID = "Forecast"
 
     private var updateStatusMenusItemTimer: Timer?
-
-    // MARK: - Storyboard Instance
-
-    public class func storyboardInstance() -> PopoverViewController {
-
-        let sb = NSStoryboard(name: String(describing: self), bundle: nil)
-
-        guard let screen = sb.instantiateInitialController() as? PopoverViewController else {
-            let text = "[\(type(of: self))].\(#function)"
-            log.message(text, .error)
-            fatalError(text)
-        }
-
-        // Do default setup; don't set any parameter causing loadWindow up, breaks unit tests.
-
-        return screen
-    }
 
     // MARK: - Outlets
 
@@ -80,8 +86,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     // MARK: - Actions
 
     @IBAction func quitButtonTapped(_ sender: NSButton) {
-        // AppOptions.removeAll()
-        AppGlobals.quitTheApp()
+        presenter?.performQuit()
     }
 
     @IBAction func fetchMeteoFactsButtonTapped(_ sender: NSButton) {
@@ -96,35 +101,31 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
             let tabId = tabSelected.identifier as? String {
 
             if tabId == tabCurrentWeatherID {
-                if AppOptions.statusMenusPeriodOption == .none {
-                    statusMenusPresenter.callWeather()
-                } else {
-                    statusMenusPresenter.startUpdateTimerIfNeeded()
-                }
+                presenter?.performFetchMeteo(info: .currentWeather)
             } else if tabId == tabForecastID {
-                statusMenusPresenter.callForecast()
+                presenter?.performFetchMeteo(info: .forecast)
             }
         }
     }
 
     @IBAction func aboutButtonTapped(_ sender: NSButton) {
-        statusMenusPresenter.screenSelfie.showWindow(sender)
+        Coordinator.shared.screenSelfie.showWindow(sender)
     }
 
     @IBAction func optionsButtonTapped(_ sender: NSButton) {
-        statusMenusPresenter.screenOptions.showWindow(sender)
+        Coordinator.shared.screenOptions.showWindow(sender)
     }
 
     @IBAction func buttonLoggerTapped(_ sender: Any) {
-        statusMenusPresenter.screenLogger.showWindow(sender)
+        Coordinator.shared.screenLogger.showWindow(sender)
     }
 
     @IBAction func hideAppScreensButtonTapped(_ sender: NSButton) {
 
-        guard let popover = statusMenusPresenter.popover else { return }
+        guard let popover = Coordinator.shared.statusMenus.popover else { return }
 
-        statusMenusPresenter.screenSelfie.close()
-        statusMenusPresenter.screenOptions.close()
+        Coordinator.shared.screenSelfie.close()
+        Coordinator.shared.screenOptions.close()
 
         popover.performClose(sender)
     }
@@ -134,82 +135,6 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     }
 
     // MARK: - Initialization
-
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Setup content size
-
-        self.view.wantsLayer = true
-        self.preferredContentSize = NSSize(width: self.view.frame.size.width,
-                                           height: self.view.frame.size.height)
-
-        // End-user messages
-
-        report.messageDelegate = labelGreeting
-
-        // Tabs event delegate
-
-        tabCurrentWeather.identifier = tabCurrentWeatherID
-        tabForecast.identifier = tabForecastID
-
-        viewTabs.delegate = self
-
-        // Dark Mode event
-
-        DarkModeAgent.register(stakeholder: self, selector: #selector(makeUp))
-
-        // Localization event
-
-        let nc = AppGlobals.notificationCenter
-
-        nc.addObserver(self, selector: #selector(localize),
-                       name: NSNotification.Name.languageSwitchedManuallyNotification,
-                       object: nil)
-
-        // Meteo data event
-
-        nc.addObserver(self, selector: #selector(reloadData),
-                       name: NSNotification.Name.meteoDataOptionsNotification,
-                       object: nil)
-
-        // Suggestion selected event
-
-        nc.addObserver(self, selector: #selector(suggestionSelected(_:)),
-                       name: NSNotification.Name.suggestionNotification,
-                       object: nil)
-
-        // Fovorite selected event
-
-        nc.addObserver(self, selector: #selector(favoriteSelected(_:)),
-                       name: NSNotification.Name.favoriteNotification,
-                       object: nil)
-
-        // Bookmark button tapped event (to add or remove fovorite item)
-
-        nc.addObserver(self, selector: #selector(bookmarkTapped),
-                       name: NSNotification.Name.bookmarkNotification,
-                       object: nil)
-
-        // Hide suggestions view event mark
-
-        NSEvent.addLocalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) {
-            SuggestionsView.shouldProcessVisisbility = true
-            return $0
-        }
-
-        // Forecast items selected by default
-
-        viewForecast.selectTheFirstForecastDay()
-
-        // TODO: ISSUE - Locks hours collection scrolling
-        // viewForecast.selectTheFirstForecastHour()
-
-        // Appearance
-
-        makeUp()
-        localize()
-    }
 
     public override func mouseDown(with event: NSEvent) {
         super.mouseDown(with: event)
@@ -245,7 +170,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
             return
         }
 
-        statusMenusPresenter.reloadData()
+        Coordinator.shared.statusMenus.reloadData()
 
         weather.reloadData()
         forecast.reloadData(saveSelection: true)
@@ -294,14 +219,6 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
         }
     }
 
-    @objc private func makeUp() {
-        // log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
-
-        viewLocation?.makeup()
-        viewWeather?.makeup()
-        viewForecast?.makeup()
-    }
-
     @objc func suggestionSelected(_ notification: Notification) {
 
         SuggestionsView.shouldProcessVisisbility = true
@@ -323,7 +240,7 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
         viewWeather?.reloadData()
         viewForecast?.reloadData()
 
-        statusMenusPresenter.reloadData()
+        Coordinator.shared.statusMenus.reloadData()
 
         actualizeCallingSection()
     }
@@ -359,11 +276,11 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
         viewWeather?.reloadData()
         viewForecast?.reloadData()
 
-        statusMenusPresenter.reloadData()
+        Coordinator.shared.statusMenus.reloadData()
 
         actualizeCallingSection()
 
-        statusMenusPresenter.startUpdateTimerIfNeeded()
+        Coordinator.shared.statusMenus.startUpdateTimerIfNeeded()
 
         log.message(userMessage, .notice, .custom, .enduser)
     }
@@ -446,11 +363,86 @@ public class PopoverViewController: NSViewController, NSTabViewDelegate {
     }
 }
 
-// MARK: - LOCALIZATION
+extension PopoverViewController: PopoverViewDelegate {
 
-extension PopoverViewController: Localizable {
+    // MARK: - PopoverViewDelegate
 
-    @objc func localize() {
+    // MARK: - MVPViewDelegate
+
+    func setupUI() {
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        // Setup content size
+
+        self.view.wantsLayer = true
+        self.preferredContentSize = NSSize(width: self.view.frame.size.width,
+                                           height: self.view.frame.size.height)
+
+        // End-user messages
+
+        report.messageDelegate = labelGreeting
+
+        // Tabs event delegate
+
+        tabCurrentWeather.identifier = tabCurrentWeatherID
+        tabForecast.identifier = tabForecastID
+
+        viewTabs.delegate = self
+
+        let nc = AppGlobals.notificationCenter
+
+        // Meteo data event
+
+        nc.addObserver(self, selector: #selector(reloadData),
+                       name: NSNotification.Name.meteoDataOptionsNotification,
+                       object: nil)
+
+        // Suggestion selected event
+
+        nc.addObserver(self, selector: #selector(suggestionSelected(_:)),
+                       name: NSNotification.Name.suggestionNotification,
+                       object: nil)
+
+        // Fovorite selected event
+
+        nc.addObserver(self, selector: #selector(favoriteSelected(_:)),
+                       name: NSNotification.Name.favoriteNotification,
+                       object: nil)
+
+        // Bookmark button tapped event (to add or remove fovorite item)
+
+        nc.addObserver(self, selector: #selector(bookmarkTapped),
+                       name: NSNotification.Name.bookmarkNotification,
+                       object: nil)
+
+        // Hide suggestions view event mark
+
+        NSEvent.addLocalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) {
+            SuggestionsView.shouldProcessVisisbility = true
+            return $0
+        }
+
+        // Forecast items selected by default
+
+        viewForecast.selectTheFirstForecastDay()
+
+        // TODO: ISSUE - Locks hours collection scrolling
+        // viewForecast.selectTheFirstForecastHour()
+    }
+
+    func makeUp() {
+
+        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+
+        viewLocation?.makeup()
+        viewWeather?.makeup()
+        viewForecast?.makeup()
+    }
+
+    func localize() {
+
+        log.message("[\(type(of: self))].\(#function)")
 
         // Subviews
 

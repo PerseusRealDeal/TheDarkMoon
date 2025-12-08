@@ -55,12 +55,7 @@ class MeteoGroupView: NSView {
     @IBOutlet private(set) weak var value9: NSTextField!
 
     // MARK: - Initialization
-/*
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // log.message("[\(type(of: self))].\(#function)")
-    }
-*/
+
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
 
@@ -73,7 +68,7 @@ class MeteoGroupView: NSView {
             let nib = NSNib(nibNamed: className, bundle: Bundle(for: type(of: self)))
         else {
                 let text = "[\(type(of: self))].\(#function) No nib loaded."
-                log.message(text, .error); fatalError(text)
+            log.message(text, .fault); fatalError(text)
         }
 
         // log.message("[\(type(of: self))].\(#function) \(className)")

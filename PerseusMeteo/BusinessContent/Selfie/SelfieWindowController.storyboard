@@ -32,7 +32,7 @@
             <objects>
                 <viewController id="NdM-46-oIE" customClass="SelfieViewController" customModule="Snowman" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Zo1-hM-qgJ">
-                        <rect key="frame" x="0.0" y="0.0" width="553" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="553" height="511"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pTY-Tb-nnu">
@@ -69,7 +69,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I16-ly-hgL">
-                                <rect key="frame" x="413" y="459" width="130" height="18"/>
+                                <rect key="frame" x="413" y="483" width="130" height="18"/>
                                 <buttonCell key="cell" type="inline" title="The App Source Code" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wST-EU-a1T">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystemBold"/>
@@ -79,7 +79,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qdG-g3-O7i">
-                                <rect key="frame" x="405" y="431" width="138" height="18"/>
+                                <rect key="frame" x="405" y="455" width="138" height="18"/>
                                 <buttonCell key="cell" type="inline" title="The Technological Tree" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="61b-bl-v4e">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystemBold"/>
@@ -89,7 +89,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yEY-rb-2hz">
-                                <rect key="frame" x="95" y="417" width="198" height="35"/>
+                                <rect key="frame" x="95" y="441" width="198" height="35"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="The App Name" id="nrt-Wn-dV0">
                                     <font key="font" metaFont="system" size="30"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -97,7 +97,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zt6-eZ-dJw">
-                                <rect key="frame" x="95" y="398" width="56" height="19"/>
+                                <rect key="frame" x="95" y="422" width="56" height="19"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Version" id="EcQ-ui-Rby">
                                     <font key="font" metaFont="system" size="15"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -105,7 +105,7 @@
                                 </textFieldCell>
                             </textField>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BJc-2m-C2t">
-                                <rect key="frame" x="10" y="385" width="77" height="77"/>
+                                <rect key="frame" x="10" y="409" width="77" height="77"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="77" id="TWa-eG-gzC"/>
                                     <constraint firstAttribute="width" constant="77" id="a2t-wg-6vk"/>
@@ -113,21 +113,18 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSApplicationIcon" id="3DS-Vl-YAd"/>
                             </imageView>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6XP-dj-lG5">
-                                <rect key="frame" x="10" y="40" width="533" height="345"/>
+                                <rect key="frame" x="10" y="40" width="533" height="369"/>
                                 <subviews>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1XN-ke-8xC">
-                                        <rect key="frame" x="-2" y="329" width="537" height="16"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="16" id="t59-Eq-aG7"/>
-                                        </constraints>
-                                        <textFieldCell key="cell" selectable="YES" alignment="center" title="Copyright ©" id="dPq-wg-32p">
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MVd-ze-hvZ">
+                                        <rect key="frame" x="-2" y="353" width="537" height="16"/>
+                                        <textFieldCell key="cell" selectable="YES" alignment="center" title="Copyright ©" id="IsC-xQ-dJS">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="VkC-i9-Le5">
-                                        <rect key="frame" x="-2" y="289" width="537" height="32"/>
+                                        <rect key="frame" x="-2" y="313" width="537" height="32"/>
                                         <textFieldCell key="cell" selectable="YES" alignment="center" id="ovL-lL-IL2">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <string key="title">Copyright ©
@@ -137,17 +134,17 @@ Details</string>
                                         </textFieldCell>
                                     </textField>
                                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ms-6J-HpA">
-                                        <rect key="frame" x="0.0" y="107" width="533" height="174"/>
+                                        <rect key="frame" x="0.0" y="107" width="533" height="198"/>
                                         <clipView key="contentView" drawsBackground="NO" id="zrk-03-tWg">
-                                            <rect key="frame" x="0.0" y="0.0" width="533" height="174"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="533" height="198"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="XFN-1f-L1G">
-                                                    <rect key="frame" x="0.0" y="0.0" width="533" height="174"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="533" height="198"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="533" height="174"/>
+                                                    <size key="minSize" width="533" height="198"/>
                                                     <size key="maxSize" width="533" height="10000000"/>
                                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 </textView>
@@ -161,7 +158,7 @@ Details</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="a3o-6W-dG2">
-                                            <rect key="frame" x="517" y="0.0" width="16" height="174"/>
+                                            <rect key="frame" x="517" y="0.0" width="16" height="198"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -271,14 +268,14 @@ Details</string>
                                     </customView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="1XN-ke-8xC" secondAttribute="trailing" id="3Ee-ds-oam"/>
                                     <constraint firstItem="R5a-tQ-Ie5" firstAttribute="leading" secondItem="6XP-dj-lG5" secondAttribute="leading" id="6pP-vN-6cw"/>
                                     <constraint firstItem="VkC-i9-Le5" firstAttribute="leading" secondItem="6XP-dj-lG5" secondAttribute="leading" id="Awy-92-E4T"/>
+                                    <constraint firstAttribute="trailing" secondItem="MVd-ze-hvZ" secondAttribute="trailing" id="JWQ-En-imU"/>
                                     <constraint firstItem="7Ms-6J-HpA" firstAttribute="leading" secondItem="6XP-dj-lG5" secondAttribute="leading" id="Lw3-5T-Hh0"/>
+                                    <constraint firstItem="MVd-ze-hvZ" firstAttribute="leading" secondItem="6XP-dj-lG5" secondAttribute="leading" id="VcH-bu-j7G"/>
                                     <constraint firstAttribute="trailing" secondItem="7Ms-6J-HpA" secondAttribute="trailing" id="Vwk-Pg-IpQ"/>
                                     <constraint firstAttribute="trailing" secondItem="VkC-i9-Le5" secondAttribute="trailing" id="YSg-nX-pxl"/>
                                     <constraint firstAttribute="trailing" secondItem="R5a-tQ-Ie5" secondAttribute="trailing" id="hCr-ej-ErH"/>
-                                    <constraint firstItem="1XN-ke-8xC" firstAttribute="leading" secondItem="6XP-dj-lG5" secondAttribute="leading" id="vZJ-zh-Tso"/>
                                 </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
@@ -332,7 +329,7 @@ Details</string>
                         <outlet property="buttonTheAppSourceCode" destination="I16-ly-hgL" id="5uA-3V-C7j"/>
                         <outlet property="buttonTheTechnologicalTree" destination="qdG-g3-O7i" id="i7b-fh-ygu"/>
                         <outlet property="labelCopyrightDetailsText" destination="VkC-i9-Le5" id="VCA-dd-tVO"/>
-                        <outlet property="labelCopyrightText" destination="1XN-ke-8xC" id="azR-pz-Rzp"/>
+                        <outlet property="labelCopyrightText" destination="MVd-ze-hvZ" id="5Eo-2R-p7g"/>
                         <outlet property="labelTheAppName" destination="yEY-rb-2hz" id="nkQ-Pf-5Aw"/>
                         <outlet property="labelTheAppVersion" destination="Zt6-eZ-dJw" id="rbn-gQ-C7w"/>
                         <outlet property="viewTheCreditsText" destination="XFN-1f-L1G" id="Qbd-AX-PW4"/>

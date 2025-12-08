@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="indicator" destination="lEf-fh-mLw" id="jkg-HB-omu"/>
                 <outlet property="labelMeteoProvider" destination="FU5-4g-xR5" id="Fe9-vI-Nkq"/>
+                <outlet property="labelMeteoProviderWebLink" destination="Pfb-LG-zIs" id="zau-5c-2jI"/>
                 <outlet property="labelSunriseTitle" destination="Mc7-Qe-7uR" id="5mc-7k-a5A"/>
                 <outlet property="labelSunriseValue" destination="vWh-dP-4Gl" id="Etj-oc-iFI"/>
                 <outlet property="labelSunsetTitle" destination="qqV-2W-t83" id="p1G-Vg-0Zb"/>
@@ -98,8 +99,16 @@
                     </constraints>
                 </box>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FU5-4g-xR5">
-                    <rect key="frame" x="3" y="204" width="227" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Meteo Data by Meteo Provider Name" id="itt-Dm-qlk">
+                    <rect key="frame" x="3" y="204" width="147" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Meteo information from" id="itt-Dm-qlk">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pfb-LG-zIs" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
+                    <rect key="frame" x="151" y="204" width="55" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Provider" id="qlb-6V-LSE">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -121,6 +130,7 @@
                 </textField>
             </subviews>
             <constraints>
+                <constraint firstItem="Pfb-LG-zIs" firstAttribute="leading" secondItem="FU5-4g-xR5" secondAttribute="trailing" constant="5" id="2pU-yO-pbe"/>
                 <constraint firstItem="lEf-fh-mLw" firstAttribute="trailing" secondItem="c22-O7-iKe" secondAttribute="trailing" constant="-2" id="4iM-xy-vF8"/>
                 <constraint firstItem="qqV-2W-t83" firstAttribute="top" secondItem="Mc7-Qe-7uR" secondAttribute="bottom" id="5eX-73-seN"/>
                 <constraint firstItem="qBw-SP-YLr" firstAttribute="leading" secondItem="vWh-dP-4Gl" secondAttribute="leading" id="6NK-if-DjZ"/>
@@ -128,6 +138,7 @@
                 <constraint firstItem="vWh-dP-4Gl" firstAttribute="leading" secondItem="Mc7-Qe-7uR" secondAttribute="trailing" constant="5" id="9hh-zC-7Rt"/>
                 <constraint firstItem="qqV-2W-t83" firstAttribute="leading" secondItem="Mc7-Qe-7uR" secondAttribute="leading" id="AXV-Me-QQL"/>
                 <constraint firstItem="lEf-fh-mLw" firstAttribute="centerY" secondItem="FU5-4g-xR5" secondAttribute="centerY" id="GtP-QZ-F1L"/>
+                <constraint firstItem="Pfb-LG-zIs" firstAttribute="centerY" secondItem="FU5-4g-xR5" secondAttribute="centerY" id="HvE-tb-VLa"/>
                 <constraint firstAttribute="trailing" secondItem="GQy-nj-ciG" secondAttribute="trailing" id="JWd-LQ-AUi"/>
                 <constraint firstItem="VsY-cE-BC8" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="5" id="KFY-kc-lxl"/>
                 <constraint firstItem="GQy-nj-ciG" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="80" id="MjB-bp-ZCa"/>

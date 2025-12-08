@@ -98,7 +98,7 @@
                                             </tabViewItem>
                                             <tabViewItem label="Forecast" id="XwN-hq-rQ0">
                                                 <view key="view" id="SkI-S3-94P" customClass="ForecastView" customModule="Snowman" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="7" width="327" height="214"/>
+                                                    <rect key="frame" x="10" y="33" width="428" height="290"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </view>
                                             </tabViewItem>

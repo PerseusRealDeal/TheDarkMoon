@@ -99,7 +99,7 @@
 	<key>/* Current Weather View */</key>
 	<string>--</string>
 	<key>Label: Meteo Data Provider</key>
-	<string>Meteo Data by</string>
+	<string>Meteo Information from</string>
 	<key>Label: Weather Conditions</key>
 	<string>Weather Conditions</string>
 	<key>Prefix: Curren Weather in Brief</key>
@@ -333,7 +333,7 @@
 	<key>/* About Screen */</key>
 	<string>--</string>
 	<key>Title: The Dark Moon</key>
-	<string>The Dark Moon</string>
+	<string>Project — The Dark Moon</string>
 	<key>Button: The App Source Code</key>
 	<string>The product source code</string>
 	<key>Button: The Technological Tree</key>

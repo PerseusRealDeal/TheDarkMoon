@@ -170,6 +170,8 @@ extension SelfieViewController: SelfieViewDelegate {
             view.window?.appearance = DarkModeAgent.DarkModeUserChoice == .on ?
             DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
         }
+
+        viewTheCreditsText.textColor = .perseusGray
     }
 
     func localize() {

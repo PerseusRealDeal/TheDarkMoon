@@ -52,7 +52,7 @@ public class MeteoClientManager {
         serviceWeatherOpenWeatherMap.onDataGiven = { response in
 
             DispatchQueue.main.async {
-                self.presenter.screenPopover.stopAnimationProgressIndicator(.weather)
+                Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
             }
 
             var meteoData: Data?
@@ -79,7 +79,7 @@ public class MeteoClientManager {
         serviceForecastOpenWeatherMap.onDataGiven = { response in
 
             DispatchQueue.main.async {
-                self.presenter.screenPopover.stopAnimationProgressIndicator(.forecast)
+                Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
             }
 
             var meteoData: Data?
@@ -108,8 +108,8 @@ public class MeteoClientManager {
             DispatchQueue.main.async {
 
                 // stopAnimationIndicator
-                self.presenter.screenPopover.viewLocation.indicatorCircular?.isHidden = true
-                self.presenter.screenPopover.viewLocation.indicatorCircular?.stopAnimation(nil)
+                Coordinator.shared.screenPopover.viewLocation.indicatorCircular?.isHidden = true
+                Coordinator.shared.screenPopover.viewLocation.indicatorCircular?.stopAnimation(nil)
 
                 var suggestions: Data?
 
@@ -176,7 +176,7 @@ public class MeteoClientManager {
         log.message(callDetails.urlString)
 
         do {
-            presenter.screenPopover.startAnimationProgressIndicator(.weather)
+            Coordinator.shared.screenPopover.startAnimationProgressIndicator(.weather)
 
             try serviceWeatherOpenWeatherMap.call(with: callDetails)
 
@@ -184,7 +184,7 @@ public class MeteoClientManager {
 
             log.message("[\(type(of: self))].\(#function) \(error)", .error)
 
-            presenter.screenPopover.stopAnimationProgressIndicator(.weather)
+            Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
 
             isReadyToCall = true
         }
@@ -233,7 +233,7 @@ public class MeteoClientManager {
         log.message(callDetails.urlString)
 
         do {
-            presenter.screenPopover.startAnimationProgressIndicator(.forecast)
+            Coordinator.shared.screenPopover.startAnimationProgressIndicator(.forecast)
 
             try serviceForecastOpenWeatherMap.call(with: callDetails)
 
@@ -241,7 +241,7 @@ public class MeteoClientManager {
 
             log.message("[\(type(of: self))].\(#function) \(error)", .error)
 
-            presenter.screenPopover.stopAnimationProgressIndicator(.forecast)
+            Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
 
             isReadyToCall = true
         }
@@ -252,7 +252,7 @@ public class MeteoClientManager {
         guard
             self.isReadyToGetSuggestions,
             search.isEmpty == false,
-            let viewLocation = presenter.screenPopover.viewLocation
+            let viewLocation = Coordinator.shared.screenPopover.viewLocation
         else { return }
 
         guard AppGlobals.useSuggestionsSample == false
@@ -330,8 +330,8 @@ public class MeteoClientManager {
 
         DispatchQueue.main.async {
 
-            self.presenter.screenPopover.stopAnimationProgressIndicator(.weather)
-            self.presenter.screenPopover.reloadWeatherData()
+            Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
+            Coordinator.shared.screenPopover.reloadWeatherData()
             self.presenter.reloadData()
 
             self.isReadyToCall = true
@@ -347,8 +347,8 @@ public class MeteoClientManager {
 
         DispatchQueue.main.async {
 
-            self.presenter.screenPopover.stopAnimationProgressIndicator(.forecast)
-            self.presenter.screenPopover.reloadForecastData()
+            Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
+            Coordinator.shared.screenPopover.reloadForecastData()
 
             self.isReadyToCallForecast = true
         }
@@ -373,7 +373,7 @@ public class MeteoClientManager {
 
             guard
                 let suggestions = suggestions,
-                let viewLocation = self.presenter.screenPopover.viewLocation
+                let viewLocation = Coordinator.shared.screenPopover.viewLocation
             else {
                 return
             }
@@ -399,7 +399,7 @@ public class MeteoClientManager {
 
         var locationCardType: LocationCardType?
 
-        if let type = presenter.screenPopover.viewLocation?.locationCard {
+        if let type = Coordinator.shared.screenPopover.viewLocation?.locationCard {
             locationCardType = type
         } else {
             locationCardType = AppOptions.favoriteLocationsOption.first(where: {
