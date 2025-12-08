@@ -379,8 +379,8 @@
 				4BEE281C2B4AE07700F06A69 /* AppUserDefaults.swift */,
 				4B14840229128A930013B76E /* Configuration */,
 				4B6F98752927E7C600ADB03A /* FirstPartyCode */,
-				4B14840429128E460013B76E /* BusinessContent */,
 				4B684C6D2B438A370063E359 /* BusinessServices */,
+				4B14840429128E460013B76E /* BusinessContent */,
 				2EDC74D62EE2E4E500073C94 /* BusinessComponents */,
 			);
 			path = PerseusMeteo;

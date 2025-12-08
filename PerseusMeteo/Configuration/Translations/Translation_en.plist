@@ -99,7 +99,7 @@
 	<key>/* Current Weather View */</key>
 	<string>--</string>
 	<key>Label: Meteo Data Provider</key>
-	<string>Meteo Data by</string>
+	<string>Meteo Information from</string>
 	<key>Label: Weather Conditions</key>
 	<string>Weather Conditions</string>
 	<key>Prefix: Curren Weather in Brief</key>

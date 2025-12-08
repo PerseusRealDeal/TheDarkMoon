@@ -99,16 +99,16 @@
                     </constraints>
                 </box>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FU5-4g-xR5">
-                    <rect key="frame" x="3" y="204" width="93" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Meteo Data by" id="itt-Dm-qlk">
+                    <rect key="frame" x="3" y="204" width="147" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Meteo information from" id="itt-Dm-qlk">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pfb-LG-zIs" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
-                    <rect key="frame" x="97" y="204" width="94" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Provider Name" id="qlb-6V-LSE">
+                    <rect key="frame" x="151" y="204" width="55" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Provider" id="qlb-6V-LSE">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

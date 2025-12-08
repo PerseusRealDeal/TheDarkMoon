@@ -25,16 +25,16 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RqP-Rv-nzd">
-                    <rect key="frame" x="3" y="204" width="93" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Meteo Data by" id="WyF-eG-QYY">
+                    <rect key="frame" x="3" y="204" width="147" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Meteo information from" id="WyF-eG-QYY">
                         <font key="font" usesAppearanceFont="YES"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e1c-vt-lf5" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
-                    <rect key="frame" x="97" y="204" width="94" height="16"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Provider Name" id="vqw-5M-nKf">
+                    <rect key="frame" x="151" y="204" width="55" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Provider" id="vqw-5M-nKf">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
