@@ -28,9 +28,9 @@ class ForecastView: NSView {
     // MARK: - View Data Source
 
     public let dataSource = globals.sourceForecast
-    public var progressIndicator: Bool = false {
+    public var startProgressIndicator: Bool = false {
         didSet {
-            if progressIndicator {
+            if startProgressIndicator {
                 indicator.isHidden = false
                 indicator.startAnimation(nil)
             } else {
@@ -43,9 +43,6 @@ class ForecastView: NSView {
     // MARK: - Outlets
 
     @IBOutlet private(set) var contentView: NSView!
-
-    @IBOutlet private(set) weak var labelMeteoProvider: NSTextField!
-    @IBOutlet private(set) weak var labelMeteoProviderWebLink: WebLabel!
 
     @IBOutlet private(set) weak var indicator: NSProgressIndicator!
 
@@ -66,43 +63,25 @@ class ForecastView: NSView {
         super.draw(dirtyRect)
         // log.message("[\(type(of: self))].\(#function)")
     }
-*/
+
     override func awakeFromNib() {
         super.awakeFromNib()
-
         // log.message("[\(type(of: self))].\(#function)")
-
-        localize()
-
-        progressIndicator = false
-
-        self.viewForecastDays.identifier = daysID
-        self.viewForecastHours.identifier = hoursID
-
-        self.viewForecastDays.dataSource = self
-        self.viewForecastHours.dataSource = self
-
-        self.viewForecastDays.delegate = self
-        self.viewForecastHours.delegate = self
-
-        self.viewForecastDays.wantsLayer = true
-        self.viewForecastDays.backgroundColors = [NSColor.clear]
-
-        self.viewForecastHours.wantsLayer = true
-        self.viewForecastHours.backgroundColors = [NSColor.clear]
-
-        wantsLayer = true
-
-        // self.selectTheFirstForecastDay()
-        // self.selectTheFirstForecastHour()
-
-        viewMeteoGroup.applyFonts()
+    }
+*/
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
     }
 
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
+        commonInit()
+    }
 
-        // log.message("[\(type(of: self))].\(#function)")
+    private func commonInit() {
+
+        log.message("[\(type(of: self))].\(#function)")
 
         // Create a new instance from *xib and reference it to contentView outlet.
 
@@ -148,6 +127,33 @@ class ForecastView: NSView {
 
     // MARK: - Contract
 
+    public func setupUI() {
+
+        wantsLayer = true
+
+        self.startProgressIndicator = false
+
+        self.viewForecastDays.identifier = daysID
+        self.viewForecastHours.identifier = hoursID
+
+        self.viewForecastDays.dataSource = self
+        self.viewForecastHours.dataSource = self
+
+        self.viewForecastDays.delegate = self
+        self.viewForecastHours.delegate = self
+
+        self.viewForecastDays.wantsLayer = true
+        self.viewForecastDays.backgroundColors = [NSColor.clear]
+
+        self.viewForecastHours.wantsLayer = true
+        self.viewForecastHours.backgroundColors = [NSColor.clear]
+
+        // self.selectTheFirstForecastDay()
+        // self.selectTheFirstForecastHour()
+
+        viewMeteoGroup.applyFonts()
+    }
+
     public func reloadData(saveSelection: Bool = false) {
 
         // log.message("[\(type(of: self))].\(#function)")
@@ -158,11 +164,6 @@ class ForecastView: NSView {
         reloadHoursCollection(selectionSaved: saveSelection)
 
         viewMeteoGroup.reload()
-
-        // Meteo Data Provider.
-
-        labelMeteoProvider.stringValue = "Label: Meteo Data Provider".localizedValue
-        labelMeteoProviderWebLink.text = dataSource.meteoDataProviderName
     }
 
     public func selectTheFirstForecastDay() {

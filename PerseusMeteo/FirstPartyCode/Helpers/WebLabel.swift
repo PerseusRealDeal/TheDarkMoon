@@ -59,8 +59,10 @@ class WebLabel: NSTextField {
         }
     }
 
-    public var weblink: String {
-        return text == AppGlobals.meteoProviderName ? linkAuthor : linkOpenWeather
+    public var weblink: String = linkAuthor {
+        didSet {
+            self.toolTip = weblink
+        }
     }
 
     // MARK: - Initialization

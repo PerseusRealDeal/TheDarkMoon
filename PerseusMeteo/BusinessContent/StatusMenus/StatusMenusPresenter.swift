@@ -167,8 +167,9 @@ public class StatusMenusPresenter {
     }
 
     @objc private func makeUp() {
-        Coordinator.shared.statusMenus.popover?.appearance = DarkModeAgent.shared.style == .light ?
-        LIGHT_APPEARANCE_DEFAULT_IN_USE : DARK_APPEARANCE_DEFAULT_IN_USE
+        Coordinator.shared.statusMenus.popover?.appearance =
+        DarkModeAgent.shared.style == .light ? LIGHT_APPEARANCE_DEFAULT_IN_USE :
+        DARK_APPEARANCE_DEFAULT_IN_USE
     }
 
     @objc private func localize() {

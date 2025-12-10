@@ -49,10 +49,10 @@ class PopoverScreenLocalizationTests: XCTestCase {
         XCTAssertEqual(sut.labelMadeWithLove.stringValue,
                        "Label: Made with Love".localizedValue)
 
-        XCTAssertEqual(sut.tabCurrentWeather.label,
+        XCTAssertEqual(sut.controlCallRequest.label(forSegment: 0),
                        "Tab: Current Weather".localizedValue)
 
-        XCTAssertEqual(sut.tabForecast.label,
+        XCTAssertEqual(sut.controlCallRequest.label(forSegment: 1),
                        "Tab: Forecast".localizedValue)
 
         XCTAssertEqual(sut.buttonAbout.title,
@@ -89,14 +89,9 @@ class PopoverScreenLocalizationTests: XCTestCase {
         // arrange
 
         sut.loadView()
+        sut.reloadData()
 
         // assert
-
-        let title = "Label: Meteo Data Provider".localizedValue
-        let nick = globals.sourceWeather.meteoDataProviderName
-
-        XCTAssertEqual(sut.viewWeather.labelMeteoProvider.stringValue, title)
-        XCTAssertEqual(sut.viewWeather.labelMeteoProviderWebLink.text, nick)
 
         let inFact = sut.viewWeather.labelWeatherConditionsDescriptionValue.stringValue
         XCTAssertEqual(inFact, "Label: Weather Conditions".localizedValue)
@@ -114,6 +109,7 @@ class PopoverScreenLocalizationTests: XCTestCase {
         // arrange
 
         sut.loadView()
+        sut.reloadData()
 
         // assert
 
@@ -181,10 +177,5 @@ class PopoverScreenLocalizationTests: XCTestCase {
 
         // assert
 
-        let title = "Label: Meteo Data Provider".localizedValue
-        let nick = globals.sourceForecast.meteoDataProviderName
-
-        XCTAssertEqual(sut.viewForecast.labelMeteoProvider.stringValue, title)
-        XCTAssertEqual(sut.viewForecast.labelMeteoProviderWebLink.text, nick)
     }
 }

@@ -21,9 +21,9 @@ class WeatherView: NSView {
     // MARK: - View Data Source
 
     public let dataSource = globals.sourceWeather
-    public var progressIndicator: Bool = false {
+    public var startProgressIndicator: Bool = false {
         didSet {
-            if progressIndicator {
+            if startProgressIndicator {
                 indicator.isHidden = false
                 indicator.startAnimation(nil)
             } else {
@@ -38,9 +38,6 @@ class WeatherView: NSView {
     @IBOutlet private(set) var viewContent: NSView!
 
     @IBOutlet private(set) weak var viewMeteoGroup: MeteoGroupView!
-
-    @IBOutlet private(set) weak var labelMeteoProvider: NSTextField!
-    @IBOutlet private(set) weak var labelMeteoProviderWebLink: WebLabel!
 
     @IBOutlet private(set) weak var indicator: NSProgressIndicator!
 
@@ -61,16 +58,25 @@ class WeatherView: NSView {
 
         // log.message("[\(type(of: self))].\(#function)")
 
-        localize()
-        progressIndicator = false
+        // localize()
+        startProgressIndicator = false
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
     }
 
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
+        commonInit()
+    }
 
-        // log.message("[\(type(of: self))].\(#function)")
+    private func commonInit() {
 
-        // Create a new instance from *xib and reference it to contentView outlet.
+        log.message("[\(type(of: self))].\(#function)")
+
+        // Create a new instance from *xib and reference it to viewContent outlet.
 
         guard let className = type(of: self).className().components(separatedBy: ".").last,
               let nib = NSNib(nibNamed: className, bundle: Bundle(for: type(of: self)))
@@ -115,12 +121,7 @@ class WeatherView: NSView {
 
     public func reloadData() {
 
-        // log.message("[\(type(of: self))].\(#function)")
-
-        // Meteo data provider name
-
-        labelMeteoProvider.stringValue = "Label: Meteo Data Provider".localizedValue
-        labelMeteoProviderWebLink.text = dataSource.meteoDataProviderName
+        log.message("[\(type(of: self))].\(#function)")
 
         // Temperature, Weather Icon, and Short desc
 
@@ -146,7 +147,7 @@ class WeatherView: NSView {
 
         var meteogroup = MeteoGroupData()
 
-        // Array 1
+        // Line 1 - Top
 
         let titleMinMax = "Prefix: Min".localizedValue + ", " + "Prefix: Max".localizedValue
         let valueMinMax = "\(dataSource.temperatureMinimum) : \(dataSource.temperatureMaximum)"
@@ -160,7 +161,7 @@ class WeatherView: NSView {
         meteogroup.title3 = "Prefix: Visibility".localizedValue
         meteogroup.value3 = dataSource.visibility
 
-        // Array 2
+        // Line 2 - Middle
 
         meteogroup.title4 = "Label: Speed".localizedValue
         meteogroup.value4 = dataSource.windSpeed
@@ -171,7 +172,7 @@ class WeatherView: NSView {
         meteogroup.title6 = "Label: Gust".localizedValue
         meteogroup.value6 = dataSource.windGusts
 
-        // Array 3
+        // Line 3 - Bottom
 
         meteogroup.title7 = "Label: Pressure".localizedValue
         meteogroup.value7 = dataSource.pressure
@@ -191,9 +192,7 @@ class WeatherView: NSView {
 // MARK: - DARK MODE
 
 extension WeatherView {
-
     public func makeup() {
-
         // log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
     }
 }
@@ -201,11 +200,8 @@ extension WeatherView {
 // MARK: - LOCALIZATION
 
 extension WeatherView {
-
     public func localize() {
-
         // log.message("[\(type(of: self))].\(#function)")
-
         reloadData()
     }
 }

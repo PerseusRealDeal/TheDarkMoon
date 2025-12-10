@@ -11,11 +11,11 @@
             <objects>
                 <viewController id="bU7-R8-ocO" customClass="PopoverViewController" customModule="Snowman" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="tOy-S4-hL0">
-                        <rect key="frame" x="0.0" y="0.0" width="454" height="550"/>
+                        <rect key="frame" x="0.0" y="0.0" width="454" height="476"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="nuV-nB-E1H" userLabel="Top Greeting View">
-                                <rect key="frame" x="0.0" y="510" width="454" height="40"/>
+                                <rect key="frame" x="0.0" y="436" width="454" height="40"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3AG-Tj-6c2">
                                         <rect key="frame" x="3" y="3" width="104" height="32"/>
@@ -48,20 +48,36 @@
                                 </constraints>
                             </customView>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yf8-y3-HSv" userLabel="Middle Business View">
-                                <rect key="frame" x="10" y="40" width="434" height="470"/>
+                                <rect key="frame" x="10" y="40" width="434" height="396"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="KvG-58-2dT" userLabel="Location Section" customClass="LocationView" customModule="Snowman" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="360" width="434" height="110"/>
+                                        <rect key="frame" x="0.0" y="286" width="434" height="110"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="110" id="8yO-Yf-08x"/>
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="zay-Cg-HHE" userLabel="Calling Section">
-                                        <rect key="frame" x="0.0" y="320" width="434" height="40"/>
+                                        <rect key="frame" x="0.0" y="264" width="434" height="22"/>
                                         <subviews>
+                                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zyo-VN-gyy">
+                                                <rect key="frame" x="-2" y="-1" width="267" height="24"/>
+                                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="3V1-GY-T5v">
+                                                    <font key="font" metaFont="system"/>
+                                                    <segments>
+                                                        <segment label="Current Weather" width="129"/>
+                                                        <segment label="Forecast" width="129" selected="YES" tag="1"/>
+                                                    </segments>
+                                                </segmentedCell>
+                                                <connections>
+                                                    <action selector="controlCallRequestDidChanged:" target="bU7-R8-ocO" id="H0i-lJ-beR"/>
+                                                </connections>
+                                            </segmentedControl>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1oS-xB-Iag">
-                                                <rect key="frame" x="-7" y="3" width="112" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Call Weather" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fAD-io-zUq">
+                                                <rect key="frame" x="262" y="-6" width="179" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="165" id="VWq-Cf-yNs"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="push" title="Call Forecast" bezelStyle="rounded" alignment="left" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fAD-io-zUq">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -69,8 +85,50 @@
                                                     <action selector="fetchMeteoFactsButtonTapped:" target="bU7-R8-ocO" id="ZN0-y0-hw4"/>
                                                 </connections>
                                             </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="9Xh-H2-1x7"/>
+                                            <constraint firstAttribute="trailing" secondItem="1oS-xB-Iag" secondAttribute="trailing" id="AZG-dj-qUR"/>
+                                            <constraint firstItem="zyo-VN-gyy" firstAttribute="bottom" secondItem="zay-Cg-HHE" secondAttribute="bottom" id="c0y-f5-7h7"/>
+                                            <constraint firstItem="zyo-VN-gyy" firstAttribute="leading" secondItem="zay-Cg-HHE" secondAttribute="leading" id="iGI-sZ-lYV"/>
+                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="centerY" secondItem="zyo-VN-gyy" secondAttribute="centerY" id="lvv-Qv-gL5"/>
+                                        </constraints>
+                                    </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="XET-Lp-4dn" userLabel="MeteoInfo Section">
+                                        <rect key="frame" x="0.0" y="14" width="434" height="250"/>
+                                        <subviews>
+                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="aZe-Tk-wZ1" customClass="WeatherView" customModule="Snowman" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="434" height="242"/>
+                                            </customView>
+                                            <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3sN-ZV-SD7" customClass="ForecastView" customModule="Snowman" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="434" height="240"/>
+                                            </customView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="3sN-ZV-SD7" secondAttribute="bottom" id="3WA-Ja-2hc"/>
+                                            <constraint firstItem="aZe-Tk-wZ1" firstAttribute="leading" secondItem="XET-Lp-4dn" secondAttribute="leading" id="3yF-4a-o1Z"/>
+                                            <constraint firstAttribute="bottom" secondItem="aZe-Tk-wZ1" secondAttribute="bottom" id="EpL-Qx-XBT"/>
+                                            <constraint firstAttribute="height" constant="250" id="Qcg-qG-RYa"/>
+                                            <constraint firstItem="3sN-ZV-SD7" firstAttribute="leading" secondItem="XET-Lp-4dn" secondAttribute="leading" id="dlu-Vw-c1C"/>
+                                            <constraint firstAttribute="trailing" secondItem="aZe-Tk-wZ1" secondAttribute="trailing" id="f12-Re-g8j"/>
+                                            <constraint firstItem="3sN-ZV-SD7" firstAttribute="top" secondItem="XET-Lp-4dn" secondAttribute="top" constant="10" id="kMT-FW-Ycn"/>
+                                            <constraint firstAttribute="trailing" secondItem="3sN-ZV-SD7" secondAttribute="trailing" id="p9P-qb-RKD"/>
+                                            <constraint firstItem="aZe-Tk-wZ1" firstAttribute="top" secondItem="XET-Lp-4dn" secondAttribute="top" constant="8" id="zny-qC-thV"/>
+                                        </constraints>
+                                    </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="tJu-w0-Ed4">
+                                        <rect key="frame" x="0.0" y="0.0" width="434" height="14"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hit-P3-NCv" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
+                                                <rect key="frame" x="19" y="0.0" width="53" height="14"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Web Link" id="wsv-Dp-ZeA">
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="II3-Ni-sjv">
-                                                <rect key="frame" x="248" y="13" width="188" height="14"/>
+                                                <rect key="frame" x="248" y="0.0" width="188" height="14"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" alignment="right" title="Last One: 28 Dec 2023 3:51:45 pm" id="oSM-RN-xuB">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -79,41 +137,23 @@
                                             </textField>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="centerY" secondItem="II3-Ni-sjv" secondAttribute="centerY" id="1Z4-xe-VXw"/>
-                                            <constraint firstAttribute="height" constant="40" id="9Xh-H2-1x7"/>
-                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="leading" secondItem="zay-Cg-HHE" secondAttribute="leading" id="Ji1-dy-DYR"/>
-                                            <constraint firstAttribute="trailing" secondItem="II3-Ni-sjv" secondAttribute="trailing" id="Nt8-Ol-CYs"/>
-                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="centerY" secondItem="zay-Cg-HHE" secondAttribute="centerY" id="eJi-Bn-Pg3"/>
+                                            <constraint firstItem="Hit-P3-NCv" firstAttribute="centerY" secondItem="tJu-w0-Ed4" secondAttribute="centerY" id="5tF-9f-Skl"/>
+                                            <constraint firstItem="Hit-P3-NCv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tJu-w0-Ed4" secondAttribute="leading" id="BwT-az-eqd"/>
+                                            <constraint firstItem="II3-Ni-sjv" firstAttribute="centerY" secondItem="tJu-w0-Ed4" secondAttribute="centerY" id="Fvf-6r-2Og"/>
+                                            <constraint firstAttribute="trailing" secondItem="II3-Ni-sjv" secondAttribute="trailing" id="sGo-LF-REC"/>
+                                            <constraint firstAttribute="height" constant="14" id="teB-hp-fKc"/>
                                         </constraints>
                                     </customView>
-                                    <tabView focusRingType="none" initialItem="g1D-Zn-Myw" translatesAutoresizingMaskIntoConstraints="NO" id="CfE-8B-27I" userLabel="Meteo Data Section">
-                                        <rect key="frame" x="-7" y="-10" width="448" height="336"/>
-                                        <font key="font" metaFont="system"/>
-                                        <tabViewItems>
-                                            <tabViewItem label="Current Weather" id="g1D-Zn-Myw">
-                                                <view key="view" id="4E9-lB-SpT" customClass="WeatherView" customModule="Snowman" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="33" width="428" height="290"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                </view>
-                                            </tabViewItem>
-                                            <tabViewItem label="Forecast" id="XwN-hq-rQ0">
-                                                <view key="view" id="SkI-S3-94P" customClass="ForecastView" customModule="Snowman" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="33" width="428" height="290"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                </view>
-                                            </tabViewItem>
-                                        </tabViewItems>
-                                        <connections>
-                                            <outlet property="delegate" destination="bU7-R8-ocO" id="x1l-o8-gal"/>
-                                        </connections>
-                                    </tabView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="XET-Lp-4dn" firstAttribute="width" secondItem="yf8-y3-HSv" secondAttribute="width" id="LmH-Np-ZjP"/>
                                     <constraint firstItem="KvG-58-2dT" firstAttribute="width" secondItem="yf8-y3-HSv" secondAttribute="width" id="Slz-jH-Lx0"/>
+                                    <constraint firstItem="tJu-w0-Ed4" firstAttribute="leading" secondItem="yf8-y3-HSv" secondAttribute="leading" id="hnK-1e-yHj"/>
+                                    <constraint firstAttribute="trailing" secondItem="tJu-w0-Ed4" secondAttribute="trailing" id="oxn-az-Ush"/>
                                     <constraint firstItem="zay-Cg-HHE" firstAttribute="width" secondItem="yf8-y3-HSv" secondAttribute="width" id="srW-ec-CST"/>
-                                    <constraint firstItem="CfE-8B-27I" firstAttribute="width" secondItem="yf8-y3-HSv" secondAttribute="width" id="tTx-Ve-fRG"/>
                                 </constraints>
                                 <visibilityPriorities>
+                                    <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
@@ -122,22 +162,23 @@
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="0Xu-O6-hXQ" userLabel="Bottom Commands View">
                                 <rect key="frame" x="0.0" y="0.0" width="454" height="40"/>
                                 <subviews>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ub5-ci-hl1">
-                                        <rect key="frame" x="347" y="3" width="104" height="32"/>
+                                    <button horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MSy-7h-iOl">
+                                        <rect key="frame" x="3" y="3" width="104" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="xja-ea-ngz"/>
+                                            <constraint firstAttribute="width" constant="90" id="KGb-Ji-Pa2"/>
                                         </constraints>
-                                        <buttonCell key="cell" type="push" title="Hide" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5DE-zQ-BGm">
+                                        <buttonCell key="cell" type="push" title="About" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cHA-V5-SWx">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="hideAppScreensButtonTapped:" target="bU7-R8-ocO" id="SQy-KO-KG6"/>
+                                            <action selector="aboutButtonTapped:" target="bU7-R8-ocO" id="oYs-Gg-GNo"/>
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lEc-RC-GkU">
@@ -153,19 +194,6 @@
                                             <action selector="optionsButtonTapped:" target="bU7-R8-ocO" id="dub-X9-Bw2"/>
                                         </connections>
                                     </button>
-                                    <button horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MSy-7h-iOl">
-                                        <rect key="frame" x="3" y="3" width="104" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="KGb-Ji-Pa2"/>
-                                        </constraints>
-                                        <buttonCell key="cell" type="push" title="About" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cHA-V5-SWx">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="aboutButtonTapped:" target="bU7-R8-ocO" id="oYs-Gg-GNo"/>
-                                        </connections>
-                                    </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xlo-RM-Wg8">
                                         <rect key="frame" x="203" y="3" width="104" height="32"/>
                                         <constraints>
@@ -177,6 +205,19 @@
                                         </buttonCell>
                                         <connections>
                                             <action selector="buttonLoggerTapped:" target="bU7-R8-ocO" id="w3V-bz-ojm"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ub5-ci-hl1">
+                                        <rect key="frame" x="347" y="3" width="104" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="xja-ea-ngz"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="Hide" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5DE-zQ-BGm">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="hideAppScreensButtonTapped:" target="bU7-R8-ocO" id="SQy-KO-KG6"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -202,6 +243,7 @@
                             <constraint firstItem="0Xu-O6-hXQ" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" id="dzR-jt-hxG"/>
                             <constraint firstAttribute="trailing" secondItem="yf8-y3-HSv" secondAttribute="trailing" constant="10" id="jSu-Bk-j56"/>
                             <constraint firstAttribute="trailing" secondItem="0Xu-O6-hXQ" secondAttribute="trailing" id="kvL-yd-i0n"/>
+                            <constraint firstItem="Hit-P3-NCv" firstAttribute="centerX" secondItem="MSy-7h-iOl" secondAttribute="centerX" id="xzc-3P-HXL"/>
                             <constraint firstItem="yf8-y3-HSv" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" constant="10" id="ywl-rj-aIR"/>
                             <constraint firstItem="yf8-y3-HSv" firstAttribute="centerY" secondItem="tOy-S4-hL0" secondAttribute="centerY" id="zH8-4M-C8g"/>
                         </constraints>
@@ -213,14 +255,13 @@
                         <outlet property="buttonLogger" destination="Xlo-RM-Wg8" id="EVa-k7-ZC8"/>
                         <outlet property="buttonOptions" destination="lEc-RC-GkU" id="9WS-WU-GoL"/>
                         <outlet property="buttonQuit" destination="3AG-Tj-6c2" id="Lh0-xY-ekv"/>
+                        <outlet property="controlCallRequest" destination="zyo-VN-gyy" id="7RR-em-SJQ"/>
                         <outlet property="labelGreeting" destination="Vs7-Lz-WvA" id="Ixk-im-rBZ"/>
                         <outlet property="labelMadeWithLove" destination="II3-Ni-sjv" id="ohb-Gv-dHz"/>
-                        <outlet property="tabCurrentWeather" destination="g1D-Zn-Myw" id="7uf-lK-bWC"/>
-                        <outlet property="tabForecast" destination="XwN-hq-rQ0" id="rKh-up-612"/>
-                        <outlet property="viewForecast" destination="SkI-S3-94P" id="VgG-5a-zdo"/>
+                        <outlet property="labelMeteoProviderWebLink" destination="Hit-P3-NCv" id="SCP-e9-cdk"/>
+                        <outlet property="viewForecast" destination="3sN-ZV-SD7" id="GhT-C5-vdI"/>
                         <outlet property="viewLocation" destination="KvG-58-2dT" id="7Zz-c3-eNb"/>
-                        <outlet property="viewTabs" destination="CfE-8B-27I" id="yUI-bj-cYS"/>
-                        <outlet property="viewWeather" destination="4E9-lB-SpT" id="e6x-4A-tLe"/>
+                        <outlet property="viewWeather" destination="aZe-Tk-wZ1" id="faC-P8-1iT"/>
                     </connections>
                 </viewController>
                 <customObject id="9uD-mB-xHs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
