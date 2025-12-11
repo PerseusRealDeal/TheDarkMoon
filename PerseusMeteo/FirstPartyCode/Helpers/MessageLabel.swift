@@ -67,6 +67,7 @@ public class MessageLabel: MyCustomLabel, PerseusDelegatedMessage {
     }
 
     public var messageTextColor: Color? = .perseusIndigo
+
     public var message: String = "" {
         didSet {
 
@@ -159,6 +160,12 @@ public class MessageLabel: MyCustomLabel, PerseusDelegatedMessage {
     private func configure() {
         theDarknessTrigger = DarkModeObserver { _ in
             self.textColor = .labelPerseus
+            if isHighSierra {
+                self.messageTextColor = .labelPerseus
+            }
+        }
+        if isHighSierra {
+            self.messageTextColor = .labelPerseus
         }
     }
 }

@@ -79,7 +79,7 @@ class WebLabel: NSTextField {
 
     private func configure() {
         theDarknessTrigger = DarkModeObserver { _ in
-            self.textColor = .labelPerseus
+            self.reset(self.text, color: .labelPerseus)
         }
     }
 

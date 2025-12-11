@@ -24,7 +24,6 @@ public class StatusMenusPresenter {
     private var updateTimer: Timer?
 
     private let dataSource = globals.sourceWeather
-    private let theDarknessTrigger = DarkModeObserver()
 
     private var buttonWidth: CGFloat {
         return 78.0
@@ -63,9 +62,6 @@ public class StatusMenusPresenter {
             object: nil
         )
 
-        // Dark Mode
-        theDarknessTrigger.action = { _ in self.makeUp() }
-
         // StatusMenus popover
         popover = NSPopover()
 
@@ -96,6 +92,9 @@ public class StatusMenusPresenter {
                 button.addSubview(content)
             }
         }
+
+        // Dark Mode
+        DarkModeAgent.register(stakeholder: self, selector: #selector(makeUp))
 
         refresh()
     }
@@ -167,6 +166,8 @@ public class StatusMenusPresenter {
     }
 
     @objc private func makeUp() {
+        log.message("[\(type(of: self))].\(#function)")
+
         Coordinator.shared.statusMenus.popover?.appearance =
         DarkModeAgent.shared.style == .light ? LIGHT_APPEARANCE_DEFAULT_IN_USE :
         DARK_APPEARANCE_DEFAULT_IN_USE

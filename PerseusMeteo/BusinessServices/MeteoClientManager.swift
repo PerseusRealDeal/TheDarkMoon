@@ -387,6 +387,7 @@ public class MeteoClientManager {
             viewLocation.viewSuggestions.heightCalculated
 
             viewLocation.collectionSuggestions?.reloadData()
+            viewLocation.hideControls()
 
             NSAnimationContext.runAnimationGroup({ context in
                 context.duration = 0.5

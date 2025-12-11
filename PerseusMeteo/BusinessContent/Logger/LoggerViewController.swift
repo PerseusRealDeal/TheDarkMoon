@@ -145,9 +145,10 @@ extension LoggerViewController: LoggerViewDelegate {
         if isHighSierra {
             view.window?.appearance = DarkModeAgent.DarkModeUserChoice == .on ?
             DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
+            texViewMessages.textColor = DarkMode.style == .dark ? .white : .gray
+        } else {
+            texViewMessages.textColor = DarkMode.style == .dark ? .perseusGreen : .perseusGray
         }
-
-        texViewMessages.textColor = DarkMode.style == .dark ? .perseusGreen : .perseusGray
     }
 
     func localize() {

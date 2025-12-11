@@ -193,7 +193,11 @@ class WeatherView: NSView {
 
 extension WeatherView {
     public func makeup() {
-        // log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+
+        if isHighSierra {
+            self.appearance = LIGHT_APPEARANCE_DEFAULT_IN_USE
+        }
     }
 }
 

@@ -21,7 +21,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        DarkModeAgent.force(DarkModeUserChoice)
         GeoCoordinator.reloadGeoComponents()
 
         globals.languageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
@@ -43,16 +42,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             object: nil
         )
 
+        DarkModeAgent.force(DarkModeUserChoice)
+
         log.message("Started with business matter purpose...", .info)
     }
 
     @objc func systemWillSleep(_ notification: Notification) {
-        log.message("[\(type(of: self))].\(#function) System is about to sleep.")
+        log.message("[\(type(of: self))].\(#function) System is about to sleep.", .info)
         Coordinator.shared.statusMenus.deinitTimer()
     }
 
     @objc func systemDidWake(_ notification: Notification) {
-        log.message("[\(type(of: self))].\(#function) System has woken up.")
+        log.message("[\(type(of: self))].\(#function) System has woken up.", .info)
         Coordinator.shared.statusMenus.startUpdateTimerIfNeeded()
     }
 

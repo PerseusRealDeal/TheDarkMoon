@@ -98,13 +98,13 @@ class LocationView: NSView, NSTextFieldDelegate {
     @IBOutlet public weak var indicatorCircular: NSProgressIndicator!
     @IBOutlet public weak var constraintViewSuggestionsHeight: NSLayoutConstraint!
 
-    @IBOutlet private(set) weak var labelLocationName: NSTextField!
+    @IBOutlet public weak var labelLocationName: NSTextField!
     @IBOutlet private(set) weak var labelGeoCoordinates: NSTextField!
     @IBOutlet private(set) weak var labelPermissionStatus: NSTextField!
     @IBOutlet private(set) weak var labelAutoSuggestionsRequest: NSTextField!
 
     @IBOutlet private(set) weak var buttonUpdateCurrentLocation: NSButton!
-    @IBOutlet private(set) weak var checkBoxAutoSuggestionsRequest: NSButton!
+    @IBOutlet public weak var checkBoxAutoSuggestionsRequest: NSButton!
     @IBOutlet private(set) weak var buttonSuggestionsRequest: NSButton!
 
     @IBOutlet private(set) weak var comboBoxFavorites: NSComboBox!
@@ -278,7 +278,22 @@ class LocationView: NSView, NSTextFieldDelegate {
     }
 
     public func makeup() {
-        // log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+
+        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+
+        if isHighSierra {
+            self.appearance = LIGHT_APPEARANCE_DEFAULT_IN_USE
+
+            let colorSet = DarkModeAgent.shared.style == .dark ?
+            DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
+
+            self.textFieldLocationNameSearch.appearance = colorSet
+            self.comboBoxFavorites.appearance = colorSet
+            self.checkBoxAutoSuggestionsRequest.appearance = colorSet
+            self.buttonSuggestionsRequest.appearance = colorSet
+            self.buttonUpdateCurrentLocation.appearance = colorSet
+        }
+
         viewSuggestions.collectionView?.reloadData()
     }
 
@@ -328,6 +343,7 @@ class LocationView: NSView, NSTextFieldDelegate {
             // hide suggestions view
             SuggestionsView.shouldProcessVisisbility = false
             viewSuggestions.alphaValue = 0.0
+            showControls()
             constraintViewSuggestionsHeight.constant = 0
 
             // remove all suggestions items
@@ -370,5 +386,19 @@ class LocationView: NSView, NSTextFieldDelegate {
             let statusMenus = Coordinator.shared.statusMenus
             statusMenus.fetchSuggestions(self.textFieldLocationNameSearch.stringValue)
         })
+    }
+
+    public func hideControls() {
+        labelLocationName.isHidden = true
+        checkBoxAutoSuggestionsRequest.isHidden = true
+        labelGeoCoordinates.isHidden = true
+        labelAutoSuggestionsRequest.isHidden = true
+    }
+
+    public func showControls() {
+        labelLocationName.isHidden = false
+        checkBoxAutoSuggestionsRequest.isHidden = false
+        labelGeoCoordinates.isHidden = false
+        labelAutoSuggestionsRequest.isHidden = false
     }
 }

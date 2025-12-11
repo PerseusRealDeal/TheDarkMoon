@@ -126,12 +126,34 @@ public class PopoverViewController: NSViewController {
 
     @IBAction func controlCallRequestDidChanged(_ sender: NSSegmentedControl) {
 
-        actualizeCallingSection()
+        refreshCallInformation()
 
-        if sender.selectedSegment == 0 { // Show current weather view
+        if sender.selectedSegment == 0 {
+            // Show current weather view
+            /*
+            DispatchQueue.main.async {
+                NSAnimationContext.runAnimationGroup({ context in
+                    context.duration = 0.3
+
+                    self.viewWeather.animator().alphaValue = 1.0
+                    self.viewForecast.animator().alphaValue = 0.0
+
+                }, completionHandler: nil)
+            }*/
             self.viewWeather.alphaValue = 1.0
             self.viewForecast.alphaValue = 0.0
-        } else { // Show forecast view
+        } else {
+            // Show forecast view
+            /*
+            DispatchQueue.main.async {
+                NSAnimationContext.runAnimationGroup({ context in
+                    context.duration = 0.3
+
+                    self.viewWeather.animator().alphaValue = 0.0
+                    self.viewForecast.animator().alphaValue = 1.0
+
+                }, completionHandler: nil)
+            }*/
             self.viewWeather.alphaValue = 0.0
             self.viewForecast.alphaValue = 1.0
         }
@@ -154,6 +176,7 @@ public class PopoverViewController: NSViewController {
         guard SuggestionsView.shouldProcessVisisbility else { return }
         guard self.viewLocation.viewSuggestions.alphaValue > 0.0 else { return }
 
+        viewLocation.showControls()
         DispatchQueue.main.async {
             NSAnimationContext.runAnimationGroup({ context in
                 context.duration = 0.5
@@ -178,7 +201,7 @@ public class PopoverViewController: NSViewController {
         weather.reloadData()
         forecast.reloadData(saveSelection: true)
 
-        self.actualizeCallingSection()
+        self.refreshCallInformation()
     }
 
     public func reloadWeatherData() {
@@ -187,7 +210,7 @@ public class PopoverViewController: NSViewController {
         }
 
         weather.reloadData()
-        self.actualizeCallingSection()
+        self.refreshCallInformation()
     }
 
     public func reloadForecastData() {
@@ -196,7 +219,7 @@ public class PopoverViewController: NSViewController {
         }
 
         forecast.reloadData(saveSelection: false)
-        self.actualizeCallingSection()
+        self.refreshCallInformation()
 
         self.viewForecast?.selectTheFirstForecastDay()
         self.viewForecast?.selectTheFirstForecastHour()
@@ -245,7 +268,7 @@ public class PopoverViewController: NSViewController {
 
         Coordinator.shared.statusMenus.reloadData()
 
-        actualizeCallingSection()
+        refreshCallInformation()
     }
 
     @objc func favoriteSelected(_ notification: Notification) {
@@ -281,7 +304,7 @@ public class PopoverViewController: NSViewController {
 
         Coordinator.shared.statusMenus.reloadData()
 
-        actualizeCallingSection()
+        refreshCallInformation()
 
         Coordinator.shared.statusMenus.startUpdateTimerIfNeeded()
 
@@ -353,10 +376,11 @@ public class PopoverViewController: NSViewController {
             AppGlobals.forecast = nil
 
             viewLocation?.reloadData()
+
             viewWeather?.reloadData()
             viewForecast?.reloadData()
 
-            actualizeCallingSection()
+            refreshCallInformation()
 
             let text = "Item removed from favorites".localizedValue
             log.message(text, .notice, .custom, .enduser)
@@ -434,6 +458,8 @@ extension PopoverViewController: PopoverViewDelegate {
         controlCallRequest.selectedSegment = 0
 
         viewWeather.alphaValue = 1.0
+        viewWeather.isHidden = false
+
         viewForecast.alphaValue = 0.0
         viewForecast.isHidden = false
 
@@ -450,7 +476,11 @@ extension PopoverViewController: PopoverViewDelegate {
 
         log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
 
+        view.window?.appearance = DarkModeAgent.DarkModeUserChoice == .on ?
+        DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
+
         viewLocation?.makeup()
+
         viewWeather?.makeup()
         viewForecast?.makeup()
     }
@@ -462,6 +492,7 @@ extension PopoverViewController: PopoverViewDelegate {
         // Subviews
 
         viewLocation?.localize()
+
         viewWeather?.localize()
         viewForecast?.localize()
 
@@ -470,7 +501,7 @@ extension PopoverViewController: PopoverViewDelegate {
         buttonQuit.title = "Button: Quit".localizedValue
         labelGreeting.message = "DeveloperRelease".localizedValue
 
-        actualizeCallingSection()
+        refreshCallInformation()
 
         controlCallRequest.setLabel("Tab: Current Weather".localizedValue, forSegment: 0)
         controlCallRequest.setLabel("Tab: Forecast".localizedValue, forSegment: 1)
@@ -482,7 +513,7 @@ extension PopoverViewController: PopoverViewDelegate {
         buttonHideAppScreens.title = "Button: Hide".localizedValue
     }
 
-    private func actualizeCallingSection() {
+    private func refreshCallInformation() {
 
         let provider = globals.sourceWeather.meteoDataProviderName
 

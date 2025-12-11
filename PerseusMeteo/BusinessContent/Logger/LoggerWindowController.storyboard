@@ -157,7 +157,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ivl-5H-7ok">
-                                <rect key="frame" x="8" y="243" width="63" height="18"/>
+                                <rect key="frame" x="8" y="242" width="63" height="18"/>
                                 <buttonCell key="cell" type="check" title="marks" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="k26-gT-O8p">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -167,7 +167,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2JS-Tf-p5z">
-                                <rect key="frame" x="74" y="243" width="53" height="18"/>
+                                <rect key="frame" x="74" y="242" width="53" height="18"/>
                                 <buttonCell key="cell" type="check" title="time" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Bgb-M9-TQY">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -177,7 +177,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1kF-qO-mmn">
-                                <rect key="frame" x="130" y="243" width="64" height="18"/>
+                                <rect key="frame" x="130" y="242" width="64" height="18"/>
                                 <buttonCell key="cell" type="check" title="owner" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="84c-uB-Nk8">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -187,7 +187,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hdU-S8-Hbp">
-                                <rect key="frame" x="197" y="243" width="90" height="18"/>
+                                <rect key="frame" x="197" y="242" width="90" height="18"/>
                                 <buttonCell key="cell" type="check" title="dirrectives" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="sfP-aC-4Ip">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -203,6 +203,7 @@
                             <constraint firstItem="1vb-ky-Svo" firstAttribute="centerY" secondItem="wC1-l0-DZY" secondAttribute="centerY" id="5U2-uQ-U3h"/>
                             <constraint firstItem="hgd-13-dsY" firstAttribute="centerY" secondItem="Mvl-Ks-h3G" secondAttribute="centerY" id="9hT-ah-zpj"/>
                             <constraint firstItem="1vb-ky-Svo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wC1-l0-DZY" secondAttribute="trailing" constant="10" id="B64-hT-6f5"/>
+                            <constraint firstItem="Ivl-5H-7ok" firstAttribute="centerY" secondItem="Sp5-n0-LSD" secondAttribute="centerY" id="Ef2-lv-HPN"/>
                             <constraint firstItem="Ivl-5H-7ok" firstAttribute="leading" secondItem="l6X-2e-Dmj" secondAttribute="leading" constant="10" id="FEN-R8-HRn"/>
                             <constraint firstAttribute="bottom" secondItem="wC1-l0-DZY" secondAttribute="bottom" constant="10" id="IdW-X7-GyD"/>
                             <constraint firstItem="wC1-l0-DZY" firstAttribute="top" secondItem="4uD-je-v1e" secondAttribute="bottom" constant="10" id="K6H-xm-mXq"/>
@@ -222,7 +223,6 @@
                             <constraint firstItem="Sp5-n0-LSD" firstAttribute="centerY" secondItem="Mvl-Ks-h3G" secondAttribute="centerY" id="mn0-6B-uXF"/>
                             <constraint firstItem="4uD-je-v1e" firstAttribute="top" secondItem="Mvl-Ks-h3G" secondAttribute="bottom" constant="10" id="nBD-I8-Xao"/>
                             <constraint firstItem="wC1-l0-DZY" firstAttribute="leading" secondItem="l6X-2e-Dmj" secondAttribute="leading" constant="10" id="nJC-pl-ept"/>
-                            <constraint firstItem="Ivl-5H-7ok" firstAttribute="top" secondItem="l6X-2e-Dmj" secondAttribute="top" constant="10" id="rsG-A0-zyL"/>
                             <constraint firstItem="1kF-qO-mmn" firstAttribute="centerY" secondItem="Ivl-5H-7ok" secondAttribute="centerY" id="ubj-ao-xXf"/>
                             <constraint firstItem="2JS-Tf-p5z" firstAttribute="centerY" secondItem="Ivl-5H-7ok" secondAttribute="centerY" id="yJd-zv-C8g"/>
                             <constraint firstItem="4uD-je-v1e" firstAttribute="leading" secondItem="l6X-2e-Dmj" secondAttribute="leading" constant="10" id="yVa-wQ-hIG"/>
