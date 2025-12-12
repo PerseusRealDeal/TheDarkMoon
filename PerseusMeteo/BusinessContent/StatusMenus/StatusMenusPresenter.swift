@@ -19,10 +19,7 @@ public class StatusMenusPresenter {
 
     // MARK: - Internals
 
-    private var meteoClientManager: MeteoClientManager?
     private var customStatusMenusItemContent: CustomStatusButtonView?
-    private var updateTimer: Timer?
-
     private let dataSource = globals.sourceWeather
 
     private var buttonWidth: CGFloat {
@@ -43,22 +40,11 @@ public class StatusMenusPresenter {
 
     init() {
 
-        // Meteo data fetcher
-        meteoClientManager = MeteoClientManager(presenter: self)
-
         // Observe localization events
         AppGlobals.notificationCenter.addObserver(
             self,
             selector: #selector(localize),
             name: NSNotification.Name.languageSwitchedManuallyNotification,
-            object: nil
-        )
-
-        // Observe StatusMenusItem events
-        AppGlobals.notificationCenter.addObserver(
-            self,
-            selector: #selector(updateStatusMenusItemTask),
-            name: NSNotification.Name.updateStatusMenusItemNotification,
             object: nil
         )
 
@@ -101,29 +87,9 @@ public class StatusMenusPresenter {
 
     // MARK: - Contract
 
-    public func callWeather() {
-        meteoClientManager?.fetchWeather()
-    }
-
-    public func callForecast() {
-        meteoClientManager?.fetchForecast()
-    }
-
-    public func fetchSuggestions(_ search: String) {
-        meteoClientManager?.fetchSuggestions(search)
-    }
-
     public func reloadData() {
         log.message("[\(type(of: self))].\(#function)")
         refresh()
-    }
-
-    public func startUpdateTimerIfNeeded() {
-        updateStatusMenusItemTask()
-    }
-
-    public func deinitTimer() {
-        updateTimer?.invalidate()
     }
 
     // MARK: - Internal Service
@@ -142,27 +108,6 @@ public class StatusMenusPresenter {
             popover.contentViewController = Coordinator.shared.screenPopover
             popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         }
-    }
-
-    @objc private func updateStatusMenusItemTask() {
-
-        log.message("[\(type(of: self))].\(#function)")
-
-        reset()
-        updateTimer?.invalidate()
-
-        guard AppOptions.statusMenusOption, AppOptions.statusMenusPeriodOption != .none else {
-            return
-        }
-
-        let period = AppOptions.statusMenusPeriodOption.timeInterval
-
-        updateTimer = Timer.scheduledTimer(withTimeInterval: period, repeats: true) { _ in
-            self.meteoClientManager?.fetchWeather()
-            log.message("The timer fired!")
-        }
-
-        meteoClientManager?.fetchWeather()
     }
 
     @objc private func makeUp() {

@@ -47,7 +47,7 @@ extension PopoverViewController {
 public class PopoverViewController: NSViewController {
 
     deinit {
-        Coordinator.shared.statusMenus.deinitTimer()
+        Coordinator.deinitTimer()
     }
 
     // MARK: - Presenter
@@ -306,7 +306,7 @@ public class PopoverViewController: NSViewController {
 
         refreshCallInformation()
 
-        Coordinator.shared.statusMenus.startUpdateTimerIfNeeded()
+        Coordinator.startUpdateTimerIfNeeded()
 
         log.message(userMessage, .notice, .custom, .enduser)
     }

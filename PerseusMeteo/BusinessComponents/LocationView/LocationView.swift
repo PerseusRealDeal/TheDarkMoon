@@ -142,8 +142,7 @@ class LocationView: NSView, NSTextFieldDelegate {
             return
         }
 
-        let statusMenus = Coordinator.shared.statusMenus
-        statusMenus.fetchSuggestions(textFieldLocationNameSearch.stringValue)
+        Coordinator.fetchSuggestions(textFieldLocationNameSearch.stringValue)
     }
 
     @IBAction func bookmarkButtonTapped(_ sender: NSButton) {
@@ -383,8 +382,7 @@ class LocationView: NSView, NSTextFieldDelegate {
                 return
             }
 
-            let statusMenus = Coordinator.shared.statusMenus
-            statusMenus.fetchSuggestions(self.textFieldLocationNameSearch.stringValue)
+            Coordinator.fetchSuggestions(self.textFieldLocationNameSearch.stringValue)
         })
     }
 

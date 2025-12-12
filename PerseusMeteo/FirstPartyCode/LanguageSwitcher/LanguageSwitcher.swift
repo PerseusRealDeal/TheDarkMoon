@@ -57,6 +57,10 @@ class LanguageSwitcher: NSObject {
         }
     }
 
+    public static func switchLanguageIfNeeded(_ currentUserChoice: LanguageOption) {
+        shared.switchLanguageIfNeeded(currentUserChoice)
+    }
+
     public func switchLanguageIfNeeded(_ currentUserChoice: LanguageOption) {
 
         var switchToLanguage = ""

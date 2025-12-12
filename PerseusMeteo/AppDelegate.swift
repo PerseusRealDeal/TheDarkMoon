@@ -23,8 +23,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         GeoCoordinator.reloadGeoComponents()
 
-        globals.languageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
-        Coordinator.shared.statusMenus.startUpdateTimerIfNeeded()
+        LanguageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
+        Coordinator.startUpdateTimerIfNeeded()
 
         // Observe system sleep events
         NSWorkspace.shared.notificationCenter.addObserver(
@@ -49,12 +49,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc func systemWillSleep(_ notification: Notification) {
         log.message("[\(type(of: self))].\(#function) System is about to sleep.", .info)
-        Coordinator.shared.statusMenus.deinitTimer()
+        Coordinator.deinitTimer()
     }
 
     @objc func systemDidWake(_ notification: Notification) {
         log.message("[\(type(of: self))].\(#function) System has woken up.", .info)
-        Coordinator.shared.statusMenus.startUpdateTimerIfNeeded()
+        Coordinator.startUpdateTimerIfNeeded()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

@@ -94,7 +94,7 @@ class OptionsViewPresenter: MVPPresenter {
             return
         }
 
-        globals.languageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
+        LanguageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
     }
 
     func forceTimeFormat(_ selected: Int) {

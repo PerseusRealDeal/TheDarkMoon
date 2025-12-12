@@ -134,7 +134,11 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
 
     @IBAction func checkBoxStatusMenusDidChanged(_ sender: NSButton) {
         log.message("[\(type(of: self))].\(#function) - \(checkBoxStatusMenus.state)")
-        presenter?.forceStatusMenus(sender.state == .on ? true : false)
+
+        let isEnabled = sender.state == .on ? true : false
+
+        presenter?.forceStatusMenus(isEnabled)
+        comboBoxStatusMenusUpdatePeriod.isEnabled = isEnabled
     }
 
     @IBAction func comboBoxStatusMenusUpdatePeriodDidChanged(_ sender: NSComboBox) {
@@ -450,7 +454,9 @@ extension OptionsViewController {
         }
 
         let selectedIndex = AppOptions.statusMenusPeriodOption.rawValue
+
         comboBoxStatusMenusUpdatePeriod.selectItem(at: selectedIndex)
+        comboBoxStatusMenusUpdatePeriod.isEnabled = AppOptions.statusMenusOption
     }
 
     private func refreshOptionsViewStates() {
