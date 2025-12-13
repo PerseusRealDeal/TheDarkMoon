@@ -39,9 +39,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="575" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4uD-je-v1e">
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" horizontalScrollElasticity="allowed" verticalScrollElasticity="allowed" translatesAutoresizingMaskIntoConstraints="NO" id="4uD-je-v1e">
                                 <rect key="frame" x="90" y="40" width="475" height="190"/>
-                                <clipView key="contentView" drawsBackground="NO" id="ta0-vY-Xbf">
+                                <clipView key="contentView" id="ta0-vY-Xbf">
                                     <rect key="frame" x="0.0" y="0.0" width="475" height="190"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>

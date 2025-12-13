@@ -1,4 +1,4 @@
-# Approbation Matrix / Snowman v0.4.1 && v0.4.2
+# Approbation Matrix / Snowman v0.4.1 && v0.4.2 && v0.4.3
 
 > Build System: macOS Monterey 12.7.6 / Xcode 14.2
 
@@ -58,16 +58,16 @@
 
 > Approbated capability: options (window with the app's options, also and all other options)<br/>
 
-| macOS       | Version  | Ok? | Details                                   |
-| ----------- | -------- | --- | ----------------------------------------- |
-| High Sierra | 10.13.6  | ok  | Dark Mode in .auto only, light by default |
-| Mojave      | 10.14.6  | ok  | -                                         |
-| Catalina    | 10.15.7  | ok  | -                                         |
-| Big Sur     | 11.7.10  | ok  | -                                         |
-| Monterey    | 12.7.6   | ok  | -                                         |
-| Ventura     | 13.7.4   | ok  | -                                         |
-| Sonoma      | 14.7.4   | ok  | -                                         |
-| Sequoia     | 15.3.1   | ok  | -                                         |
+| macOS       | Version  | Ok? | Details |
+| ----------- | -------- | --- | ------- |
+| High Sierra | 10.13.6  | ok  | -       |
+| Mojave      | 10.14.6  | ok  | -       |
+| Catalina    | 10.15.7  | ok  | -       |
+| Big Sur     | 11.7.10  | ok  | -       |
+| Monterey    | 12.7.6   | ok  | -       |
+| Ventura     | 13.7.4   | ok  | -       |
+| Sonoma      | 14.7.4   | ok  | -       |
+| Sequoia     | 15.3.1   | ok  | -       |
 
 ## A3 environment
 

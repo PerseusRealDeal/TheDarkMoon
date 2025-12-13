@@ -102,7 +102,9 @@ class Coordinator {
     @objc private func updateStatusMenusItemTask() {
 
         let main = Coordinator.shared
+
         main.updateTimer?.invalidate()
+        main.statusMenus.reloadData()
 
         guard
             AppOptions.statusMenusOption,
@@ -111,7 +113,6 @@ class Coordinator {
             return
         }
 
-        main.statusMenus.reloadData()
         main.updateTimer = Timer.scheduledTimer(
             withTimeInterval: AppOptions.statusMenusPeriodOption.timeInterval,
             repeats: true) { _ in

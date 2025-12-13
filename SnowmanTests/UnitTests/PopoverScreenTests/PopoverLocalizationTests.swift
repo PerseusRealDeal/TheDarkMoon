@@ -156,7 +156,10 @@ class PopoverScreenLocalizationTests: XCTestCase {
         XCTAssertEqual(sut.viewWeather.viewMeteoGroup.value8.stringValue,
                        MeteoFactsDefaults.humidity)
 
-        // TODO: - Add cloudiness test
+        XCTAssertEqual(sut.viewWeather.viewMeteoGroup.title9.stringValue,
+                       "Prefix: Cloudiness".localizedValue)
+        XCTAssertEqual(sut.viewWeather.viewMeteoGroup.value9.stringValue,
+                       MeteoFactsDefaults.cloudiness)
     }
 
     func test_Localization_of_ForecastView_MeteoGroupView() {

@@ -233,10 +233,10 @@ class LocationView: NSView, NSTextFieldDelegate {
 
         self.addConstraints(newConstraints)
 
-        initSetupView()
+        geoSetup()
     }
 
-    private func initSetupView() {
+    private func geoSetup() {
 
         // Determine location card type
 
@@ -276,16 +276,27 @@ class LocationView: NSView, NSTextFieldDelegate {
         log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
 
         if isHighSierra {
+
             self.appearance = LIGHT_APPEARANCE_DEFAULT_IN_USE
 
-            let colorSet = DarkModeAgent.shared.style == .dark ?
-            DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
+            let style = DarkModeAgent.shared.style
+
+            let colorSet =
+            style == .dark ? DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
 
             self.textFieldLocationNameSearch.appearance = colorSet
             self.comboBoxFavorites.appearance = colorSet
             self.checkBoxAutoSuggestionsRequest.appearance = colorSet
             self.buttonSuggestionsRequest.appearance = colorSet
             self.buttonUpdateCurrentLocation.appearance = colorSet
+            self.buttonBookmark.appearance = colorSet
+
+            let whiteOrBlack: Color = style == .dark ? .white : .black
+
+            self.labelPermissionStatus.textColor = whiteOrBlack
+            self.labelLocationName.textColor = whiteOrBlack
+            self.labelGeoCoordinates.textColor = whiteOrBlack
+            self.labelAutoSuggestionsRequest.textColor = whiteOrBlack
         }
 
         viewSuggestions.collectionView?.reloadData()

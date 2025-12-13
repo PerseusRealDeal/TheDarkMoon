@@ -71,6 +71,13 @@ class ForecastHoursViewItem: NSCollectionViewItem {
         /*
          view.layer?.backgroundColor = isSelected ? NSColor.red.cgColor : NSColor.clear.cgColor
          */
+        if isHighSierra {
+            let whiteOrBlack: Color = DarkModeAgent.shared.style == .dark ? .white : .black
+
+            self.time?.textColor = whiteOrBlack
+            self.temperature?.textColor = whiteOrBlack
+            self.incomingPrecipitation?.textColor = whiteOrBlack
+        }
     }
 
     private func reload() {

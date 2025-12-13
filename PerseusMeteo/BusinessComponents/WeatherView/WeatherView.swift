@@ -192,11 +192,41 @@ class WeatherView: NSView {
 // MARK: - DARK MODE
 
 extension WeatherView {
+
     public func makeup() {
+
         log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
 
         if isHighSierra {
+
             self.appearance = LIGHT_APPEARANCE_DEFAULT_IN_USE
+            let whiteOrBlack: Color = DarkModeAgent.shared.style == .dark ? .white : .black
+
+            self.labelTemperatureValue.textColor = whiteOrBlack
+            self.labelWeatherConditionsDescriptionValue.textColor = whiteOrBlack
+            self.labelSunriseTitle.textColor = whiteOrBlack
+            self.labelSunsetTitle.textColor = whiteOrBlack
+            self.labelSunriseValue.textColor = whiteOrBlack
+            self.labelSunsetValue.textColor = whiteOrBlack
+
+            self.viewMeteoGroup.title1.textColor = whiteOrBlack
+            self.viewMeteoGroup.value1.textColor = whiteOrBlack
+            self.viewMeteoGroup.title2.textColor = whiteOrBlack
+            self.viewMeteoGroup.value2.textColor = whiteOrBlack
+            self.viewMeteoGroup.title3.textColor = whiteOrBlack
+            self.viewMeteoGroup.value3.textColor = whiteOrBlack
+            self.viewMeteoGroup.title4.textColor = whiteOrBlack
+            self.viewMeteoGroup.value4.textColor = whiteOrBlack
+            self.viewMeteoGroup.title5.textColor = whiteOrBlack
+            self.viewMeteoGroup.value5.textColor = whiteOrBlack
+            self.viewMeteoGroup.title6.textColor = whiteOrBlack
+            self.viewMeteoGroup.value6.textColor = whiteOrBlack
+            self.viewMeteoGroup.title7.textColor = whiteOrBlack
+            self.viewMeteoGroup.value7.textColor = whiteOrBlack
+            self.viewMeteoGroup.title8.textColor = whiteOrBlack
+            self.viewMeteoGroup.value8.textColor = whiteOrBlack
+            self.viewMeteoGroup.title9.textColor = whiteOrBlack
+            self.viewMeteoGroup.value9.textColor = whiteOrBlack
         }
     }
 }
