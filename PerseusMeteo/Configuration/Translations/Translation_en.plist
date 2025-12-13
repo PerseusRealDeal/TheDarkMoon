@@ -20,6 +20,16 @@
 	<string>P2P</string>
 	<key>P2P stands for Person to Person</key>
 	<string>P2P stands for Person to Person</string>
+    <key>/* Redirect Alert */</key>
+    <string>--</string>
+    <key>Redirect Alert: title</key>
+    <string>Location Services.</string>
+    <key>Redirect Alert: message</key>
+    <string>The Current Location Services Status can be changed in System Services.</string>
+    <key>Redirect Alert: cancel</key>
+    <string>OK</string>
+    <key>Redirect Alert: function</key>
+    <string>System Services</string>
 	<key>/* Popover Screen */</key>
 	<string>--</string>
 	<key>Button: Call Weather</key>

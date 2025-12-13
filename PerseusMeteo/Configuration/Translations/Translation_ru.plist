@@ -20,6 +20,16 @@
 	<string>P2P</string>
 	<key>P2P stands for Person to Person</key>
 	<string>P2P значит от личности к личности</string>
+    <key>/* Redirect Alert */</key>
+    <string>--</string>
+    <key>Redirect Alert: title</key>
+    <string>Службы Локации.</string>
+    <key>Redirect Alert: message</key>
+    <string>Статус Гео Доступа можно актуализировать через Системные Настройки.</string>
+    <key>Redirect Alert: cancel</key>
+    <string>Хорошо</string>
+    <key>Redirect Alert: function</key>
+    <string>Системные Настройки</string>
 	<key>/* Popover Screen */</key>
 	<string>--</string>
 	<key>Button: Call Weather</key>

@@ -63,14 +63,17 @@ let DEFAULT_VISIBLE_REGION = MKCoordinateRegion(center: DEFAULT_MAP_POINT.coordi
                                                 longitudinalMeters: DEFAULT_MAP_RADIUS)
 
 var REDIRECT_ALERT_TITLES = ActionAlertText(
-    title: "Location Services.",
+    title: "Location Services",
     message: "The Current Location Services Status can be changed in System Services.",
     buttonCancel: "OK",
     buttonFunction: "System Services")
 
 extension ActionAlertText {
     var titleWithStatus: String {
-        return "Location Services: \(GeoAgent.currentStatus.description.capitalized)."
+        guard let status = titleCalculated else {
+            return "Location Services: \(GeoAgent.currentStatus.description.capitalized)"
+        }
+        return status()
     }
 }
 

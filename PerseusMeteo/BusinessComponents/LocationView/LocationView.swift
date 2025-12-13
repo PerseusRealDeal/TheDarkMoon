@@ -78,11 +78,6 @@ class LocationView: NSView, NSTextFieldDelegate {
         return "Geo Couple".localizedValue
     }
 
-    private var permissionStatusLocalized: String {
-        return "Label: Permission".localizedValue + ": " +
-        GeoAgent.currentStatus.localizedKey.localizedValue
-    }
-
     // MARK: - Properties
 
     public var locationCard: LocationCardType = .current
@@ -256,7 +251,7 @@ class LocationView: NSView, NSTextFieldDelegate {
     // MARK: - Contract
 
     @objc public func reloadData() {
-        labelPermissionStatus.stringValue = permissionStatusLocalized
+        labelPermissionStatus.stringValue = AppGlobals.permissionStatusLocalized()
 
         let locationNameLocalizedFull = locationNameLocalized
         let lengthLimit = 28
@@ -298,6 +293,14 @@ class LocationView: NSView, NSTextFieldDelegate {
 
     public func localize() {
         reloadData()
+
+        REDIRECT_ALERT_TITLES = ActionAlertText(
+            title: "Redirect Alert: title".localizedValue,
+            message: "Redirect Alert: message".localizedValue,
+            buttonCancel: "Redirect Alert: cancel".localizedValue,
+            buttonFunction: "Redirect Alert: function".localizedValue
+        )
+        REDIRECT_ALERT_TITLES.titleCalculated = AppGlobals.permissionStatusLocalized
     }
 
     private func reloadComboBox() {

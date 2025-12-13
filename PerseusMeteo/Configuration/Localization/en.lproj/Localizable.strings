@@ -28,6 +28,13 @@
 
 "Label: Made with Love" = "Made with Love from Novosibirsk";
 
+/* Redirect Alert */
+
+"Redirect Alert: title" = "Location Services.";
+"Redirect Alert: message" = "The Current Location Services Status can be changed in System Services.";
+"Redirect Alert: cancel" = "OK";
+"Redirect Alert: function" = "System Services";
+
 /* Popover Screen – PopoverViewController */
 
 "Button: Call Weather" = "Call Weather";

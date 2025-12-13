@@ -80,8 +80,8 @@ class PopoverScreenLocalizationTests: XCTestCase {
                        "Geo Couple".localizedValue)
  */
         XCTAssertEqual(sut.viewLocation.labelPermissionStatus.stringValue,
-                       "Label: Permission".localizedValue + ": " +
-                       GeoAgent.currentStatus.localizedKey.localizedValue)
+                       "Label: Permission".localizedValue +
+                       ": \(GeoAgent.currentStatus.localizedKey.localizedValue).")
     }
 
     func test_Localization_of_WeatherView() {

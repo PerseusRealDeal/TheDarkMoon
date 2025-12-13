@@ -185,3 +185,10 @@ func loadCPLProfile(_ name: String) -> (status: Bool, info: String) {
         return (false, "Failed to create URL.")
     }
 }
+
+extension AppGlobals {
+    static func permissionStatusLocalized() -> String {
+        let status = GeoAgent.currentStatus.localizedKey.localizedValue
+        return "Label: Permission".localizedValue + ": \(status)."
+    }
+}

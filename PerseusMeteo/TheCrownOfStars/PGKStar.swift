@@ -892,6 +892,8 @@ public struct ActionAlertText {
         self.buttonCancel = buttonCancel
         self.buttonFunction = buttonFunction
     }
+
+    public var titleCalculated: (() -> String)?
 }
 
 // MARK: - Alert for iOS
