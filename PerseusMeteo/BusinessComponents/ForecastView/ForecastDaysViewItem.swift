@@ -75,6 +75,13 @@ class ForecastDaysViewItem: NSCollectionViewItem {
 
         view.layer?.backgroundColor = NSColor.clear.cgColor
         // isSelected ? NSColor.red.cgColor : NSColor.clear.cgColor
+        if isHighSierra {
+            let whiteOrBlack: Color = DarkModeAgent.shared.style == .dark ? .white : .black
+
+            self.date?.textColor = whiteOrBlack
+            self.labelWeatherConditionValue?.textColor = whiteOrBlack
+            self.temperature?.textColor = whiteOrBlack
+        }
     }
 
     private func reload() {

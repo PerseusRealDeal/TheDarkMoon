@@ -108,8 +108,11 @@ public class MeteoClientManager {
             DispatchQueue.main.async {
 
                 // stopAnimationIndicator
-                Coordinator.shared.screenPopover.viewLocation.indicatorCircular?.isHidden = true
-                Coordinator.shared.screenPopover.viewLocation.indicatorCircular?.stopAnimation(nil)
+
+                let indicator = Coordinator.shared.screenPopover.viewLocation.indicatorCircular
+
+                indicator?.isHidden = true
+                indicator?.stopAnimation(nil)
 
                 var suggestions: Data?
 
@@ -384,6 +387,7 @@ public class MeteoClientManager {
             viewLocation.viewSuggestions.heightCalculated
 
             viewLocation.collectionSuggestions?.reloadData()
+            viewLocation.hideControls()
 
             NSAnimationContext.runAnimationGroup({ context in
                 context.duration = 0.5

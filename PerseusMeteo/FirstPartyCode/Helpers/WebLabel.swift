@@ -59,8 +59,10 @@ class WebLabel: NSTextField {
         }
     }
 
-    public var weblink: String {
-        return text == AppGlobals.meteoProviderName ? linkAuthor : linkOpenWeather
+    public var weblink: String = linkAuthor {
+        didSet {
+            self.toolTip = weblink
+        }
     }
 
     // MARK: - Initialization
@@ -77,7 +79,7 @@ class WebLabel: NSTextField {
 
     private func configure() {
         theDarknessTrigger = DarkModeObserver { _ in
-            self.textColor = .labelPerseus
+            self.reset(self.text, color: .labelPerseus)
         }
     }
 

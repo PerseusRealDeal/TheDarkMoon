@@ -260,6 +260,22 @@ class TranslationTests: XCTestCase {
                        "Prefix: Last One".localizedValue)
     }
 
+    func test_translation_of_redirect_alert() {
+
+        // assert
+
+        XCTAssertEqual("Redirect Alert: title".localizedExpectation,
+                       "Redirect Alert: title".localizedValue)
+
+        XCTAssertEqual("Redirect Alert: message".localizedExpectation,
+                       "Redirect Alert: message".localizedValue)
+
+        XCTAssertEqual("Redirect Alert: cancel".localizedExpectation,
+                       "Redirect Alert: cancel".localizedValue)
+
+        XCTAssertEqual("Redirect Alert: function".localizedExpectation,
+                       "Redirect Alert: function".localizedValue)
+    }
     // MARK: - ForecastView
 
     func test_translation_of_PopoverScreen_ForecastView() {

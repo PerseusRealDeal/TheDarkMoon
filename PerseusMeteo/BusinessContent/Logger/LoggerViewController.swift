@@ -59,8 +59,6 @@ class LoggerViewController: NSViewController {
 
     // MARK: - Outlets
 
-    @IBOutlet private(set) weak var buttonClose: NSButton!
-
     @IBOutlet private(set) weak var buttonTurned: NSButton!
     @IBOutlet private(set) weak var buttonMarks: NSButton!
     @IBOutlet private(set) weak var buttonTime: NSButton!
@@ -73,10 +71,6 @@ class LoggerViewController: NSViewController {
     @IBOutlet private(set) weak var comboBoxLevel: NSComboBox!
 
     // MARK: - Actions
-
-    @IBAction func buttonCloseTapped(_ sender: Any) {
-        self.view.window?.close()
-    }
 
     @IBAction func buttonTurnedTapped(_ sender: NSButton) {
         presenter?.forceTurned(sender.state == .on ? true : false)
@@ -109,6 +103,10 @@ class LoggerViewController: NSViewController {
     @IBAction func actionLevelDidChanged(_ sender: NSComboBox) {
         presenter?.forceLevel(sender.indexOfSelectedItem)
     }
+
+    @IBAction func buttonClearTapped(_ sender: NSButton) {
+        presenter?.forceClear()
+    }
 }
 
 // MARK: - MVP View
@@ -133,7 +131,7 @@ extension LoggerViewController: LoggerViewDelegate {
 
     func setupUI() {
         log.message("[\(type(of: self))].\(#function)")
-        texViewMessages.backgroundColor = .clear
+        texViewMessages.backgroundColor = .black
     }
 
     func makeUp() {
@@ -145,17 +143,15 @@ extension LoggerViewController: LoggerViewDelegate {
         if isHighSierra {
             view.window?.appearance = DarkModeAgent.DarkModeUserChoice == .on ?
             DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
+            texViewMessages.textColor = DarkMode.style == .dark ? .white : .gray
+        } else {
+            texViewMessages.textColor = DarkMode.style == .dark ? .perseusGreen : .perseusGray
         }
-
-        texViewMessages.textColor = DarkMode.style == .dark ? .perseusGreen : .perseusGray
     }
 
     func localize() {
-
         log.message("[\(type(of: self))].\(#function)")
-
         self.view.window?.title = "Button: Logger".localizedValue
-        buttonClose.title = "Button: Close".localizedValue
     }
 }
 

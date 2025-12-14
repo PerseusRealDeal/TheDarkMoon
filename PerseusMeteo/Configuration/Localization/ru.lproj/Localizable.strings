@@ -25,6 +25,13 @@
 
 "Label: Made with Love" = "C любовью из Новосибирска";
 
+/* Redirect Alert */
+
+"Redirect Alert: title" = "Службы Локации.";
+"Redirect Alert: message" = "Статус Гео Доступа можно актуализировать через Системные Настройки.";
+"Redirect Alert: cancel" = "Хорошо";
+"Redirect Alert: function" = "Системные Настройки";
+
 /* Popover Screen – PopoverViewController */
 
 "Button: Call Weather" = "Запросить Погоду";

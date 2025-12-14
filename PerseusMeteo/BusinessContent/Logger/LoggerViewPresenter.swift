@@ -162,4 +162,12 @@ class LoggerViewPresenter: MVPPresenter {
 
         log.level = item
     }
+
+    func forceClear() {
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        report.clear()
+        (view as? LoggerViewDelegate)?.clear()
+    }
 }
