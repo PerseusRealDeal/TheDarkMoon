@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Selfie screen.
 - Logger screen.
+- PGK dependecy to v1.1.2.
 
 ### Other
 

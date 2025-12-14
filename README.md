@@ -52,10 +52,10 @@
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/bd54cde7-d560-4df3-a717-c7d4b709658f" width="350" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/cc7925f0-5f69-41fa-bc14-09f4d1b65919" width="350" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
     <td>
-        <img src="https://github.com/user-attachments/assets/dc643d02-04e5-4390-a9f1-3fe42f646388" width="350" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/3dbeb9d3-8641-40a0-87de-e71bb944e52f" width="350" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
