@@ -30,5 +30,7 @@ class TestingAppDelegate: NSResponder, NSApplicationDelegate {
         // Common configuration
 
         log.message("> Ready with testing matter purpose...", .info)
+
+        // AppOptions.removeAll()
     }
 }

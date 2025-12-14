@@ -21,8 +21,8 @@ let linkPerseusDarkMode =
 let linkTheOpenWeatherClient =
 "https://github.com/perseusrealdeal/OpenWeatherFreeClient"
 
-let linkPerseusGeoLocationKit =
-"https://github.com/perseusrealdeal/PerseusGeoLocationKit"
+let linkPerseusGeoKit =
+"https://github.com/perseusrealdeal/PerseusGeoKit"
 
 let linkPerseusCompassDirection =
 "https://gist.github.com/perseusrealdeal/3b053b2390d704f561ec52c6477b5cf2"
@@ -47,3 +47,9 @@ let linkTermsAndConditions =
 
 let linkLicense =
 "https://docs.google.com/document/d/1V9n-IQYl9VQeoQxXDdgohgXgGkDSGe5yWOGizOGr6a0/"
+
+let linkAuthor =
+"https://github.com/perseusrealdeal"
+
+let linkOpenWeather =
+"https://openweathermap.org/"

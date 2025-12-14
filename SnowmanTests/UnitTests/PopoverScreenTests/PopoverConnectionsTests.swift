@@ -46,10 +46,6 @@ class PopoverConnectionsTests: XCTestCase {
         XCTAssertNotNil(sut.buttonFetchMeteoFacts)
         XCTAssertNotNil(sut.labelMadeWithLove)
 
-        XCTAssertNotNil(sut.viewTabs)
-        XCTAssertNotNil(sut.tabCurrentWeather)
-        XCTAssertNotNil(sut.tabForecast)
-
         XCTAssertNotNil(sut.buttonAbout)
         XCTAssertNotNil(sut.buttonOptions)
         XCTAssertNotNil(sut.buttonLogger)
@@ -81,9 +77,6 @@ class PopoverConnectionsTests: XCTestCase {
         // assert
 
         XCTAssertNotNil(sut.viewWeather.viewContent)
-
-        XCTAssertNotNil(sut.viewWeather.labelMeteoProvider)
-
         XCTAssertNotNil(sut.viewWeather.indicator)
 
         XCTAssertNotNil(sut.viewWeather.viewWeatherConditionsIcon)
@@ -103,8 +96,6 @@ class PopoverConnectionsTests: XCTestCase {
         sut.loadView()
 
         // assert
-
-        XCTAssertNotNil(sut.viewForecast.labelMeteoProvider)
 
         XCTAssertNotNil(sut.viewForecast.indicator)
     }

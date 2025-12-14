@@ -58,22 +58,22 @@ class SelfieViewController: NSViewController {
     @IBOutlet weak var labelCopyrightDetailsText: NSTextField!
     @IBOutlet weak var viewTheCreditsText: NSTextView!
 
-    @IBOutlet weak var buttonTheAppSourceCode: NSButton!
-    @IBOutlet weak var buttonTheTechnologicalTree: NSButton!
+    @IBOutlet weak var labelTheAppSourceCode: WebLabel!
+    @IBOutlet weak var labelTheTechnologicalTree: WebLabel!
 
     @IBOutlet weak var buttonLicense: NSButton!
     @IBOutlet weak var buttonTerms: NSButton!
 
     @IBOutlet weak var buttonClose: NSButton!
 
-    @IBOutlet weak var buttonPerseusDarkMode: NSButton!
-    @IBOutlet weak var buttonPerseusGeoLocationKit: NSButton!
-    @IBOutlet weak var buttonPerseusLogger: NSButton!
-    @IBOutlet weak var buttonConsolePerseusLogger: NSButton!
-    @IBOutlet weak var buttonPerseusTimeFormat: NSButton!
-    @IBOutlet weak var buttonPerseusCompassDirection: NSButton!
-    @IBOutlet weak var buttonSnowman: NSButton!
-    @IBOutlet weak var buttonConvertorMov2Gif: NSButton!
+    @IBOutlet weak var labelPerseusDarkMode: WebLabel!
+    @IBOutlet weak var labelPerseusGeoKit: WebLabel!
+    @IBOutlet weak var labelPerseusLogger: WebLabel!
+    @IBOutlet weak var labelConsolePerseusLogger: WebLabel!
+    @IBOutlet weak var labelPerseusTimeFormat: WebLabel!
+    @IBOutlet weak var labelPerseusCompassDirection: WebLabel!
+    @IBOutlet weak var labelSnowman: WebLabel!
+    @IBOutlet weak var labelConvertorMov2Gif: WebLabel!
 
     // MARK: - Actions
 
@@ -96,39 +96,6 @@ class SelfieViewController: NSViewController {
     @IBAction func buttonTheAppSourceCodeTapped(_ sender: Any) {
         AppGlobals.openDefaultBrowser(string: linkTheAppSourceCode)
     }
-
-    @IBAction func buttonPerseusDarkModeTapped(_ sender: Any) {
-        AppGlobals.openDefaultBrowser(string: linkPerseusDarkMode)
-    }
-
-    @IBAction func buttonPerseusGeoLocationKitTapped(_ sender: Any) {
-        AppGlobals.openDefaultBrowser(string: linkPerseusGeoLocationKit)
-    }
-
-    @IBAction func buttonPerseusLoggerTapped(_ sender: Any) {
-        AppGlobals.openDefaultBrowser(string: linkPerseusLogger)
-    }
-
-    @IBAction func buttonConsolePerseusLoggerTapped(_ sender: Any) {
-        AppGlobals.openDefaultBrowser(string: linkConsolePerseusLogger)
-    }
-
-    @IBAction func buttonPerseusTimeFormatTapped(_ sender: Any) {
-        AppGlobals.openDefaultBrowser(string: linkPerseusTimeFormat)
-    }
-
-    @IBAction func buttonPerseusCompassDirectionTapped(_ sender: Any) {
-        AppGlobals.openDefaultBrowser(string: linkPerseusCompassDirection)
-    }
-
-    @IBAction func buttonSnowmanTapped(_ sender: Any) {
-        AppGlobals.openDefaultBrowser(string: linkSnowman)
-    }
-
-    @IBAction func buttonConvertorMov2GifTapped(_ sender: Any) {
-        AppGlobals.openDefaultBrowser(string: linkConvertorMov2Gif)
-    }
-
 }
 
 // MARK: - MVP View
@@ -143,16 +110,32 @@ extension SelfieViewController: SelfieViewDelegate {
 
         self.view.wantsLayer = true
 
-        buttonTheAppSourceCode.toolTip = linkTheAppSourceCode
-        buttonTheTechnologicalTree.toolTip = linkTheTechnologicalTree
+        labelTheAppSourceCode.weblink = linkTheAppSourceCode
+        labelTheTechnologicalTree.weblink = linkTheTechnologicalTree
 
-        buttonPerseusDarkMode.toolTip = linkPerseusDarkMode
-        buttonPerseusGeoLocationKit.toolTip = linkPerseusGeoLocationKit
+        labelPerseusDarkMode.weblink = linkPerseusDarkMode
+        labelPerseusDarkMode.text = "PerseusDarkMode"
 
-        buttonPerseusCompassDirection.toolTip = linkPerseusCompassDirection
-        buttonPerseusTimeFormat.toolTip = linkPerseusTimeFormat
-        buttonPerseusLogger.toolTip = linkPerseusLogger
-        buttonConsolePerseusLogger.toolTip = linkConsolePerseusLogger
+        labelPerseusGeoKit.weblink = linkPerseusGeoKit
+        labelPerseusGeoKit.text = "PerseusGeoKit"
+
+        labelPerseusCompassDirection.weblink = linkPerseusCompassDirection
+        labelPerseusCompassDirection.text = "PerseusCompassDirection"
+
+        labelPerseusTimeFormat.weblink = linkPerseusTimeFormat
+        labelPerseusTimeFormat.text = "PerseusTimeFormat"
+
+        labelPerseusLogger.weblink = linkPerseusLogger
+        labelPerseusLogger.text = "PerseusLogger"
+
+        labelConsolePerseusLogger.weblink = linkConsolePerseusLogger
+        labelConsolePerseusLogger.text = "ConsolePerseusLogger"
+
+        labelSnowman.weblink = linkSnowman
+        labelSnowman.text = "Snowman"
+
+        labelConvertorMov2Gif.weblink = linkConvertorMov2Gif
+        labelConvertorMov2Gif.text = "Convertor mov2gif"
 
         viewTheCreditsText.backgroundColor = .clear
         viewTheCreditsText.isEditable = false
@@ -170,6 +153,8 @@ extension SelfieViewController: SelfieViewDelegate {
             view.window?.appearance = DarkModeAgent.DarkModeUserChoice == .on ?
             DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
         }
+
+        viewTheCreditsText.textColor = .perseusGray
     }
 
     func localize() {
@@ -178,8 +163,9 @@ extension SelfieViewController: SelfieViewDelegate {
 
         self.view.window?.title = "Title: The Dark Moon".localizedValue
 
-        buttonTheAppSourceCode.title = "Button: The App Source Code".localizedValue
-        buttonTheTechnologicalTree.title = "Button: The Technological Tree".localizedValue
+        labelTheAppSourceCode.text = "Button: The App Source Code".localizedValue
+        labelTheTechnologicalTree.text = "Button: The Technological Tree".localizedValue
+
         buttonLicense.title = "Button: License".localizedValue
         buttonTerms.title = "Button: Terms & Conditions".localizedValue
         buttonClose.title = "Button: Close".localizedValue

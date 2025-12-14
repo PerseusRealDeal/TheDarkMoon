@@ -19,12 +19,8 @@ public class StatusMenusPresenter {
 
     // MARK: - Internals
 
-    private var meteoClientManager: MeteoClientManager?
     private var customStatusMenusItemContent: CustomStatusButtonView?
-    private var updateTimer: Timer?
-
     private let dataSource = globals.sourceWeather
-    private let theDarknessTrigger = DarkModeObserver()
 
     private var buttonWidth: CGFloat {
         return 78.0
@@ -40,30 +36,9 @@ public class StatusMenusPresenter {
         }
     }
 
-    // MARK: - Screens
-
-    public lazy var screenPopover = { () -> PopoverViewController in
-        return PopoverViewController.storyboardInstance()
-    }()
-
-    public lazy var screenOptions = { () -> OptionsWindowController in
-        return OptionsWindowController.storyboardInstance()
-    }()
-
-    public lazy var screenSelfie = { () -> SelfieWindowController in
-        return SelfieWindowController.storyboardInstance()
-    }()
-
-    public lazy var screenLogger = { () -> LoggerWindowController in
-        return LoggerWindowController.storyboardInstance()
-    }()
-
     // MARK: - Initialization
 
     init() {
-
-        // Meteo data fetcher
-        meteoClientManager = MeteoClientManager(presenter: self)
 
         // Observe localization events
         AppGlobals.notificationCenter.addObserver(
@@ -72,17 +47,6 @@ public class StatusMenusPresenter {
             name: NSNotification.Name.languageSwitchedManuallyNotification,
             object: nil
         )
-
-        // Observe StatusMenusItem events
-        AppGlobals.notificationCenter.addObserver(
-            self,
-            selector: #selector(updateStatusMenusItemTask),
-            name: NSNotification.Name.updateStatusMenusItemNotification,
-            object: nil
-        )
-
-        // Dark Mode
-        theDarknessTrigger.action = { _ in self.makeUp() }
 
         // StatusMenus popover
         popover = NSPopover()
@@ -115,34 +79,17 @@ public class StatusMenusPresenter {
             }
         }
 
+        // Dark Mode
+        DarkModeAgent.register(stakeholder: self, selector: #selector(makeUp))
+
         refresh()
     }
 
     // MARK: - Contract
 
-    public func callWeather() {
-        meteoClientManager?.fetchWeather()
-    }
-
-    public func callForecast() {
-        meteoClientManager?.fetchForecast()
-    }
-
-    public func fetchSuggestions(_ search: String) {
-        meteoClientManager?.fetchSuggestions(search)
-    }
-
     public func reloadData() {
         log.message("[\(type(of: self))].\(#function)")
         refresh()
-    }
-
-    public func startUpdateTimerIfNeeded() {
-        updateStatusMenusItemTask()
-    }
-
-    public func deinitTimer() {
-        updateTimer?.invalidate()
     }
 
     // MARK: - Internal Service
@@ -155,38 +102,20 @@ public class StatusMenusPresenter {
 
         if popover.isShown {
             popover.performClose(button)
-            screenSelfie.close()
-            screenOptions.close()
+            Coordinator.shared.screenSelfie.close()
+            Coordinator.shared.screenOptions.close()
         } else {
-            popover.contentViewController = screenPopover
+            popover.contentViewController = Coordinator.shared.screenPopover
             popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         }
     }
 
-    @objc private func updateStatusMenusItemTask() {
-
+    @objc private func makeUp() {
         log.message("[\(type(of: self))].\(#function)")
 
-        reset()
-        updateTimer?.invalidate()
-
-        guard AppOptions.statusMenusOption, AppOptions.statusMenusPeriodOption != .none else {
-            return
-        }
-
-        let period = AppOptions.statusMenusPeriodOption.timeInterval
-
-        updateTimer = Timer.scheduledTimer(withTimeInterval: period, repeats: true) { _ in
-            self.meteoClientManager?.fetchWeather()
-            log.message("The timer fired!")
-        }
-
-        meteoClientManager?.fetchWeather()
-    }
-
-    @objc private func makeUp() {
-        statusMenusPresenter.popover?.appearance = DarkModeAgent.shared.style == .light ?
-        LIGHT_APPEARANCE_DEFAULT_IN_USE : DARK_APPEARANCE_DEFAULT_IN_USE
+        Coordinator.shared.statusMenus.popover?.appearance =
+        DarkModeAgent.shared.style == .light ? LIGHT_APPEARANCE_DEFAULT_IN_USE :
+        DARK_APPEARANCE_DEFAULT_IN_USE
     }
 
     @objc private func localize() {

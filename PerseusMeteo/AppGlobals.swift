@@ -98,7 +98,7 @@ struct AppGlobals {
 
             // Save the date and time of the last one.
 
-            let src = statusMenusPresenter.screenPopover.viewForecast.dataSource
+            let src = Coordinator.shared.screenPopover.viewForecast.dataSource
             let currentTimeInUTC = Date().timeIntervalSince1970
 
             src.addResponseDateAndTime(dt: Int(currentTimeInUTC))
@@ -155,7 +155,7 @@ struct AppGlobals {
     }
 
     static func quitTheApp() {
-        statusMenusPresenter.deinitTimer()
+        Coordinator.deinitTimer()
         app.terminate(appDelegate)
     }
 
@@ -169,7 +169,26 @@ struct AppGlobals {
         }
 
         _ = NSWorkspace.shared.open(url) ?
-        log.message("[\(type(of: self))].\(#function) - default browser opened") :
-        log.message("[\(type(of: self))].\(#function) - default browser not opened")
+        log.message("[\(type(of: self))].\(#function) Default browser opened.") :
+        log.message("[\(type(of: self))].\(#function) Default browser not opened.")
+    }
+}
+
+func loadCPLProfile(_ name: String) -> (status: Bool, info: String) {
+    if let path = Bundle.main.url(forResource: name, withExtension: "json") {
+        if log.loadConfig(path) {
+            return (true, "Options successfully reseted.")
+        } else {
+            return (false, "Failed to reset options.")
+        }
+    } else {
+        return (false, "Failed to create URL.")
+    }
+}
+
+extension AppGlobals {
+    static func permissionStatusLocalized() -> String {
+        let status = GeoAgent.currentStatus.localizedKey.localizedValue
+        return "Label: Permission".localizedValue + ": \(status)."
     }
 }

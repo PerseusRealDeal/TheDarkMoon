@@ -17,7 +17,7 @@
 //  Copyright © 7530 - 7534 PerseusRealDeal
 //
 //  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year. It means that "Sep 01, 2024" is the beginning of 7533.
+//  September, the 1st of Slavic year. It means that "Sep 01, 2025" is the beginning of 7534.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -67,7 +67,8 @@ public class MessageLabel: MyCustomLabel, PerseusDelegatedMessage {
     }
 
     public var messageTextColor: Color? = .perseusIndigo
-    public var message = "" {
+
+    public var message: String = "" {
         didSet {
 
             // for now
@@ -159,6 +160,12 @@ public class MessageLabel: MyCustomLabel, PerseusDelegatedMessage {
     private func configure() {
         theDarknessTrigger = DarkModeObserver { _ in
             self.textColor = .labelPerseus
+            if isHighSierra {
+                self.messageTextColor = .labelPerseus
+            }
+        }
+        if isHighSierra {
+            self.messageTextColor = .labelPerseus
         }
     }
 }

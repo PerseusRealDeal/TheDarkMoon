@@ -87,7 +87,6 @@ class LoggerViewPresenter: MVPPresenter {
     }
 
     func viewDidAppear() {
-
         log.message("[\(type(of: self))].\(#function)")
         (view as? LoggerViewDelegate)?.onViewDidAppear()
     }
@@ -162,5 +161,13 @@ class LoggerViewPresenter: MVPPresenter {
         }
 
         log.level = item
+    }
+
+    func forceClear() {
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        report.clear()
+        (view as? LoggerViewDelegate)?.clear()
     }
 }

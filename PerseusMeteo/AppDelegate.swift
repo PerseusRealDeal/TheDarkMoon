@@ -18,16 +18,13 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+
         log.message("[\(type(of: self))].\(#function)")
 
-        DarkModeAgent.force(DarkModeUserChoice)
         GeoCoordinator.reloadGeoComponents()
 
-        globals.languageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
-
-        log.message("> Ready with business matter purpose...", .info)
-
-        statusMenusPresenter.startUpdateTimerIfNeeded()
+        LanguageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
+        Coordinator.startUpdateTimerIfNeeded()
 
         // Observe system sleep events
         NSWorkspace.shared.notificationCenter.addObserver(
@@ -44,16 +41,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             name: NSWorkspace.didWakeNotification,
             object: nil
         )
+
+        DarkModeAgent.force(DarkModeUserChoice)
+
+        log.message("Started with business matter purpose...", .info)
     }
 
     @objc func systemWillSleep(_ notification: Notification) {
-        log.message("[\(type(of: self))].\(#function) System is about to sleep.")
-        statusMenusPresenter.deinitTimer()
+        log.message("[\(type(of: self))].\(#function) System is about to sleep.", .info)
+        Coordinator.deinitTimer()
     }
 
     @objc func systemDidWake(_ notification: Notification) {
-        log.message("[\(type(of: self))].\(#function) System has woken up.")
-        statusMenusPresenter.startUpdateTimerIfNeeded()
+        log.message("[\(type(of: self))].\(#function) System has woken up.", .info)
+        Coordinator.startUpdateTimerIfNeeded()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

@@ -22,21 +22,15 @@ class ForecastView: NSView {
 
     // MARK: Internals
 
-    private var meteoProviderNickLocalized: String {
-        let title = "Label: Meteo Data Provider".localizedValue
-        let nick = dataSource.meteoDataProviderName
-        return "\(title) \(nick)"
-    }
-
     private let daysID = NSUserInterfaceItemIdentifier(rawValue: "ForecastDays")
     private let hoursID = NSUserInterfaceItemIdentifier(rawValue: "ForecastHours")
 
     // MARK: - View Data Source
 
     public let dataSource = globals.sourceForecast
-    public var progressIndicator: Bool = false {
+    public var startProgressIndicator: Bool = false {
         didSet {
-            if progressIndicator {
+            if startProgressIndicator {
                 indicator.isHidden = false
                 indicator.startAnimation(nil)
             } else {
@@ -50,7 +44,6 @@ class ForecastView: NSView {
 
     @IBOutlet private(set) var contentView: NSView!
 
-    @IBOutlet private(set) weak var labelMeteoProvider: NSTextField!
     @IBOutlet private(set) weak var indicator: NSProgressIndicator!
 
     @IBOutlet private(set) weak var viewForecastDays: NSCollectionView!
@@ -70,43 +63,25 @@ class ForecastView: NSView {
         super.draw(dirtyRect)
         // log.message("[\(type(of: self))].\(#function)")
     }
-*/
+
     override func awakeFromNib() {
         super.awakeFromNib()
-
         // log.message("[\(type(of: self))].\(#function)")
-
-        localize()
-
-        progressIndicator = false
-
-        self.viewForecastDays.identifier = daysID
-        self.viewForecastHours.identifier = hoursID
-
-        self.viewForecastDays.dataSource = self
-        self.viewForecastHours.dataSource = self
-
-        self.viewForecastDays.delegate = self
-        self.viewForecastHours.delegate = self
-
-        self.viewForecastDays.wantsLayer = true
-        self.viewForecastDays.backgroundColors = [NSColor.clear]
-
-        self.viewForecastHours.wantsLayer = true
-        self.viewForecastHours.backgroundColors = [NSColor.clear]
-
-        wantsLayer = true
-
-        // self.selectTheFirstForecastDay()
-        // self.selectTheFirstForecastHour()
-
-        viewMeteoGroup.applyFonts()
+    }
+*/
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
     }
 
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
+        commonInit()
+    }
 
-        // log.message("[\(type(of: self))].\(#function)")
+    private func commonInit() {
+
+        log.message("[\(type(of: self))].\(#function)")
 
         // Create a new instance from *xib and reference it to contentView outlet.
 
@@ -115,7 +90,7 @@ class ForecastView: NSView {
             let nib = NSNib(nibNamed: className, bundle: Bundle(for: type(of: self)))
         else {
             let text = "[\(type(of: self))].\(#function) No nib loaded."
-            log.message(text, .error); fatalError(text)
+            log.message(text, .fault); fatalError(text)
         }
 
         // log.message("[\(type(of: self))].\(#function) \(className)")
@@ -152,6 +127,33 @@ class ForecastView: NSView {
 
     // MARK: - Contract
 
+    public func setupUI() {
+
+        wantsLayer = true
+
+        self.startProgressIndicator = false
+
+        self.viewForecastDays.identifier = daysID
+        self.viewForecastHours.identifier = hoursID
+
+        self.viewForecastDays.dataSource = self
+        self.viewForecastHours.dataSource = self
+
+        self.viewForecastDays.delegate = self
+        self.viewForecastHours.delegate = self
+
+        self.viewForecastDays.wantsLayer = true
+        self.viewForecastDays.backgroundColors = [NSColor.clear]
+
+        self.viewForecastHours.wantsLayer = true
+        self.viewForecastHours.backgroundColors = [NSColor.clear]
+
+        // self.selectTheFirstForecastDay()
+        // self.selectTheFirstForecastHour()
+
+        viewMeteoGroup.applyFonts()
+    }
+
     public func reloadData(saveSelection: Bool = false) {
 
         // log.message("[\(type(of: self))].\(#function)")
@@ -162,10 +164,6 @@ class ForecastView: NSView {
         reloadHoursCollection(selectionSaved: saveSelection)
 
         viewMeteoGroup.reload()
-
-        // Meteo Data Provider.
-
-        labelMeteoProvider.stringValue = meteoProviderNickLocalized
     }
 
     public func selectTheFirstForecastDay() {
@@ -418,8 +416,33 @@ extension ForecastView: NSCollectionViewDelegate {
 extension ForecastView {
 
     public func makeup() {
+        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
 
-        // log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+        if isHighSierra {
+            self.appearance = LIGHT_APPEARANCE_DEFAULT_IN_USE
+            let whiteOrBlack: Color = DarkModeAgent.shared.style == .dark ? .white : .black
+
+            self.labelWeatherDescription.textColor = whiteOrBlack
+
+            self.viewMeteoGroup.title1.textColor = whiteOrBlack
+            self.viewMeteoGroup.value1.textColor = whiteOrBlack
+            self.viewMeteoGroup.title2.textColor = whiteOrBlack
+            self.viewMeteoGroup.value2.textColor = whiteOrBlack
+            self.viewMeteoGroup.title3.textColor = whiteOrBlack
+            self.viewMeteoGroup.value3.textColor = whiteOrBlack
+            self.viewMeteoGroup.title4.textColor = whiteOrBlack
+            self.viewMeteoGroup.value4.textColor = whiteOrBlack
+            self.viewMeteoGroup.title5.textColor = whiteOrBlack
+            self.viewMeteoGroup.value5.textColor = whiteOrBlack
+            self.viewMeteoGroup.title6.textColor = whiteOrBlack
+            self.viewMeteoGroup.value6.textColor = whiteOrBlack
+            self.viewMeteoGroup.title7.textColor = whiteOrBlack
+            self.viewMeteoGroup.value7.textColor = whiteOrBlack
+            self.viewMeteoGroup.title8.textColor = whiteOrBlack
+            self.viewMeteoGroup.value8.textColor = whiteOrBlack
+            self.viewMeteoGroup.title9.textColor = whiteOrBlack
+            self.viewMeteoGroup.value9.textColor = whiteOrBlack
+        }
     }
 }
 

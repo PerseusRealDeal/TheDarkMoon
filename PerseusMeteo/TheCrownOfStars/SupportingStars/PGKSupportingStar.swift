@@ -1,6 +1,6 @@
 //
 //  PGKSupportingStar.swift
-//  Version: 1.1.1
+//  Version: 1.1.2
 //
 //  PerseusGeoKit Support Code
 //
@@ -70,7 +70,10 @@ var REDIRECT_ALERT_TITLES = ActionAlertText(
 
 extension ActionAlertText {
     var titleWithStatus: String {
-        return "Location Services: \(GeoAgent.currentStatus.description.capitalized)."
+        guard let status = titleCalculated else {
+            return "Location Services: \(GeoAgent.currentStatus.description.capitalized)."
+        }
+        return status()
     }
 }
 

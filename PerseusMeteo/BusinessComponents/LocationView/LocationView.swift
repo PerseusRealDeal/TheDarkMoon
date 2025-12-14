@@ -78,11 +78,6 @@ class LocationView: NSView, NSTextFieldDelegate {
         return "Geo Couple".localizedValue
     }
 
-    private var permissionStatusLocalized: String {
-        return "Label: Permission".localizedValue + ": " +
-        GeoAgent.currentStatus.localizedKey.localizedValue
-    }
-
     // MARK: - Properties
 
     public var locationCard: LocationCardType = .current
@@ -98,13 +93,13 @@ class LocationView: NSView, NSTextFieldDelegate {
     @IBOutlet public weak var indicatorCircular: NSProgressIndicator!
     @IBOutlet public weak var constraintViewSuggestionsHeight: NSLayoutConstraint!
 
-    @IBOutlet private(set) weak var labelLocationName: NSTextField!
+    @IBOutlet public weak var labelLocationName: NSTextField!
     @IBOutlet private(set) weak var labelGeoCoordinates: NSTextField!
     @IBOutlet private(set) weak var labelPermissionStatus: NSTextField!
     @IBOutlet private(set) weak var labelAutoSuggestionsRequest: NSTextField!
 
     @IBOutlet private(set) weak var buttonUpdateCurrentLocation: NSButton!
-    @IBOutlet private(set) weak var checkBoxAutoSuggestionsRequest: NSButton!
+    @IBOutlet public weak var checkBoxAutoSuggestionsRequest: NSButton!
     @IBOutlet private(set) weak var buttonSuggestionsRequest: NSButton!
 
     @IBOutlet private(set) weak var comboBoxFavorites: NSComboBox!
@@ -142,7 +137,7 @@ class LocationView: NSView, NSTextFieldDelegate {
             return
         }
 
-        statusMenusPresenter.fetchSuggestions(textFieldLocationNameSearch.stringValue)
+        Coordinator.fetchSuggestions(textFieldLocationNameSearch.stringValue)
     }
 
     @IBAction func bookmarkButtonTapped(_ sender: NSButton) {
@@ -238,10 +233,10 @@ class LocationView: NSView, NSTextFieldDelegate {
 
         self.addConstraints(newConstraints)
 
-        initSetupView()
+        geoSetup()
     }
 
-    private func initSetupView() {
+    private func geoSetup() {
 
         // Determine location card type
 
@@ -256,7 +251,7 @@ class LocationView: NSView, NSTextFieldDelegate {
     // MARK: - Contract
 
     @objc public func reloadData() {
-        labelPermissionStatus.stringValue = permissionStatusLocalized
+        labelPermissionStatus.stringValue = AppGlobals.permissionStatusLocalized()
 
         let locationNameLocalizedFull = locationNameLocalized
         let lengthLimit = 28
@@ -277,12 +272,46 @@ class LocationView: NSView, NSTextFieldDelegate {
     }
 
     public func makeup() {
-        // log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+
+        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+
+        if isHighSierra {
+
+            self.appearance = LIGHT_APPEARANCE_DEFAULT_IN_USE
+
+            let style = DarkModeAgent.shared.style
+
+            let colorSet =
+            style == .dark ? DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
+
+            self.textFieldLocationNameSearch.appearance = colorSet
+            self.comboBoxFavorites.appearance = colorSet
+            self.checkBoxAutoSuggestionsRequest.appearance = colorSet
+            self.buttonSuggestionsRequest.appearance = colorSet
+            self.buttonUpdateCurrentLocation.appearance = colorSet
+            self.buttonBookmark.appearance = colorSet
+
+            let whiteOrBlack: Color = style == .dark ? .white : .black
+
+            self.labelPermissionStatus.textColor = whiteOrBlack
+            self.labelLocationName.textColor = whiteOrBlack
+            self.labelGeoCoordinates.textColor = whiteOrBlack
+            self.labelAutoSuggestionsRequest.textColor = whiteOrBlack
+        }
+
         viewSuggestions.collectionView?.reloadData()
     }
 
     public func localize() {
         reloadData()
+
+        REDIRECT_ALERT_TITLES = ActionAlertText(
+            title: "Redirect Alert: title".localizedValue,
+            message: "Redirect Alert: message".localizedValue,
+            buttonCancel: "Redirect Alert: cancel".localizedValue,
+            buttonFunction: "Redirect Alert: function".localizedValue
+        )
+        REDIRECT_ALERT_TITLES.titleCalculated = AppGlobals.permissionStatusLocalized
     }
 
     private func reloadComboBox() {
@@ -327,6 +356,7 @@ class LocationView: NSView, NSTextFieldDelegate {
             // hide suggestions view
             SuggestionsView.shouldProcessVisisbility = false
             viewSuggestions.alphaValue = 0.0
+            showControls()
             constraintViewSuggestionsHeight.constant = 0
 
             // remove all suggestions items
@@ -366,7 +396,21 @@ class LocationView: NSView, NSTextFieldDelegate {
                 return
             }
 
-            statusMenusPresenter.fetchSuggestions(self.textFieldLocationNameSearch.stringValue)
+            Coordinator.fetchSuggestions(self.textFieldLocationNameSearch.stringValue)
         })
+    }
+
+    public func hideControls() {
+        labelLocationName.isHidden = true
+        checkBoxAutoSuggestionsRequest.isHidden = true
+        labelGeoCoordinates.isHidden = true
+        labelAutoSuggestionsRequest.isHidden = true
+    }
+
+    public func showControls() {
+        labelLocationName.isHidden = false
+        checkBoxAutoSuggestionsRequest.isHidden = false
+        labelGeoCoordinates.isHidden = false
+        labelAutoSuggestionsRequest.isHidden = false
     }
 }

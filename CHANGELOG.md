@@ -6,6 +6,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Version in format MAJOR.MINOR where MINOR includes PATCH that means any patch increments MINOR.
 - Dates in this file meets Gregorian calendar. Date in format YYYY-MM-DD.
 
+## [0.4.3] - [2025-12-14], The Dark Moon
+
+### Reorganized
+
+- Main screen.
+- Project structure.
+
+### Fixed
+
+- Dark Mode appearance for High Sierra.
+
+### Added
+
+- Localization for Redirect Alert used with PGK.
+- WebLabel to represent web link to provider meteo source.
+- Coordinator to work in accord with MVP architectural points.
+
+### Moved
+
+- Top business logic to Coordinator. 
+
+### Updated
+
+- Selfie screen.
+- Logger screen.
+- PGK dependecy to v1.1.2.
+
+### Other
+
+- Minor changes and fixes.
+
 ## [0.4.2] - [2025-11-30], The Dark Moon
 
 ### Fixed

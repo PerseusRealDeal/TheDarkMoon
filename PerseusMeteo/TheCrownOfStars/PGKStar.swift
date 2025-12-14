@@ -1,6 +1,6 @@
 //
 //  PerseusGeoKitStar.swift
-//  Version: 1.1.1
+//  Version: 1.1.2
 //
 //  Standalone PerseusGeoKit
 //
@@ -892,6 +892,8 @@ public struct ActionAlertText {
         self.buttonCancel = buttonCancel
         self.buttonFunction = buttonFunction
     }
+
+    public var titleCalculated: (() -> String)?
 }
 
 // MARK: - Alert for iOS

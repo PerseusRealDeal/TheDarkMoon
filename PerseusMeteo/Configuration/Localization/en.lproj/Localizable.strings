@@ -26,12 +26,19 @@
 "P2P" = "P2P";
 "P2P stands for Person to Person" = "P2P stands for Person to Person";
 
+"Label: Made with Love" = "Made with Love from Novosibirsk";
+
+/* Redirect Alert */
+
+"Redirect Alert: title" = "Location Services.";
+"Redirect Alert: message" = "The Current Location Services Status can be changed in System Services.";
+"Redirect Alert: cancel" = "OK";
+"Redirect Alert: function" = "System Services";
+
 /* Popover Screen – PopoverViewController */
 
 "Button: Call Weather" = "Call Weather";
 "Button: Call Forecast" = "Call Forecast";
-
-"Label: Made with Love" = "Made with Love from Novosibirsk";
 
 "Tab: Current Weather" = "Weather";
 "Tab: Forecast" = "Forecast";
@@ -81,7 +88,7 @@
 
 /* Current Weather View */
 
-"Label: Meteo Data Provider" = "Meteo Data by";
+"Label: Meteo Data Provider" = "Meteo Information from";
 "Label: Weather Conditions" = "Weather Conditions";
 
 "Prefix: Curren Weather in Brief" = "In brief";
@@ -242,7 +249,7 @@
 
 /* About Screen – AboutWindowController, AboutViewController */
 
-"Title: The Dark Moon" = "The Dark Moon";
+"Title: The Dark Moon" = "Project — The Dark Moon";
 
 "Button: The App Source Code" = "The product source code";
 "Button: The Technological Tree" = "The golden tree";

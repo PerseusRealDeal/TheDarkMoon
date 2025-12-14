@@ -20,7 +20,7 @@ import Cocoa
 
 // MARK: - Release notes
 
-let bundleShortVersion = "0.4.2"
+let bundleShortVersion = "0.4.3"
 let bundleVersion = "0"
 let theAppIsAgent = true
 let category = "public.app-category.weather"

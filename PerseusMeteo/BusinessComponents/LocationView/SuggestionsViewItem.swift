@@ -55,13 +55,12 @@ class SuggestionsViewItem: NSCollectionViewItem {
 
     private func configure() {
 
-        view.layer = CALayer()
-
-        view.layer?.cornerRadius = 7.0
-        view.layer?.masksToBounds = true
-        view.layer?.borderWidth = 2.0
-
         view.wantsLayer = true
+        view.layer?.masksToBounds = true
+
+        view.layer = CALayer()
+        view.layer?.cornerRadius = 7.0
+        view.layer?.borderWidth = 2.0
 
         labelCountry.font = NSFont.systemFont(ofSize: 10)
         // labelLocationName.font = NSFont.boldSystemFont(ofSize: 10)
@@ -89,13 +88,33 @@ class SuggestionsViewItem: NSCollectionViewItem {
     }
 
     private func makeup() {
-        view.layer?.borderColor = isSelected ?
-        NSColor.white.cgColor : NSColor.black.cgColor
 
-        labelLocationName.textColor = .labelPerseus
-        labelCountry.textColor = .labelPerseus
+        let item = view.layer
 
-        view.layer?.backgroundColor = Color.perseusBlue.cgColor
+        if DarkModeAgent.shared.style == .light {
+
+            item?.borderColor = isSelected ? NSColor.darkGray.cgColor : NSColor.gray.cgColor
+
+            labelLocationName.textColor = .black
+            labelCountry.textColor = .black
+            labelCoordinates.textColor = .black
+
+            item?.backgroundColor = NSColor.lightGray.cgColor
+
+            return
+        }
+
+        item?.borderColor = isSelected ? NSColor.lightGray.cgColor : NSColor.black.cgColor
+
+        labelLocationName.textColor = .white
+        labelCountry.textColor = .lightGray
+        labelCoordinates.textColor = .lightGray
+
+        item?.backgroundColor = NSColor.darkGray.cgColor
+
+        if isHighSierra {
+            self.view.appearance = LIGHT_APPEARANCE_DEFAULT_IN_USE
+        }
     }
 
     public override func mouseDown(with event: NSEvent) {

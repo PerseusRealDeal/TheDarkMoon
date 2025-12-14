@@ -20,6 +20,16 @@
 	<string>P2P</string>
 	<key>P2P stands for Person to Person</key>
 	<string>P2P stands for Person to Person</string>
+    <key>/* Redirect Alert */</key>
+    <string>--</string>
+    <key>Redirect Alert: title</key>
+    <string>Location Services.</string>
+    <key>Redirect Alert: message</key>
+    <string>The Current Location Services Status can be changed in System Services.</string>
+    <key>Redirect Alert: cancel</key>
+    <string>OK</string>
+    <key>Redirect Alert: function</key>
+    <string>System Services</string>
 	<key>/* Popover Screen */</key>
 	<string>--</string>
 	<key>Button: Call Weather</key>
@@ -99,7 +109,7 @@
 	<key>/* Current Weather View */</key>
 	<string>--</string>
 	<key>Label: Meteo Data Provider</key>
-	<string>Meteo Data by</string>
+	<string>Meteo Information from</string>
 	<key>Label: Weather Conditions</key>
 	<string>Weather Conditions</string>
 	<key>Prefix: Curren Weather in Brief</key>
@@ -333,7 +343,7 @@
 	<key>/* About Screen */</key>
 	<string>--</string>
 	<key>Title: The Dark Moon</key>
-	<string>The Dark Moon</string>
+	<string>Project — The Dark Moon</string>
 	<key>Button: The App Source Code</key>
 	<string>The product source code</string>
 	<key>Button: The Technological Tree</key>

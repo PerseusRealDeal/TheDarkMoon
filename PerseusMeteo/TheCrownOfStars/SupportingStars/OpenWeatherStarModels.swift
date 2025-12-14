@@ -18,8 +18,8 @@ import Foundation
 extension Notification.Name {
     public static let meteoDataOptionsNotification =
         Notification.Name("meteoDataOptionsNotification")
-    public static let updateStatusMenusItemNotification =
-        Notification.Name("updateStatusMenusItemNotification")
+    public static let updateCurrentWeatherByTimerCommand =
+        Notification.Name("updateCurrentWeatherByTimerCommand")
 }
 
 // MARK: - TEMPERATURE
