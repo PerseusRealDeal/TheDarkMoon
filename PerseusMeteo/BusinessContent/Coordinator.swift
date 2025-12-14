@@ -62,8 +62,8 @@ class Coordinator {
         // Observe StatusMenusItem events
         AppGlobals.notificationCenter.addObserver(
             self,
-            selector: #selector(Coordinator.shared.updateStatusMenusItemTask),
-            name: NSNotification.Name.updateStatusMenusItemNotification,
+            selector: #selector(Coordinator.shared.updateCurrentWeatherByTimer),
+            name: NSNotification.Name.updateCurrentWeatherByTimerCommand,
             object: nil
         )
     }
@@ -92,14 +92,14 @@ class Coordinator {
     }
 
     static func startUpdateTimerIfNeeded() {
-        shared.updateStatusMenusItemTask()
+        shared.updateCurrentWeatherByTimer()
     }
 
     static func deinitTimer() {
         shared.updateTimer?.invalidate()
     }
 
-    @objc private func updateStatusMenusItemTask() {
+    @objc private func updateCurrentWeatherByTimer() {
 
         let main = Coordinator.shared
 

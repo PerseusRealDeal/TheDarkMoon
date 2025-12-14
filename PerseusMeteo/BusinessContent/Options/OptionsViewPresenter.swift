@@ -184,7 +184,7 @@ class OptionsViewPresenter: MVPPresenter {
     func forceStatusMenus(_ turned: Bool) {
         AppOptions.statusMenusOption = turned
         AppGlobals.notificationCenter.post(
-            Notification.init(name: .updateStatusMenusItemNotification)
+            Notification.init(name: .updateCurrentWeatherByTimerCommand)
         )
     }
 
@@ -198,7 +198,7 @@ class OptionsViewPresenter: MVPPresenter {
 
         AppOptions.statusMenusPeriodOption = period
         AppGlobals.notificationCenter.post(
-            Notification.init(name: .updateStatusMenusItemNotification)
+            Notification.init(name: .updateCurrentWeatherByTimerCommand)
         )
     }
 
@@ -224,7 +224,7 @@ class OptionsViewPresenter: MVPPresenter {
 
         let nc = AppGlobals.notificationCenter
 
-        nc.post(Notification.init(name: .updateStatusMenusItemNotification))
+        nc.post(Notification.init(name: .updateCurrentWeatherByTimerCommand))
         nc.post(Notification.init(name: .meteoDataOptionsNotification))
     }
 
