@@ -68,26 +68,6 @@
                                     <action selector="buttonLicenseTapped:" target="NdM-46-oIE" id="yXX-ec-zYl"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I16-ly-hgL">
-                                <rect key="frame" x="413" y="483" width="130" height="18"/>
-                                <buttonCell key="cell" type="inline" title="The App Source Code" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wST-EU-a1T">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystemBold"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="buttonTheAppSourceCodeTapped:" target="NdM-46-oIE" id="pcj-NU-GfE"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qdG-g3-O7i">
-                                <rect key="frame" x="405" y="455" width="138" height="18"/>
-                                <buttonCell key="cell" type="inline" title="The Technological Tree" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="61b-bl-v4e">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystemBold"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="buttonTheTechnologicalTreeTapped:" target="NdM-46-oIE" id="nF1-Bh-wpq"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yEY-rb-2hz">
                                 <rect key="frame" x="95" y="441" width="198" height="35"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="The App Name" id="nrt-Wn-dV0">
@@ -165,105 +145,90 @@ Details</string>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="R5a-tQ-Ie5" userLabel="Tags Cloud View">
                                         <rect key="frame" x="0.0" y="0.0" width="533" height="99"/>
                                         <subviews>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xcb-6K-Pyy">
-                                                <rect key="frame" x="11" y="67" width="110" height="18"/>
-                                                <buttonCell key="cell" type="inline" title="PerseusDarkMode" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uEf-CA-lae">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="smallSystem"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="buttonPerseusDarkModeTapped:" target="NdM-46-oIE" id="Lgi-Jw-ntN"/>
-                                                </connections>
-                                            </button>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ixh-or-pgj">
-                                                <rect key="frame" x="27" y="20" width="138" height="18"/>
-                                                <buttonCell key="cell" type="inline" title="PerseusGeoLocationKit" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IIT-UO-8UP">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="smallSystem"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="buttonPerseusGeoLocationKitTapped:" target="NdM-46-oIE" id="cRe-3T-pTD"/>
-                                                </connections>
-                                            </button>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0On-JL-j5Z">
-                                                <rect key="frame" x="159" y="52" width="156" height="18"/>
-                                                <buttonCell key="cell" type="inline" title="PerseusCompassDirection" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CWk-V0-1X5">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="smallSystemBold"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="buttonPerseusCompassDirectionTapped:" target="NdM-46-oIE" id="0y7-WK-Crd"/>
-                                                </connections>
-                                            </button>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XIW-3m-Ni3">
-                                                <rect key="frame" x="402" y="7" width="94" height="18"/>
-                                                <buttonCell key="cell" type="inline" title="PerseusLogger" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2aN-uw-PnY">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="smallSystem"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="buttonPerseusLoggerTapped:" target="NdM-46-oIE" id="ps9-wg-CCD"/>
-                                                </connections>
-                                            </button>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FrY-gG-aRp">
-                                                <rect key="frame" x="329" y="67" width="138" height="18"/>
-                                                <buttonCell key="cell" type="inline" title="ConsolePerseusLogger" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BF3-FU-Vn7">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="smallSystemBold"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="buttonConsolePerseusLoggerTapped:" target="NdM-46-oIE" id="MoA-N0-4QL"/>
-                                                </connections>
-                                            </button>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aAh-nN-G9I">
-                                                <rect key="frame" x="237" y="26" width="120" height="18"/>
-                                                <buttonCell key="cell" type="inline" title="PerseusTimeFormat" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="n2t-2k-1sN">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="smallSystemBold"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="buttonPerseusTimeFormatTapped:" target="NdM-46-oIE" id="LY1-L9-C9S"/>
-                                                </connections>
-                                            </button>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="teG-GX-fqX">
-                                                <rect key="frame" x="449" y="41" width="64" height="18"/>
-                                                <buttonCell key="cell" type="inline" title="Snowman" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jnd-eY-WSX">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="smallSystemBold"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="buttonSnowmanTapped:" target="NdM-46-oIE" id="MUN-1G-fSN"/>
-                                                </connections>
-                                            </button>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Smd-Wv-reS">
-                                                <rect key="frame" x="173" y="7" width="112" height="18"/>
-                                                <buttonCell key="cell" type="inline" title="ConvertorMov2Gif" bezelStyle="inline" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="53K-Fu-tfy">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="smallSystemBold"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="buttonConvertorMov2GifTapped:" target="NdM-46-oIE" id="DBG-Uu-pNp"/>
-                                                </connections>
-                                            </button>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VUO-Nl-Ujz" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
+                                                <rect key="frame" x="13" y="69" width="115" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="PerseusDarkMode" id="aYz-go-1Ee">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rwc-wT-hZa" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
+                                                <rect key="frame" x="157" y="7" width="117" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Convertor mov2gif" id="o5y-1p-6YB">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v0J-9x-dJT" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
+                                                <rect key="frame" x="25" y="20" width="94" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="PerseusGeoKit" id="oBn-0I-OWm">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6s9-BN-Tbx" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
+                                                <rect key="frame" x="185" y="42" width="164" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="PerseusCompassDirection" id="pxV-Je-P52">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tJi-2c-1Uz" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
+                                                <rect key="frame" x="145" y="63" width="125" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="PerseusTimeFormat" id="0Zm-tu-eTj">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7wo-hx-JoO" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
+                                                <rect key="frame" x="353" y="69" width="145" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="ConsolePerseusLogger" id="hCO-lq-btn">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8yo-Jf-eiG" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
+                                                <rect key="frame" x="459" y="27" width="63" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Snowman" id="GOZ-cY-DQC">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hGy-zt-cwi" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
+                                                <rect key="frame" x="341" y="13" width="95" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="PerseusLogger" id="7FJ-CE-FS3">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="aAh-nN-G9I" secondAttribute="bottom" constant="26" id="2gt-m9-jOU"/>
-                                            <constraint firstItem="ixh-or-pgj" firstAttribute="leading" secondItem="R5a-tQ-Ie5" secondAttribute="leading" constant="27" id="32v-5s-Pdn"/>
-                                            <constraint firstItem="Xcb-6K-Pyy" firstAttribute="leading" secondItem="R5a-tQ-Ie5" secondAttribute="leading" constant="11" id="63X-mK-Iho"/>
-                                            <constraint firstAttribute="trailing" secondItem="teG-GX-fqX" secondAttribute="trailing" constant="20" symbolic="YES" id="7Wt-7D-5BY"/>
-                                            <constraint firstItem="FrY-gG-aRp" firstAttribute="top" secondItem="R5a-tQ-Ie5" secondAttribute="top" constant="14" id="AjA-lq-MZh"/>
-                                            <constraint firstAttribute="trailing" secondItem="FrY-gG-aRp" secondAttribute="trailing" constant="66" id="C5T-AG-wtp"/>
-                                            <constraint firstItem="Xcb-6K-Pyy" firstAttribute="top" secondItem="R5a-tQ-Ie5" secondAttribute="top" constant="14" id="ECy-ec-OKS"/>
-                                            <constraint firstItem="Smd-Wv-reS" firstAttribute="leading" secondItem="ixh-or-pgj" secondAttribute="trailing" constant="8" symbolic="YES" id="EfA-a2-hRg"/>
-                                            <constraint firstItem="teG-GX-fqX" firstAttribute="top" secondItem="R5a-tQ-Ie5" secondAttribute="top" constant="40" id="PWc-b1-byl"/>
-                                            <constraint firstItem="aAh-nN-G9I" firstAttribute="centerX" secondItem="R5a-tQ-Ie5" secondAttribute="centerX" constant="30" id="RqE-9I-oYK"/>
-                                            <constraint firstAttribute="bottom" secondItem="ixh-or-pgj" secondAttribute="bottom" constant="20" symbolic="YES" id="Rr9-Wa-1sa"/>
-                                            <constraint firstItem="0On-JL-j5Z" firstAttribute="centerX" secondItem="R5a-tQ-Ie5" secondAttribute="centerX" constant="-30" id="Sm4-Dl-nMp"/>
-                                            <constraint firstAttribute="bottom" secondItem="Smd-Wv-reS" secondAttribute="bottom" constant="7" id="eVO-Ns-HqP"/>
-                                            <constraint firstAttribute="trailing" secondItem="XIW-3m-Ni3" secondAttribute="trailing" constant="37" id="fPh-sW-JIA"/>
-                                            <constraint firstItem="0On-JL-j5Z" firstAttribute="top" secondItem="R5a-tQ-Ie5" secondAttribute="top" constant="29" id="nbc-5c-4ze"/>
+                                            <constraint firstAttribute="bottom" secondItem="v0J-9x-dJT" secondAttribute="bottom" constant="20" symbolic="YES" id="0VC-CG-2Kf"/>
+                                            <constraint firstItem="tJi-2c-1Uz" firstAttribute="leading" secondItem="VUO-Nl-Ujz" secondAttribute="trailing" constant="21" id="1Pw-Mq-C8n"/>
+                                            <constraint firstAttribute="trailing" secondItem="7wo-hx-JoO" secondAttribute="trailing" constant="37" id="5MT-ia-eCp"/>
+                                            <constraint firstItem="hGy-zt-cwi" firstAttribute="top" secondItem="6s9-BN-Tbx" secondAttribute="bottom" constant="13" id="Hof-Lv-byX"/>
+                                            <constraint firstItem="6s9-BN-Tbx" firstAttribute="centerY" secondItem="R5a-tQ-Ie5" secondAttribute="centerY" id="Ix9-XC-SFW"/>
+                                            <constraint firstItem="VUO-Nl-Ujz" firstAttribute="leading" secondItem="R5a-tQ-Ie5" secondAttribute="leading" constant="15" id="Jo7-l9-iZS"/>
+                                            <constraint firstItem="6s9-BN-Tbx" firstAttribute="centerX" secondItem="R5a-tQ-Ie5" secondAttribute="centerX" id="Jwp-GD-6C5"/>
+                                            <constraint firstItem="v0J-9x-dJT" firstAttribute="leading" secondItem="R5a-tQ-Ie5" secondAttribute="leading" constant="27" id="LG2-1b-DnI"/>
+                                            <constraint firstItem="7wo-hx-JoO" firstAttribute="top" secondItem="R5a-tQ-Ie5" secondAttribute="top" constant="14" id="NQr-l3-xGq"/>
+                                            <constraint firstAttribute="trailing" secondItem="hGy-zt-cwi" secondAttribute="trailing" constant="99" id="P1T-SW-JOj"/>
+                                            <constraint firstItem="Rwc-wT-hZa" firstAttribute="leading" secondItem="v0J-9x-dJT" secondAttribute="trailing" constant="42" id="R65-1g-RK7"/>
+                                            <constraint firstAttribute="trailing" secondItem="8yo-Jf-eiG" secondAttribute="trailing" constant="13" id="SMm-fn-SCg"/>
+                                            <constraint firstItem="6s9-BN-Tbx" firstAttribute="top" secondItem="tJi-2c-1Uz" secondAttribute="bottom" constant="5" id="Z70-tB-YPO"/>
+                                            <constraint firstAttribute="bottom" secondItem="Rwc-wT-hZa" secondAttribute="bottom" constant="7" id="bAF-XY-Vo9"/>
                                             <constraint firstAttribute="height" constant="99" id="qgX-3p-GHN"/>
-                                            <constraint firstAttribute="bottom" secondItem="XIW-3m-Ni3" secondAttribute="bottom" constant="7" id="tsk-M4-7gb"/>
+                                            <constraint firstItem="tJi-2c-1Uz" firstAttribute="top" secondItem="R5a-tQ-Ie5" secondAttribute="top" constant="20" symbolic="YES" id="sDA-lk-Jm3"/>
+                                            <constraint firstItem="8yo-Jf-eiG" firstAttribute="top" secondItem="7wo-hx-JoO" secondAttribute="bottom" constant="26" id="sxa-5P-VPB"/>
+                                            <constraint firstItem="VUO-Nl-Ujz" firstAttribute="top" secondItem="R5a-tQ-Ie5" secondAttribute="top" constant="14" id="w2I-GM-RG3"/>
                                         </constraints>
                                     </customView>
                                 </subviews>
@@ -290,21 +255,37 @@ Details</string>
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pvw-CR-ti0" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
+                                <rect key="frame" x="408" y="485" width="137" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="The App Source Code" id="RLr-sd-iSn">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="63T-Yj-0Pr" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
+                                <rect key="frame" x="400" y="459" width="145" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="The Technological Tree" id="rlw-XK-kpF">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="pTY-Tb-nnu" firstAttribute="top" secondItem="6XP-dj-lG5" secondAttribute="bottom" constant="10" id="2Mw-Wx-UbP"/>
                             <constraint firstAttribute="trailing" secondItem="Tyk-gI-2S1" secondAttribute="trailing" constant="10" id="7Mm-gC-YKC"/>
                             <constraint firstItem="Tyk-gI-2S1" firstAttribute="leading" secondItem="hhC-mI-IUr" secondAttribute="trailing" constant="10" id="7gq-px-8OD"/>
+                            <constraint firstItem="Pvw-CR-ti0" firstAttribute="trailing" secondItem="Tyk-gI-2S1" secondAttribute="trailing" id="8H3-PK-OoD"/>
                             <constraint firstItem="Zt6-eZ-dJw" firstAttribute="top" secondItem="yEY-rb-2hz" secondAttribute="bottom" id="9QI-sR-zYJ"/>
                             <constraint firstItem="pTY-Tb-nnu" firstAttribute="centerY" secondItem="Tyk-gI-2S1" secondAttribute="centerY" id="Bpr-35-tYd"/>
-                            <constraint firstItem="I16-ly-hgL" firstAttribute="trailing" secondItem="Tyk-gI-2S1" secondAttribute="trailing" id="EWN-n5-D99"/>
-                            <constraint firstItem="qdG-g3-O7i" firstAttribute="top" secondItem="I16-ly-hgL" secondAttribute="bottom" constant="10" id="Ghs-pr-Su5"/>
+                            <constraint firstItem="Pvw-CR-ti0" firstAttribute="top" secondItem="Zo1-hM-qgJ" secondAttribute="top" constant="10" id="EK7-Wd-54W"/>
                             <constraint firstItem="Zt6-eZ-dJw" firstAttribute="leading" secondItem="yEY-rb-2hz" secondAttribute="leading" id="Lbi-F9-3Ie"/>
                             <constraint firstItem="BJc-2m-C2t" firstAttribute="top" secondItem="Zo1-hM-qgJ" secondAttribute="top" constant="25" id="Lrp-Zv-22D"/>
-                            <constraint firstItem="I16-ly-hgL" firstAttribute="top" secondItem="Zo1-hM-qgJ" secondAttribute="top" constant="10" id="NGl-iA-31i"/>
                             <constraint firstItem="yEY-rb-2hz" firstAttribute="top" secondItem="Zo1-hM-qgJ" secondAttribute="top" constant="35" id="RFP-Bt-G2c"/>
+                            <constraint firstItem="63T-Yj-0Pr" firstAttribute="trailing" secondItem="Pvw-CR-ti0" secondAttribute="trailing" id="VvX-nJ-5HJ"/>
+                            <constraint firstItem="63T-Yj-0Pr" firstAttribute="top" secondItem="Pvw-CR-ti0" secondAttribute="bottom" constant="10" id="cCz-cu-VgO"/>
                             <constraint firstItem="BJc-2m-C2t" firstAttribute="leading" secondItem="pTY-Tb-nnu" secondAttribute="leading" id="d7b-ca-gpL"/>
-                            <constraint firstItem="qdG-g3-O7i" firstAttribute="trailing" secondItem="I16-ly-hgL" secondAttribute="trailing" id="dXk-6O-MUZ"/>
                             <constraint firstItem="6XP-dj-lG5" firstAttribute="leading" secondItem="Zo1-hM-qgJ" secondAttribute="leading" constant="10" id="hKo-cm-E2n"/>
                             <constraint firstItem="hhC-mI-IUr" firstAttribute="centerY" secondItem="Tyk-gI-2S1" secondAttribute="centerY" id="lop-ds-YpA"/>
                             <constraint firstAttribute="trailing" secondItem="6XP-dj-lG5" secondAttribute="trailing" constant="10" id="nVQ-m0-99G"/>
@@ -316,22 +297,22 @@ Details</string>
                     </view>
                     <connections>
                         <outlet property="buttonClose" destination="pTY-Tb-nnu" id="SpY-6a-fjm"/>
-                        <outlet property="buttonConsolePerseusLogger" destination="FrY-gG-aRp" id="9mD-T0-ucI"/>
-                        <outlet property="buttonConvertorMov2Gif" destination="Smd-Wv-reS" id="MOz-pS-j4F"/>
                         <outlet property="buttonLicense" destination="Tyk-gI-2S1" id="Chh-RW-MGk"/>
-                        <outlet property="buttonPerseusCompassDirection" destination="0On-JL-j5Z" id="ZiD-5s-46c"/>
-                        <outlet property="buttonPerseusDarkMode" destination="Xcb-6K-Pyy" id="LOL-Rp-Ti3"/>
-                        <outlet property="buttonPerseusGeoLocationKit" destination="ixh-or-pgj" id="HCR-cM-zRK"/>
-                        <outlet property="buttonPerseusLogger" destination="XIW-3m-Ni3" id="asx-xZ-NtQ"/>
-                        <outlet property="buttonPerseusTimeFormat" destination="aAh-nN-G9I" id="wNX-mk-swq"/>
-                        <outlet property="buttonSnowman" destination="teG-GX-fqX" id="jil-X3-rnR"/>
                         <outlet property="buttonTerms" destination="hhC-mI-IUr" id="8KD-O1-DP9"/>
-                        <outlet property="buttonTheAppSourceCode" destination="I16-ly-hgL" id="5uA-3V-C7j"/>
-                        <outlet property="buttonTheTechnologicalTree" destination="qdG-g3-O7i" id="i7b-fh-ygu"/>
+                        <outlet property="labelConsolePerseusLogger" destination="7wo-hx-JoO" id="fVH-Cx-RLg"/>
+                        <outlet property="labelConvertorMov2Gif" destination="Rwc-wT-hZa" id="Kgk-uV-piq"/>
                         <outlet property="labelCopyrightDetailsText" destination="VkC-i9-Le5" id="VCA-dd-tVO"/>
                         <outlet property="labelCopyrightText" destination="MVd-ze-hvZ" id="5Eo-2R-p7g"/>
+                        <outlet property="labelPerseusCompassDirection" destination="6s9-BN-Tbx" id="epd-D4-lhs"/>
+                        <outlet property="labelPerseusDarkMode" destination="VUO-Nl-Ujz" id="MOs-op-xdE"/>
+                        <outlet property="labelPerseusGeoKit" destination="v0J-9x-dJT" id="e1e-0U-oa2"/>
+                        <outlet property="labelPerseusLogger" destination="hGy-zt-cwi" id="WUP-tW-5AW"/>
+                        <outlet property="labelPerseusTimeFormat" destination="tJi-2c-1Uz" id="gbv-oG-xSi"/>
+                        <outlet property="labelSnowman" destination="8yo-Jf-eiG" id="6Mz-rG-mkr"/>
                         <outlet property="labelTheAppName" destination="yEY-rb-2hz" id="nkQ-Pf-5Aw"/>
+                        <outlet property="labelTheAppSourceCode" destination="Pvw-CR-ti0" id="jnH-41-0uz"/>
                         <outlet property="labelTheAppVersion" destination="Zt6-eZ-dJw" id="rbn-gQ-C7w"/>
+                        <outlet property="labelTheTechnologicalTree" destination="63T-Yj-0Pr" id="nI5-FU-iEX"/>
                         <outlet property="viewTheCreditsText" destination="XFN-1f-L1G" id="Qbd-AX-PW4"/>
                     </connections>
                 </viewController>
