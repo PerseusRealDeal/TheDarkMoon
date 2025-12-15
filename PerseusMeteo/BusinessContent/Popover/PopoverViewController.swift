@@ -263,8 +263,11 @@ public class PopoverViewController: NSViewController {
         viewLocation?.locationCard = .suggestion
 
         viewLocation?.reloadData()
+
         viewWeather?.reloadData()
         viewForecast?.reloadData()
+        viewForecast?.selectTheFirstForecastDay()
+        viewForecast?.selectTheFirstForecastHour()
 
         Coordinator.shared.statusMenus.reloadData()
 
@@ -301,6 +304,8 @@ public class PopoverViewController: NSViewController {
         viewLocation?.reloadData()
         viewWeather?.reloadData()
         viewForecast?.reloadData()
+        viewForecast?.selectTheFirstForecastDay()
+        viewForecast?.selectTheFirstForecastHour()
 
         Coordinator.shared.statusMenus.reloadData()
 
@@ -379,6 +384,8 @@ public class PopoverViewController: NSViewController {
 
             viewWeather?.reloadData()
             viewForecast?.reloadData()
+            viewForecast?.selectTheFirstForecastDay()
+            viewForecast?.selectTheFirstForecastHour()
 
             refreshCallInformation()
 
@@ -463,13 +470,12 @@ extension PopoverViewController: PopoverViewDelegate {
         viewForecast.alphaValue = 0.0
         viewForecast.isHidden = false
 
-        // Forecast items selected by default
+        // Select forecast items
 
         viewForecast.setupUI()
-        viewForecast.selectTheFirstForecastDay()
 
-        // TODO: ISSUE - Locks hours collection scrolling
-        // viewForecast.selectTheFirstForecastHour()
+        viewForecast.selectTheFirstForecastDay()
+        viewForecast.selectTheFirstForecastHour()
     }
 
     func makeUp() {

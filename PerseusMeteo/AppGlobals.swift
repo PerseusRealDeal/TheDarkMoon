@@ -37,7 +37,7 @@ var isHighSierra: Bool { // true HighSierra, false otherwise
     return true
 }
 
-var legacy: Bool { // High Sierra, Mojave , Catalina
+var legacy: Bool { // High Sierra, Mojave, Catalina
     if #available(macOS 11.0, *) {
         return false
     }

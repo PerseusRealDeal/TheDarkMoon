@@ -1,19 +1,16 @@
 //
 //  WebLabel.swift
-//  TheDarkMoon
+//  PerseusRealDeal
 //
 //  Created by Mikhail Zhigulin in 7534 (05.12.2025.)
 //
-//  Copyright © 7534 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7534 PerseusRealDeal
+//  INFO: Mostly based on [Google AI result](https://share.google/aimode/R6SnHOWBFRzizB8lw).
 //
 //  The year starts from the creation of the world in the Star temple
 //  according to a Slavic calendar. September, the 1st of Slavic year.
 //  It means that "Sep 01, 2025" is the beginning of 7534.
 //
 //  Unlicensed Free Software
-//
-//  INFO: Based on [Google AI search](https://share.google/aimode/R6SnHOWBFRzizB8lw).
 //
 //  <This> means the file named <WebLabel.swift>.
 //

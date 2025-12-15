@@ -1,4 +1,4 @@
-# Approbation Matrix / Snowman v0.4.1 && v0.4.2 && v0.4.3
+# Approbation Matrix / Snowman v0.4.1 && v0.4.2 && v0.4.3  && v0.4.4
 
 > Build System: macOS Monterey 12.7.6 / Xcode 14.2
 
