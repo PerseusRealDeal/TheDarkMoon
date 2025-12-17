@@ -10,7 +10,7 @@ __The Status Menus app__
 
 [![Actions Status](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/main.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions)
 [![Style](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml)
-[![Version](https://img.shields.io/badge/Version-0.4.4-green.svg)](/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-0.5.0-green.svg)](/CHANGELOG.md)
 [![License](http://img.shields.io/:License-Clear_BSD-blue.svg)](/LICENSE)
 
 [![Platforms](https://img.shields.io/badge/Platform-macOS%2010.13+-orange.svg)](https://en.wikipedia.org/wiki/MacOS_version_history)
@@ -35,10 +35,10 @@ Contents
 * [The why](#The-why)
     * [Screen shots](#Screen-shots)
 * [Requirements](#Requirements)
-* [Gifts](#Gifts)
 * [First-party software](#First-party-software)
 * [Third-party software](#Third-party-software)
-* [Points taken into account](#Points-taken-into-account)
+* [Gifts](#Gifts)
+* [Account points](#Account-points)
 * [License](#License)
     * [Other required licenses details](#Other-required-licenses-details)
 * [Credits](#Credits)
@@ -62,7 +62,7 @@ Our Terms
 The why
 =======
 
-The Why of this app cannot, and need not, be put into words.
+The why of this app cannot, and need not, be put into words.
 
 Screen shots
 ------------
@@ -99,6 +99,8 @@ Requirements
 > [!NOTE]
 > The current app project is represented in source code only, it's a developer edition.
 
+`To build:`
+
 - [macOS Monterey 12.7.6+](https://apps.apple.com/by/app/macos-monterey/id1576738294)
 - [Xcode 14.2+](https://developer.apple.com/services-account/download?path=/Developer_Tools/Xcode_14.2/Xcode_14.2.xip)
 
@@ -129,21 +131,25 @@ MIT
 
 | Type     | Name                                                                                                        |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
-| Variable | [CurrentSystemLanguageGift.swift](https://gist.github.com/perseusrealdeal/98b082b136d574dd1b5aa760036dac8b) |
-| Class    | [JsonDataDictionaryGift.swift](https://gist.github.com/perseusrealdeal/918c25633122e64d51f363f00059f6f8)    |
-| Variable | [JsonDataPrettyPrintedGift.swift](https://gist.github.com/perseusrealdeal/945c9050cb9f7a19e00853f064acacca) |
-| Variable | [LocalizedInfoPlistGift.swift](/SnowmanTests/GiftsAndHelpers/LocalizedInfoPlistGift.swift)                  |
-| Variable | [LocalizedExpectationGift.swift](/SnomanTests/GiftsAndHelpers/LocalizedExpectationGift.swift)               |
 | Class    | [WebLabel](/PerseusMeteo/FirstPartyCode/Helpers/WebLabel.swift)                                             |
 
 Third-party software
---------------------
+====================
 
 | Type   | Name                                                                                  | License                            |
 | ------ | ------------------------------------------------------------------------------------- | ---------------------------------- |
 | Style  | [SwiftLint v0.57.0 Monterey+](https://github.com/realm/SwiftLint/releases/tag/0.57.0) | MIT                                |
 | Action | [mxcl/xcodebuild@v3](https://github.com/mxcl/xcodebuild)                              | [Unlicense](https://unlicense.org) |
 | Action | [cirruslabs/swiftlint-action@v1](https://github.com/cirruslabs/swiftlint-action/)     | MIT                                |
+
+Gifts
+=====
+
+- [CurrentSystemLanguageGift.swift](https://gist.github.com/perseusrealdeal/98b082b136d574dd1b5aa760036dac8b)
+- [JsonDataDictionaryGift.swift](https://gist.github.com/perseusrealdeal/918c25633122e64d51f363f00059f6f8)
+- [JsonDataPrettyPrintedGift.swift](https://gist.github.com/perseusrealdeal/945c9050cb9f7a19e00853f064acacca)
+- [LocalizedInfoPlistGift.swift](/SnowmanTests/GiftsAndHelpers/LocalizedInfoPlistGift.swift)
+- [LocalizedExpectationGift.swift](/SnowmanTests/GiftsAndHelpers/LocalizedExpectationGift.swift)
 
 Account points 
 ==============
@@ -236,7 +242,7 @@ If you'd like `to see the app in your native language` consider [translation for
 Acknowledgements
 ================
 
-During the dev process of the releases v0.2..0.3 there're several things were also taken into the account, actual even for current version also.
+Along the dev process of the releases v0.2..0.3 there're several things were also taken into the account, actual even for current version also.
 
 <table>
   <thead>
@@ -279,6 +285,6 @@ Contact
 
 <div align="center">
 
-mzhigulin@gmail.com • [Telegram](https://t.me/velociraptor1985) • [GitHub](https://github.com/perseusrealdeal)
+[E-mail](mailto:mzhigulin@gmail.com) • [Telegram](https://t.me/velociraptor1985) • [GitHub](https://github.com/perseusrealdeal)
 
 </div>
