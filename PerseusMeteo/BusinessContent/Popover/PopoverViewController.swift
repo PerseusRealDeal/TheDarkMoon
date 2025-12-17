@@ -219,10 +219,11 @@ public class PopoverViewController: NSViewController {
         }
 
         forecast.reloadData(saveSelection: false)
-        self.refreshCallInformation()
 
         self.viewForecast?.selectTheFirstForecastDay()
         self.viewForecast?.selectTheFirstForecastHour()
+
+        self.refreshCallInformation()
     }
 
     public func startAnimationProgressIndicator(_ section: MeteoCategory,
@@ -263,8 +264,11 @@ public class PopoverViewController: NSViewController {
         viewLocation?.locationCard = .suggestion
 
         viewLocation?.reloadData()
+
         viewWeather?.reloadData()
         viewForecast?.reloadData()
+        viewForecast?.selectTheFirstForecastDay()
+        viewForecast?.selectTheFirstForecastHour()
 
         Coordinator.shared.statusMenus.reloadData()
 
@@ -301,6 +305,8 @@ public class PopoverViewController: NSViewController {
         viewLocation?.reloadData()
         viewWeather?.reloadData()
         viewForecast?.reloadData()
+        viewForecast?.selectTheFirstForecastDay()
+        viewForecast?.selectTheFirstForecastHour()
 
         Coordinator.shared.statusMenus.reloadData()
 
@@ -379,6 +385,8 @@ public class PopoverViewController: NSViewController {
 
             viewWeather?.reloadData()
             viewForecast?.reloadData()
+            viewForecast?.selectTheFirstForecastDay()
+            viewForecast?.selectTheFirstForecastHour()
 
             refreshCallInformation()
 
@@ -463,13 +471,12 @@ extension PopoverViewController: PopoverViewDelegate {
         viewForecast.alphaValue = 0.0
         viewForecast.isHidden = false
 
-        // Forecast items selected by default
+        // Select forecast items
 
         viewForecast.setupUI()
-        viewForecast.selectTheFirstForecastDay()
 
-        // TODO: ISSUE - Locks hours collection scrolling
-        // viewForecast.selectTheFirstForecastHour()
+        viewForecast.selectTheFirstForecastDay()
+        viewForecast.selectTheFirstForecastHour()
     }
 
     func makeUp() {
@@ -517,7 +524,21 @@ extension PopoverViewController: PopoverViewDelegate {
 
     private func refreshCallInformation() {
 
-        let provider = globals.sourceWeather.meteoDataProviderName
+        var provider = ""
+
+        if controlCallRequest.selectedSegment == 0 {
+            if AppGlobals.weather == nil {
+                provider = AppGlobals.meteoProviderName
+            } else {
+                provider = globals.sourceWeather.meteoDataProviderName
+            }
+        } else {
+            if AppGlobals.forecast == nil {
+                provider = AppGlobals.meteoProviderName
+            } else {
+                provider = globals.sourceForecast.meteoDataProviderName
+            }
+        }
 
         let toolTip = "Label: Meteo Data Provider".localizedValue
         let toolTipLink = provider == AppGlobals.meteoProviderName ?

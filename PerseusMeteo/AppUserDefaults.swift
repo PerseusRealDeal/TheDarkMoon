@@ -163,7 +163,7 @@ class AppOptions {
             let limit = OPEN_WEATHER_API_KEY_TEXT_LIMIT
 
             if text.count > limit {
-                let secret = "[\(type(of: self))].\(#function), The key is out of length."
+                let secret = "[\(type(of: self))].\(#function) The key is out of length."
                 log.message(secret, .error)
             }
 

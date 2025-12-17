@@ -148,9 +148,6 @@ class ForecastView: NSView {
         self.viewForecastHours.wantsLayer = true
         self.viewForecastHours.backgroundColors = [NSColor.clear]
 
-        // self.selectTheFirstForecastDay()
-        // self.selectTheFirstForecastHour()
-
         viewMeteoGroup.applyFonts()
     }
 
@@ -168,17 +165,15 @@ class ForecastView: NSView {
 
     public func selectTheFirstForecastDay() {
 
-        // log.message("[\(type(of: self))].\(#function)")
-
         let indexPath = IndexPath(item: 0, section: 0)
         let indexes: Set<IndexPath> = [indexPath]
 
         viewForecastDays.selectItems(at: indexes, scrollPosition: .top)
+
+        log.message("[\(type(of: self))].\(#function) The first day selected.")
     }
 
     public func selectTheFirstForecastHour() {
-
-        // log.message("[\(type(of: self))].\(#function)")
 
         let indexPath = IndexPath(item: 0, section: 0)
         let indexes: Set<IndexPath> = [indexPath]
@@ -187,10 +182,10 @@ class ForecastView: NSView {
         let daySelected = viewForecastDays.selectionIndexPaths
 
         if !dataSource.forecastDays.isEmpty {
-            // log.message("[\(type(of: self))].\(#function) forecastDays not empty")
+            // log.message("[\(type(of: self))].\(#function) ForecastDays not empty.")
 
             if !dataSource.forecastDays[0].hours.isEmpty {
-                // log.message("[\(type(of: self))].\(#function) hours not empty")
+                // log.message("[\(type(of: self))].\(#function) Hours not empty.")
 
                 if let daySelectedIndex = daySelected.first {
                     let index = daySelectedIndex.item
@@ -206,13 +201,13 @@ class ForecastView: NSView {
                 }
             }
         }
+
+        log.message("[\(type(of: self))].\(#function) The first hour selected.")
     }
 
     // MARK: - Realization
 
     private func reloadDaysCollection(selectionSaved: Bool) {
-
-        // log.message("[\(type(of: self))].\(#function)")
 
         let paths = viewForecastDays.selectionIndexPaths
 
@@ -221,11 +216,11 @@ class ForecastView: NSView {
         if selectionSaved {
             viewForecastDays.selectItems(at: paths, scrollPosition: .nearestHorizontalEdge)
         }
+
+        log.message("[\(type(of: self))].\(#function) Days collection reloaded.")
     }
 
     private func reloadHoursCollection(selectionSaved: Bool) {
-
-        // log.message("[\(type(of: self))].\(#function)")
 
         labelWeatherDescription.stringValue = MeteoFactsDefaults.conditions
 
@@ -267,6 +262,7 @@ class ForecastView: NSView {
         }
 
         // viewMeteoGroup.reload()
+        log.message("[\(type(of: self))].\(#function) Hours collection reloaded.")
     }
 }
 
@@ -416,6 +412,7 @@ extension ForecastView: NSCollectionViewDelegate {
 extension ForecastView {
 
     public func makeup() {
+
         log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
 
         if isHighSierra {

@@ -3,8 +3,22 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-- Version in format MAJOR.MINOR where MINOR includes PATCH that means any patch increments MINOR.
-- Dates in this file meets Gregorian calendar. Date in format YYYY-MM-DD.
+- Given a version number MAJOR.MINOR.PATCH, where MAJOR in 0 means developer edition.
+- Date in format YYYY-MM-DD, in this file meets Gregorian calendar only.
+
+## [0.4.4] - [2025-12-17], The Dark Moon
+
+### Updated
+
+- README, easy readable on mobile devices.
+
+### Added
+
+- Auto selecting for forecast items (by default).
+
+### Fixed
+
+- Provider name web label, forecast view.
 
 ## [0.4.3] - [2025-12-14], The Dark Moon
 

@@ -120,7 +120,9 @@ extension LoggerViewController: LoggerViewDelegate {
     }
 
     func reloadMessages() {
-        texViewMessages.string = report.text
+        DispatchQueue.main.async {
+            self.texViewMessages.string = report.text
+        }
     }
 
     func clear() {
