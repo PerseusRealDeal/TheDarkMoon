@@ -219,10 +219,11 @@ public class PopoverViewController: NSViewController {
         }
 
         forecast.reloadData(saveSelection: false)
-        self.refreshCallInformation()
 
         self.viewForecast?.selectTheFirstForecastDay()
         self.viewForecast?.selectTheFirstForecastHour()
+
+        self.refreshCallInformation()
     }
 
     public func startAnimationProgressIndicator(_ section: MeteoCategory,
@@ -523,7 +524,21 @@ extension PopoverViewController: PopoverViewDelegate {
 
     private func refreshCallInformation() {
 
-        let provider = globals.sourceWeather.meteoDataProviderName
+        var provider = ""
+
+        if controlCallRequest.selectedSegment == 0 {
+            if AppGlobals.weather == nil {
+                provider = AppGlobals.meteoProviderName
+            } else {
+                provider = globals.sourceWeather.meteoDataProviderName
+            }
+        } else {
+            if AppGlobals.forecast == nil {
+                provider = AppGlobals.meteoProviderName
+            } else {
+                provider = globals.sourceForecast.meteoDataProviderName
+            }
+        }
 
         let toolTip = "Label: Meteo Data Provider".localizedValue
         let toolTipLink = provider == AppGlobals.meteoProviderName ?
