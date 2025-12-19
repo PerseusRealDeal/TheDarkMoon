@@ -63,7 +63,7 @@ public class StatusMenusPresenter {
         button.target = self
         button.action = #selector(buttonStatusItemTapped)
 
-        if legacy == false {
+        if isLegacy == false {
 
             // Custom StatusMenusItem view
             let newFrame = CGRect(x: 0, y: 0, width: buttonWidth, height: button.frame.height)
@@ -125,7 +125,7 @@ public class StatusMenusPresenter {
     private func refresh() {
         log.message("[\(type(of: self))].\(#function)")
 
-        if legacy == false {
+        if isLegacy == false {
             if let button = statusItem?.button {
                 let newFrame = CGRect(x: 0, y: 0,
                                       width: buttonWidth,
@@ -143,7 +143,7 @@ public class StatusMenusPresenter {
         log.message("[\(type(of: self))].\(#function)")
 
         if AppOptions.statusMenusOption == false {
-            if legacy {
+            if isLegacy {
                 statusItem?.button?.imagePosition = .imageLeading
                 statusItem?.button?.image = NSImage(
                     named: AppGlobals.statusMenusButtonIconName
@@ -165,7 +165,7 @@ public class StatusMenusPresenter {
         let image = NSImage(named: dataSource.weatherConditions.icon)
         let temperature = dataSource.temperature
 
-        if legacy {
+        if isLegacy {
             statusItem?.button?.imagePosition = .imageLeading
             statusItem?.button?.image = image
             statusItem?.button?.title = temperature

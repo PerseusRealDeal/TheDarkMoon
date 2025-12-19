@@ -238,7 +238,7 @@ extension OptionsViewController: OptionsViewDelegate {
         log.message("[\(type(of: self))].\(#function)")
 
         controlOpenWeatherKey.delegate = self
-
+/*
         if #unavailable(macOS 10.14) {  // For HighSierra only.
             boxAppOptions.isTransparent = true
             boxWeatherOptions.isTransparent = true
@@ -247,6 +247,10 @@ extension OptionsViewController: OptionsViewDelegate {
             // Dark Mode is .system (by default) only
             // controlDarkMode.isEnabled = false
         }
+*/
+        boxAppOptions.isTransparent = true
+        boxWeatherOptions.isTransparent = true
+        boxSpecialOptions.isTransparent = true
 
         lockOpenWeatherKeyHole()
     }
