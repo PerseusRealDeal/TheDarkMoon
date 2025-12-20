@@ -66,7 +66,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet private(set) weak var labelLanguage: NSTextField!
     @IBOutlet private(set) weak var labelTimeFormat: NSTextField!
     @IBOutlet private(set) weak var labelOpenWeatherKey: NSTextField!
-    @IBOutlet private(set) weak var labelStatusMenus: NSTextField!
+    @IBOutlet private(set) weak var labelCurrentWeatherStatusMenus: NSTextField!
     @IBOutlet private(set) weak var labelStatusMenusUpdate: NSTextField!
 
     @IBOutlet private(set) weak var controlDarkMode: NSSegmentedControl!
@@ -86,6 +86,15 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet private(set) weak var controlWindSpeed: NSSegmentedControl!
     @IBOutlet private(set) weak var controlPressure: NSSegmentedControl!
     @IBOutlet private(set) weak var controlDistance: NSSegmentedControl!
+
+    @IBOutlet private(set) weak var labelStatusMenus: NSTextField!
+    @IBOutlet private(set) weak var labelSecondLine: NSTextField!
+    @IBOutlet private(set) weak var labelToolTip: NSTextField!
+
+    @IBOutlet private(set) weak var checkBoxTwoLines: NSButton!
+    @IBOutlet private(set) weak var comboBoxSecondLine: NSComboBox!
+    @IBOutlet private(set) weak var comboBoxToolTipLeft: NSComboBox!
+    @IBOutlet private(set) weak var comboBoxToolTipRight: NSComboBox!
 
     // MARK: - Actions
 
@@ -147,6 +156,11 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
 
         presenter?.forceStatusMenusUpdatePeriod(sender.indexOfSelectedItem)
     }
+
+    @IBAction func checkBoxTwoLinesDidChanged(_ sender: NSButton) {}
+    @IBAction func comboBoxSecondLineDidChanged(_ sender: NSComboBox) {}
+    @IBAction func comboBoxToolTipLeftDidChanged(_ sender: NSComboBox) {}
+    @IBAction func comboBoxToolTipRightDidChanged(_ sender: NSComboBox) {}
 
     // MARK: - OpenWeatherKey Input
 
@@ -238,19 +252,14 @@ extension OptionsViewController: OptionsViewDelegate {
         log.message("[\(type(of: self))].\(#function)")
 
         controlOpenWeatherKey.delegate = self
-/*
-        if #unavailable(macOS 10.14) {  // For HighSierra only.
+
+        if isHighSierra {
+
             boxAppOptions.isTransparent = true
             boxWeatherOptions.isTransparent = true
             boxSpecialOptions.isTransparent = true
 
-            // Dark Mode is .system (by default) only
-            // controlDarkMode.isEnabled = false
         }
-*/
-        boxAppOptions.isTransparent = true
-        boxWeatherOptions.isTransparent = true
-        boxSpecialOptions.isTransparent = true
 
         lockOpenWeatherKeyHole()
     }
@@ -316,7 +325,7 @@ extension OptionsViewController: OptionsViewDelegate {
         boxSpecialOptions.title = "Section: Special Options".localizedValue + ":"
 
         labelOpenWeatherKey.stringValue = "Option: OpenWeather Key".localizedValue
-        labelStatusMenus.stringValue = "Option: StatusMenus".localizedValue
+        labelCurrentWeatherStatusMenus.stringValue = "Option: StatusMenus".localizedValue
 
         let weatherStatusMenusUpdate = "Option: StatusMenus Update".localizedValue + ":"
         labelStatusMenusUpdate.stringValue = weatherStatusMenusUpdate

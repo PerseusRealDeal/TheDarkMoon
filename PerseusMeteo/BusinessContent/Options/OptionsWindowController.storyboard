@@ -38,7 +38,7 @@
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qzI-oB-87E">
                                 <rect key="frame" x="10" y="60" width="515" height="455"/>
                                 <subviews>
-                                    <box title="The App's options:" translatesAutoresizingMaskIntoConstraints="NO" id="vNc-yQ-0fI" userLabel="App Options Box">
+                                    <box title="The App's options:" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vNc-yQ-0fI" userLabel="App Options Box">
                                         <rect key="frame" x="-3" y="326" width="521" height="129"/>
                                         <view key="contentView" id="pop-m7-et5">
                                             <rect key="frame" x="3" y="3" width="515" height="109"/>
@@ -131,7 +131,7 @@
                                         </constraints>
                                         <font key="titleFont" metaFont="system"/>
                                     </box>
-                                    <box title="Weather units options:" translatesAutoresizingMaskIntoConstraints="NO" id="xlu-T9-4Dc" userLabel="Weather Options Box">
+                                    <box title="Weather units options:" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xlu-T9-4Dc" userLabel="Weather Options Box">
                                         <rect key="frame" x="-3" y="163" width="521" height="159"/>
                                         <view key="contentView" id="ZHq-T3-S7u">
                                             <rect key="frame" x="3" y="3" width="515" height="139"/>
@@ -248,7 +248,7 @@
                                         </constraints>
                                         <font key="titleFont" metaFont="system"/>
                                     </box>
-                                    <box title="Special options:" translatesAutoresizingMaskIntoConstraints="NO" id="NDz-2Q-PSN" userLabel="Special Options Box">
+                                    <box title="Special options:" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NDz-2Q-PSN" userLabel="Special Options Box">
                                         <rect key="frame" x="-3" y="-4" width="521" height="163"/>
                                         <view key="contentView" id="gIN-gO-Lp7">
                                             <rect key="frame" x="3" y="3" width="515" height="143"/>
@@ -321,6 +321,9 @@
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
+                                                    <connections>
+                                                        <action selector="checkBoxTwoLinesDidChanged:" target="NdM-46-oIE" id="8Rl-GJ-AMm"/>
+                                                    </connections>
                                                 </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qjn-Rj-b91">
                                                     <rect key="frame" x="295" y="53" width="83" height="16"/>
@@ -342,6 +345,9 @@
                                                             <string>Item 3</string>
                                                         </objectValues>
                                                     </comboBoxCell>
+                                                    <connections>
+                                                        <action selector="comboBoxSecondLineDidChanged:" target="NdM-46-oIE" id="j78-1x-wqV"/>
+                                                    </connections>
                                                 </comboBox>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KWv-Ww-NrH">
                                                     <rect key="frame" x="200" y="22" width="49" height="16"/>
@@ -351,19 +357,6 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xj7-P1-Gq6">
-                                                    <rect key="frame" x="386" y="17" width="122" height="25"/>
-                                                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="tMq-VZ-zwi">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        <objectValues>
-                                                            <string>Item 1</string>
-                                                            <string>Item 2</string>
-                                                            <string>Item 3</string>
-                                                        </objectValues>
-                                                    </comboBoxCell>
-                                                </comboBox>
                                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UQa-cT-Et5">
                                                     <rect key="frame" x="257" y="17" width="122" height="25"/>
                                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="3dX-ZJ-KGB">
@@ -376,6 +369,25 @@
                                                             <string>Item 3</string>
                                                         </objectValues>
                                                     </comboBoxCell>
+                                                    <connections>
+                                                        <action selector="comboBoxToolTipLeftDidChanged:" target="NdM-46-oIE" id="Y8N-Hf-6u5"/>
+                                                    </connections>
+                                                </comboBox>
+                                                <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xj7-P1-Gq6">
+                                                    <rect key="frame" x="386" y="17" width="122" height="25"/>
+                                                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="tMq-VZ-zwi">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        <objectValues>
+                                                            <string>Item 1</string>
+                                                            <string>Item 2</string>
+                                                            <string>Item 3</string>
+                                                        </objectValues>
+                                                    </comboBoxCell>
+                                                    <connections>
+                                                        <action selector="comboBoxToolTipRightDidChanged:" target="NdM-46-oIE" id="Vyk-WL-ZJN"/>
+                                                    </connections>
                                                 </comboBox>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0SC-Zc-u6t">
                                                     <rect key="frame" x="379" y="106" width="133" height="32"/>
@@ -488,7 +500,11 @@
                         <outlet property="buttonClose" destination="Jvm-O9-bm1" id="YvW-Mp-EzB"/>
                         <outlet property="buttonResetAllSettings" destination="0Np-Hh-uIh" id="b2W-Nb-no5"/>
                         <outlet property="checkBoxStatusMenus" destination="jET-Am-2AY" id="kKs-LM-ruV"/>
+                        <outlet property="checkBoxTwoLines" destination="pG1-e8-IOI" id="PNm-B5-Ua4"/>
+                        <outlet property="comboBoxSecondLine" destination="Foe-Mz-703" id="7rs-d1-hQg"/>
                         <outlet property="comboBoxStatusMenusUpdatePeriod" destination="kRt-m6-cQf" id="sVC-wq-jgc"/>
+                        <outlet property="comboBoxToolTipLeft" destination="UQa-cT-Et5" id="eYr-AG-UaU"/>
+                        <outlet property="comboBoxToolTipRight" destination="Xj7-P1-Gq6" id="Qiq-DF-c5I"/>
                         <outlet property="controlDarkMode" destination="Qnu-8q-EXi" id="mbN-G1-bYK"/>
                         <outlet property="controlDistance" destination="R2S-za-RVt" id="BfT-pi-TDk"/>
                         <outlet property="controlLanguage" destination="Yoa-ad-Hs1" id="SCJ-PZ-ort"/>
@@ -498,21 +514,24 @@
                         <outlet property="controlTimeFormat" destination="R7l-Kv-CQy" id="ukF-GV-Pod"/>
                         <outlet property="controlUnlockButton" destination="0SC-Zc-u6t" id="2WV-9J-2lh"/>
                         <outlet property="controlWindSpeed" destination="nqP-bv-4Wk" id="E3H-n0-4aG"/>
+                        <outlet property="labelCurrentWeatherStatusMenus" destination="AH6-cc-1rL" id="gkr-jl-jab"/>
                         <outlet property="labelDarkMode" destination="mTu-dU-NiV" id="feK-zG-jGp"/>
                         <outlet property="labelDistance" destination="9IO-CX-6yZ" id="ZBy-Eb-gtN"/>
                         <outlet property="labelLanguage" destination="zxY-ag-jLf" id="TK5-z7-e27"/>
                         <outlet property="labelOpenWeatherKey" destination="vQb-9F-2bJ" id="axD-cs-fa9"/>
                         <outlet property="labelPressure" destination="0i9-b8-cXK" id="8c2-LD-RZh"/>
-                        <outlet property="labelStatusMenus" destination="AH6-cc-1rL" id="DKW-YW-N0F"/>
+                        <outlet property="labelSecondLine" destination="Qjn-Rj-b91" id="NUD-fP-qSa"/>
+                        <outlet property="labelStatusMenus" destination="gTG-bY-TbX" id="5kE-Zu-87g"/>
                         <outlet property="labelStatusMenusUpdate" destination="4Q4-s1-iZc" id="KW7-9k-SXy"/>
                         <outlet property="labelTemperature" destination="ge2-r9-bJt" id="pPO-Lr-KIt"/>
                         <outlet property="labelTimeFormat" destination="vBF-Ie-qLr" id="SIE-5L-mMN"/>
+                        <outlet property="labelToolTip" destination="KWv-Ww-NrH" id="uTb-Xh-8Ya"/>
                         <outlet property="labelWindSpeed" destination="gcZ-4O-uT9" id="gC8-tI-QNv"/>
                     </connections>
                 </viewController>
                 <customObject id="wub-Iw-l7t" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-122" y="879"/>
+            <point key="canvasLocation" x="-122" y="946"/>
         </scene>
     </scenes>
 </document>
