@@ -373,6 +373,14 @@
                                                         <action selector="comboBoxToolTipLeftDidChanged:" target="NdM-46-oIE" id="Y8N-Hf-6u5"/>
                                                     </connections>
                                                 </comboBox>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G6n-0E-mSc">
+                                                    <rect key="frame" x="377" y="22" width="8" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="," id="O6Q-OH-mkk">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
                                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xj7-P1-Gq6">
                                                     <rect key="frame" x="386" y="17" width="122" height="25"/>
                                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="tMq-VZ-zwi">
@@ -407,6 +415,7 @@
                                                 <constraint firstItem="Xj7-P1-Gq6" firstAttribute="width" secondItem="0SC-Zc-u6t" secondAttribute="width" id="4B3-Ps-1QZ"/>
                                                 <constraint firstItem="vQb-9F-2bJ" firstAttribute="top" secondItem="gIN-gO-Lp7" secondAttribute="top" constant="12" id="4e3-p7-ZsK"/>
                                                 <constraint firstItem="Qjn-Rj-b91" firstAttribute="centerY" secondItem="pG1-e8-IOI" secondAttribute="centerY" id="7b6-Z4-Mub"/>
+                                                <constraint firstItem="UQa-cT-Et5" firstAttribute="trailing" secondItem="G6n-0E-mSc" secondAttribute="leading" constant="-3" id="7ym-Ao-RPJ"/>
                                                 <constraint firstItem="Xj7-P1-Gq6" firstAttribute="centerY" secondItem="KWv-Ww-NrH" secondAttribute="centerY" id="8Eb-Fy-rbk"/>
                                                 <constraint firstItem="0SC-Zc-u6t" firstAttribute="centerY" secondItem="vQb-9F-2bJ" secondAttribute="centerY" id="8wZ-hw-4nh"/>
                                                 <constraint firstItem="jET-Am-2AY" firstAttribute="leading" secondItem="F1A-GE-l8k" secondAttribute="leading" id="9eR-sc-hBB"/>
@@ -433,6 +442,7 @@
                                                 <constraint firstItem="F1A-GE-l8k" firstAttribute="centerY" secondItem="vQb-9F-2bJ" secondAttribute="centerY" id="jwC-b3-gWq"/>
                                                 <constraint firstItem="kRt-m6-cQf" firstAttribute="trailing" secondItem="0SC-Zc-u6t" secondAttribute="trailing" id="mHM-oJ-9AF"/>
                                                 <constraint firstItem="0SC-Zc-u6t" firstAttribute="leading" secondItem="F1A-GE-l8k" secondAttribute="trailing" constant="10" id="pUj-6f-ptf"/>
+                                                <constraint firstItem="G6n-0E-mSc" firstAttribute="centerY" secondItem="UQa-cT-Et5" secondAttribute="centerY" id="rEd-Gv-ihJ"/>
                                                 <constraint firstItem="gTG-bY-TbX" firstAttribute="leading" secondItem="vQb-9F-2bJ" secondAttribute="leading" id="uNM-qz-a6f"/>
                                                 <constraint firstItem="Qjn-Rj-b91" firstAttribute="trailing" secondItem="F1A-GE-l8k" secondAttribute="trailing" id="vI3-JW-ybm"/>
                                                 <constraint firstItem="vQb-9F-2bJ" firstAttribute="leading" secondItem="gIN-gO-Lp7" secondAttribute="leading" constant="12" id="xbb-Eg-zTz"/>
@@ -499,7 +509,7 @@
                         <outlet property="boxWeatherOptions" destination="xlu-T9-4Dc" id="mm8-Kf-AOW"/>
                         <outlet property="buttonClose" destination="Jvm-O9-bm1" id="YvW-Mp-EzB"/>
                         <outlet property="buttonResetAllSettings" destination="0Np-Hh-uIh" id="b2W-Nb-no5"/>
-                        <outlet property="checkBoxStatusMenus" destination="jET-Am-2AY" id="kKs-LM-ruV"/>
+                        <outlet property="checkBoxCurrentWeatherStatusMenus" destination="jET-Am-2AY" id="LeZ-Qa-Qyc"/>
                         <outlet property="checkBoxTwoLines" destination="pG1-e8-IOI" id="PNm-B5-Ua4"/>
                         <outlet property="comboBoxSecondLine" destination="Foe-Mz-703" id="7rs-d1-hQg"/>
                         <outlet property="comboBoxStatusMenusUpdatePeriod" destination="kRt-m6-cQf" id="sVC-wq-jgc"/>

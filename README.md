@@ -157,6 +157,7 @@ Account points
 - Explicit start point [main.swift](/PerseusMeteo/main.swift)
 - Explicit app delegate [TestingAppDelegate.swift](/SnowmanTests/TestingAppDelegate.swift)
 - Explicit app globals [AppGlobals.swift](/PerseusMeteo/Configuration/AppGlobals.swift)
+- Explicit app options [AppOptions.swift](/PerseusMeteo/Configuration/AppOptions.swift)
 - Architectural points: 
     - MVP applied. Based on [Gist](https://gist.github.com/PerseusRealDeal/5301e90881732f0cd0040e2083a78a3d)
     - Coordinator. Top business logic wrapped up in [Coordinator.swift](/PerseusMeteo/BusinessContent/Coordinator.swift)

@@ -55,6 +55,11 @@ public let STATUSMENUS_OPTION_DEFAULT = false
 public let STATUSMENUS_PERIOD_OPTION_KEY = "STATUSMENUS_PERIOD_OPTION_KEY"
 public let STATUSMENUS_PERIOD_OPTION_DEFAULT = StatusMenusUpdatePeriodOption.none
 
+public let STATUSMENUS_VIEW_OPTIONS_KEY = "STATUSMENUS_VIEW_OPTION_KEY"
+public let STATUSMENUS_VIEW_OPTIONS_DEFAULT = StatusMenusViewOptions(
+    twoLines: false, secondLine: .wind, toolTipLeft: .direction, toolTipRight: .gust
+)
+
 // MARK: - User Defaults
 
 class AppOptions {
@@ -97,6 +102,8 @@ class AppOptions {
         }
     }
 
+    // MARK: - StatusMenus Options
+
     public static var statusMenusOption: Bool {
         get {
             let ud = AppGlobals.userDefaults
@@ -137,6 +144,31 @@ class AppOptions {
         set {
             let ud = AppGlobals.userDefaults
             ud.setValue(newValue.rawValue, forKey: STATUSMENUS_PERIOD_OPTION_KEY)
+        }
+    }
+
+    public static var statusMenusViewOptions: StatusMenusViewOptions {
+        get {
+            let ud = AppGlobals.userDefaults
+            if let savedStruct = ud.data(forKey: STATUSMENUS_VIEW_OPTIONS_KEY) {
+
+                let decoder = JSONDecoder()
+
+                if let loadedStruct = try? decoder.decode(
+                    StatusMenusViewOptions.self,
+                    from: savedStruct
+                ) {
+                    return loadedStruct
+                }
+            }
+            return STATUSMENUS_VIEW_OPTIONS_DEFAULT
+        }
+        set {
+            let ud = AppGlobals.userDefaults
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(newValue) {
+                ud.set(encoded, forKey: STATUSMENUS_VIEW_OPTIONS_KEY)
+            }
         }
     }
 
@@ -369,4 +401,16 @@ extension AppOptions {
 
         self.OpenWeatherAPIOption = nil
     }
+}
+
+// MARK: Status Menus view options
+
+public struct StatusMenusViewOptions: Codable {
+
+    public var twoLines: Bool
+
+    public var secondLine: MeteoParameter
+    public var toolTipLeft: MeteoParameter
+    public var toolTipRight: MeteoParameter
+
 }

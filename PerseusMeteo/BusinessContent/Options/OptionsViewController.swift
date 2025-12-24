@@ -66,16 +66,12 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet private(set) weak var labelLanguage: NSTextField!
     @IBOutlet private(set) weak var labelTimeFormat: NSTextField!
     @IBOutlet private(set) weak var labelOpenWeatherKey: NSTextField!
-    @IBOutlet private(set) weak var labelCurrentWeatherStatusMenus: NSTextField!
-    @IBOutlet private(set) weak var labelStatusMenusUpdate: NSTextField!
 
     @IBOutlet private(set) weak var controlDarkMode: NSSegmentedControl!
     @IBOutlet private(set) weak var controlLanguage: NSSegmentedControl!
     @IBOutlet private(set) weak var controlTimeFormat: NSSegmentedControl!
     @IBOutlet private(set) weak var controlOpenWeatherKey: NSTextField!
     @IBOutlet private(set) weak var controlUnlockButton: NSButton!
-    @IBOutlet private(set) weak var checkBoxStatusMenus: NSButton!
-    @IBOutlet private(set) weak var comboBoxStatusMenusUpdatePeriod: NSComboBox!
 
     @IBOutlet private(set) weak var labelTemperature: NSTextField!
     @IBOutlet private(set) weak var labelWindSpeed: NSTextField!
@@ -86,6 +82,11 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet private(set) weak var controlWindSpeed: NSSegmentedControl!
     @IBOutlet private(set) weak var controlPressure: NSSegmentedControl!
     @IBOutlet private(set) weak var controlDistance: NSSegmentedControl!
+
+    @IBOutlet private(set) weak var labelCurrentWeatherStatusMenus: NSTextField!
+    @IBOutlet private(set) weak var labelStatusMenusUpdate: NSTextField!
+    @IBOutlet private(set) weak var checkBoxCurrentWeatherStatusMenus: NSButton!
+    @IBOutlet private(set) weak var comboBoxStatusMenusUpdatePeriod: NSComboBox!
 
     @IBOutlet private(set) weak var labelStatusMenus: NSTextField!
     @IBOutlet private(set) weak var labelSecondLine: NSTextField!
@@ -142,7 +143,8 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     }
 
     @IBAction func checkBoxStatusMenusDidChanged(_ sender: NSButton) {
-        log.message("[\(type(of: self))].\(#function) - \(checkBoxStatusMenus.state)")
+        let state = checkBoxCurrentWeatherStatusMenus.state
+        log.message("[\(type(of: self))].\(#function) - \(state)")
 
         let isEnabled = sender.state == .on ? true : false
 
@@ -157,10 +159,34 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         presenter?.forceStatusMenusUpdatePeriod(sender.indexOfSelectedItem)
     }
 
-    @IBAction func checkBoxTwoLinesDidChanged(_ sender: NSButton) {}
-    @IBAction func comboBoxSecondLineDidChanged(_ sender: NSComboBox) {}
-    @IBAction func comboBoxToolTipLeftDidChanged(_ sender: NSComboBox) {}
-    @IBAction func comboBoxToolTipRightDidChanged(_ sender: NSComboBox) {}
+    @IBAction func checkBoxTwoLinesDidChanged(_ sender: NSButton) {
+        let state = checkBoxTwoLines.state
+        log.message("[\(type(of: self))].\(#function) - \(state)")
+
+        let isEnabled = sender.state == .on ? true : false
+        presenter?.forceStatusMenusTwoLines(isEnabled)
+    }
+
+    @IBAction func comboBoxSecondLineDidChanged(_ sender: NSComboBox) {
+        let index = comboBoxStatusMenusUpdatePeriod.indexOfSelectedItem
+        log.message("[\(type(of: self))].\(#function) - \(index)")
+
+        presenter?.forceStatusMenusSecondLine(sender.indexOfSelectedItem)
+    }
+
+    @IBAction func comboBoxToolTipLeftDidChanged(_ sender: NSComboBox) {
+        let index = comboBoxStatusMenusUpdatePeriod.indexOfSelectedItem
+        log.message("[\(type(of: self))].\(#function) - \(index)")
+
+        presenter?.forceStatusMenusToolTipLeft(sender.indexOfSelectedItem)
+    }
+
+    @IBAction func comboBoxToolTipRightDidChanged(_ sender: NSComboBox) {
+        let index = comboBoxStatusMenusUpdatePeriod.indexOfSelectedItem
+        log.message("[\(type(of: self))].\(#function) - \(index)")
+
+        presenter?.forceStatusMenusToolTipRight(sender.indexOfSelectedItem)
+    }
 
     // MARK: - OpenWeatherKey Input
 
@@ -238,11 +264,12 @@ extension OptionsViewController: OptionsViewDelegate {
     }
 
     func onViewDidAppear() {
-        refreshOptionsViewStates()
+        refreshUI()
     }
 
-    func refreshStatusMenusUpdatePeriod() {
+    func refreshStatusMenusOptions() {
         udpateComboBoxStatusMenusUpdatePeriod()
+        updateStatusMenusViewOptions()
     }
 
     // MARK: - MVPViewDelegate
@@ -338,7 +365,7 @@ extension OptionsViewController: OptionsViewDelegate {
             "OpenWeather: Lock".localizedValue :
             "OpenWeather: Unlock".localizedValue
 
-        checkBoxStatusMenus.title = "Button: CheckBox StatusMenus".localizedValue
+        checkBoxCurrentWeatherStatusMenus.title = "Button: CheckBox StatusMenus".localizedValue
 
         udpateComboBoxStatusMenusUpdatePeriod()
 
@@ -453,9 +480,9 @@ extension OptionsViewController {
         }
     }
 
-    private func udpateCheckBoxStatusMenus() {
+    private func udpateCheckBoxCurrentWeatherStatusMenus() {
         log.message("[\(type(of: self))].\(#function) \(AppOptions.statusMenusOption)")
-        checkBoxStatusMenus.state = AppOptions.statusMenusOption ? .on : .off
+        checkBoxCurrentWeatherStatusMenus.state = AppOptions.statusMenusOption ? .on : .off
     }
 
     private func udpateComboBoxStatusMenusUpdatePeriod() {
@@ -472,7 +499,33 @@ extension OptionsViewController {
         comboBoxStatusMenusUpdatePeriod.isEnabled = AppOptions.statusMenusOption
     }
 
-    private func refreshOptionsViewStates() {
+    private func updateStatusMenusViewOptions() {
+        log.message("[\(type(of: self))].\(#function)")
+        let options = AppOptions.statusMenusViewOptions
+
+        if isLegacy { // Legacy OS doesn't support multiline status menus items.
+            checkBoxTwoLines.isEnabled = false
+            comboBoxSecondLine.isEnabled = false
+        }
+
+        checkBoxTwoLines.state = options.twoLines ? .on : .off
+
+        comboBoxSecondLine.removeAllItems()
+        comboBoxToolTipLeft.removeAllItems()
+        comboBoxToolTipRight.removeAllItems()
+
+        for item in MeteoParameter.allCases {
+            comboBoxSecondLine.addItem(withObjectValue: "\(item)".localizedValue)
+            comboBoxToolTipLeft.addItem(withObjectValue: "\(item)".localizedValue)
+            comboBoxToolTipRight.addItem(withObjectValue: "\(item)".localizedValue)
+        }
+
+        comboBoxSecondLine.selectItem(at: options.secondLine.rawValue)
+        comboBoxToolTipLeft.selectItem(at: options.toolTipLeft.rawValue)
+        comboBoxToolTipRight.selectItem(at: options.toolTipRight.rawValue)
+    }
+
+    private func refreshUI() {
 
         log.message("[\(type(of: self))].\(#function)")
 
@@ -485,7 +538,8 @@ extension OptionsViewController {
         updateControlPressure()
         updateControlDistance()
 
-        udpateCheckBoxStatusMenus()
+        udpateCheckBoxCurrentWeatherStatusMenus()
         udpateComboBoxStatusMenusUpdatePeriod()
+        updateStatusMenusViewOptions()
     }
 }
