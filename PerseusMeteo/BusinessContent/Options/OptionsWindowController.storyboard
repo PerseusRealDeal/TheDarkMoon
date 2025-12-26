@@ -335,15 +335,10 @@
                                                 </textField>
                                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Foe-Mz-703">
                                                     <rect key="frame" x="386" y="48" width="122" height="25"/>
-                                                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="pHu-1i-OYR">
+                                                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="pHu-1i-OYR">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        <objectValues>
-                                                            <string>Item 1</string>
-                                                            <string>Item 2</string>
-                                                            <string>Item 3</string>
-                                                        </objectValues>
                                                     </comboBoxCell>
                                                     <connections>
                                                         <action selector="comboBoxSecondLineDidChanged:" target="NdM-46-oIE" id="j78-1x-wqV"/>
@@ -359,15 +354,10 @@
                                                 </textField>
                                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UQa-cT-Et5">
                                                     <rect key="frame" x="257" y="17" width="122" height="25"/>
-                                                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="3dX-ZJ-KGB">
+                                                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="3dX-ZJ-KGB">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        <objectValues>
-                                                            <string>Item 1</string>
-                                                            <string>Item 2</string>
-                                                            <string>Item 3</string>
-                                                        </objectValues>
                                                     </comboBoxCell>
                                                     <connections>
                                                         <action selector="comboBoxToolTipLeftDidChanged:" target="NdM-46-oIE" id="Y8N-Hf-6u5"/>
@@ -383,15 +373,10 @@
                                                 </textField>
                                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xj7-P1-Gq6">
                                                     <rect key="frame" x="386" y="17" width="122" height="25"/>
-                                                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="tMq-VZ-zwi">
+                                                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="tMq-VZ-zwi">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        <objectValues>
-                                                            <string>Item 1</string>
-                                                            <string>Item 2</string>
-                                                            <string>Item 3</string>
-                                                        </objectValues>
                                                     </comboBoxCell>
                                                     <connections>
                                                         <action selector="comboBoxToolTipRightDidChanged:" target="NdM-46-oIE" id="Vyk-WL-ZJN"/>

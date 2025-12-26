@@ -407,8 +407,8 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("OpenWeather: Editable".localizedExpectation,
                        "OpenWeather: Editable".localizedValue)
 
-        XCTAssertEqual("Option: StatusMenus".localizedExpectation,
-                       "Option: StatusMenus".localizedValue)
+        XCTAssertEqual("Option: CurrentWeatherStatusMenus".localizedExpectation,
+                       "Option: CurrentWeatherStatusMenus".localizedValue)
 
         XCTAssertEqual("Button: CheckBox StatusMenus".localizedExpectation,
                        "Button: CheckBox StatusMenus".localizedValue)
@@ -427,6 +427,35 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("StatusMenus: none".localizedExpectation,
                        "StatusMenus: none".localizedValue)
+
+        XCTAssertEqual("Option: StatusMenusView".localizedExpectation,
+                       "Option: StatusMenusView".localizedValue)
+
+        XCTAssertEqual("Button: CheckBox TwoLines".localizedExpectation,
+                       "Button: CheckBox TwoLines".localizedValue)
+
+        XCTAssertEqual("Option: SecondLine".localizedExpectation,
+                       "Option: SecondLine".localizedValue)
+
+        XCTAssertEqual("Option: ToolTip".localizedExpectation,
+                       "Option: ToolTip".localizedValue)
+
+        XCTAssertEqual("StatusMenus: feelsLike".localizedExpectation,
+                       "StatusMenus: feelsLike".localizedValue)
+        XCTAssertEqual("StatusMenus: direction".localizedExpectation,
+                       "StatusMenus: direction".localizedValue)
+        XCTAssertEqual("StatusMenus: gust".localizedExpectation,
+                       "StatusMenus: gust".localizedValue)
+        XCTAssertEqual("StatusMenus: wind".localizedExpectation,
+                       "StatusMenus: wind".localizedValue)
+        XCTAssertEqual("StatusMenus: visibility".localizedExpectation,
+                       "StatusMenus: visibility".localizedValue)
+        XCTAssertEqual("StatusMenus: pressure".localizedExpectation,
+                       "StatusMenus: pressure".localizedValue)
+        XCTAssertEqual("StatusMenus: humidity".localizedExpectation,
+                       "StatusMenus: humidity".localizedValue)
+        XCTAssertEqual("StatusMenus: cloudiness".localizedExpectation,
+                       "StatusMenus: cloudiness".localizedValue)
     }
 
     // MARK: - Compass Directions

@@ -352,10 +352,6 @@ extension OptionsViewController: OptionsViewDelegate {
         boxSpecialOptions.title = "Section: Special Options".localizedValue + ":"
 
         labelOpenWeatherKey.stringValue = "Option: OpenWeather Key".localizedValue
-        labelCurrentWeatherStatusMenus.stringValue = "Option: StatusMenus".localizedValue
-
-        let weatherStatusMenusUpdate = "Option: StatusMenus Update".localizedValue + ":"
-        labelStatusMenusUpdate.stringValue = weatherStatusMenusUpdate
 
         controlOpenWeatherKey.placeholderString = controlOpenWeatherKey.isEditable ?
             "OpenWeather: Editable".localizedValue :
@@ -365,9 +361,21 @@ extension OptionsViewController: OptionsViewDelegate {
             "OpenWeather: Lock".localizedValue :
             "OpenWeather: Unlock".localizedValue
 
+        labelCurrentWeatherStatusMenus.stringValue =
+        "Option: CurrentWeatherStatusMenus".localizedValue
+
+        let weatherStatusMenusUpdate = "Option: StatusMenus Update".localizedValue + ":"
+        labelStatusMenusUpdate.stringValue = weatherStatusMenusUpdate
         checkBoxCurrentWeatherStatusMenus.title = "Button: CheckBox StatusMenus".localizedValue
 
         udpateComboBoxStatusMenusUpdatePeriod()
+
+        labelStatusMenus.stringValue = "Option: StatusMenusView".localizedValue
+        checkBoxTwoLines.title = "Button: CheckBox TwoLines".localizedValue
+        labelSecondLine.stringValue = "Option: SecondLine".localizedValue + ":"
+        labelToolTip.stringValue = "Option: ToolTip".localizedValue + ":"
+
+        updateStatusMenusViewOptions()
 
         buttonClose.title = "Button: Close".localizedValue
         buttonResetAllSettings.title = "Button: Reset to Defaults".localizedValue

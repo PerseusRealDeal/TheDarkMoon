@@ -188,7 +188,7 @@
 "OpenWeather: Hidden" = "Скрытая замочная скважина...";
 "OpenWeather: Editable" = "Нужен токен (ключ)";
 
-"Option: StatusMenus" = "Наблюдение";
+"Option: CurrentWeatherStatusMenus" = "Наблюдение";
 "Button: CheckBox StatusMenus" = "Системный Статус";
 
 "Option: StatusMenus Update" = "Период";
@@ -196,6 +196,20 @@
 "StatusMenus: per 3 hours" = "3 часа";
 "StatusMenus: per hour" = "каждый час";
 "StatusMenus: none" = "--";
+
+"Option: StatusMenusView" = "Системный статус";
+"Button: CheckBox TwoLines" = "Две строки";
+"Option: SecondLine" = "Вторая строка";
+"Option: ToolTip" = "Подсказка";
+
+"StatusMenus: feelsLike" = "По ощущениям";
+"StatusMenus: direction" = "Направление";
+"StatusMenus: gust" = "Порывы";
+"StatusMenus: wind" = "Ветер";
+"StatusMenus: visibility" = "Обзор";
+"StatusMenus: pressure" = "Давление";
+"StatusMenus: humidity" = "Влажность";
+"StatusMenus: cloudiness" = "Облачность";
 
 "Button: Close" = "Исчезнуть";
 "Button: Reset to Defaults" = "Всё сбросить";

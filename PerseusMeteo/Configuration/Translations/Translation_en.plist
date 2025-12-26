@@ -20,16 +20,16 @@
 	<string>P2P</string>
 	<key>P2P stands for Person to Person</key>
 	<string>P2P stands for Person to Person</string>
-    <key>/* Redirect Alert */</key>
-    <string>--</string>
-    <key>Redirect Alert: title</key>
-    <string>Location Services.</string>
-    <key>Redirect Alert: message</key>
-    <string>The Current Location Services Status can be changed in System Services.</string>
-    <key>Redirect Alert: cancel</key>
-    <string>OK</string>
-    <key>Redirect Alert: function</key>
-    <string>System Services</string>
+	<key>/* Redirect Alert */</key>
+	<string>--</string>
+	<key>Redirect Alert: title</key>
+	<string>Location Services.</string>
+	<key>Redirect Alert: message</key>
+	<string>The Current Location Services Status can be changed in System Services.</string>
+	<key>Redirect Alert: cancel</key>
+	<string>OK</string>
+	<key>Redirect Alert: function</key>
+	<string>System Services</string>
 	<key>/* Popover Screen */</key>
 	<string>--</string>
 	<key>Button: Call Weather</key>
@@ -246,7 +246,7 @@
 	<string>Special Options</string>
 	<key>Option: OpenWeather Key</key>
 	<string>OpenWeather Key</string>
-	<key>Option: StatusMenus</key>
+	<key>Option: CurrentWeatherStatusMenus</key>
 	<string>Current Weather</string>
 	<key>Button: CheckBox StatusMenus</key>
 	<string>Show in StatusMenus</string>
@@ -260,6 +260,30 @@
 	<string>per hour</string>
 	<key>StatusMenus: none</key>
 	<string>--</string>
+    <key>Option: StatusMenusView</key>
+    <string>Status Menus</string>
+    <key>Button: CheckBox TwoLines</key>
+    <string>Two lines</string>
+    <key>Option: SecondLine</key>
+    <string>Second line</string>
+    <key>Option: ToolTip</key>
+    <string>Tool tip</string>
+    <key>StatusMenus: feelsLike</key>
+    <string>Feels like</string>
+    <key>StatusMenus: direction</key>
+    <string>Direction</string>
+    <key>StatusMenus: gust</key>
+    <string>Gust</string>
+    <key>StatusMenus: wind</key>
+    <string>Wind</string>
+    <key>StatusMenus: visibility</key>
+    <string>Visibility</string>
+    <key>StatusMenus: pressure</key>
+    <string>Pressure</string>
+    <key>StatusMenus: humidity</key>
+    <string>Humidity</string>
+    <key>StatusMenus: cloudiness</key>
+    <string>Cloudiness</string>
 	<key>Button: Close</key>
 	<string>Close</string>
 	<key>Button: Reset to Defaults</key>

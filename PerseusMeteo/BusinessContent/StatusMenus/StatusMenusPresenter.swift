@@ -26,6 +26,14 @@ public class StatusMenusPresenter {
         return 78.0
     }
 
+    private var titleTwo: String {
+        return dataSource.windSpeed
+    }
+
+    private var toolTip: String {
+        return "\(dataSource.windDirection), \(dataSource.windGusts)"
+    }
+
     // MARK: - Popover for Status Menus Item
 
     public var statusItem: NSStatusItem?
@@ -45,6 +53,14 @@ public class StatusMenusPresenter {
             self,
             selector: #selector(localize),
             name: NSNotification.Name.languageSwitchedManuallyNotification,
+            object: nil
+        )
+
+        // Observe options change events
+        AppGlobals.notificationCenter.addObserver(
+            self,
+            selector: #selector(refresh),
+            name: NSNotification.Name.meteoDataOptionsNotification,
             object: nil
         )
 
@@ -119,10 +135,11 @@ public class StatusMenusPresenter {
     }
 
     @objc private func localize() {
+        log.message("[\(type(of: self))].\(#function)")
         reset()
     }
 
-    private func refresh() {
+    @objc private func refresh() {
         log.message("[\(type(of: self))].\(#function)")
 
         if isLegacy == false {
@@ -172,9 +189,10 @@ public class StatusMenusPresenter {
         } else {
             customStatusMenusItemContent?.image = image
             customStatusMenusItemContent?.titleOne = temperature
-            customStatusMenusItemContent?.titleTwo = dataSource.windSpeed
+
+            customStatusMenusItemContent?.titleTwo = self.titleTwo
         }
 
-        statusItem?.button?.toolTip = "\(dataSource.windDirection), \(dataSource.windGusts)"
+        statusItem?.button?.toolTip = self.toolTip
     }
 }

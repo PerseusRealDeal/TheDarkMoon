@@ -33,9 +33,12 @@ Contents
 ========
 
 * [The why](#The-why)
-    * [Screen shots](#Screen-shots)
+* [Screen shots](#Screen-shots)
+* [Features](#Features) 
 * [Requirements](#Requirements)
 * [First-party software](#First-party-software)
+    * [MIT](#MIT)
+    * [Unlicense](#Unlicense)
 * [Third-party software](#Third-party-software)
 * [Gifts](#Gifts)
 * [Account points](#Account-points)
@@ -65,7 +68,7 @@ The why
 The why of this app cannot, and need not, be put into words.
 
 Screen shots
-------------
+============
 
 <div align="center">
 
@@ -86,12 +89,17 @@ Screen shots
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/7261b3ed-7ee8-44ce-ab62-79271072b22b" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/3e250d35-9daa-40d9-be41-ca8f485d8a2d" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
 
 </div>
+
+Features
+========
+
+> TODO: features list
 
 Requirements
 ============
@@ -129,9 +137,9 @@ MIT
 [Unlicense](https://unlicense.org)
 ----------------------------------
 
-| Type     | Name                                                                                                        |
-| -------- | ----------------------------------------------------------------------------------------------------------- |
-| Class    | [WebLabel](/PerseusMeteo/FirstPartyCode/Helpers/WebLabel.swift)                                             |
+| Type     | Name                                                                                                      |
+| -------- | --------------------------------------------------------------------------------------------------------- |
+| Class    | [WebLabel](/PerseusMeteo/FirstPartyCode/Helpers/WebLabel.swift)                                           |
 
 Third-party software
 ====================
@@ -156,8 +164,8 @@ Account points
 
 - Explicit start point [main.swift](/PerseusMeteo/main.swift)
 - Explicit app delegate [TestingAppDelegate.swift](/SnowmanTests/TestingAppDelegate.swift)
-- Explicit app globals [AppGlobals.swift](/PerseusMeteo/Configuration/AppGlobals.swift)
-- Explicit app options [AppOptions.swift](/PerseusMeteo/Configuration/AppOptions.swift)
+- Explicit app globals [AppGlobals.swift](/PerseusMeteo/AppGlobals.swift)
+- Explicit app options [AppOptions.swift](/PerseusMeteo/AppOptions.swift)
 - Architectural points: 
     - MVP applied. Based on [Gist](https://gist.github.com/PerseusRealDeal/5301e90881732f0cd0040e2083a78a3d)
     - Coordinator. Top business logic wrapped up in [Coordinator.swift](/PerseusMeteo/BusinessContent/Coordinator.swift)
