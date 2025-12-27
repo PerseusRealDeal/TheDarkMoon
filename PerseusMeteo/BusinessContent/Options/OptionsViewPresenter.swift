@@ -276,6 +276,8 @@ class OptionsViewPresenter: MVPPresenter {
 
         nc.post(Notification.init(name: .updateCurrentWeatherByTimerCommand))
         nc.post(Notification.init(name: .meteoDataOptionsNotification))
+
+        LanguageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
     }
 
     // MARK: - Realization
