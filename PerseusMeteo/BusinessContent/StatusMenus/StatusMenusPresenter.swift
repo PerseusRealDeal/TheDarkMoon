@@ -27,11 +27,13 @@ public class StatusMenusPresenter {
     }
 
     private var titleTwo: String {
-        return dataSource.windSpeed
+        return meteoParameter(AppOptions.statusMenusViewOptions.secondLine)
     }
 
     private var toolTip: String {
-        return "\(dataSource.windDirection), \(dataSource.windGusts)"
+        let left = meteoParameter(AppOptions.statusMenusViewOptions.toolTipLeft)
+        let right = meteoParameter(AppOptions.statusMenusViewOptions.toolTipRight)
+        return "\(left), \(right)"
     }
 
     // MARK: - Popover for Status Menus Item
@@ -196,4 +198,26 @@ public class StatusMenusPresenter {
             }
         }
     }
+
+    private func meteoParameter(_ parameter: MeteoParameter) -> String {
+        switch parameter {
+        case .feelsLike:
+            return dataSource.temperatureFeelsLike
+        case .direction:
+            return dataSource.windDirection
+        case .gust:
+            return dataSource.windGusts
+        case .wind:
+            return dataSource.windSpeed
+        case .visibility:
+            return dataSource.visibility
+        case .pressure:
+            return dataSource.pressure
+        case .humidity:
+            return dataSource.humidity
+        case .cloudiness:
+            return dataSource.cloudiness
+        }
+    }
+
 }
