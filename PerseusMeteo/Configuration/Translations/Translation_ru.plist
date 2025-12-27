@@ -260,30 +260,32 @@
 	<string>каждый час</string>
 	<key>StatusMenus: none</key>
 	<string>--</string>
-    <key>Option: StatusMenusView</key>
-    <string>Системный статус</string>
-    <key>Button: CheckBox TwoLines</key>
-    <string>Две строки</string>
-    <key>Option: SecondLine</key>
-    <string>Вторая строка</string>
-    <key>Option: ToolTip</key>
-    <string>Подсказка</string>
-    <key>StatusMenus: feelsLike</key>
-    <string>По ощущениям</string>
-    <key>StatusMenus: direction</key>
-    <string>Направление</string>
-    <key>StatusMenus: gust</key>
-    <string>Порывы</string>
-    <key>StatusMenus: wind</key>
-    <string>Ветер</string>
-    <key>StatusMenus: visibility</key>
-    <string>Обзор</string>
-    <key>StatusMenus: pressure</key>
-    <string>Давление</string>
-    <key>StatusMenus: humidity</key>
-    <string>Влажность</string>
-    <key>StatusMenus: cloudiness</key>
-    <string>Облачность</string>
+	<key>Option: StatusMenusView</key>
+	<string>Системный статус</string>
+	<key>Button: CheckBox TwoLines</key>
+	<string>Две строки</string>
+	<key>Option: SecondLine</key>
+	<string>Вторая строка</string>
+	<key>Option: ToolTip</key>
+	<string>Подсказка</string>
+	<key>StatusMenus: feelsLike</key>
+	<string>По ощущениям</string>
+	<key>StatusMenus: direction</key>
+	<string>Направление</string>
+	<key>StatusMenus: gust</key>
+	<string>Порывы</string>
+	<key>StatusMenus: wind</key>
+	<string>Ветер</string>
+	<key>StatusMenus: visibility</key>
+	<string>Обзор</string>
+	<key>StatusMenus: pressure</key>
+	<string>Давление</string>
+	<key>StatusMenus: humidity</key>
+	<string>Влажность</string>
+	<key>StatusMenus: cloudiness</key>
+	<string>Облачность</string>
+	<key>Button: TwoLines Info</key>
+	<string>Вторая строчка доступна с macOS Big Sur (11)</string>
 	<key>Button: Close</key>
 	<string>Исчезнуть</string>
 	<key>Button: Reset to Defaults</key>

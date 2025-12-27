@@ -211,6 +211,8 @@
 "StatusMenus: humidity" = "Влажность";
 "StatusMenus: cloudiness" = "Облачность";
 
+"Button: TwoLines Info" = "Вторая строчка доступна с macOS Big Sur (11)";
+
 "Button: Close" = "Исчезнуть";
 "Button: Reset to Defaults" = "Всё сбросить";
 

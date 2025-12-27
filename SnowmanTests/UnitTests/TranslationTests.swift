@@ -456,6 +456,9 @@ class TranslationTests: XCTestCase {
                        "StatusMenus: humidity".localizedValue)
         XCTAssertEqual("StatusMenus: cloudiness".localizedExpectation,
                        "StatusMenus: cloudiness".localizedValue)
+
+        XCTAssertEqual("Button: TwoLines Info".localizedExpectation,
+                       "Button: TwoLines Info".localizedValue)
     }
 
     // MARK: - Compass Directions

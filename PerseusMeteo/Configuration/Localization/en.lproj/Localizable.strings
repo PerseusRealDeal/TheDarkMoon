@@ -214,6 +214,8 @@
 "StatusMenus: humidity" = "Humidity";
 "StatusMenus: cloudiness" = "Cloudiness";
 
+"Button: TwoLines Info" = "The second line available from macOS Big Sur (11)";
+
 "Button: Close" = "Close";
 "Button: Reset to Defaults" = "Reset to Defaults";
 

@@ -86,6 +86,7 @@ class OptionsLocalizationTests: XCTestCase {
         XCTAssertEqual(sut.labelToolTip.stringValue,
                        "Option: ToolTip".localizedValue + ":")
 
+        XCTAssertEqual(sut.buttonInfo.toolTip, "Button: TwoLines Info".localizedValue)
         XCTAssertEqual(sut.buttonClose.title, "Button: Close".localizedValue)
     }
 

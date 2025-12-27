@@ -92,6 +92,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet private(set) weak var labelSecondLine: NSTextField!
     @IBOutlet private(set) weak var labelToolTip: NSTextField!
 
+    @IBOutlet private(set) weak var buttonInfo: NSButton!
     @IBOutlet private(set) weak var checkBoxTwoLines: NSButton!
     @IBOutlet private(set) weak var comboBoxSecondLine: NSComboBox!
     @IBOutlet private(set) weak var comboBoxToolTipLeft: NSComboBox!
@@ -288,6 +289,10 @@ extension OptionsViewController: OptionsViewDelegate {
 
         }
 
+        if isLegacy == false {
+            buttonInfo.isHidden = true
+        }
+
         lockOpenWeatherKeyHole()
     }
 
@@ -376,6 +381,7 @@ extension OptionsViewController: OptionsViewDelegate {
         labelToolTip.stringValue = "Option: ToolTip".localizedValue + ":"
 
         updateStatusMenusViewOptions()
+        buttonInfo.toolTip = "Button: TwoLines Info".localizedValue
 
         buttonClose.title = "Button: Close".localizedValue
         buttonResetAllSettings.title = "Button: Reset to Defaults".localizedValue

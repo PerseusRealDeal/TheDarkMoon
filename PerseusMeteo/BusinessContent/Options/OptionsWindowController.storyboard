@@ -395,6 +395,13 @@
                                                         <action selector="controlUnlockButtonTapped:" target="NdM-46-oIE" id="AhK-ue-kxT"/>
                                                     </connections>
                                                 </button>
+                                                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eOa-1c-nEW">
+                                                    <rect key="frame" x="224" y="47" width="25" height="25"/>
+                                                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="U2I-U6-g40">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Xj7-P1-Gq6" firstAttribute="width" secondItem="0SC-Zc-u6t" secondAttribute="width" id="4B3-Ps-1QZ"/>
@@ -422,6 +429,8 @@
                                                 <constraint firstItem="pG1-e8-IOI" firstAttribute="leading" secondItem="F1A-GE-l8k" secondAttribute="leading" id="dE1-Nd-8Ll"/>
                                                 <constraint firstItem="UQa-cT-Et5" firstAttribute="centerY" secondItem="KWv-Ww-NrH" secondAttribute="centerY" id="eVO-Rx-YDD"/>
                                                 <constraint firstItem="KWv-Ww-NrH" firstAttribute="top" secondItem="pG1-e8-IOI" secondAttribute="bottom" constant="15" id="fsm-s4-3nN"/>
+                                                <constraint firstItem="eOa-1c-nEW" firstAttribute="centerY" secondItem="pG1-e8-IOI" secondAttribute="centerY" id="gTH-Bs-5gw"/>
+                                                <constraint firstItem="eOa-1c-nEW" firstAttribute="leading" secondItem="pG1-e8-IOI" secondAttribute="trailing" constant="6" id="h0W-eB-mzJ"/>
                                                 <constraint firstItem="Foe-Mz-703" firstAttribute="trailing" secondItem="0SC-Zc-u6t" secondAttribute="trailing" id="hGE-Ro-8lc"/>
                                                 <constraint firstItem="pG1-e8-IOI" firstAttribute="centerY" secondItem="gTG-bY-TbX" secondAttribute="centerY" id="jiu-nR-KrP"/>
                                                 <constraint firstItem="F1A-GE-l8k" firstAttribute="centerY" secondItem="vQb-9F-2bJ" secondAttribute="centerY" id="jwC-b3-gWq"/>
@@ -493,6 +502,7 @@
                         <outlet property="boxSpecialOptions" destination="NDz-2Q-PSN" id="kAZ-KT-Law"/>
                         <outlet property="boxWeatherOptions" destination="xlu-T9-4Dc" id="mm8-Kf-AOW"/>
                         <outlet property="buttonClose" destination="Jvm-O9-bm1" id="YvW-Mp-EzB"/>
+                        <outlet property="buttonInfo" destination="eOa-1c-nEW" id="0Dh-dR-9zo"/>
                         <outlet property="buttonResetAllSettings" destination="0Np-Hh-uIh" id="b2W-Nb-no5"/>
                         <outlet property="checkBoxCurrentWeatherStatusMenus" destination="jET-Am-2AY" id="LeZ-Qa-Qyc"/>
                         <outlet property="checkBoxTwoLines" destination="pG1-e8-IOI" id="PNm-B5-Ua4"/>
