@@ -79,26 +79,10 @@ public class StatusMenusPresenter {
         button.target = self
         button.action = #selector(buttonStatusItemTapped)
 
-        if isLegacy == false {
-
-            // Custom StatusMenusItem view
-            let newFrame = CGRect(x: 0, y: 0, width: buttonWidth, height: button.frame.height)
-
-            button.frame = newFrame
-            customStatusMenusItemContent = CustomStatusButtonView(frame: newFrame)
-
-            if let content = customStatusMenusItemContent {
-                content.titleOneFontSize = 10
-                content.titleTwoFontSize = 9
-
-                button.addSubview(content)
-            }
-        }
+        refresh()
 
         // Dark Mode
         DarkModeAgent.register(stakeholder: self, selector: #selector(makeUp))
-
-        refresh()
     }
 
     // MARK: - Contract
@@ -142,17 +126,7 @@ public class StatusMenusPresenter {
     @objc private func refresh() {
         log.message("[\(type(of: self))].\(#function)")
 
-        if isLegacy == false {
-            if let button = statusItem?.button {
-                let newFrame = CGRect(x: 0, y: 0,
-                                      width: buttonWidth,
-                                      height: button.frame.height)
-
-                button.frame = newFrame
-                customStatusMenusItemContent?.frame = newFrame
-            }
-        }
-
+        reConfigureViewStructureIfNeeded()
         reset()
     }
 
@@ -160,7 +134,7 @@ public class StatusMenusPresenter {
         log.message("[\(type(of: self))].\(#function)")
 
         if AppOptions.statusMenusOption == false {
-            if isLegacy {
+            if isLegacy || AppOptions.statusMenusViewOptions.twoLines == false {
                 statusItem?.button?.imagePosition = .imageLeading
                 statusItem?.button?.image = NSImage(
                     named: AppGlobals.statusMenusButtonIconName
@@ -182,7 +156,7 @@ public class StatusMenusPresenter {
         let image = NSImage(named: dataSource.weatherConditions.icon)
         let temperature = dataSource.temperature
 
-        if isLegacy {
+        if isLegacy || AppOptions.statusMenusViewOptions.twoLines == false {
             statusItem?.button?.imagePosition = .imageLeading
             statusItem?.button?.image = image
             statusItem?.button?.title = temperature
@@ -194,5 +168,32 @@ public class StatusMenusPresenter {
         }
 
         statusItem?.button?.toolTip = self.toolTip
+    }
+
+    private func reConfigureViewStructureIfNeeded() {
+
+        self.customStatusMenusItemContent?.removeFromSuperview()
+        self.customStatusMenusItemContent = nil
+
+        self.statusItem?.button?.image = nil
+        self.statusItem?.button?.title = ""
+
+        if // Add custom view for two line view structure
+            isLegacy == false, AppOptions.statusMenusViewOptions.twoLines,
+            let button = statusItem?.button {
+
+            // Custom StatusMenusItem view
+            let newFrame = CGRect(x: 0, y: 0, width: buttonWidth, height: button.frame.height)
+
+            button.frame = newFrame
+            customStatusMenusItemContent = CustomStatusButtonView(frame: newFrame)
+
+            if let content = customStatusMenusItemContent {
+                content.titleOneFontSize = 10
+                content.titleTwoFontSize = 9
+
+                button.addSubview(content)
+            }
+        }
     }
 }
