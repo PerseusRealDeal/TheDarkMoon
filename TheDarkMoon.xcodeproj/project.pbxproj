@@ -112,7 +112,7 @@
 		4BE29E902B3A23120027515A /* ForecastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE29E8F2B3A23120027515A /* ForecastView.xib */; };
 		4BE29E922B3A23340027515A /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE29E912B3A23340027515A /* ForecastView.swift */; };
 		4BEAB2E52B66D1C100AEACF5 /* CurrentSystemLanguageGift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEAB2E42B66D1C100AEACF5 /* CurrentSystemLanguageGift.swift */; };
-		4BEE281D2B4AE07700F06A69 /* AppUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEE281C2B4AE07700F06A69 /* AppUserDefaults.swift */; };
+		4BEE281D2B4AE07700F06A69 /* AppOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEE281C2B4AE07700F06A69 /* AppOptions.swift */; };
 		4BEF7A442C2D377A0028C6EA /* TheDayOfTheWeekLocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BEF7A432C2D377A0028C6EA /* TheDayOfTheWeekLocalized.swift */; };
 		4BFA5FDA2989A12800AC09F5 /* OptionsWindowController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BFA5FD92989A12800AC09F5 /* OptionsWindowController.storyboard */; };
 		4BFA5FDC2989A16400AC09F5 /* OptionsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFA5FDB2989A16400AC09F5 /* OptionsWindowController.swift */; };
@@ -243,7 +243,7 @@
 		4BE29E8F2B3A23120027515A /* ForecastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastView.xib; sourceTree = "<group>"; };
 		4BE29E912B3A23340027515A /* ForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
 		4BEAB2E42B66D1C100AEACF5 /* CurrentSystemLanguageGift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSystemLanguageGift.swift; sourceTree = "<group>"; };
-		4BEE281C2B4AE07700F06A69 /* AppUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUserDefaults.swift; sourceTree = "<group>"; };
+		4BEE281C2B4AE07700F06A69 /* AppOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppOptions.swift; sourceTree = "<group>"; };
 		4BEF7A432C2D377A0028C6EA /* TheDayOfTheWeekLocalized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheDayOfTheWeekLocalized.swift; sourceTree = "<group>"; };
 		4BFA5FD92989A12800AC09F5 /* OptionsWindowController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OptionsWindowController.storyboard; sourceTree = "<group>"; };
 		4BFA5FDB2989A16400AC09F5 /* OptionsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsWindowController.swift; sourceTree = "<group>"; };
@@ -375,8 +375,8 @@
 				2E1083D12E2B617500400180 /* TheCrownOfStars */,
 				4BBE90662912931A008F734D /* main.swift */,
 				4B0A49F229F631CD00CAE8A0 /* AppGlobals.swift */,
+				4BEE281C2B4AE07700F06A69 /* AppOptions.swift */,
 				4B1483E42912892C0013B76E /* AppDelegate.swift */,
-				4BEE281C2B4AE07700F06A69 /* AppUserDefaults.swift */,
 				4B14840229128A930013B76E /* Configuration */,
 				4B6F98752927E7C600ADB03A /* FirstPartyCode */,
 				4B684C6D2B438A370063E359 /* BusinessServices */,
@@ -836,7 +836,7 @@
 				2EBB4CB22ED73E0E00C44504 /* LoggerWindowController.swift in Sources */,
 				2E2020092E891BE200D8D496 /* SuggestionsView.swift in Sources */,
 				2EF147E92E966E8800BE657C /* CustomStatusButtonView.swift in Sources */,
-				4BEE281D2B4AE07700F06A69 /* AppUserDefaults.swift in Sources */,
+				4BEE281D2B4AE07700F06A69 /* AppOptions.swift in Sources */,
 				4B993DB82B3738A7008C1FE7 /* PopoverViewController.swift in Sources */,
 				4BBE90672912931A008F734D /* main.swift in Sources */,
 				2E2020112E8A871C00D8D496 /* LocationStatusLocalized.swift in Sources */,

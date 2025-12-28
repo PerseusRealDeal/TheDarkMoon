@@ -32,11 +32,11 @@
             <objects>
                 <viewController id="NdM-46-oIE" customClass="SelfieViewController" customModule="Snowman" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Zo1-hM-qgJ">
-                        <rect key="frame" x="0.0" y="0.0" width="553" height="511"/>
+                        <rect key="frame" x="0.0" y="0.0" width="577" height="557"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pTY-Tb-nnu">
-                                <rect key="frame" x="3" y="3" width="124" height="32"/>
+                                <rect key="frame" x="15" y="15" width="124" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="4cz-zN-RIi"/>
                                 </constraints>
@@ -49,7 +49,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hhC-mI-IUr">
-                                <rect key="frame" x="318" y="3" width="154" height="32"/>
+                                <rect key="frame" x="330" y="15" width="154" height="32"/>
                                 <buttonCell key="cell" type="push" title="Terms &amp; Conditions" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zKR-3q-y7n">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -59,7 +59,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tyk-gI-2S1">
-                                <rect key="frame" x="468" y="3" width="82" height="32"/>
+                                <rect key="frame" x="480" y="15" width="82" height="32"/>
                                 <buttonCell key="cell" type="push" title="License" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6Jx-eZ-R2B">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -69,7 +69,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yEY-rb-2hz">
-                                <rect key="frame" x="95" y="441" width="198" height="35"/>
+                                <rect key="frame" x="118" y="465" width="198" height="35"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="The App Name" id="nrt-Wn-dV0">
                                     <font key="font" metaFont="system" size="30"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -77,7 +77,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zt6-eZ-dJw">
-                                <rect key="frame" x="95" y="422" width="56" height="19"/>
+                                <rect key="frame" x="118" y="446" width="56" height="19"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Version" id="EcQ-ui-Rby">
                                     <font key="font" metaFont="system" size="15"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -85,7 +85,7 @@
                                 </textFieldCell>
                             </textField>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BJc-2m-C2t">
-                                <rect key="frame" x="10" y="409" width="77" height="77"/>
+                                <rect key="frame" x="22" y="433" width="77" height="77"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="77" id="TWa-eG-gzC"/>
                                     <constraint firstAttribute="width" constant="77" id="a2t-wg-6vk"/>
@@ -93,7 +93,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSApplicationIcon" id="3DS-Vl-YAd"/>
                             </imageView>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6XP-dj-lG5">
-                                <rect key="frame" x="10" y="40" width="533" height="369"/>
+                                <rect key="frame" x="22" y="64" width="533" height="369"/>
                                 <subviews>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MVd-ze-hvZ">
                                         <rect key="frame" x="-2" y="353" width="537" height="16"/>
@@ -256,7 +256,7 @@ Details</string>
                                 </customSpacing>
                             </stackView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pvw-CR-ti0" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
-                                <rect key="frame" x="408" y="485" width="137" height="16"/>
+                                <rect key="frame" x="420" y="519" width="137" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="The App Source Code" id="RLr-sd-iSn">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -264,7 +264,7 @@ Details</string>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="63T-Yj-0Pr" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
-                                <rect key="frame" x="400" y="459" width="145" height="16"/>
+                                <rect key="frame" x="412" y="493" width="145" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="The Technological Tree" id="rlw-XK-kpF">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -273,26 +273,26 @@ Details</string>
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="pTY-Tb-nnu" firstAttribute="top" secondItem="6XP-dj-lG5" secondAttribute="bottom" constant="10" id="2Mw-Wx-UbP"/>
-                            <constraint firstAttribute="trailing" secondItem="Tyk-gI-2S1" secondAttribute="trailing" constant="10" id="7Mm-gC-YKC"/>
+                            <constraint firstItem="pTY-Tb-nnu" firstAttribute="top" secondItem="6XP-dj-lG5" secondAttribute="bottom" constant="22" id="2Mw-Wx-UbP"/>
+                            <constraint firstAttribute="trailing" secondItem="Tyk-gI-2S1" secondAttribute="trailing" constant="22" id="7Mm-gC-YKC"/>
                             <constraint firstItem="Tyk-gI-2S1" firstAttribute="leading" secondItem="hhC-mI-IUr" secondAttribute="trailing" constant="10" id="7gq-px-8OD"/>
                             <constraint firstItem="Pvw-CR-ti0" firstAttribute="trailing" secondItem="Tyk-gI-2S1" secondAttribute="trailing" id="8H3-PK-OoD"/>
                             <constraint firstItem="Zt6-eZ-dJw" firstAttribute="top" secondItem="yEY-rb-2hz" secondAttribute="bottom" id="9QI-sR-zYJ"/>
                             <constraint firstItem="pTY-Tb-nnu" firstAttribute="centerY" secondItem="Tyk-gI-2S1" secondAttribute="centerY" id="Bpr-35-tYd"/>
-                            <constraint firstItem="Pvw-CR-ti0" firstAttribute="top" secondItem="Zo1-hM-qgJ" secondAttribute="top" constant="10" id="EK7-Wd-54W"/>
+                            <constraint firstItem="Pvw-CR-ti0" firstAttribute="top" secondItem="Zo1-hM-qgJ" secondAttribute="top" constant="22" id="EK7-Wd-54W"/>
                             <constraint firstItem="Zt6-eZ-dJw" firstAttribute="leading" secondItem="yEY-rb-2hz" secondAttribute="leading" id="Lbi-F9-3Ie"/>
-                            <constraint firstItem="BJc-2m-C2t" firstAttribute="top" secondItem="Zo1-hM-qgJ" secondAttribute="top" constant="25" id="Lrp-Zv-22D"/>
-                            <constraint firstItem="yEY-rb-2hz" firstAttribute="top" secondItem="Zo1-hM-qgJ" secondAttribute="top" constant="35" id="RFP-Bt-G2c"/>
+                            <constraint firstItem="BJc-2m-C2t" firstAttribute="top" secondItem="Zo1-hM-qgJ" secondAttribute="top" constant="47" id="Lrp-Zv-22D"/>
+                            <constraint firstItem="yEY-rb-2hz" firstAttribute="top" secondItem="Zo1-hM-qgJ" secondAttribute="top" constant="57" id="RFP-Bt-G2c"/>
                             <constraint firstItem="63T-Yj-0Pr" firstAttribute="trailing" secondItem="Pvw-CR-ti0" secondAttribute="trailing" id="VvX-nJ-5HJ"/>
                             <constraint firstItem="63T-Yj-0Pr" firstAttribute="top" secondItem="Pvw-CR-ti0" secondAttribute="bottom" constant="10" id="cCz-cu-VgO"/>
                             <constraint firstItem="BJc-2m-C2t" firstAttribute="leading" secondItem="pTY-Tb-nnu" secondAttribute="leading" id="d7b-ca-gpL"/>
-                            <constraint firstItem="6XP-dj-lG5" firstAttribute="leading" secondItem="Zo1-hM-qgJ" secondAttribute="leading" constant="10" id="hKo-cm-E2n"/>
+                            <constraint firstItem="6XP-dj-lG5" firstAttribute="leading" secondItem="Zo1-hM-qgJ" secondAttribute="leading" constant="22" id="hKo-cm-E2n"/>
                             <constraint firstItem="hhC-mI-IUr" firstAttribute="centerY" secondItem="Tyk-gI-2S1" secondAttribute="centerY" id="lop-ds-YpA"/>
-                            <constraint firstAttribute="trailing" secondItem="6XP-dj-lG5" secondAttribute="trailing" constant="10" id="nVQ-m0-99G"/>
+                            <constraint firstAttribute="trailing" secondItem="6XP-dj-lG5" secondAttribute="trailing" constant="22" id="nVQ-m0-99G"/>
                             <constraint firstItem="6XP-dj-lG5" firstAttribute="top" secondItem="BJc-2m-C2t" secondAttribute="bottom" id="pgA-fS-tbE"/>
-                            <constraint firstItem="yEY-rb-2hz" firstAttribute="leading" secondItem="Zo1-hM-qgJ" secondAttribute="leading" constant="97" id="sc8-ia-B0v"/>
-                            <constraint firstItem="pTY-Tb-nnu" firstAttribute="leading" secondItem="Zo1-hM-qgJ" secondAttribute="leading" constant="10" id="tVn-TT-vw4"/>
-                            <constraint firstAttribute="bottom" secondItem="Tyk-gI-2S1" secondAttribute="bottom" constant="10" id="vtt-D2-wdb"/>
+                            <constraint firstItem="yEY-rb-2hz" firstAttribute="leading" secondItem="Zo1-hM-qgJ" secondAttribute="leading" constant="120" id="sc8-ia-B0v"/>
+                            <constraint firstItem="pTY-Tb-nnu" firstAttribute="leading" secondItem="Zo1-hM-qgJ" secondAttribute="leading" constant="22" id="tVn-TT-vw4"/>
+                            <constraint firstAttribute="bottom" secondItem="Tyk-gI-2S1" secondAttribute="bottom" constant="22" id="vtt-D2-wdb"/>
                         </constraints>
                     </view>
                     <connections>

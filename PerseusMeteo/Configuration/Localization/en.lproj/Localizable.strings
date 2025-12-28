@@ -191,7 +191,7 @@
 "OpenWeather: Hidden" = "Hidden key-hole...";
 "OpenWeather: Editable" = "Past the key (token)...";
 
-"Option: StatusMenus" = "Current Weather";
+"Option: CurrentWeatherStatusMenus" = "Current Weather";
 "Button: CheckBox StatusMenus" = "Show in StatusMenus";
 
 "Option: StatusMenus Update" = "Update";
@@ -199,6 +199,22 @@
 "StatusMenus: per 3 hours" = "per 3 hours";
 "StatusMenus: per hour" = "per hour";
 "StatusMenus: none" = "--";
+
+"Option: StatusMenusView" = "Status Menus";
+"Button: CheckBox TwoLines" = "Two lines";
+"Option: SecondLine" = "Second line";
+"Option: ToolTip" = "Tool tip";
+
+"StatusMenus: feelsLike" = "Feels like";
+"StatusMenus: direction" = "Direction";
+"StatusMenus: gust" = "Gust";
+"StatusMenus: wind" = "Wind";
+"StatusMenus: visibility" = "Visibility";
+"StatusMenus: pressure" = "Pressure";
+"StatusMenus: humidity" = "Humidity";
+"StatusMenus: cloudiness" = "Cloudiness";
+
+"Button: TwoLines Info" = "The second line available from macOS Big Sur (11)";
 
 "Button: Close" = "Close";
 "Button: Reset to Defaults" = "Reset to Defaults";

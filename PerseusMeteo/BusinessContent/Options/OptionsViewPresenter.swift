@@ -22,7 +22,7 @@ protocol OptionsViewDelegate: MVPViewDelegate {
     func onViewDidAppear()
     func onViewWillDisappear()
 
-    func refreshStatusMenusUpdatePeriod()
+    func refreshStatusMenusOptions()
 }
 
 // MARK: - OptionsWindow Business Logic
@@ -192,13 +192,62 @@ class OptionsViewPresenter: MVPPresenter {
         guard
             let period = StatusMenusUpdatePeriodOption(rawValue: index)
         else {
-            (view as? OptionsViewDelegate)?.refreshStatusMenusUpdatePeriod()
+            (view as? OptionsViewDelegate)?.refreshStatusMenusOptions()
             return
         }
 
         AppOptions.statusMenusPeriodOption = period
         AppGlobals.notificationCenter.post(
             Notification.init(name: .updateCurrentWeatherByTimerCommand)
+        )
+    }
+
+    func forceStatusMenusTwoLines(_ turned: Bool) {
+        AppOptions.statusMenusViewOptions.twoLines = turned
+        AppGlobals.notificationCenter.post(
+            Notification.init(name: .meteoDataOptionsNotification)
+        )
+    }
+
+    func forceStatusMenusSecondLine(_ index: Int) {
+        guard
+            let parameter = MeteoParameter(rawValue: index)
+        else {
+            (view as? OptionsViewDelegate)?.refreshStatusMenusOptions()
+            return
+        }
+
+        AppOptions.statusMenusViewOptions.secondLine = parameter
+        AppGlobals.notificationCenter.post(
+            Notification.init(name: .meteoDataOptionsNotification)
+        )
+    }
+
+    func forceStatusMenusToolTipLeft(_ index: Int) {
+        guard
+            let parameter = MeteoParameter(rawValue: index)
+        else {
+            (view as? OptionsViewDelegate)?.refreshStatusMenusOptions()
+            return
+        }
+
+        AppOptions.statusMenusViewOptions.toolTipLeft = parameter
+        AppGlobals.notificationCenter.post(
+            Notification.init(name: .meteoDataOptionsNotification)
+        )
+    }
+
+    func forceStatusMenusToolTipRight(_ index: Int) {
+        guard
+            let parameter = MeteoParameter(rawValue: index)
+        else {
+            (view as? OptionsViewDelegate)?.refreshStatusMenusOptions()
+            return
+        }
+
+        AppOptions.statusMenusViewOptions.toolTipRight = parameter
+        AppGlobals.notificationCenter.post(
+            Notification.init(name: .meteoDataOptionsNotification)
         )
     }
 
@@ -216,6 +265,7 @@ class OptionsViewPresenter: MVPPresenter {
         ud.removeObject(forKey: SUGGESTIONS_REQUEST_OPTION_KEY)
         ud.removeObject(forKey: STATUSMENUS_OPTION_KEY)
         ud.removeObject(forKey: STATUSMENUS_PERIOD_OPTION_KEY)
+        ud.removeObject(forKey: STATUSMENUS_VIEW_OPTIONS_KEY)
 
         ud.removeObject(forKey: DARK_MODE_USER_CHOICE_KEY)
         DarkModeAgent.force(DARK_MODE_USER_CHOICE_DEFAULT)
@@ -226,6 +276,8 @@ class OptionsViewPresenter: MVPPresenter {
 
         nc.post(Notification.init(name: .updateCurrentWeatherByTimerCommand))
         nc.post(Notification.init(name: .meteoDataOptionsNotification))
+
+        LanguageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
     }
 
     // MARK: - Realization

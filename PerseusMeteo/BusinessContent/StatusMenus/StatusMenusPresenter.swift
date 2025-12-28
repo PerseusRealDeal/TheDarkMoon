@@ -26,6 +26,16 @@ public class StatusMenusPresenter {
         return 78.0
     }
 
+    private var titleTwo: String {
+        return meteoParameter(AppOptions.statusMenusViewOptions.secondLine)
+    }
+
+    private var toolTip: String {
+        let left = meteoParameter(AppOptions.statusMenusViewOptions.toolTipLeft)
+        let right = meteoParameter(AppOptions.statusMenusViewOptions.toolTipRight)
+        return "\(left), \(right)"
+    }
+
     // MARK: - Popover for Status Menus Item
 
     public var statusItem: NSStatusItem?
@@ -48,6 +58,14 @@ public class StatusMenusPresenter {
             object: nil
         )
 
+        // Observe options change events
+        AppGlobals.notificationCenter.addObserver(
+            self,
+            selector: #selector(refresh),
+            name: NSNotification.Name.meteoDataOptionsNotification,
+            object: nil
+        )
+
         // StatusMenus popover
         popover = NSPopover()
 
@@ -63,26 +81,10 @@ public class StatusMenusPresenter {
         button.target = self
         button.action = #selector(buttonStatusItemTapped)
 
-        if legacy == false {
-
-            // Custom StatusMenusItem view
-            let newFrame = CGRect(x: 0, y: 0, width: buttonWidth, height: button.frame.height)
-
-            button.frame = newFrame
-            customStatusMenusItemContent = CustomStatusButtonView(frame: newFrame)
-
-            if let content = customStatusMenusItemContent {
-                content.titleOneFontSize = 10
-                content.titleTwoFontSize = 9
-
-                button.addSubview(content)
-            }
-        }
+        refresh()
 
         // Dark Mode
         DarkModeAgent.register(stakeholder: self, selector: #selector(makeUp))
-
-        refresh()
     }
 
     // MARK: - Contract
@@ -119,23 +121,14 @@ public class StatusMenusPresenter {
     }
 
     @objc private func localize() {
+        log.message("[\(type(of: self))].\(#function)")
         reset()
     }
 
-    private func refresh() {
+    @objc private func refresh() {
         log.message("[\(type(of: self))].\(#function)")
 
-        if legacy == false {
-            if let button = statusItem?.button {
-                let newFrame = CGRect(x: 0, y: 0,
-                                      width: buttonWidth,
-                                      height: button.frame.height)
-
-                button.frame = newFrame
-                customStatusMenusItemContent?.frame = newFrame
-            }
-        }
-
+        reConfigureViewStructureIfNeeded()
         reset()
     }
 
@@ -143,7 +136,7 @@ public class StatusMenusPresenter {
         log.message("[\(type(of: self))].\(#function)")
 
         if AppOptions.statusMenusOption == false {
-            if legacy {
+            if isLegacy || AppOptions.statusMenusViewOptions.twoLines == false {
                 statusItem?.button?.imagePosition = .imageLeading
                 statusItem?.button?.image = NSImage(
                     named: AppGlobals.statusMenusButtonIconName
@@ -165,16 +158,66 @@ public class StatusMenusPresenter {
         let image = NSImage(named: dataSource.weatherConditions.icon)
         let temperature = dataSource.temperature
 
-        if legacy {
+        if isLegacy || AppOptions.statusMenusViewOptions.twoLines == false {
             statusItem?.button?.imagePosition = .imageLeading
             statusItem?.button?.image = image
             statusItem?.button?.title = temperature
         } else {
             customStatusMenusItemContent?.image = image
             customStatusMenusItemContent?.titleOne = temperature
-            customStatusMenusItemContent?.titleTwo = dataSource.windSpeed
+
+            customStatusMenusItemContent?.titleTwo = self.titleTwo
         }
 
-        statusItem?.button?.toolTip = "\(dataSource.windDirection), \(dataSource.windGusts)"
+        statusItem?.button?.toolTip = self.toolTip
     }
+
+    private func reConfigureViewStructureIfNeeded() {
+
+        self.customStatusMenusItemContent?.removeFromSuperview()
+        self.customStatusMenusItemContent = nil
+
+        self.statusItem?.button?.image = nil
+        self.statusItem?.button?.title = ""
+
+        if // Add custom view for two line view structure
+            isLegacy == false, AppOptions.statusMenusViewOptions.twoLines,
+            let button = statusItem?.button {
+
+            // Custom StatusMenusItem view
+            let newFrame = CGRect(x: 0, y: 0, width: buttonWidth, height: button.frame.height)
+
+            button.frame = newFrame
+            customStatusMenusItemContent = CustomStatusButtonView(frame: newFrame)
+
+            if let content = customStatusMenusItemContent {
+                content.titleOneFontSize = 10
+                content.titleTwoFontSize = 9
+
+                button.addSubview(content)
+            }
+        }
+    }
+
+    private func meteoParameter(_ parameter: MeteoParameter) -> String {
+        switch parameter {
+        case .feelsLike:
+            return dataSource.temperatureFeelsLike
+        case .direction:
+            return dataSource.windDirection
+        case .gust:
+            return dataSource.windGusts
+        case .wind:
+            return dataSource.windSpeed
+        case .visibility:
+            return dataSource.visibility
+        case .pressure:
+            return dataSource.pressure
+        case .humidity:
+            return dataSource.humidity
+        case .cloudiness:
+            return dataSource.cloudiness
+        }
+    }
+
 }

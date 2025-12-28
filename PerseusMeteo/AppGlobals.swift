@@ -30,14 +30,16 @@ extension GeoPoint {
     }
 }
 
-var isHighSierra: Bool { // true HighSierra, false otherwise
+// To adjust DarkMode appearance for HighSierra
+var isHighSierra: Bool { // true for HighSierra
     if #available(macOS 10.14, *) {
         return false
-    } // For HighSierra.
+    }
     return true
 }
 
-var legacy: Bool { // High Sierra, Mojave, Catalina
+// Multiline status menus view not available in legacy OS line
+var isLegacy: Bool { // true for High Sierra, Mojave, Catalina
     if #available(macOS 11.0, *) {
         return false
     }
