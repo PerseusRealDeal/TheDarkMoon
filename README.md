@@ -34,7 +34,7 @@ Contents
 
 * [The why](#The-why)
 * [Screen shots](#Screen-shots)
-* [Features](#Features) 
+* [Top features](#Top-features) 
 * [Requirements](#Requirements)
 * [First-party software](#First-party-software)
     * [MIT](#MIT)
@@ -74,11 +74,11 @@ Screen shots
 
 <table>
   <tr>
-    <th>Main Screen</th>
+    <th>Main Screen (Popover)</th>
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/8b39190f-52fe-430d-8bb1-bf0ff8bfffd4" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/2e82bcbb-258d-4777-9520-2f73d895dfae" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
@@ -96,10 +96,33 @@ Screen shots
 
 </div>
 
-Features
+Top features
 ========
 
-> TODO: features list
+- Requesting current weather for Current Location and specific location name
+- Requesting `5 Day / 3 Hour` forecast for Current Location and specific location name
+
+---
+
+- Determining Current Location, latitude and longitude
+- Searching location by Name with auto suggesting, optionally
+- Favorites location Names list, add and remove items
+
+---
+
+- `Temperature:` Kelvin, Celsius, Fahrenheit
+- `Wind speed:` meter/sec, km/hour, miles per hour
+- `Visibility:` Kilometre, Mile
+- `Multilanguage:` English and Russian
+- `Dark Mode:` Light, Dark, System (auto)
+- `Multi time format:` 24-hour and 12 hour
+- `Auto Current Weather update:` per 12 hours, per 3 hours, per hour, none
+
+---
+
+- Multiline Status Menus, but from macOS Big Sur (11) only
+- ToolTip with extra meteo parameters for Status Menus
+- Saving OpenWeather API key to Keychain
 
 Requirements
 ============
