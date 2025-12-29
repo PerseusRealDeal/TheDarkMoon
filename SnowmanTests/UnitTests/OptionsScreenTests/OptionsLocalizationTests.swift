@@ -68,14 +68,25 @@ class OptionsLocalizationTests: XCTestCase {
 
         let labelKey = "Option: OpenWeather Key".localizedValue
         XCTAssertEqual(sut.labelOpenWeatherKey.stringValue, labelKey)
-        let labelStatusMenus = "Option: StatusMenus".localizedValue
-        XCTAssertEqual(sut.labelStatusMenus.stringValue, labelStatusMenus)
+
+        XCTAssertEqual(sut.labelCurrentWeatherStatusMenus.stringValue,
+                       "Option: CurrentWeatherStatusMenus".localizedValue)
+
         let labelStatusMenusUpdate = "Option: StatusMenus Update".localizedValue + ":"
         XCTAssertEqual(sut.labelStatusMenusUpdate.stringValue, labelStatusMenusUpdate)
 
-        let checkBoxStatusMenus = "Button: CheckBox StatusMenus".localizedValue
-        XCTAssertEqual(sut.checkBoxStatusMenus.title, checkBoxStatusMenus)
+        XCTAssertEqual(sut.labelStatusMenus.stringValue,
+                       "Option: StatusMenusView".localizedValue)
+        XCTAssertEqual(sut.checkBoxCurrentWeatherStatusMenus.title,
+                       "Button: CheckBox StatusMenus".localizedValue)
+        XCTAssertEqual(sut.checkBoxTwoLines.title,
+                       "Button: CheckBox TwoLines".localizedValue)
+        XCTAssertEqual(sut.labelSecondLine.stringValue,
+                       "Option: SecondLine".localizedValue + ":")
+        XCTAssertEqual(sut.labelToolTip.stringValue,
+                       "Option: ToolTip".localizedValue + ":")
 
+        XCTAssertEqual(sut.buttonInfo.toolTip, "Button: TwoLines Info".localizedValue)
         XCTAssertEqual(sut.buttonClose.title, "Button: Close".localizedValue)
     }
 

@@ -10,7 +10,7 @@ __The Status Menus app__
 
 [![Actions Status](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/main.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions)
 [![Style](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml)
-[![Version](https://img.shields.io/badge/Version-0.4.4-green.svg)](/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-0.5.0-green.svg)](/CHANGELOG.md)
 [![License](http://img.shields.io/:License-Clear_BSD-blue.svg)](/LICENSE)
 
 [![Platforms](https://img.shields.io/badge/Platform-macOS%2010.13+-orange.svg)](https://en.wikipedia.org/wiki/MacOS_version_history)
@@ -33,12 +33,15 @@ Contents
 ========
 
 * [The why](#The-why)
-    * [Screen shots](#Screen-shots)
+* [Screen shots](#Screen-shots)
+* [Top features](#Top-features) 
 * [Requirements](#Requirements)
-* [Gifts](#Gifts)
 * [First-party software](#First-party-software)
+    * [MIT](#MIT)
+    * [Unlicense](#Unlicense)
 * [Third-party software](#Third-party-software)
-* [Points taken into account](#Points-taken-into-account)
+* [Gifts](#Gifts)
+* [Account points](#Account-points)
 * [License](#License)
     * [Other required licenses details](#Other-required-licenses-details)
 * [Credits](#Credits)
@@ -62,20 +65,20 @@ Our Terms
 The why
 =======
 
-The Why of this app cannot, and need not, be put into words.
+The why of this app cannot, and need not, be put into words.
 
 Screen shots
-------------
+============
 
 <div align="center">
 
 <table>
   <tr>
-    <th>Main Screen</th>
+    <th>Main Screen (Popover)</th>
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/8b39190f-52fe-430d-8bb1-bf0ff8bfffd4" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/2e82bcbb-258d-4777-9520-2f73d895dfae" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
@@ -86,18 +89,48 @@ Screen shots
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/7261b3ed-7ee8-44ce-ab62-79271072b22b" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/3e250d35-9daa-40d9-be41-ca8f485d8a2d" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
 
 </div>
 
+Top features
+========
+
+- Requesting current weather for Current Location and specific location name
+- Requesting `5 Day / 3 Hour` forecast for Current Location and specific location name
+
+---
+
+- Determining Current Location, latitude and longitude
+- Searching location by Name with auto suggesting, optionally
+- Favorites location Names list, add and remove items
+
+---
+
+- `Temperature:` Kelvin, Celsius, Fahrenheit
+- `Wind speed:` meter/sec, km/hour, miles per hour
+- `Visibility:` Kilometre, Mile
+- `Multilanguage:` English and Russian
+- `Dark Mode:` Light, Dark, System (auto)
+- `Multi time format:` 24-hour and 12 hour
+- `Auto Current Weather update:` per 12 hours, per 3 hours, per hour, none
+
+---
+
+- Multiline Status Menus, starting from macOS Big Sur (11)
+- ToolTip with extra meteo parameters for Status Menus
+- Saving OpenWeather API key to Keychain
+
 Requirements
 ============
 
 > [!NOTE]
 > The current app project is represented in source code only, it's a developer edition.
+
+`To build:`
 
 - [macOS Monterey 12.7.6+](https://apps.apple.com/by/app/macos-monterey/id1576738294)
 - [Xcode 14.2+](https://developer.apple.com/services-account/download?path=/Developer_Tools/Xcode_14.2/Xcode_14.2.xip)
@@ -127,17 +160,12 @@ MIT
 [Unlicense](https://unlicense.org)
 ----------------------------------
 
-| Type     | Name                                                                                                        |
-| -------- | ----------------------------------------------------------------------------------------------------------- |
-| Variable | [CurrentSystemLanguageGift.swift](https://gist.github.com/perseusrealdeal/98b082b136d574dd1b5aa760036dac8b) |
-| Class    | [JsonDataDictionaryGift.swift](https://gist.github.com/perseusrealdeal/918c25633122e64d51f363f00059f6f8)    |
-| Variable | [JsonDataPrettyPrintedGift.swift](https://gist.github.com/perseusrealdeal/945c9050cb9f7a19e00853f064acacca) |
-| Variable | [LocalizedInfoPlistGift.swift](/SnowmanTests/GiftsAndHelpers/LocalizedInfoPlistGift.swift)                  |
-| Variable | [LocalizedExpectationGift.swift](/SnomanTests/GiftsAndHelpers/LocalizedExpectationGift.swift)               |
-| Class    | [WebLabel](/PerseusMeteo/FirstPartyCode/Helpers/WebLabel.swift)                                             |
+| Type     | Name                                                                                                      |
+| -------- | --------------------------------------------------------------------------------------------------------- |
+| Class    | [WebLabel](/PerseusMeteo/FirstPartyCode/Helpers/WebLabel.swift)                                           |
 
 Third-party software
---------------------
+====================
 
 | Type   | Name                                                                                  | License                            |
 | ------ | ------------------------------------------------------------------------------------- | ---------------------------------- |
@@ -145,22 +173,32 @@ Third-party software
 | Action | [mxcl/xcodebuild@v3](https://github.com/mxcl/xcodebuild)                              | [Unlicense](https://unlicense.org) |
 | Action | [cirruslabs/swiftlint-action@v1](https://github.com/cirruslabs/swiftlint-action/)     | MIT                                |
 
+Gifts
+=====
+
+- [CurrentSystemLanguageGift.swift](https://gist.github.com/perseusrealdeal/98b082b136d574dd1b5aa760036dac8b)
+- [JsonDataDictionaryGift.swift](https://gist.github.com/perseusrealdeal/918c25633122e64d51f363f00059f6f8)
+- [JsonDataPrettyPrintedGift.swift](https://gist.github.com/perseusrealdeal/945c9050cb9f7a19e00853f064acacca)
+- [LocalizedInfoPlistGift.swift](/SnowmanTests/GiftsAndHelpers/LocalizedInfoPlistGift.swift)
+- [LocalizedExpectationGift.swift](/SnowmanTests/GiftsAndHelpers/LocalizedExpectationGift.swift)
+
 Account points 
 ==============
 
 - Explicit start point [main.swift](/PerseusMeteo/main.swift)
 - Explicit app delegate [TestingAppDelegate.swift](/SnowmanTests/TestingAppDelegate.swift)
-- Explicit app globals [AppGlobals.swift](/PerseusMeteo/Configuration/AppGlobals.swift)
+- Explicit app globals [AppGlobals.swift](/PerseusMeteo/AppGlobals.swift)
+- Explicit app options [AppOptions.swift](/PerseusMeteo/AppOptions.swift)
 - Architectural points: 
     - MVP applied. Based on [Gist](https://gist.github.com/PerseusRealDeal/5301e90881732f0cd0040e2083a78a3d)
     - Coordinator. Top business logic wrapped up in [Coordinator.swift](/PerseusMeteo/BusinessContent/Coordinator.swift)
 - Localization based on Localizable.strings approach
 - [Test Plan](/SnowmanTests/TestPlan.xctestplan) configured for EN and RU
 - [Changelog](/CHANGELOG.md)
-- [A3 Environment Specification Template](/APPROBATION.md)
-- [Software Requirements](/REQUIREMENTS.md)
-- [GitHub CI build & test](/main.yml)
-- [GitHub CI SwiftLint](/swiftlint.yml)
+- [A3 environment specification](/APPROBATION.md)
+- [Software requirements specification](/REQUIREMENTS.md)
+- [GitHub CI build & test](/.github/workflows/main.yml)
+- [GitHub CI SwiftLint](/.github/workflows/swiftlint.yml)
 - [SwiftLint Rules](/.swiftlint.yml)
 - [Git Config](/.gitignore)
 - SwiftLint shell script as a build phase (SwiftLint preinstallation required)
@@ -236,7 +274,7 @@ If you'd like `to see the app in your native language` consider [translation for
 Acknowledgements
 ================
 
-During the dev process of the releases v0.2..0.3 there're several things were also taken into the account, actual even for current version also.
+Along the dev process of the releases v0.2..0.3 there're several things were also taken into the account, actual even for current version also.
 
 <table>
   <thead>
@@ -279,6 +317,6 @@ Contact
 
 <div align="center">
 
-mzhigulin@gmail.com • [Telegram](https://t.me/velociraptor1985) • [GitHub](https://github.com/perseusrealdeal)
+[E-mail](mailto:mzhigulin@gmail.com) • [Telegram](https://t.me/velociraptor1985) • [GitHub](https://github.com/perseusrealdeal)
 
 </div>

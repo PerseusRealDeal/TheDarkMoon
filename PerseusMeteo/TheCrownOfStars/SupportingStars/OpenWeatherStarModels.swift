@@ -12,6 +12,8 @@
 //
 //  See LICENSE for details. All rights reserved.
 //
+// swiftlint:disable file_length
+//
 
 import Foundation
 
@@ -276,6 +278,41 @@ public enum StatusMenusUpdatePeriodOption: Int, CaseIterable, CustomStringConver
             return 3600.0
         case .none:
             return 0.0
+        }
+    }
+}
+
+// MARK: - Meteo Parameters
+
+public enum MeteoParameter: Int, CaseIterable, CustomStringConvertible, Codable {
+
+    case feelsLike  = 0
+    case direction  = 1
+    case gust       = 2
+    case wind       = 3
+    case visibility = 4
+    case pressure   = 5
+    case humidity   = 6
+    case cloudiness = 7
+
+    public var description: String {
+        switch self {
+        case .feelsLike:
+            return "StatusMenus: feelsLike"
+        case .direction:
+            return "StatusMenus: direction"
+        case .gust:
+            return "StatusMenus: gust"
+        case .wind:
+            return "StatusMenus: wind"
+        case .visibility:
+            return "StatusMenus: visibility"
+        case .pressure:
+            return "StatusMenus: pressure"
+        case .humidity:
+            return "StatusMenus: humidity"
+        case .cloudiness:
+            return "StatusMenus: cloudiness"
         }
     }
 }

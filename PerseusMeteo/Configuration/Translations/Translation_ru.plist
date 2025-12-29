@@ -20,16 +20,16 @@
 	<string>P2P</string>
 	<key>P2P stands for Person to Person</key>
 	<string>P2P значит от личности к личности</string>
-    <key>/* Redirect Alert */</key>
-    <string>--</string>
-    <key>Redirect Alert: title</key>
-    <string>Службы Локации.</string>
-    <key>Redirect Alert: message</key>
-    <string>Статус Гео Доступа можно актуализировать через Системные Настройки.</string>
-    <key>Redirect Alert: cancel</key>
-    <string>Хорошо</string>
-    <key>Redirect Alert: function</key>
-    <string>Системные Настройки</string>
+	<key>/* Redirect Alert */</key>
+	<string>--</string>
+	<key>Redirect Alert: title</key>
+	<string>Службы Локации.</string>
+	<key>Redirect Alert: message</key>
+	<string>Статус Гео Доступа можно актуализировать через Системные Настройки.</string>
+	<key>Redirect Alert: cancel</key>
+	<string>Хорошо</string>
+	<key>Redirect Alert: function</key>
+	<string>Системные Настройки</string>
 	<key>/* Popover Screen */</key>
 	<string>--</string>
 	<key>Button: Call Weather</key>
@@ -246,7 +246,7 @@
 	<string>Дополнительные Настройки</string>
 	<key>Option: OpenWeather Key</key>
 	<string>Ключ OpenWeather</string>
-	<key>Option: StatusMenus</key>
+	<key>Option: CurrentWeatherStatusMenus</key>
 	<string>Наблюдение</string>
 	<key>Button: CheckBox StatusMenus</key>
 	<string>Системный Статус</string>
@@ -260,6 +260,32 @@
 	<string>каждый час</string>
 	<key>StatusMenus: none</key>
 	<string>--</string>
+	<key>Option: StatusMenusView</key>
+	<string>Системный статус</string>
+	<key>Button: CheckBox TwoLines</key>
+	<string>Две строки</string>
+	<key>Option: SecondLine</key>
+	<string>Вторая строка</string>
+	<key>Option: ToolTip</key>
+	<string>Подсказка</string>
+	<key>StatusMenus: feelsLike</key>
+	<string>По ощущениям</string>
+	<key>StatusMenus: direction</key>
+	<string>Направление</string>
+	<key>StatusMenus: gust</key>
+	<string>Порывы</string>
+	<key>StatusMenus: wind</key>
+	<string>Ветер</string>
+	<key>StatusMenus: visibility</key>
+	<string>Обзор</string>
+	<key>StatusMenus: pressure</key>
+	<string>Давление</string>
+	<key>StatusMenus: humidity</key>
+	<string>Влажность</string>
+	<key>StatusMenus: cloudiness</key>
+	<string>Облачность</string>
+	<key>Button: TwoLines Info</key>
+	<string>Вторая строчка доступна с macOS Big Sur (11)</string>
 	<key>Button: Close</key>
 	<string>Исчезнуть</string>
 	<key>Button: Reset to Defaults</key>

@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Given a version number MAJOR.MINOR.PATCH, where MAJOR in 0 means developer edition.
 - Date in format YYYY-MM-DD, in this file meets Gregorian calendar only.
 
+## [0.5.0] - [2025-12-29], The Dark Moon
+
+### Added
+
+- Multiline Status Menus, but from macOS Big Sur (11) only.
+- ToolTip with extra meteo parameters for Status Menus.
+
+### Fixed
+
+- Reset to defaults option, language.
+
+### Other
+
+- Minor changes and fixes.
+
 ## [0.4.4] - [2025-12-17], The Dark Moon
 
 ### Updated
@@ -14,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Auto selecting for forecast items (by default).
+- Forecast items auto selecting by default.
 
 ### Fixed
 

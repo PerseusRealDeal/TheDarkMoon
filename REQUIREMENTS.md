@@ -9,6 +9,11 @@
         <th>Short description</th>
     </tr>
     <tr>
+        <td>0.5+</td>
+        <td>Developer release (candidate).</td>
+        <td>StatusMenusButton view options.</td>
+    </tr>
+    <tr>
         <td>0.4+</td>
         <td>Developer release (candidate).</td>
         <td>Current weather (StatusMenusButton).</td>
@@ -150,15 +155,14 @@
 
 > # Operations
 
-| ID   | Description                                                   | Must have  | In Use       | Result | Rules  |
-| ---- | ------------------------------------------------------------- | ---------- | ------------ | ------ | ------ |
-| OP-1 | Call current weather with OpenWeather API (Popover)           | API key    | DATA-2, OO-2 | DATA-1 | RULE-1 |
-| OP-2 | Ask for current location                                      | Permission |              | DATA-2 | -      |
-| OP-3 | Call 5 day / 3 hour forecast with OpenWeather API             | API key    | DATA-2, OO-2 | DATA-1 | RULE-1 |
-| OP-4 | Direct geocoding with OpenWeather API                         | API key    | OO-2         |        |        |
-| OP-5 | CRUD Favorites                                                |            |              |        |        |
-| OP-6 | Call current weather with OpenWeather API (StatusMenusButton) | API key    | DATA-2, OO-2 | DATA-1 | RULE-1 |
-
+| ID   | Description                                                   | Must have  | In Use                         | Result | Rules  |
+| ---- | ------------------------------------------------------------- | ---------- | ------------------------------ | ------ | ------ |
+| OP-1 | Call current weather with OpenWeather API (Popover)           | API key    | DATA-2, OO-2                   | DATA-1 | RULE-1 |
+| OP-2 | Ask for current location                                      | Permission |                                | DATA-2 | -      |
+| OP-3 | Call 5 day / 3 hour forecast with OpenWeather API             | API key    | DATA-2, OO-2                   | DATA-1 | RULE-1 |
+| OP-4 | Direct geocoding with OpenWeather API                         | API key    | OO-2                           |        |        |
+| OP-5 | CRUD Favorites                                                |            |                                |        |        |
+| OP-6 | Call current weather with OpenWeather API (StatusMenusButton) | API key    | DATA-2, OO-2, OO-4, OO-5, OO-6 | DATA-1 | RULE-1 |
 
 > # Rules
 
@@ -177,11 +181,14 @@
 
 > ## Other Options
 
-| ID       | Name                | Details          | Defaults    |
-| -------- | ------------------- | ---------------- | ----------- |
-| OO-1     | Dark Mode           | Auto, On, Off    | Apply: Auto |
-| OO-2     | OpenWeather API key | User Input       | -           |
-| OO-3\*\* | Starts on login     | True, False      | Apply: True |
+| ID       | Name                     | Details                                                                      | Defaults          |
+| -------- | ------------------------ | ---------------------------------------------------------------------------- | ----------------- |
+| OO-1     | Dark Mode                | Auto, On, Off                                                                | Apply: Auto       |
+| OO-2     | OpenWeather API key      | User Input                                                                   | -                 |
+| OO-3\*\* | Starts on login          | True, False                                                                  | Apply: True       |
+| 00-4     | Status Menus View        | singleLine, two                                                              | singleLine        |
+| 00-5     | Status Menus Second Line | feelsLike, Direction, Gust, Wind, Visibility, Pressure, Humidity, Cloudiness | Wind              |
+| 00-6     | Status Menus ToolTip     | feelsLike, Direction, Gust, Wind, Visibility, Pressure, Humidity, Cloudiness | (Direction, Gust) |
 
 > \* changed
 
