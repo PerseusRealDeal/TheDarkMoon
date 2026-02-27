@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E0A5EBC2E2F7C9A002BC1F5 /* PDMStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0A5EBB2E2F7C9A002BC1F5 /* PDMStar.swift */; };
+		2E0A5EBC2E2F7C9A002BC1F5 /* TheDarknessStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0A5EBB2E2F7C9A002BC1F5 /* TheDarknessStar.swift */; };
 		2E1083D42E2B65F400400180 /* OpenWeatherStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1083D32E2B65F400400180 /* OpenWeatherStar.swift */; };
 		2E1083D62E2B667000400180 /* CPLStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1083D52E2B667000400180 /* CPLStar.swift */; };
 		2E1083D82E2B739000400180 /* PGKStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1083D72E2B739000400180 /* PGKStar.swift */; };
@@ -37,7 +37,6 @@
 		2ED8FE1D2E40F36C00C65619 /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED8FE1C2E40F36C00C65619 /* MessageLabel.swift */; };
 		2EDC74DA2EE30B0B00073C94 /* WebLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC74D92EE30B0B00073C94 /* WebLabel.swift */; };
 		2EEF31532E07B8E4006E5693 /* PGKSupportingStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF31522E07B8E4006E5693 /* PGKSupportingStar.swift */; };
-		2EEF31552E07B8F4006E5693 /* PDMSupportingStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEF31542E07B8F4006E5693 /* PDMSupportingStar.swift */; };
 		2EF147E62E966E6400BE657C /* CustomStatusButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EF147E52E966E6400BE657C /* CustomStatusButtonView.xib */; };
 		2EF147E92E966E8800BE657C /* CustomStatusButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF147E82E966E8800BE657C /* CustomStatusButtonView.swift */; };
 		4B030E7D2B2DB42200ED9018 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B030E7C2B2DB42200ED9018 /* CHANGELOG.md */; };
@@ -130,7 +129,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2E0A5EBB2E2F7C9A002BC1F5 /* PDMStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDMStar.swift; sourceTree = "<group>"; };
+		2E0A5EBB2E2F7C9A002BC1F5 /* TheDarknessStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheDarknessStar.swift; sourceTree = "<group>"; };
 		2E1083D32E2B65F400400180 /* OpenWeatherStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherStar.swift; sourceTree = "<group>"; };
 		2E1083D52E2B667000400180 /* CPLStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPLStar.swift; sourceTree = "<group>"; };
 		2E1083D72E2B739000400180 /* PGKStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGKStar.swift; sourceTree = "<group>"; };
@@ -161,7 +160,6 @@
 		2ED8FE1C2E40F36C00C65619 /* MessageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabel.swift; sourceTree = "<group>"; };
 		2EDC74D92EE30B0B00073C94 /* WebLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebLabel.swift; sourceTree = "<group>"; };
 		2EEF31522E07B8E4006E5693 /* PGKSupportingStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGKSupportingStar.swift; sourceTree = "<group>"; };
-		2EEF31542E07B8F4006E5693 /* PDMSupportingStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDMSupportingStar.swift; sourceTree = "<group>"; };
 		2EF147E52E966E6400BE657C /* CustomStatusButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomStatusButtonView.xib; sourceTree = "<group>"; };
 		2EF147E82E966E8800BE657C /* CustomStatusButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStatusButtonView.swift; sourceTree = "<group>"; };
 		4B030E7C2B2DB42200ED9018 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -274,7 +272,7 @@
 				2E1083D22E2B624E00400180 /* SupportingStars */,
 				2E1083D52E2B667000400180 /* CPLStar.swift */,
 				2E1083D72E2B739000400180 /* PGKStar.swift */,
-				2E0A5EBB2E2F7C9A002BC1F5 /* PDMStar.swift */,
+				2E0A5EBB2E2F7C9A002BC1F5 /* TheDarknessStar.swift */,
 				2E1083D32E2B65F400400180 /* OpenWeatherStar.swift */,
 			);
 			path = TheCrownOfStars;
@@ -285,7 +283,6 @@
 			children = (
 				4B84263B2B19CE2600C86E8A /* OpenWeatherStarModels.swift */,
 				2EEF31522E07B8E4006E5693 /* PGKSupportingStar.swift */,
-				2EEF31542E07B8F4006E5693 /* PDMSupportingStar.swift */,
 			);
 			path = SupportingStars;
 			sourceTree = "<group>";
@@ -866,7 +863,6 @@
 				4B993DC92B380FDD008C1FE7 /* WeatherView.swift in Sources */,
 				2EBB4CA62ED73C4F00C44504 /* SelfieViewController.swift in Sources */,
 				4B5F7D3B2B98EACA00121946 /* MeteoCategory.swift in Sources */,
-				2EEF31552E07B8F4006E5693 /* PDMSupportingStar.swift in Sources */,
 				4B8426362B13523600C86E8A /* PerseusDataDefender.swift in Sources */,
 				2EC294362ECDE1B400FC06F1 /* MVPViewDelegate.swift in Sources */,
 				4BB204742B7805DF007E0308 /* ForecastHour.swift in Sources */,
@@ -880,7 +876,7 @@
 				4B1483E52912892C0013B76E /* AppDelegate.swift in Sources */,
 				4B84263C2B19CE2600C86E8A /* OpenWeatherStarModels.swift in Sources */,
 				2E1083D42E2B65F400400180 /* OpenWeatherStar.swift in Sources */,
-				2E0A5EBC2E2F7C9A002BC1F5 /* PDMStar.swift in Sources */,
+				2E0A5EBC2E2F7C9A002BC1F5 /* TheDarknessStar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
