@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E0A5EBC2E2F7C9A002BC1F5 /* TheDarknessStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0A5EBB2E2F7C9A002BC1F5 /* TheDarknessStar.swift */; };
 		2E1083D42E2B65F400400180 /* OpenWeatherStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1083D32E2B65F400400180 /* OpenWeatherStar.swift */; };
-		2E1083D62E2B667000400180 /* CPLStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1083D52E2B667000400180 /* CPLStar.swift */; };
+		2E1083D62E2B667000400180 /* TheLoggerStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1083D52E2B667000400180 /* TheLoggerStar.swift */; };
 		2E1083D82E2B739000400180 /* TheGeoStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1083D72E2B739000400180 /* TheGeoStar.swift */; };
 		2E2020092E891BE200D8D496 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2020082E891BE200D8D496 /* SuggestionsView.swift */; };
 		2E20200B2E8924CA00D8D496 /* SuggestionsViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E20200A2E8924CA00D8D496 /* SuggestionsViewItem.xib */; };
@@ -130,7 +130,7 @@
 /* Begin PBXFileReference section */
 		2E0A5EBB2E2F7C9A002BC1F5 /* TheDarknessStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheDarknessStar.swift; sourceTree = "<group>"; };
 		2E1083D32E2B65F400400180 /* OpenWeatherStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherStar.swift; sourceTree = "<group>"; };
-		2E1083D52E2B667000400180 /* CPLStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPLStar.swift; sourceTree = "<group>"; };
+		2E1083D52E2B667000400180 /* TheLoggerStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheLoggerStar.swift; sourceTree = "<group>"; };
 		2E1083D72E2B739000400180 /* TheGeoStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheGeoStar.swift; sourceTree = "<group>"; };
 		2E2020082E891BE200D8D496 /* SuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
 		2E20200A2E8924CA00D8D496 /* SuggestionsViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestionsViewItem.xib; sourceTree = "<group>"; };
@@ -267,21 +267,21 @@
 		2E1083D12E2B617500400180 /* TheCrownOfStars */ = {
 			isa = PBXGroup;
 			children = (
-				2E1083D22E2B624E00400180 /* SupportingStars */,
-				2E1083D52E2B667000400180 /* CPLStar.swift */,
+				2E1083D22E2B624E00400180 /* TheOpenWeatherStar */,
+				2E1083D52E2B667000400180 /* TheLoggerStar.swift */,
 				2E1083D72E2B739000400180 /* TheGeoStar.swift */,
 				2E0A5EBB2E2F7C9A002BC1F5 /* TheDarknessStar.swift */,
-				2E1083D32E2B65F400400180 /* OpenWeatherStar.swift */,
 			);
 			path = TheCrownOfStars;
 			sourceTree = "<group>";
 		};
-		2E1083D22E2B624E00400180 /* SupportingStars */ = {
+		2E1083D22E2B624E00400180 /* TheOpenWeatherStar */ = {
 			isa = PBXGroup;
 			children = (
+				2E1083D32E2B65F400400180 /* OpenWeatherStar.swift */,
 				4B84263B2B19CE2600C86E8A /* OpenWeatherStarModels.swift */,
 			);
-			path = SupportingStars;
+			path = TheOpenWeatherStar;
 			sourceTree = "<group>";
 		};
 		2EBB4C9F2ED73C4F00C44504 /* Selfie */ = {
@@ -854,7 +854,7 @@
 				4B684C712B446A560063E359 /* JsonDataDictionaryGift.swift in Sources */,
 				2EBB4CB12ED73E0E00C44504 /* LoggerViewPresenter.swift in Sources */,
 				4BB2046A2B753A47007E0308 /* ForecastDaysViewItem.swift in Sources */,
-				2E1083D62E2B667000400180 /* CPLStar.swift in Sources */,
+				2E1083D62E2B667000400180 /* TheLoggerStar.swift in Sources */,
 				4B5F7D352B96394600121946 /* ForecastDataSourceReader.swift in Sources */,
 				4B993DC92B380FDD008C1FE7 /* WeatherView.swift in Sources */,
 				2EBB4CA62ED73C4F00C44504 /* SelfieViewController.swift in Sources */,

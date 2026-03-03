@@ -265,7 +265,7 @@ Contributing
 ============
 
 > [!NOTE]
-> The product is constructed in `P2P` relationship paradigm that means the only one single and the same face in the product team during all development process.
+> The product is constructed in `P2P` relationship paradigm that means the only one single and the same face in the product team during all development process stages.
 
 But, `translations and bug reports are welcome`, create an issue and give details.
 
