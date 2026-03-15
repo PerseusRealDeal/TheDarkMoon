@@ -51,7 +51,7 @@
 	<key>Button: Logger</key>
 	<string>Журнал</string>
 	<key>Button: Hide</key>
-	<string>Скрыться</string>
+	<string>Свернуть</string>
 	<key>/* End-User Messages */</key>
 	<string>--</string>
 	<key>Coordinates update is required</key>
@@ -287,7 +287,7 @@
 	<key>Button: TwoLines Info</key>
 	<string>Вторая строчка доступна с macOS Big Sur (11)</string>
 	<key>Button: Close</key>
-	<string>Исчезнуть</string>
+	<string>Закрыть</string>
 	<key>Button: Reset to Defaults</key>
 	<string>Всё сбросить</string>
 	<key>/* Compass Directions */</key>

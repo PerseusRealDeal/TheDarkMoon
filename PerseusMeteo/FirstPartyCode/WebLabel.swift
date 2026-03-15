@@ -83,15 +83,11 @@ class WebLabel: NSTextField {
     // MARK: - Realization: The following code based on Google AI Mode
 
     private func reset(_ value: String, color: NSColor) {
-        if value == AppGlobals.meteoProviderName {
-            self.stringValue = value
-        } else {
-            self.attributedStringValue = createUnderlinedString(
-                text: value,
-                style: .single,
-                color: color
-            )
-        }
+        self.attributedStringValue = createUnderlinedString(
+            text: value,
+            style: .single,
+            color: color
+        )
         self.textColor = color
         self.toolTip = weblink
     }

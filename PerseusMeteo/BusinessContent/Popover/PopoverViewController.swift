@@ -540,11 +540,11 @@ extension PopoverViewController: PopoverViewDelegate {
             }
         }
 
-        let toolTip = "Label: Meteo Data Provider".localizedValue
+        // let toolTip = "Label: Meteo Data Provider".localizedValue
         let toolTipLink = provider == AppGlobals.meteoProviderName ?
         linkAuthor : linkOpenWeather
 
-        labelMeteoProviderWebLink.weblink = "\(toolTip): \(toolTipLink)"
+        labelMeteoProviderWebLink.weblink = "\(toolTipLink)"
         labelMeteoProviderWebLink.text = provider
 
         if controlCallRequest.selectedSegment == 0 {

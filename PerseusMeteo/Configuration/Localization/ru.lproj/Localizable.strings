@@ -46,7 +46,7 @@
 "Button: Options" = "Настройки";
 "Button: Logger" = "Журнал";
 
-"Button: Hide" = "Скрыться";
+"Button: Hide" = "Свернуть";
 
 /* End-User Messages */
 
@@ -213,7 +213,7 @@
 
 "Button: TwoLines Info" = "Вторая строчка доступна с macOS Big Sur (11)";
 
-"Button: Close" = "Исчезнуть";
+"Button: Close" = "Закрыть";
 "Button: Reset to Defaults" = "Всё сбросить";
 
 /* Compass Directions */

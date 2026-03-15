@@ -164,9 +164,6 @@ class LoggerViewPresenter: MVPPresenter {
     }
 
     func forceClear() {
-
-        log.message("[\(type(of: self))].\(#function)")
-
         report.clear()
         (view as? LoggerViewDelegate)?.clear()
     }

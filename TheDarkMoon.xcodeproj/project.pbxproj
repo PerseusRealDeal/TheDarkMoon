@@ -315,7 +315,7 @@
 			path = MVPPattern;
 			sourceTree = "<group>";
 		};
-		2EDC74D62EE2E4E500073C94 /* BusinessComponents */ = {
+		2EDC74D62EE2E4E500073C94 /* UIMeteoComponents */ = {
 			isa = PBXGroup;
 			children = (
 				4BB204662B7536BA007E0308 /* LocationView */,
@@ -323,7 +323,7 @@
 				4BB204682B7536E5007E0308 /* ForecastView */,
 				4B5F7D422BB6980600121946 /* MeteoInformation */,
 			);
-			path = BusinessComponents;
+			path = UIMeteoComponents;
 			sourceTree = "<group>";
 		};
 		2EF147E42E966E3600BE657C /* StatusMenus */ = {
@@ -373,9 +373,9 @@
 				4B1483E42912892C0013B76E /* AppDelegate.swift */,
 				4B14840229128A930013B76E /* Configuration */,
 				4B6F98752927E7C600ADB03A /* FirstPartyCode */,
-				4B684C6D2B438A370063E359 /* BusinessServices */,
+				2EDC74D62EE2E4E500073C94 /* UIMeteoComponents */,
 				4B14840429128E460013B76E /* BusinessContent */,
-				2EDC74D62EE2E4E500073C94 /* BusinessComponents */,
+				4B684C6D2B438A370063E359 /* BusinessLogic */,
 			);
 			path = PerseusMeteo;
 			sourceTree = "<group>";
@@ -418,17 +418,6 @@
 				2EBB4CAA2ED73E0E00C44504 /* Logger */,
 			);
 			path = BusinessContent;
-			sourceTree = "<group>";
-		};
-		4B1CA6A12B54927E003F3EBF /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				2EDC74D92EE30B0B00073C94 /* WebLabel.swift */,
-				2ED8FE1C2E40F36C00C65619 /* MessageLabel.swift */,
-				4B76913B2B5011DD007F09D9 /* PerseusCompassDirection.swift */,
-				4B7690D32B4CA82A007F09D9 /* PerseusTimeFormat.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		4B26A2ED2B0B580F00FCEA9B /* OptionsScreenTests */ = {
@@ -495,7 +484,7 @@
 			path = MeteoInformation;
 			sourceTree = "<group>";
 		};
-		4B684C6D2B438A370063E359 /* BusinessServices */ = {
+		4B684C6D2B438A370063E359 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
 				4B1CA6A22B549358003F3EBF /* MeteoClientManager.swift */,
@@ -508,7 +497,7 @@
 				4BB204582B702384007E0308 /* Weather */,
 				4BB204592B7023C3007E0308 /* Forecast */,
 			);
-			path = BusinessServices;
+			path = BusinessLogic;
 			sourceTree = "<group>";
 		};
 		4B6F98632927DDA300ADB03A /* Localization */ = {
@@ -523,10 +512,13 @@
 		4B6F98752927E7C600ADB03A /* FirstPartyCode */ = {
 			isa = PBXGroup;
 			children = (
-				4B3384662B5475E7004682DF /* Gifts */,
-				4B1CA6A12B54927E003F3EBF /* Helpers */,
-				4B8426372B1880A800C86E8A /* PerseusDataDefender */,
 				4B84263E2B19D0DC00C86E8A /* LanguageSwitcher */,
+				4B8426372B1880A800C86E8A /* PerseusDataDefender */,
+				4B3384662B5475E7004682DF /* Gifts */,
+				2EDC74D92EE30B0B00073C94 /* WebLabel.swift */,
+				2ED8FE1C2E40F36C00C65619 /* MessageLabel.swift */,
+				4B7690D32B4CA82A007F09D9 /* PerseusTimeFormat.swift */,
+				4B76913B2B5011DD007F09D9 /* PerseusCompassDirection.swift */,
 			);
 			path = FirstPartyCode;
 			sourceTree = "<group>";

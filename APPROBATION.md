@@ -1,8 +1,18 @@
-# Approbation Matrix / Snowman v0.5.0
+# Approbation Matrix / Snowman
 
-> Build System: macOS Monterey 12.7.6 / Xcode 14.2
+## Approbated Versions
 
-## macOS
+> This report is actual for the following product versions: 
+
+v0.5.1
+
+## Approbation Note
+
+> NOTE: To catch all log messages Mac Console should be started first then after a little while the logged app.
+
+> Compilation: macOS Monterey 12.7.6 / Xcode 14.2
+
+# macOS approbation result
 
 > Approbated capability: current weather (Popover and StatusMenusButton with OpenWeather)<br/>
 
