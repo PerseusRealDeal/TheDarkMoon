@@ -264,8 +264,12 @@ class LocationView: NSView, NSTextFieldDelegate {
 
         labelAutoSuggestionsRequest.stringValue = "Auto".localizedValue
 
+        /*
+
         buttonSuggestionsRequest.title = "Button: Request Suggestions".localizedValue
         buttonUpdateCurrentLocation.title = "Button: Refresh Current Location".localizedValue
+
+        */
 
         reloadComboBox()
         reloadBookmarkButton()
