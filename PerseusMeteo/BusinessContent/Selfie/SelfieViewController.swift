@@ -145,7 +145,7 @@ extension SelfieViewController: SelfieViewDelegate {
 
     func makeUp() {
 
-        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+        log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
 
         // view.layer?.backgroundColor = NSColor.perseusBlue.cgColor
 

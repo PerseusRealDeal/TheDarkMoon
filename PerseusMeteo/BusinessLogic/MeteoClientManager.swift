@@ -31,7 +31,7 @@ public class MeteoClientManager {
 
     init(presenter: StatusMenusPresenter) {
 
-        log.message("[\(type(of: self))].\(#function)", .info)
+        log.message("[\(type(of: self))].\(#function)", .notice)
 
         self.presenter = presenter
 
@@ -146,7 +146,7 @@ public class MeteoClientManager {
         }
 
         guard let point = getLocationPoint() else {
-            log.message("[\(type(of: self))].\(#function) location is nil.", .error)
+            log.message("[\(type(of: self))].\(#function) location is nil")
             return
         }
 

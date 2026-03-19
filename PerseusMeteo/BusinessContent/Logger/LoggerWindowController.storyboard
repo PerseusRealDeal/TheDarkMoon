@@ -39,7 +39,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="780" height="350"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" horizontalScrollElasticity="allowed" verticalScrollElasticity="allowed" translatesAutoresizingMaskIntoConstraints="NO" id="4uD-je-v1e">
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="4uD-je-v1e">
                                 <rect key="frame" x="112" y="40" width="658" height="271"/>
                                 <clipView key="contentView" id="ta0-vY-Xbf">
                                     <rect key="frame" x="0.0" y="0.0" width="658" height="271"/>

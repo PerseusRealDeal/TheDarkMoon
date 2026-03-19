@@ -138,12 +138,12 @@ extension LoggerViewController: LoggerViewDelegate {
 
     func setupUI() {
         log.message("[\(type(of: self))].\(#function)")
-        texViewMessages.backgroundColor = .black
+        texViewMessages.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }
 
     func makeUp() {
 
-        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+        log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
 
         // view.layer?.backgroundColor = NSColor.perseusBlue.cgColor
 
@@ -151,9 +151,9 @@ extension LoggerViewController: LoggerViewDelegate {
             view.window?.appearance = DarkModeAgent.DarkModeUserChoice == .on ?
             DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
 
-            texViewMessages.textColor = DarkMode.style == .light ? .darkGray : .white
+            texViewMessages.textColor = DarkMode.style == .light ? .darkGray : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         } else {
-            texViewMessages.textColor = DarkMode.style == .light ? .darkGray : #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+            texViewMessages.textColor = DarkMode.style == .light ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
         }
     }
 

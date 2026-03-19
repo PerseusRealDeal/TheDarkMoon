@@ -108,6 +108,9 @@ class LocationView: NSView, NSTextFieldDelegate {
     // MARK: - Actions
 
     @IBAction func updateCurrentLocationButtonTapped(_ sender: NSButton) {
+
+        log.message("[\(type(of: self))].\(#function) button tapped", .info)
+
         guard locationCard == .current else {
             let text = "Current Location should be selected".localizedValue
             log.message(text, .notice, .custom, .enduser)
@@ -118,12 +121,13 @@ class LocationView: NSView, NSTextFieldDelegate {
     }
 
     @IBAction func autoSuggestionsRequestTapped(_ sender: NSButton) {
+        log.message("[\(type(of: self))].\(#function) button tapped", .info)
         AppOptions.autoSuggestionsRequestOption = sender.state == .on ? true : false
     }
 
     @IBAction func suggestionsRequestButtonTapped(_ sender: Any) {
 
-        log.message("[\(type(of: self))].\(#function)", .notice)
+        log.message("[\(type(of: self))].\(#function) button tapped", .info)
 
         if textFieldLocationNameSearch.stringValue.isEmpty {
             let text = "Location Name should be typed".localizedValue
@@ -141,6 +145,7 @@ class LocationView: NSView, NSTextFieldDelegate {
     }
 
     @IBAction func bookmarkButtonTapped(_ sender: NSButton) {
+        log.message("[\(type(of: self))].\(#function) button tapped", .info)
         AppGlobals.notificationCenter.post(Notification.init(name: .bookmarkNotification))
     }
 
@@ -277,7 +282,7 @@ class LocationView: NSView, NSTextFieldDelegate {
 
     public func makeup() {
 
-        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+        log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
 
         if isHighSierra {
 
@@ -367,7 +372,7 @@ class LocationView: NSView, NSTextFieldDelegate {
             viewSuggestions.suggestionsArray.removeAll()
             collectionSuggestions.reloadData()
 
-            log.message("[\(type(of: self))].\(#function) deepCounter : \(typeDeepCounter)")
+            log.message("[\(type(of: self))].\(#function) deepCounter: \(typeDeepCounter)")
 
             return
         }
@@ -387,7 +392,7 @@ class LocationView: NSView, NSTextFieldDelegate {
             if self.typeDeepCounter > 0 {
                 self.typeDeepCounter -= 1
 
-                let logText = "deepCounter > 0 : \(self.typeDeepCounter)"
+                let logText = "deepCounter > 0: \(self.typeDeepCounter)"
                 log.message("[\(type(of: self))].\(#function) \(logText)")
             }
 
@@ -396,7 +401,7 @@ class LocationView: NSView, NSTextFieldDelegate {
                 self.textFieldLocationNameSearch.stringValue.isEmpty == false,
                 AppOptions.autoSuggestionsRequestOption == true
             else {
-                log.message("[\(type(of: self))].\(#function) guard : \(self.typeDeepCounter)")
+                log.message("[\(type(of: self))].\(#function) guard: \(self.typeDeepCounter)")
                 return
             }
 

@@ -481,7 +481,7 @@ extension PopoverViewController: PopoverViewDelegate {
 
     func makeUp() {
 
-        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+        log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
 
         if isHighSierra {
             view.window?.appearance = DarkModeAgent.DarkModeUserChoice == .on ?

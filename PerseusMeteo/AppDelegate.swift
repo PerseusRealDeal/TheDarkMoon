@@ -19,7 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
-        log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)", .info)
 
         GeoCoordinator.reloadGeoComponents()
 

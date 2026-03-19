@@ -107,7 +107,7 @@ class Coordinator {
         main.statusMenus.reloadData()
 
         guard
-            AppOptions.statusMenusOption,
+            AppOptions.statusMenusOption == true,
             AppOptions.statusMenusPeriodOption != .none
         else {
             return
@@ -117,7 +117,7 @@ class Coordinator {
             withTimeInterval: AppOptions.statusMenusPeriodOption.timeInterval,
             repeats: true) { _ in
                 main.meteoClientManager?.fetchWeather()
-                log.message("[\(type(of: self))].\(#function) The timer fired!")
+                log.message("[\(type(of: self))].\(#function) the timer fired", .info)
             }
 
         main.meteoClientManager?.fetchWeather()

@@ -75,14 +75,16 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getTimeZone(from dictionary: [String: Any]) -> Int? {
 
-        log.message("[\(type(of: self))].\(#function)")
+        if dictionary.isEmpty {
+            return nil
+        }
 
         // Timezone.
 
         guard
             let timezone = dictionary["timezone"] as? Int
         else {
-            log.message("[\(type(of: self))].\(#function) Timezone wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [timezone] mistaken", .error)
             return nil
         }
 
@@ -91,14 +93,16 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getLastOne(from dictionary: [String: Any]) -> Int? {
 
-        log.message("[\(type(of: self))].\(#function)")
+        if dictionary.isEmpty {
+            return nil
+        }
 
         // Date and Time.
 
         guard
             let dt = dictionary["dt"] as? Int
         else {
-            log.message("[\(type(of: self))].\(#function) dt wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [dt] mistaken", .error)
             return nil
         }
 
@@ -107,7 +111,9 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getWeatherDescription(from dictionary: [String: Any]) -> String? {
 
-        log.message("[\(type(of: self))].\(#function)")
+        if dictionary.isEmpty {
+            return nil
+        }
 
         if let weather = dictionary["weather"] as? [Any] {
             if let wFirst = weather.first as? [String: Any] {
@@ -116,13 +122,14 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
                     return description
 
                 } else {
-                    log.message("[\(type(of: self))].\(#function) Attribute wrong.", .error)
+                    let text = "[\(type(of: self))].\(#function) [description] mistaken"
+                    log.message(text, .error)
                 }
             } else {
-                log.message("[\(type(of: self))].\(#function) Weather first wrong.", .error)
+                log.message("[\(type(of: self))].\(#function) Weather first mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) Weather wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [weather] mistaken", .error)
         }
 
         return nil
@@ -130,25 +137,27 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getWeatherIconName(from dictionary: [String: Any]) -> String? {
 
-        log.message("[\(type(of: self))].\(#function)")
+        if dictionary.isEmpty {
+            return nil
+        }
 
         if let weather = dictionary["weather"] as? [Any] {
             if let wFirst = weather.first as? [String: Any] {
                 if let id = wFirst["id"] as? Int,
-                    let icon = wFirst["icon"] as? String {
+                   let icon = wFirst["icon"] as? String {
 
                     let iconName = representOpenWeatherMapIcon(id, icon)
 
                     return iconName
 
                 } else {
-                    log.message("[\(type(of: self))].\(#function) Attribute wrong.", .error)
+                    log.message("[\(type(of: self))].\(#function) [id.icon] mistaken", .error)
                 }
             } else {
-                log.message("[\(type(of: self))].\(#function) Weather first wrong.", .error)
+                log.message("[\(type(of: self))].\(#function) Weather first mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) Weather wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [weather] mistaken", .error)
         }
 
         return nil
@@ -156,7 +165,9 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getTemperature(from dictionary: [String: Any]) -> String? {
 
-        log.message("[\(type(of: self))].\(#function)")
+        if dictionary.isEmpty {
+            return nil
+        }
 
         if let main = dictionary["main"] as? [String: Any] {
             if let temp = main["temp"] as? Double {
@@ -164,10 +175,10 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
                 return temp.description
 
             } else {
-                log.message("[\(type(of: self))].\(#function) Attribute wrong.", .error)
+                log.message("[\(type(of: self))].\(#function) [temp] mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) Main wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [main] mistaken", .error)
         }
 
         return nil
@@ -175,16 +186,20 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getTemperatureFeelsLike(from dictionary: [String: Any]) -> String? {
 
+        if dictionary.isEmpty {
+            return nil
+        }
+
         if let main = dictionary["main"] as? [String: Any] {
             if let feels_like = main["feels_like"] as? Double {
 
                 return feels_like.description
 
             } else {
-                log.message("[\(type(of: self))].\(#function) Attribute wrong.", .error)
+                log.message("[\(type(of: self))].\(#function) [feels_like] mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) Main wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [main] mistaken", .error)
         }
 
         return nil
@@ -192,16 +207,20 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getTemperatureMinimum(from dictionary: [String: Any]) -> String? {
 
+        if dictionary.isEmpty {
+            return nil
+        }
+
         if let main = dictionary["main"] as? [String: Any] {
             if let temp_min = main["temp_min"] as? Double {
 
                 return temp_min.description
 
             } else {
-                log.message("[\(type(of: self))].\(#function) Attribute wrong.", .error)
+                log.message("[\(type(of: self))].\(#function) [temp_min] mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) Main wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [main] mistaken", .error)
         }
 
         return nil
@@ -209,16 +228,20 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getTemperatureMaximum(from dictionary: [String: Any]) -> String? {
 
+        if dictionary.isEmpty {
+            return nil
+        }
+
         if let main = dictionary["main"] as? [String: Any] {
             if let temp_max = main["temp_max"] as? Double {
 
                 return temp_max.description
 
             } else {
-                log.message("[\(type(of: self))].\(#function) Attribute wrong.", .error)
+                log.message("[\(type(of: self))].\(#function) [temp_max] mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) Main wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [main] mistaken", .error)
         }
 
         return nil
@@ -226,32 +249,41 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getWindSpeed(from dictionary: [String: Any]) -> String? {
 
+        if dictionary.isEmpty {
+            return nil
+        }
+
         if let wind = dictionary["wind"] as? [String: Any] {
             if let speed = wind["speed"] as? Double {
 
                 return speed.description
 
             } else {
-                log.message("[\(type(of: self))].\(#function) Attribute wrong.", .error)
+                log.message("[\(type(of: self))].\(#function) [speed] mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) Wind wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [wind] mistaken", .error)
         }
 
         return nil
     }
 
     public func getWindGusts(from dictionary: [String: Any]) -> String? {
+
+        if dictionary.isEmpty {
+            return nil
+        }
+
         if let wind = dictionary["wind"] as? [String: Any] {
             if let gust = wind["gust"] as? Double {
 
                 return gust.description
 
             } else {
-                log.message("[\(type(of: self))].\(#function) Attribute wrong.", .error)
+                log.message("[\(type(of: self))].\(#function) [gust] mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) Wind wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [wind] mistaken", .error)
         }
 
         return nil
@@ -259,16 +291,20 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getWindDirection(from dictionary: [String: Any]) -> String? {
 
+        if dictionary.isEmpty {
+            return nil
+        }
+
         if let wind = dictionary["wind"] as? [String: Any] {
             if let deg = wind["deg"] as? Int {
 
                 return deg.description
 
             } else {
-                log.message("[\(type(of: self))].\(#function) Attribute wrong.", .error)
+                log.message("[\(type(of: self))].\(#function) [deg] mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) Wind wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [wind] mistaken", .error)
         }
 
         return nil
@@ -276,16 +312,20 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getPressure(from dictionary: [String: Any]) -> String? {
 
+        if dictionary.isEmpty {
+            return nil
+        }
+
         if let main = dictionary["main"] as? [String: Any] {
             if let pressure = main["pressure"] as? Int {
 
                 return pressure.description
 
             } else {
-                log.message("[\(type(of: self))].\(#function) Pressure wrong.", .error)
+                log.message("[\(type(of: self))].\(#function) [pressure] mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) Main wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [main] mistaken", .error)
         }
 
         return nil
@@ -293,16 +333,20 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getHumidity(from dictionary: [String: Any]) -> Int? {
 
+        if dictionary.isEmpty {
+            return nil
+        }
+
         if let main = dictionary["main"] as? [String: Any] {
             if let humidity = main["humidity"] as? Int {
 
                 return humidity
 
             } else {
-                log.message("[\(type(of: self))].\(#function) Humidity wrong.", .error)
+                log.message("[\(type(of: self))].\(#function) [humidity] mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) Main wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [main] mistaken", .error)
         }
 
         return nil
@@ -310,16 +354,20 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getCloudiness(from dictionary: [String: Any]) -> Int? {
 
+        if dictionary.isEmpty {
+            return nil
+        }
+
         if let clouds = dictionary["clouds"] as? [String: Any] {
             if let all = clouds["all"] as? Int {
 
                 return all
 
             } else {
-                log.message("[\(type(of: self))].\(#function) [all] wrong.", .error)
+                log.message("[\(type(of: self))].\(#function) [all] mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) [clouds] wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [clouds] mistaken", .error)
         }
 
         return nil
@@ -327,12 +375,16 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getVisibility(from dictionary: [String: Any]) -> Int? {
 
+        if dictionary.isEmpty {
+            return nil
+        }
+
         if let visibility = dictionary["visibility"] as? Int {
 
             return visibility
 
         } else {
-            log.message("[\(type(of: self))].\(#function) Visibility wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [visibility] mistaken", .error)
         }
 
         return nil
@@ -340,16 +392,20 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getSunrise(from dictionary: [String: Any]) -> Int? {
 
+        if dictionary.isEmpty {
+            return nil
+        }
+
         if let sys = dictionary["sys"] as? [String: Any] {
             if let rise = sys["sunrise"] as? Int {
 
                 return rise
 
             } else {
-                log.message("[\(type(of: self))].\(#function) Sunrise wrong.", .error)
+                log.message("[\(type(of: self))].\(#function) [sunrise] mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) Sys wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [sys] mistaken", .error)
         }
 
         return nil
@@ -357,21 +413,29 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getSunset(from dictionary: [String: Any]) -> Int? {
 
+        if dictionary.isEmpty {
+            return nil
+        }
+
         if let sys = dictionary["sys"] as? [String: Any] {
             if let sunset = sys["sunset"] as? Int {
 
                 return sunset
             } else {
-                log.message("[\(type(of: self))].\(#function) Sunset wrong.", .error)
+                log.message("[\(type(of: self))].\(#function) [sunset] mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) Sys wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [sys] mistaken", .error)
         }
 
         return nil
     }
 
     public func getWeatherConditions(from source: [String: Any]) -> WeatherConditions {
+
+        if source.isEmpty {
+            return MeteoFactsDefaults.weatherConditions
+        }
 
         var value: WeatherConditions?
 
@@ -385,13 +449,13 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
                     value = WeatherConditions(code: code, name: icon)
 
                 } else {
-                    log.message("\(#function) [id / icon] wrong.", .error)
+                    log.message("\(#function) [id / icon] mistaken", .error)
                 }
             } else {
-                log.message("\(#function) Weather first wrong.", .error)
+                log.message("\(#function) weatherFirst wrong", .error)
             }
         } else {
-            log.message("\(#function) [weather] wrong.", .error)
+            log.message("\(#function) [weather] mistaken", .error)
         }
 
         guard let conditions = value else { return MeteoFactsDefaults.weatherConditions }

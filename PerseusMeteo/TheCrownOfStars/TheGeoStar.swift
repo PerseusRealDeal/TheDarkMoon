@@ -148,7 +148,7 @@ public class GeoAgent: NSObject {
     private static let sharedInstance = GeoAgent()
     private override init() {
 
-        log.message("[\(GeoAgent.self)].\(#function)", .info)
+        log.message("[\(GeoAgent.self)].\(#function)", .notice)
 
         locationManager = CLLocationManager()
         notificationCenter = NotificationCenter.default
@@ -531,7 +531,7 @@ extension GeoAgent: CLLocationManagerDelegate {
             return
         }
 
-        log.message("[\(type(of: self))].\(#function) \(details)", .notice)
+        log.message("[\(type(of: self))].\(#function) \(details)", .info)
 
         notificationCenter.post(name: GeoEvent.locationStatus.name, object: status)
     }
@@ -1291,7 +1291,7 @@ public class GeoCoordinator: NSObject {
 
     private override init() {
 
-        log.message("[\(GeoCoordinator.self)].\(#function)", .info)
+        log.message("[\(GeoCoordinator.self)].\(#function)", .notice)
 
         super.init()
 

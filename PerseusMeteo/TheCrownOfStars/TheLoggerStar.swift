@@ -1,6 +1,6 @@
 //
 //  TheLoggerStar.swift
-//  Version: 1.7.1
+//  Version: 1.7.2
 //
 //  Standalone ConsolePerseusLogger.
 //
@@ -807,14 +807,33 @@ extension PerseusLogger {
 
         private func appendLastMessageToReport() {
 
-            guard lastMessage.isEmpty == false, lastMessage.count <= limit else {
+            guard lastMessage.isEmpty == false else {
+                log.message("[\(type(of: self))].\(#function) message text is empty", .notice)
+                return
+            }
+
+            let textLength = lastMessage.count
+
+            guard textLength <= limit else {
+
+                let addInfo = "message is too long"
+                let limits = "limit \(limit), text \(textLength), report \(report.count)"
+
+                log.message("[\(type(of: self))].\(#function) \(addInfo), \(limits)", .notice)
+
                 return
             }
 
             let newLinelength = report.isEmpty ? 0 : newLine.count
-            let length = (lastMessage.count + report.count + newLinelength)
+            let length = (textLength + report.count + newLinelength)
 
             guard limit - length >= 0 else {
+
+                let addInfo = "message is too long"
+                let limits = "limit \(limit), text \(textLength), report \(report.count)"
+
+                log.message("[\(type(of: self))].\(#function) \(addInfo), \(limits)", .notice)
+
                 return
             }
 
