@@ -65,6 +65,7 @@ class LoggerViewController: NSViewController {
     @IBOutlet private(set) weak var buttonOwner: NSButton!
     @IBOutlet private(set) weak var buttonDirrectives: NSButton!
 
+    @IBOutlet private(set) weak var scrollViewMessages: NSScrollView!
     @IBOutlet private(set) weak var texViewMessages: NSTextView!
     @IBOutlet private(set) weak var segmentedControlOutput: NSSegmentedControl!
     @IBOutlet private(set) weak var comboBoxFormat: NSComboBox!
@@ -127,6 +128,7 @@ extension LoggerViewController: LoggerViewDelegate {
     func reloadMessages() {
         DispatchQueue.main.async {
             self.texViewMessages.string = report.text
+            self.scrollViewMessages.documentView?.scrollToEndOfDocument(self)
         }
     }
 

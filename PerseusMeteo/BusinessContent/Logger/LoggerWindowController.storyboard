@@ -261,6 +261,7 @@
                         <outlet property="buttonTurned" destination="1vb-ky-Svo" id="e3Z-ke-z1b"/>
                         <outlet property="comboBoxFormat" destination="Sp5-n0-LSD" id="Zzm-p5-f36"/>
                         <outlet property="comboBoxLevel" destination="Mvl-Ks-h3G" id="MZW-50-zfk"/>
+                        <outlet property="scrollViewMessages" destination="4uD-je-v1e" id="ZPF-cn-ILl"/>
                         <outlet property="segmentedControlOutput" destination="E91-G5-Edf" id="ngq-js-sN3"/>
                         <outlet property="texViewMessages" destination="PPo-gV-iDw" id="ECV-LZ-KIg"/>
                     </connections>
