@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Given a version number MAJOR.MINOR.PATCH, where MAJOR in 0 means developer edition.
 - Date in format YYYY-MM-DD, in this file meets Gregorian calendar only.
 
-## [0.5.1] - [2026-??-??], The Dark Moon
+## [0.5.1] - [2026-03-25], The Dark Moon
+
+### Added
+
+- (Auto) Scroll to bottom in Logger screen.
 
 ### Restructured
 
@@ -15,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Updated
 
-- CPL dependecy to v1.7.1.
+- CPL dependecy to v1.7.2.
 - PGK dependecy to v1.2.1.
 - PDM dependecy to v2.2.0.
 

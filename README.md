@@ -54,7 +54,7 @@ Contents
 Announcement
 ==
 
-This is the great home-made macOS app project to accomplish `weather farecast` task.
+> This is the great home-made macOS app project to accomplish `weather forecast` task.
 
 Our Terms
 --
@@ -86,7 +86,7 @@ Preview material
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/2e82bcbb-258d-4777-9520-2f73d895dfae" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/b0f33526-6879-4631-bea5-c1feb9bc82e4" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
@@ -97,7 +97,7 @@ Preview material
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/3e250d35-9daa-40d9-be41-ca8f485d8a2d" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/cc101dce-34a2-4cc0-8b76-65026668357f" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
@@ -172,7 +172,7 @@ MIT
 
 | Type     | Name                                                                                                      |
 | -------- | --------------------------------------------------------------------------------------------------------- |
-| Class    | [WebLabel](/PerseusMeteo/FirstPartyCode/Helpers/WebLabel.swift)                                           |
+| Class    | [WebLabel](/PerseusMeteo/FirstPartyCode/WebLabel.swift)                                                   |
 
 Third-party software
 ==
@@ -235,7 +235,7 @@ Credits
 
 <table>
   <tr>
-      <td>Management</td>
+      <td>Balance and Control</td>
       <td>Mikhail Zhigulin</td>
   </tr>
   <tr>
@@ -318,7 +318,7 @@ Author
 
 <div align="center">
 
-`Mikhail Zhigulin`
+`© Mikhail A. Zhigulin of Novosibirsk`
 
 </div>
 

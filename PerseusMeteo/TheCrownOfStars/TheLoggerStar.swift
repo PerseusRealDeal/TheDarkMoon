@@ -1,6 +1,6 @@
 //
 //  TheLoggerStar.swift
-//  Version: 1.7.2
+//  Version: 1.7.1
 //
 //  Standalone ConsolePerseusLogger.
 //
