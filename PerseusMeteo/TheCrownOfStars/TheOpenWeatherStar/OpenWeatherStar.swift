@@ -299,6 +299,6 @@ public class OpenWeatherAgent {
 
     private static var instance = OpenWeatherAgent()
     private init() {
-        log.message("[\(type(of: self))].\(#function)", .info)
+        log.message("[\(type(of: self))].\(#function)", .notice)
     }
 }

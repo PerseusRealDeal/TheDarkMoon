@@ -1,7 +1,7 @@
 <div align="center">
 
 Snowman
-=======
+==
 
 __The Status Menus app__
 
@@ -10,31 +10,32 @@ __The Status Menus app__
 
 [![Actions Status](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/main.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions)
 [![Style](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml)
-[![Version](https://img.shields.io/badge/Version-0.5.0-green.svg)](/CHANGELOG.md)
-[![License](http://img.shields.io/:License-Clear_BSD-blue.svg)](/LICENSE)
+[![Version](https://img.shields.io/badge/Version-0.5.1-green.svg)](/CHANGELOG.md)
 
 [![Platforms](https://img.shields.io/badge/Platform-macOS%2010.13+-orange.svg)](https://en.wikipedia.org/wiki/MacOS_version_history)
 [![Xcode](https://img.shields.io/badge/Xcode-14.2+-red.svg)](https://en.wikipedia.org/wiki/Xcode)
 [![Swift](https://img.shields.io/badge/Swift-5-orange.svg)](https://docs.swift.org/swift-book/RevisionHistory/RevisionHistory.html)
 [![SDK](https://img.shields.io/badge/SDK-UIKit%20-blueviolet.svg)](https://developer.apple.com/documentation/uikit)
 
-[![ConsolePerseusLogger](http://img.shields.io/:ConsolePerseusLogger-1.7.0-green.svg)](https://github.com/perseusrealdeal/ConsolePerseusLogger.git)
-[![PerseusDarkMode](http://img.shields.io/:PerseusDarkMode-2.1.1-green.svg)](https://github.com/perseusrealdeal/PerseusDarkMode.git)
-[![PerseusGeoKit](http://img.shields.io/:PerseusGeoKit-1.1.2-green.svg)](https://github.com/perseusrealdeal/PerseusGeoKit.git)
+[![ConsolePerseusLogger](http://img.shields.io/:ConsolePerseusLogger-1.7.1-green.svg)](https://github.com/perseusrealdeal/ConsolePerseusLogger.git)
+[![PerseusDarkMode](http://img.shields.io/:PerseusDarkMode-2.2.0-green.svg)](https://github.com/perseusrealdeal/PerseusDarkMode.git)
+[![PerseusGeoKit](http://img.shields.io/:PerseusGeoKit-1.2.1-green.svg)](https://github.com/perseusrealdeal/PerseusGeoKit.git)
 [![OpenWeatherAgent](http://img.shields.io/:OpenWeatherAgent-0.3.5-green.svg)](https://github.com/perseusrealdeal/OpenWeatherAgent)
 
-[`A3 Environment`](/APPROBATION.md) • [`CHANGELOG`](/CHANGELOG.md) • [`Individual API key`](https://openweathermap.org/appid)
+[`A3 Environment`](/APPROBATION.md) • [`CHANGELOG`](/CHANGELOG.md) • [`Individual API key`](https://openweathermap.org/appid) • [`The Clear BSD License`](/LICENSE)
 
 </div>
 
 ---
 
 Contents
-========
+==
 
-* [The why](#The-why)
-* [Screen shots](#Screen-shots)
-* [Top features](#Top-features) 
+* [Announcement](#Announcement)
+    * [Our terms](#Our-terms)
+    * [The why](#The-why)
+    * [Preview material](#Preview-material)
+    * [Top features](#Top-features)
 * [Requirements](#Requirements)
 * [First-party software](#First-party-software)
     * [MIT](#MIT)
@@ -50,25 +51,32 @@ Contents
 * [Author](#Author)
     * [Contact](#Contact)
 
-Our Terms
----------
+Announcement
+==
 
-[`CPL`](https://github.com/perseusrealdeal/ConsolePerseusLogger.git), `C`onsole `P`erseus `L`ogger.</br>
-[`PGK`](https://github.com/perseusrealdeal/PerseusGeoKit.git), `P`erseus `G`eo `K`it.</br>
-[`PDM`](https://github.com/perseusrealdeal/PerseusDarkMode.git), `P`erseus `D`ark `M`ode.</br>
-`P2P`, `P`erson-`to`-`P`erson.</br>
-[`A3`](https://docs.google.com/document/d/1K2jOeIknKRRpTEEIPKhxO2H_1eBTof5uTXxyOm5g6nQ), `A`pple `A`pps `A`pprobation.</br>
-[`T3`](https://github.com/perseusrealdeal/TheTechnologicalTree), `T`he `T`echnological `T`ree.
+> This is the great home-made macOS app project to accomplish `weather forecast` task.
+
+Our Terms
+--
+
+| Acronym | Stands for                                                                                                |
+| :-----: | --------------------------------------------------------------------------------------------------------- |
+| CPL     | [Console_Perseus_Logger](https://github.com/perseusrealdeal/ConsolePerseusLogger.git)                     |
+| PDM     | [Perseus_Dark_Mode](https://github.com/perseusrealdeal/PerseusDarkMode.git)                               |
+| PGK     | [Perseus_Geo_Kit](https://github.com/perseusrealdeal/PerseusGeoKit.git)                                   |
+| A3      | [Apple_Apps_Approbation](https://docs.google.com/document/d/1K2jOeIknKRRpTEEIPKhxO2H_1eBTof5uTXxyOm5g6nQ) |
+| T3      | [The_Technological_Tree](https://github.com/perseusrealdeal/TheTechnologicalTree)                         |
+| P2P     | Person_to_Person                                                                                          |
 
 ---
 
 The why
-=======
+--
 
-The why of this app cannot, and need not, be put into words.
+> The why of this app cannot, and need not, be put into words.
 
-Screen shots
-============
+Preview material
+--
 
 <div align="center">
 
@@ -78,7 +86,7 @@ Screen shots
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/2e82bcbb-258d-4777-9520-2f73d895dfae" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/b0f33526-6879-4631-bea5-c1feb9bc82e4" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
@@ -89,7 +97,7 @@ Screen shots
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/3e250d35-9daa-40d9-be41-ca8f485d8a2d" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/cc101dce-34a2-4cc0-8b76-65026668357f" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
@@ -97,7 +105,7 @@ Screen shots
 </div>
 
 Top features
-========
+--
 
 - Requesting current weather for Current Location and specific location name
 - Requesting `5 Day / 3 Hour` forecast for Current Location and specific location name
@@ -113,6 +121,8 @@ Top features
 - `Temperature:` Kelvin, Celsius, Fahrenheit
 - `Wind speed:` meter/sec, km/hour, miles per hour
 - `Visibility:` Kilometre, Mile
+- `Barometer:` hPa, mmHg, mb
+
 - `Multilanguage:` English and Russian
 - `Dark Mode:` Light, Dark, System (auto)
 - `Multi time format:` 24-hour and 12 hour
@@ -125,7 +135,7 @@ Top features
 - Saving OpenWeather API key to Keychain
 
 Requirements
-============
+==
 
 > [!NOTE]
 > The current app project is represented in source code only, it's a developer edition.
@@ -141,31 +151,31 @@ Requirements
 - Translations [EN](/PerseusMeteo/Configuration/Translations/Translation_en.plist), [RU](/PerseusMeteo/Configuration/Translations/Translation_ru.plist)
 
 First-party software
-====================
+==
 
 MIT
----
+--
 
 | Type     | Name                                                                                                      |
 | -------- | --------------------------------------------------------------------------------------------------------- |
-| Package  | [ConsolePerseusLogger v1.7.0](https://github.com/perseusrealdeal/ConsolePerseusLogger/releases/tag/1.7.0) |
+| Package  | [ConsolePerseusLogger v1.7.1](https://github.com/perseusrealdeal/ConsolePerseusLogger/releases/tag/1.7.1) |
 | Class    | [PerseusLogger](https://gist.github.com/perseusrealdeal/df456a9825fcface44eca738056eb6d5)                 |
-| Package  | [PerseusDarkMode v2.1.1](https://github.com/perseusrealdeal/PerseusDarkMode/releases/tag/2.1.1)           |
-| Package  | [PerseusGeoKit v1.1.2](https://github.com/perseusrealdeal/PerseusGeoKit/releases/tag/1.1.2)               |
+| Package  | [PerseusDarkMode v2.2.0](https://github.com/perseusrealdeal/PerseusDarkMode/releases/tag/2.2.0)           |
+| Package  | [PerseusGeoKit v1.2.1](https://github.com/perseusrealdeal/PerseusGeoKit/releases/tag/1.2.1)               |
 | Class    | [PerseusCompassDirection](https://gist.github.com/perseusrealdeal/3b053b2390d704f561ec52c6477b5cf2)       |
 | Variable | [PerseusTimeFormat](https://gist.github.com/perseusrealdeal/7aa89d78d9b1c220cc06682be8908a97)             |
 | Package  | [OpenWeatherAgent v0.3.5](https://github.com/perseusrealdeal/OpenWeatherAgent/releases/tag/0.3.5)         |
 | Class    | [MessageLabel](https://gist.github.com/PerseusRealDeal/dbfed6e01ed80be084983738ba713654)                  |
 
 [Unlicense](https://unlicense.org)
-----------------------------------
+--
 
 | Type     | Name                                                                                                      |
 | -------- | --------------------------------------------------------------------------------------------------------- |
-| Class    | [WebLabel](/PerseusMeteo/FirstPartyCode/Helpers/WebLabel.swift)                                           |
+| Class    | [WebLabel](/PerseusMeteo/FirstPartyCode/WebLabel.swift)                                                   |
 
 Third-party software
-====================
+==
 
 | Type   | Name                                                                                  | License                            |
 | ------ | ------------------------------------------------------------------------------------- | ---------------------------------- |
@@ -174,7 +184,7 @@ Third-party software
 | Action | [cirruslabs/swiftlint-action@v1](https://github.com/cirruslabs/swiftlint-action/)     | MIT                                |
 
 Gifts
-=====
+==
 
 - [CurrentSystemLanguageGift.swift](https://gist.github.com/perseusrealdeal/98b082b136d574dd1b5aa760036dac8b)
 - [JsonDataDictionaryGift.swift](https://gist.github.com/perseusrealdeal/918c25633122e64d51f363f00059f6f8)
@@ -183,7 +193,7 @@ Gifts
 - [LocalizedExpectationGift.swift](/SnowmanTests/GiftsAndHelpers/LocalizedExpectationGift.swift)
 
 Account points 
-==============
+==
 
 - Explicit start point [main.swift](/PerseusMeteo/main.swift)
 - Explicit app delegate [TestingAppDelegate.swift](/SnowmanTests/TestingAppDelegate.swift)
@@ -204,7 +214,7 @@ Account points
 - SwiftLint shell script as a build phase (SwiftLint preinstallation required)
 
 License
-=======
+==
 
 __The Clear BSD License__, see [LICENSE](/LICENSE) for details.
 
@@ -212,20 +222,20 @@ Copyright `© 7531 - 7534 Mikhail A. Zhigulin of Novosibirsk`<br/>
 Copyright `© 7531 - 7534 PerseusRealDeal`
 
 - The year starts from the creation of the world according to a Slavic calendar.
-- September, the 1st of Slavic year. It means that "Sep 01, 2025" is the beginning of 7534.
+- September, the 1st of Slavic year. For instance, "Sep 01, 2025" is the beginning of 7534.
 
 Other required licenses details
--------------------------------
+--
 
 `© 2025 The SwiftLint Contributors` for SwiftLint.<br/>
 `© GitHub` for GitHub Action cirruslabs/swiftlint-action@v1.
 
 Credits
-=======
+==
 
 <table>
   <tr>
-      <td>Management</td>
+      <td>Balance and Control</td>
       <td>Mikhail Zhigulin</td>
   </tr>
   <tr>
@@ -262,17 +272,17 @@ Credits
 - Git clients: [SmartGit](https://syntevo.com/) and [GitHub Desktop](https://github.com/apps/desktop)
 
 Contributing
-============
+==
 
 > [!NOTE]
-> The product is constructed in `P2P` relationship paradigm that means the only one single and the same face in the product team during all development process.
+> The product is constructed in `P2P` relationship paradigm that means the only one single and the same face in the product team during all development process stages.
 
 But, `translations and bug reports are welcome`, create an issue and give details.
 
 If you'd like `to see the app in your native language` consider [translation for EN](/PerseusMeteo/Configuration/Translations/Translation_en.plist) as a template, then prepare your translation in the same way and create an issue, EN and RU already done.
 
 Acknowledgements
-================
+==
 
 Along the dev process of the releases v0.2..0.3 there're several things were also taken into the account, actual even for current version also.
 
@@ -304,16 +314,16 @@ Along the dev process of the releases v0.2..0.3 there're several things were als
 </table>
 
 Author
-======
+==
 
 <div align="center">
 
-`Mikhail Zhigulin`
+`© Mikhail A. Zhigulin of Novosibirsk`
 
 </div>
 
 Contact
--------
+--
 
 <div align="center">
 

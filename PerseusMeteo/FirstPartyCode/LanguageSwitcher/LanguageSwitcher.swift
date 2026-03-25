@@ -77,7 +77,7 @@ class LanguageSwitcher: NSObject {
         }
 
         let switching = "\(currentUserChoice.code) > \(switchToLanguage)"
-        log.message("[\(type(of: self))].\(#function) - \(switching)")
+        // log.message("[\(type(of: self))].\(#function) - \(switching)")
 
         // Update bundle for selected language
         guard let path = Bundle.main.path(forResource: switchToLanguage, ofType: "lproj")
@@ -88,5 +88,7 @@ class LanguageSwitcher: NSObject {
         // Refresh localization
         let nc = AppGlobals.notificationCenter
         nc.post(Notification.init(name: .languageSwitchedManuallyNotification))
+
+        log.message("[\(type(of: self))].\(#function) - \(switching) called", .info)
     }
 }

@@ -57,10 +57,10 @@ public class OpenWeatherForecastParser: ForecastParserProtocol {
                 return timezone
 
             } else {
-                log.message("[\(type(of: self))].\(#function) timezone wrong.", .error)
+                log.message("[\(type(of: self))].\(#function) [timezone] mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) city wrong.", .error)
+            log.message("[\(type(of: self))].\(#function) [city] mistaken", .error)
         }
 
         return nil
@@ -122,7 +122,7 @@ public class OpenWeatherForecastParser: ForecastParserProtocol {
                     return theDay
 
                 } else {
-                    log.message("[\(type(of: self))].\(#function) dt wrong.", .error)
+                    log.message("[\(type(of: self))].\(#function) dt wrong", .error)
                 }
 
                 return "-1"
@@ -174,6 +174,10 @@ public class OpenWeatherForecastParser: ForecastParserProtocol {
 
 public func getForecastDay(from source: [String: Any], timezone: Int) -> String {
 
+    if source.isEmpty { // Templated result for empty value.
+        return MeteoFactsDefaults.forecastDate
+    }
+
     var value = -1
 
     // Get value.
@@ -182,7 +186,7 @@ public func getForecastDay(from source: [String: Any], timezone: Int) -> String 
         value = dt
 
     } else {
-        // log.message("[\(#function) [dt] wrong.", .error)
+        log.message("[\(#function) [dt] mistaken", .error)
     }
 
     guard value != -1 else { return MeteoFactsDefaults.forecastDate }
@@ -204,6 +208,10 @@ public func getForecastDay(from source: [String: Any], timezone: Int) -> String 
 
 public func getForecastHourDt(from source: [String: Any], timezone: Int) -> String {
 
+    if source.isEmpty { // Templated result for empty value.
+        return MeteoFactsDefaults.sunrizesunset
+    }
+
     var value = -1
 
     // Get value.
@@ -212,7 +220,7 @@ public func getForecastHourDt(from source: [String: Any], timezone: Int) -> Stri
         value = dt
 
     } else {
-        // log.message("[\(#function) [dt] wrong.", .error)
+        log.message("[\(#function) [dt] mistaken", .error)
     }
 
     guard value != -1 else { return MeteoFactsDefaults.sunrizesunset }
@@ -227,6 +235,10 @@ public func getForecastHourDt(from source: [String: Any], timezone: Int) -> Stri
 
 public func getForecastHourTemp(from source: [String: Any]) -> String {
 
+    if source.isEmpty { // Templated result for empty value.
+        return MeteoFactsDefaults.temperature
+    }
+
     var value = ""
 
     // Get value.
@@ -236,10 +248,10 @@ public func getForecastHourTemp(from source: [String: Any]) -> String {
             value = temp_min.description
 
         } else {
-            log.message("[\(#function) [temp] wrong.", .error)
+            log.message("[\(#function) [temp] mistaken", .error)
         }
     } else {
-        // log.message("[\(#function) [main] wrong.", .error)
+        log.message("[\(#function) [main] mistaken", .error)
     }
 
     guard value != "" else { return MeteoFactsDefaults.temperature }
@@ -254,6 +266,10 @@ public func getForecastHourTemp(from source: [String: Any]) -> String {
 
 public func getForecastHourTempMin(from source: [String: Any]) -> String {
 
+    if source.isEmpty { // Templated result for empty value.
+        return MeteoFactsDefaults.temperature
+    }
+
     var value = ""
 
     // Get value.
@@ -263,10 +279,10 @@ public func getForecastHourTempMin(from source: [String: Any]) -> String {
             value = temp_min.description
 
         } else {
-            log.message("[\(#function) [temp_min] wrong.", .error)
+            log.message("[\(#function) [temp_min] mistaken", .error)
         }
     } else {
-        // log.message("[\(#function) [main] wrong.", .error)
+        log.message("[\(#function) [main] mistaken", .error)
     }
 
     guard value != "" else { return MeteoFactsDefaults.temperature }
@@ -281,6 +297,10 @@ public func getForecastHourTempMin(from source: [String: Any]) -> String {
 
 public func getForecastHourTempMax(from source: [String: Any]) -> String {
 
+    if source.isEmpty { // Templated result for empty value.
+        return MeteoFactsDefaults.temperature
+    }
+
     var value = ""
 
     // Get value.
@@ -290,10 +310,10 @@ public func getForecastHourTempMax(from source: [String: Any]) -> String {
             value = temp_max.description
 
         } else {
-            log.message("[\(#function) [temp_max] wrong.", .error)
+            log.message("[\(#function) [temp_max] mistaken", .error)
         }
     } else {
-        // log.message("[\(#function) [main] wrong.", .error)
+        log.message("[\(#function) [main] mistaken", .error)
     }
 
     guard value != "" else { return MeteoFactsDefaults.temperature }
@@ -308,6 +328,10 @@ public func getForecastHourTempMax(from source: [String: Any]) -> String {
 
 public func getForecastHourTempKinda(from source: [String: Any]) -> String {
 
+    if source.isEmpty { // Templated result for empty value.
+        return MeteoFactsDefaults.temperature
+    }
+
     var value = ""
 
     // Get value.
@@ -317,10 +341,10 @@ public func getForecastHourTempKinda(from source: [String: Any]) -> String {
             value = feels_like.description
 
         } else {
-            log.message("[\(#function) [feels_like] wrong.", .error)
+            log.message("[\(#function) [feels_like] mistaken", .error)
         }
     } else {
-        // log.message("[\(#function) [main] wrong.", .error)
+        log.message("[\(#function) [main] mistaken", .error)
     }
 
     guard value != "" else { return MeteoFactsDefaults.temperature }
@@ -335,6 +359,10 @@ public func getForecastHourTempKinda(from source: [String: Any]) -> String {
 
 public func getForecastHourVisibility(from source: [String: Any]) -> String {
 
+    if source.isEmpty { // Templated result for empty value.
+        return MeteoFactsDefaults.visibility
+    }
+
     var value = -1
 
     // Get value.
@@ -343,7 +371,7 @@ public func getForecastHourVisibility(from source: [String: Any]) -> String {
         value = visibility
 
     } else {
-        log.message("[\(#function) [visibility] wrong.", .error)
+        log.message("[\(#function) [visibility] mistaken", .error)
     }
 
     guard value != -1 else { return MeteoFactsDefaults.visibility }
@@ -358,6 +386,10 @@ public func getForecastHourVisibility(from source: [String: Any]) -> String {
 
 public func getForecastHourWindSpeed(from source: [String: Any]) -> String {
 
+    if source.isEmpty { // Templated result for empty value.
+        return MeteoFactsDefaults.windSpeed
+    }
+
     var value = ""
 
     // Get value.
@@ -367,10 +399,10 @@ public func getForecastHourWindSpeed(from source: [String: Any]) -> String {
             value = speed.description
 
         } else {
-            log.message("[\(#function) [speed] wrong.", .error)
+            log.message("[\(#function) [speed] mistaken", .error)
         }
     } else {
-        log.message("[\(#function) [wind] wrong.", .error)
+        log.message("[\(#function) [wind] mistaken", .error)
     }
 
     guard value != "" else { return MeteoFactsDefaults.windSpeed }
@@ -385,6 +417,10 @@ public func getForecastHourWindSpeed(from source: [String: Any]) -> String {
 
 public func getForecastHourWindDirection(from source: [String: Any]) -> String {
 
+    if source.isEmpty { // Templated result for empty value.
+        return MeteoFactsDefaults.windDirection
+    }
+
     var value = ""
 
     if let wind = source["wind"] as? [String: Any] {
@@ -393,10 +429,10 @@ public func getForecastHourWindDirection(from source: [String: Any]) -> String {
             value = deg.description
 
         } else {
-            log.message("[\(#function) [deg] wrong.", .error)
+            log.message("[\(#function) [deg] mistaken", .error)
         }
     } else {
-        log.message("[\(#function) [wind] wrong.", .error)
+        log.message("[\(#function) [wind] mistaken", .error)
     }
 
     guard
@@ -411,6 +447,10 @@ public func getForecastHourWindDirection(from source: [String: Any]) -> String {
 
 public func getForecastHourWindGusts(from source: [String: Any]) -> String {
 
+    if source.isEmpty { // Templated result for empty value.
+        return MeteoFactsDefaults.windSpeed
+    }
+
     var value = ""
 
     if let wind = source["wind"] as? [String: Any] {
@@ -419,10 +459,10 @@ public func getForecastHourWindGusts(from source: [String: Any]) -> String {
             value = gust.description
 
         } else {
-            log.message("[\(#function) [gust] wrong.", .error)
+            log.message("[\(#function) [gust] mistaken", .error)
         }
     } else {
-        log.message("[\(#function) [wind] wrong.", .error)
+        log.message("[\(#function) [wind] mistaken", .error)
     }
 
     guard value != "" else { return MeteoFactsDefaults.windSpeed }
@@ -437,6 +477,10 @@ public func getForecastHourWindGusts(from source: [String: Any]) -> String {
 
 public func getForecastHourPressure(from source: [String: Any]) -> String {
 
+    if source.isEmpty { // Templated result for empty value.
+        return MeteoFactsDefaults.pressure
+    }
+
     var value = ""
 
     // Get value.
@@ -446,10 +490,10 @@ public func getForecastHourPressure(from source: [String: Any]) -> String {
             value = pressure.description
 
         } else {
-            log.message("[\(#function) [pressure] wrong.", .error)
+            log.message("[\(#function) [pressure] mistaken", .error)
         }
     } else {
-        // log.message("[\(#function) [main] wrong.", .error)
+        log.message("[\(#function) [main] mistaken", .error)
     }
 
     guard value != "" else { return MeteoFactsDefaults.pressure }
@@ -464,6 +508,10 @@ public func getForecastHourPressure(from source: [String: Any]) -> String {
 
 public func getForecastHourHumidity(from source: [String: Any]) -> String {
 
+    if source.isEmpty { // Templated result for empty value.
+        return MeteoFactsDefaults.humidity
+    }
+
     var value = -1
 
     // Get value.
@@ -473,10 +521,10 @@ public func getForecastHourHumidity(from source: [String: Any]) -> String {
             value = humidity
 
         } else {
-            log.message("[\(#function) [humidity] wrong.", .error)
+            log.message("[\(#function) [humidity] mistaken", .error)
         }
     } else {
-        // log.message("[\(#function) [main] wrong.", .error)
+        log.message("[\(#function) [main] mistaken", .error)
     }
 
     guard value != -1 else { return MeteoFactsDefaults.humidity }
@@ -485,6 +533,10 @@ public func getForecastHourHumidity(from source: [String: Any]) -> String {
 }
 
 public func getForecastHourCloudiness(from source: [String: Any]) -> String {
+
+    if source.isEmpty { // Templated result for empty value.
+        return MeteoFactsDefaults.cloudiness
+    }
 
     var value = -1
 
@@ -495,10 +547,10 @@ public func getForecastHourCloudiness(from source: [String: Any]) -> String {
             value = all
 
         } else {
-            log.message("[\(#function) [all] wrong.", .error)
+            log.message("[\(#function) [all] mistaken", .error)
         }
     } else {
-        log.message("[\(#function) [clouds] wrong.", .error)
+        log.message("[\(#function) [clouds] mistaken", .error)
     }
 
     guard value != -1 else { return MeteoFactsDefaults.cloudiness }
@@ -535,6 +587,11 @@ or
 
 public func getPrecipitation(from source: [String: Any]) -> String {
 
+    if source.isEmpty { // Templated result for empty value.
+        return "-- / --"
+    }
+
+    // TODO: should return (Double, String, Double); not just a string
     var precipitation: (Double, String, Double) = (-1, "", -1)
 
 /*
@@ -549,7 +606,7 @@ public func getPrecipitation(from source: [String: Any]) -> String {
         precipitation.0 = probability
 
     } else {
-        // log.message("[\(#function) [pop] wrong.", .error)
+        log.message("[\(#function) [pop] mistaken", .error)
     }
 
 /*
@@ -565,7 +622,7 @@ public func getPrecipitation(from source: [String: Any]) -> String {
             precipitation.2 = mm
 
         } else {
-            // log.message("[\(#function) [rain 3h] wrong.", .error)
+            log.message("[\(#function) [rain 3h] mistaken", .error)
         }
     } else if let snow = source["snow"] as? [String: Any] {
         if let mm = snow["3h"] as? Double {
@@ -574,10 +631,10 @@ public func getPrecipitation(from source: [String: Any]) -> String {
             precipitation.2 = mm
 
         } else {
-            // log.message("[\(#function) [snow 3h] wrong.", .error)
+            log.message("[\(#function) [snow 3h] mistaken", .error)
         }
     } else {
-        // log.message("[\(#function) [rain], [snow] wrong.", .error)
+        log.message("[\(#function) [rain], [snow] is empty", .notice)
     }
 
     // MeteoFactsDefaults.conditions
@@ -598,7 +655,12 @@ public func getPrecipitation(from source: [String: Any]) -> String {
       }
    ]
 */
+
 public func getWeatherConditions(from source: [String: Any]) -> WeatherConditions {
+
+    if source.isEmpty { // Templated result for empty value.
+        return MeteoFactsDefaults.weatherConditions
+    }
 
     var value: WeatherConditions?
 
@@ -612,13 +674,13 @@ public func getWeatherConditions(from source: [String: Any]) -> WeatherCondition
                 value = WeatherConditions(code: code, name: icon)
 
             } else {
-                log.message("\(#function) [id / icon] wrong.", .error)
+                log.message("\(#function) [id / icon] mistaken", .error)
             }
         } else {
-            log.message("\(#function) Weather first wrong.", .error)
+            log.message("\(#function) weatherFirst wrong", .error)
         }
     } else {
-        log.message("\(#function) [weather] wrong.", .error)
+        log.message("\(#function) [weather] mistaken", .error)
     }
 
     guard let conditions = value else { return MeteoFactsDefaults.weatherConditions }

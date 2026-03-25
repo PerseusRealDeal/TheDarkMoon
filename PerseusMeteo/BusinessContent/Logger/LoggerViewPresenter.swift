@@ -87,8 +87,15 @@ class LoggerViewPresenter: MVPPresenter {
     }
 
     func viewDidAppear() {
+
         log.message("[\(type(of: self))].\(#function)")
-        (view as? LoggerViewDelegate)?.onViewDidAppear()
+
+        guard let delegate = view as? LoggerViewDelegate else {
+            return
+        }
+
+        delegate.onViewDidAppear()
+        delegate.reloadMessages()
     }
 
     // MARK: - Business Contract
@@ -164,9 +171,6 @@ class LoggerViewPresenter: MVPPresenter {
     }
 
     func forceClear() {
-
-        log.message("[\(type(of: self))].\(#function)")
-
         report.clear()
         (view as? LoggerViewDelegate)?.clear()
     }

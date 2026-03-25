@@ -1,8 +1,8 @@
 {
     "subsystem"   : "Perseus",
     "category"    : "Lover",
-    "turned"      : "off",
-    "level"       : 5,
+    "turned"      : "on",
+    "level"       : 4,
     "output"      : "custom",
     "subsecond"   : "nanosecond",
     "tidnumber"   : "decimal",

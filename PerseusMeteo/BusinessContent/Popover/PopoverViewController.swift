@@ -481,7 +481,7 @@ extension PopoverViewController: PopoverViewDelegate {
 
     func makeUp() {
 
-        log.message("[\(type(of: self))].\(#function), DarkMode: \(DarkMode.style)")
+        log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
 
         if isHighSierra {
             view.window?.appearance = DarkModeAgent.DarkModeUserChoice == .on ?
@@ -540,11 +540,11 @@ extension PopoverViewController: PopoverViewDelegate {
             }
         }
 
-        let toolTip = "Label: Meteo Data Provider".localizedValue
+        // let toolTip = "Label: Meteo Data Provider".localizedValue
         let toolTipLink = provider == AppGlobals.meteoProviderName ?
         linkAuthor : linkOpenWeather
 
-        labelMeteoProviderWebLink.weblink = "\(toolTip): \(toolTipLink)"
+        labelMeteoProviderWebLink.weblink = "\(toolTipLink)"
         labelMeteoProviderWebLink.text = provider
 
         if controlCallRequest.selectedSegment == 0 {

@@ -64,39 +64,54 @@ struct AppGlobals {
 
     static var currentLocation: GeoPoint? {
         didSet {
-            let location = currentLocation?.description ?? "current location is erased"
-            log.message("[\(type(of: self))].\(#function): \(location)")
+            guard let description = suggestion?.description else {
+                log.message("[\(type(of: self))].\(#function) erased", .info)
+                return
+            }
+
+            log.message("[\(type(of: self))].\(#function) \(description) setted", .info)
         }
     }
 
     static var suggestion: Location? {
         didSet {
-            let suggestion = suggestion?.description ?? "suggestion is removed"
-            log.message("[\(type(of: self))].\(#function): \(suggestion)")
+            guard
+                let description = suggestion?.description,
+                let point = suggestion?.point
+            else {
+                log.message("[\(type(of: self))].\(#function) erased", .info)
+                return
+            }
+
+            let selected = "\(description): \(point)"
+            log.message("[\(type(of: self))].\(#function) \(selected) selected", .info)
         }
     }
 
     static var weather: Data? {
         didSet {
+
             guard let weather = weather else {
                 globals.sourceWeather.resetDataCach()
+                log.message("[\(type(of: self))].\(#function) erased and reseted", .info)
                 return
             }
 
-            let text = "JSON:\n\(weather.prettyPrinted ?? "")"
-            log.message("[\(type(of: self))].\(#function)\n\(text)")
+            log.message("JSON:\n\(weather.prettyPrinted ?? "")", .info)
         }
     }
 
     static var forecast: Data? {
         didSet {
+
             guard let forecast = forecast else {
                 globals.sourceForecast.resetDataCach()
+                log.message("[\(type(of: self))].\(#function) erased and reseted", .info)
                 return
             }
 
-            let text = "JSON:\n\(forecast.prettyPrinted ?? "")"
-            log.message("[\(type(of: self))].\(#function)\n\(text)")
+            // log.message("JSON:\n\(forecast.prettyPrinted ?? "")", .info)
+            log.message("JSON:\n\(forecast.prettyPrinted ?? "")", .info, .standard)
 
             // Save the date and time of the last one.
 
@@ -124,7 +139,7 @@ struct AppGlobals {
 
     init() {
 
-        log.message("[\(type(of: self))].\(#function)", .info)
+        log.message("[\(type(of: self))].\(#function)", .notice)
 
         self.languageSwitcher = LanguageSwitcher.shared
         self.dataDefender = PerseusDataDefender.shared
@@ -163,8 +178,6 @@ struct AppGlobals {
 
     static func openDefaultBrowser(string link: String) {
 
-        log.message("[\(type(of: self))].\(#function)")
-
         guard let url = NSURL(string: link) as URL? else {
             log.message("[\(type(of: self))].\(#function)", .error)
             return
@@ -173,13 +186,15 @@ struct AppGlobals {
         _ = NSWorkspace.shared.open(url) ?
         log.message("[\(type(of: self))].\(#function) Default browser opened.") :
         log.message("[\(type(of: self))].\(#function) Default browser not opened.")
+
+        log.message("[\(type(of: self))].\(#function) called: \(link)", .info)
     }
 }
 
 func loadCPLProfile(_ name: String) -> (status: Bool, info: String) {
     if let path = Bundle.main.url(forResource: name, withExtension: "json") {
         if log.loadConfig(path) {
-            return (true, "Options successfully reseted.")
+            return (true, "Logging options successfully reseted.")
         } else {
             return (false, "Failed to reset options.")
         }

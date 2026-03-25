@@ -32,20 +32,20 @@
             <objects>
                 <viewController showSeguePresentationStyle="single" id="NdM-46-oIE" customClass="OptionsViewController" customModule="Snowman" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Zo1-hM-qgJ">
-                        <rect key="frame" x="0.0" y="0.0" width="535" height="540"/>
+                        <rect key="frame" x="0.0" y="0.0" width="535" height="520"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qzI-oB-87E">
-                                <rect key="frame" x="10" y="60" width="515" height="455"/>
+                                <rect key="frame" x="0.0" y="50" width="535" height="445"/>
                                 <subviews>
                                     <box title="The App's options:" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vNc-yQ-0fI" userLabel="App Options Box">
-                                        <rect key="frame" x="-3" y="326" width="521" height="129"/>
+                                        <rect key="frame" x="-3" y="316" width="541" height="129"/>
                                         <view key="contentView" id="pop-m7-et5">
-                                            <rect key="frame" x="3" y="3" width="515" height="109"/>
+                                            <rect key="frame" x="3" y="3" width="535" height="109"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qnu-8q-EXi">
-                                                    <rect key="frame" x="138" y="77" width="369" height="24"/>
+                                                    <rect key="frame" x="158" y="77" width="369" height="24"/>
                                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="b21-jt-FOw">
                                                         <font key="font" metaFont="system"/>
                                                         <segments>
@@ -75,7 +75,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yoa-ad-Hs1">
-                                                    <rect key="frame" x="138" y="46" width="369" height="24"/>
+                                                    <rect key="frame" x="158" y="46" width="369" height="24"/>
                                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="0kw-Xd-aVD">
                                                         <font key="font" metaFont="system"/>
                                                         <segments>
@@ -97,7 +97,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R7l-Kv-CQy">
-                                                    <rect key="frame" x="138" y="15" width="369" height="24"/>
+                                                    <rect key="frame" x="158" y="15" width="369" height="24"/>
                                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="q0Z-tX-UMV">
                                                         <font key="font" metaFont="system"/>
                                                         <segments>
@@ -132,9 +132,9 @@
                                         <font key="titleFont" metaFont="system"/>
                                     </box>
                                     <box title="Weather units options:" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xlu-T9-4Dc" userLabel="Weather Options Box">
-                                        <rect key="frame" x="-3" y="163" width="521" height="159"/>
+                                        <rect key="frame" x="-3" y="153" width="541" height="159"/>
                                         <view key="contentView" id="ZHq-T3-S7u">
-                                            <rect key="frame" x="3" y="3" width="515" height="139"/>
+                                            <rect key="frame" x="3" y="3" width="535" height="139"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ge2-r9-bJt">
@@ -146,7 +146,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yxu-78-aFI">
-                                                    <rect key="frame" x="138" y="107" width="369" height="24"/>
+                                                    <rect key="frame" x="158" y="107" width="369" height="24"/>
                                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="DEG-7X-2lh">
                                                         <font key="font" metaFont="system"/>
                                                         <segments>
@@ -168,7 +168,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nqP-bv-4Wk">
-                                                    <rect key="frame" x="138" y="76" width="369" height="24"/>
+                                                    <rect key="frame" x="158" y="76" width="369" height="24"/>
                                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="ecQ-3X-Jyp">
                                                         <font key="font" metaFont="system"/>
                                                         <segments>
@@ -190,7 +190,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G9W-NY-l1g">
-                                                    <rect key="frame" x="138" y="45" width="369" height="24"/>
+                                                    <rect key="frame" x="158" y="45" width="369" height="24"/>
                                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="ZvF-eR-sOT">
                                                         <font key="font" metaFont="system"/>
                                                         <segments>
@@ -212,7 +212,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R2S-za-RVt">
-                                                    <rect key="frame" x="260" y="14" width="247" height="24"/>
+                                                    <rect key="frame" x="280" y="14" width="247" height="24"/>
                                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Jhs-Rq-T7f">
                                                         <font key="font" metaFont="system"/>
                                                         <segments>
@@ -249,13 +249,13 @@
                                         <font key="titleFont" metaFont="system"/>
                                     </box>
                                     <box title="Special options:" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NDz-2Q-PSN" userLabel="Special Options Box">
-                                        <rect key="frame" x="-3" y="-4" width="521" height="163"/>
+                                        <rect key="frame" x="-3" y="-4" width="541" height="153"/>
                                         <view key="contentView" id="gIN-gO-Lp7">
-                                            <rect key="frame" x="3" y="3" width="515" height="143"/>
+                                            <rect key="frame" x="3" y="3" width="535" height="133"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vQb-9F-2bJ">
-                                                    <rect key="frame" x="10" y="115" width="113" height="16"/>
+                                                    <rect key="frame" x="10" y="105" width="113" height="16"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="OpenWeather Key" id="dKf-IZ-n8X">
                                                         <font key="font" usesAppearanceFont="YES"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -263,7 +263,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="F1A-GE-l8k">
-                                                    <rect key="frame" x="140" y="113" width="236" height="21"/>
+                                                    <rect key="frame" x="160" y="103" width="236" height="21"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="N5p-L0-7YR">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -271,7 +271,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AH6-cc-1rL">
-                                                    <rect key="frame" x="10" y="84" width="105" height="16"/>
+                                                    <rect key="frame" x="10" y="74" width="105" height="16"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Current Weather" id="xY8-1L-ZQf">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -279,7 +279,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jET-Am-2AY">
-                                                    <rect key="frame" x="138" y="82" width="160" height="18"/>
+                                                    <rect key="frame" x="158" y="72" width="160" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Show in Status Menus" bezelStyle="regularSquare" imagePosition="left" inset="2" id="YhV-ed-nOb">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -289,7 +289,7 @@
                                                     </connections>
                                                 </button>
                                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kRt-m6-cQf">
-                                                    <rect key="frame" x="386" y="78" width="122" height="25"/>
+                                                    <rect key="frame" x="406" y="68" width="122" height="25"/>
                                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="4ea-To-eFz">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -300,7 +300,7 @@
                                                     </connections>
                                                 </comboBox>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4Q4-s1-iZc">
-                                                    <rect key="frame" x="325" y="83" width="53" height="16"/>
+                                                    <rect key="frame" x="345" y="73" width="53" height="16"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Update:" id="fkU-sk-1rW">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -308,7 +308,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gTG-bY-TbX">
-                                                    <rect key="frame" x="10" y="53" width="87" height="16"/>
+                                                    <rect key="frame" x="10" y="43" width="87" height="16"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Status Menus" id="reW-D8-IuI">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -316,7 +316,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pG1-e8-IOI">
-                                                    <rect key="frame" x="138" y="52" width="83" height="18"/>
+                                                    <rect key="frame" x="158" y="42" width="83" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Two lines" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xfT-y5-V3z">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -326,7 +326,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qjn-Rj-b91">
-                                                    <rect key="frame" x="295" y="53" width="83" height="16"/>
+                                                    <rect key="frame" x="315" y="43" width="83" height="16"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Second Line:" id="mXz-sK-ex3">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -334,7 +334,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Foe-Mz-703">
-                                                    <rect key="frame" x="386" y="48" width="122" height="25"/>
+                                                    <rect key="frame" x="406" y="38" width="122" height="25"/>
                                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="pHu-1i-OYR">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -345,7 +345,7 @@
                                                     </connections>
                                                 </comboBox>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KWv-Ww-NrH">
-                                                    <rect key="frame" x="200" y="22" width="49" height="16"/>
+                                                    <rect key="frame" x="220" y="12" width="49" height="16"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Tooltip:" id="uFM-rY-HgK">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -353,7 +353,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UQa-cT-Et5">
-                                                    <rect key="frame" x="257" y="17" width="122" height="25"/>
+                                                    <rect key="frame" x="277" y="7" width="122" height="25"/>
                                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="3dX-ZJ-KGB">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -364,7 +364,7 @@
                                                     </connections>
                                                 </comboBox>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G6n-0E-mSc">
-                                                    <rect key="frame" x="377" y="22" width="8" height="16"/>
+                                                    <rect key="frame" x="397" y="12" width="8" height="16"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="," id="O6Q-OH-mkk">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -372,7 +372,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xj7-P1-Gq6">
-                                                    <rect key="frame" x="386" y="17" width="122" height="25"/>
+                                                    <rect key="frame" x="406" y="7" width="122" height="25"/>
                                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="tMq-VZ-zwi">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -383,7 +383,7 @@
                                                     </connections>
                                                 </comboBox>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0SC-Zc-u6t">
-                                                    <rect key="frame" x="379" y="106" width="133" height="32"/>
+                                                    <rect key="frame" x="399" y="96" width="133" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="119" id="J1V-7w-Qgf"/>
                                                     </constraints>
@@ -396,7 +396,7 @@
                                                     </connections>
                                                 </button>
                                                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eOa-1c-nEW">
-                                                    <rect key="frame" x="224" y="47" width="25" height="25"/>
+                                                    <rect key="frame" x="244" y="37" width="25" height="25"/>
                                                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="U2I-U6-g40">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -464,7 +464,7 @@
                                 </customSpacing>
                             </stackView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jvm-O9-bm1">
-                                <rect key="frame" x="15" y="15" width="133" height="32"/>
+                                <rect key="frame" x="5" y="3" width="133" height="32"/>
                                 <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vKi-1p-2Ss">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -474,7 +474,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Np-Hh-uIh">
-                                <rect key="frame" x="389" y="15" width="133" height="32"/>
+                                <rect key="frame" x="399" y="3" width="133" height="32"/>
                                 <buttonCell key="cell" type="push" title="Reset to Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="95y-LH-6Je">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -485,16 +485,16 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Jvm-O9-bm1" secondAttribute="bottom" constant="22" id="8cA-Eg-MZG"/>
-                            <constraint firstAttribute="trailing" secondItem="qzI-oB-87E" secondAttribute="trailing" constant="10" id="IiS-nf-mNx"/>
+                            <constraint firstAttribute="bottom" secondItem="Jvm-O9-bm1" secondAttribute="bottom" constant="10" id="8cA-Eg-MZG"/>
+                            <constraint firstAttribute="trailing" secondItem="qzI-oB-87E" secondAttribute="trailing" id="IiS-nf-mNx"/>
                             <constraint firstItem="0Np-Hh-uIh" firstAttribute="width" secondItem="Jvm-O9-bm1" secondAttribute="width" id="P2k-bJ-drc"/>
-                            <constraint firstAttribute="bottom" secondItem="qzI-oB-87E" secondAttribute="bottom" constant="60" id="Ur8-CE-404"/>
+                            <constraint firstAttribute="bottom" secondItem="qzI-oB-87E" secondAttribute="bottom" constant="50" id="Ur8-CE-404"/>
                             <constraint firstItem="Jvm-O9-bm1" firstAttribute="leading" secondItem="gTG-bY-TbX" secondAttribute="leading" id="ZrZ-kL-8cJ"/>
                             <constraint firstItem="0Np-Hh-uIh" firstAttribute="centerY" secondItem="Jvm-O9-bm1" secondAttribute="centerY" id="dlD-Pf-0Z9"/>
                             <constraint firstItem="Jvm-O9-bm1" firstAttribute="width" secondItem="0SC-Zc-u6t" secondAttribute="width" id="rmF-im-7MX"/>
                             <constraint firstItem="0Np-Hh-uIh" firstAttribute="trailing" secondItem="0SC-Zc-u6t" secondAttribute="trailing" id="w13-y9-yj6"/>
                             <constraint firstItem="qzI-oB-87E" firstAttribute="top" secondItem="Zo1-hM-qgJ" secondAttribute="top" constant="25" id="ylc-OL-Cz3"/>
-                            <constraint firstItem="qzI-oB-87E" firstAttribute="leading" secondItem="Zo1-hM-qgJ" secondAttribute="leading" constant="10" id="zfE-Jw-ogu"/>
+                            <constraint firstItem="qzI-oB-87E" firstAttribute="leading" secondItem="Zo1-hM-qgJ" secondAttribute="leading" id="zfE-Jw-ogu"/>
                         </constraints>
                     </view>
                     <connections>
