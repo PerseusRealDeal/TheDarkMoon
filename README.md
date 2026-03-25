@@ -1,5 +1,7 @@
 <div align="center">
 
+![Image](https://github.com/user-attachments/assets/75e9c8a3-2a98-41f2-b0fa-8a45c1db3fa2)
+
 Snowman
 ==
 
@@ -10,7 +12,7 @@ __The Status Menus app__
 
 [![Actions Status](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/main.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions)
 [![Style](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml)
-[![Version](https://img.shields.io/badge/Version-0.5.1-green.svg)](/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-0.5.2-green.svg)](/CHANGELOG.md)
 
 [![Platforms](https://img.shields.io/badge/Platform-macOS%2010.13+-orange.svg)](https://en.wikipedia.org/wiki/MacOS_version_history)
 [![Xcode](https://img.shields.io/badge/Xcode-14.2+-red.svg)](https://en.wikipedia.org/wiki/Xcode)
@@ -114,7 +116,7 @@ Top features
 
 - Determining Current Location, latitude and longitude
 - Searching location by Name with auto suggesting, optionally
-- Favorites location Names list, add and remove items
+- Favorite locations list, add and remove items
 
 ---
 

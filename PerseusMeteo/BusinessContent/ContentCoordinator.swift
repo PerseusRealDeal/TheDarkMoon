@@ -1,5 +1,5 @@
 //
-//  Coordinator.swift
+//  ContentCoordinator.swift
 //  TheDarkMoon
 //
 //  Created by Mikhail Zhigulin in 7534 (02.12.2025.)
@@ -52,7 +52,7 @@ class Coordinator {
 
     init() {
 
-        log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)", .notice)
 
         statusMenus = StatusMenusPresenter()
 
@@ -72,7 +72,7 @@ class Coordinator {
 
     static func start() {
 
-        log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)", .notice)
 
         // The statements before the app's delegate called put here
 
