@@ -4,7 +4,7 @@
 
 > This report is actual for the following product versions: 
 
-v0.5.1
+0.5.1, 0.5.2
 
 ## Approbation Note
 
