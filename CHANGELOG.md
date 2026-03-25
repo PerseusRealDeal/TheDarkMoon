@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Given a version number MAJOR.MINOR.PATCH, where MAJOR in 0 means developer edition.
 - Date in format YYYY-MM-DD, in this file meets Gregorian calendar only.
 
+## [0.6.0] - [2026-??-??], The Dark Moon
+
+### Fixed
+
+- Log messaging.
+
 ## [0.5.1] - [2026-03-25], The Dark Moon
 
 ### Added

@@ -64,7 +64,7 @@ struct AppGlobals {
 
     static var currentLocation: GeoPoint? {
         didSet {
-            guard let description = suggestion?.description else {
+            guard let description = currentLocation?.description else {
                 log.message("[\(type(of: self))].\(#function) erased", .info)
                 return
             }
