@@ -1,5 +1,5 @@
 //
-//  OpenWeatherStarModels.swift
+//  OpenWeatherModels.swift
 //  PerseusWeather
 //
 //  Created by Mikhail Zhigulin in 7532.

@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Log message about current location.
 
+### Restructured
+
+- Meteo Data API client code
+
 ## [0.5.1] - [2026-03-25], The Dark Moon
 
 ### Added

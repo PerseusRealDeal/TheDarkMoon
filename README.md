@@ -31,9 +31,11 @@ __The Status Menus Weather App__
 Meteo Data Providers
 --
 
-![Image](https://github.com/user-attachments/assets/b87acbc5-0bb4-4d9e-aa53-65356ae23e77)
+<a href="https://openweathermap.org/">
+    <img src="https://github.com/user-attachments/assets/b87acbc5-0bb4-4d9e-aa53-65356ae23e77" width="75" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+</a>
 
-[`Current weather`](https://openweathermap.org/current?collection=current_forecast) • [`5 Day / 3 Hour forecast`](https://openweathermap.org/forecast5?collection=current_forecast) • [`Individual API key`](https://openweathermap.org/appid)
+[`Current weather`](https://openweathermap.org/current?collection=current_forecast) • [`5 Day / 3 Hour forecast`](https://openweathermap.org/forecast5?collection=current_forecast) • [`Geocoding`](https://openweathermap.org/api/geocoding-api?collection=other) •  [`Individual API key`](https://openweathermap.org/appid)
 
 ---
 
@@ -95,7 +97,7 @@ Preview material
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/b0f33526-6879-4631-bea5-c1feb9bc82e4" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/9efe2f4e-c5c0-4925-83a9-5629eb47137a" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
@@ -106,7 +108,7 @@ Preview material
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/cc101dce-34a2-4cc0-8b76-65026668357f" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/dfde6517-7f2d-4fc0-9141-9188c2f21224" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
@@ -136,13 +138,14 @@ Top features
 - `Dark Mode:` Light, Dark, System (auto)
 - `Multi time format:` 24-hour and 12 hour
 - `Auto Current Weather update:` per 12 hours, per 3 hours, per hour, none
-- `Logging:` Viewing log messages. Managing CPL options
 
 ---
 
-- Multiline Status Menus, starting from macOS Big Sur (11)
-- ToolTip with extra meteo parameters for Status Menus
-- Saving OpenWeather API key to Keychain
+- `Multiline:` Additional string line for Status Menus item, macOS 11 (Big Sur)+ 
+- `ToolTip:` Showing extra meteo parameters for Status Menus item
+- `Keychain:` Keeping OpenWeather API key saved as a secret
+
+- `Logging:` Viewing log messages. Managing CPL options
 
 Requirements
 ==
@@ -211,7 +214,7 @@ Account points
 - Explicit app options [AppOptions.swift](/PerseusMeteo/AppOptions.swift)
 - Architectural points: 
     - MVP applied. Based on [Gist](https://gist.github.com/PerseusRealDeal/5301e90881732f0cd0040e2083a78a3d)
-    - Coordinator. Top business logic wrapped up in [Coordinator.swift](/PerseusMeteo/BusinessContent/Coordinator.swift)
+    - Coordinator. Top business logic wrapped up in [ContentCoordinator.swift](/PerseusMeteo/BusinessContent/ContentCoordinator.swift)
 - Localization based on Localizable.strings approach
 - [Test Plan](/SnowmanTests/TestPlan.xctestplan) configured for EN and RU
 - [Changelog](/CHANGELOG.md)
