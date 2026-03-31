@@ -72,17 +72,17 @@ public class MessageLabel: MyCustomLabel, PerseusDelegatedMessage {
         didSet {
 
             // for now
-
+            DispatchQueue.main.async {
 #if os(iOS)
-            self.text = self.message
-            self.alpha = 1.0
+                self.text = self.message
+                self.alpha = 1.0
 #elseif os(macOS)
-            self.stringValue = self.message
-            self.alphaValue = 1.0
+
+                self.stringValue = self.message
+                self.alphaValue = 1.0
 #endif
-
-            self.textColor = messageTextColor ?? .labelPerseus
-
+                self.textColor = self.messageTextColor ?? .labelPerseus
+            }
             // for after now
 
             guard self.message != self.messageDefault else {
