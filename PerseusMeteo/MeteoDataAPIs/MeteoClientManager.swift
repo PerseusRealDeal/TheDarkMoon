@@ -21,13 +21,16 @@ public class MeteoClientManager {
 
     private let presenter: StatusMenusPresenter
 
+    private let timeoutIntervalMeteoData = 10.0 // 10 sec.
+    private let timeoutIntervalSuggestions = 5.0 // 5 sec.
+
     private var isReadyToCall = false
     private var isReadyToCallForecast = false
     private var isReadyToGetSuggestions = false
 
-    private let serviceWeatherOpenWeatherMap: OpenWeatherClient
-    private let serviceForecastOpenWeatherMap: OpenWeatherClient
-    private let serviceSuggestionsOpenWeatherMap: OpenWeatherClient
+    private let serviceCurrentWeather = OpenWeatherClient()
+    private let serviceForecast: OpenWeatherClient
+    private let serviceSuggestions: OpenWeatherClient
 
     init(presenter: StatusMenusPresenter) {
 
@@ -35,104 +38,16 @@ public class MeteoClientManager {
 
         self.presenter = presenter
 
-        serviceWeatherOpenWeatherMap = OpenWeatherClient()
-        serviceForecastOpenWeatherMap = OpenWeatherClient()
-        serviceSuggestionsOpenWeatherMap = OpenWeatherClient()
+        serviceForecast = OpenWeatherClient()
+        serviceSuggestions = OpenWeatherClient()
 
-        configureCurrentClient()
-        configureForecastClient()
-        configureSuggestionsClient()
+        serviceCurrentWeather.onDataGiven = handleCurrentMeteoData
+        serviceForecast.onDataGiven = handleForecastMeteoData
+        serviceSuggestions.onDataGiven = handleSuggestionsData
 
         isReadyToCall = true
         isReadyToCallForecast = true
         isReadyToGetSuggestions = true
-    }
-
-    private func configureCurrentClient() {
-        serviceWeatherOpenWeatherMap.onDataGiven = { response in
-
-            DispatchQueue.main.async {
-                Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
-            }
-
-            var meteoData: Data?
-
-            switch response {
-            case .success(let data):
-                meteoData = data
-
-            case .failure(let error):
-                switch error {
-                case .failedRequest(let message):
-                    log.message(message, .error)
-
-                default:
-                    log.message("[\(type(of: self))].\(#function) \(error)", .error)
-                }
-            }
-
-            self.serviceWeatherOpenWeatherMapHandler(meteoData ?? Data())
-        }
-    }
-
-    private func configureForecastClient() {
-        serviceForecastOpenWeatherMap.onDataGiven = { response in
-
-            DispatchQueue.main.async {
-                Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
-            }
-
-            var meteoData: Data?
-
-            switch response {
-            case .success(let data):
-                meteoData = data
-
-            case .failure(let error):
-                switch error {
-                case .failedRequest(let message):
-                    log.message(message, .error)
-
-                default:
-                    log.message("[\(type(of: self))].\(#function) \(error)", .error)
-                }
-            }
-
-            self.serviceForecastOpenWeatherMapHandler(meteoData ?? Data())
-        }
-    }
-
-    private func configureSuggestionsClient() {
-        serviceSuggestionsOpenWeatherMap.onDataGiven = { response in
-
-            DispatchQueue.main.async {
-
-                // stopAnimationIndicator
-
-                let indicator = Coordinator.shared.screenPopover.viewLocation.indicatorCircular
-
-                indicator?.isHidden = true
-                indicator?.stopAnimation(nil)
-
-                var suggestions: Data?
-
-                switch response {
-                case .success(let data):
-                    suggestions = data
-
-                case .failure(let error):
-                    switch error {
-                    case .failedRequest(let message):
-                        log.message(message, .error)
-
-                    default:
-                        log.message("[\(type(of: self))].\(#function) \(error)", .error)
-                    }
-                }
-
-                self.serviceSuggestionsOpenWeatherMapHandler(suggestions ?? Data())
-            }
-        }
     }
 
     public func fetchWeather() {
@@ -181,7 +96,7 @@ public class MeteoClientManager {
         do {
             Coordinator.shared.screenPopover.startAnimationProgressIndicator(.weather)
 
-            try serviceWeatherOpenWeatherMap.call(with: callDetails)
+            try serviceCurrentWeather.call(with: callDetails, timeoutIntervalMeteoData)
 
         } catch {
 
@@ -238,7 +153,7 @@ public class MeteoClientManager {
         do {
             Coordinator.shared.screenPopover.startAnimationProgressIndicator(.forecast)
 
-            try serviceForecastOpenWeatherMap.call(with: callDetails)
+            try serviceForecast.call(with: callDetails, timeoutIntervalMeteoData)
 
         } catch {
 
@@ -262,7 +177,8 @@ public class MeteoClientManager {
         else {
             viewLocation.indicatorCircular.isHidden = true
             viewLocation.indicatorCircular.stopAnimation(nil)
-            serviceWeatherOpenWeatherMapHandler(Data())
+            // TODO: Is it correct refresh?
+            refreshCurrentMeteoData(Data())
             return
         }
 
@@ -316,16 +232,59 @@ public class MeteoClientManager {
         viewLocation.indicatorCircular.startAnimation(nil)
 
         // request
-        serviceSuggestionsOpenWeatherMap.requestData(url: requestURL)
+        serviceSuggestions.requestData(url: requestURL, timeoutIntervalSuggestions)
+    }
+}
+
+extension MeteoClientManager {
+
+    private func handleCurrentMeteoData(response: Result<Data, OpenWeatherAPIClientError>) {
+
+        DispatchQueue.main.async {
+            Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
+        }
+
+        var meteoData: Data?
+        var errorResponse: OpenWeatherAPIClientError?
+
+        switch response {
+        case .success(let data):
+            meteoData = data
+        case .failure(let error):
+            errorResponse = error
+        }
+
+        if let error = errorResponse {
+
+            switch error {
+            case .invalidUrl:
+                log.message("Incorrect URL used", .notice, .custom, .enduser)
+            case .failedRequest(let text):
+                log.message("Rquest failed: \(text)", .notice, .custom, .enduser)
+            case .statusCode404:
+                log.message("Not Found: Status Code 404", .notice, .custom, .enduser)
+            case .failedResponse(let text):
+                log.message("Response failed: \(text)", .notice, .custom, .enduser)
+            case .timedOut:
+                // TODO: add localization
+                log.message("Current Weather request TIMED OUT", .notice, .custom, .enduser)
+            }
+
+            self.isReadyToCall = true
+            return
+        }
+
+        guard let data = meteoData else {
+            log.message("[\(type(of: self))].\(#function) data should not be nil", .fault)
+            return
+        }
+
+        refreshCurrentMeteoData(data)
     }
 
-    // MARK: - Event handlers
+    private func refreshCurrentMeteoData(_ data: Data) {
 
-    private func serviceWeatherOpenWeatherMapHandler(_ data: Data) {
-
-        // TODO: - Make no matter what order of the two following instraction below
-
-        // Here, but for now it's matter >
+        // TODO: - Make no matter what order for the next two statements
 
         AppGlobals.weather = data
 
@@ -335,15 +294,56 @@ public class MeteoClientManager {
 
             Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
             Coordinator.shared.screenPopover.reloadWeatherData()
-            self.presenter.reloadData()
 
+            self.presenter.reloadData()
             self.isReadyToCall = true
         }
     }
 
-    private func serviceForecastOpenWeatherMapHandler(_ data: Data) {
+    private func handleForecastMeteoData(response: Result<Data, OpenWeatherAPIClientError>) {
 
-        // And here, but for now it's matter >
+        DispatchQueue.main.async {
+            Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
+        }
+
+        var meteoData: Data?
+        var errorResponse: OpenWeatherAPIClientError?
+
+        switch response {
+        case .success(let data):
+            meteoData = data
+        case .failure(let error):
+            errorResponse = error
+        }
+
+        if let error = errorResponse {
+
+            switch error {
+            case .invalidUrl:
+                log.message("Incorrect URL used", .notice, .custom, .enduser)
+            case .failedRequest(let text):
+                log.message("Rquest failed: \(text)", .notice, .custom, .enduser)
+            case .statusCode404:
+                log.message("Not Found: Status Code 404", .notice, .custom, .enduser)
+            case .failedResponse(let text):
+                log.message("Response failed: \(text)", .notice, .custom, .enduser)
+            case .timedOut:
+                log.message("Forecast request TIMED OUT", .notice, .custom, .enduser)
+            }
+
+            self.isReadyToCallForecast = true
+            return
+        }
+
+        guard let data = meteoData else {
+            log.message("[\(type(of: self))].\(#function) data should not be nil", .fault)
+            return
+        }
+
+        refreshForecastMeteoData(data)
+    }
+
+    private func refreshForecastMeteoData(_ data: Data) {
 
         AppGlobals.forecast = data
         globals.sourceForecast.meteoProvider = .serviceOpenWeatherMap
@@ -354,6 +354,54 @@ public class MeteoClientManager {
             Coordinator.shared.screenPopover.reloadForecastData()
 
             self.isReadyToCallForecast = true
+        }
+    }
+
+    private func handleSuggestionsData(response: Result<Data, OpenWeatherAPIClientError>) {
+        DispatchQueue.main.async {
+
+            // stopAnimationIndicator
+
+            let indicator = Coordinator.shared.screenPopover.viewLocation.indicatorCircular
+
+            indicator?.isHidden = true
+            indicator?.stopAnimation(nil)
+
+            var suggestions: Data?
+            var errorResponse: OpenWeatherAPIClientError?
+
+            switch response {
+            case .success(let data):
+                suggestions = data
+            case .failure(let error):
+                errorResponse = error
+            }
+
+            if let error = errorResponse {
+
+                switch error {
+                case .invalidUrl:
+                    log.message("Incorrect URL used", .notice, .custom, .enduser)
+                case .failedRequest(let text):
+                    log.message("Rquest failed: \(text)", .notice, .custom, .enduser)
+                case .statusCode404:
+                    log.message("Not Found: Status Code 404", .notice, .custom, .enduser)
+                case .failedResponse(let text):
+                    log.message("Response failed: \(text)", .notice, .custom, .enduser)
+                case .timedOut:
+                    log.message("Suggestions request TIMED OUT", .notice, .custom, .enduser)
+                }
+
+                self.isReadyToGetSuggestions = true
+                return
+            }
+
+            guard let data = suggestions else {
+                log.message("[\(type(of: self))].\(#function) data should not be nil", .fault)
+                return
+            }
+
+            self.serviceSuggestionsOpenWeatherMapHandler(data)
         }
     }
 

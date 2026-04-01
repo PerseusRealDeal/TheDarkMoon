@@ -43,13 +43,13 @@ import Foundation
 
 public class OpenWeatherClient: NetworkClientFree {
 
-    public func call(with respect: OpenWeatherRequestData) throws {
+    public func call(with respect: OpenWeatherRequestData, _ timeout: TimeInterval) throws {
         guard let requestURL = URL(string: respect.urlString) else {
             // WRONG: URL cann't be created at all
             throw OpenWeatherAPIClientError.invalidUrl
         }
 
-        requestData(url: requestURL)
+        requestData(url: requestURL, timeout)
     }
 }
 
@@ -58,6 +58,7 @@ public enum OpenWeatherAPIClientError: Error, Equatable {
     case failedRequest(String)
     case statusCode404
     case failedResponse(String)
+    case timedOut
 }
 
 public class NetworkClientFree {
@@ -80,6 +81,8 @@ public class NetworkClientFree {
                 errStr = "invalidUrl"
             case .statusCode404:
                 errStr = "statusCode404"
+            case .timedOut:
+                errStr = "timedOut"
             }
             log.message("[FreeNetworkClient].\(#function): \(errStr)", .error)
         }
@@ -97,8 +100,12 @@ public class NetworkClientFree {
         self.session = session
     }
 
-    internal func requestData(url: URL) {
-        dataTask = session.dataTask(with: URLRequest(url: url)) {
+    internal func requestData(url: URL, _ timeout: TimeInterval) {
+
+        var request = URLRequest(url: url)
+        request.timeoutInterval = timeout
+
+        dataTask = session.dataTask(with: request) {
             // swiftlint:disable:next closure_parameter_position
             [self] (requestedData: Data?, response: URLResponse?, error: Error?) in
 
@@ -110,8 +117,12 @@ public class NetworkClientFree {
             // Check Status
 
             if let error = error {
-                // WRONG: https://apiiiii.openweathermap.org/...
-                answerError = .failedResponse(error.localizedDescription)
+                if (error as NSError).code == NSURLErrorTimedOut {
+                    answerError = .timedOut
+                } else {
+                    // WRONG: https://apiiiii.openweathermap.org/...
+                    answerError = .failedResponse(error.localizedDescription)
+                }
             } else {
                 if let statusCode = (response as? HTTPURLResponse)?.statusCode {
                     if statusCode == 404 {
