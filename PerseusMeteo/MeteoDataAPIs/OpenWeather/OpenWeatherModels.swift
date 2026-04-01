@@ -1,6 +1,6 @@
 //
 //  OpenWeatherModels.swift
-//  PerseusWeather
+//  TheDarkMoon
 //
 //  Created by Mikhail Zhigulin in 7532.
 //
@@ -8,7 +8,7 @@
 //  Copyright © 7532 PerseusRealDeal
 //
 //  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2025" is the beginning of 7534.
 //
 //  See LICENSE for details. All rights reserved.
 //

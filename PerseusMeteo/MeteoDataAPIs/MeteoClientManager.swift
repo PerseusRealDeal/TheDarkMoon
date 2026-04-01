@@ -28,18 +28,15 @@ public class MeteoClientManager {
     private var isReadyToCallForecast = false
     private var isReadyToGetSuggestions = false
 
-    private let serviceCurrentWeather = OpenWeatherClient()
-    private let serviceForecast: OpenWeatherClient
-    private let serviceSuggestions: OpenWeatherClient
+    private let serviceCurrentWeather = PerseusNetworkClient(URLSession.shared, "Current")
+    private let serviceForecast = PerseusNetworkClient(URLSession.shared, "Forecast")
+    private let serviceSuggestions = PerseusNetworkClient(URLSession.shared, "Suggestions")
 
     init(presenter: StatusMenusPresenter) {
 
         log.message("[\(type(of: self))].\(#function)", .notice)
 
         self.presenter = presenter
-
-        serviceForecast = OpenWeatherClient()
-        serviceSuggestions = OpenWeatherClient()
 
         serviceCurrentWeather.onDataGiven = handleCurrentMeteoData
         serviceForecast.onDataGiven = handleForecastMeteoData
@@ -96,7 +93,8 @@ public class MeteoClientManager {
         do {
             Coordinator.shared.screenPopover.startAnimationProgressIndicator(.weather)
 
-            try serviceCurrentWeather.call(with: callDetails, timeoutIntervalMeteoData)
+            try serviceCurrentWeather.call(
+                urlString: callDetails.urlString, timeoutIntervalMeteoData)
 
         } catch {
 
@@ -153,7 +151,8 @@ public class MeteoClientManager {
         do {
             Coordinator.shared.screenPopover.startAnimationProgressIndicator(.forecast)
 
-            try serviceForecast.call(with: callDetails, timeoutIntervalMeteoData)
+            try serviceForecast.call(
+                urlString: callDetails.urlString, timeoutIntervalMeteoData)
 
         } catch {
 
@@ -238,14 +237,14 @@ public class MeteoClientManager {
 
 extension MeteoClientManager {
 
-    private func handleCurrentMeteoData(response: Result<Data, OpenWeatherAPIClientError>) {
+    private func handleCurrentMeteoData(response: Result<Data, PerseusNetworkClientError>) {
 
         DispatchQueue.main.async {
             Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
         }
 
         var meteoData: Data?
-        var errorResponse: OpenWeatherAPIClientError?
+        var errorResponse: PerseusNetworkClientError?
 
         switch response {
         case .success(let data):
@@ -268,6 +267,8 @@ extension MeteoClientManager {
             case .timedOut:
                 // TODO: add localization
                 log.message("Current Weather request TIMED OUT", .notice, .custom, .enduser)
+            case .emptyData:
+                log.message("Received empty response data", .notice, .custom, .enduser)
             }
 
             self.isReadyToCall = true
@@ -300,14 +301,14 @@ extension MeteoClientManager {
         }
     }
 
-    private func handleForecastMeteoData(response: Result<Data, OpenWeatherAPIClientError>) {
+    private func handleForecastMeteoData(response: Result<Data, PerseusNetworkClientError>) {
 
         DispatchQueue.main.async {
             Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
         }
 
         var meteoData: Data?
-        var errorResponse: OpenWeatherAPIClientError?
+        var errorResponse: PerseusNetworkClientError?
 
         switch response {
         case .success(let data):
@@ -329,6 +330,8 @@ extension MeteoClientManager {
                 log.message("Response failed: \(text)", .notice, .custom, .enduser)
             case .timedOut:
                 log.message("Forecast request TIMED OUT", .notice, .custom, .enduser)
+            case .emptyData:
+                log.message("Received empty response data", .notice, .custom, .enduser)
             }
 
             self.isReadyToCallForecast = true
@@ -357,7 +360,7 @@ extension MeteoClientManager {
         }
     }
 
-    private func handleSuggestionsData(response: Result<Data, OpenWeatherAPIClientError>) {
+    private func handleSuggestionsData(response: Result<Data, PerseusNetworkClientError>) {
         DispatchQueue.main.async {
 
             // stopAnimationIndicator
@@ -368,7 +371,7 @@ extension MeteoClientManager {
             indicator?.stopAnimation(nil)
 
             var suggestions: Data?
-            var errorResponse: OpenWeatherAPIClientError?
+            var errorResponse: PerseusNetworkClientError?
 
             switch response {
             case .success(let data):
@@ -390,6 +393,8 @@ extension MeteoClientManager {
                     log.message("Response failed: \(text)", .notice, .custom, .enduser)
                 case .timedOut:
                     log.message("Suggestions request TIMED OUT", .notice, .custom, .enduser)
+                case .emptyData:
+                    log.message("Received empty response data", .notice, .custom, .enduser)
                 }
 
                 self.isReadyToGetSuggestions = true
