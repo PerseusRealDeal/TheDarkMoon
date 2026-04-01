@@ -38,9 +38,9 @@ public class MeteoClientManager {
 
         self.presenter = presenter
 
-        serviceCurrentWeather.onDataGiven = handleCurrentMeteoData
-        serviceForecast.onDataGiven = handleForecastMeteoData
-        serviceSuggestions.onDataGiven = handleSuggestionsData
+        serviceCurrentWeather.onDataGiven = handleCurrent
+        serviceForecast.onDataGiven = handleForecast
+        serviceSuggestions.onDataGiven = handleSuggestions
 
         isReadyToCall = true
         isReadyToCallForecast = true
@@ -177,7 +177,7 @@ public class MeteoClientManager {
             viewLocation.indicatorCircular.isHidden = true
             viewLocation.indicatorCircular.stopAnimation(nil)
             // TODO: Is it correct refresh?
-            refreshCurrentMeteoData(Data())
+            refreshCurrent(Data())
             return
         }
 
@@ -237,7 +237,7 @@ public class MeteoClientManager {
 
 extension MeteoClientManager {
 
-    private func handleCurrentMeteoData(response: Result<Data, PerseusNetworkClientError>) {
+    private func handleCurrent(response: Result<Data, PerseusNetworkClientError>) {
 
         DispatchQueue.main.async {
             Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
@@ -255,7 +255,7 @@ extension MeteoClientManager {
 
         if let error = errorResponse {
 
-            switch error {
+            switch error { // TODO: end-user messages localizations
             case .invalidUrl:
                 log.message("Incorrect URL used", .notice, .custom, .enduser)
             case .failedRequest(let text):
@@ -265,7 +265,6 @@ extension MeteoClientManager {
             case .failedResponse(let text):
                 log.message("Response failed: \(text)", .notice, .custom, .enduser)
             case .timedOut:
-                // TODO: add localization
                 log.message("Current Weather request TIMED OUT", .notice, .custom, .enduser)
             case .emptyData:
                 log.message("Received empty response data", .notice, .custom, .enduser)
@@ -280,10 +279,10 @@ extension MeteoClientManager {
             return
         }
 
-        refreshCurrentMeteoData(data)
+        refreshCurrent(data)
     }
 
-    private func refreshCurrentMeteoData(_ data: Data) {
+    private func refreshCurrent(_ data: Data) {
 
         // TODO: - Make no matter what order for the next two statements
 
@@ -301,7 +300,7 @@ extension MeteoClientManager {
         }
     }
 
-    private func handleForecastMeteoData(response: Result<Data, PerseusNetworkClientError>) {
+    private func handleForecast(response: Result<Data, PerseusNetworkClientError>) {
 
         DispatchQueue.main.async {
             Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
@@ -343,10 +342,10 @@ extension MeteoClientManager {
             return
         }
 
-        refreshForecastMeteoData(data)
+        refreshForecast(data)
     }
 
-    private func refreshForecastMeteoData(_ data: Data) {
+    private func refreshForecast(_ data: Data) {
 
         AppGlobals.forecast = data
         globals.sourceForecast.meteoProvider = .serviceOpenWeatherMap
@@ -360,7 +359,7 @@ extension MeteoClientManager {
         }
     }
 
-    private func handleSuggestionsData(response: Result<Data, PerseusNetworkClientError>) {
+    private func handleSuggestions(response: Result<Data, PerseusNetworkClientError>) {
         DispatchQueue.main.async {
 
             // stopAnimationIndicator
@@ -406,11 +405,11 @@ extension MeteoClientManager {
                 return
             }
 
-            self.serviceSuggestionsOpenWeatherMapHandler(data)
+            self.refreshSuggestions(data)
         }
     }
 
-    private func serviceSuggestionsOpenWeatherMapHandler(_ data: Data) {
+    private func refreshSuggestions(_ data: Data) {
 
         DispatchQueue.main.async {
 

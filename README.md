@@ -97,7 +97,7 @@ Preview material
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/9efe2f4e-c5c0-4925-83a9-5629eb47137a" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/1b3a99e4-5def-4d0c-9185-42d99139aeae" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
@@ -108,10 +108,20 @@ Preview material
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/dfde6517-7f2d-4fc0-9141-9188c2f21224" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/9f934d77-3a24-4dac-b09f-0842ac8b292f" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
+
+<!--
+> [!IMPORTANT]
+> `Unidentified developer case:` 
+
+TODO: past the link to the video
+
+> The video above recordered with `QuickTime Player` and than converted with [``](). 
+TODO: past the link to the tool
+-->
 
 </div>
 

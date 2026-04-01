@@ -72,10 +72,10 @@ public class PerseusNetworkClient: CustomStringConvertible {
 
     // MARK: - Init
 
-    public init(_ session: URLSession = URLSession.shared, _ description: String = "") {
+    public init(_ session: URLSession = URLSession.shared, _ purpose: String = "") {
 
         self.session = session
-        self.description = description
+        self.description = purpose
 
         log.message("[\(type(of: self))].\(#function) \(self)", .notice)
     }
@@ -103,7 +103,7 @@ public class PerseusNetworkClient: CustomStringConvertible {
             case .failedResponse(let errText):
                 errStr = errText
             case .emptyData:
-                errStr = "received empty data"
+                errStr = "receivedEmptyData"
             }
 
             log.message("[PerseusNetworkClient].\(#function): \(errStr)", .error)
@@ -134,7 +134,7 @@ public class PerseusNetworkClient: CustomStringConvertible {
 
             var errorChecked: PerseusNetworkClientError?
 
-            // Check response Status
+            // Check response status
 
             if let error = error {
                 if (error as NSError).code == NSURLErrorTimedOut {

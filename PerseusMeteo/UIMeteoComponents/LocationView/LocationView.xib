@@ -95,7 +95,7 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hdm-J3-DtV">
-                    <rect key="frame" x="226" y="25" width="39" height="32"/>
+                    <rect key="frame" x="-7" y="-2" width="39" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="25" id="Z6l-n1-uCK"/>
                     </constraints>
@@ -108,7 +108,7 @@
                     </connections>
                 </button>
                 <comboBox horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b6G-QQ-NM1">
-                    <rect key="frame" x="0.0" y="29" width="231" height="25"/>
+                    <rect key="frame" x="0.0" y="31" width="261" height="25"/>
                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="TeX-2T-AOm">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -177,7 +177,6 @@
                 </textField>
             </subviews>
             <constraints>
-                <constraint firstItem="b6G-QQ-NM1" firstAttribute="centerY" secondItem="hdm-J3-DtV" secondAttribute="centerY" id="0Gm-j3-GZd"/>
                 <constraint firstItem="hqy-xq-2kg" firstAttribute="centerY" secondItem="3DI-NV-P6G" secondAttribute="centerY" id="0Xf-dU-Ram"/>
                 <constraint firstItem="3tP-nC-EJ4" firstAttribute="centerY" secondItem="Iyc-oz-9My" secondAttribute="centerY" id="6xp-Oa-HHX"/>
                 <constraint firstAttribute="trailing" secondItem="3tP-nC-EJ4" secondAttribute="trailing" id="7XO-QR-s4H"/>
@@ -192,19 +191,20 @@
                 <constraint firstItem="3DI-NV-P6G" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="J8t-KW-R3x"/>
                 <constraint firstItem="3tP-nC-EJ4" firstAttribute="leading" secondItem="90S-jS-UkF" secondAttribute="trailing" constant="5" id="NqV-4V-UKk"/>
                 <constraint firstItem="6Bi-kF-QOm" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="2" id="PSp-oW-HYr"/>
+                <constraint firstAttribute="trailing" secondItem="b6G-QQ-NM1" secondAttribute="trailing" id="Pzz-82-lhd"/>
                 <constraint firstItem="90S-jS-UkF" firstAttribute="leading" secondItem="Iyc-oz-9My" secondAttribute="trailing" constant="5" id="Xfl-KE-naf"/>
+                <constraint firstItem="hdm-J3-DtV" firstAttribute="centerY" secondItem="TAU-CR-D1I" secondAttribute="centerY" id="Z8i-m0-2MW"/>
                 <constraint firstItem="TAU-CR-D1I" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="a76-N1-cqt"/>
-                <constraint firstItem="hdm-J3-DtV" firstAttribute="leading" secondItem="b6G-QQ-NM1" secondAttribute="trailing" constant="5" id="aFA-zs-tH5"/>
                 <constraint firstAttribute="bottom" secondItem="TAU-CR-D1I" secondAttribute="bottom" constant="5" id="dR4-6W-KzZ"/>
                 <constraint firstItem="6Bi-kF-QOm" firstAttribute="centerY" secondItem="dzE-ai-CbN" secondAttribute="centerY" id="ffW-g8-2EZ"/>
                 <constraint firstItem="kTd-g8-roX" firstAttribute="centerY" secondItem="dzE-ai-CbN" secondAttribute="centerY" id="q6Q-Aa-o2f"/>
                 <constraint firstItem="Iyc-oz-9My" firstAttribute="leading" secondItem="3DI-NV-P6G" secondAttribute="trailing" constant="5" id="qUN-Dr-Keq"/>
-                <constraint firstAttribute="trailing" secondItem="hdm-J3-DtV" secondAttribute="trailing" id="qlf-r6-WpX"/>
-                <constraint firstItem="hdm-J3-DtV" firstAttribute="top" secondItem="3tP-nC-EJ4" secondAttribute="bottom" constant="10" id="rAT-ox-Xsf"/>
+                <constraint firstAttribute="leading" secondItem="hdm-J3-DtV" secondAttribute="leading" id="qlf-r6-WpX"/>
                 <constraint firstItem="3DI-NV-P6G" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="t2I-E3-czG"/>
                 <constraint firstItem="Iyc-oz-9My" firstAttribute="centerY" secondItem="90S-jS-UkF" secondAttribute="centerY" id="t8n-RC-ofb"/>
                 <constraint firstItem="dzE-ai-CbN" firstAttribute="leading" secondItem="kTd-g8-roX" secondAttribute="trailing" constant="5" id="tGF-nu-LYF"/>
                 <constraint firstItem="hqy-xq-2kg" firstAttribute="trailing" secondItem="3DI-NV-P6G" secondAttribute="trailing" id="tUl-B1-yLJ"/>
+                <constraint firstItem="b6G-QQ-NM1" firstAttribute="top" secondItem="3tP-nC-EJ4" secondAttribute="bottom" constant="8" id="x2g-dV-DMu"/>
             </constraints>
             <point key="canvasLocation" x="89" y="-24.5"/>
         </customView>
