@@ -323,7 +323,7 @@ public class PopoverViewController: NSViewController {
 
         // Add item to favorites
 
-        if viewLocation?.locationCard == .suggestion {
+        if viewLocation?.locationCard == .suggestion, var suggestion = AppGlobals.suggestion {
 
             let limit = AppGlobals.favoritesLimit
             let itemsCount = AppOptions.favoriteLocationsOption.count
@@ -334,8 +334,19 @@ public class PopoverViewController: NSViewController {
                 return
             }
 
-            if var suggestion = AppGlobals.suggestion,
-               let favoriteIndex = AppOptions.favoriteLocationsOption.firstIndex(
+            if AppOptions.favoriteLocationsOption.firstIndex(where: {
+                ($0.name == suggestion.name) &&
+                ($0.latitude == suggestion.latitude) &&
+                ($0.longitude == suggestion.longitude)
+            }) != nil {
+
+                // TODO: add localization
+                let text = "The location already exists in favorites".localizedValue
+                log.message(text, .notice, .custom, .enduser)
+                return
+            }
+
+            if let favoriteIndex = AppOptions.favoriteLocationsOption.firstIndex(
                 where: { $0.isOnDisplay }) {
 
                 AppOptions.favoriteLocationsOption[favoriteIndex].isOnDisplay = false
