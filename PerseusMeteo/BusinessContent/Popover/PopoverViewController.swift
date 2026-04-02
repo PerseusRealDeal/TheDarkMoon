@@ -95,9 +95,9 @@ public class PopoverViewController: NSViewController {
         }
 
         if controlCallRequest.selectedSegment == 0 {
-            presenter?.performFetchMeteo(info: .currentWeather)
+            presenter?.performFetchMeteo(.currentWeather)
         } else {
-            presenter?.performFetchMeteo(info: .forecast)
+            presenter?.performFetchMeteo(.forecast)
         }
 
     }
@@ -156,6 +156,14 @@ public class PopoverViewController: NSViewController {
             }*/
             self.viewWeather.alphaValue = 0.0
             self.viewForecast.alphaValue = 1.0
+        }
+    }
+
+    @IBAction func cancellTapped(_ sender: NSButton) {
+        if controlCallRequest.selectedSegment == 0 {
+            presenter?.performCancellation(.currentWeather)
+        } else {
+            presenter?.performCancellation(.forecast)
         }
     }
 

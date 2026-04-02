@@ -56,6 +56,7 @@ public enum PerseusNetworkClientError: Error, Equatable {
     case failedRequest(String)
     case failedResponse(String)
     case emptyData
+    case cancelled
 
 }
 
@@ -87,7 +88,7 @@ public class PerseusNetworkClient: CustomStringConvertible {
         switch result {
 
         case .success(let weatherData):
-            log.message("[PerseusNetworkClient].\(#function): \(result)")
+            log.message("[PerseusNetworkClient].\(#function): \(result)", .debug, .standard)
 
         case .failure(let error):
             var errStr = ""
@@ -104,6 +105,8 @@ public class PerseusNetworkClient: CustomStringConvertible {
                 errStr = errText
             case .emptyData:
                 errStr = "receivedEmptyData"
+            case .cancelled:
+                errStr = "cancelled"
             }
 
             log.message("[PerseusNetworkClient].\(#function): \(errStr)", .error)
@@ -119,6 +122,10 @@ public class PerseusNetworkClient: CustomStringConvertible {
         requestData(url: requestURL, timeout)
     }
 
+    public func cancell() {
+        dataTask?.cancel()
+    }
+
     // MARK: - Realization
 
     internal func requestData(url: URL, _ timeout: TimeInterval) {
@@ -126,7 +133,7 @@ public class PerseusNetworkClient: CustomStringConvertible {
         var request = URLRequest(url: url)
         request.timeoutInterval = timeout
 
-        dataTask = session.dataTask(with: URLRequest(url: url)) {
+        dataTask = session.dataTask(with: request) {
             // swiftlint:disable:next closure_parameter_position
             [self] (requestedData: Data?, response: URLResponse?, error: Error?) in
 
@@ -139,6 +146,8 @@ public class PerseusNetworkClient: CustomStringConvertible {
             if let error = error {
                 if (error as NSError).code == NSURLErrorTimedOut {
                     errorChecked = .timedOut
+                } else if (error as NSError).code == NSURLErrorCancelled {
+                    errorChecked = .cancelled
                 } else {
                     // WRONG: https://apiiiii.openweathermap.org/...
                     errorChecked = .failedResponse(error.localizedDescription)

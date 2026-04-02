@@ -8,7 +8,7 @@
 
 ![Image](https://github.com/user-attachments/assets/75e9c8a3-2a98-41f2-b0fa-8a45c1db3fa2)
 
-The Snowman
+Snowman
 ==
 
 __The Status Menus Weather App__
@@ -97,7 +97,7 @@ Preview material
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/1b3a99e4-5def-4d0c-9185-42d99139aeae" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/7eef35cb-b8ee-4223-bd23-bf5916b9d65b" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
@@ -108,7 +108,7 @@ Preview material
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/9f934d77-3a24-4dac-b09f-0842ac8b292f" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/3c3e4617-ee40-4270-b0f7-a94b989e3ad0" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>

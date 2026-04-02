@@ -99,6 +99,14 @@ class Coordinator {
         shared.updateTimer?.invalidate()
     }
 
+    static func cancellWeatherCall() {
+        shared.meteoClientManager?.canellWeatherCall()
+    }
+
+    static func cancellForecastCall() {
+        shared.meteoClientManager?.cancellForecastCall()
+    }
+
     @objc private func updateCurrentWeatherByTimer() {
 
         let main = Coordinator.shared

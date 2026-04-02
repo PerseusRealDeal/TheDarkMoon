@@ -21,7 +21,7 @@ public class MeteoClientManager {
 
     private let presenter: StatusMenusPresenter
 
-    private let timeoutIntervalMeteoData = 10.0 // 10 sec.
+    private let timeoutIntervalMeteoData = 30.0 // 30 sec.
     private let timeoutIntervalSuggestions = 5.0 // 5 sec.
 
     private var isReadyToCall = false
@@ -45,6 +45,14 @@ public class MeteoClientManager {
         isReadyToCall = true
         isReadyToCallForecast = true
         isReadyToGetSuggestions = true
+    }
+
+    public func canellWeatherCall() {
+        serviceCurrentWeather.cancell()
+    }
+
+    public func cancellForecastCall() {
+        serviceForecast.cancell()
     }
 
     public func fetchWeather() {
@@ -268,6 +276,8 @@ extension MeteoClientManager {
                 log.message("Current Weather request TIMED OUT", .notice, .custom, .enduser)
             case .emptyData:
                 log.message("Received empty response data", .notice, .custom, .enduser)
+            case .cancelled:
+                log.message("The call is cancelled", .notice, .custom, .enduser)
             }
 
             self.isReadyToCall = true
@@ -331,6 +341,8 @@ extension MeteoClientManager {
                 log.message("Forecast request TIMED OUT", .notice, .custom, .enduser)
             case .emptyData:
                 log.message("Received empty response data", .notice, .custom, .enduser)
+            case .cancelled:
+                log.message("The call is cancelled", .notice, .custom, .enduser)
             }
 
             self.isReadyToCallForecast = true
@@ -394,6 +406,8 @@ extension MeteoClientManager {
                     log.message("Suggestions request TIMED OUT", .notice, .custom, .enduser)
                 case .emptyData:
                     log.message("Received empty response data", .notice, .custom, .enduser)
+                case .cancelled:
+                    log.message("The call is cancelled", .notice, .custom, .enduser)
                 }
 
                 self.isReadyToGetSuggestions = true
