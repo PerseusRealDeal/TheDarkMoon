@@ -22,7 +22,7 @@ let report = PerseusLogger.Report()
 log.turned = .on
 
 log.customActionOnMessage = report.report(_:)
-log.message(loadCPLProfile("CPLConfig").info)
+log.message(loadCPLProfile("CPLConfig").info, .info, .standard)
 
 // MARK: - The start line
 

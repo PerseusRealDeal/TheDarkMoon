@@ -107,6 +107,10 @@ class Coordinator {
         shared.meteoClientManager?.cancellForecastCall()
     }
 
+    static func cancellSuggestionsRquest() {
+        shared.meteoClientManager?.cancellSuggestionsRquest()
+    }
+
     @objc private func updateCurrentWeatherByTimer() {
 
         let main = Coordinator.shared

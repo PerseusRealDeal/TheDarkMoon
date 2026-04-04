@@ -58,7 +58,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
+
+        Coordinator.deinitTimer()
+
+        Coordinator.cancellWeatherCall()
+        Coordinator.cancellForecastCall()
+        Coordinator.cancellSuggestionsRquest()
+
         // Unregister observers when the application terminates
         NSWorkspace.shared.notificationCenter.removeObserver(self)
+
+        log.message("The app terminated.", .info, .standard)
     }
 }

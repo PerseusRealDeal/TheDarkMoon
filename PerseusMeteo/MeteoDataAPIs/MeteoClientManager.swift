@@ -7,8 +7,8 @@
 //  Copyright © 7532 - 7534 Mikhail Zhigulin of Novosibirsk
 //  Copyright © 7532 - 7534 PerseusRealDeal
 //
-//  The year starts from the creation of the world in the Star temple
-//  according to a Slavic calendar. September, the 1st of Slavic year.
+//  The year starts from the creation of the world according to a Slavic calendar.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2025" is the beginning of 7534.
 //
 //  See LICENSE for details. All rights reserved.
 //
@@ -38,9 +38,9 @@ public class MeteoClientManager {
 
         self.presenter = presenter
 
-        serviceCurrentWeather.onDataGiven = handleCurrent
-        serviceForecast.onDataGiven = handleForecast
-        serviceSuggestions.onDataGiven = handleSuggestions
+        serviceCurrentWeather.responseHandler = handleCurrent
+        serviceForecast.responseHandler = handleForecast
+        serviceSuggestions.responseHandler = handleSuggestions
 
         isReadyToCall = true
         isReadyToCallForecast = true
@@ -55,12 +55,13 @@ public class MeteoClientManager {
         serviceForecast.cancell()
     }
 
+    public func cancellSuggestionsRquest() {
+        serviceSuggestions.cancell()
+    }
+
     public func fetchWeather() {
 
         guard isReadyToCall else {
-
-            // TODO: Implement a timeout logic to cancel previous request
-
             log.message("[\(type(of: self))].\(#function) \(isReadyToCall)", .error)
             return
         }
@@ -245,6 +246,7 @@ public class MeteoClientManager {
 
 extension MeteoClientManager {
 
+    // swiftlint:disable:next cyclomatic_complexity
     private func handleCurrent(response: Result<Data, PerseusNetworkClientError>) {
 
         DispatchQueue.main.async {
@@ -277,7 +279,7 @@ extension MeteoClientManager {
             case .emptyData:
                 log.message("Received empty response data", .notice, .custom, .enduser)
             case .cancelled:
-                log.message("The call is cancelled", .notice, .custom, .enduser)
+                log.message("The current weather call cancelled", .notice, .custom, .enduser)
             }
 
             self.isReadyToCall = true
@@ -310,6 +312,7 @@ extension MeteoClientManager {
         }
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     private func handleForecast(response: Result<Data, PerseusNetworkClientError>) {
 
         DispatchQueue.main.async {
@@ -342,7 +345,7 @@ extension MeteoClientManager {
             case .emptyData:
                 log.message("Received empty response data", .notice, .custom, .enduser)
             case .cancelled:
-                log.message("The call is cancelled", .notice, .custom, .enduser)
+                log.message("The forecast call cancelled", .notice, .custom, .enduser)
             }
 
             self.isReadyToCallForecast = true
@@ -371,6 +374,7 @@ extension MeteoClientManager {
         }
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     private func handleSuggestions(response: Result<Data, PerseusNetworkClientError>) {
         DispatchQueue.main.async {
 
@@ -407,7 +411,7 @@ extension MeteoClientManager {
                 case .emptyData:
                     log.message("Received empty response data", .notice, .custom, .enduser)
                 case .cancelled:
-                    log.message("The call is cancelled", .notice, .custom, .enduser)
+                    log.message("The suggestions call cancelled", .notice, .custom, .enduser)
                 }
 
                 self.isReadyToGetSuggestions = true
@@ -453,7 +457,7 @@ extension MeteoClientManager {
             viewLocation.viewSuggestions.heightCalculated
 
             viewLocation.collectionSuggestions?.reloadData()
-            viewLocation.hideControls()
+            viewLocation.hideControlsIfLegacy()
 
             NSAnimationContext.runAnimationGroup({ context in
                 context.duration = 0.5

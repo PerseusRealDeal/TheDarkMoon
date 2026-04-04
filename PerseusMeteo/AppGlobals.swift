@@ -172,7 +172,6 @@ struct AppGlobals {
     }
 
     static func quitTheApp() {
-        Coordinator.deinitTimer()
         app.terminate(appDelegate)
     }
 

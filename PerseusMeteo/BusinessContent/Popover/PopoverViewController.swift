@@ -184,7 +184,7 @@ public class PopoverViewController: NSViewController {
         guard SuggestionsView.shouldProcessVisisbility else { return }
         guard self.viewLocation.viewSuggestions.alphaValue > 0.0 else { return }
 
-        viewLocation.showControls()
+        viewLocation.showControlsIfLegacy()
         DispatchQueue.main.async {
             NSAnimationContext.runAnimationGroup({ context in
                 context.duration = 0.5
@@ -300,6 +300,10 @@ public class PopoverViewController: NSViewController {
         } else {
             userMessage = "Location card is cleared".localizedValue
         }
+
+        Coordinator.cancellWeatherCall()
+        Coordinator.cancellForecastCall()
+        Coordinator.cancellSuggestionsRquest()
 
         viewLocation?.locationCard = AppOptions.favoriteLocationsOption.first(where: {
             $0.isOnDisplay && $0.isCurrentLocation }) != nil ? .current : .favorite

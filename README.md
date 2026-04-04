@@ -196,6 +196,7 @@ MIT
 | Type     | Name                                                                                                      |
 | -------- | --------------------------------------------------------------------------------------------------------- |
 | Class    | [WebLabel](/PerseusMeteo/FirstPartyCode/WebLabel.swift)                                                   |
+| Class    | [PerseusNetworkClient](/PerseusMeteo/FirstPartyCode/PerseusNetworkClient.swift)                           |
 
 Third-party software
 ==

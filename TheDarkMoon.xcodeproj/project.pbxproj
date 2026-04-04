@@ -331,7 +331,6 @@
 			isa = PBXGroup;
 			children = (
 				4B1CA6A22B549358003F3EBF /* MeteoClientManager.swift */,
-				2EA5C3152F7BC3BA001D24F9 /* PerseusNetworkClient.swift */,
 				2E1083D22E2B624E00400180 /* OpenWeather */,
 			);
 			path = MeteoDataAPIs;
@@ -530,6 +529,7 @@
 				2ED8FE1C2E40F36C00C65619 /* MessageLabel.swift */,
 				4B7690D32B4CA82A007F09D9 /* PerseusTimeFormat.swift */,
 				4B76913B2B5011DD007F09D9 /* PerseusCompassDirection.swift */,
+				2EA5C3152F7BC3BA001D24F9 /* PerseusNetworkClient.swift */,
 			);
 			path = FirstPartyCode;
 			sourceTree = "<group>";
