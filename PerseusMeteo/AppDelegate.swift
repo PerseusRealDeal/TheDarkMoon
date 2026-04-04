@@ -63,7 +63,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         Coordinator.cancellWeatherCall()
         Coordinator.cancellForecastCall()
-        Coordinator.cancellSuggestionsRquest()
+        Coordinator.cancellSuggestionsRequest()
 
         // Unregister observers when the application terminates
         NSWorkspace.shared.notificationCenter.removeObserver(self)

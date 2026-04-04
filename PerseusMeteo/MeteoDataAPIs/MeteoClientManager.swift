@@ -17,12 +17,45 @@
 
 import Cocoa
 
+extension PerseusNetworkClientError {
+
+    public var endUserMessageLocalized: String {
+        switch self {
+        case .invalidUrl:
+            return "Incorrect URL".localizedValue
+        case .cancelled:
+            return "Cancelled Suggestions call".localizedValue
+        case .notConnectedToInternet:
+            return "The Internet connection offline".localizedValue
+        case .timedOut:
+            return "Timed out Suggestions call".localizedValue
+        case .statusCode404:
+            return "Status 404, not found".localizedValue
+        case .nilOrEmptyRequestedData:
+            return "Empty Suggestions data".localizedValue
+        case .failedResponseStatusCode:
+            return "Failed Response StatusCode".localizedValue
+        case .failedResponse(let text):
+            return text
+        }
+    }
+}
+
 public class MeteoClientManager {
 
     private let presenter: StatusMenusPresenter
 
-    private let timeoutIntervalMeteoData = 30.0 // 30 sec.
+    private let timeoutIntervalMeteoData = 10.0 // 10 sec.
     private let timeoutIntervalSuggestions = 5.0 // 5 sec.
+
+    private let requestAttemptsForMeteo = 3 // For both current and forecast.
+    private let requestAttemtsForSuggestions = 2
+
+    private var retriesCountCurrent = 0
+    private var retriesCountForecast = 0
+
+    private var retriesCountSuggestions = 0
+    private var retrySearchSuggestions = ""
 
     private var isReadyToCall = false
     private var isReadyToCallForecast = false
@@ -49,20 +82,23 @@ public class MeteoClientManager {
 
     public func canellWeatherCall() {
         serviceCurrentWeather.cancell()
+        // retriesCountCurrent = 0
     }
 
     public func cancellForecastCall() {
         serviceForecast.cancell()
+        // retriesCountForecast = 0
     }
 
     public func cancellSuggestionsRquest() {
         serviceSuggestions.cancell()
+        // retriesCountSuggestions = 0
     }
 
     public func fetchWeather() {
 
         guard isReadyToCall else {
-            log.message("[\(type(of: self))].\(#function) \(isReadyToCall)", .error)
+            log.message("[\(type(of: self))].\(#function) \(isReadyToCall)", .notice)
             return
         }
 
@@ -97,13 +133,15 @@ public class MeteoClientManager {
                                                  lang: .init(rawValue: lang),
                                                  mode: .json)
 
-        log.message(callDetails.urlString)
+        log.message(callDetails.urlString.replacingOccurrences(of: key, with: "###"), .notice)
 
         do {
             Coordinator.shared.screenPopover.startAnimationProgressIndicator(.weather)
 
             try serviceCurrentWeather.call(
-                urlString: callDetails.urlString, timeoutIntervalMeteoData)
+                urlString: callDetails.urlString,
+                timeout: timeoutIntervalMeteoData
+            )
 
         } catch {
 
@@ -118,7 +156,7 @@ public class MeteoClientManager {
     public func fetchForecast() {
 
         guard isReadyToCallForecast else {
-            log.message("[\(type(of: self))].\(#function) \(isReadyToCall)", .error)
+            log.message("[\(type(of: self))].\(#function) \(isReadyToCallForecast)", .notice)
             return
         }
 
@@ -155,13 +193,15 @@ public class MeteoClientManager {
                                                  mode: .json)
         callDetails.cnt = 40
 
-        log.message(callDetails.urlString)
+        log.message(callDetails.urlString.replacingOccurrences(of: key, with: "###"), .notice)
 
         do {
             Coordinator.shared.screenPopover.startAnimationProgressIndicator(.forecast)
 
             try serviceForecast.call(
-                urlString: callDetails.urlString, timeoutIntervalMeteoData)
+                urlString: callDetails.urlString,
+                timeout: timeoutIntervalMeteoData
+            )
 
         } catch {
 
@@ -169,7 +209,7 @@ public class MeteoClientManager {
 
             Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
 
-            isReadyToCall = true
+            isReadyToCallForecast = true
         }
     }
 
@@ -185,8 +225,7 @@ public class MeteoClientManager {
         else {
             viewLocation.indicatorCircular.isHidden = true
             viewLocation.indicatorCircular.stopAnimation(nil)
-            // TODO: Is it correct refresh?
-            refreshCurrent(Data())
+            refreshCurrent(Data()) // TODO: Is it correct refresh?
             return
         }
 
@@ -240,13 +279,16 @@ public class MeteoClientManager {
         viewLocation.indicatorCircular.startAnimation(nil)
 
         // request
+
+        log.message(urlString.replacingOccurrences(of: key, with: "###"), .notice)
+
+        retrySearchSuggestions = search
         serviceSuggestions.requestData(url: requestURL, timeoutIntervalSuggestions)
     }
 }
 
 extension MeteoClientManager {
 
-    // swiftlint:disable:next cyclomatic_complexity
     private func handleCurrent(response: Result<Data, PerseusNetworkClientError>) {
 
         DispatchQueue.main.async {
@@ -255,6 +297,8 @@ extension MeteoClientManager {
 
         var meteoData: Data?
         var errorResponse: PerseusNetworkClientError?
+
+        self.isReadyToCall = true
 
         switch response {
         case .success(let data):
@@ -265,29 +309,33 @@ extension MeteoClientManager {
 
         if let error = errorResponse {
 
-            switch error { // TODO: end-user messages localizations
-            case .invalidUrl:
-                log.message("Incorrect URL used", .notice, .custom, .enduser)
-            case .failedRequest(let text):
-                log.message("Rquest failed: \(text)", .notice, .custom, .enduser)
-            case .statusCode404:
-                log.message("Not Found: Status Code 404", .notice, .custom, .enduser)
-            case .failedResponse(let text):
-                log.message("Response failed: \(text)", .notice, .custom, .enduser)
-            case .timedOut:
-                log.message("Current Weather request TIMED OUT", .notice, .custom, .enduser)
-            case .emptyData:
-                log.message("Received empty response data", .notice, .custom, .enduser)
-            case .cancelled:
-                log.message("The current weather call cancelled", .notice, .custom, .enduser)
+            log.message("\(error.endUserMessageLocalized)", .notice, .custom, .enduser)
+
+            if error == .timedOut {
+                if retriesCountCurrent < requestAttemptsForMeteo {
+
+                    // Retry call current weather
+
+                    retriesCountCurrent += 1
+
+                    let text = "The Current Weather call retry attempt \(retriesCountCurrent)"
+                    log.message(text, .info)
+
+                    DispatchQueue.main.async {
+                        self.fetchWeather()
+                        return
+                    }
+                }
             }
 
-            self.isReadyToCall = true
+            retriesCountCurrent = 0
+
             return
         }
 
         guard let data = meteoData else {
-            log.message("[\(type(of: self))].\(#function) data should not be nil", .fault)
+            let text = "[\(type(of: self))].\(#function)"
+            log.message(text + " meteoData should not be nil", .fault)
             return
         }
 
@@ -312,7 +360,6 @@ extension MeteoClientManager {
         }
     }
 
-    // swiftlint:disable:next cyclomatic_complexity
     private func handleForecast(response: Result<Data, PerseusNetworkClientError>) {
 
         DispatchQueue.main.async {
@@ -321,6 +368,8 @@ extension MeteoClientManager {
 
         var meteoData: Data?
         var errorResponse: PerseusNetworkClientError?
+
+        self.isReadyToCallForecast = true
 
         switch response {
         case .success(let data):
@@ -331,29 +380,33 @@ extension MeteoClientManager {
 
         if let error = errorResponse {
 
-            switch error {
-            case .invalidUrl:
-                log.message("Incorrect URL used", .notice, .custom, .enduser)
-            case .failedRequest(let text):
-                log.message("Rquest failed: \(text)", .notice, .custom, .enduser)
-            case .statusCode404:
-                log.message("Not Found: Status Code 404", .notice, .custom, .enduser)
-            case .failedResponse(let text):
-                log.message("Response failed: \(text)", .notice, .custom, .enduser)
-            case .timedOut:
-                log.message("Forecast request TIMED OUT", .notice, .custom, .enduser)
-            case .emptyData:
-                log.message("Received empty response data", .notice, .custom, .enduser)
-            case .cancelled:
-                log.message("The forecast call cancelled", .notice, .custom, .enduser)
+            log.message("\(error.endUserMessageLocalized)", .notice, .custom, .enduser)
+
+            if error == .timedOut {
+                if retriesCountForecast < requestAttemptsForMeteo {
+
+                    // Retry call forecast
+
+                    retriesCountForecast += 1
+
+                    let text = "The Forecast call retry attempt"
+                    log.message(text + ": \(self.retriesCountSuggestions)", .info)
+
+                    DispatchQueue.main.async {
+                        self.fetchForecast()
+                        return
+                    }
+                }
             }
 
-            self.isReadyToCallForecast = true
+            self.retriesCountForecast = 0
+
             return
         }
 
         guard let data = meteoData else {
-            log.message("[\(type(of: self))].\(#function) data should not be nil", .fault)
+            let text = "[\(type(of: self))].\(#function)"
+            log.message(text + " meteoData should not be nil", .fault)
             return
         }
 
@@ -374,7 +427,6 @@ extension MeteoClientManager {
         }
     }
 
-    // swiftlint:disable:next cyclomatic_complexity
     private func handleSuggestions(response: Result<Data, PerseusNetworkClientError>) {
         DispatchQueue.main.async {
 
@@ -384,6 +436,8 @@ extension MeteoClientManager {
 
             indicator?.isHidden = true
             indicator?.stopAnimation(nil)
+
+            self.isReadyToGetSuggestions = true
 
             var suggestions: Data?
             var errorResponse: PerseusNetworkClientError?
@@ -397,29 +451,34 @@ extension MeteoClientManager {
 
             if let error = errorResponse {
 
-                switch error {
-                case .invalidUrl:
-                    log.message("Incorrect URL used", .notice, .custom, .enduser)
-                case .failedRequest(let text):
-                    log.message("Rquest failed: \(text)", .notice, .custom, .enduser)
-                case .statusCode404:
-                    log.message("Not Found: Status Code 404", .notice, .custom, .enduser)
-                case .failedResponse(let text):
-                    log.message("Response failed: \(text)", .notice, .custom, .enduser)
-                case .timedOut:
-                    log.message("Suggestions request TIMED OUT", .notice, .custom, .enduser)
-                case .emptyData:
-                    log.message("Received empty response data", .notice, .custom, .enduser)
-                case .cancelled:
-                    log.message("The suggestions call cancelled", .notice, .custom, .enduser)
+                log.message("\(error.endUserMessageLocalized)", .notice, .custom, .enduser)
+
+                if error == .timedOut {
+                    if self.retriesCountSuggestions < self.requestAttemtsForSuggestions {
+
+                        // Retry call suggestions
+
+                        self.retriesCountSuggestions += 1
+
+                        let text = "The Suggestions call retry attempt"
+                        log.message(text + ": \(self.retriesCountSuggestions)", .info)
+
+                        DispatchQueue.main.async {
+                            self.fetchSuggestions(self.retrySearchSuggestions)
+                            return
+                        }
+                    }
                 }
 
-                self.isReadyToGetSuggestions = true
+                self.retrySearchSuggestions = ""
+                self.retriesCountSuggestions = 0
+
                 return
             }
 
             guard let data = suggestions else {
-                log.message("[\(type(of: self))].\(#function) data should not be nil", .fault)
+                let text = "[\(type(of: self))].\(#function)"
+                log.message(text + " meteoData should not be nil", .fault)
                 return
             }
 

@@ -387,6 +387,8 @@ class LocationView: NSView, NSTextFieldDelegate {
         self.indicatorCircular.isHidden = false
         self.indicatorCircular.startAnimation(nil)
 
+        Coordinator.cancellSuggestionsRequest()
+
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000), execute: {
 
             if self.typeDeepCounter > 0 {

@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Autoscroll option to Logger screen.
 - Manual meteo data request cancellation.
+- Retry logic for current, forecast and suggestions calls.
 
 ### Fixed
 

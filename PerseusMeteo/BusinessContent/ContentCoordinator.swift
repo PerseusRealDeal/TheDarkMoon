@@ -56,7 +56,7 @@ class Coordinator {
 
         statusMenus = StatusMenusPresenter()
 
-        // Meteo data fetcher
+        // TODO: Should not be connected to statusMenus
         meteoClientManager = MeteoClientManager(presenter: statusMenus)
 
         // Observe StatusMenusItem events
@@ -107,7 +107,7 @@ class Coordinator {
         shared.meteoClientManager?.cancellForecastCall()
     }
 
-    static func cancellSuggestionsRquest() {
+    static func cancellSuggestionsRequest() {
         shared.meteoClientManager?.cancellSuggestionsRquest()
     }
 

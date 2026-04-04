@@ -303,7 +303,7 @@ public class PopoverViewController: NSViewController {
 
         Coordinator.cancellWeatherCall()
         Coordinator.cancellForecastCall()
-        Coordinator.cancellSuggestionsRquest()
+        Coordinator.cancellSuggestionsRequest()
 
         viewLocation?.locationCard = AppOptions.favoriteLocationsOption.first(where: {
             $0.isOnDisplay && $0.isCurrentLocation }) != nil ? .current : .favorite
@@ -353,7 +353,7 @@ public class PopoverViewController: NSViewController {
             }) != nil {
 
                 // TODO: add localization
-                let text = "The location already exists in favorites".localizedValue
+                let text = "Exists in favorites".localizedValue
                 log.message(text, .notice, .custom, .enduser)
                 return
             }

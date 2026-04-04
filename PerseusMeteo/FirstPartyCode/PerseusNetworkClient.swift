@@ -60,12 +60,13 @@ public enum PerseusNetworkClientError: Error, Equatable {
 
     case invalidUrl
     case cancelled
+    case notConnectedToInternet
 
     case timedOut
     case statusCode404
-    case emptyData
+    case nilOrEmptyRequestedData
 
-    case failedRequest(String)
+    case failedResponseStatusCode
     case failedResponse(String)
 
 }
@@ -99,7 +100,7 @@ public class PerseusNetworkClient: CustomStringConvertible {
 
     // MARK: - Contract
 
-    public func call(urlString: String, _ timeout: TimeInterval) throws {
+    public func call(urlString: String, timeout: TimeInterval) throws {
         guard let requestURL = URL(string: urlString) else {
             // WRONG: URL cann't be created at all
             throw PerseusNetworkClientError.invalidUrl
@@ -114,6 +115,7 @@ public class PerseusNetworkClient: CustomStringConvertible {
 
     // MARK: - Realization
 
+    // swiftlint:disable:next cyclomatic_complexity
     internal func requestData(url: URL, _ timeout: TimeInterval) {
 
         var request = URLRequest(url: url)
@@ -131,9 +133,16 @@ public class PerseusNetworkClient: CustomStringConvertible {
 
             if let error = error {
                 if (error as NSError).code == NSURLErrorTimedOut {
+                    // error code: -1001
+                    log.message("\((error as NSError).code)", .info)
                     errorChecked = .timedOut
                 } else if (error as NSError).code == NSURLErrorCancelled {
+                    // error code: -999
+                    log.message("\((error as NSError).code)", .info)
                     errorChecked = .cancelled
+                } else if (error as NSError).code == NSURLErrorNotConnectedToInternet {
+                    // error code: -1009
+                    errorChecked = .notConnectedToInternet
                 } else {
                     // WRONG: https://apiiiii.openweathermap.org/...
                     errorChecked = .failedResponse(error.localizedDescription)
@@ -149,7 +158,7 @@ public class PerseusNetworkClient: CustomStringConvertible {
                             HTTPURLResponse.localizedString(forStatusCode: statusCode))
                     }
                 } else {
-                    errorChecked = .failedResponse("Failed getting Status Code")
+                    errorChecked = .failedResponseStatusCode
                 }
             }
 
@@ -160,12 +169,12 @@ public class PerseusNetworkClient: CustomStringConvertible {
                     communicateResult(.failure(error))
                 } else if let data = requestedData {
                     if data.isEmpty {
-                        communicateResult(.failure(.emptyData))
+                        communicateResult(.failure(.nilOrEmptyRequestedData))
                     } else {
                         communicateResult(.success(data))
                     }
                 } else {
-                    communicateResult(.failure(.emptyData))
+                    communicateResult(.failure(.nilOrEmptyRequestedData))
                 }
             }
 
@@ -189,14 +198,16 @@ public class PerseusNetworkClient: CustomStringConvertible {
                 errStr = "invalidUrl"
             case .cancelled:
                 errStr = "cancelled"
+            case .notConnectedToInternet:
+                errStr = "notConnectedToInternet"
             case .timedOut:
                 errStr = "timedOut"
             case .statusCode404:
                 errStr = "statusCode404"
-            case .emptyData:
-                errStr = "receivedEmptyData"
-            case .failedRequest(let errText):
-                errStr = errText
+            case .failedResponseStatusCode:
+                errStr = "failedResponseStatusCode"
+            case .nilOrEmptyRequestedData:
+                errStr = "nilOrEmptyRequestedData"
             case .failedResponse(let errText):
                 errStr = errText
             }
