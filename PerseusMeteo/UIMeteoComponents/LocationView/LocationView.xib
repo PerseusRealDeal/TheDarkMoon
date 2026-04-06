@@ -121,6 +121,14 @@
                         <action selector="favoritesComboBoxDidChange:" target="-2" id="gby-UB-PdG"/>
                     </connections>
                 </comboBox>
+                <textField verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="TAU-CR-D1I">
+                    <rect key="frame" x="73" y="7" width="113" height="19"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Location Name" id="3Ma-Dd-zy7">
+                        <font key="font" metaFont="system" size="16"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="3DI-NV-P6G" userLabel="Search Custom View">
                     <rect key="frame" x="0.0" y="54" width="175" height="39"/>
                     <subviews>
@@ -167,14 +175,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                 </scrollView>
-                <textField verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="TAU-CR-D1I">
-                    <rect key="frame" x="73" y="7" width="113" height="19"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Location Name" id="3Ma-Dd-zy7">
-                        <font key="font" metaFont="system" size="16"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
             </subviews>
             <constraints>
                 <constraint firstItem="hqy-xq-2kg" firstAttribute="centerY" secondItem="3DI-NV-P6G" secondAttribute="centerY" id="0Xf-dU-Ram"/>

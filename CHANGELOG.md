@@ -6,11 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Given a version number MAJOR.MINOR.PATCH, where MAJOR in 0 means developer edition.
 - Date in format YYYY-MM-DD, in this file meets Gregorian calendar only.
 
-## [0.5.2] - [2026-??-??], The Dark Moon
+## [0.5.2] - [2026-04-07], The Dark Moon
 
 ### Added
 
-- Autoscroll option to Logger screen.
+- Autoscroll as an option to Logger screen.
 - Manual meteo data request cancellation.
 - Retry logic for current, forecast and suggestions calls.
 
@@ -18,9 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Log message about current location.
 
-### Restructured
+### Reconstracted
 
-- Meteo Data API client code
+- OpenWeather Free Client API Agent to PerseusNetworkClient.
 
 ## [0.5.1] - [2026-03-25], The Dark Moon
 

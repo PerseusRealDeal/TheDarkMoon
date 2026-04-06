@@ -77,6 +77,8 @@
 "Empty data" = "Empty data";
 "Failed Response StatusCode" = "Failed Response StatusCode";
 
+"There are no suggestions received" = "There are no suggestions received";
+
 /* Location View */
 
 "Label: Permission" = "Location Access";

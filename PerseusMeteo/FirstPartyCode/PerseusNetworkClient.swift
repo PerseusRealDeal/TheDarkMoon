@@ -142,6 +142,7 @@ public class PerseusNetworkClient: CustomStringConvertible {
                     errorChecked = .cancelled
                 } else if (error as NSError).code == NSURLErrorNotConnectedToInternet {
                     // error code: -1009
+                    log.message("\((error as NSError).code)", .info)
                     errorChecked = .notConnectedToInternet
                 } else {
                     // WRONG: https://apiiiii.openweathermap.org/...

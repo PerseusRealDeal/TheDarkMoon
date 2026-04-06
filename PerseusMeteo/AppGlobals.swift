@@ -111,7 +111,7 @@ struct AppGlobals {
             }
 
             // log.message("JSON:\n\(forecast.prettyPrinted ?? "")", .info)
-            log.message("JSON:\n\(forecast.prettyPrinted ?? "")", .info, .standard)
+            log.message("JSON forecast:\n\(forecast.prettyPrinted ?? "")", .info, .standard)
 
             // Save the date and time of the last one.
 

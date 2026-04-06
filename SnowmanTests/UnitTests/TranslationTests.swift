@@ -121,6 +121,29 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Current neither to add nor to remove!".localizedExpectation,
                        "Current neither to add nor to remove!".localizedValue)
+
+        XCTAssertEqual("There are no suggestions received".localizedExpectation,
+                       "There are no suggestions received".localizedValue)
+    }
+
+    func test_translation_PerseusNetworkClientError() {
+
+        // assert
+
+        XCTAssertEqual("Incorrect URL".localizedExpectation,
+                       "Incorrect URL".localizedValue)
+        XCTAssertEqual("Cancelled call".localizedExpectation,
+                       "Cancelled call".localizedValue)
+        XCTAssertEqual("The Internet connection offline".localizedExpectation,
+                       "The Internet connection offline".localizedValue)
+        XCTAssertEqual("Timed out call".localizedExpectation,
+                       "Timed out call".localizedValue)
+        XCTAssertEqual("Status 404, not found".localizedExpectation,
+                       "Status 404, not found".localizedValue)
+        XCTAssertEqual("Empty data".localizedExpectation,
+                       "Empty data".localizedValue)
+        XCTAssertEqual("Failed Response StatusCode".localizedExpectation,
+                       "Failed Response StatusCode".localizedValue)
     }
 
     // MARK: - LocationView
@@ -729,25 +752,5 @@ class TranslationTests: XCTestCase {
                        "Code: brokenClouds_51_84".localizedValue)
         XCTAssertEqual("Code: overcastClouds_85_100".localizedExpectation,
                        "Code: overcastClouds_85_100".localizedValue)
-    }
-
-    func test_translation_PerseusNetworkClientError() {
-
-        // assert
-
-        XCTAssertEqual("Incorrect URL".localizedExpectation,
-                       "Incorrect URL".localizedValue)
-        XCTAssertEqual("Cancelled call".localizedExpectation,
-                       "Cancelled call".localizedValue)
-        XCTAssertEqual("The Internet connection offline".localizedExpectation,
-                       "The Internet connection offline".localizedValue)
-        XCTAssertEqual("Timed out call".localizedExpectation,
-                       "Timed out call".localizedValue)
-        XCTAssertEqual("Status 404, not found".localizedExpectation,
-                       "Status 404, not found".localizedValue)
-        XCTAssertEqual("Empty data".localizedExpectation,
-                       "Empty data".localizedValue)
-        XCTAssertEqual("Failed Response StatusCode".localizedExpectation,
-                       "Failed Response StatusCode".localizedValue)
     }
 }

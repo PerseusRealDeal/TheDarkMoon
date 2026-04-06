@@ -74,6 +74,8 @@
 "Empty data" = "Данные пусты";
 "Failed Response StatusCode" = "Не извлекается статус ответа";
 
+"There are no suggestions received" = "Соответствующих названий не найдено";
+
 /* Location View */
 
 "Label: Permission" = "Гео Доступ";

@@ -92,6 +92,8 @@
 	<string>Empty data</string>
 	<key>Failed Response StatusCode</key>
 	<string>Failed Response StatusCode</string>
+	<key>There are no suggestions received</key>
+	<string>There are no suggestions received</string>
 	<key>/* Location View */</key>
 	<string>--</string>
 	<key>Label: Permission</key>

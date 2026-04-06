@@ -92,6 +92,8 @@
 	<string>Данные пусты</string>
 	<key>Failed Response StatusCode</key>
 	<string>Не извлекается статус ответа</string>
+	<key>There are no suggestions received</key>
+	<string>Соответствующих названий не найдено</string>
 	<key>/* Location View */</key>
 	<string>--</string>
 	<key>Label: Permission</key>

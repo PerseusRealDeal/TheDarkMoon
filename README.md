@@ -187,7 +187,6 @@ MIT
 | Package  | [PerseusGeoKit v1.2.1](https://github.com/perseusrealdeal/PerseusGeoKit/releases/tag/1.2.1)               |
 | Class    | [PerseusCompassDirection](https://gist.github.com/perseusrealdeal/3b053b2390d704f561ec52c6477b5cf2)       |
 | Variable | [PerseusTimeFormat](https://gist.github.com/perseusrealdeal/7aa89d78d9b1c220cc06682be8908a97)             |
-| Package  | [OpenWeatherAgent v0.3.5](https://github.com/perseusrealdeal/OpenWeatherAgent/releases/tag/0.3.5)         |
 | Class    | [MessageLabel](https://gist.github.com/PerseusRealDeal/dbfed6e01ed80be084983738ba713654)                  |
 
 [Unlicense](https://unlicense.org)
