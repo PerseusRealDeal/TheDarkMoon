@@ -24,15 +24,15 @@ extension PerseusNetworkClientError {
         case .invalidUrl:
             return "Incorrect URL".localizedValue
         case .cancelled:
-            return "Cancelled Suggestions call".localizedValue
+            return "Cancelled call".localizedValue
         case .notConnectedToInternet:
             return "The Internet connection offline".localizedValue
         case .timedOut:
-            return "Timed out Suggestions call".localizedValue
+            return "Timed out call".localizedValue
         case .statusCode404:
             return "Status 404, not found".localizedValue
         case .nilOrEmptyRequestedData:
-            return "Empty Suggestions data".localizedValue
+            return "Empty data".localizedValue
         case .failedResponseStatusCode:
             return "Failed Response StatusCode".localizedValue
         case .failedResponse(let text):
@@ -323,9 +323,12 @@ extension MeteoClientManager {
 
                     DispatchQueue.main.async {
                         self.fetchWeather()
-                        return
                     }
+                } else {
+                    retriesCountCurrent = 0
                 }
+
+                return
             }
 
             retriesCountCurrent = 0
@@ -394,12 +397,15 @@ extension MeteoClientManager {
 
                     DispatchQueue.main.async {
                         self.fetchForecast()
-                        return
                     }
+                } else {
+                    retriesCountForecast = 0
                 }
+
+                return
             }
 
-            self.retriesCountForecast = 0
+            retriesCountForecast = 0
 
             return
         }
@@ -465,9 +471,13 @@ extension MeteoClientManager {
 
                         DispatchQueue.main.async {
                             self.fetchSuggestions(self.retrySearchSuggestions)
-                            return
                         }
+                    } else {
+                        self.retrySearchSuggestions = ""
+                        self.retriesCountSuggestions = 0
                     }
+
+                    return
                 }
 
                 self.retrySearchSuggestions = ""

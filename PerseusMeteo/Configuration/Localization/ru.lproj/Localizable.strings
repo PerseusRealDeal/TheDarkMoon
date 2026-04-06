@@ -53,14 +53,26 @@
 "Coordinates update is required" = "Координаты следует обновить";
 "Location card is switched" = "Сведения о месте обновлены";
 "Location card is cleared" = "Сведения о месте удалены";
-"Item removed from favorites" = "Список избранных мест обновлен";
-"Item added to favorites" = "Список избранных мест обновлен";
+
+"Favorites are limited" = "Список до дома!";
+"Removed from favorites" = "Список избранных мест обновлен";
+"Added to favorites" = "Список избранных мест обновлен";
+"Exists in favorites" = "Добавлен ранее в список избранных";
+
 "Location Name should be typed" = "Название места можно начать вводить";
 "Auto requesting suggestions is on!" = "Авто уточнение включено!";
 "Current Location should be selected" = "Координаты на месте обновляются";
-"Favorites are limited" = "Список до дома!";
+
 "Current neither to add nor to remove!" = "Ни добавить, ни убавить!";
 "API key is either rejected or empty" = "API ключ не загружен или отсутствует";
+
+"Incorrect URL" = "Некорректный Интернет адрес";
+"Cancelled call" = "Отменен запрос";
+"The Internet connection offline" = "Отсутствует Интернет подключение";
+"Timed out call" = "Превышено ожидание сведений";
+"Status 404, not found" = "Интернет адрес не обнаружен: 404";
+"Empty data" = "Данные пусты";
+"Failed Response StatusCode" = "Не извлекается статус ответа";
 
 /* Location View */
 

@@ -352,7 +352,6 @@ public class PopoverViewController: NSViewController {
                 ($0.longitude == suggestion.longitude)
             }) != nil {
 
-                // TODO: add localization
                 let text = "Exists in favorites".localizedValue
                 log.message(text, .notice, .custom, .enduser)
                 return
@@ -370,7 +369,7 @@ public class PopoverViewController: NSViewController {
                 viewLocation?.locationCard = .favorite
                 viewLocation?.reloadData()
 
-                let text = "Item added to favorites".localizedValue
+                let text = "Added to favorites".localizedValue
                 log.message(text, .notice, .custom, .enduser)
             }
 
@@ -413,7 +412,7 @@ public class PopoverViewController: NSViewController {
 
             refreshCallInformation()
 
-            let text = "Item removed from favorites".localizedValue
+            let text = "Removed from favorites".localizedValue
             log.message(text, .notice, .custom, .enduser)
 
             return
