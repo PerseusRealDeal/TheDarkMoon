@@ -60,12 +60,12 @@
                                         <rect key="frame" x="0.0" y="264" width="434" height="22"/>
                                         <subviews>
                                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zyo-VN-gyy">
-                                                <rect key="frame" x="-2" y="-1" width="267" height="24"/>
+                                                <rect key="frame" x="32" y="-1" width="243" height="24"/>
                                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="3V1-GY-T5v">
                                                     <font key="font" metaFont="system"/>
                                                     <segments>
-                                                        <segment label="Current Weather" width="129"/>
-                                                        <segment label="Forecast" width="129" selected="YES" tag="1"/>
+                                                        <segment label="Current Weather" width="117"/>
+                                                        <segment label="Forecast" width="117" selected="YES" tag="1"/>
                                                     </segments>
                                                 </segmentedCell>
                                                 <connections>
@@ -73,9 +73,9 @@
                                                 </connections>
                                             </segmentedControl>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1oS-xB-Iag">
-                                                <rect key="frame" x="262" y="-6" width="179" height="32"/>
+                                                <rect key="frame" x="276" y="-6" width="165" height="32"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="165" id="VWq-Cf-yNs"/>
+                                                    <constraint firstAttribute="width" constant="151" id="VWq-Cf-yNs"/>
                                                 </constraints>
                                                 <buttonCell key="cell" type="push" title="Call Forecast" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fAD-io-zUq">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -85,13 +85,28 @@
                                                     <action selector="fetchMeteoFactsButtonTapped:" target="bU7-R8-ocO" id="ZN0-y0-hw4"/>
                                                 </connections>
                                             </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3WR-jL-Mjw">
+                                                <rect key="frame" x="-7" y="-6" width="39" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="miq-zF-ohi"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSTouchBarRecordStopTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HHP-J9-KIp">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="cancellTapped:" target="bU7-R8-ocO" id="mgn-AD-lAZ"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="leading" secondItem="zyo-VN-gyy" secondAttribute="trailing" constant="10" id="1tr-Rc-N7x"/>
+                                            <constraint firstItem="3WR-jL-Mjw" firstAttribute="leading" secondItem="zay-Cg-HHE" secondAttribute="leading" id="6Jy-yA-EiF"/>
+                                            <constraint firstAttribute="trailing" secondItem="1oS-xB-Iag" secondAttribute="trailing" id="8Dh-tF-nxG"/>
                                             <constraint firstAttribute="height" constant="22" id="9Xh-H2-1x7"/>
-                                            <constraint firstAttribute="trailing" secondItem="1oS-xB-Iag" secondAttribute="trailing" id="AZG-dj-qUR"/>
-                                            <constraint firstItem="zyo-VN-gyy" firstAttribute="bottom" secondItem="zay-Cg-HHE" secondAttribute="bottom" id="c0y-f5-7h7"/>
-                                            <constraint firstItem="zyo-VN-gyy" firstAttribute="leading" secondItem="zay-Cg-HHE" secondAttribute="leading" id="iGI-sZ-lYV"/>
-                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="centerY" secondItem="zyo-VN-gyy" secondAttribute="centerY" id="lvv-Qv-gL5"/>
+                                            <constraint firstItem="1oS-xB-Iag" firstAttribute="centerY" secondItem="zay-Cg-HHE" secondAttribute="centerY" id="Dhq-Kb-uaP"/>
+                                            <constraint firstItem="zyo-VN-gyy" firstAttribute="centerY" secondItem="1oS-xB-Iag" secondAttribute="centerY" id="Swn-M1-T5I"/>
+                                            <constraint firstItem="3WR-jL-Mjw" firstAttribute="centerY" secondItem="1oS-xB-Iag" secondAttribute="centerY" id="hLA-Ht-SRX"/>
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="XET-Lp-4dn" userLabel="MeteoInfo Section">
@@ -269,4 +284,7 @@
             <point key="canvasLocation" x="-43" y="116"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSTouchBarRecordStopTemplate" width="15" height="13"/>
+    </resources>
 </document>

@@ -60,22 +60,40 @@
 	<string>Сведения о месте обновлены</string>
 	<key>Location card is cleared</key>
 	<string>Сведения о месте удалены</string>
-	<key>Item removed from favorites</key>
+	<key>Favorites are limited</key>
+	<string>Список до дома!</string>
+	<key>Removed from favorites</key>
 	<string>Список избранных мест обновлен</string>
-	<key>Item added to favorites</key>
+	<key>Added to favorites</key>
 	<string>Список избранных мест обновлен</string>
+	<key>Exists in favorites</key>
+	<string>Добавлен ранее в список избранных</string>
 	<key>Location Name should be typed</key>
 	<string>Название места можно начать вводить</string>
 	<key>Auto requesting suggestions is on!</key>
 	<string>Авто уточнение включено!</string>
 	<key>Current Location should be selected</key>
 	<string>Координаты на месте обновляются</string>
-	<key>Favorites are limited</key>
-	<string>Список до дома!</string>
 	<key>Current neither to add nor to remove!</key>
 	<string>Ни добавить, ни убавить!</string>
 	<key>API key is either rejected or empty</key>
 	<string>API ключ не загружен или отсутствует</string>
+	<key>Incorrect URL</key>
+	<string>Некорректный Интернет адрес</string>
+	<key>Cancelled call</key>
+	<string>Отменен запрос</string>
+	<key>The Internet connection offline</key>
+	<string>Отсутствует Интернет подключение</string>
+	<key>Timed out call</key>
+	<string>Превышено ожидание сведений</string>
+	<key>Status 404, not found</key>
+	<string>Интернет адрес не обнаружен: 404</string>
+	<key>Empty data</key>
+	<string>Данные пусты</string>
+	<key>Failed Response StatusCode</key>
+	<string>Не извлекается статус ответа</string>
+	<key>There are no suggestions received</key>
+	<string>Соответствующих названий не найдено</string>
 	<key>/* Location View */</key>
 	<string>--</string>
 	<key>Label: Permission</key>

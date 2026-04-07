@@ -64,7 +64,7 @@ struct AppGlobals {
 
     static var currentLocation: GeoPoint? {
         didSet {
-            guard let description = suggestion?.description else {
+            guard let description = currentLocation?.description else {
                 log.message("[\(type(of: self))].\(#function) erased", .info)
                 return
             }
@@ -111,7 +111,7 @@ struct AppGlobals {
             }
 
             // log.message("JSON:\n\(forecast.prettyPrinted ?? "")", .info)
-            log.message("JSON:\n\(forecast.prettyPrinted ?? "")", .info, .standard)
+            log.message("JSON forecast:\n\(forecast.prettyPrinted ?? "")", .info, .standard)
 
             // Save the date and time of the last one.
 
@@ -172,7 +172,6 @@ struct AppGlobals {
     }
 
     static func quitTheApp() {
-        Coordinator.deinitTimer()
         app.terminate(appDelegate)
     }
 

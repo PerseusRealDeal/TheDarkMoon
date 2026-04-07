@@ -1,5 +1,5 @@
 //
-//  Coordinator.swift
+//  ContentCoordinator.swift
 //  TheDarkMoon
 //
 //  Created by Mikhail Zhigulin in 7534 (02.12.2025.)
@@ -52,11 +52,11 @@ class Coordinator {
 
     init() {
 
-        log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)", .notice)
 
         statusMenus = StatusMenusPresenter()
 
-        // Meteo data fetcher
+        // TODO: Should not be connected to statusMenus
         meteoClientManager = MeteoClientManager(presenter: statusMenus)
 
         // Observe StatusMenusItem events
@@ -72,7 +72,7 @@ class Coordinator {
 
     static func start() {
 
-        log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)", .notice)
 
         // The statements before the app's delegate called put here
 
@@ -97,6 +97,18 @@ class Coordinator {
 
     static func deinitTimer() {
         shared.updateTimer?.invalidate()
+    }
+
+    static func cancellWeatherCall() {
+        shared.meteoClientManager?.canellWeatherCall()
+    }
+
+    static func cancellForecastCall() {
+        shared.meteoClientManager?.cancellForecastCall()
+    }
+
+    static func cancellSuggestionsRequest() {
+        shared.meteoClientManager?.cancellSuggestionsRquest()
     }
 
     @objc private func updateCurrentWeatherByTimer() {

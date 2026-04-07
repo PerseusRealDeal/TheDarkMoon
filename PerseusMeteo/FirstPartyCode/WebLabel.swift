@@ -6,9 +6,8 @@
 //
 //  INFO: Mostly based on [Google AI result](https://share.google/aimode/R6SnHOWBFRzizB8lw).
 //
-//  The year starts from the creation of the world in the Star temple
-//  according to a Slavic calendar. September, the 1st of Slavic year.
-//  It means that "Sep 01, 2025" is the beginning of 7534.
+//  The year starts from the creation of the world according to a Slavic calendar.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2025" is the beginning of 7534.
 //
 //  Unlicensed Free Software
 //

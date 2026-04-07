@@ -95,9 +95,9 @@ public class PopoverViewController: NSViewController {
         }
 
         if controlCallRequest.selectedSegment == 0 {
-            presenter?.performFetchMeteo(info: .currentWeather)
+            presenter?.performFetchMeteo(.currentWeather)
         } else {
-            presenter?.performFetchMeteo(info: .forecast)
+            presenter?.performFetchMeteo(.forecast)
         }
 
     }
@@ -159,6 +159,14 @@ public class PopoverViewController: NSViewController {
         }
     }
 
+    @IBAction func cancellTapped(_ sender: NSButton) {
+        if controlCallRequest.selectedSegment == 0 {
+            presenter?.performCancellation(.currentWeather)
+        } else {
+            presenter?.performCancellation(.forecast)
+        }
+    }
+
     // MARK: - Initialization
 
     public override func mouseDown(with event: NSEvent) {
@@ -176,7 +184,7 @@ public class PopoverViewController: NSViewController {
         guard SuggestionsView.shouldProcessVisisbility else { return }
         guard self.viewLocation.viewSuggestions.alphaValue > 0.0 else { return }
 
-        viewLocation.showControls()
+        viewLocation.showControlsIfLegacy()
         DispatchQueue.main.async {
             NSAnimationContext.runAnimationGroup({ context in
                 context.duration = 0.5
@@ -293,6 +301,10 @@ public class PopoverViewController: NSViewController {
             userMessage = "Location card is cleared".localizedValue
         }
 
+        Coordinator.cancellWeatherCall()
+        Coordinator.cancellForecastCall()
+        Coordinator.cancellSuggestionsRequest()
+
         viewLocation?.locationCard = AppOptions.favoriteLocationsOption.first(where: {
             $0.isOnDisplay && $0.isCurrentLocation }) != nil ? .current : .favorite
 
@@ -323,7 +335,7 @@ public class PopoverViewController: NSViewController {
 
         // Add item to favorites
 
-        if viewLocation?.locationCard == .suggestion {
+        if viewLocation?.locationCard == .suggestion, var suggestion = AppGlobals.suggestion {
 
             let limit = AppGlobals.favoritesLimit
             let itemsCount = AppOptions.favoriteLocationsOption.count
@@ -334,8 +346,18 @@ public class PopoverViewController: NSViewController {
                 return
             }
 
-            if var suggestion = AppGlobals.suggestion,
-               let favoriteIndex = AppOptions.favoriteLocationsOption.firstIndex(
+            if AppOptions.favoriteLocationsOption.firstIndex(where: {
+                ($0.name == suggestion.name) &&
+                ($0.latitude == suggestion.latitude) &&
+                ($0.longitude == suggestion.longitude)
+            }) != nil {
+
+                let text = "Exists in favorites".localizedValue
+                log.message(text, .notice, .custom, .enduser)
+                return
+            }
+
+            if let favoriteIndex = AppOptions.favoriteLocationsOption.firstIndex(
                 where: { $0.isOnDisplay }) {
 
                 AppOptions.favoriteLocationsOption[favoriteIndex].isOnDisplay = false
@@ -347,7 +369,7 @@ public class PopoverViewController: NSViewController {
                 viewLocation?.locationCard = .favorite
                 viewLocation?.reloadData()
 
-                let text = "Item added to favorites".localizedValue
+                let text = "Added to favorites".localizedValue
                 log.message(text, .notice, .custom, .enduser)
             }
 
@@ -390,7 +412,7 @@ public class PopoverViewController: NSViewController {
 
             refreshCallInformation()
 
-            let text = "Item removed from favorites".localizedValue
+            let text = "Removed from favorites".localizedValue
             log.message(text, .notice, .custom, .enduser)
 
             return

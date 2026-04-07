@@ -48,7 +48,7 @@ class PopoverViewPresenter: MVPPresenter {
         AppGlobals.quitTheApp()
     }
 
-    func performFetchMeteo(info: OpenWeatherRequest) {
+    func performFetchMeteo(_ info: OpenWeatherRequest) {
 
         log.message("[\(type(of: self))].\(#function)")
 
@@ -61,6 +61,18 @@ class PopoverViewPresenter: MVPPresenter {
             }
         case .forecast:
             Coordinator.callForecast()
+        }
+    }
+
+    func performCancellation(_ info: OpenWeatherRequest) {
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        switch info {
+        case .currentWeather:
+            Coordinator.cancellWeatherCall()
+        case .forecast:
+            Coordinator.cancellForecastCall()
         }
     }
 }

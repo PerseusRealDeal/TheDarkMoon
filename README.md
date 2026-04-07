@@ -1,16 +1,21 @@
+<div align="right">
+
+[`A3 Environment`](/APPROBATION.md) • [`CHANGELOG`](/CHANGELOG.md) • [`The Clear BSD License`](/LICENSE)
+
+</div>
+
 <div align="center">
+
+![Image](https://github.com/user-attachments/assets/75e9c8a3-2a98-41f2-b0fa-8a45c1db3fa2)
 
 Snowman
 ==
 
-__The Status Menus app__
-
-`Current` weather</br>
-`5 Day / 3 Hour` forecast
+__The Status Menus Weather App__
 
 [![Actions Status](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/main.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions)
 [![Style](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml)
-[![Version](https://img.shields.io/badge/Version-0.5.1-green.svg)](/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-0.5.2-green.svg)](/CHANGELOG.md)
 
 [![Platforms](https://img.shields.io/badge/Platform-macOS%2010.13+-orange.svg)](https://en.wikipedia.org/wiki/MacOS_version_history)
 [![Xcode](https://img.shields.io/badge/Xcode-14.2+-red.svg)](https://en.wikipedia.org/wiki/Xcode)
@@ -20,11 +25,17 @@ __The Status Menus app__
 [![ConsolePerseusLogger](http://img.shields.io/:ConsolePerseusLogger-1.7.1-green.svg)](https://github.com/perseusrealdeal/ConsolePerseusLogger.git)
 [![PerseusDarkMode](http://img.shields.io/:PerseusDarkMode-2.2.0-green.svg)](https://github.com/perseusrealdeal/PerseusDarkMode.git)
 [![PerseusGeoKit](http://img.shields.io/:PerseusGeoKit-1.2.1-green.svg)](https://github.com/perseusrealdeal/PerseusGeoKit.git)
-[![OpenWeatherAgent](http://img.shields.io/:OpenWeatherAgent-0.3.5-green.svg)](https://github.com/perseusrealdeal/OpenWeatherAgent)
-
-[`A3 Environment`](/APPROBATION.md) • [`CHANGELOG`](/CHANGELOG.md) • [`Individual API key`](https://openweathermap.org/appid) • [`The Clear BSD License`](/LICENSE)
 
 </div>
+
+Meteo Data Providers
+--
+
+<a href="https://openweathermap.org/">
+    <img src="https://github.com/user-attachments/assets/b87acbc5-0bb4-4d9e-aa53-65356ae23e77" width="75" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+</a>
+
+[`Current weather`](https://openweathermap.org/current?collection=current_forecast) • [`5 Day / 3 Hour forecast`](https://openweathermap.org/forecast5?collection=current_forecast) • [`Geocoding`](https://openweathermap.org/api/geocoding-api?collection=other) •  [`Individual API key`](https://openweathermap.org/appid)
 
 ---
 
@@ -86,7 +97,7 @@ Preview material
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/b0f33526-6879-4631-bea5-c1feb9bc82e4" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/7eef35cb-b8ee-4223-bd23-bf5916b9d65b" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
@@ -97,10 +108,20 @@ Preview material
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/cc101dce-34a2-4cc0-8b76-65026668357f" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/3c3e4617-ee40-4270-b0f7-a94b989e3ad0" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
+
+<!--
+> [!IMPORTANT]
+> `Unidentified developer case:` 
+
+TODO: past the link to the video
+
+> The video above recordered with `QuickTime Player` and than converted with [``](). 
+TODO: past the link to the tool
+-->
 
 </div>
 
@@ -114,7 +135,7 @@ Top features
 
 - Determining Current Location, latitude and longitude
 - Searching location by Name with auto suggesting, optionally
-- Favorites location Names list, add and remove items
+- Favorite locations list, add and remove items
 
 ---
 
@@ -130,9 +151,11 @@ Top features
 
 ---
 
-- Multiline Status Menus, starting from macOS Big Sur (11)
-- ToolTip with extra meteo parameters for Status Menus
-- Saving OpenWeather API key to Keychain
+- `Multiline:` Additional string line for Status Menus item, macOS 11 (Big Sur)+ 
+- `ToolTip:` Showing extra meteo parameters for Status Menus item
+- `Keychain:` Keeping OpenWeather API key saved as a secret
+
+- `Logging:` Viewing log messages. Managing CPL options
 
 Requirements
 ==
@@ -164,7 +187,6 @@ MIT
 | Package  | [PerseusGeoKit v1.2.1](https://github.com/perseusrealdeal/PerseusGeoKit/releases/tag/1.2.1)               |
 | Class    | [PerseusCompassDirection](https://gist.github.com/perseusrealdeal/3b053b2390d704f561ec52c6477b5cf2)       |
 | Variable | [PerseusTimeFormat](https://gist.github.com/perseusrealdeal/7aa89d78d9b1c220cc06682be8908a97)             |
-| Package  | [OpenWeatherAgent v0.3.5](https://github.com/perseusrealdeal/OpenWeatherAgent/releases/tag/0.3.5)         |
 | Class    | [MessageLabel](https://gist.github.com/PerseusRealDeal/dbfed6e01ed80be084983738ba713654)                  |
 
 [Unlicense](https://unlicense.org)
@@ -173,6 +195,7 @@ MIT
 | Type     | Name                                                                                                      |
 | -------- | --------------------------------------------------------------------------------------------------------- |
 | Class    | [WebLabel](/PerseusMeteo/FirstPartyCode/WebLabel.swift)                                                   |
+| Class    | [PerseusNetworkClient](/PerseusMeteo/FirstPartyCode/PerseusNetworkClient.swift)                           |
 
 Third-party software
 ==
@@ -201,7 +224,7 @@ Account points
 - Explicit app options [AppOptions.swift](/PerseusMeteo/AppOptions.swift)
 - Architectural points: 
     - MVP applied. Based on [Gist](https://gist.github.com/PerseusRealDeal/5301e90881732f0cd0040e2083a78a3d)
-    - Coordinator. Top business logic wrapped up in [Coordinator.swift](/PerseusMeteo/BusinessContent/Coordinator.swift)
+    - Coordinator. Top business logic wrapped up in [ContentCoordinator.swift](/PerseusMeteo/BusinessContent/ContentCoordinator.swift)
 - Localization based on Localizable.strings approach
 - [Test Plan](/SnowmanTests/TestPlan.xctestplan) configured for EN and RU
 - [Changelog](/CHANGELOG.md)
@@ -239,7 +262,7 @@ Credits
       <td>Mikhail Zhigulin</td>
   </tr>
   <tr>
-      <td>Source</td>
+      <td>Source Code</td>
       <td>Mikhail Zhigulin</td>
   </tr>
   <tr>

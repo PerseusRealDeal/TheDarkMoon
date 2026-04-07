@@ -365,7 +365,7 @@ class LocationView: NSView, NSTextFieldDelegate {
             // hide suggestions view
             SuggestionsView.shouldProcessVisisbility = false
             viewSuggestions.alphaValue = 0.0
-            showControls()
+            showControlsIfLegacy()
             constraintViewSuggestionsHeight.constant = 0
 
             // remove all suggestions items
@@ -386,6 +386,8 @@ class LocationView: NSView, NSTextFieldDelegate {
         // start indicator
         self.indicatorCircular.isHidden = false
         self.indicatorCircular.startAnimation(nil)
+
+        Coordinator.cancellSuggestionsRequest()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000), execute: {
 
@@ -409,17 +411,23 @@ class LocationView: NSView, NSTextFieldDelegate {
         })
     }
 
-    public func hideControls() {
-        labelLocationName.isHidden = true
-        checkBoxAutoSuggestionsRequest.isHidden = true
-        labelGeoCoordinates.isHidden = true
-        labelAutoSuggestionsRequest.isHidden = true
+    public func hideControlsIfLegacy() {
+        if isLegacy { // TODO: Must be approbated!
+            labelLocationName.isHidden = true
+            // checkBoxAutoSuggestionsRequest.isHidden = true
+            // labelGeoCoordinates.isHidden = true
+            // labelAutoSuggestionsRequest.isHidden = true
+            buttonBookmark.isHidden = true
+        }
     }
 
-    public func showControls() {
-        labelLocationName.isHidden = false
-        checkBoxAutoSuggestionsRequest.isHidden = false
-        labelGeoCoordinates.isHidden = false
-        labelAutoSuggestionsRequest.isHidden = false
+    public func showControlsIfLegacy() {
+        if isLegacy {
+            labelLocationName.isHidden = false
+            // checkBoxAutoSuggestionsRequest.isHidden = false
+            // labelGeoCoordinates.isHidden = false
+            // labelAutoSuggestionsRequest.isHidden = false
+            buttonBookmark.isHidden = false
+        }
     }
 }

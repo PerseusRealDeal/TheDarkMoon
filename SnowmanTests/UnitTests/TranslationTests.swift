@@ -98,11 +98,17 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("Location card is cleared".localizedExpectation,
                        "Location card is cleared".localizedValue)
 
-        XCTAssertEqual("Item removed from favorites".localizedExpectation,
-                       "Item removed from favorites".localizedValue)
+        XCTAssertEqual("Favorites are limited".localizedExpectation,
+                       "Favorites are limited".localizedValue)
 
-        XCTAssertEqual("Item added to favorites".localizedExpectation,
-                       "Item added to favorites".localizedValue)
+        XCTAssertEqual("Removed from favorites".localizedExpectation,
+                       "Removed from favorites".localizedValue)
+
+        XCTAssertEqual("Added to favorites".localizedExpectation,
+                       "Added to favorites".localizedValue)
+
+        XCTAssertEqual("Exists in favorites".localizedExpectation,
+                       "Exists in favorites".localizedValue)
 
         XCTAssertEqual("Location Name should be typed".localizedExpectation,
                        "Location Name should be typed".localizedValue)
@@ -115,6 +121,29 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Current neither to add nor to remove!".localizedExpectation,
                        "Current neither to add nor to remove!".localizedValue)
+
+        XCTAssertEqual("There are no suggestions received".localizedExpectation,
+                       "There are no suggestions received".localizedValue)
+    }
+
+    func test_translation_PerseusNetworkClientError() {
+
+        // assert
+
+        XCTAssertEqual("Incorrect URL".localizedExpectation,
+                       "Incorrect URL".localizedValue)
+        XCTAssertEqual("Cancelled call".localizedExpectation,
+                       "Cancelled call".localizedValue)
+        XCTAssertEqual("The Internet connection offline".localizedExpectation,
+                       "The Internet connection offline".localizedValue)
+        XCTAssertEqual("Timed out call".localizedExpectation,
+                       "Timed out call".localizedValue)
+        XCTAssertEqual("Status 404, not found".localizedExpectation,
+                       "Status 404, not found".localizedValue)
+        XCTAssertEqual("Empty data".localizedExpectation,
+                       "Empty data".localizedValue)
+        XCTAssertEqual("Failed Response StatusCode".localizedExpectation,
+                       "Failed Response StatusCode".localizedValue)
     }
 
     // MARK: - LocationView
@@ -585,7 +614,7 @@ class TranslationTests: XCTestCase {
 
     // MARK: - Weather-conditions descriptions
 
-// swiftlint:disable:next function_body_length
+    // swiftlint:disable:next function_body_length
     func test_translation_weather_conditions_descriptions() {
 
         // assert
