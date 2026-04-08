@@ -69,6 +69,7 @@ public class PopoverViewController: NSViewController {
 
     @IBOutlet private(set) weak var controlCallRequest: NSSegmentedControl!
     @IBOutlet private(set) weak var buttonFetchMeteoFacts: NSButton!
+    @IBOutlet private(set) weak var buttonStopFetchingMeteoFacts: NSButton!
 
     @IBOutlet private(set) weak var viewWeather: WeatherView!
     @IBOutlet private(set) weak var viewForecast: ForecastView!

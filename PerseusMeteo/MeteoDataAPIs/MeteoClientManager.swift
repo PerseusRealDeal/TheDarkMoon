@@ -227,7 +227,7 @@ public class MeteoClientManager {
         else {
             viewLocation.indicatorCircular.isHidden = true
             viewLocation.indicatorCircular.stopAnimation(nil)
-            refreshCurrent(Data())
+            refreshSuggestions(Data())
             return
         }
 
@@ -502,7 +502,7 @@ extension MeteoClientManager {
 
         DispatchQueue.main.async {
 
-            guard data.isEmpty == false else { return }
+            guard data.isEmpty == false || AppGlobals.useSuggestionsSample else { return }
 
             var suggestions: [Location]?
 

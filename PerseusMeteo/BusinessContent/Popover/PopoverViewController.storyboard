@@ -270,6 +270,7 @@
                         <outlet property="buttonLogger" destination="Xlo-RM-Wg8" id="EVa-k7-ZC8"/>
                         <outlet property="buttonOptions" destination="lEc-RC-GkU" id="9WS-WU-GoL"/>
                         <outlet property="buttonQuit" destination="3AG-Tj-6c2" id="Lh0-xY-ekv"/>
+                        <outlet property="buttonStopFetchingMeteoFacts" destination="3WR-jL-Mjw" id="vLi-jx-711"/>
                         <outlet property="controlCallRequest" destination="zyo-VN-gyy" id="7RR-em-SJQ"/>
                         <outlet property="labelGreeting" destination="Vs7-Lz-WvA" id="Ixk-im-rBZ"/>
                         <outlet property="labelMadeWithLove" destination="II3-Ni-sjv" id="ohb-Gv-dHz"/>
