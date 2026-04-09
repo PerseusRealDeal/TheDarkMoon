@@ -66,13 +66,13 @@
                                 </scroller>
                             </scrollView>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="E91-G5-Edf">
-                                <rect key="frame" x="400" y="8" width="252" height="24"/>
+                                <rect key="frame" x="370" y="8" width="282" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="A8M-Vg-7MA">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment label="standard" width="80"/>
-                                        <segment label="consoleapp" width="80" selected="YES" tag="1"/>
-                                        <segment label="custom" width="80"/>
+                                        <segment label="Standard" width="90"/>
+                                        <segment label="Console.app" width="90" selected="YES" tag="1"/>
+                                        <segment label="Custom" width="90"/>
                                     </segments>
                                 </segmentedCell>
                                 <connections>
@@ -80,8 +80,8 @@
                                 </connections>
                             </segmentedControl>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1vb-ky-Svo">
-                                <rect key="frame" x="331" y="11" width="66" height="18"/>
-                                <buttonCell key="cell" type="check" title="turned" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zya-PK-OL5">
+                                <rect key="frame" x="298" y="11" width="69" height="18"/>
+                                <buttonCell key="cell" type="check" title="Turned" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zya-PK-OL5">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -145,7 +145,7 @@
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ivl-5H-7ok">
                                 <rect key="frame" x="8" y="352" width="63" height="18"/>
-                                <buttonCell key="cell" type="check" title="marks" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="k26-gT-O8p">
+                                <buttonCell key="cell" type="check" title="Marks" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="k26-gT-O8p">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -154,8 +154,8 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2JS-Tf-p5z">
-                                <rect key="frame" x="74" y="352" width="53" height="18"/>
-                                <buttonCell key="cell" type="check" title="time" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Bgb-M9-TQY">
+                                <rect key="frame" x="74" y="352" width="56" height="18"/>
+                                <buttonCell key="cell" type="check" title="Time" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Bgb-M9-TQY">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -164,8 +164,8 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1kF-qO-mmn">
-                                <rect key="frame" x="130" y="352" width="64" height="18"/>
-                                <buttonCell key="cell" type="check" title="owner" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="84c-uB-Nk8">
+                                <rect key="frame" x="133" y="352" width="66" height="18"/>
+                                <buttonCell key="cell" type="check" title="Owner" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="84c-uB-Nk8">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -174,8 +174,8 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hdU-S8-Hbp">
-                                <rect key="frame" x="197" y="352" width="90" height="18"/>
-                                <buttonCell key="cell" type="check" title="dirrectives" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="sfP-aC-4Ip">
+                                <rect key="frame" x="202" y="352" width="92" height="18"/>
+                                <buttonCell key="cell" type="check" title="Dirrectives" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="sfP-aC-4Ip">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>

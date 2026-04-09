@@ -15,7 +15,7 @@ __The Status Menus Weather App__
 
 [![Actions Status](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/main.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions)
 [![Style](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml)
-[![Version](https://img.shields.io/badge/Version-0.5.2-green.svg)](/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-0.5.3-green.svg)](/CHANGELOG.md)
 
 [![Platforms](https://img.shields.io/badge/Platform-macOS%2010.13+-orange.svg)](https://en.wikipedia.org/wiki/MacOS_version_history)
 [![Xcode](https://img.shields.io/badge/Xcode-14.2+-red.svg)](https://en.wikipedia.org/wiki/Xcode)
@@ -288,7 +288,9 @@ Credits
 </table>
 
 > [!IMPORTANT]
-> The `OpenWeather` icons taken from `https://openweathermap.org` to represent weather condition that also available online by OpenWeatherMap API request.
+> The OpenWeather `logo` taken from [`https://github.com/openweathermap`](https://github.com/openweathermap).
+>
+> The OpenWeather `weather condition icons` taken from [`https://openweathermap.org`](https://openweathermap.org) that also available online by OpenWeatherMap API request.
 
 - Artwork tool: [GIMP](https://www.gimp.org/) / [2.10.36](https://download.gimp.org/gimp/v2.10/osx/) for macOS 10.12 Sierra or newer
 - Language support: [Reverso](https://www.reverso.net/) 

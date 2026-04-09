@@ -181,13 +181,13 @@ class LocationView: NSView, NSTextFieldDelegate {
 
         viewSuggestions.wantsLayer = true
         viewSuggestions.collectionView = collectionSuggestions
+        viewSuggestions.alphaValue = 0.0
 
         collectionSuggestions.delegate = viewSuggestions
         collectionSuggestions.dataSource = viewSuggestions
         collectionSuggestions.backgroundColors = [NSColor.clear]
 
         constraintViewSuggestionsHeight.constant = 0
-        viewSuggestions.alphaValue = 0.0
 
         checkBoxAutoSuggestionsRequest.state =
         AppOptions.autoSuggestionsRequestOption == true ? .on : .off
@@ -412,22 +412,24 @@ class LocationView: NSView, NSTextFieldDelegate {
     }
 
     public func hideControlsIfLegacy() {
-        if isLegacy { // TODO: Must be approbated!
-            labelLocationName.isHidden = true
+        if isLegacy {
+            // labelLocationName.isHidden = true
             // checkBoxAutoSuggestionsRequest.isHidden = true
             // labelGeoCoordinates.isHidden = true
             // labelAutoSuggestionsRequest.isHidden = true
             buttonBookmark.isHidden = true
+            comboBoxFavorites.isHidden = true
         }
     }
 
     public func showControlsIfLegacy() {
         if isLegacy {
-            labelLocationName.isHidden = false
+            // labelLocationName.isHidden = false
             // checkBoxAutoSuggestionsRequest.isHidden = false
             // labelGeoCoordinates.isHidden = false
             // labelAutoSuggestionsRequest.isHidden = false
             buttonBookmark.isHidden = false
+            comboBoxFavorites.isHidden = false
         }
     }
 }
