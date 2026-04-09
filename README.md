@@ -288,7 +288,9 @@ Credits
 </table>
 
 > [!IMPORTANT]
-> The `OpenWeather` icons taken from `https://openweathermap.org` to represent weather condition that also available online by OpenWeatherMap API request.
+> The OpenWeather `logo` taken from [`https://github.com/openweathermap`](https://github.com/openweathermap).
+>
+> The OpenWeather `weather condition icons` taken from [`https://openweathermap.org`](https://openweathermap.org) that also available online by OpenWeatherMap API request.
 
 - Artwork tool: [GIMP](https://www.gimp.org/) / [2.10.36](https://download.gimp.org/gimp/v2.10/osx/) for macOS 10.12 Sierra or newer
 - Language support: [Reverso](https://www.reverso.net/) 
