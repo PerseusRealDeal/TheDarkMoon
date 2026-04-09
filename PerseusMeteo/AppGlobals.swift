@@ -43,7 +43,6 @@ var isLegacy: Bool { // true for High Sierra, Mojave, Catalina
     if #available(macOS 11.0, *) {
         return false
     }
-
     return true
 }
 

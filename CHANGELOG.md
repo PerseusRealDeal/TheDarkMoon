@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Given a version number MAJOR.MINOR.PATCH, where MAJOR in 0 means developer edition.
 - Date in format YYYY-MM-DD, in this file meets Gregorian calendar only.
 
+## [0.5.4] - [2026-??-??], The Dark Moon
+
+### Added
+
+- Additional preview material.
+
 ## [0.5.3] - [2026-04-09], The Dark Moon
 
 ### Added
@@ -24,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Log message about current location.
 
-### Reconstracted
+### Reconstructed
 
 - OpenWeather Free Client API Agent to PerseusNetworkClient.
 
@@ -99,7 +105,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Selfie screen.
 - Logger screen.
-- PGK dependecy to v1.1.2.
+- PGK dependency to v1.1.2.
 
 ### Other
 
@@ -119,7 +125,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Updated
 
 - Selfie window.
-- Dependecies.
+- Dependencies.
 
 ## [0.4.1] - [2025-11-17], The Dark Moon
 
@@ -164,7 +170,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Updated
 
-- Dependencies: CPL, PDM, PGK, OWA. 
+- Dependencies: CPL, PDM, PGK, OpenWeatherAgent. 
 
 ## [0.2] - [2024-02-01], Current Weather
 
