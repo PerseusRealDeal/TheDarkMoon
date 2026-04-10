@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Additional preview material.
 
+### Fixed
+
+- Log message about forecast retry attempts count.
+
 ## [0.5.3] - [2026-04-09], The Dark Moon
 
 ### Added
