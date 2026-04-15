@@ -53,8 +53,8 @@ public class MeteoClientManager {
 
     private var retriesCountCurrent = 0
     private var retriesCountForecast = 0
-
     private var retriesCountSuggestions = 0
+
     private var retrySearchSuggestions = ""
 
     private var isReadyToCall = false
@@ -395,7 +395,7 @@ extension MeteoClientManager {
                     retriesCountForecast += 1
 
                     let text = "The Forecast call retry attempt"
-                    log.message(text + ": \(self.retriesCountSuggestions)", .info)
+                    log.message(text + ": \(self.retriesCountForecast)", .info)
 
                     DispatchQueue.main.async {
                         self.fetchForecast()

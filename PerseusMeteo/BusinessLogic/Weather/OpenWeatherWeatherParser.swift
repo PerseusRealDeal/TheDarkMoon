@@ -71,65 +71,69 @@
 
 import Foundation
 
+func getInstance<T>(_ tag: String,
+                    _ type: T.Type,
+                    _ dic: [String: Any]) -> T? where T: Any {
+
+    if dic.isEmpty {
+        log.message("\(#function) \"\(tag)\", but dictionary is empty", .error)
+        return nil
+    }
+
+    if let value = dic[tag] {
+        if let instance = value as? T {
+
+            // log.message("\(#function) \"\(tag)\" cast to \(T.self)", .notice)
+
+            return instance
+
+        } else {
+            log.message("\(#function)\"\(tag)\" can't be cast to \(T.self)", .error)
+        }
+    } else {
+        log.message("\(#function) \"\(tag)\" not found", .notice)
+    }
+
+    return nil
+}
+
 public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getTimeZone(from dictionary: [String: Any]) -> Int? {
 
-        if dictionary.isEmpty {
-            return nil
-        }
+        // Timezone
 
-        // Timezone.
-
-        guard
-            let timezone = dictionary["timezone"] as? Int
-        else {
-            log.message("[\(type(of: self))].\(#function) [timezone] mistaken", .error)
-            return nil
-        }
-
-        return timezone
+        return getInstance("timezone", Int.self, dictionary)
     }
 
     public func getLastOne(from dictionary: [String: Any]) -> Int? {
 
-        if dictionary.isEmpty {
-            return nil
-        }
+        // Date and Time
 
-        // Date and Time.
+        return getInstance("dt", Int.self, dictionary)
+    }
 
-        guard
-            let dt = dictionary["dt"] as? Int
-        else {
-            log.message("[\(type(of: self))].\(#function) [dt] mistaken", .error)
-            return nil
-        }
+    public func getVisibility(from dictionary: [String: Any]) -> Int? {
 
-        return dt
+        // Visibility
+
+        return getInstance("visibility", Int.self, dictionary)
     }
 
     public func getWeatherDescription(from dictionary: [String: Any]) -> String? {
 
-        if dictionary.isEmpty {
-            return nil
-        }
-
         if let weather = dictionary["weather"] as? [Any] {
             if let wFirst = weather.first as? [String: Any] {
-                if let description = wFirst["description"] as? String {
 
-                    return description
+                // Current Weather Conditions
 
-                } else {
-                    let text = "[\(type(of: self))].\(#function) [description] mistaken"
-                    log.message(text, .error)
-                }
+                return getInstance("description", String.self, wFirst)
+
             } else {
-                log.message("[\(type(of: self))].\(#function) Weather first mistaken", .error)
+                log.message("[\(type(of: self))].\(#function) weather.first mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) [weather] mistaken", .error)
+            log.message("[\(type(of: self))].\(#function) \"weather\" mistaken", .error)
         }
 
         return nil
@@ -137,14 +141,12 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getWeatherIconName(from dictionary: [String: Any]) -> String? {
 
-        if dictionary.isEmpty {
-            return nil
-        }
-
         if let weather = dictionary["weather"] as? [Any] {
             if let wFirst = weather.first as? [String: Any] {
-                if let id = wFirst["id"] as? Int,
-                   let icon = wFirst["icon"] as? String {
+                if let id = getInstance("id", Int.self, wFirst),
+                   let icon = getInstance("icon", String.self, wFirst) {
+
+                    // Current Weather Conditions Icon name
 
                     let iconName = representOpenWeatherMapIcon(id, icon)
 
@@ -154,10 +156,10 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
                     log.message("[\(type(of: self))].\(#function) [id.icon] mistaken", .error)
                 }
             } else {
-                log.message("[\(type(of: self))].\(#function) Weather first mistaken", .error)
+                log.message("[\(type(of: self))].\(#function) weather.first mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) [weather] mistaken", .error)
+            log.message("[\(type(of: self))].\(#function) \"weather\" mistaken", .error)
         }
 
         return nil
@@ -165,297 +167,171 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
     public func getTemperature(from dictionary: [String: Any]) -> String? {
 
-        if dictionary.isEmpty {
+        guard let main = dictionary["main"] as? [String: Any] else {
+            log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .error)
             return nil
         }
 
-        if let main = dictionary["main"] as? [String: Any] {
-            if let temp = main["temp"] as? Double {
+        // Temperature
 
-                return temp.description
-
-            } else {
-                log.message("[\(type(of: self))].\(#function) [temp] mistaken", .error)
-            }
-        } else {
-            log.message("[\(type(of: self))].\(#function) [main] mistaken", .error)
-        }
-
-        return nil
+        return getInstance("temp", Double.self, main)?.description
     }
 
     public func getTemperatureFeelsLike(from dictionary: [String: Any]) -> String? {
 
-        if dictionary.isEmpty {
+        guard let main = dictionary["main"] as? [String: Any] else {
+            log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .error)
             return nil
         }
 
-        if let main = dictionary["main"] as? [String: Any] {
-            if let feels_like = main["feels_like"] as? Double {
+        // Temperature Feels Like
 
-                return feels_like.description
-
-            } else {
-                log.message("[\(type(of: self))].\(#function) [feels_like] mistaken", .error)
-            }
-        } else {
-            log.message("[\(type(of: self))].\(#function) [main] mistaken", .error)
-        }
-
-        return nil
+        return getInstance("feels_like", Double.self, main)?.description
     }
 
     public func getTemperatureMinimum(from dictionary: [String: Any]) -> String? {
 
-        if dictionary.isEmpty {
+        guard let main = dictionary["main"] as? [String: Any] else {
+            log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .error)
             return nil
         }
 
-        if let main = dictionary["main"] as? [String: Any] {
-            if let temp_min = main["temp_min"] as? Double {
+        // Temperature Minimum
 
-                return temp_min.description
-
-            } else {
-                log.message("[\(type(of: self))].\(#function) [temp_min] mistaken", .error)
-            }
-        } else {
-            log.message("[\(type(of: self))].\(#function) [main] mistaken", .error)
-        }
-
-        return nil
+        return getInstance("temp_min", Double.self, main)?.description
     }
 
     public func getTemperatureMaximum(from dictionary: [String: Any]) -> String? {
 
-        if dictionary.isEmpty {
+        guard let main = dictionary["main"] as? [String: Any] else {
+            log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .error)
             return nil
         }
 
-        if let main = dictionary["main"] as? [String: Any] {
-            if let temp_max = main["temp_max"] as? Double {
+        // Temperature Maximum
 
-                return temp_max.description
-
-            } else {
-                log.message("[\(type(of: self))].\(#function) [temp_max] mistaken", .error)
-            }
-        } else {
-            log.message("[\(type(of: self))].\(#function) [main] mistaken", .error)
-        }
-
-        return nil
+        return getInstance("temp_max", Double.self, main)?.description
     }
 
     public func getWindSpeed(from dictionary: [String: Any]) -> String? {
 
-        if dictionary.isEmpty {
+        guard let wind = dictionary["wind"] as? [String: Any] else {
+            log.message("[\(type(of: self))].\(#function) \"wind\" mistaken", .notice)
             return nil
         }
 
-        if let wind = dictionary["wind"] as? [String: Any] {
-            if let speed = wind["speed"] as? Double {
+        // Wind Speed
 
-                return speed.description
-
-            } else {
-                log.message("[\(type(of: self))].\(#function) [speed] mistaken", .error)
-            }
-        } else {
-            log.message("[\(type(of: self))].\(#function) [wind] mistaken", .error)
-        }
-
-        return nil
+        return getInstance("speed", Double.self, wind)?.description
     }
 
     public func getWindGusts(from dictionary: [String: Any]) -> String? {
 
-        if dictionary.isEmpty {
+        guard let wind = dictionary["wind"] as? [String: Any] else {
+            log.message("[\(type(of: self))].\(#function) \"wind\" mistaken", .notice)
             return nil
         }
 
-        if let wind = dictionary["wind"] as? [String: Any] {
-            if let gust = wind["gust"] as? Double {
+        // Wind Gust
 
-                return gust.description
-
-            } else {
-                log.message("[\(type(of: self))].\(#function) [gust] mistaken", .error)
-            }
-        } else {
-            log.message("[\(type(of: self))].\(#function) [wind] mistaken", .error)
-        }
-
-        return nil
+        return getInstance("gust", Double.self, wind)?.description
     }
 
     public func getWindDirection(from dictionary: [String: Any]) -> String? {
 
-        if dictionary.isEmpty {
+        guard let wind = dictionary["wind"] as? [String: Any] else {
+            log.message("[\(type(of: self))].\(#function) \"wind\" mistaken", .notice)
             return nil
         }
 
-        if let wind = dictionary["wind"] as? [String: Any] {
-            if let deg = wind["deg"] as? Int {
+        // Wind Direction
 
-                return deg.description
-
-            } else {
-                log.message("[\(type(of: self))].\(#function) [deg] mistaken", .error)
-            }
-        } else {
-            log.message("[\(type(of: self))].\(#function) [wind] mistaken", .error)
-        }
-
-        return nil
+        return getInstance("deg", Int.self, wind)?.description
     }
 
     public func getPressure(from dictionary: [String: Any]) -> String? {
 
-        if dictionary.isEmpty {
+        guard let main = dictionary["main"] as? [String: Any] else {
+            log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .notice)
             return nil
         }
 
-        if let main = dictionary["main"] as? [String: Any] {
-            if let pressure = main["pressure"] as? Int {
+        // Pressure
 
-                return pressure.description
-
-            } else {
-                log.message("[\(type(of: self))].\(#function) [pressure] mistaken", .error)
-            }
-        } else {
-            log.message("[\(type(of: self))].\(#function) [main] mistaken", .error)
-        }
-
-        return nil
+        return getInstance("pressure", Int.self, main)?.description
     }
 
     public func getHumidity(from dictionary: [String: Any]) -> Int? {
 
-        if dictionary.isEmpty {
+        guard let main = dictionary["main"] as? [String: Any] else {
+            log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .notice)
             return nil
         }
 
-        if let main = dictionary["main"] as? [String: Any] {
-            if let humidity = main["humidity"] as? Int {
+        // Humidity
 
-                return humidity
-
-            } else {
-                log.message("[\(type(of: self))].\(#function) [humidity] mistaken", .error)
-            }
-        } else {
-            log.message("[\(type(of: self))].\(#function) [main] mistaken", .error)
-        }
-
-        return nil
+        return getInstance("humidity", Int.self, main)
     }
 
     public func getCloudiness(from dictionary: [String: Any]) -> Int? {
 
-        if dictionary.isEmpty {
+        guard let clouds = dictionary["clouds"] as? [String: Any] else {
+            log.message("[\(type(of: self))].\(#function) \"clouds\" mistaken", .notice)
             return nil
         }
 
-        if let clouds = dictionary["clouds"] as? [String: Any] {
-            if let all = clouds["all"] as? Int {
+        // Cloudiness
 
-                return all
-
-            } else {
-                log.message("[\(type(of: self))].\(#function) [all] mistaken", .error)
-            }
-        } else {
-            log.message("[\(type(of: self))].\(#function) [clouds] mistaken", .error)
-        }
-
-        return nil
-    }
-
-    public func getVisibility(from dictionary: [String: Any]) -> Int? {
-
-        if dictionary.isEmpty {
-            return nil
-        }
-
-        if let visibility = dictionary["visibility"] as? Int {
-
-            return visibility
-
-        } else {
-            log.message("[\(type(of: self))].\(#function) [visibility] mistaken", .error)
-        }
-
-        return nil
+        return getInstance("all", Int.self, clouds)
     }
 
     public func getSunrise(from dictionary: [String: Any]) -> Int? {
 
-        if dictionary.isEmpty {
+        guard let sys = dictionary["sys"] as? [String: Any] else {
+            log.message("[\(type(of: self))].\(#function) \"sys\" mistaken", .notice)
             return nil
         }
 
-        if let sys = dictionary["sys"] as? [String: Any] {
-            if let rise = sys["sunrise"] as? Int {
+        // Sunrise
 
-                return rise
-
-            } else {
-                log.message("[\(type(of: self))].\(#function) [sunrise] mistaken", .error)
-            }
-        } else {
-            log.message("[\(type(of: self))].\(#function) [sys] mistaken", .error)
-        }
-
-        return nil
+        return getInstance("sunrise", Int.self, sys)
     }
 
     public func getSunset(from dictionary: [String: Any]) -> Int? {
 
-        if dictionary.isEmpty {
+        guard let sys = dictionary["sys"] as? [String: Any] else {
+            log.message("[\(type(of: self))].\(#function) \"sys\" mistaken", .notice)
             return nil
         }
 
-        if let sys = dictionary["sys"] as? [String: Any] {
-            if let sunset = sys["sunset"] as? Int {
+        // Sunset
 
-                return sunset
-            } else {
-                log.message("[\(type(of: self))].\(#function) [sunset] mistaken", .error)
-            }
-        } else {
-            log.message("[\(type(of: self))].\(#function) [sys] mistaken", .error)
-        }
-
-        return nil
+        return getInstance("sunset", Int.self, sys)
     }
 
     public func getWeatherConditions(from source: [String: Any]) -> WeatherConditions {
-
-        if source.isEmpty {
-            return MeteoFactsDefaults.weatherConditions
-        }
 
         var value: WeatherConditions?
 
         if let weather = source["weather"] as? [Any] {
             if let wFirst = weather.first as? [String: Any] {
                 if
-                    let id = wFirst["id"] as? Int,
-                    let icon = wFirst["icon"] as? String,
+                    let id = getInstance("id", Int.self, wFirst),
+                    let icon = getInstance("icon", String.self, wFirst),
                     let code = WeatherCode(rawValue: id) {
+
+                    // WeatherConditions struct
 
                     value = WeatherConditions(code: code, name: icon)
 
                 } else {
-                    log.message("\(#function) [id / icon] mistaken", .error)
+                    log.message("\(#function) [id.icon] mistaken", .error)
                 }
             } else {
-                log.message("\(#function) weatherFirst wrong", .error)
+                log.message("\(#function) weather.first wrong", .error)
             }
         } else {
-            log.message("\(#function) [weather] mistaken", .error)
+            log.message("\(#function) \"weather\" mistaken", .error)
         }
 
         guard let conditions = value else { return MeteoFactsDefaults.weatherConditions }

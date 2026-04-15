@@ -14,21 +14,6 @@
 //
 
 import Cocoa
-import CoreLocation
-
-// MARK: - App Globals
-
-extension Notification.Name {
-    public static let suggestionNotification = Notification.Name("suggestionNotification")
-    public static let favoriteNotification = Notification.Name("favoriteNotification")
-    public static let bookmarkNotification = Notification.Name("bookmarkNotification")
-}
-
-extension GeoPoint {
-    public init(_ latitude: Double, _ longitude: Double) {
-        self.location = CLLocation(latitude: latitude, longitude: longitude)
-    }
-}
 
 // To adjust DarkMode appearance for HighSierra
 var isHighSierra: Bool { // true for HighSierra
@@ -43,9 +28,10 @@ var isLegacy: Bool { // true for High Sierra, Mojave, Catalina
     if #available(macOS 11.0, *) {
         return false
     }
-
     return true
 }
+
+// MARK: - App Globals
 
 struct AppGlobals {
 
@@ -188,6 +174,11 @@ struct AppGlobals {
 
         log.message("[\(type(of: self))].\(#function) called: \(link)", .info)
     }
+
+    static func permissionStatusLocalized() -> String {
+        let status = GeoAgent.currentStatus.localizedKey.localizedValue
+        return "Label: Permission".localizedValue + ": \(status)."
+    }
 }
 
 func loadCPLProfile(_ name: String) -> (status: Bool, info: String) {
@@ -199,12 +190,5 @@ func loadCPLProfile(_ name: String) -> (status: Bool, info: String) {
         }
     } else {
         return (false, "Failed to create URL.")
-    }
-}
-
-extension AppGlobals {
-    static func permissionStatusLocalized() -> String {
-        let status = GeoAgent.currentStatus.localizedKey.localizedValue
-        return "Label: Permission".localizedValue + ": \(status)."
     }
 }

@@ -331,9 +331,25 @@ class LocationView: NSView, NSTextFieldDelegate {
             comboBoxFavorites.removeAllItems()
 
             for item in locations {
-                comboBoxFavorites.addItem(withObjectValue: "\(item)".localizedValue)
+
+                var value = ""
+
+                if item.isCurrentLocation {
+                    value = "\(item)".localizedValue
+                } else if let country = item.country,
+                          let lat = item.latitude,
+                          let lon = item.longitude {
+
+                    let name = "\(item)".localizedValue
+                    value = "\(country): \(name) \(lat.cut(.two)), \(lon.cut(.two))"
+                } else {
+                    value = "\(item)".localizedValue
+                }
+
+                comboBoxFavorites.addItem(withObjectValue: value)
             }
 
+            // ISSUE: comboBox selects the first with the same value, no matter what index is
             comboBoxFavorites.selectItem(at: indexToDisplay)
         }
     }
