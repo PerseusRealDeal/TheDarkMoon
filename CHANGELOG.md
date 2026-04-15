@@ -10,7 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+<!--
 - Additional preview material.
+-->
+-  Additional information about location to favorites ComboBox values.
 
 ### Fixed
 
