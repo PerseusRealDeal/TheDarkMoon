@@ -397,7 +397,7 @@
 	<key>Label: Copyright Notice</key>
 	<string>Copyright © 7531 - 7534 Mikhail Zhigulin of Novosibirsk</string>
 	<key>Label: Copyright Details</key>
-	<string>The year starts from the creation of the world in the Star temple according to a Slavic calendar. September, the 1st of Slavic year</string>
+	<string>The year starts from the creation of the world in the Star temple according to a Slavic calendar. September, the 1st of Slavic year. Sep 01, 2025 is the beginning of 7534</string>
 	<key>Label: Credits</key>
 	<string>Credits</string>
 	<key>Label: Balancing and Control</key>
@@ -407,7 +407,7 @@
 	<key>Label: Documenting</key>
 	<string>Documented by</string>
 	<key>Label: Artworking</key>
-	<string>Artwork by</string>
+	<string>Artwork (logo) by</string>
 	<key>Label: EN Expectation</key>
 	<string>English by</string>
 	<key>Label: RU Expectation</key>

@@ -327,13 +327,13 @@
 			path = UIMeteoComponents;
 			sourceTree = "<group>";
 		};
-		2EE6C9EC2F7A51B700FB5C27 /* MeteoDataAPIs */ = {
+		2EE6C9EC2F7A51B700FB5C27 /* MeteoAPIs */ = {
 			isa = PBXGroup;
 			children = (
 				4B1CA6A22B549358003F3EBF /* MeteoClientManager.swift */,
 				2E1083D22E2B624E00400180 /* OpenWeather */,
 			);
-			path = MeteoDataAPIs;
+			path = MeteoAPIs;
 			sourceTree = "<group>";
 		};
 		2EF147E42E966E3600BE657C /* StatusMenus */ = {
@@ -384,7 +384,7 @@
 				4B14840229128A930013B76E /* Configuration */,
 				4B6F98752927E7C600ADB03A /* FirstPartyCode */,
 				2EDC74D62EE2E4E500073C94 /* UIMeteoComponents */,
-				2EE6C9EC2F7A51B700FB5C27 /* MeteoDataAPIs */,
+				2EE6C9EC2F7A51B700FB5C27 /* MeteoAPIs */,
 				4B14840429128E460013B76E /* BusinessContent */,
 				4B684C6D2B438A370063E359 /* BusinessLogic */,
 			);
