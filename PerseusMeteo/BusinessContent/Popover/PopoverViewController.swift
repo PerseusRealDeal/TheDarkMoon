@@ -104,15 +104,24 @@ public class PopoverViewController: NSViewController {
     }
 
     @IBAction func aboutButtonTapped(_ sender: NSButton) {
-        Coordinator.shared.screenSelfie.showWindow(sender)
+        let selfie = Coordinator.shared.screenSelfie
+
+        selfie.showWindow(sender)
+        selfie.window?.level = .floating
     }
 
     @IBAction func optionsButtonTapped(_ sender: NSButton) {
-        Coordinator.shared.screenOptions.showWindow(sender)
+        let options = Coordinator.shared.screenOptions
+
+        options.showWindow(sender)
+        options.window?.level = .floating
     }
 
     @IBAction func buttonLoggerTapped(_ sender: Any) {
-        Coordinator.shared.screenLogger.showWindow(sender)
+        let logger = Coordinator.shared.screenLogger
+
+        logger.showWindow(sender)
+        logger.window?.level = .floating
     }
 
     @IBAction func hideAppScreensButtonTapped(_ sender: NSButton) {
