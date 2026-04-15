@@ -280,10 +280,10 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
                 return gust.description
 
             } else {
-                log.message("[\(type(of: self))].\(#function) [gust] mistaken", .error)
+                log.message("[\(type(of: self))].\(#function) \"gust\" nil", .notice)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) [wind] mistaken", .error)
+            log.message("[\(type(of: self))].\(#function) \"wind\" nil", .notice)
         }
 
         return nil

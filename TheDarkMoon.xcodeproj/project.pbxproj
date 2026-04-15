@@ -37,6 +37,7 @@
 		2ED6C7F82ECEDF50009EF57D /* OptionsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED6C7F72ECEDF50009EF57D /* OptionsViewPresenter.swift */; };
 		2ED8FE1D2E40F36C00C65619 /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED8FE1C2E40F36C00C65619 /* MessageLabel.swift */; };
 		2EDC74DA2EE30B0B00073C94 /* WebLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC74D92EE30B0B00073C94 /* WebLabel.swift */; };
+		2EE4ED0E2F8F984B006D4D9C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE4ED0D2F8F984B006D4D9C /* Extensions.swift */; };
 		2EF147E62E966E6400BE657C /* CustomStatusButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EF147E52E966E6400BE657C /* CustomStatusButtonView.xib */; };
 		2EF147E92E966E8800BE657C /* CustomStatusButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF147E82E966E8800BE657C /* CustomStatusButtonView.swift */; };
 		4B030E7D2B2DB42200ED9018 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 4B030E7C2B2DB42200ED9018 /* CHANGELOG.md */; };
@@ -160,6 +161,7 @@
 		2ED6C7F72ECEDF50009EF57D /* OptionsViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewPresenter.swift; sourceTree = "<group>"; };
 		2ED8FE1C2E40F36C00C65619 /* MessageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabel.swift; sourceTree = "<group>"; };
 		2EDC74D92EE30B0B00073C94 /* WebLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebLabel.swift; sourceTree = "<group>"; };
+		2EE4ED0D2F8F984B006D4D9C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2EF147E52E966E6400BE657C /* CustomStatusButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomStatusButtonView.xib; sourceTree = "<group>"; };
 		2EF147E82E966E8800BE657C /* CustomStatusButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStatusButtonView.swift; sourceTree = "<group>"; };
 		4B030E7C2B2DB42200ED9018 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -316,7 +318,7 @@
 			path = MVPPattern;
 			sourceTree = "<group>";
 		};
-		2EDC74D62EE2E4E500073C94 /* UIMeteoComponents */ = {
+		2EDC74D62EE2E4E500073C94 /* UIBusinessComponents */ = {
 			isa = PBXGroup;
 			children = (
 				4BB204662B7536BA007E0308 /* LocationView */,
@@ -324,16 +326,16 @@
 				4BB204682B7536E5007E0308 /* ForecastView */,
 				4B5F7D422BB6980600121946 /* MeteoInformation */,
 			);
-			path = UIMeteoComponents;
+			path = UIBusinessComponents;
 			sourceTree = "<group>";
 		};
-		2EE6C9EC2F7A51B700FB5C27 /* MeteoAPIs */ = {
+		2EE6C9EC2F7A51B700FB5C27 /* BusinessAPIs */ = {
 			isa = PBXGroup;
 			children = (
 				4B1CA6A22B549358003F3EBF /* MeteoClientManager.swift */,
 				2E1083D22E2B624E00400180 /* OpenWeather */,
 			);
-			path = MeteoAPIs;
+			path = BusinessAPIs;
 			sourceTree = "<group>";
 		};
 		2EF147E42E966E3600BE657C /* StatusMenus */ = {
@@ -383,10 +385,10 @@
 				4B1483E42912892C0013B76E /* AppDelegate.swift */,
 				4B14840229128A930013B76E /* Configuration */,
 				4B6F98752927E7C600ADB03A /* FirstPartyCode */,
-				2EDC74D62EE2E4E500073C94 /* UIMeteoComponents */,
-				2EE6C9EC2F7A51B700FB5C27 /* MeteoAPIs */,
 				4B14840429128E460013B76E /* BusinessContent */,
 				4B684C6D2B438A370063E359 /* BusinessLogic */,
+				2EE6C9EC2F7A51B700FB5C27 /* BusinessAPIs */,
+				2EDC74D62EE2E4E500073C94 /* UIBusinessComponents */,
 			);
 			path = PerseusMeteo;
 			sourceTree = "<group>";
@@ -413,6 +415,7 @@
 				4B1483ED2912892F0013B76E /* Info.plist */,
 				4B1483EE2912892F0013B76E /* PerseusMeteo.entitlements */,
 				2EBB4CA82ED73C7A00C44504 /* AppLinks.swift */,
+				2EE4ED0D2F8F984B006D4D9C /* Extensions.swift */,
 				2E558B302EDD60B000AFF695 /* CPLConfig.json */,
 			);
 			path = Configuration;
@@ -863,6 +866,7 @@
 				4B993DC92B380FDD008C1FE7 /* WeatherView.swift in Sources */,
 				2EBB4CA62ED73C4F00C44504 /* SelfieViewController.swift in Sources */,
 				4B5F7D3B2B98EACA00121946 /* MeteoCategory.swift in Sources */,
+				2EE4ED0E2F8F984B006D4D9C /* Extensions.swift in Sources */,
 				4B8426362B13523600C86E8A /* PerseusDataDefender.swift in Sources */,
 				2EC294362ECDE1B400FC06F1 /* MVPViewDelegate.swift in Sources */,
 				4BB204742B7805DF007E0308 /* ForecastHour.swift in Sources */,

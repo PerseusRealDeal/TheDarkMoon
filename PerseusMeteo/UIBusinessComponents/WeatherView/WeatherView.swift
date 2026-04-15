@@ -133,7 +133,7 @@ class WeatherView: NSView {
         labelTemperatureValue.stringValue = temperature
         viewWeatherConditionsIcon.image = img
 
-        labelWeatherConditionsDescriptionValue.stringValue = wcs.description
+        labelWeatherConditionsDescriptionValue.stringValue = "\(wcs)".capitalizingFirstLetter()
 
         // Sunrise and sunset
 

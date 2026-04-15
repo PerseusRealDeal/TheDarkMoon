@@ -102,8 +102,8 @@
 
 /* Current Weather View */
 
-"Label: Meteo Data Provider" = "Meteo Information from";
-"Label: Weather Conditions" = "Weather Conditions";
+"Label: Meteo Data Provider" = "Meteo information from";
+"Label: Weather Conditions" = "Weather conditions";
 
 "Prefix: Curren Weather in Brief" = "In brief";
 "Prefix: Feels Like" = "Kinda";
