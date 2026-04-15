@@ -192,12 +192,16 @@ class ForecastView: NSView {
                     let item = dataSource.forecastDays[index].hours[0]
 
                     viewMeteoGroup.data = item.prepareMeteoGroupData()
-                    labelWeatherDescription.stringValue = item.weatherConditions.description
+
+                    labelWeatherDescription.stringValue =
+                    "\(item.weatherConditions)".capitalizingFirstLetter()
                 } else {
                     let item = dataSource.forecastDays[0].hours[0]
 
                     viewMeteoGroup.data = item.prepareMeteoGroupData()
-                    labelWeatherDescription.stringValue = item.weatherConditions.description
+
+                    labelWeatherDescription.stringValue =
+                    "\(item.weatherConditions)".capitalizingFirstLetter()
                 }
             }
         }
@@ -257,7 +261,9 @@ class ForecastView: NSView {
                 let item = dataSource.forecastDays[dayItem].hours[hourItem]
 
                 viewMeteoGroup.data = item.prepareMeteoGroupData()
-                labelWeatherDescription.stringValue = item.weatherConditions.description
+
+                labelWeatherDescription.stringValue =
+                "\(item.weatherConditions)".capitalizingFirstLetter()
             }
         }
 
@@ -400,8 +406,13 @@ extension ForecastView: NSCollectionViewDelegate {
                 hourDetails = day.hours[(hourIndexPaths as NSIndexPath).item]
             }
 
-            labelWeatherDescription.stringValue =
-                hourDetails?.weatherConditions.description ?? MeteoFactsDefaults.conditions
+            if let details = hourDetails {
+                labelWeatherDescription.stringValue =
+                "\(details.weatherConditions)".capitalizingFirstLetter()
+            } else {
+                labelWeatherDescription.stringValue = MeteoFactsDefaults.conditions
+            }
+
             viewMeteoGroup.data = hourDetails?.prepareMeteoGroupData()
         }
     }

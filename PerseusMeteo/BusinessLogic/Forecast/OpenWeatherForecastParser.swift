@@ -47,23 +47,14 @@ public class OpenWeatherForecastParser: ForecastParserProtocol {
 
     public func getTimeZone(from dictionary: [String: Any]) -> Int? {
 
-        // log.message("[\(type(of: self))].\(#function)")
-
-        if let city = dictionary["city"] as? [String: Any] {
-            if let timezone = city["timezone"] as? Int {
-
-                // log.message("[\(type(of: self))].\(#function): \(timezone)")
-
-                return timezone
-
-            } else {
-                log.message("[\(type(of: self))].\(#function) [timezone] mistaken", .error)
-            }
-        } else {
+        guard let city = dictionary["city"] as? [String: Any] else {
             log.message("[\(type(of: self))].\(#function) [city] mistaken", .error)
+            return nil
         }
 
-        return nil
+        // TimeZone
+
+        return getInstance("timezone", Int.self, city)
     }
 
     public func getForecastDays(from dictionary: [String: Any]) -> [ForecastDay]? {
