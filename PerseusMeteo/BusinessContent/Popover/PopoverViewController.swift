@@ -47,7 +47,7 @@ extension PopoverViewController {
 public class PopoverViewController: NSViewController {
 
     deinit {
-        Coordinator.deinitTimer()
+        ContentCoordinator.deinitTimer()
     }
 
     // MARK: - Presenter
@@ -104,32 +104,23 @@ public class PopoverViewController: NSViewController {
     }
 
     @IBAction func aboutButtonTapped(_ sender: NSButton) {
-        let selfie = Coordinator.shared.screenSelfie
-
-        selfie.showWindow(sender)
-        selfie.window?.level = .floating
+        ContentCoordinator.shared.screenSelfie.showWindow(sender)
     }
 
     @IBAction func optionsButtonTapped(_ sender: NSButton) {
-        let options = Coordinator.shared.screenOptions
-
-        options.showWindow(sender)
-        options.window?.level = .floating
+        ContentCoordinator.shared.screenOptions.showWindow(sender)
     }
 
     @IBAction func buttonLoggerTapped(_ sender: Any) {
-        let logger = Coordinator.shared.screenLogger
-
-        logger.showWindow(sender)
-        logger.window?.level = .floating
+        ContentCoordinator.shared.screenLogger.showWindow(sender)
     }
 
     @IBAction func hideAppScreensButtonTapped(_ sender: NSButton) {
 
-        guard let popover = Coordinator.shared.statusMenus.popover else { return }
+        guard let popover = ContentCoordinator.shared.statusMenus.popover else { return }
 
-        Coordinator.shared.screenSelfie.close()
-        Coordinator.shared.screenOptions.close()
+        ContentCoordinator.shared.screenSelfie.close()
+        ContentCoordinator.shared.screenOptions.close()
 
         popover.performClose(sender)
     }
@@ -214,7 +205,7 @@ public class PopoverViewController: NSViewController {
             return
         }
 
-        Coordinator.shared.statusMenus.reloadData()
+        ContentCoordinator.shared.statusMenus.reloadData()
 
         weather.reloadData()
         forecast.reloadData(saveSelection: true)
@@ -288,7 +279,7 @@ public class PopoverViewController: NSViewController {
         viewForecast?.selectTheFirstForecastDay()
         viewForecast?.selectTheFirstForecastHour()
 
-        Coordinator.shared.statusMenus.reloadData()
+        ContentCoordinator.shared.statusMenus.reloadData()
 
         refreshCallInformation()
     }
@@ -311,9 +302,9 @@ public class PopoverViewController: NSViewController {
             userMessage = "Location card is cleared".localizedValue
         }
 
-        Coordinator.cancellWeatherCall()
-        Coordinator.cancellForecastCall()
-        Coordinator.cancellSuggestionsRequest()
+        ContentCoordinator.cancellWeatherCall()
+        ContentCoordinator.cancellForecastCall()
+        ContentCoordinator.cancellSuggestionsRequest()
 
         viewLocation?.locationCard = AppOptions.favoriteLocationsOption.first(where: {
             $0.isOnDisplay && $0.isCurrentLocation }) != nil ? .current : .favorite
@@ -330,11 +321,11 @@ public class PopoverViewController: NSViewController {
         viewForecast?.selectTheFirstForecastDay()
         viewForecast?.selectTheFirstForecastHour()
 
-        Coordinator.shared.statusMenus.reloadData()
+        ContentCoordinator.shared.statusMenus.reloadData()
 
         refreshCallInformation()
 
-        Coordinator.startUpdateTimerIfNeeded()
+        ContentCoordinator.startUpdateTimerIfNeeded()
 
         log.message(userMessage, .notice, .custom, .enduser)
     }

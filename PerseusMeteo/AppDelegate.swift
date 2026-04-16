@@ -24,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         GeoCoordinator.reloadGeoComponents()
 
         LanguageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
-        Coordinator.startUpdateTimerIfNeeded()
+        ContentCoordinator.startUpdateTimerIfNeeded()
 
         // Observe system sleep events
         NSWorkspace.shared.notificationCenter.addObserver(
@@ -49,21 +49,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc func systemWillSleep(_ notification: Notification) {
         log.message("[\(type(of: self))].\(#function) System is about to sleep.", .info)
-        Coordinator.deinitTimer()
+        ContentCoordinator.deinitTimer()
     }
 
     @objc func systemDidWake(_ notification: Notification) {
         log.message("[\(type(of: self))].\(#function) System has woken up.", .info)
-        Coordinator.startUpdateTimerIfNeeded()
+        ContentCoordinator.startUpdateTimerIfNeeded()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
 
-        Coordinator.deinitTimer()
+        ContentCoordinator.deinitTimer()
 
-        Coordinator.cancellWeatherCall()
-        Coordinator.cancellForecastCall()
-        Coordinator.cancellSuggestionsRequest()
+        ContentCoordinator.cancellWeatherCall()
+        ContentCoordinator.cancellForecastCall()
+        ContentCoordinator.cancellSuggestionsRequest()
 
         // Unregister observers when the application terminates
         NSWorkspace.shared.notificationCenter.removeObserver(self)

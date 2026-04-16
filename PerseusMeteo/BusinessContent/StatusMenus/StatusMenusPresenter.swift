@@ -104,10 +104,10 @@ public class StatusMenusPresenter {
 
         if popover.isShown {
             popover.performClose(button)
-            Coordinator.shared.screenSelfie.close()
-            Coordinator.shared.screenOptions.close()
+            ContentCoordinator.shared.screenSelfie.close()
+            ContentCoordinator.shared.screenOptions.close()
         } else {
-            popover.contentViewController = Coordinator.shared.screenPopover
+            popover.contentViewController = ContentCoordinator.shared.screenPopover
             popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         }
     }
@@ -115,7 +115,7 @@ public class StatusMenusPresenter {
     @objc private func makeUp() {
         log.message("[\(type(of: self))].\(#function)")
 
-        Coordinator.shared.statusMenus.popover?.appearance =
+        ContentCoordinator.shared.statusMenus.popover?.appearance =
         DarkModeAgent.shared.style == .light ? LIGHT_APPEARANCE_DEFAULT_IN_USE :
         DARK_APPEARANCE_DEFAULT_IN_USE
     }

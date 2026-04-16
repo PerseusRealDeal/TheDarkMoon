@@ -101,7 +101,7 @@ struct AppGlobals {
 
             // Save the date and time of the last one.
 
-            let src = Coordinator.shared.screenPopover.viewForecast.dataSource
+            let src = ContentCoordinator.shared.screenPopover.viewForecast.dataSource
             let currentTimeInUTC = Date().timeIntervalSince1970
 
             src.addResponseDateAndTime(dt: Int(currentTimeInUTC))

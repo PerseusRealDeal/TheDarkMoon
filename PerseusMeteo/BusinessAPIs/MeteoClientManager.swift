@@ -136,7 +136,7 @@ public class MeteoClientManager {
         log.message(callDetails.urlString.replacingOccurrences(of: key, with: "###"), .notice)
 
         do {
-            Coordinator.shared.screenPopover.startAnimationProgressIndicator(.weather)
+            ContentCoordinator.shared.screenPopover.startAnimationProgressIndicator(.weather)
 
             try serviceCurrentWeather.call(
                 urlString: callDetails.urlString,
@@ -147,7 +147,7 @@ public class MeteoClientManager {
 
             log.message("[\(type(of: self))].\(#function) \(error)", .error)
 
-            Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
+            ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
 
             isReadyToCall = true
         }
@@ -196,7 +196,7 @@ public class MeteoClientManager {
         log.message(callDetails.urlString.replacingOccurrences(of: key, with: "###"), .notice)
 
         do {
-            Coordinator.shared.screenPopover.startAnimationProgressIndicator(.forecast)
+            ContentCoordinator.shared.screenPopover.startAnimationProgressIndicator(.forecast)
 
             try serviceForecast.call(
                 urlString: callDetails.urlString,
@@ -207,7 +207,7 @@ public class MeteoClientManager {
 
             log.message("[\(type(of: self))].\(#function) \(error)", .error)
 
-            Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
+            ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
 
             isReadyToCallForecast = true
         }
@@ -218,7 +218,7 @@ public class MeteoClientManager {
         guard
             self.isReadyToGetSuggestions,
             search.isEmpty == false,
-            let viewLocation = Coordinator.shared.screenPopover.viewLocation
+            let viewLocation = ContentCoordinator.shared.screenPopover.viewLocation
         else {
             return
         }
@@ -294,7 +294,7 @@ extension MeteoClientManager {
     private func handleCurrent(response: Result<Data, PerseusNetworkClientError>) {
 
         DispatchQueue.main.async {
-            Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
+            ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
         }
 
         var meteoData: Data?
@@ -357,8 +357,8 @@ extension MeteoClientManager {
 
         DispatchQueue.main.async {
 
-            Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
-            Coordinator.shared.screenPopover.reloadWeatherData()
+            ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
+            ContentCoordinator.shared.screenPopover.reloadWeatherData()
 
             self.presenter.reloadData()
             self.isReadyToCall = true
@@ -368,7 +368,7 @@ extension MeteoClientManager {
     private func handleForecast(response: Result<Data, PerseusNetworkClientError>) {
 
         DispatchQueue.main.async {
-            Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
+            ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
         }
 
         var meteoData: Data?
@@ -428,8 +428,8 @@ extension MeteoClientManager {
 
         DispatchQueue.main.async {
 
-            Coordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
-            Coordinator.shared.screenPopover.reloadForecastData()
+            ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
+            ContentCoordinator.shared.screenPopover.reloadForecastData()
 
             self.isReadyToCallForecast = true
         }
@@ -440,7 +440,8 @@ extension MeteoClientManager {
 
             // stopAnimationIndicator
 
-            let indicator = Coordinator.shared.screenPopover.viewLocation.indicatorCircular
+            let indicator =
+            ContentCoordinator.shared.screenPopover.viewLocation.indicatorCircular
 
             indicator?.isHidden = true
             indicator?.stopAnimation(nil)
@@ -514,7 +515,7 @@ extension MeteoClientManager {
 
             guard
                 let suggestions = suggestions,
-                let viewLocation = Coordinator.shared.screenPopover.viewLocation
+                let viewLocation = ContentCoordinator.shared.screenPopover.viewLocation
             else {
                 return
             }
@@ -546,7 +547,7 @@ extension MeteoClientManager {
 
         var locationCardType: LocationCardType?
 
-        if let type = Coordinator.shared.screenPopover.viewLocation?.locationCard {
+        if let type = ContentCoordinator.shared.screenPopover.viewLocation?.locationCard {
             locationCardType = type
         } else {
             locationCardType = AppOptions.favoriteLocationsOption.first(where: {
