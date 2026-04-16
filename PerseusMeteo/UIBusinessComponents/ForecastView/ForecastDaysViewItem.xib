@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nkt-hG-g5x">
-                    <rect key="frame" x="4" y="26" width="20" height="20"/>
+                    <rect key="frame" x="2" y="28" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Nkt-hG-g5x" secondAttribute="height" multiplier="1:1" id="B1n-F1-aIq"/>
                         <constraint firstAttribute="width" constant="20" id="szc-Cd-a26"/>
@@ -30,7 +30,7 @@
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Icon" id="9p6-8b-LmZ"/>
                 </imageView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s8f-Ug-kfR" userLabel="TheDay">
-                    <rect key="frame" x="26" y="32" width="68" height="16"/>
+                    <rect key="frame" x="24" y="32" width="68" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Fri, 15 mar" id="0xz-dL-lqL">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -38,7 +38,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zax-ey-164">
-                    <rect key="frame" x="26" y="18" width="41" height="14"/>
+                    <rect key="frame" x="37" y="18" width="41" height="14"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Details" id="d0x-OJ-GYK">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -59,9 +59,9 @@
                 <constraint firstItem="s8f-Ug-kfR" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="2" id="QPt-vc-ejF"/>
                 <constraint firstItem="gvT-0f-XvS" firstAttribute="bottom" secondItem="c22-O7-iKe" secondAttribute="bottom" constant="-3" id="WUC-1f-m4w"/>
                 <constraint firstItem="s8f-Ug-kfR" firstAttribute="leading" secondItem="Nkt-hG-g5x" secondAttribute="trailing" constant="4" id="XRr-MJ-DyX"/>
-                <constraint firstItem="Nkt-hG-g5x" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="4" id="jPU-Zv-RYW"/>
-                <constraint firstItem="Nkt-hG-g5x" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="4" id="kZ0-UW-fWH"/>
-                <constraint firstItem="zax-ey-164" firstAttribute="leading" secondItem="s8f-Ug-kfR" secondAttribute="leading" id="lD8-jm-MNT"/>
+                <constraint firstItem="Nkt-hG-g5x" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="2" id="jPU-Zv-RYW"/>
+                <constraint firstItem="Nkt-hG-g5x" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="2" id="kZ0-UW-fWH"/>
+                <constraint firstItem="zax-ey-164" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="qJA-m6-7gt"/>
                 <constraint firstItem="gvT-0f-XvS" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="tTH-7T-AbW"/>
             </constraints>
             <point key="canvasLocation" x="138" y="153"/>
