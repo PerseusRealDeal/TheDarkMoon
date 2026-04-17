@@ -103,7 +103,7 @@ public class MeteoClientManager {
         }
 
         guard let point = getLocationPoint() else {
-            log.message("[\(type(of: self))].\(#function) location is nil")
+            log.message("[\(type(of: self))].\(#function) location is nil", .notice)
             return
         }
 
@@ -161,7 +161,7 @@ public class MeteoClientManager {
         }
 
         guard let point = getLocationPoint() else {
-            log.message("[\(type(of: self))].\(#function) location is nil.", .error)
+            log.message("[\(type(of: self))].\(#function) location is nil.", .notice)
             return
         }
 

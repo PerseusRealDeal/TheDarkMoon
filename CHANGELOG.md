@@ -6,15 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Given a version number MAJOR.MINOR.PATCH, where MAJOR in 0 means developer edition.
 - Date in format YYYY-MM-DD, in this file meets Gregorian calendar only.
 
-## [0.6.0] - [2026-??-??], The Dark Moon
-
-## [0.5.4] - [2026-04-15], The Dark Moon
+## [0.5.5] - [2026-04-17], The Dark Moon
 
 ### Added
 
 <!--
 - Additional preview material.
 -->
+
+- Auto meteo fetching in case if current location is setted and auto update turned on.
+
+## [0.5.4] - [2026-04-15], The Dark Moon
+
+### Added
 
 - Additional information about location to favorites ComboBox values.
 - Minor improvements. 

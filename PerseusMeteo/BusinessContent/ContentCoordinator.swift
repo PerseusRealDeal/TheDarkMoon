@@ -144,6 +144,8 @@ class ContentCoordinator {
                 log.message("[\(type(of: self))].\(#function) the timer fired", .info)
             }
 
+        log.message("[\(type(of: self))].\(#function) the timer fired", .info)
+
         main.meteoClientManager?.fetchWeather()
     }
 }

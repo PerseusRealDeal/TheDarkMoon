@@ -56,6 +56,7 @@ struct AppGlobals {
             }
 
             log.message("[\(type(of: self))].\(#function) \(description) setted", .info)
+            ContentCoordinator.startUpdateTimerIfNeeded()
         }
     }
 

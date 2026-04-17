@@ -21,11 +21,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         log.message("[\(type(of: self))].\(#function)", .info)
 
-        GeoCoordinator.reloadGeoComponents()
-
-        LanguageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
-        ContentCoordinator.startUpdateTimerIfNeeded()
-
         // Observe system sleep events
         NSWorkspace.shared.notificationCenter.addObserver(
             self,
@@ -42,7 +37,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             object: nil
         )
 
+        LanguageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
         DarkModeAgent.force(DarkModeUserChoice)
+
+        GeoCoordinator.reloadGeoComponents()
+        ContentCoordinator.startUpdateTimerIfNeeded()
 
         log.message("Started with business matter purpose...", .info)
     }
