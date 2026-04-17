@@ -141,7 +141,7 @@ class LocationView: NSView, NSTextFieldDelegate {
             return
         }
 
-        Coordinator.fetchSuggestions(textFieldLocationNameSearch.stringValue)
+        ContentCoordinator.fetchSuggestions(textFieldLocationNameSearch.stringValue)
     }
 
     @IBAction func bookmarkButtonTapped(_ sender: NSButton) {
@@ -403,7 +403,7 @@ class LocationView: NSView, NSTextFieldDelegate {
         self.indicatorCircular.isHidden = false
         self.indicatorCircular.startAnimation(nil)
 
-        Coordinator.cancellSuggestionsRequest()
+        ContentCoordinator.cancellSuggestionsRequest()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000), execute: {
 
@@ -423,7 +423,7 @@ class LocationView: NSView, NSTextFieldDelegate {
                 return
             }
 
-            Coordinator.fetchSuggestions(self.textFieldLocationNameSearch.stringValue)
+            ContentCoordinator.fetchSuggestions(self.textFieldLocationNameSearch.stringValue)
         })
     }
 

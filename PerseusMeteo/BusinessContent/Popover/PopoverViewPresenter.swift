@@ -55,12 +55,12 @@ class PopoverViewPresenter: MVPPresenter {
         switch info {
         case .currentWeather:
             if AppOptions.statusMenusPeriodOption == .none {
-                Coordinator.callWeather()
+                ContentCoordinator.callWeather()
             } else {
-                Coordinator.startUpdateTimerIfNeeded()
+                ContentCoordinator.startUpdateTimerIfNeeded()
             }
         case .forecast:
-            Coordinator.callForecast()
+            ContentCoordinator.callForecast()
         }
     }
 
@@ -70,9 +70,9 @@ class PopoverViewPresenter: MVPPresenter {
 
         switch info {
         case .currentWeather:
-            Coordinator.cancellWeatherCall()
+            ContentCoordinator.cancellWeatherCall()
         case .forecast:
-            Coordinator.cancellForecastCall()
+            ContentCoordinator.cancellForecastCall()
         }
     }
 }

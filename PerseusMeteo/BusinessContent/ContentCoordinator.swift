@@ -15,7 +15,7 @@
 
 import Foundation
 
-class Coordinator {
+class ContentCoordinator {
 
     // MARK: - Internals
 
@@ -29,15 +29,27 @@ class Coordinator {
     }()
 
     lazy var screenOptions = { () -> OptionsWindowController in
-        return OptionsWindowController.storyboardInstance()
+
+        let screen = OptionsWindowController.storyboardInstance()
+        screen.window?.level = .floating
+
+        return screen
     }()
 
     lazy var screenSelfie = { () -> SelfieWindowController in
-        return SelfieWindowController.storyboardInstance()
+
+        let screen = SelfieWindowController.storyboardInstance()
+        screen.window?.level = .floating
+
+        return screen
     }()
 
     lazy var screenLogger = { () -> LoggerWindowController in
-        return LoggerWindowController.storyboardInstance()
+
+        let screen = LoggerWindowController.storyboardInstance()
+        screen.window?.level = .floating
+
+        return screen
     }()
 
     // MARK: - Components
@@ -46,7 +58,7 @@ class Coordinator {
 
     // MARK: - Singletone
 
-    static let shared = Coordinator()
+    static let shared = ContentCoordinator()
 
     // MARK: - Initialization
 
@@ -62,7 +74,7 @@ class Coordinator {
         // Observe StatusMenusItem events
         AppGlobals.notificationCenter.addObserver(
             self,
-            selector: #selector(Coordinator.shared.updateCurrentWeatherByTimer),
+            selector: #selector(ContentCoordinator.shared.updateCurrentWeatherByTimer),
             name: NSNotification.Name.updateCurrentWeatherByTimerCommand,
             object: nil
         )
@@ -113,7 +125,7 @@ class Coordinator {
 
     @objc private func updateCurrentWeatherByTimer() {
 
-        let main = Coordinator.shared
+        let main = ContentCoordinator.shared
 
         main.updateTimer?.invalidate()
         main.statusMenus.reloadData()
@@ -131,6 +143,8 @@ class Coordinator {
                 main.meteoClientManager?.fetchWeather()
                 log.message("[\(type(of: self))].\(#function) the timer fired", .info)
             }
+
+        log.message("[\(type(of: self))].\(#function) the timer fired", .info)
 
         main.meteoClientManager?.fetchWeather()
     }
