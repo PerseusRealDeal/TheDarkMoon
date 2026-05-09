@@ -28,16 +28,31 @@ __The Status Menus Weather App__
 
 </div>
 
-Meteo Data Providers
+Meteo source switching
 --
 
-<a href="https://openweathermap.org/">
-    <img src="https://github.com/user-attachments/assets/b87acbc5-0bb4-4d9e-aa53-65356ae23e77" width="75" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
-</a>
-
-[`Current weather`](https://openweathermap.org/current?collection=current_forecast) • [`5 Day / 3 Hour forecast`](https://openweathermap.org/forecast5?collection=current_forecast) • [`Geocoding`](https://openweathermap.org/api/geocoding-api?collection=other) •  [`Individual API key`](https://openweathermap.org/appid)
-
----
+<table>
+  <tr>
+    <td>
+        <a href="https://open-meteo.com">
+            <img src="https://github.com/user-attachments/assets/9f0b74d4-53ee-4fa8-8972-d1cd0c5de5f2" width="80" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/><br>Open-Meteo
+        </a>
+    </td>
+    <td>
+        <a href="https://open-meteo.com/en/docs">API: Current & Weather Forecast</a> • <a href="https://open-meteo.com/en/docs/geocoding-api">Geocoding</a><br><br><a href="https://open-meteo.com/en/terms">Terms and Privacy</a> • <a href="https://open-meteo.com/en/licence">License</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <a href="https://openweathermap.org">
+            <img src="https://github.com/user-attachments/assets/b87acbc5-0bb4-4d9e-aa53-65356ae23e77" width="80" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/><br>OpenWeather
+        </a>
+    </td>
+    <td>
+        <a href="https://openweathermap.org/current?collection=current_forecast">API: Current & Weather 5 Day / 3 Hour Forecast</a> • <a href="https://openweathermap.org/api/geocoding-api?collection=other">Geocoding</a> • <a href="https://openweathermap.org/appid">Individual API key</a><br><br><a href="https://openweather.co.uk/api/files/file/Openweather_website_terms_and_conditions_of_use.pdf">Terms</a> • <a href="https://openweather.co.uk/privacy-policy">Privacy</a> • <a href="https://openweathermap.org/guide#licensing">License</a>
+    </td>
+  </tr>
+</table>
 
 Contents
 ==
@@ -79,8 +94,6 @@ Our Terms
 | T3      | [The_Technological_Tree](https://github.com/perseusrealdeal/TheTechnologicalTree)                         |
 | P2P     | Person_to_Person                                                                                          |
 
----
-
 The why
 --
 
@@ -88,6 +101,12 @@ The why
 
 Preview material
 --
+
+<!--
+
+TODO: refresh GUI screens
+
+-->
 
 <div align="center">
 
@@ -128,24 +147,27 @@ TODO: past the link to the tool
 Top features
 --
 
-- Requesting current weather for Current Location and specific location name
-- Requesting `5 Day / 3 Hour` forecast for Current Location and specific location name
+- `Current weather` for Current Location and specific location name
+- `Forecast` for Current Location and specific location name
+- `Geocoding` for searching location by location name with auto suggesting, optionally
+- `Current Location` determining, latitude and longitude via [PGK](https://github.com/perseusrealdeal/PerseusGeoKit.git)
 
 ---
 
-- Determining Current Location, latitude and longitude
-- Searching location by Name with auto suggesting, optionally
-- Favorite locations list, add and remove items
-
----
-
-- `Temperature:` Kelvin, Celsius, Fahrenheit
-- `Wind speed:` meter/sec, km/hour, miles per hour
+- `Temperature (Low, High, Kinda):` Kelvin, Celsius, Fahrenheit
 - `Visibility:` Kilometre, Mile
-- `Barometer:` hPa, mmHg, mb
+- `Wind (Speed, Direction, Gust):` meter/sec, km/hour, miles per hour
+- `Pressure:` hPa, mmHg, mb
+- `Humidity:` %
+- `Cloudiness:` %
+- `Sunrise:` local time
+- `Sunset:` local time
 
+---
+
+- `Favorites list:` Collecting locations, add and remove items
 - `Multilanguage:` English and Russian
-- `Dark Mode:` Light, Dark, System (auto)
+- `Dark Mode:` Light, Dark, System (auto) via [PDM](https://github.com/perseusrealdeal/PerseusDarkMode.git)
 - `Multi time format:` 24-hour and 12 hour
 - `Auto Current Weather update:` per 12 hours, per 3 hours, per hour, none
 
@@ -154,8 +176,7 @@ Top features
 - `Multiline:` Additional string line for Status Menus item, macOS 11 (Big Sur)+ 
 - `ToolTip:` Showing extra meteo parameters for Status Menus item
 - `Keychain:` Keeping OpenWeather API key saved as a secret
-
-- `Logging:` Viewing log messages. Managing CPL options
+- `Logging:` Collecting log messages, special screen with [CPL](https://github.com/perseusrealdeal/ConsolePerseusLogger.git) managing options
 
 Requirements
 ==
@@ -253,6 +274,9 @@ Other required licenses details
 `© 2025 The SwiftLint Contributors` for SwiftLint.<br/>
 `© GitHub` for GitHub Action cirruslabs/swiftlint-action@v1.
 
+`Attribution to Open-Meteo required:` [a link format recommendation](https://open-meteo.com/en/licence#:~:text=Weather%20data%20by%20Open-Meteo%2Ecom)<br/>
+`Attribution to OpenWeather required:` [a link format recommendation](https://openweathermap.org/full-price#:~:text=Weather%20data%20%C2%A9%20OpenWeather)
+
 Credits
 ==
 
@@ -278,19 +302,21 @@ Credits
       <td>Mikhail Zhigulin</td>
   </tr>
   <tr>
-      <td>Russian</td>
+      <td>English</td>
       <td>Mikhail Zhigulin</td>
   </tr>
   <tr>
-      <td>English</td>
+      <td>Russian</td>
       <td>Mikhail Zhigulin</td>
   </tr>
 </table>
 
 > [!IMPORTANT]
+> The Open-Meteo `logo` taken from [`https://open-meteo.com/favicon.ico`](https://open-meteo.com/favicon.ico).</br>
 > The OpenWeather `logo` taken from [`https://github.com/openweathermap`](https://github.com/openweathermap).
->
-> The OpenWeather `weather condition icons` taken from [`https://openweathermap.org`](https://openweathermap.org) that also available online by OpenWeatherMap API request.
+
+> [!NOTE]
+> This weather app uses Apple weather icons to indicate different weather conditions, like fog or haze. 
 
 - Artwork tool: [GIMP](https://www.gimp.org/) / [2.10.36](https://download.gimp.org/gimp/v2.10/osx/) for macOS 10.12 Sierra or newer
 - Language support: [Reverso](https://www.reverso.net/) 
