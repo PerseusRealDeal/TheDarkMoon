@@ -1,54 +1,27 @@
-> # The App's Name: Snowman
+The App's Name: Snowman
+==
 
-> # Idea history
+Idea history
+==
 
-<table>
-    <tr>
-        <th>Versions</th>
-        <th>Product</th>
-        <th>Short description</th>
-    </tr>
-    <tr>
-        <td>0.5+</td>
-        <td>Developer release (candidate).</td>
-        <td>StatusMenusButton view options.</td>
-    </tr>
-    <tr>
-        <td>0.4+</td>
-        <td>Developer release (candidate).</td>
-        <td>Current weather (StatusMenusButton).</td>
-    </tr>
-    <tr>
-        <td>0.4+</td>
-        <td>Developer release (candidate).</td>
-        <td>City search by name (direct geocoding).</td>
-    </tr>
-    <tr>
-        <td>0.4+</td>
-        <td>Developer release (candidate).</td>
-        <td>Favorites (collection of places).</td>
-    </tr>
-    <tr>
-        <td>0.3+</td>
-        <td>Developer release (candidate).</td>
-        <td>Forecast.(*)(**)</td>
-    </tr>
-    <tr>
-        <td>0.2+</td>
-        <td>Developer release (candidate).</td>
-        <td>Current weather (Popover).</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>* Change</td>
-        <td>DATA-1: Default Temperature changed from Celsius to Fahrenheit.</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>** Reject</td>
-        <td>00-3: Starts on login had been canceled.</td>
-    </tr>
-</table>
+- Date in format YYYY-MMM-DD, in this file meets Gregorian calendar only.
+
+| Ver     | Release     | Type         | Top feature                                                 | Link                                                                      |
+| ------- | ----------- | :----------: | ----------------------------------------------------------- | ------------------------------------------------------------------------- |
+| v0.6+   | 2026-NNN-NN | Developer RC | Open-Meteo API: Current & Weather Forecast. Geocoding.      | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.6.0) |
+| v0.5.2+ | 2026-Apr-07 | Developer RC | Retry logic for current, forecast and suggestions calls.    | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.5.2) |
+| v0.5+   | 2025-Dec-29 | Developer RC | Multiline Status Menus.                                     | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.5.0) |
+| v0.4+   | 2025-Nov-13 | Developer RC | OpenWeather API: Direct geocoding. Location search by name. | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.4)   |
+| v0.3+   | 2025-Jun-27 | Developer RC | OpenWeather API: Forecast for Current Location.             | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.3)   |
+| v0.2+   | 2024-Feb-01 | Developer RC | OpenWeather API: Current Weather for Current Location.      | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.2)   |
+| v0.1+   | 2023-Apr-05 | Template RC  | Initial point of development process.                       | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.1)   |
+
+Details took out of expectations
+--
+
+| Ver     | Action   | Detail                 | Link                                                            |
+| ------- | -------- | ---------------------- | --------------------------------------------------------------- |
+| v0.2+   | Rejected | 00-3: Starts on login. | [Issue #7](https://github.com/PerseusRealDeal/TheDarkMoon/issues/7) |
 
 > # Business Tasks:
 
