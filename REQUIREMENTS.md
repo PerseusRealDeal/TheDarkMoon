@@ -1,13 +1,34 @@
 The App's Name: Snowman
 ==
 
-Idea history
+Contents
+==
+
+* [Idea History](#Idea-History)
+    * [Outs of Expectations](#Out-of-Expectations)
+* [Integrations](#Integrations)
+    * [Open-Meteo API](#Open-Meteo-API)
+    * [OpenWeather API](#OpenWeather-API)
+* [Functional Requirements](#Functional-Requirements)
+    * [GUI Sketches](#GUI-Sketches)
+    * [User Stories](#User-Stories)
+* [Business Tasks](#Business-Tasks)
+    * [Current Location](#Current-Location)
+    * [Current Weather](#Current-Weather)
+    * [Forecast](#Forecast)
+    * [Geocoding](#Geocoding)
+* [Special Features](#Special-Features)
+    * [Favorites](#Favorites)
+* [Options](#Options)
+* [Data Mappings](#Data-Mappings)
+
+Idea History
 ==
 
 - Date in format YYYY-MMM-DD, in this file meets Gregorian calendar only.
 
-| Ver     | Release     | Type         | Top feature                                                 | Link                                                                      |
-| ------- | ----------- | :----------: | ----------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Ver     | Release     | Type         | Top feature                                                 | Link |
+| ------- | ----------- | :----------: | ----------------------------------------------------------- | ---- |
 | v0.6+   | 2026-NNN-NN | Developer RC | Open-Meteo API: Current & Weather Forecast. Geocoding.      | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.6.0) |
 | v0.5.2+ | 2026-Apr-07 | Developer RC | Retry logic for current, forecast and suggestions calls.    | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.5.2) |
 | v0.5+   | 2025-Dec-29 | Developer RC | Multiline Status Menus.                                     | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.5.0) |
@@ -16,115 +37,100 @@ Idea history
 | v0.2+   | 2024-Feb-01 | Developer RC | OpenWeather API: Current Weather for Current Location.      | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.2)   |
 | v0.1+   | 2023-Apr-05 | Template RC  | Initial point of development process.                       | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.1)   |
 
-Details took out of expectations
+Outs of Expectations
 --
 
-| Ver     | Action   | Detail                 | Link                                                            |
-| ------- | -------- | ---------------------- | --------------------------------------------------------------- |
+> Details that took out of expectations:
+
+| Ver     | Action   | Detail                 | Link |
+| ------- | -------- | ---------------------- | ---- |
 | v0.2+   | Rejected | 00-3: Starts on login. | [Issue #7](https://github.com/PerseusRealDeal/TheDarkMoon/issues/7) |
 
-> # Business Tasks:
+Integrations
+==
 
-| ID   | Description                 | Operations                          | API product                                  |
-| ---- | --------------------------- | ----------------------------------- | -------------------------------------------- |
-| BT-1 | Fetching current weather    | OP-1, OP-2, OP-4, OP-5, OP-6 REST-3 | https://openweathermap.org/current           |
-| BT-2 | Fetching forecast           | OP-2, OP-3, OP-4, OP-5, REST-3      | https://openweathermap.org/forecast5         |
-| BT-3 | City search by name         | OP-4                                | https://openweathermap.org/api/geocoding-api |
-| BT-4 | Favorites                   | REST-4                              |                                              |
+Open-Meteo API
+--
 
-> # Sketches (GUI requirements)
+| Task                       | API product |
+| -------------------------- | ----------- |
+| Current & Weather Forecast | https://open-meteo.com/en/docs               |
+| Geocoding                  | https://open-meteo.com/en/docs/geocoding-api |
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Description</th>
-    </tr>
-    <tr>
-        <td nowrap>GUI-1</td>
-        <td>The app should look like it presented in the picture below.</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td><img src="https://github.com/perseusrealdeal/macOS.Weather/assets/50202963/b8c4b185-41cf-4c7c-be2f-8cb31c6958fb" width="400" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/></td>
-    </tr>
-    <tr>
-        <td nowrap>GUI-2</td>
-        <td>The app should run as a Status Menus app (the Menu Bar one).</td>
-    </tr>
-    <tr>
-        <td nowrap>GUI-3</td>
-        <td>A typical window should be employed for preferences.</td>
-    </tr>
-    <tr>
-        <td nowrap>REST-1</td>
-        <td>The app should have no Icon in Dock.</td>
-    </tr>
-    <tr>
-        <td nowrap>REST-2</td>
-        <td>The app should have no Main menu.</td>
-    </tr>
-    <tr>
-        <td nowrap>REST-3</td>
-        <td>The app should produce an opportunity to restrict sending geo coordinates from location manager to weather data provider's server.</td>
-    </tr>
-    <tr>
-        <td nowrap>REST-4</td>
-        <td>The list of favorite places should have "current location" item as the first item and can't be removed, but coordinates can be actualized.</td>
-    </tr>
-</table>
+OpenWeather API
+--
 
-> # User Stories
+| Task            | API product |
+| --------------- | ----------- |
+| Current weather | https://openweathermap.org/current           |
+| Forecast        | https://openweathermap.org/forecast5         |
+| Geocoding       | https://openweathermap.org/api/geocoding-api |
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Description</th>
-    </tr>
-    <tr>
-        <td nowrap>US-1</td>
-        <td>As Mikhail, I want to be aware of the current weather condition (popover), so I can feel more in selfcare.</td>
-    </tr>
-    <tr>
-        <td nowrap>US-2</td>
-        <td>As Mikhail, I want to be able to call weather condition again (manually), so I can be sure about the current weather.</td>
-    </tr>
-    <tr>
-        <td nowrap>US-3</td>
-        <td>As Mikhail, I want to be able to adjust the app preferences, so I can feel more comfortable in the app usage.</td>
-    </tr>
-    <tr>
-        <td nowrap>US-4</td>
-        <td>As Mikhail, I want to be able to quit the app, so I can feel more comfortable in the app usage.</td>
-    </tr>
-    <tr>
-        <td nowrap>US-5</td>
-        <td>As Mikhail, I want to be aware of the forecast, so I can feel more in selfcare.</td>
-    </tr>
-    <tr>
-        <td nowrap>US-6</td>
-        <td>As Mikhail, I want to use the name of a location with requesting weather data (direct geocoding.)</td>
-    </tr>
-    <tr>
-        <td nowrap>US-7</td>
-        <td>As Mikhail, I want to enjoy list of favorite places (CRUD operations.)</td>
-    </tr>
-    <tr>
-        <td nowrap>US-8</td>
-        <td>As Mikhail, I want to be aware of the current weather condition (StatusMenusButton), so I can feel more in selfcare.</td>
-    </tr>
-<!--
-    <tr>
-        <td nowrap>US-N</td>
-        <td>As Mikhail, I want to see my current geographical coordinates converted into the name of the nearby location by request weather data (reverse geocoding.)</td>
-    </tr>
--->
-</table>
+Functional Requirements
+==
 
-> # Features (specials)
+GUI Sketches
+--
 
-| ID  | Description | Data |
-| --- | ----------- | ---- |
-| F-1 | Dark Mode   | OO-1 |
+| ID     | Description |
+| ------ | ----------- |
+| GUI-1  | The app should look like it presented in the picture below. </br> ![Image](https://github.com/perseusrealdeal/thedarkmoon/assets/50202963/b8c4b185-41cf-4c7c-be2f-8cb31c6958fb) |
+| GUI-2  | The app should run as a Status Menus app (the Menu Bar one).   |
+| GUI-3  | For preferences (options) a typical window should be employed. |
+| REST-1 | No Icon in Dock.                                               |
+| REST-2 | No Main menu.                                                  |
+
+User Stories
+--
+
+| ID   | Description |
+| ---- | ----------- |
+| US-1 | As Mikhail, I want to be aware of the current weather condition (popover), so I can feel more in selfcare.            |
+| US-2 | As Mikhail, I want to be able to call weather condition again (manually), so I can be sure about the current weather. |
+| US-3 | As Mikhail, I want to be able to adjust the app preferences, so I can feel more comfortable in the app usage.         |
+| US-4 | As Mikhail, I want to be able to quit the app, so I can feel more comfortable in the app usage.                       |
+| US-5 | As Mikhail, I want to be aware of the forecast, so I can feel more in selfcare.                                       |
+| US-6 | As Mikhail, I want to use the name of a location with requesting weather data (direct geocoding.)                     |
+| US-7 | As Mikhail, I want to enjoy list of favorite places (CRUD operations.)                                                |
+| US-8 | As Mikhail, I want to be aware of the current weather condition (StatusMenusButton), so I can feel more in selfcare.  |
+
+Business Tasks
+==
+
+Current Location
+--
+
+- The app should produce an opportunity to restrict sending the Apple location manager's geo coordinates to the weather data provider's server, Geocoding API instead as an alternative for.
+
+Current Weather
+--
+
+Forecast
+--
+
+Geocoding
+--
+
+Special Features
+==
+
+Favorites
+--
+
+- The list of favorite places should have "Current Location" item as the first item that can't be removed.
+
+Options
+==
+
+- Dark Mode switching.
+
+Data Mappings
+==
+
+
+--- 
+> END of FILE
+---
 
 > # Operations
 
