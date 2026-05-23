@@ -9,17 +9,15 @@ Contents
 * [Integrations](#Integrations)
     * [Open-Meteo API](#Open-Meteo-API)
     * [OpenWeather API](#OpenWeather-API)
-* [Functional Requirements](#Functional-Requirements)
-    * [GUI Sketches](#GUI-Sketches)
-    * [User Stories](#User-Stories)
+* [GUI Sketches](#GUI-Sketches)
 * [Business Tasks](#Business-Tasks)
     * [Current Location](#Current-Location)
     * [Current Weather](#Current-Weather)
     * [Forecast](#Forecast)
     * [Geocoding](#Geocoding)
+* [Options](#Options)
 * [Special Features](#Special-Features)
     * [Favorites](#Favorites)
-* [Options](#Options)
 * [Data Mappings](#Data-Mappings)
 
 Idea History
@@ -66,11 +64,8 @@ OpenWeather API
 | Forecast        | https://openweathermap.org/forecast5         |
 | Geocoding       | https://openweathermap.org/api/geocoding-api |
 
-Functional Requirements
-==
-
 GUI Sketches
---
+==
 
 | ID     | Description |
 | ------ | ----------- |
@@ -80,36 +75,124 @@ GUI Sketches
 | REST-1 | No Icon in Dock.                                               |
 | REST-2 | No Main menu.                                                  |
 
-User Stories
---
-
-| ID   | Description |
-| ---- | ----------- |
-| US-1 | As Mikhail, I want to be aware of the current weather condition (popover), so I can feel more in selfcare.            |
-| US-2 | As Mikhail, I want to be able to call weather condition again (manually), so I can be sure about the current weather. |
-| US-3 | As Mikhail, I want to be able to adjust the app preferences, so I can feel more comfortable in the app usage.         |
-| US-4 | As Mikhail, I want to be able to quit the app, so I can feel more comfortable in the app usage.                       |
-| US-5 | As Mikhail, I want to be aware of the forecast, so I can feel more in selfcare.                                       |
-| US-6 | As Mikhail, I want to use the name of a location with requesting weather data (direct geocoding.)                     |
-| US-7 | As Mikhail, I want to enjoy list of favorite places (CRUD operations.)                                                |
-| US-8 | As Mikhail, I want to be aware of the current weather condition (StatusMenusButton), so I can feel more in selfcare.  |
-
 Business Tasks
 ==
 
 Current Location
 --
 
-- The app should produce an opportunity to restrict sending the Apple location manager's geo coordinates to the weather data provider's server, Geocoding API instead as an alternative for.
+- Apple location API should be employed for geo coordinates determining.
+- Geo coordinates determining should be manual, by end-user click.
+- The app should rely on [PerseusGeoKit](https://github.com/PerseusRealDeal/PerseusGeoKit) capabilities for Current Location for instance `Location Access status`, etc.
 
 Current Weather
 --
 
+- The app should show the last current weather API respose time.
+
+| Parameter              | Saved in App               | OpenWeather API Respose  | Open-Meteo API Response |
+| ---------------------- | -------------------------- | ------------------------ | ----------------------- |
+| Weather Icon           | Weather icon id            | Weather icon id          ||
+| Weather Description    | Weather condition codes    | Weather condition codes  ||
+| Sunrise                | UTC                        | UTC                      ||
+| Sunset                 | UTC                        | UTC                      ||
+| Temperature            | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
+| Temperature Low        | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
+| Temperature High       | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
+| Temperature Feels Like | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
+| Visibility             | meter                      | meter                    ||
+| Wind Speed             | meter/sec                  | meter/sec                ||
+| Wind Direction         | degrees (meteorological)   | degrees (meteorological) ||
+| Wind Gust              | meter/sec                  | meter/sec                ||
+| Pressure               | sea level, hPa             | sea level, hPa           ||
+| Humidity               | %                          | %                        || 
+| Cloudiness             | %                          | %                        ||
+
+> OpenWeather API: current weather request with minimum parameters sample
+
+```
+
+https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+
+```
+
+> Open-Meteo API: forecast request with minimum parameters sample
+
+```
+
+```
+
+
 Forecast
 --
 
+- The app should show the last weather forecast API respose time.
+
+> [!NOTE]
+> OpenWeather API Respose: 5 day / 3 hour forecast data [concept](https://openweathermap.org/api/forecast5?collection=current_forecast#concept)
+
+| Parameter              | Saved in App               | OpenWeather API Respose  | Open-Meteo API Response |
+| ---------------------- | -------------------------- | ------------------------ | ----------------------- |
+| Weather Icon           | Weather icon id            | Weather icon id          ||
+| Weather Description    | Weather condition codes    | Weather condition codes  ||
+| Sunrise                | UTC                        | UTC                      ||
+| Sunset                 | UTC                        | UTC                      ||
+| Temperature            | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
+| Temperature Low        | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
+| Temperature High       | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
+| Temperature Feels Like | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
+| Visibility             | meter                      | meter                    ||
+| Wind Speed             | meter/sec                  | meter/sec                ||
+| Wind Direction         | degrees (meteorological)   | degrees (meteorological) ||
+| Wind Gust              | meter/sec                  | meter/sec                ||
+| Pressure               | sea level, hPa             | sea level, hPa           ||
+| Humidity               | %                          | %                        || 
+| Cloudiness             | %                          | %                        ||
+
+> OpenWeather API: forecast request with minimum parameters sample
+
+```
+
+https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+
+```
+
+> Open-Meteo API: forecast request with minimum parameters sample
+
+```
+
+```
+
 Geocoding
 --
+
+- Geocoding API should be applied for searching locations by name.
+- Geocoding request should be sent by end-user click.
+- Geocoding request should be sent automatically as an option.
+
+Options
+==
+
+| Option                            | Units                                     | Default                     |
+| --------------------------------- | ----------------------------------------- | --------------------------- |
+| `Dark Mode`                       | Light, Dark, System                       | System                      |
+| `Language`                        | English, Russian, System                  | System, En if not in Units  |
+| `Time`                            | 24-hour, 12-hour, System                  | System                      |
+| Temperature                       | Kelvin, Celsius, Fahrenheit               | Fahrenheit                  |
+| Wind Speed                        | meter/sec, km/hour, miles per hour        | miles per hour              |
+| Pressure                          | hPa, mmHg, mb                             | mb                          |
+| Visibility                        | Kilometre, Mile                           | Mile                        |
+| `Current Weather in Status Menus` | true, false                               | false                       |
+| Current Weather `Update period`   | per 12 hours, per 3 hours, per hour, none | none                        |
+| Status Menus `multiline mode`     | true, false                               | false                       |
+| Status Menus second line          | Weather quick list                        | Wind                        |
+| Status Menus Tool tip             | Weather quick list, Weather quick list    | Direction, Gust             |
+| OpenWeather `API Key`             | Text                                      | Empty, key value if exsists |
+
+> [!NOTE]
+> `Weather quick list:` Feels like, Direction, Gust, Wind, Visibility, Pressure, Humidity, Cloudiness.
+
+- OpenWeather API Key should be saved as a secret with Apple KeyChain technology.
 
 Special Features
 ==
@@ -119,56 +202,7 @@ Favorites
 
 - The list of favorite places should have "Current Location" item as the first item that can't be removed.
 
-Options
-==
-
-- Dark Mode switching.
-
 Data Mappings
 ==
 
-
---- 
-> END of FILE
----
-
-> # Operations
-
-| ID   | Description                                                   | Must have  | In Use                         | Result | Rules  |
-| ---- | ------------------------------------------------------------- | ---------- | ------------------------------ | ------ | ------ |
-| OP-1 | Call current weather with OpenWeather API (Popover)           | API key    | DATA-2, OO-2                   | DATA-1 | RULE-1 |
-| OP-2 | Ask for current location                                      | Permission |                                | DATA-2 | -      |
-| OP-3 | Call 5 day / 3 hour forecast with OpenWeather API             | API key    | DATA-2, OO-2                   | DATA-1 | RULE-1 |
-| OP-4 | Direct geocoding with OpenWeather API                         | API key    | OO-2                           |        |        |
-| OP-5 | CRUD Favorites                                                |            |                                |        |        |
-| OP-6 | Call current weather with OpenWeather API (StatusMenusButton) | API key    | DATA-2, OO-2, OO-4, OO-5, OO-6 | DATA-1 | RULE-1 |
-
-> # Rules
-
-| ID     | Description                                        |
-| ------ | -------------------------------------------------- |
-| RULE-1 | Generally accepted temperature converting formulas |
-
-> # Data Models
-
-> ## Business matter attributes
-
-| ID     | Name             | Details                                                 | Defaults            |
-| ------ | ---------------- | ------------------------------------------------------- | ------------------- |
-| DATA-1 | Temperature      | Standard: Kelvin, Metric: Celsius, Imperial: Fahrenheit | Apply: Fahrenheit\* |
-| DATA-2 | Current location | Couple: (latitude, longitude)                           | -                   |
-
-> ## Other Options
-
-| ID       | Name                     | Details                                                                      | Defaults          |
-| -------- | ------------------------ | ---------------------------------------------------------------------------- | ----------------- |
-| OO-1     | Dark Mode                | Auto, On, Off                                                                | Apply: Auto       |
-| OO-2     | OpenWeather API key      | User Input                                                                   | -                 |
-| OO-3\*\* | Starts on login          | True, False                                                                  | Apply: True       |
-| 00-4     | Status Menus View        | singleLine, two                                                              | singleLine        |
-| 00-5     | Status Menus Second Line | feelsLike, Direction, Gust, Wind, Visibility, Pressure, Humidity, Cloudiness | Wind              |
-| 00-6     | Status Menus ToolTip     | feelsLike, Direction, Gust, Wind, Visibility, Pressure, Humidity, Cloudiness | (Direction, Gust) |
-
-> \* changed
-
-> \*\* rejected
+- OpenWeather API: [weather conditions](https://openweathermap.org/api/weather-conditions)
