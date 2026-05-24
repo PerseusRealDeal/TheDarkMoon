@@ -55,6 +55,29 @@ Open-Meteo API
 | Current & Weather Forecast | https://open-meteo.com/en/docs               |
 | Geocoding                  | https://open-meteo.com/en/docs/geocoding-api |
 
+
+
+> `Current Weather Open-Meteo API Request:`
+
+```
+https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current=temperature_2m
+
+```
+
+> `Weather Forecast Open-Meteo API Request:`
+
+```
+https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&hourly=temperature_2m&forecast_days=5
+
+```
+
+> `Direct Geocoding Open-Meteo API Request:` coordinates by location name
+
+```
+https://geocoding-api.open-meteo.com/v1/search?name={Location name}&count=10&language=en&format=json
+
+```
+
 OpenWeather API
 --
 
@@ -63,6 +86,27 @@ OpenWeather API
 | Current weather | https://openweathermap.org/current           |
 | Forecast        | https://openweathermap.org/forecast5         |
 | Geocoding       | https://openweathermap.org/api/geocoding-api |
+
+> `Current Weather OpenWeather API Request:`
+
+```
+https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+
+```
+
+> `Weather Forecast OpenWeather API Request:`
+
+```
+https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+
+```
+
+> `Direct Geocoding OpenWeather API Request:` coordinates by location name
+
+```
+http://api.openweathermap.org/geo/1.0/direct?q={Location name}&limit=5&appid={API key}
+
+```
 
 GUI Sketches
 ==
@@ -89,79 +133,52 @@ Current Weather
 --
 
 - The app should show the last current weather API respose time.
+- Current Weather API respose should be saved in app for reducing requests needed if an option changes.
 
-| Parameter              | Saved in App               | OpenWeather API Respose  | Open-Meteo API Response |
-| ---------------------- | -------------------------- | ------------------------ | ----------------------- |
-| Weather Icon           | Weather icon id            | Weather icon id          ||
-| Weather Description    | Weather condition codes    | Weather condition codes  ||
-| Sunrise                | UTC                        | UTC                      ||
-| Sunset                 | UTC                        | UTC                      ||
-| Temperature            | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
-| Temperature Low        | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
-| Temperature High       | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
-| Temperature Feels Like | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
-| Visibility             | meter                      | meter                    ||
-| Wind Speed             | meter/sec                  | meter/sec                ||
-| Wind Direction         | degrees (meteorological)   | degrees (meteorological) ||
-| Wind Gust              | meter/sec                  | meter/sec                ||
-| Pressure               | sea level, hPa             | sea level, hPa           ||
-| Humidity               | %                          | %                        || 
-| Cloudiness             | %                          | %                        ||
-
-> OpenWeather API: current weather request with minimum parameters sample
-
-```
-
-https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
-
-```
-
-> Open-Meteo API: forecast request with minimum parameters sample
-
-```
-
-```
-
+| Show in App            | OpenWeather API Respose  | Open-Meteo API Response |
+| ---------------------- | ------------------------ | ----------------------- |
+| Weather Icon           | Weather icon id          ||
+| Weather Description    | Weather condition codes  ||
+| Sunrise                | UTC                      ||
+| Sunset                 | UTC                      ||
+| Temperature            | Imperial: Fahrenheit     ||
+| Temperature Low        | Imperial: Fahrenheit     ||
+| Temperature High       | Imperial: Fahrenheit     ||
+| Temperature Feels Like | Imperial: Fahrenheit     ||
+| Visibility             | meter                    ||
+| Wind Speed             | meter/sec                ||
+| Wind Direction         | degrees (meteorological) ||
+| Wind Gust              | meter/sec                ||
+| Pressure               | sea level, hPa           ||
+| Humidity               | %                        || 
+| Cloudiness             | %                        ||
 
 Forecast
 --
 
 - The app should show the last weather forecast API respose time.
+- Weather Forecast API respose should be saved in app for reducing requests needed if an option changes.
 
 > [!NOTE]
 > OpenWeather API Respose: 5 day / 3 hour forecast data [concept](https://openweathermap.org/api/forecast5?collection=current_forecast#concept)
 
-| Parameter              | Saved in App               | OpenWeather API Respose  | Open-Meteo API Response |
-| ---------------------- | -------------------------- | ------------------------ | ----------------------- |
-| Weather Icon           | Weather icon id            | Weather icon id          ||
-| Weather Description    | Weather condition codes    | Weather condition codes  ||
-| Sunrise                | UTC                        | UTC                      ||
-| Sunset                 | UTC                        | UTC                      ||
-| Temperature            | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
-| Temperature Low        | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
-| Temperature High       | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
-| Temperature Feels Like | Imperial: Fahrenheit       | Imperial: Fahrenheit     ||
-| Visibility             | meter                      | meter                    ||
-| Wind Speed             | meter/sec                  | meter/sec                ||
-| Wind Direction         | degrees (meteorological)   | degrees (meteorological) ||
-| Wind Gust              | meter/sec                  | meter/sec                ||
-| Pressure               | sea level, hPa             | sea level, hPa           ||
-| Humidity               | %                          | %                        || 
-| Cloudiness             | %                          | %                        ||
-
-> OpenWeather API: forecast request with minimum parameters sample
-
-```
-
-https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-
-```
-
-> Open-Meteo API: forecast request with minimum parameters sample
-
-```
-
-```
+| Show in App            | OpenWeather API Respose  | Open-Meteo API Response |
+| ---------------------- | ------------------------ | ----------------------- |
+| Weather Icon           | Weather icon id          ||
+| Weather Description    | Weather condition codes  ||
+| Sunrise                | UTC                      ||
+| Sunset                 | UTC                      ||
+| Temperature            | Imperial: Fahrenheit     ||
+| Temperature Low        | Imperial: Fahrenheit     ||
+| Temperature High       | Imperial: Fahrenheit     ||
+| Temperature Feels Like | Imperial: Fahrenheit     ||
+| Visibility             | meter                    ||
+| Wind Speed             | meter/sec                ||
+| Wind Direction         | degrees (meteorological) ||
+| Wind Gust              | meter/sec                ||
+| Pressure               | sea level, hPa           ||
+| Humidity               | %                        || 
+| Cloudiness             | %                        ||
 
 Geocoding
 --
@@ -169,9 +186,12 @@ Geocoding
 - Geocoding API should be applied for searching locations by name.
 - Geocoding request should be sent by end-user click.
 - Geocoding request should be sent automatically as an option.
+- Geocoding API respose (suggestion) should be saved in app for reducing requests needed if an option changes.
 
 Options
 ==
+
+- OpenWeather API Key should be saved as a secret with Apple KeyChain technology.
 
 | Option                            | Units                                     | Default                     |
 | --------------------------------- | ----------------------------------------- | --------------------------- |
@@ -192,8 +212,6 @@ Options
 > [!NOTE]
 > `Weather quick list:` Feels like, Direction, Gust, Wind, Visibility, Pressure, Humidity, Cloudiness.
 
-- OpenWeather API Key should be saved as a secret with Apple KeyChain technology.
-
 Special Features
 ==
 
@@ -206,3 +224,4 @@ Data Mappings
 ==
 
 - OpenWeather API: [weather conditions](https://openweathermap.org/api/weather-conditions)
+- Open-Meteo API: [WMO Weather interpretation codes](https://open-meteo.com/en/docs) at the end of page
