@@ -6,9 +6,10 @@ Contents
 
 * [Idea History](#Idea-History)
     * [Outs of Expectations](#Out-of-Expectations)
+* [Meteo Terms mapping](#Meteo-Terms-mapping)
 * [Integrations](#Integrations)
-    * [Open-Meteo API](#Open-Meteo-API)
     * [OpenWeather API](#OpenWeather-API)
+    * [Open-Meteo API](#Open-Meteo-API)
 * [GUI Sketches](#GUI-Sketches)
 * [Business Tasks](#Business-Tasks)
     * [Current Location](#Current-Location)
@@ -44,39 +45,30 @@ Outs of Expectations
 | ------- | -------- | ---------------------- | ---- |
 | v0.2+   | Rejected | 00-3: Starts on login. | [Issue #7](https://github.com/PerseusRealDeal/TheDarkMoon/issues/7) |
 
-Integrations
+Meteo Terms mapping
 ==
 
-Open-Meteo API
---
+| Term in App   | OpenWeather     | Open-Meteo                |
+| ------------- | --------------- | ------------------------- |
+| Temperature   | Temperature     | Temperature (2 m)         |
+| Kinda         | Feels Like      | Apparent Temperature      |
+| L             | Temperature Min | Minimum Temperature (2 m) |
+| H             | Temperature Max | Maximum Temperature (2 m) |
+| Wind          | Wind Speed      | Wind Speed (10 m)         |
+| Direction     | Wind Direction  | Wind Direction (10m)      |
+| Gusts         | Wind Gusts      | Wind Gusts (10m)          |
+| Pressure      | Pressure        | Sea Level Pressure        |
+| Humidity      | Humidity        | Relative Humidity (2 m)   |
+| Cloudiness    | Cloudiness      | Cloud Cover Total         |
+| Sunrise       | Sunrise         | Sunrise                   |
+| Sunset        | Sunset          | Sunset                    |
+| Rain          | Rain            | Rain, Showers             |
+| Snow          | Snow            | Snow, Snowfall            |
+| Precipitation | Rain, Snow      | Rain + Showers + Snow     |
+| Probability   | None            | Precipitation Probability |
 
-| Task                       | API product |
-| -------------------------- | ----------- |
-| Current & Weather Forecast | https://open-meteo.com/en/docs               |
-| Geocoding                  | https://open-meteo.com/en/docs/geocoding-api |
-
-
-
-> `Current Weather Open-Meteo API Request:`
-
-```
-https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current=temperature_2m
-
-```
-
-> `Weather Forecast Open-Meteo API Request:`
-
-```
-https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&hourly=temperature_2m&forecast_days=5
-
-```
-
-> `Direct Geocoding Open-Meteo API Request:` coordinates by location name
-
-```
-https://geocoding-api.open-meteo.com/v1/search?name={Location name}&count=10&language=en&format=json
-
-```
+Integrations
+==
 
 OpenWeather API
 --
@@ -108,6 +100,35 @@ http://api.openweathermap.org/geo/1.0/direct?q={Location name}&limit=5&appid={AP
 
 ```
 
+Open-Meteo API
+--
+
+| Task                       | API product |
+| -------------------------- | ----------- |
+| Current & Weather Forecast | https://open-meteo.com/en/docs               |
+| Geocoding                  | https://open-meteo.com/en/docs/geocoding-api |
+
+> `Current Weather Open-Meteo API Request:`
+
+```
+https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current=temperature_2m
+
+```
+
+> `Weather Forecast Open-Meteo API Request:`
+
+```
+https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&hourly=temperature_2m&forecast_days=5
+
+```
+
+> `Direct Geocoding Open-Meteo API Request:` coordinates by location name
+
+```
+https://geocoding-api.open-meteo.com/v1/search?name={Location name}&count=10&language=en&format=json
+
+```
+
 GUI Sketches
 ==
 
@@ -135,23 +156,37 @@ Current Weather
 - The app should show the last current weather API respose time.
 - Current Weather API respose should be saved in app for reducing requests needed if an option changes.
 
-| Show in App            | OpenWeather API Respose  | Open-Meteo API Response |
-| ---------------------- | ------------------------ | ----------------------- |
-| Weather Icon           | Weather icon id          ||
-| Weather Description    | Weather condition codes  ||
-| Sunrise                | UTC                      ||
-| Sunset                 | UTC                      ||
-| Temperature            | Imperial: Fahrenheit     ||
-| Temperature Low        | Imperial: Fahrenheit     ||
-| Temperature High       | Imperial: Fahrenheit     ||
-| Temperature Feels Like | Imperial: Fahrenheit     ||
-| Visibility             | meter                    ||
-| Wind Speed             | meter/sec                ||
-| Wind Direction         | degrees (meteorological) ||
-| Wind Gust              | meter/sec                ||
-| Pressure               | sea level, hPa           ||
-| Humidity               | %                        || 
-| Cloudiness             | %                        ||
+| Show in App            | OpenWeather API Respose        | Open-Meteo API Response          |
+| ---------------------- | ------------------------------ | -------------------------------- |
+| Weather Icon           | Weather icon id                | None                             |
+| Weather Description    | Weather condition codes        | WMO code                         |
+| Sunrise                | UTC                            | GMT                              |
+| Sunset                 | UTC                            | GMT                              |
+| Temperature            | Imperial: Fahrenheit           | Imperial: Fahrenheit             |
+| Temperature Low        | Imperial: Fahrenheit           | Imperial: Fahrenheit             |
+| Temperature High       | Imperial: Fahrenheit           | Imperial: Fahrenheit             |
+| Temperature Feels Like | Imperial: Fahrenheit           | Imperial: Fahrenheit             |
+| Visibility             | meter                          | meter                            |
+| Wind Speed             | meter/sec                      | meter/sec                        |
+| Wind Direction         | degrees° (meteorological)      | degrees° (meteorological)        |
+| Wind Gust              | meter/sec                      | meter/sec                        |
+| Pressure               | sea level, hPa                 | sea level, hPa                   |
+| Humidity               | %                              | %                                |
+| Cloudiness             | %                              | %                                |
+| Rain                   | Rain Precipitation, mm/h       | Rain, Showers, mm/h              |
+| Snow                   | Snow Precipitation, mm/h       | Snow, Snowfall, cm/h             |
+| Precipitation          | Calculated (Rain + Snow), mm/h | Precipitation, mm/h              |
+| Probability            | Calculated (Precipitation), %  | Precipitation Probability Max, % |
+
+> [!NOTE]
+> `OpenWeather Current Weather request prepared:`
+> https://api.openweathermap.org/data/2.5/weather?lat=##.##&lon=##.##&units=imperial&lang=##&appid=###
+
+> [!NOTE]
+> `Open-Meteo Current Weather request prepared:`
+> https://api.open-meteo.com/v1/forecast?latitude=##.##&longitude=##.##&daily=sunrise,sunset,precipitation_probability_max&current={PARAMS}&temperature_unit=fahrenheit&wind_speed_unit=ms&forecast_days=1
+
+`Open-Meteo Current PARAMS:` weather_code, wind_speed_10m, wind_direction_10m, wind_gusts_10m, temperature_2m, apparent_temperature, visibility, pressure_msl, relative_humidity_2m, cloud_cover, showers, rain, snowfall, precipitation
 
 Forecast
 --
@@ -162,23 +197,37 @@ Forecast
 > [!NOTE]
 > OpenWeather API Respose: 5 day / 3 hour forecast data [concept](https://openweathermap.org/api/forecast5?collection=current_forecast#concept)
 
-| Show in App            | OpenWeather API Respose  | Open-Meteo API Response |
-| ---------------------- | ------------------------ | ----------------------- |
-| Weather Icon           | Weather icon id          ||
-| Weather Description    | Weather condition codes  ||
-| Sunrise                | UTC                      ||
-| Sunset                 | UTC                      ||
-| Temperature            | Imperial: Fahrenheit     ||
-| Temperature Low        | Imperial: Fahrenheit     ||
-| Temperature High       | Imperial: Fahrenheit     ||
-| Temperature Feels Like | Imperial: Fahrenheit     ||
-| Visibility             | meter                    ||
-| Wind Speed             | meter/sec                ||
-| Wind Direction         | degrees (meteorological) ||
-| Wind Gust              | meter/sec                ||
-| Pressure               | sea level, hPa           ||
-| Humidity               | %                        || 
-| Cloudiness             | %                        ||
+| Show in App            | OpenWeather API Respose          | Open-Meteo API Response                     |
+| ---------------------- | -------------------------------- | ------------------------------------------- |
+| Weather Icon           | Weather icon id                  | None                                        |
+| Weather Description    | Weather condition codes          | WMO code                                    |
+| Sunrise                | UTC                              | GMT                                         |
+| Sunset                 | UTC                              | GMT                                         |
+| Temperature            | Imperial: Fahrenheit             | Imperial: Fahrenheit                        |
+| Temperature Low        | Imperial: Fahrenheit             | Imperial: Fahrenheit                        |
+| Temperature High       | Imperial: Fahrenheit             | Imperial: Fahrenheit                        |
+| Temperature Feels Like | Imperial: Fahrenheit             | Imperial: Fahrenheit                        |
+| Visibility             | meter                            | meter                                       |
+| Wind Speed             | meter/sec                        | meter/sec                                   |
+| Wind Direction         | degrees° (meteorological)        | degrees° (meteorological)                   |
+| Wind Gust              | meter/sec                        | meter/sec                                   |
+| Pressure               | sea level, hPa                   | sea level, hPa                              |
+| Humidity               | %                                | %                                           |
+| Cloudiness             | %                                | %                                           |
+| Rain                   | Hourly: Rain Precipitation, mm/h | Hourly: Rain, Showers, mm/h                 |
+| Snow                   | Hourly: Snow Precipitation, mm/h | Hourly: Snow, Snowfall, cm/h                |
+| Precipitation          | Calculated (Rain + Snow), mm/h   | Hourly: Precipitation, mm/h                 |
+| Probability            | Calculated (Precipitation), %    | Daily and Hourly: Precipitation Probability |
+
+> [!NOTE]
+> `OpenWeather Weather Forecast request prepared:`
+> https://api.openweathermap.org/data/2.5/forecast?lat=##.##&lon=##.##&cnt=40&units=imperial&lang=##&appid=###
+
+> [!NOTE]
+> `Open-Meteo Weather Forecast request prepared:`
+> https://api.open-meteo.com/v1/forecast?latitude=##.##&longitude=##.##&daily=sunrise,sunse,precipitation_probability_maxt&hourly={PARAMS}&temperature_unit=fahrenheit&wind_speed_unit=ms&forecast_days=16
+
+`Open-Meteo Forecast PARAMS:` weather_code, wind_speed_10m, wind_direction_10m, wind_gusts_10m, temperature_2m, apparent_temperature, visibility, pressure_msl, relative_humidity_2m, cloud_cover, showers, rain, snowfall, precipitation, precipitation_probability
 
 Geocoding
 --
@@ -202,6 +251,7 @@ Options
 | Wind Speed                        | meter/sec, km/hour, miles per hour        | miles per hour              |
 | Pressure                          | hPa, mmHg, mb                             | mb                          |
 | Visibility                        | Kilometre, Mile                           | Mile                        |
+| Precipitation                     | mm/h, cm/h                                | mm/h                        |
 | `Current Weather in Status Menus` | true, false                               | false                       |
 | Current Weather `Update period`   | per 12 hours, per 3 hours, per hour, none | none                        |
 | Status Menus `multiline mode`     | true, false                               | false                       |
@@ -211,6 +261,9 @@ Options
 
 > [!NOTE]
 > `Weather quick list:` Feels like, Direction, Gust, Wind, Visibility, Pressure, Humidity, Cloudiness.
+
+> [!IMPORTANT]
+> `Precipitation:` For the water equivalent in millimeter, divide by 7. E.g. 7 cm snow = 10 mm precipitation water equivalent
 
 Special Features
 ==
