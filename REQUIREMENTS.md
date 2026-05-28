@@ -20,6 +20,8 @@ Contents
 * [Special Features](#Special-Features)
     * [Favorites](#Favorites)
 * [Data Mappings](#Data-Mappings)
+    * [OpenWeather Icons](#OpenWeather-Icons)
+    * [Open-Meteo Icons](#Open-Meteo-Icons)
 
 Idea History
 ==
@@ -186,7 +188,7 @@ Current Weather
 > `Open-Meteo Current Weather request prepared:`
 > https://api.open-meteo.com/v1/forecast?latitude=##.##&longitude=##.##&daily=sunrise,sunset,precipitation_probability_max&current={PARAMS}&temperature_unit=fahrenheit&wind_speed_unit=ms&forecast_days=1
 
-`Open-Meteo Current PARAMS:` weather_code, wind_speed_10m, wind_direction_10m, wind_gusts_10m, temperature_2m, apparent_temperature, visibility, pressure_msl, relative_humidity_2m, cloud_cover, showers, rain, snowfall, precipitation
+`Open-Meteo Current PARAMS:` weather_code, wind_speed_10m, wind_direction_10m, wind_gusts_10m, temperature_2m, apparent_temperature, visibility, pressure_msl, relative_humidity_2m, cloud_cover, showers, rain, snowfall, precipitation, is_day
 
 Forecast
 --
@@ -227,7 +229,7 @@ Forecast
 > `Open-Meteo Weather Forecast request prepared:`
 > https://api.open-meteo.com/v1/forecast?latitude=##.##&longitude=##.##&daily=sunrise,sunse,precipitation_probability_maxt&hourly={PARAMS}&temperature_unit=fahrenheit&wind_speed_unit=ms&forecast_days=16
 
-`Open-Meteo Forecast PARAMS:` weather_code, wind_speed_10m, wind_direction_10m, wind_gusts_10m, temperature_2m, apparent_temperature, visibility, pressure_msl, relative_humidity_2m, cloud_cover, showers, rain, snowfall, precipitation, precipitation_probability
+`Open-Meteo Forecast PARAMS:` weather_code, wind_speed_10m, wind_direction_10m, wind_gusts_10m, temperature_2m, apparent_temperature, visibility, pressure_msl, relative_humidity_2m, cloud_cover, showers, rain, snowfall, precipitation, precipitation_probability, is_day
 
 Geocoding
 --
@@ -276,5 +278,60 @@ Favorites
 Data Mappings
 ==
 
-- OpenWeather API: [weather conditions](https://openweathermap.org/api/weather-conditions)
-- Open-Meteo API: [WMO Weather interpretation codes](https://open-meteo.com/en/docs) at the end of page
+- The app should rely on Apple weather icons to represent weather condition.
+- If Dark Mode in Light, Apple icons should have postfix .fill, "sun.max.fill" for instance.
+
+OpenWeather Icons
+--
+
+> [!NOTE]
+> OpenWeather API: [weather conditions](https://openweathermap.org/api/weather-conditions)
+
+| OpenWeather Icon | Description      | Apple Icon Day  | Apple Icon Night |
+| ---------------- | ---------------- | --------------- | ---------------- |
+| 01d or 01n       | Clear sky        | sun.max         | moon             |
+| 02d or 02n       | Few clouds       | cloud.sun       | cloud.moon       |
+| 03d or 03n       | Scattered clouds | cloud           | cloud            |
+| 04d or 04n       | Broken clouds    | cloud           | cloud            |
+| 09d or 09n       | Shower rain      | cloud.heavyrain | cloud.heavyrain  |
+| 10d or 10n       | Rain             | cloud.sun.rain  | cloud.moon.rain  |
+| 11d or 11n       | Thunderstorm     | cloud.sun.bolt  | cloud.moon.bolt  |
+| 13d or 13n       | Snow             | cloud.snow      | cloud.snow       |
+| 50d or 50n       | Mist             | cloud.fog       | cloud.fog        |
+
+Open-Meteo Icons
+--
+
+> [!NOTE]
+> Open-Meteo API: [WMO Weather interpretation codes](https://open-meteo.com/en/docs) at the end of page.
+
+| Open-Meteo Code | WMO Description                   | Apple Icon Day  | Apple Icon Night |
+| --------------- | --------------------------------- | --------------- | ---------------- |
+| 99              | Thunderstorm: heavy hail          | cloud.bolt.rain | cloud.bolt.rain  |
+| 96              | Thunderstorm: slight hail         | cloud.bolt.rain | cloud.bolt.rain  |
+| 95              | Thunderstorm: slight or moderate  | cloud.sun.bolt  | cloud.moon.bolt  |
+| 86              | Snow showers: heavy               | cloud.sleet     | cloud.sleet      |
+| 85              | Snow showers: slight              | cloud.sleet     | cloud.sleet      |
+| 82              | Rain showers: violent             | cloud.heavyrain | cloud.heavyrain  |
+| 81              | Rain showers: moderate            | cloud.heavyrain | cloud.heavyrain  |
+| 80              | Rain showers: slight              | cloud.heavyrain | cloud.heavyrain  |
+| 77              | Snow grains                       | cloud.snow      | cloud.snow       |
+| 75              | Snow fall: heavy intensity        | cloud.snow      | cloud.snow       |
+| 73              | Snow fall: moderate               | cloud.snow      | cloud.snow       |
+| 71              | Snow fall: slight                 | cloud.snow      | cloud.snow       |
+| 67              | Freezing Rain: heavy intensity    | cloud.sleet     | cloud.sleet      |
+| 66              | Freezing Rain: light              | cloud.sleet     | cloud.sleet      |
+| 65              | Rain: heavy intensity             | cloud.heavyrain | cloud.heavyrain  |
+| 63              | Rain: moderate                    | cloud.heavyrain | cloud.heavyrain  |
+| 61              | Rain: slight                      | cloud.rain      | cloud.moon.rain  |
+| 57              | Freezing Drizzle: dense intensity | cloud.sleet     | cloud.sleet      |
+| 56              | Freezing Drizzle: light           | cloud.sleet     | cloud.sleet      |
+| 55              | Drizzle: dense intensity          | cloud.drizzle   | cloud.drizzle    |
+| 53              | Drizzle: moderate                 | cloud.drizzle   | cloud.drizzle    |
+| 51              | Drizzle: light                    | cloud.drizzle   | cloud.drizzle    |
+| 48              | Depositing rime fog               | cloud.fog       | cloud.fog        |
+| 45              | Fog                               | cloud.fog       | cloud.fog        |
+| 3               | Overcast                          | cloud           | cloud            |
+| 2               | Partly cloudy                     | cloud.sun       | cloud.moon       |
+| 1               | Mainly clear                      | cloud.sun       | cloud.moon       |
+| 0               | Clear sky                         | sun.max         | moon             |
