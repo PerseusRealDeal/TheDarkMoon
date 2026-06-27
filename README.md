@@ -2,6 +2,11 @@
 
 [`A3 Environment`](/APPROBATION.md) • [`CHANGELOG`](/CHANGELOG.md) • [`The Clear BSD License`](/LICENSE)
 
+[![Platforms](https://img.shields.io/badge/Platform-macOS%2010.13+-orange.svg)](https://en.wikipedia.org/wiki/MacOS_version_history)
+[![Xcode](https://img.shields.io/badge/Xcode-14.2+-red.svg)](https://en.wikipedia.org/wiki/Xcode)
+[![Swift](https://img.shields.io/badge/Swift-5-orange.svg)](https://docs.swift.org/swift-book/RevisionHistory/RevisionHistory.html)
+[![SDK](https://img.shields.io/badge/SDK-UIKit%20-blueviolet.svg)](https://developer.apple.com/documentation/uikit)
+
 </div>
 
 <div align="center">
@@ -16,11 +21,6 @@ __The Status Menus Weather App__
 [![Actions Status](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/main.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions)
 [![Style](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml)
 [![Version](https://img.shields.io/badge/Version-0.6.0-green.svg)](/CHANGELOG.md)
-
-[![Platforms](https://img.shields.io/badge/Platform-macOS%2010.13+-orange.svg)](https://en.wikipedia.org/wiki/MacOS_version_history)
-[![Xcode](https://img.shields.io/badge/Xcode-14.2+-red.svg)](https://en.wikipedia.org/wiki/Xcode)
-[![Swift](https://img.shields.io/badge/Swift-5-orange.svg)](https://docs.swift.org/swift-book/RevisionHistory/RevisionHistory.html)
-[![SDK](https://img.shields.io/badge/SDK-UIKit%20-blueviolet.svg)](https://developer.apple.com/documentation/uikit)
 
 [![ConsolePerseusLogger](http://img.shields.io/:ConsolePerseusLogger-1.7.1-green.svg)](https://github.com/perseusrealdeal/ConsolePerseusLogger.git)
 [![PerseusDarkMode](http://img.shields.io/:PerseusDarkMode-2.2.0-green.svg)](https://github.com/perseusrealdeal/PerseusDarkMode.git)
@@ -62,13 +62,13 @@ Contents
     * [The why](#The-why)
     * [Preview material](#Preview-material)
     * [Top features](#Top-features)
-* [Requirements](#Requirements)
-* [First-party software](#First-party-software)
-    * [MIT](#MIT)
-    * [Unlicense](#Unlicense)
-* [Third-party software](#Third-party-software)
-* [Gifts](#Gifts)
-* [Account points](#Account-points)
+* [The requirements](#The-requirements)
+* [The unity and part-whole structure](#The-unity-and-part-whole-structure)
+    * [Project directory tree](#Project-directory-tree)
+    * [First-party software](#First-party-software)
+    * [Third-party software](#Third-party-software)
+    * [Gifts](#Gifts)
+    * [Account points](#Account-points)
 * [License](#License)
     * [Other required licenses details](#Other-required-licenses-details)
 * [Credits](#Credits)
@@ -168,7 +168,7 @@ Top features
 - `Favorites list:` Collecting locations, add and remove items
 - `Multilanguage:` English and Russian
 - `Dark Mode:` Light, Dark, System (auto) via [PDM](https://github.com/perseusrealdeal/PerseusDarkMode.git)
-- `Multi time format:` 24-hour and 12 hour
+- `Multi time format:` 24-hour and 12-hour
 - `Auto Current Weather update:` per 12 hours, per 3 hours, per hour, none
 
 ---
@@ -178,7 +178,7 @@ Top features
 - `Keychain:` Keeping OpenWeather API key saved as a secret
 - `Logging:` Collecting log messages, special screen with [CPL](https://github.com/perseusrealdeal/ConsolePerseusLogger.git) managing options
 
-Requirements
+The requirements
 ==
 
 > [!NOTE]
@@ -194,41 +194,100 @@ Requirements
 - [Functional specification](/REQUIREMENTS.md)
 - Translations [EN](/PerseusMeteo/Configuration/Translations/Translation_en.plist), [RU](/PerseusMeteo/Configuration/Translations/Translation_ru.plist)
 
-First-party software
+The unity and part-whole structure
 ==
 
-MIT
+Project directory tree
 --
 
-| Type     | Name                                                                                                      |
-| -------- | --------------------------------------------------------------------------------------------------------- |
-| Package  | [ConsolePerseusLogger v1.7.1](https://github.com/perseusrealdeal/ConsolePerseusLogger/releases/tag/1.7.1) |
-| Class    | [PerseusLogger](https://gist.github.com/perseusrealdeal/df456a9825fcface44eca738056eb6d5)                 |
-| Package  | [PerseusDarkMode v2.2.0](https://github.com/perseusrealdeal/PerseusDarkMode/releases/tag/2.2.0)           |
-| Package  | [PerseusGeoKit v1.2.1](https://github.com/perseusrealdeal/PerseusGeoKit/releases/tag/1.2.1)               |
-| Class    | [PerseusCompassDirection](https://gist.github.com/perseusrealdeal/3b053b2390d704f561ec52c6477b5cf2)       |
-| Variable | [PerseusTimeFormat](https://gist.github.com/perseusrealdeal/7aa89d78d9b1c220cc06682be8908a97)             |
-| Class    | [MessageLabel](https://gist.github.com/PerseusRealDeal/dbfed6e01ed80be084983738ba713654)                  |
+[![GitHubTree](https://img.shields.io/badge/GitHubTree-TheDarkMoon-blue)](https://githubtree.mgks.dev/repo/perseusrealdeal/thedarkmoon/main/?ref=badge)
 
-[Unlicense](https://unlicense.org)
+```bash
+
+.
+├── LICENSE
+├── main.yml
+├── swiftlint.yml
+├── .gitignore
+├── .swiftlint.yml
+├── PerseusMeteo
+│   ├── TheCrownOfStars
+│   │   ├── TheLoggerStar.swift
+│   │   ├── TheGeoStar.swift
+│   │   └── TheDarknessStar.swift
+│   ├── main.swift
+│   ├── AppGlobals.swift
+│   ├── AppOptions.swift
+│   ├── AppDelegate.swift
+│   ├── Configuration
+│   │   ├── MVPPattern
+│   │   │   ├── MVPPresenter.swift
+│   │   │   └── MVPViewDelegate.swift
+│   │   ├── Translations
+│   │   │   ├── Translation_en.plist
+│   │   │   └── Translation_ru.plist
+│   │   ├── Localization
+│   │   │   ├── InfoPlist.strings
+│   │   │   └── Localizable.strings
+│   │   ├── UIComponents
+│   │   │   └── ...
+│   │   ├── Assets.xcassets
+│   │   ├── Info.plist
+│   │   ├── PerseusMeteo.entitlements
+│   │   ├── AppLinks.swift
+│   │   ├── Extensions.swift
+│   │   └── CPLConfig.json
+│   ├── FirstPartyCode
+│   │   └── ...
+│   ├── BusinessContent
+│   │   └── ...
+│   ├── BusinessLogic
+│   │   └── ...
+│   └── BusinessAPIs
+│       └── ...
+├── SnowmanTests
+│   ├── Info.plist
+│   ├── TestPlan.xctestplan
+│   ├── TestingAppDelegate.swift
+│   ├── ...
+│   └── Helpers
+│       ├── LocalizedInfoPlistGift.swift
+│       ├── LocalizedExpectationGift.swift
+│       └── PerseusLogger.swift
+├── README.md
+├── CHANGELOG.md
+├── APPROBATION.md
+└── REQUIREMENTS.md
+
+```
+
+First-party software
 --
 
-| Type     | Name                                                                                                      |
-| -------- | --------------------------------------------------------------------------------------------------------- |
-| Class    | [WebLabel](/PerseusMeteo/FirstPartyCode/WebLabel.swift)                                                   |
-| Class    | [PerseusNetworkClient](/PerseusMeteo/FirstPartyCode/PerseusNetworkClient.swift)                           |
+| Type     | License                            | Name                                                                                                      |
+| -------- | :--------------------------------: | --------------------------------------------------------------------------------------------------------- |
+| Package  | MIT                                | [ConsolePerseusLogger v1.7.1](https://github.com/perseusrealdeal/ConsolePerseusLogger/releases/tag/1.7.1) |
+| Class    | MIT                                | [PerseusLogger](https://gist.github.com/perseusrealdeal/df456a9825fcface44eca738056eb6d5)                 |
+| Package  | MIT                                | [PerseusDarkMode v2.2.0](https://github.com/perseusrealdeal/PerseusDarkMode/releases/tag/2.2.0)           |
+| Package  | MIT                                | [PerseusGeoKit v1.2.1](https://github.com/perseusrealdeal/PerseusGeoKit/releases/tag/1.2.1)               |
+| Class    | MIT                                | [PerseusCompassDirection](https://gist.github.com/perseusrealdeal/3b053b2390d704f561ec52c6477b5cf2)       |
+| Variable | MIT                                | [PerseusTimeFormat](https://gist.github.com/perseusrealdeal/7aa89d78d9b1c220cc06682be8908a97)             |
+| Class    | MIT                                | [MessageLabel](https://gist.github.com/PerseusRealDeal/dbfed6e01ed80be084983738ba713654)                  |
+| Class    | [Unlicense](https://unlicense.org) | [WebLabel](/PerseusMeteo/FirstPartyCode/WebLabel.swift)                                                   |
+| Class    | [Unlicense](https://unlicense.org) | [PerseusNetworkClient](/PerseusMeteo/FirstPartyCode/PerseusNetworkClient.swift)                           |
 
 Third-party software
-==
+--
 
-| Type   | Name                                                                                  | License                            |
-| ------ | ------------------------------------------------------------------------------------- | ---------------------------------- |
-| Style  | [SwiftLint v0.57.0 Monterey+](https://github.com/realm/SwiftLint/releases/tag/0.57.0) | MIT                                |
-| Action | [mxcl/xcodebuild@v3](https://github.com/mxcl/xcodebuild)                              | [Unlicense](https://unlicense.org) |
-| Action | [cirruslabs/swiftlint-action@v1](https://github.com/cirruslabs/swiftlint-action/)     | MIT                                |
+| Type          | License                            | Name                                                                                  |
+| ------------- | :--------------------------------: | ------------------------------------------------------------------------------------- |
+| Code Style    | MIT                                | [SwiftLint v0.57.0 Monterey+](https://github.com/realm/SwiftLint/releases/tag/0.57.0) |
+| GitHub Action | [Unlicense](https://unlicense.org) | [mxcl/xcodebuild@v3](https://github.com/mxcl/xcodebuild)                              |
+| GitHub Action | MIT                                | [cirruslabs/swiftlint-action@v1](https://github.com/cirruslabs/swiftlint-action/)     |
+| Tree View     | MIT                                | [GitHubTree Viewer](https://github.com/mgks/GitHubTree)                               |
 
 Gifts
-==
+--
 
 - [CurrentSystemLanguageGift.swift](https://gist.github.com/perseusrealdeal/98b082b136d574dd1b5aa760036dac8b)
 - [JsonDataDictionaryGift.swift](https://gist.github.com/perseusrealdeal/918c25633122e64d51f363f00059f6f8)
@@ -237,7 +296,7 @@ Gifts
 - [LocalizedExpectationGift.swift](/SnowmanTests/GiftsAndHelpers/LocalizedExpectationGift.swift)
 
 Account points 
-==
+--
 
 - Explicit start point [main.swift](/PerseusMeteo/main.swift)
 - Explicit app delegate [TestingAppDelegate.swift](/SnowmanTests/TestingAppDelegate.swift)
@@ -272,10 +331,11 @@ Other required licenses details
 --
 
 `© 2025 The SwiftLint Contributors` for SwiftLint.<br/>
-`© GitHub` for GitHub Action cirruslabs/swiftlint-action@v1.
+`© GitHub` for GitHub Action cirruslabs/swiftlint-action@v1.</br>
+`© 2025 Ghazi (mgks.dev)` for GitHubTree Viewer.
 
-`Attribution to Open-Meteo required:` [a link format recommendation](https://open-meteo.com/en/licence#:~:text=Weather%20data%20by%20Open-Meteo%2Ecom)<br/>
-`Attribution to OpenWeather required:` [a link format recommendation](https://openweathermap.org/full-price#:~:text=Weather%20data%20%C2%A9%20OpenWeather)
+`Attribution to Open-Meteo:` [format recommendation](https://open-meteo.com/en/licence#:~:text=Weather%20data%20by%20Open-Meteo%2Ecom)<br/>
+`Attribution to OpenWeather:` [format recommendation](https://openweathermap.org/full-price#:~:text=Weather%20data%20%C2%A9%20OpenWeather)
 
 Credits
 ==
