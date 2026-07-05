@@ -249,7 +249,7 @@ public class PopoverViewController: NSViewController {
            let forecastProgressIndicator = viewForecast?.startProgressIndicator {
 
             if weatherProgressIndicator || forecastProgressIndicator { // Is in progress?
-                buttonStopFetchingMeteoFacts.title = ""
+                // buttonStopFetchingMeteoFacts.title = ""
                 buttonStopFetchingMeteoFacts.image =
                 NSImage(named: "NSTouchBarRecordStopTemplate")
             }
@@ -270,7 +270,7 @@ public class PopoverViewController: NSViewController {
            let forecastProgressIndicator = viewForecast?.startProgressIndicator {
 
             if !(weatherProgressIndicator || forecastProgressIndicator) { // Is finished?
-                buttonStopFetchingMeteoFacts.title = "|"
+                // buttonStopFetchingMeteoFacts.title = "|"
                 buttonStopFetchingMeteoFacts.image = nil
             }
         }
