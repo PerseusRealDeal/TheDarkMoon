@@ -237,21 +237,42 @@ public class PopoverViewController: NSViewController {
 
     public func startAnimationProgressIndicator(_ section: MeteoCategory,
                                                 _ sender: Any? = nil) {
+
         switch section {
         case .weather:
             viewWeather?.startProgressIndicator = true
         case .forecast:
             viewForecast?.startProgressIndicator = true
         }
+
+        if let weatherProgressIndicator = viewWeather?.startProgressIndicator,
+           let forecastProgressIndicator = viewForecast?.startProgressIndicator {
+
+            if weatherProgressIndicator || forecastProgressIndicator { // Is in progress?
+                buttonStopFetchingMeteoFacts.title = ""
+                buttonStopFetchingMeteoFacts.image =
+                NSImage(named: "NSTouchBarRecordStopTemplate")
+            }
+        }
     }
 
     public func stopAnimationProgressIndicator(_ section: MeteoCategory,
                                                _ sender: Any? = nil) {
+
         switch section {
         case .weather:
             viewWeather?.startProgressIndicator = false
         case .forecast:
             viewForecast?.startProgressIndicator = false
+        }
+
+        if let weatherProgressIndicator = viewWeather?.startProgressIndicator,
+           let forecastProgressIndicator = viewForecast?.startProgressIndicator {
+
+            if !(weatherProgressIndicator || forecastProgressIndicator) { // Is finished?
+                buttonStopFetchingMeteoFacts.title = "|"
+                buttonStopFetchingMeteoFacts.image = nil
+            }
         }
     }
 
