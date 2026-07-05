@@ -102,11 +102,11 @@
                     </textFieldCell>
                 </textField>
                 <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="lEf-fh-mLw">
-                    <rect key="frame" x="394" y="306" width="16" height="16"/>
+                    <rect key="frame" x="399" y="0.0" width="16" height="16"/>
                 </progressIndicator>
             </subviews>
             <constraints>
-                <constraint firstItem="lEf-fh-mLw" firstAttribute="trailing" secondItem="c22-O7-iKe" secondAttribute="trailing" constant="-5" id="4iM-xy-vF8"/>
+                <constraint firstItem="lEf-fh-mLw" firstAttribute="trailing" secondItem="c22-O7-iKe" secondAttribute="trailing" id="4iM-xy-vF8"/>
                 <constraint firstItem="qqV-2W-t83" firstAttribute="top" secondItem="Mc7-Qe-7uR" secondAttribute="bottom" id="5eX-73-seN"/>
                 <constraint firstItem="qBw-SP-YLr" firstAttribute="leading" secondItem="vWh-dP-4Gl" secondAttribute="leading" id="6NK-if-DjZ"/>
                 <constraint firstItem="GQy-nj-ciG" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="8mi-Uh-qnK"/>
@@ -118,7 +118,7 @@
                 <constraint firstAttribute="trailing" secondItem="GQy-nj-ciG" secondAttribute="trailing" id="JWd-LQ-AUi"/>
                 <constraint firstItem="7cu-vs-6m3" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="PVA-N1-xmC"/>
                 <constraint firstItem="qBw-SP-YLr" firstAttribute="top" secondItem="vWh-dP-4Gl" secondAttribute="bottom" id="QxE-4u-nbQ"/>
-                <constraint firstItem="lEf-fh-mLw" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="5" id="VKW-wQ-Fb8"/>
+                <constraint firstItem="lEf-fh-mLw" firstAttribute="bottom" secondItem="c22-O7-iKe" secondAttribute="bottom" id="VKW-wQ-Fb8"/>
                 <constraint firstAttribute="bottom" secondItem="GQy-nj-ciG" secondAttribute="bottom" id="aPv-g9-kUU"/>
                 <constraint firstAttribute="trailing" secondItem="Mc7-Qe-7uR" secondAttribute="trailing" constant="80" id="bd6-oY-2dx"/>
                 <constraint firstItem="7cu-vs-6m3" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="cOl-7I-Yq8"/>
