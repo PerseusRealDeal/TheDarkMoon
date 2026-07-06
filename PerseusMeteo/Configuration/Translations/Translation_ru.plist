@@ -38,6 +38,8 @@
 	<string>Запросить Прогноз</string>
 	<key>Label: Made with Love</key>
 	<string>C любовью из Новосибирска</string>
+	<key>Label: MeteoDataFrom</key>
+	<string>Метео сведения от</string>
 	<key>Tab: Current Weather</key>
 	<string>Наблюдение</string>
 	<key>Tab: Forecast</key>

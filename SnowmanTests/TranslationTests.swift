@@ -52,6 +52,9 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("Label: Made with Love".localizedExpectation,
                        "Label: Made with Love".localizedValue)
 
+        XCTAssertEqual("Label: MeteoDataFrom".localizedExpectation,
+                       "Label: MeteoDataFrom".localizedValue)
+
         XCTAssertEqual("Tab: Current Weather".localizedExpectation,
                        "Tab: Current Weather".localizedValue)
 

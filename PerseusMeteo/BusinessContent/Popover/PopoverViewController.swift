@@ -64,6 +64,8 @@ public class PopoverViewController: NSViewController {
 
     @IBOutlet private(set) weak var labelGreeting: MessageLabel!
     @IBOutlet private(set) weak var labelMeteoProviderWebLink: WebLabel!
+    @IBOutlet private(set) weak var labelMeteoDataFrom: NSTextField!
+    @IBOutlet private(set) weak var labelMadeWithLove: NSTextField!
 
     @IBOutlet private(set) weak var viewLocation: LocationView!
 
@@ -73,8 +75,6 @@ public class PopoverViewController: NSViewController {
 
     @IBOutlet private(set) weak var viewWeather: WeatherView!
     @IBOutlet private(set) weak var viewForecast: ForecastView!
-
-    @IBOutlet private(set) weak var labelMadeWithLove: NSTextField!
 
     @IBOutlet private(set) weak var buttonAbout: NSButton!
     @IBOutlet private(set) weak var buttonOptions: NSButton!
@@ -553,6 +553,7 @@ extension PopoverViewController: PopoverViewDelegate {
 
         buttonQuit.title = "Button: Quit".localizedValue
         labelGreeting.message = "DeveloperRelease".localizedValue
+        labelMeteoDataFrom.stringValue = "Label: MeteoDataFrom".localizedValue
 
         refreshCallInformation()
 
