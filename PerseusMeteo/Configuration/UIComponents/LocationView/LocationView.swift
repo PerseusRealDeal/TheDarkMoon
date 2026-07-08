@@ -61,12 +61,25 @@ class LocationView: NSView, NSTextFieldDelegate {
 
         var point: GeoPoint?
 
+        /*
+
         switch locationCard {
         case .suggestion:
             point = AppGlobals.suggestion?.point
         case .favorite:
             point = AppOptions.favoriteLocationsOption.first(
                 where: { $0.isOnDisplay })?.point
+        case .current:
+            point = AppGlobals.currentLocation
+        }
+
+        */
+
+        switch locationCard {
+        case .suggestion:
+            return "Geo Couple".localizedValue
+        case .favorite:
+            return "Geo Couple".localizedValue
         case .current:
             point = AppGlobals.currentLocation
         }
