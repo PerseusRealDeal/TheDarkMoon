@@ -102,17 +102,17 @@ class LocationView: NSView, NSTextFieldDelegate {
     @IBOutlet private(set) weak var textFieldLocationNameSearch: NSTextField!
 
     @IBOutlet private(set) weak var viewSuggestions: SuggestionsView!
-    @IBOutlet public weak var collectionSuggestions: NSCollectionView!
-    @IBOutlet public weak var indicatorCircular: NSProgressIndicator!
-    @IBOutlet public weak var constraintViewSuggestionsHeight: NSLayoutConstraint!
+    @IBOutlet private(set) weak var collectionSuggestions: NSCollectionView!
+    @IBOutlet private(set) weak var indicatorCircular: NSProgressIndicator!
+    @IBOutlet private(set) weak var constraintViewSuggestionsHeight: NSLayoutConstraint!
 
-    @IBOutlet public weak var labelLocationName: NSTextField!
+    @IBOutlet private(set) weak var labelLocationName: NSTextField!
     @IBOutlet private(set) weak var labelGeoCoordinates: NSTextField!
     @IBOutlet private(set) weak var labelPermissionStatus: NSTextField!
     @IBOutlet private(set) weak var labelAutoSuggestionsRequest: NSTextField!
 
     @IBOutlet private(set) weak var buttonUpdateCurrentLocation: NSButton!
-    @IBOutlet public weak var checkBoxAutoSuggestionsRequest: NSButton!
+    @IBOutlet private(set) weak var checkBoxAutoSuggestionsRequest: NSButton!
     @IBOutlet private(set) weak var buttonSuggestionsRequest: NSButton!
 
     @IBOutlet private(set) weak var comboBoxFavorites: NSComboBox!
