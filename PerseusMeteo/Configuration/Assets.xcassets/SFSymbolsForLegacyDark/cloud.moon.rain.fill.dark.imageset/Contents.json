@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "cloud.moon.rain.fill.dark.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "cloud.moon.rain.fill.dark 1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "cloud.moon.rain.fill.dark 2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
