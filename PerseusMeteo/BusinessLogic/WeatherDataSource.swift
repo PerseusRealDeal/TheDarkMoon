@@ -70,6 +70,8 @@ public class WeatherDataSource: MeteoDataSource {
             return MeteoFactsDefaults.weatherIconName
         }
 
+        log.message(#function + " \(value)")
+
         return value
     }
 

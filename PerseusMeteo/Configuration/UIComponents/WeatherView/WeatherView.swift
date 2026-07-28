@@ -126,13 +126,27 @@ class WeatherView: NSView {
         // Temperature, Weather Icon, and Short desc
 
         let temperature = dataSource.temperature
-
         let wcs = dataSource.weatherConditions
-        let img = NSImage(named: wcs.icon)
+
+        let imageName = dataSource.weatherIconName
+        // TODO: Decode image name
+
+        viewWeatherConditionsIcon.image = NSImage(named: imageName)
+
+        /*
+
+        if imageName == AppGlobals.statusMenusButtonIconName {
+            viewWeatherConditionsIcon.image = NSImage(named: imageName)
+        } else if #available(macOS 11.0, *) {
+            viewWeatherConditionsIcon.image = NSImage(systemSymbolName: imageName,
+                                                      accessibilityDescription: nil)
+        } else { // Images for legacy macOS
+            viewWeatherConditionsIcon.image = NSImage(named: imageName)
+        }
+
+        */
 
         labelTemperatureValue.stringValue = temperature
-        viewWeatherConditionsIcon.image = img
-
         labelWeatherConditionsDescriptionValue.stringValue = "\(wcs)".capitalizingFirstLetter()
 
         // Sunrise and sunset

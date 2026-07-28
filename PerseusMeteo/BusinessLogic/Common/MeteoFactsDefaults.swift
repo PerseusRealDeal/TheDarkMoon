@@ -26,7 +26,7 @@ public struct MeteoFactsDefaults {
     }
 
     public static var weatherIconName: String {
-        return AppGlobals.statusMenusButtonIconName
+        return AppGlobals.theAppLogoImageName
     }
 
     public static var forecastDaysItemWeatherDescription: String {

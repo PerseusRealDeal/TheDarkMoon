@@ -37,9 +37,14 @@ public class WeatherDataSourceReader: MeteoDataSourceReader {
 
     public var weatherIconName: String? {
 
-        guard let dict = data else { return nil }
+        guard
+            let dict = data,
+            let name = parser?.getWeatherIconName(from: dict)
+        else {
+            return nil
+        }
 
-        return parser?.getWeatherIconName(from: dict)
+        return name
     }
 
     public var weatherDescription: String? {

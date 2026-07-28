@@ -143,14 +143,13 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
 
         if let weather = dictionary["weather"] as? [Any] {
             if let wFirst = weather.first as? [String: Any] {
-                if let id = getInstance("id", Int.self, wFirst),
+                if getInstance("id", Int.self, wFirst) != nil,
                    let icon = getInstance("icon", String.self, wFirst) {
 
                     // Current Weather Conditions Icon name
+                    // return mappedOpenWeatherIcon(id, icon)
 
-                    let iconName = representOpenWeatherMapIcon(id, icon)
-
-                    return iconName
+                    return icon
 
                 } else {
                     log.message("[\(type(of: self))].\(#function) [id.icon] mistaken", .error)
@@ -320,8 +319,6 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
                     let icon = getInstance("icon", String.self, wFirst),
                     let code = WeatherCode(rawValue: id) {
 
-                    // WeatherConditions struct
-
                     value = WeatherConditions(code: code, name: icon)
 
                 } else {
@@ -339,3 +336,45 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
         return conditions
     }
 }
+
+/*
+
+public func mappedOpenWeatherIcon(_ id: Int, _ icon: String) -> String {
+
+    var iconName = ""
+
+    switch icon {
+    case "01d":
+        iconName = "sun.max"
+    case "01n":
+        iconName = "moon"
+    case "02d":
+        iconName = "cloud.sun"
+    case "02n":
+        iconName = "cloud.moon"
+    case "03d", "03n", "04d", "04n":
+        iconName = "cloud"
+    case "09d", "09n":
+        iconName = "cloud.heavyrain"
+    case "10d":
+        iconName = "cloud.sun.rain"
+    case "10n":
+        iconName = "cloud.moon.rain"
+    case "11d":
+        iconName = "cloud.sun.bolt"
+    case "11n":
+        iconName = "cloud.moon.bolt"
+    case "13d", "13n":
+        iconName = "snow"
+    case "50d", "50n":
+        iconName = "cloud.fog"
+    default:
+        iconName = AppGlobals.statusMenusButtonIconName
+    }
+
+    log.message(#function + " \(icon) " + iconName)
+
+    return iconName
+}
+
+*/
