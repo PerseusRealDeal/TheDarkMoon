@@ -149,7 +149,7 @@ public class OpenWeatherWeatherParser: WeatherParserProtocol {
                     // Current Weather Conditions Icon name
                     // return mappedOpenWeatherIcon(id, icon)
 
-                    return icon
+                    return "OW_\(icon)"
 
                 } else {
                     log.message("[\(type(of: self))].\(#function) [id.icon] mistaken", .error)

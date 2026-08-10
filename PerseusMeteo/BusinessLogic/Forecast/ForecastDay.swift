@@ -272,6 +272,10 @@ public struct ForecastDay {
 
         // The most relevant icon
 
-        return (rankedIcons.min { $0.value < $1.value })?.key
+        guard let iconName = (rankedIcons.min { $0.value < $1.value })?.key else {
+            return nil
+        }
+
+        return "OW_\(iconName)"
     }
 }

@@ -82,6 +82,13 @@ class ForecastDaysViewItem: NSCollectionViewItem {
             self.labelWeatherConditionValue?.textColor = whiteOrBlack
             self.temperature?.textColor = whiteOrBlack
         }
+
+        guard let day = self.data else { return }
+
+        let imageName = day.weatherConditionIconName.toAppleIconName(
+            isLight: DarkModeAgent.shared.style == .light)
+
+        self.viewWeatherConditionIcon?.image = NSImage(named: imageName)
     }
 
     private func reload() {
@@ -96,7 +103,10 @@ class ForecastDaysViewItem: NSCollectionViewItem {
         // imageView?.image = NSImage(named: friend.iconName)
         // view.layer?.backgroundColor = NSColor.red.cgColor
 
-        self.viewWeatherConditionIcon?.image = NSImage(named: day.weatherConditionIconName)
+        let imageName = day.weatherConditionIconName.toAppleIconName(
+            isLight: DarkModeAgent.shared.style == .light)
+
+        self.viewWeatherConditionIcon?.image = NSImage(named: imageName)
         self.labelWeatherConditionValue?.stringValue = day.weatherConditions
 
         self.date?.stringValue = "\(day.dateDayOfTheWeek), \(day.dateDayMonth)"

@@ -128,8 +128,8 @@ class WeatherView: NSView {
         let temperature = dataSource.temperature
         let wcs = dataSource.weatherConditions
 
-        let imageName = dataSource.weatherIconName
-        // TODO: Decode image name
+        let imageName = dataSource.weatherIconName.toAppleIconName(
+            isLight: DarkModeAgent.shared.style == .light)
 
         viewWeatherConditionsIcon.image = NSImage(named: imageName)
 
@@ -210,6 +210,11 @@ extension WeatherView {
     public func makeup() {
 
         log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
+
+        let imageName = dataSource.weatherIconName.toAppleIconName(
+            isLight: DarkModeAgent.shared.style == .light)
+
+        viewWeatherConditionsIcon.image = NSImage(named: imageName)
 
         if isHighSierra {
 

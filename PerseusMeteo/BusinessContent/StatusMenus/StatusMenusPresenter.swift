@@ -215,15 +215,18 @@ public class StatusMenusPresenter {
             return
         }
 
-        let imageName = dataSource.weatherIconName
-
-        // TODO: Decode image name
-
+        let imageName = dataSource.weatherIconName.toAppleIconName(isLight: false)
         let image = NSImage(named: imageName)
 
+        if let button = statusItem?.button, let resized = image {
+            resized.resizeProportionally(to: button.frame.height, padding: 4.0)
+        }
+
         if isLegacy || AppOptions.statusMenusViewOptions.twoLines == false {
+
             statusItem?.button?.imagePosition = .imageLeading
             statusItem?.button?.image = image
+
         } else {
             customStatusMenusItemContent?.image = image
         }
