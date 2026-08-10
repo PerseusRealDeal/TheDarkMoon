@@ -202,7 +202,7 @@ public class StatusMenusPresenter {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        if AppOptions.statusMenusOption == false {
+        if AppOptions.statusMenusOption == false { // Icon name by default.
             if isLegacy || AppOptions.statusMenusViewOptions.twoLines == false {
                 statusItem?.button?.imagePosition = .imageLeading
                 statusItem?.button?.image = NSImage(named: AppGlobals.theAppLogoImageName)
@@ -216,6 +216,7 @@ public class StatusMenusPresenter {
         }
 
         let imageName = dataSource.weatherIconName
+
         // TODO: Decode image name
 
         let image = NSImage(named: imageName)

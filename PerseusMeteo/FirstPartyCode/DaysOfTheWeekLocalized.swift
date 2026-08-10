@@ -1,5 +1,5 @@
 //
-//  TheDayOfTheWeekLocalized.swift
+//  DaysOfTheWeekLocalized.swift
 //  PerseusMeteo
 //
 //  Created by Mikhail Zhigulin in 7532.
@@ -15,7 +15,7 @@
 
 import Foundation
 
-enum DayOfTheWeek: Int, CustomStringConvertible {
+enum DayOfWeek: Int, CustomStringConvertible {
 
     public var description: String {
         return self.rawValue.description

@@ -20,10 +20,13 @@ import Foundation
 public enum MeteoProvider: CustomStringConvertible {
 
     public var description: String {
+        return "\(serviceMarketName)"
+    }
 
+    public var serviceMarketName: String {
         switch self {
         case .serviceOpenWeatherMap:
-            return "OpenWeather" // Market name.
+            return "OpenWeather"
         }
     }
 

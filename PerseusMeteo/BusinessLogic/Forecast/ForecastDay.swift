@@ -90,11 +90,11 @@ public struct ForecastDay {
         guard
             let firstHour = hours.first,
             let dt = firstHour.source["dt"] as? Int,
-            let theDayOfTheWeek = representLastOneCalculationTime(
+            let theDayOfWeek = representLastOneCalculationTime(
                 dt,
                 firstHour.timezone,
                 toBe: AppOptions.timeFormatOption).theDayOfTheWeek,
-            let theDayOfTheWeekLocalized = DayOfTheWeek(rawValue: theDayOfTheWeek)?.localized
+            let theDayOfTheWeekLocalized = DayOfWeek(rawValue: theDayOfWeek)?.localized
         else {
             return MeteoFactsDefaults.weekday
         }
