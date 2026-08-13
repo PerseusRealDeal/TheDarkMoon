@@ -42,6 +42,9 @@ class WeatherView: NSView {
     @IBOutlet private(set) weak var indicator: NSProgressIndicator!
 
     @IBOutlet private(set) weak var viewWeatherConditionsIcon: NSImageView!
+    @IBOutlet private(set) weak var viewSunriseIcon: NSImageView!
+    @IBOutlet private(set) weak var viewSunsetIcon: NSImageView!
+
     @IBOutlet private(set) weak var labelTemperatureValue: NSTextField!
     @IBOutlet private(set) weak var labelWeatherConditionsDescriptionValue: NSTextField!
 
@@ -211,10 +214,16 @@ extension WeatherView {
 
         log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
 
-        let imageName = dataSource.weatherIconName.toAppleIconName(
-            isLight: DarkModeAgent.shared.style == .light)
+        let isDarkModeInLight = DarkModeAgent.shared.style == .light
+
+        let imageName = dataSource.weatherIconName.toAppleIconName(isLight: isDarkModeInLight)
+        let sunriseIconName = isDarkModeInLight ? "sunrise.fill" : "sunrise.dark"
+        let sunsetIconName = isDarkModeInLight ? "sunset.fill" : "sunset.dark"
 
         viewWeatherConditionsIcon.image = NSImage(named: imageName)
+
+        viewSunriseIcon.image = NSImage(named: sunriseIconName)
+        viewSunsetIcon.image = NSImage(named: sunsetIconName)
 
         if isHighSierra {
 

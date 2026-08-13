@@ -136,8 +136,8 @@
 
 "Unit: mm" = "mm";
 
-"Label: Sunrise" = "SUNRISE";
-"Label: Sunset" = "SUNSET";
+"Label: Sunrise" = "Sunrise";
+"Label: Sunset" = "Sunset";
 
 /* Time */
 

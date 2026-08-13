@@ -133,8 +133,8 @@
 
 "Unit: mm" = "мм";
 
-"Label: Sunrise" = "ВОСХОД";
-"Label: Sunset" = "ЗАХОД";
+"Label: Sunrise" = "Восход";
+"Label: Sunset" = "Заход";
 
 /* Time */
 

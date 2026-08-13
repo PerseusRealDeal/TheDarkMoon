@@ -175,9 +175,9 @@
 	<key>Unit: mb</key>
 	<string>мбар</string>
 	<key>Label: Sunrise</key>
-	<string>ВОСХОД</string>
+	<string>Восход</string>
 	<key>Label: Sunset</key>
-	<string>ЗАХОД</string>
+	<string>Заход</string>
 	<key>/* Time */</key>
 	<string>--</string>
 	<key>AM</key>

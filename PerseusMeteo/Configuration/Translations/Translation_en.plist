@@ -175,9 +175,9 @@
 	<key>Unit: mb</key>
 	<string>mb</string>
 	<key>Label: Sunrise</key>
-	<string>SUNRISE</string>
+	<string>Sunrise</string>
 	<key>Label: Sunset</key>
-	<string>SUNSET</string>
+	<string>Sunset</string>
 	<key>/* Time */</key>
 	<string>--</string>
 	<key>AM</key>

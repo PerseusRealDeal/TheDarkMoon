@@ -17,6 +17,8 @@
                 <outlet property="labelWeatherConditionsDescriptionValue" destination="1ak-U7-0E6" id="wJv-9d-91B"/>
                 <outlet property="viewContent" destination="c22-O7-iKe" id="3hT-D1-bFo"/>
                 <outlet property="viewMeteoGroup" destination="GQy-nj-ciG" id="tzc-4P-hM5"/>
+                <outlet property="viewSunriseIcon" destination="0Yg-f3-Evc" id="suF-2N-0uF"/>
+                <outlet property="viewSunsetIcon" destination="X8O-8r-Cql" id="bQm-dN-beG"/>
                 <outlet property="viewWeatherConditionsIcon" destination="7ou-eL-RIc" id="zlC-N3-Sk4"/>
             </connections>
         </customObject>
@@ -55,6 +57,22 @@
                             </constraints>
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="Icon" id="nj1-ar-9WA"/>
                         </imageView>
+                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Yg-f3-Evc">
+                            <rect key="frame" x="320" y="45" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="Slh-Jp-h3X"/>
+                                <constraint firstAttribute="width" secondItem="0Yg-f3-Evc" secondAttribute="height" multiplier="1:1" id="aFR-UC-9N5"/>
+                            </constraints>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sunrise.fill" id="ZnS-UG-G28"/>
+                        </imageView>
+                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X8O-8r-Cql">
+                            <rect key="frame" x="320" y="24" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="0PR-Wr-Ujb"/>
+                                <constraint firstAttribute="width" secondItem="X8O-8r-Cql" secondAttribute="height" multiplier="1:1" id="LPf-z8-YyZ"/>
+                            </constraints>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sunset.fill" id="Zdb-zr-hKc"/>
+                        </imageView>
                     </subviews>
                     <constraints>
                         <constraint firstItem="1ak-U7-0E6" firstAttribute="top" secondItem="QQn-0Y-EXY" secondAttribute="bottom" constant="10" id="2yg-zy-1xp"/>
@@ -70,7 +88,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="415" height="247"/>
                 </customView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mc7-Qe-7uR">
-                    <rect key="frame" x="274" y="296" width="63" height="16"/>
+                    <rect key="frame" x="259" y="296" width="63" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="SUNRISE" id="xBd-fL-A9G">
                         <font key="font" metaFont="systemBold"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -78,7 +96,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vWh-dP-4Gl">
-                    <rect key="frame" x="338" y="296" width="39" height="16"/>
+                    <rect key="frame" x="343" y="296" width="39" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="13:53" id="ghv-g6-XmG">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -86,7 +104,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qBw-SP-YLr">
-                    <rect key="frame" x="338" y="280" width="64" height="16"/>
+                    <rect key="frame" x="343" y="275" width="64" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="05:03 PM" id="DjO-Im-nAI">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -94,7 +112,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qqV-2W-t83">
-                    <rect key="frame" x="274" y="280" width="58" height="16"/>
+                    <rect key="frame" x="259" y="275" width="58" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="SUNSET" id="5Ps-ic-fxm">
                         <font key="font" metaFont="systemBold"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -107,28 +125,34 @@
             </subviews>
             <constraints>
                 <constraint firstItem="lEf-fh-mLw" firstAttribute="trailing" secondItem="c22-O7-iKe" secondAttribute="trailing" id="4iM-xy-vF8"/>
-                <constraint firstItem="qqV-2W-t83" firstAttribute="top" secondItem="Mc7-Qe-7uR" secondAttribute="bottom" id="5eX-73-seN"/>
+                <constraint firstItem="qqV-2W-t83" firstAttribute="top" secondItem="Mc7-Qe-7uR" secondAttribute="bottom" constant="5" id="5eX-73-seN"/>
                 <constraint firstItem="qBw-SP-YLr" firstAttribute="leading" secondItem="vWh-dP-4Gl" secondAttribute="leading" id="6NK-if-DjZ"/>
+                <constraint firstItem="vWh-dP-4Gl" firstAttribute="leading" secondItem="0Yg-f3-Evc" secondAttribute="trailing" id="7uQ-Ba-eM3"/>
                 <constraint firstItem="GQy-nj-ciG" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="8mi-Uh-qnK"/>
-                <constraint firstItem="vWh-dP-4Gl" firstAttribute="leading" secondItem="Mc7-Qe-7uR" secondAttribute="trailing" constant="5" id="9hh-zC-7Rt"/>
+                <constraint firstItem="vWh-dP-4Gl" firstAttribute="leading" secondItem="Mc7-Qe-7uR" secondAttribute="trailing" constant="25" id="9hh-zC-7Rt"/>
                 <constraint firstItem="qqV-2W-t83" firstAttribute="leading" secondItem="Mc7-Qe-7uR" secondAttribute="leading" id="AXV-Me-QQL"/>
                 <constraint firstItem="7cu-vs-6m3" firstAttribute="bottom" secondItem="GQy-nj-ciG" secondAttribute="top" id="E1R-l6-pra"/>
                 <constraint firstAttribute="trailing" secondItem="7cu-vs-6m3" secondAttribute="trailing" id="EVt-zq-KWc"/>
                 <constraint firstItem="GQy-nj-ciG" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="80" id="FPI-hj-b23"/>
+                <constraint firstItem="X8O-8r-Cql" firstAttribute="centerY" secondItem="qqV-2W-t83" secondAttribute="centerY" id="J6Y-em-PM5"/>
                 <constraint firstAttribute="trailing" secondItem="GQy-nj-ciG" secondAttribute="trailing" id="JWd-LQ-AUi"/>
                 <constraint firstItem="7cu-vs-6m3" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="PVA-N1-xmC"/>
-                <constraint firstItem="qBw-SP-YLr" firstAttribute="top" secondItem="vWh-dP-4Gl" secondAttribute="bottom" id="QxE-4u-nbQ"/>
+                <constraint firstItem="qBw-SP-YLr" firstAttribute="leading" secondItem="X8O-8r-Cql" secondAttribute="trailing" id="Sul-sv-QtP"/>
                 <constraint firstItem="lEf-fh-mLw" firstAttribute="bottom" secondItem="c22-O7-iKe" secondAttribute="bottom" id="VKW-wQ-Fb8"/>
                 <constraint firstAttribute="bottom" secondItem="GQy-nj-ciG" secondAttribute="bottom" id="aPv-g9-kUU"/>
-                <constraint firstAttribute="trailing" secondItem="Mc7-Qe-7uR" secondAttribute="trailing" constant="80" id="bd6-oY-2dx"/>
+                <constraint firstAttribute="trailing" secondItem="Mc7-Qe-7uR" secondAttribute="trailing" constant="95" id="bd6-oY-2dx"/>
                 <constraint firstItem="7cu-vs-6m3" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="cOl-7I-Yq8"/>
+                <constraint firstItem="0Yg-f3-Evc" firstAttribute="centerY" secondItem="Mc7-Qe-7uR" secondAttribute="centerY" id="cuG-sL-JMq"/>
                 <constraint firstItem="vWh-dP-4Gl" firstAttribute="centerY" secondItem="Mc7-Qe-7uR" secondAttribute="centerY" id="nRM-J6-1TT"/>
                 <constraint firstItem="Mc7-Qe-7uR" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="15" id="wCV-aS-Iar"/>
+                <constraint firstItem="qBw-SP-YLr" firstAttribute="centerY" secondItem="qqV-2W-t83" secondAttribute="centerY" id="zya-2u-TYp"/>
             </constraints>
             <point key="canvasLocation" x="107.5" y="217.5"/>
         </customView>
     </objects>
     <resources>
         <image name="Icon" width="16" height="16"/>
+        <image name="sunrise.fill" width="51" height="39"/>
+        <image name="sunset.fill" width="51" height="39"/>
     </resources>
 </document>
