@@ -38,6 +38,8 @@
 	<string>Запросить Прогноз</string>
 	<key>Label: Made with Love</key>
 	<string>C любовью из Новосибирска</string>
+	<key>Label: MeteoDataFrom</key>
+	<string>Метео сведения от</string>
 	<key>Tab: Current Weather</key>
 	<string>Наблюдение</string>
 	<key>Tab: Forecast</key>
@@ -173,9 +175,9 @@
 	<key>Unit: mb</key>
 	<string>мбар</string>
 	<key>Label: Sunrise</key>
-	<string>ВОСХОД</string>
+	<string>Восход</string>
 	<key>Label: Sunset</key>
-	<string>ЗАХОД</string>
+	<string>Заход</string>
 	<key>/* Time */</key>
 	<string>--</string>
 	<key>AM</key>
@@ -391,7 +393,7 @@
 	<key>Button: The App Source Code</key>
 	<string>Исходники изделия</string>
 	<key>Button: The Technological Tree</key>
-	<string>Золотое дерево</string>
+	<string>Технологическое дерево</string>
 	<key>Label: The App Version</key>
 	<string>Выпуск</string>
 	<key>Label: Copyright Notice</key>

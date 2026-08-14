@@ -50,6 +50,8 @@ public class StatusMenusPresenter {
 
     init() {
 
+        log.message("[\(type(of: self))].\(#function)")
+
         // Observe localization events
         AppGlobals.notificationCenter.addObserver(
             self,
@@ -113,19 +115,24 @@ public class StatusMenusPresenter {
     }
 
     @objc private func makeUp() {
+
         log.message("[\(type(of: self))].\(#function)")
 
         ContentCoordinator.shared.statusMenus.popover?.appearance =
         DarkModeAgent.shared.style == .light ? LIGHT_APPEARANCE_DEFAULT_IN_USE :
         DARK_APPEARANCE_DEFAULT_IN_USE
+
+        updateWeatherConditionsImage()
     }
 
     @objc private func localize() {
+
         log.message("[\(type(of: self))].\(#function)")
         reset()
     }
 
     @objc private func refresh() {
+
         log.message("[\(type(of: self))].\(#function)")
 
         reConfigureViewStructureIfNeeded()
@@ -133,20 +140,15 @@ public class StatusMenusPresenter {
     }
 
     private func reset() {
+
         log.message("[\(type(of: self))].\(#function)")
+
+        updateWeatherConditionsImage()
 
         if AppOptions.statusMenusOption == false {
             if isLegacy || AppOptions.statusMenusViewOptions.twoLines == false {
-                statusItem?.button?.imagePosition = .imageLeading
-                statusItem?.button?.image = NSImage(
-                    named: AppGlobals.statusMenusButtonIconName
-                )
-
                 statusItem?.button?.title = "Product Name".localizedValue
             } else {
-                customStatusMenusItemContent?.image = NSImage(
-                    named: AppGlobals.statusMenusButtonIconName
-                )
                 customStatusMenusItemContent?.titleOne = "P2P".localizedValue
                 customStatusMenusItemContent?.titleTwo = "Product Name".localizedValue
             }
@@ -155,17 +157,12 @@ public class StatusMenusPresenter {
             return
         }
 
-        let image = NSImage(named: dataSource.weatherConditions.icon)
         let temperature = dataSource.temperature
 
         if isLegacy || AppOptions.statusMenusViewOptions.twoLines == false {
-            statusItem?.button?.imagePosition = .imageLeading
-            statusItem?.button?.image = image
             statusItem?.button?.title = temperature
         } else {
-            customStatusMenusItemContent?.image = image
             customStatusMenusItemContent?.titleOne = temperature
-
             customStatusMenusItemContent?.titleTwo = self.titleTwo
         }
 
@@ -173,6 +170,8 @@ public class StatusMenusPresenter {
     }
 
     private func reConfigureViewStructureIfNeeded() {
+
+        log.message("[\(type(of: self))].\(#function)")
 
         self.customStatusMenusItemContent?.removeFromSuperview()
         self.customStatusMenusItemContent = nil
@@ -199,6 +198,40 @@ public class StatusMenusPresenter {
         }
     }
 
+    private func updateWeatherConditionsImage() {
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        if AppOptions.statusMenusOption == false { // Icon name by default.
+            if isLegacy || AppOptions.statusMenusViewOptions.twoLines == false {
+                statusItem?.button?.imagePosition = .imageLeading
+                statusItem?.button?.image = NSImage(named: AppGlobals.theAppLogoImageName)
+            } else {
+                customStatusMenusItemContent?.image = NSImage(
+                    named: AppGlobals.theAppLogoImageName
+                )
+            }
+
+            return
+        }
+
+        let imageName = dataSource.weatherIconName.toAppleIconName(isLight: false)
+        let image = NSImage(named: imageName)
+
+        if let button = statusItem?.button, let resized = image {
+            resized.resizeProportionally(to: button.frame.height, padding: 4.0)
+        }
+
+        if isLegacy || AppOptions.statusMenusViewOptions.twoLines == false {
+
+            statusItem?.button?.imagePosition = .imageLeading
+            statusItem?.button?.image = image
+
+        } else {
+            customStatusMenusItemContent?.image = image
+        }
+    }
+
     private func meteoParameter(_ parameter: MeteoParameter) -> String {
         switch parameter {
         case .feelsLike:
@@ -219,5 +252,4 @@ public class StatusMenusPresenter {
             return dataSource.cloudiness
         }
     }
-
 }

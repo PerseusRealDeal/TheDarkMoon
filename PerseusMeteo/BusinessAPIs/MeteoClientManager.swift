@@ -43,7 +43,7 @@ extension PerseusNetworkClientError {
 
 public class MeteoClientManager {
 
-    private let presenter: StatusMenusPresenter
+    private let statusMenusPresenter: StatusMenusPresenter
 
     private let timeoutIntervalMeteoData = 10.0 // 10 sec.
     private let timeoutIntervalSuggestions = 5.0 // 5 sec.
@@ -69,7 +69,7 @@ public class MeteoClientManager {
 
         log.message("[\(type(of: self))].\(#function)", .notice)
 
-        self.presenter = presenter
+        self.statusMenusPresenter = presenter
 
         serviceCurrentWeather.responseHandler = handleCurrent
         serviceForecast.responseHandler = handleForecast
@@ -360,7 +360,7 @@ extension MeteoClientManager {
             ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
             ContentCoordinator.shared.screenPopover.reloadWeatherData()
 
-            self.presenter.reloadData()
+            self.statusMenusPresenter.reloadData()
             self.isReadyToCall = true
         }
     }

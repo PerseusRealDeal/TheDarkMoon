@@ -38,6 +38,8 @@
 	<string>Call Forecast</string>
 	<key>Label: Made with Love</key>
 	<string>Made with Love from Novosibirsk</string>
+	<key>Label: MeteoDataFrom</key>
+	<string>Meteo Data from</string>
 	<key>Tab: Current Weather</key>
 	<string>Weather</string>
 	<key>Tab: Forecast</key>
@@ -173,9 +175,9 @@
 	<key>Unit: mb</key>
 	<string>mb</string>
 	<key>Label: Sunrise</key>
-	<string>SUNRISE</string>
+	<string>Sunrise</string>
 	<key>Label: Sunset</key>
-	<string>SUNSET</string>
+	<string>Sunset</string>
 	<key>/* Time */</key>
 	<string>--</string>
 	<key>AM</key>
@@ -391,7 +393,7 @@
 	<key>Button: The App Source Code</key>
 	<string>The product source code</string>
 	<key>Button: The Technological Tree</key>
-	<string>The golden tree</string>
+	<string>The root-tree</string>
 	<key>Label: The App Version</key>
 	<string>Version</string>
 	<key>Label: Copyright Notice</key>

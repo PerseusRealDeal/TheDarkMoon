@@ -64,6 +64,8 @@ public class PopoverViewController: NSViewController {
 
     @IBOutlet private(set) weak var labelGreeting: MessageLabel!
     @IBOutlet private(set) weak var labelMeteoProviderWebLink: WebLabel!
+    @IBOutlet private(set) weak var labelMeteoDataFrom: NSTextField!
+    @IBOutlet private(set) weak var labelMadeWithLove: NSTextField!
 
     @IBOutlet private(set) weak var viewLocation: LocationView!
 
@@ -73,8 +75,6 @@ public class PopoverViewController: NSViewController {
 
     @IBOutlet private(set) weak var viewWeather: WeatherView!
     @IBOutlet private(set) weak var viewForecast: ForecastView!
-
-    @IBOutlet private(set) weak var labelMadeWithLove: NSTextField!
 
     @IBOutlet private(set) weak var buttonAbout: NSButton!
     @IBOutlet private(set) weak var buttonOptions: NSButton!
@@ -237,21 +237,42 @@ public class PopoverViewController: NSViewController {
 
     public func startAnimationProgressIndicator(_ section: MeteoCategory,
                                                 _ sender: Any? = nil) {
+
         switch section {
         case .weather:
             viewWeather?.startProgressIndicator = true
         case .forecast:
             viewForecast?.startProgressIndicator = true
         }
+
+        if let weatherProgressIndicator = viewWeather?.startProgressIndicator,
+           let forecastProgressIndicator = viewForecast?.startProgressIndicator {
+
+            if weatherProgressIndicator || forecastProgressIndicator { // Is in progress?
+                // buttonStopFetchingMeteoFacts.title = ""
+                buttonStopFetchingMeteoFacts.image =
+                NSImage(named: "NSTouchBarRecordStopTemplate")
+            }
+        }
     }
 
     public func stopAnimationProgressIndicator(_ section: MeteoCategory,
                                                _ sender: Any? = nil) {
+
         switch section {
         case .weather:
             viewWeather?.startProgressIndicator = false
         case .forecast:
             viewForecast?.startProgressIndicator = false
+        }
+
+        if let weatherProgressIndicator = viewWeather?.startProgressIndicator,
+           let forecastProgressIndicator = viewForecast?.startProgressIndicator {
+
+            if !(weatherProgressIndicator || forecastProgressIndicator) { // Is finished?
+                // buttonStopFetchingMeteoFacts.title = "|"
+                buttonStopFetchingMeteoFacts.image = nil
+            }
         }
     }
 
@@ -532,6 +553,7 @@ extension PopoverViewController: PopoverViewDelegate {
 
         buttonQuit.title = "Button: Quit".localizedValue
         labelGreeting.message = "DeveloperRelease".localizedValue
+        labelMeteoDataFrom.stringValue = "Label: MeteoDataFrom".localizedValue
 
         refreshCallInformation()
 

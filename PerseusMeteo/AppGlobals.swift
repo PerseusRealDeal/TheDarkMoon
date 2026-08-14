@@ -40,7 +40,7 @@ struct AppGlobals {
     // 79eefe16f6e4714470502074369fc77b
     static let appKeyOpenWeather = ""
 
-    static let statusMenusButtonIconName = "Icon"
+    static let theAppLogoImageName = "Icon"
     static let meteoProviderName = "/\\__/\\"
 
     static let favoritesLimit: Int = 7

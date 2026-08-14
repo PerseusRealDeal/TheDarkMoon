@@ -221,9 +221,3 @@ public func representLastOneCalculationTime(_ value: Int,
 
         return (theDay, theTime, theDayOfTheWeek)
 }
-
-// MARK: - Icon name
-
-public func representOpenWeatherMapIcon(_ id: Int, _ icon: String) -> String {
-    return AppGlobals.statusMenusButtonIconName
-}

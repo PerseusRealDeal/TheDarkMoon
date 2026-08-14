@@ -90,11 +90,11 @@ public struct ForecastDay {
         guard
             let firstHour = hours.first,
             let dt = firstHour.source["dt"] as? Int,
-            let theDayOfTheWeek = representLastOneCalculationTime(
+            let theDayOfWeek = representLastOneCalculationTime(
                 dt,
                 firstHour.timezone,
                 toBe: AppOptions.timeFormatOption).theDayOfTheWeek,
-            let theDayOfTheWeekLocalized = DayOfTheWeek(rawValue: theDayOfTheWeek)?.localized
+            let theDayOfTheWeekLocalized = DayOfWeek(rawValue: theDayOfWeek)?.localized
         else {
             return MeteoFactsDefaults.weekday
         }
@@ -272,6 +272,10 @@ public struct ForecastDay {
 
         // The most relevant icon
 
-        return (rankedIcons.min { $0.value < $1.value })?.key
+        guard let iconName = (rankedIcons.min { $0.value < $1.value })?.key else {
+            return nil
+        }
+
+        return "OW_\(iconName)"
     }
 }

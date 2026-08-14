@@ -296,7 +296,7 @@ OpenWeather Icons
 | 09d or 09n       | Shower rain      | cloud.heavyrain | cloud.heavyrain  |
 | 10d or 10n       | Rain             | cloud.sun.rain  | cloud.moon.rain  |
 | 11d or 11n       | Thunderstorm     | cloud.sun.bolt  | cloud.moon.bolt  |
-| 13d or 13n       | Snow             | cloud.snow      | cloud.snow       |
+| 13d or 13n       | Snow             | snow            | snow             |
 | 50d or 50n       | Mist             | cloud.fog       | cloud.fog        |
 
 Open-Meteo Icons

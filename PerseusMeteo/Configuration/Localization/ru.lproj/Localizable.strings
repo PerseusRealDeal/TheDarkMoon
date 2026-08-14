@@ -24,6 +24,7 @@
 "P2P stands for Person to Person" = "P2P значит от личности к личности";
 
 "Label: Made with Love" = "C любовью из Новосибирска";
+"Label: MeteoDataFrom" = "Метео сведения от";
 
 /* Redirect Alert */
 
@@ -132,8 +133,8 @@
 
 "Unit: mm" = "мм";
 
-"Label: Sunrise" = "ВОСХОД";
-"Label: Sunset" = "ЗАХОД";
+"Label: Sunrise" = "Восход";
+"Label: Sunset" = "Заход";
 
 /* Time */
 
@@ -279,7 +280,7 @@
 "Title: The Dark Moon" = "Проект — Чёрная луна";
 
 "Button: The App Source Code" = "Исходники изделия";
-"Button: The Technological Tree" = "Золотое дерево";
+"Button: The Technological Tree" = "Технологическое дерево";
 
 "Label: The App Version" = "Выпуск";
 

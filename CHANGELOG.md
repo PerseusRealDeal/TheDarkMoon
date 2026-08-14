@@ -10,9 +10,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-<!--
-- Additional preview material.
--->
+- The project's file structure changes.
+- Apple SF Symbols instead of OpenWeather icons.
+- Minor screen changes.
+
+### Removed
+
+- Unused imagesets.
+
+### Updated
+
+- Functional requirements [specification](/REQUIREMENTS.md) for v0.6.0.
+- Meteo data source web-link.
+- CPL dependecy to v1.7.2.
+- [README](/README.md)
 
 ## [0.5.5] - [2026-04-17], The Dark Moon
 
@@ -66,7 +77,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Updated
 
-- CPL dependecy to v1.7.2.
+- CPL dependecy to v1.7.1.
 - PGK dependecy to v1.2.1.
 - PDM dependecy to v2.2.0.
 
