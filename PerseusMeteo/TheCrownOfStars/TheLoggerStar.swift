@@ -1,6 +1,6 @@
 //
 //  TheLoggerStar.swift
-//  Version: 1.7.1
+//  Version: 1.7.2
 //
 //  Standalone ConsolePerseusLogger.
 //
@@ -172,18 +172,7 @@ public class PerseusLogger {
         }
 
         public var tag: String {
-            switch self {
-            case .debug:
-                return "[DEBUG]"
-            case .info:
-                return "[INFO ]"
-            case .notice:
-                return "[NOTE ]"
-            case .error:
-                return "[ERROR]"
-            case .fault:
-                return "[FAULT]"
-            }
+            return "[\(self)]"
         }
 
         case debug  = 5
