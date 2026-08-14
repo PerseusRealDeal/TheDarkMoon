@@ -377,7 +377,7 @@ Credits
 > [!IMPORTANT]
 > The Open-Meteo `logo` taken from [`https://open-meteo.com/favicon.ico`](https://open-meteo.com/favicon.ico).</br>
 > The OpenWeather `logo` taken from [`https://github.com/openweathermap`](https://github.com/openweathermap).</br>
-> The weather conditions icons for legacy macOS taken from [`sf-symbols-online`](https://github.com/andrewtavis/sf-symbols-online).
+> The weather conditions icons taken from [`sf-symbols-online`](https://github.com/andrewtavis/sf-symbols-online).
 
 - Artwork tool: [GIMP](https://www.gimp.org/) / [2.10.36](https://download.gimp.org/gimp/v2.10/osx/) for macOS 10.12 Sierra or newer
 - Language support: [Reverso](https://www.reverso.net/) 
