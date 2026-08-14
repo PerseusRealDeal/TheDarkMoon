@@ -96,7 +96,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vWh-dP-4Gl">
-                    <rect key="frame" x="343" y="296" width="39" height="16"/>
+                    <rect key="frame" x="348" y="296" width="39" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="13:53" id="ghv-g6-XmG">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -104,7 +104,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qBw-SP-YLr">
-                    <rect key="frame" x="343" y="275" width="64" height="16"/>
+                    <rect key="frame" x="348" y="275" width="64" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="05:03 PM" id="DjO-Im-nAI">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -127,9 +127,9 @@
                 <constraint firstItem="lEf-fh-mLw" firstAttribute="trailing" secondItem="c22-O7-iKe" secondAttribute="trailing" id="4iM-xy-vF8"/>
                 <constraint firstItem="qqV-2W-t83" firstAttribute="top" secondItem="Mc7-Qe-7uR" secondAttribute="bottom" constant="5" id="5eX-73-seN"/>
                 <constraint firstItem="qBw-SP-YLr" firstAttribute="leading" secondItem="vWh-dP-4Gl" secondAttribute="leading" id="6NK-if-DjZ"/>
-                <constraint firstItem="vWh-dP-4Gl" firstAttribute="leading" secondItem="0Yg-f3-Evc" secondAttribute="trailing" id="7uQ-Ba-eM3"/>
+                <constraint firstItem="vWh-dP-4Gl" firstAttribute="leading" secondItem="0Yg-f3-Evc" secondAttribute="trailing" constant="5" id="7uQ-Ba-eM3"/>
                 <constraint firstItem="GQy-nj-ciG" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="8mi-Uh-qnK"/>
-                <constraint firstItem="vWh-dP-4Gl" firstAttribute="leading" secondItem="Mc7-Qe-7uR" secondAttribute="trailing" constant="25" id="9hh-zC-7Rt"/>
+                <constraint firstItem="vWh-dP-4Gl" firstAttribute="leading" secondItem="Mc7-Qe-7uR" secondAttribute="trailing" constant="30" id="9hh-zC-7Rt"/>
                 <constraint firstItem="qqV-2W-t83" firstAttribute="leading" secondItem="Mc7-Qe-7uR" secondAttribute="leading" id="AXV-Me-QQL"/>
                 <constraint firstItem="7cu-vs-6m3" firstAttribute="bottom" secondItem="GQy-nj-ciG" secondAttribute="top" id="E1R-l6-pra"/>
                 <constraint firstAttribute="trailing" secondItem="7cu-vs-6m3" secondAttribute="trailing" id="EVt-zq-KWc"/>
@@ -137,7 +137,7 @@
                 <constraint firstItem="X8O-8r-Cql" firstAttribute="centerY" secondItem="qqV-2W-t83" secondAttribute="centerY" id="J6Y-em-PM5"/>
                 <constraint firstAttribute="trailing" secondItem="GQy-nj-ciG" secondAttribute="trailing" id="JWd-LQ-AUi"/>
                 <constraint firstItem="7cu-vs-6m3" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="PVA-N1-xmC"/>
-                <constraint firstItem="qBw-SP-YLr" firstAttribute="leading" secondItem="X8O-8r-Cql" secondAttribute="trailing" id="Sul-sv-QtP"/>
+                <constraint firstItem="qBw-SP-YLr" firstAttribute="leading" secondItem="X8O-8r-Cql" secondAttribute="trailing" constant="5" id="Sul-sv-QtP"/>
                 <constraint firstItem="lEf-fh-mLw" firstAttribute="bottom" secondItem="c22-O7-iKe" secondAttribute="bottom" id="VKW-wQ-Fb8"/>
                 <constraint firstAttribute="bottom" secondItem="GQy-nj-ciG" secondAttribute="bottom" id="aPv-g9-kUU"/>
                 <constraint firstAttribute="trailing" secondItem="Mc7-Qe-7uR" secondAttribute="trailing" constant="95" id="bd6-oY-2dx"/>
