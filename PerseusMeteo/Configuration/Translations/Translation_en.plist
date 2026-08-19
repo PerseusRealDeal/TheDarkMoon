@@ -40,6 +40,8 @@
 	<string>Made with Love from Novosibirsk</string>
 	<key>Label: MeteoDataFrom</key>
 	<string>Meteo Data from</string>
+	<key>Label: GeoCodingService</key>
+	<string>Geo-Coding Service</string>
 	<key>Tab: Current Weather</key>
 	<string>Weather</string>
 	<key>Tab: Forecast</key>

@@ -35,6 +35,15 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Greetings".localizedExpectation,
                        "Greetings".localizedValue)
+
+        XCTAssertEqual("Label: Made with Love".localizedExpectation,
+                       "Label: Made with Love".localizedValue)
+
+        XCTAssertEqual("Label: MeteoDataFrom".localizedExpectation,
+                       "Label: MeteoDataFrom".localizedValue)
+
+        XCTAssertEqual("Label: GeoCodingService".localizedExpectation,
+                       "Label: GeoCodingService".localizedValue)
     }
 
     // MARK: - Popover Screen
@@ -48,12 +57,6 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Button: Call Forecast".localizedExpectation,
                        "Button: Call Forecast".localizedValue)
-
-        XCTAssertEqual("Label: Made with Love".localizedExpectation,
-                       "Label: Made with Love".localizedValue)
-
-        XCTAssertEqual("Label: MeteoDataFrom".localizedExpectation,
-                       "Label: MeteoDataFrom".localizedValue)
 
         XCTAssertEqual("Tab: Current Weather".localizedExpectation,
                        "Tab: Current Weather".localizedValue)

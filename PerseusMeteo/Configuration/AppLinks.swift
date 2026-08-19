@@ -53,3 +53,6 @@ let linkAuthor =
 
 let linkOpenWeather =
 "https://openweathermap.org/"
+
+let linkGeoCodingOpenWeather =
+"https://openweathermap.org/api/geocoding-api"

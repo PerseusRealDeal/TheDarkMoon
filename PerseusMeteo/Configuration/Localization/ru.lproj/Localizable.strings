@@ -25,6 +25,7 @@
 
 "Label: Made with Love" = "C любовью из Новосибирска";
 "Label: MeteoDataFrom" = "Метео сведения от";
+"Label: GeoCodingService" = "Географический справочник";
 
 /* Redirect Alert */
 

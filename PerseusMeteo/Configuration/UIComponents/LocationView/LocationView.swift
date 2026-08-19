@@ -109,6 +109,8 @@ class LocationView: NSView, NSTextFieldDelegate {
     @IBOutlet private(set) weak var labelLocationName: NSTextField!
     @IBOutlet private(set) weak var labelGeoCoordinates: NSTextField!
     @IBOutlet private(set) weak var labelPermissionStatus: NSTextField!
+    @IBOutlet private(set) weak var labelGeoCodingService: NSTextField!
+    @IBOutlet private(set) weak var labelGeoCodingServiceWebLink: WebLabel!
     @IBOutlet private(set) weak var labelAutoSuggestionsRequest: NSTextField!
 
     @IBOutlet private(set) weak var buttonUpdateCurrentLocation: NSButton!
@@ -264,12 +266,19 @@ class LocationView: NSView, NSTextFieldDelegate {
         // Connect to Geo Coordinator
 
         GeoCoordinator.register(stakeholder: self, selector: #selector(reloadData))
+
+        labelGeoCodingServiceWebLink.text = "OpenWeather"
+        labelGeoCodingServiceWebLink.weblink = "\(linkGeoCodingOpenWeather)"
     }
 
     // MARK: - Contract
 
     @objc public func reloadData() {
+
+        log.message("[\(type(of: self))].\(#function)")
+
         labelPermissionStatus.stringValue = AppGlobals.permissionStatusLocalized()
+        labelGeoCodingService.stringValue = "\("Label: GeoCodingService".localizedValue):"
 
         let locationNameLocalizedFull = locationNameLocalized
         let lengthLimit = 28
@@ -322,6 +331,8 @@ class LocationView: NSView, NSTextFieldDelegate {
         }
 
         viewSuggestions.collectionView?.reloadData()
+
+        labelGeoCodingServiceWebLink.textColorOnMove = .perseusIndigo
     }
 
     public func localize() {

@@ -28,6 +28,7 @@
 
 "Label: Made with Love" = "Made with Love from Novosibirsk";
 "Label: MeteoDataFrom" = "Meteo Data from";
+"Label: GeoCodingService" = "Geo-Coding Service";
 
 /* Redirect Alert */
 

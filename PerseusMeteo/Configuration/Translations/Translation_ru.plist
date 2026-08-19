@@ -40,6 +40,8 @@
 	<string>C любовью из Новосибирска</string>
 	<key>Label: MeteoDataFrom</key>
 	<string>Метео сведения от</string>
+	<key>Label: GeoCodingService</key>
+	<string>Географический справочник</string>
 	<key>Tab: Current Weather</key>
 	<string>Наблюдение</string>
 	<key>Tab: Forecast</key>
