@@ -61,6 +61,8 @@ class WebLabel: NSTextField {
         }
     }
 
+    public var textColorOnMove: Color = .perseusBlue
+
     // MARK: - Initialization
 
     override init(frame: CGRect) {
@@ -121,7 +123,7 @@ class WebLabel: NSTextField {
     override func mouseMoved(with event: NSEvent) {
         // Change to the 'pointing hand' cursor (or any other system cursor)
         NSCursor.pointingHand.set()
-        reset(text, color: .perseusBlue)
+        reset(text, color: self.textColorOnMove)
     }
 
     // 3. Ensure the cursor reverts when the mouse exits the view (optional, but good practice)
