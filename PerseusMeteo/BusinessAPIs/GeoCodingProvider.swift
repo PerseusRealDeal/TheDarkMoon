@@ -1,11 +1,11 @@
 //
-//  MeteoProvider.swift
-//  PerseusMeteo
+//  GeoCodingProvider.swift
+//  TheDarkMoon
 //
-//  Created by Mikhail Zhigulin in 7532.
+//  Created by Mikhail Zhigulin in 7534 (20.08.2026.)
 //
-//  Copyright © 7532 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7532 PerseusRealDeal
+//  Copyright © 7534 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7534 PerseusRealDeal
 //
 //  The year starts from the creation of the world in the Star temple
 //  according to a Slavic calendar. September, the 1st of Slavic year.
@@ -15,9 +15,9 @@
 
 import Foundation
 
-public enum MeteoProvider: Int, CaseIterable, CustomStringConvertible, Codable {
+public enum GeoCodingProvider: Int, CaseIterable, CustomStringConvertible, Codable {
 
-    case serviceOpenWeatherMap = 0 // Version 2.5
+    case serviceOpenWeatherMap = 0 // Version 1.0
     case serviceOpenMeteo      = 1 // Version 1
 
     public var description: String {
@@ -30,6 +30,15 @@ public enum MeteoProvider: Int, CaseIterable, CustomStringConvertible, Codable {
             return "OpenWeather"
         case .serviceOpenMeteo:
             return "Open-Meteo"
+        }
+    }
+
+    public var webLink: String {
+        switch self {
+        case .serviceOpenWeatherMap:
+            return linkGeoCodingOpenWeather
+        case .serviceOpenMeteo:
+            return linkGeoCodingOpenMeteo
         }
     }
 }

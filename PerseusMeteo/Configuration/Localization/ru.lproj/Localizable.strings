@@ -217,6 +217,9 @@
 "Button: CheckBox TwoLines" = "Две строки";
 "Option: SecondLine" = "Вторая строка";
 "Option: ToolTip" = "Подсказка";
+"Option: Current Provider" = "Поставщики";
+"Option: For Meteo Data" = "Метео Данные";
+"Option: For Geo Data" = "Гео Справочник";
 
 "StatusMenus: feelsLike" = "По ощущениям";
 "StatusMenus: direction" = "Направление";

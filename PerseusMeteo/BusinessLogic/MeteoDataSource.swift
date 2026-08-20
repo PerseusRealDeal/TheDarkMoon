@@ -37,6 +37,9 @@ public class MeteoDataSource: DataDictionarySource {
                 switch provider {
                 case .serviceOpenWeatherMap:
                     reader.parser = OpenWeatherWeatherParser()
+                case .serviceOpenMeteo:
+                    // TODO: Add Open-Meteo parser
+                    reader.parser = nil
                 }
             }
 
@@ -44,6 +47,9 @@ public class MeteoDataSource: DataDictionarySource {
                 switch provider {
                 case .serviceOpenWeatherMap:
                     reader.parser = OpenWeatherForecastParser()
+                case .serviceOpenMeteo:
+                    // TODO: Add Open-Meteo parser
+                    reader.parser = nil
                 }
             }
 

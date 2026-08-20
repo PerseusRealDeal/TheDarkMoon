@@ -56,3 +56,6 @@ let linkOpenWeather =
 
 let linkGeoCodingOpenWeather =
 "https://openweathermap.org/api/geocoding-api"
+
+let linkGeoCodingOpenMeteo =
+"https://open-meteo.com/en/docs/geocoding-api"

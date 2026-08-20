@@ -334,6 +334,7 @@ class TranslationTests: XCTestCase {
 
     // MARK: - Options Screen
 
+    // swiftlint:disable:next function_body_length
     func test_translation_of_OptionsScreen() {
 
         // assert
@@ -370,6 +371,15 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Option: Distance".localizedExpectation,
                        "Option: Distance".localizedValue)
+
+        XCTAssertEqual("Option: Current Provider".localizedExpectation,
+                       "Option: Current Provider".localizedValue)
+
+        XCTAssertEqual("Option: For Meteo Data".localizedExpectation,
+                       "Option: For Meteo Data".localizedValue)
+
+        XCTAssertEqual("Option: For Geo Data".localizedExpectation,
+                       "Option: For Geo Data".localizedValue)
 
         XCTAssertEqual("Unit: Light".localizedExpectation,
                        "Unit: Light".localizedValue)

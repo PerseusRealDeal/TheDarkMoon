@@ -308,6 +308,12 @@
 	<string>Облачность</string>
 	<key>Button: TwoLines Info</key>
 	<string>Вторая строчка доступна с macOS Big Sur (11)</string>
+	<key>Option: Current Provider</key>
+	<string>Поставщики</string>
+	<key>Option: For Meteo Data</key>
+	<string>Метео Данные</string>
+	<key>Option: For Geo Data</key>
+	<string>Гео Справочник</string>
 	<key>Button: Close</key>
 	<string>Закрыть</string>
 	<key>Button: Reset to Defaults</key>

@@ -266,9 +266,6 @@ class LocationView: NSView, NSTextFieldDelegate {
         // Connect to Geo Coordinator
 
         GeoCoordinator.register(stakeholder: self, selector: #selector(reloadData))
-
-        labelGeoCodingServiceWebLink.text = "OpenWeather"
-        labelGeoCodingServiceWebLink.weblink = "\(linkGeoCodingOpenWeather)"
     }
 
     // MARK: - Contract
@@ -278,7 +275,13 @@ class LocationView: NSView, NSTextFieldDelegate {
         log.message("[\(type(of: self))].\(#function)")
 
         labelPermissionStatus.stringValue = AppGlobals.permissionStatusLocalized()
+
         labelGeoCodingService.stringValue = "\("Label: GeoCodingService".localizedValue):"
+
+        let currentGeoProvider = AppOptions.currentGeoProviderOption
+
+        labelGeoCodingServiceWebLink.text = currentGeoProvider.marketName
+        labelGeoCodingServiceWebLink.weblink = currentGeoProvider.webLink
 
         let locationNameLocalizedFull = locationNameLocalized
         let lengthLimit = 28

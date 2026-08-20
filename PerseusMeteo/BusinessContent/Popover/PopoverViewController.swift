@@ -209,6 +209,7 @@ public class PopoverViewController: NSViewController {
 
         weather.reloadData()
         forecast.reloadData(saveSelection: true)
+        viewLocation.reloadData()
 
         self.refreshCallInformation()
     }

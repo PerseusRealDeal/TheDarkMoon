@@ -60,6 +60,12 @@ public let STATUSMENUS_VIEW_OPTIONS_DEFAULT = StatusMenusViewOptions(
     twoLines: false, secondLine: .wind, toolTipLeft: .direction, toolTipRight: .gust
 )
 
+public let METEO_PROVIDER_OPTION_KEY = "METEO_PROVIDER_OPTION_KEY"
+public let METEO_PROVIDER_OPTION_DEFAULT = MeteoProvider.serviceOpenWeatherMap
+
+public let GEOCODING_PROVIDER_OPTION_KEY = "GEOCODING_PROVIDER_OPTION_KEY"
+public let GEOCODING_PROVIDER_OPTION_DEFAULT = GeoCodingProvider.serviceOpenWeatherMap
+
 // MARK: - User Defaults
 
 class AppOptions {
@@ -169,6 +175,62 @@ class AppOptions {
             if let encoded = try? encoder.encode(newValue) {
                 ud.set(encoded, forKey: STATUSMENUS_VIEW_OPTIONS_KEY)
             }
+        }
+    }
+
+    public static var currentMeteoProviderOption: MeteoProvider {
+        get {
+            // Load enum Int value
+
+            let ud = AppGlobals.userDefaults
+
+            let rawValue = ud.valueExists(forKey: METEO_PROVIDER_OPTION_KEY) ?
+            ud.integer(forKey: METEO_PROVIDER_OPTION_KEY) :
+            METEO_PROVIDER_OPTION_DEFAULT.rawValue
+
+            // Try to cast Int value to enum
+
+            if let result = MeteoProvider.init(rawValue: rawValue) {
+                return result
+            }
+
+            // Return default saved value in any other case
+
+            ud.setValue(METEO_PROVIDER_OPTION_DEFAULT.rawValue,
+                        forKey: METEO_PROVIDER_OPTION_KEY)
+            return METEO_PROVIDER_OPTION_DEFAULT
+        }
+        set {
+            let ud = AppGlobals.userDefaults
+            ud.setValue(newValue.rawValue, forKey: METEO_PROVIDER_OPTION_KEY)
+        }
+    }
+
+    public static var currentGeoProviderOption: GeoCodingProvider {
+        get {
+            // Load enum Int value
+
+            let ud = AppGlobals.userDefaults
+
+            let rawValue = ud.valueExists(forKey: GEOCODING_PROVIDER_OPTION_KEY) ?
+            ud.integer(forKey: GEOCODING_PROVIDER_OPTION_KEY) :
+            GEOCODING_PROVIDER_OPTION_DEFAULT.rawValue
+
+            // Try to cast Int value to enum
+
+            if let result = GeoCodingProvider.init(rawValue: rawValue) {
+                return result
+            }
+
+            // Return default saved value in any other case
+
+            ud.setValue(GEOCODING_PROVIDER_OPTION_DEFAULT.rawValue,
+                        forKey: GEOCODING_PROVIDER_OPTION_KEY)
+            return GEOCODING_PROVIDER_OPTION_DEFAULT
+        }
+        set {
+            let ud = AppGlobals.userDefaults
+            ud.setValue(newValue.rawValue, forKey: GEOCODING_PROVIDER_OPTION_KEY)
         }
     }
 

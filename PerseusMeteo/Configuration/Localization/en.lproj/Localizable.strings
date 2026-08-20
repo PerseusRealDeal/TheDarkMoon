@@ -220,6 +220,9 @@
 "Button: CheckBox TwoLines" = "Two lines";
 "Option: SecondLine" = "Second line";
 "Option: ToolTip" = "Tool tip";
+"Option: Current Provider" = "Current Provider";
+"Option: For Meteo Data" = "For Meteo Data";
+"Option: For Geo Data" = "For Geo Data";
 
 "StatusMenus: feelsLike" = "Feels like";
 "StatusMenus: direction" = "Direction";
