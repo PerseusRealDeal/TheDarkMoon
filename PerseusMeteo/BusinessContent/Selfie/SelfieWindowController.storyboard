@@ -398,6 +398,11 @@ Details</string>
                         <outlet property="labelConvertorMov2Gif" destination="Rwc-wT-hZa" id="Kgk-uV-piq"/>
                         <outlet property="labelCopyrightDetailsText" destination="VkC-i9-Le5" id="VCA-dd-tVO"/>
                         <outlet property="labelCopyrightText" destination="MVd-ze-hvZ" id="5Eo-2R-p7g"/>
+                        <outlet property="labelGeoDataOpenMeteo" destination="Rdb-M9-CYR" id="odh-oy-ogc"/>
+                        <outlet property="labelGeoDataOpenWeather" destination="72y-Zu-ewe" id="UHx-o1-RD8"/>
+                        <outlet property="labelGeoDataServices" destination="nOr-mU-bab" id="Yho-27-4Y9"/>
+                        <outlet property="labelMeteoDataOpenWeather" destination="RLn-hx-6Vh" id="nDx-GH-COc"/>
+                        <outlet property="labelMeteoDataServices" destination="eEf-jT-dQk" id="ZMi-Fh-wtu"/>
                         <outlet property="labelPerseusCompassDirection" destination="6s9-BN-Tbx" id="epd-D4-lhs"/>
                         <outlet property="labelPerseusDarkMode" destination="VUO-Nl-Ujz" id="MOs-op-xdE"/>
                         <outlet property="labelPerseusGeoKit" destination="v0J-9x-dJT" id="e1e-0U-oa2"/>

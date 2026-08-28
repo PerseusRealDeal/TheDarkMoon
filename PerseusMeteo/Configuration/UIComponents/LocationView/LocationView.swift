@@ -307,16 +307,15 @@ class LocationView: NSView, NSTextFieldDelegate {
 
     public func makeup() {
 
-        log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
+        let currentStyle = DarkModeAgent.shared.style
+        log.message("[\(type(of: self))].\(#function) DarkMode: \(currentStyle)")
 
         if isHighSierra {
 
             self.appearance = LIGHT_APPEARANCE_DEFAULT_IN_USE
 
-            let style = DarkModeAgent.shared.style
-
-            let colorSet =
-            style == .dark ? DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
+            let colorSet = currentStyle == .dark ?
+            DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
 
             self.textFieldLocationNameSearch.appearance = colorSet
             self.comboBoxFavorites.appearance = colorSet
@@ -325,7 +324,7 @@ class LocationView: NSView, NSTextFieldDelegate {
             self.buttonUpdateCurrentLocation.appearance = colorSet
             self.buttonBookmark.appearance = colorSet
 
-            let whiteOrBlack: Color = style == .dark ? .white : .black
+            let whiteOrBlack: Color = currentStyle == .dark ? .white : .black
 
             self.labelPermissionStatus.textColor = whiteOrBlack
             self.labelLocationName.textColor = whiteOrBlack
@@ -335,7 +334,8 @@ class LocationView: NSView, NSTextFieldDelegate {
 
         viewSuggestions.collectionView?.reloadData()
 
-        labelGeoCodingServiceWebLink.textColorOnMove = .perseusCyan
+        labelGeoCodingServiceWebLink.textColorOnMove =
+        currentStyle == .light ? .perseusIndigo : .perseusCyan
     }
 
     public func localize() {

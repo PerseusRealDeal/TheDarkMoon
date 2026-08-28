@@ -297,6 +297,9 @@
 
 "Label: Credits" = "Credits";
 
+"Label: Meteo API" = "Meteo Services";
+"Label: Geo API" = "GeoCoding Services";
+
 "Label: Balancing and Control" = "Balance and Control by";
 "Label: Writing" = "Written by";
 "Label: Documenting" = "Documented by";

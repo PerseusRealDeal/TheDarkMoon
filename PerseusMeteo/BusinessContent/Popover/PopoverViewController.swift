@@ -526,7 +526,8 @@ extension PopoverViewController: PopoverViewDelegate {
 
     func makeUp() {
 
-        log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
+        let currentStyle = DarkModeAgent.shared.style
+        log.message("[\(type(of: self))].\(#function) DarkMode: \(currentStyle)")
 
         if isHighSierra {
             view.window?.appearance = DarkModeAgent.DarkModeUserChoice == .on ?
@@ -538,8 +539,11 @@ extension PopoverViewController: PopoverViewDelegate {
         viewWeather?.makeup()
         viewForecast?.makeup()
 
-        labelGreeting.messageTextColor = .perseusGray
-        labelMeteoProviderWebLink.textColorOnMove = .perseusCyan
+        labelGreeting.messageTextColor =
+        currentStyle == .light ? .black : .perseusGray
+
+        labelMeteoProviderWebLink.textColorOnMove =
+        currentStyle == .light ? .perseusIndigo : .perseusCyan
     }
 
     func localize() {

@@ -27,9 +27,9 @@ public enum GeoCodingProvider: Int, CaseIterable, CustomStringConvertible, Codab
     public var marketName: String {
         switch self {
         case .serviceOpenWeatherMap:
-            return "OpenWeather"
+            return marketNameOpenWeather
         case .serviceOpenMeteo:
-            return "Open-Meteo"
+            return marketNameOpenMeteo
         }
     }
 

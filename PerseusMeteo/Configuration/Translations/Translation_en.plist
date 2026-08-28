@@ -424,6 +424,10 @@
 	<string>Russian by</string>
 	<key>Label: Author</key>
 	<string>Mikhail Zhigulin</string>
+	<key>Label: Meteo API</key>
+	<string>Meteo Services</string>
+	<key>Label: Geo API</key>
+	<string>GeoCoding Services</string>
 	<key>Button: License</key>
 	<string>License</string>
 	<key>Button: Terms &amp; Conditions</key>

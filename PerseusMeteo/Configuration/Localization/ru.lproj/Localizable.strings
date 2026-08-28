@@ -160,21 +160,21 @@
 
 /* Options Screen – OptionsWindowController, OptionsViewController */
 
-"Title: Options Screen" = "Настройки Изделия";
+"Title: Options Screen" = "Настройки изделия";
 
-"Section: App Options" = "Настройки Изделия";
+"Section: App Options" = "Настройки изделия";
 
-"Option: Dark Mode" = "Сторона Луны";
+"Option: Dark Mode" = "Сторона луны";
 "Option: Language" = "Язык";
 "Option: OpenWeather Key" = "Ключ OpenWeather";
-"Option: Time Format" = "Формат Времени";
+"Option: Time Format" = "Формат времени";
 
-"Section: Meteo Options" = "Метео Просмотр";
+"Section: Meteo Options" = "Метео просмотр";
 
 "Option: Temperature" = "Температура";
-"Option: Wind Speed" = "Скорость Ветра";
+"Option: Wind Speed" = "Скорость ветра";
 "Option: Pressure" = "Барометр";
-"Option: Distance" = "Дальность Обзора";
+"Option: Distance" = "Дальность обзора";
 
 "Unit: Light" = "Cветлая";
 "Unit: Dark" = "Темная";
@@ -197,7 +197,7 @@
 "Unit: Kilometre long" = "Километры";
 "Unit: Mile long" = "Мили";
 
-"Section: Special Options" = "Дополнительные Настройки";
+"Section: Special Options" = "Дополнительные настройки";
 
 "OpenWeather: Lock" = "Скрыть";
 "OpenWeather: Unlock" = "Показать";
@@ -205,7 +205,7 @@
 "OpenWeather: Editable" = "Нужен токен (ключ)";
 
 "Option: CurrentWeatherStatusMenus" = "Наблюдение";
-"Button: CheckBox StatusMenus" = "Системный Статус";
+"Button: CheckBox StatusMenus" = "Системный статус";
 
 "Option: StatusMenus Update" = "Период";
 "StatusMenus: per 12 hours" = "12 часов";
@@ -218,8 +218,8 @@
 "Option: SecondLine" = "Вторая строка";
 "Option: ToolTip" = "Подсказка";
 "Option: Current Provider" = "Поставщики";
-"Option: For Meteo Data" = "Метео Данные";
-"Option: For Geo Data" = "Гео Справочник";
+"Option: For Meteo Data" = "Метео данные";
+"Option: For Geo Data" = "Гео справочник";
 
 "StatusMenus: feelsLike" = "По ощущениям";
 "StatusMenus: direction" = "Направление";
@@ -293,6 +293,9 @@
 "Label: Copyright Details" = "Летоисчесление ведется от Сотворения Мира в Звездном Храме в соответствии со славянским календарем в котором первый месяц сентябрь. Первое сентября 2025 года от Р.Х. начало 7534 года.";
 
 "Label: Credits" = "Работы выполнены";
+
+"Label: Meteo API" = "Метео службы";
+"Label: Geo API" = "Справочные гео службы";
 
 "Label: Balancing and Control" = "Контроль и Балансировка";
 "Label: Writing" = "Кодирование";

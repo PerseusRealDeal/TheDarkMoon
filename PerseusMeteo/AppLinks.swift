@@ -9,6 +9,9 @@
 
 import Foundation
 
+let marketNameOpenWeather = "OpenWeather"
+let marketNameOpenMeteo = "Open-Meteo"
+
 let linkTheAppSourceCode =
 "https://github.com/PerseusRealDeal/TheDarkMoon"
 

@@ -389,6 +389,7 @@
 				4B0A49F229F631CD00CAE8A0 /* AppGlobals.swift */,
 				4BEE281C2B4AE07700F06A69 /* AppOptions.swift */,
 				4B1483E42912892C0013B76E /* AppDelegate.swift */,
+				2EBB4CA82ED73C7A00C44504 /* AppLinks.swift */,
 				4B14840229128A930013B76E /* Configuration */,
 				4B6F98752927E7C600ADB03A /* FirstPartyCode */,
 				4B14840429128E460013B76E /* BusinessContent */,
@@ -424,7 +425,6 @@
 				4B1483E82912892F0013B76E /* Assets.xcassets */,
 				4B1483ED2912892F0013B76E /* Info.plist */,
 				4B1483EE2912892F0013B76E /* PerseusMeteo.entitlements */,
-				2EBB4CA82ED73C7A00C44504 /* AppLinks.swift */,
 				2EE4ED0D2F8F984B006D4D9C /* Extensions.swift */,
 				2E558B302EDD60B000AFF695 /* CPLConfig.json */,
 			);

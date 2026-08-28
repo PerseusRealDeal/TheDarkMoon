@@ -207,25 +207,25 @@
 	<key>/* Options Screen */</key>
 	<string>--</string>
 	<key>Title: Options Screen</key>
-	<string>Настройки Изделия</string>
+	<string>Настройки изделия</string>
 	<key>Section: App Options</key>
-	<string>Настройки Изделия</string>
+	<string>Настройки изделия</string>
 	<key>Option: Dark Mode</key>
-	<string>Сторона Луны</string>
+	<string>Сторона луны</string>
 	<key>Option: Language</key>
 	<string>Язык</string>
 	<key>Option: Time Format</key>
-	<string>Формат Времени</string>
+	<string>Формат времени</string>
 	<key>Section: Meteo Options</key>
-	<string>Метео Просмотр</string>
+	<string>Метео просмотр</string>
 	<key>Option: Temperature</key>
 	<string>Температура</string>
 	<key>Option: Wind Speed</key>
-	<string>Скорость Ветра</string>
+	<string>Скорость ветра</string>
 	<key>Option: Pressure</key>
 	<string>Барометр</string>
 	<key>Option: Distance</key>
-	<string>Дальность Обзора</string>
+	<string>Дальность обзора</string>
 	<key>OpenWeather: Lock</key>
 	<string>Скрыть</string>
 	<key>OpenWeather: Unlock</key>
@@ -265,13 +265,13 @@
 	<key>Unit: Mile long</key>
 	<string>Мили</string>
 	<key>Section: Special Options</key>
-	<string>Дополнительные Настройки</string>
+	<string>Дополнительные настройки</string>
 	<key>Option: OpenWeather Key</key>
 	<string>Ключ OpenWeather</string>
 	<key>Option: CurrentWeatherStatusMenus</key>
 	<string>Наблюдение</string>
 	<key>Button: CheckBox StatusMenus</key>
-	<string>Системный Статус</string>
+	<string>Системный статус</string>
 	<key>Option: StatusMenus Update</key>
 	<string>Период</string>
 	<key>StatusMenus: per 12 hours</key>
@@ -311,9 +311,9 @@
 	<key>Option: Current Provider</key>
 	<string>Поставщики</string>
 	<key>Option: For Meteo Data</key>
-	<string>Метео Данные</string>
+	<string>Метео данные</string>
 	<key>Option: For Geo Data</key>
-	<string>Гео Справочник</string>
+	<string>Гео справочник</string>
 	<key>Button: Close</key>
 	<string>Закрыть</string>
 	<key>Button: Reset to Defaults</key>
@@ -424,6 +424,10 @@
 	<string>Русский</string>
 	<key>Label: Author</key>
 	<string>Михаил А. Жигулин</string>
+	<key>Label: Meteo API</key>
+	<string>Метео службы</string>
+	<key>Label: Geo API</key>
+	<string>Справочные гео службы</string>
 	<key>Button: License</key>
 	<string>Текст лицензии</string>
 	<key>Button: Terms &amp; Conditions</key>

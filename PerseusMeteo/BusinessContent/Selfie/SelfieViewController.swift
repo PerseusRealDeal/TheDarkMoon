@@ -51,20 +51,23 @@ class SelfieViewController: NSViewController {
 
     // MARK: - Outlets
 
+    @IBOutlet weak var labelTheAppSourceCode: WebLabel!
+    @IBOutlet weak var labelTheTechnologicalTree: WebLabel!
+
     @IBOutlet weak var labelTheAppName: NSTextField!
     @IBOutlet weak var labelTheAppVersion: NSTextField!
 
     @IBOutlet weak var labelCopyrightText: NSTextField!
     @IBOutlet weak var labelCopyrightDetailsText: NSTextField!
+
     @IBOutlet weak var viewTheCreditsText: NSTextView!
 
-    @IBOutlet weak var labelTheAppSourceCode: WebLabel!
-    @IBOutlet weak var labelTheTechnologicalTree: WebLabel!
+    @IBOutlet weak var labelMeteoDataServices: NSTextField!
+    @IBOutlet weak var labelGeoDataServices: NSTextField!
 
-    @IBOutlet weak var buttonLicense: NSButton!
-    @IBOutlet weak var buttonTerms: NSButton!
-
-    @IBOutlet weak var buttonClose: NSButton!
+    @IBOutlet weak var labelMeteoDataOpenWeather: WebLabel!
+    @IBOutlet weak var labelGeoDataOpenMeteo: WebLabel!
+    @IBOutlet weak var labelGeoDataOpenWeather: WebLabel!
 
     @IBOutlet weak var labelPerseusDarkMode: WebLabel!
     @IBOutlet weak var labelPerseusGeoKit: WebLabel!
@@ -74,6 +77,11 @@ class SelfieViewController: NSViewController {
     @IBOutlet weak var labelPerseusCompassDirection: WebLabel!
     @IBOutlet weak var labelSnowman: WebLabel!
     @IBOutlet weak var labelConvertorMov2Gif: WebLabel!
+
+    @IBOutlet weak var buttonLicense: NSButton!
+    @IBOutlet weak var buttonTerms: NSButton!
+
+    @IBOutlet weak var buttonClose: NSButton!
 
     // MARK: - Actions
 
@@ -113,6 +121,15 @@ extension SelfieViewController: SelfieViewDelegate {
         labelTheAppSourceCode.weblink = linkTheAppSourceCode
         labelTheTechnologicalTree.weblink = linkTheTechnologicalTree
 
+        labelMeteoDataOpenWeather.weblink = linkOpenWeather
+        labelMeteoDataOpenWeather.text = marketNameOpenWeather
+
+        labelGeoDataOpenMeteo.weblink = linkGeoCodingOpenMeteo
+        labelGeoDataOpenMeteo.text = marketNameOpenMeteo
+
+        labelGeoDataOpenWeather.weblink = linkGeoCodingOpenWeather
+        labelGeoDataOpenWeather.text = marketNameOpenWeather
+
         labelPerseusDarkMode.weblink = linkPerseusDarkMode
         labelPerseusDarkMode.text = "PerseusDarkMode"
 
@@ -140,12 +157,13 @@ extension SelfieViewController: SelfieViewDelegate {
         viewTheCreditsText.backgroundColor = .clear
         viewTheCreditsText.isEditable = false
         viewTheCreditsText.alignment = .center
-        viewTheCreditsText.font = NSFont.systemFont(ofSize: 20.0)
+        viewTheCreditsText.font = NSFont.systemFont(ofSize: 18.0)
     }
 
     func makeUp() {
 
-        log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
+        let currentStyle = DarkModeAgent.shared.style
+        log.message("[\(type(of: self))].\(#function) DarkMode: \(currentStyle)")
 
         // view.layer?.backgroundColor = NSColor.perseusBlue.cgColor
 
@@ -154,20 +172,26 @@ extension SelfieViewController: SelfieViewDelegate {
             DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
         }
 
-        viewTheCreditsText.textColor = .perseusGray
+        viewTheCreditsText.textColor = currentStyle == .light ? .black : .perseusGray
 
-        labelTheAppSourceCode.textColorOnMove = .perseusCyan
-        labelTheTechnologicalTree.textColorOnMove = .perseusCyan
+        let webLinkColor: Color = currentStyle == .light ? .perseusIndigo : .perseusCyan
 
-        labelTheAppSourceCode.textColorOnMove = .perseusCyan
-        labelPerseusDarkMode.textColorOnMove = .perseusCyan
-        labelPerseusGeoKit.textColorOnMove = .perseusCyan
-        labelPerseusCompassDirection.textColorOnMove = .perseusCyan
-        labelPerseusTimeFormat.textColorOnMove = .perseusCyan
-        labelPerseusLogger.textColorOnMove = .perseusCyan
-        labelConsolePerseusLogger.textColorOnMove = .perseusCyan
-        labelSnowman.textColorOnMove = .perseusCyan
-        labelConvertorMov2Gif.textColorOnMove = .perseusCyan
+        labelTheAppSourceCode.textColorOnMove = webLinkColor
+        labelTheTechnologicalTree.textColorOnMove = webLinkColor
+
+        labelMeteoDataOpenWeather.textColorOnMove = webLinkColor
+        labelGeoDataOpenWeather.textColorOnMove = webLinkColor
+        labelGeoDataOpenMeteo.textColorOnMove = webLinkColor
+
+        labelTheAppSourceCode.textColorOnMove = webLinkColor
+        labelPerseusDarkMode.textColorOnMove = webLinkColor
+        labelPerseusGeoKit.textColorOnMove = webLinkColor
+        labelPerseusCompassDirection.textColorOnMove = webLinkColor
+        labelPerseusTimeFormat.textColorOnMove = webLinkColor
+        labelPerseusLogger.textColorOnMove = webLinkColor
+        labelConsolePerseusLogger.textColorOnMove = webLinkColor
+        labelSnowman.textColorOnMove = webLinkColor
+        labelConvertorMov2Gif.textColorOnMove = webLinkColor
     }
 
     func localize() {
@@ -189,6 +213,9 @@ extension SelfieViewController: SelfieViewDelegate {
         labelCopyrightDetailsText.stringValue = "Label: Copyright Details".localizedValue
 
         viewTheCreditsText.string = theCredits
+
+        labelMeteoDataServices.stringValue = "Label: Meteo API".localizedValue + ":"
+        labelGeoDataServices.stringValue = "Label: Geo API".localizedValue + ":"
     }
 
     var theAppVersionLocalized: String {
