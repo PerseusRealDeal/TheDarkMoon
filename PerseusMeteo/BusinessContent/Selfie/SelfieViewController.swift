@@ -155,6 +155,19 @@ extension SelfieViewController: SelfieViewDelegate {
         }
 
         viewTheCreditsText.textColor = .perseusGray
+
+        labelTheAppSourceCode.textColorOnMove = .perseusCyan
+        labelTheTechnologicalTree.textColorOnMove = .perseusCyan
+
+        labelTheAppSourceCode.textColorOnMove = .perseusCyan
+        labelPerseusDarkMode.textColorOnMove = .perseusCyan
+        labelPerseusGeoKit.textColorOnMove = .perseusCyan
+        labelPerseusCompassDirection.textColorOnMove = .perseusCyan
+        labelPerseusTimeFormat.textColorOnMove = .perseusCyan
+        labelPerseusLogger.textColorOnMove = .perseusCyan
+        labelConsolePerseusLogger.textColorOnMove = .perseusCyan
+        labelSnowman.textColorOnMove = .perseusCyan
+        labelConvertorMov2Gif.textColorOnMove = .perseusCyan
     }
 
     func localize() {

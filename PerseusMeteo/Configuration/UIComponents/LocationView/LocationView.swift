@@ -335,7 +335,7 @@ class LocationView: NSView, NSTextFieldDelegate {
 
         viewSuggestions.collectionView?.reloadData()
 
-        labelGeoCodingServiceWebLink.textColorOnMove = .perseusIndigo
+        labelGeoCodingServiceWebLink.textColorOnMove = .perseusCyan
     }
 
     public func localize() {

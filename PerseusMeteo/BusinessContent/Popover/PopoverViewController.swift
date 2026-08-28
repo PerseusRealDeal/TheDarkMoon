@@ -538,7 +538,8 @@ extension PopoverViewController: PopoverViewDelegate {
         viewWeather?.makeup()
         viewForecast?.makeup()
 
-        labelMeteoProviderWebLink.textColorOnMove = .perseusIndigo
+        labelGreeting.messageTextColor = .perseusGray
+        labelMeteoProviderWebLink.textColorOnMove = .perseusCyan
     }
 
     func localize() {

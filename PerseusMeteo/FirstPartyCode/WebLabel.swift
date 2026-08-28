@@ -49,7 +49,7 @@ class WebLabel: NSTextField {
 
     // MARK: - Properties
 
-    public var text: String = "" {
+    public var text: String = "Label" {
         didSet {
             reset(text, color: .labelPerseus)
         }
