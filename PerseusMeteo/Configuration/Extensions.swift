@@ -113,3 +113,15 @@ extension NSImage {
         self.size = NSSize(width: resizedWidth, height: requiredHeight)
     }
 }
+
+extension Color {
+
+    public static var linkWebColor: Color {
+        return DarkModeAgent.shared.style == .light ? .linkColor : .perseusCyan
+    }
+
+    public static var snowmanMessageColor: Color {
+        // return DarkModeAgent.shared.style == .light ? .black : .perseusCyan
+        return .labelColor
+    }
+}

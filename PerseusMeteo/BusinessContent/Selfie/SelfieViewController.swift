@@ -174,24 +174,22 @@ extension SelfieViewController: SelfieViewDelegate {
 
         viewTheCreditsText.textColor = currentStyle == .light ? .black : .perseusGray
 
-        let webLinkColor: Color = currentStyle == .light ? .perseusIndigo : .perseusCyan
+        labelTheAppSourceCode.textColorOnMove = .linkWebColor
+        labelTheTechnologicalTree.textColorOnMove = .linkWebColor
 
-        labelTheAppSourceCode.textColorOnMove = webLinkColor
-        labelTheTechnologicalTree.textColorOnMove = webLinkColor
+        labelMeteoDataOpenWeather.textColorOnMove = .linkWebColor
+        labelGeoDataOpenWeather.textColorOnMove = .linkWebColor
+        labelGeoDataOpenMeteo.textColorOnMove = .linkWebColor
 
-        labelMeteoDataOpenWeather.textColorOnMove = webLinkColor
-        labelGeoDataOpenWeather.textColorOnMove = webLinkColor
-        labelGeoDataOpenMeteo.textColorOnMove = webLinkColor
-
-        labelTheAppSourceCode.textColorOnMove = webLinkColor
-        labelPerseusDarkMode.textColorOnMove = webLinkColor
-        labelPerseusGeoKit.textColorOnMove = webLinkColor
-        labelPerseusCompassDirection.textColorOnMove = webLinkColor
-        labelPerseusTimeFormat.textColorOnMove = webLinkColor
-        labelPerseusLogger.textColorOnMove = webLinkColor
-        labelConsolePerseusLogger.textColorOnMove = webLinkColor
-        labelSnowman.textColorOnMove = webLinkColor
-        labelConvertorMov2Gif.textColorOnMove = webLinkColor
+        labelTheAppSourceCode.textColorOnMove = .linkWebColor
+        labelPerseusDarkMode.textColorOnMove = .linkWebColor
+        labelPerseusGeoKit.textColorOnMove = .linkWebColor
+        labelPerseusCompassDirection.textColorOnMove = .linkWebColor
+        labelPerseusTimeFormat.textColorOnMove = .linkWebColor
+        labelPerseusLogger.textColorOnMove = .linkWebColor
+        labelConsolePerseusLogger.textColorOnMove = .linkWebColor
+        labelSnowman.textColorOnMove = .linkWebColor
+        labelConvertorMov2Gif.textColorOnMove = .linkWebColor
     }
 
     func localize() {

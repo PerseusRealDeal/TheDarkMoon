@@ -307,13 +307,14 @@ class LocationView: NSView, NSTextFieldDelegate {
 
     public func makeup() {
 
-        let currentStyle = DarkModeAgent.shared.style
-        log.message("[\(type(of: self))].\(#function) DarkMode: \(currentStyle)")
+
+        log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
 
         if isHighSierra {
 
             self.appearance = LIGHT_APPEARANCE_DEFAULT_IN_USE
 
+            let currentStyle = DarkModeAgent.shared.style
             let colorSet = currentStyle == .dark ?
             DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
 
@@ -334,8 +335,7 @@ class LocationView: NSView, NSTextFieldDelegate {
 
         viewSuggestions.collectionView?.reloadData()
 
-        labelGeoCodingServiceWebLink.textColorOnMove =
-        currentStyle == .light ? .perseusIndigo : .perseusCyan
+        labelGeoCodingServiceWebLink.textColorOnMove = .linkWebColor
     }
 
     public func localize() {
