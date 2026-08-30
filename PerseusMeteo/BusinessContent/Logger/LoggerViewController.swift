@@ -172,12 +172,15 @@ extension LoggerViewController: LoggerViewDelegate {
         log.message("[\(type(of: self))].\(#function)")
 
         // let title = "Button: Logger".localizedValue + " — " + "Product Name".localizedValue
-        let title = "Logging of the product"
+        let title = "Logging of the Product"
 
-        let ver = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
-        let version = ver == nil ? "" : " \(ver!)"
+        guard let ver = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
+        else {
+            self.view.window?.title = title + " — " + "Product Name".localizedValue
+            return
+        }
 
-        self.view.window?.title = title + version
+        self.view.window?.title = title + " \(ver)" + " — " + "Product Name".localizedValue
     }
 }
 
