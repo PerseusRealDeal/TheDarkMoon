@@ -622,6 +622,8 @@ class TranslationTests: XCTestCase {
                        "Label: Meteo API".localizedValue)
         XCTAssertEqual("Label: Geo API".localizedExpectation,
                        "Label: Geo API".localizedValue)
+        XCTAssertEqual("Label: Major Components".localizedExpectation,
+                       "Label: Major Components".localizedValue)
         XCTAssertEqual("Button: License".localizedExpectation,
                        "Button: License".localizedValue)
         XCTAssertEqual("Button: Terms & Conditions".localizedExpectation,

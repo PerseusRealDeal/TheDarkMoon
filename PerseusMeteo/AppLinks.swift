@@ -57,6 +57,9 @@ let linkAuthor =
 let linkOpenWeather =
 "https://openweathermap.org/"
 
+let linkOpenWeatherAPI =
+"https://openweathermap.org/api/current?collection=current_forecast"
+
 let linkGeoCodingOpenWeather =
 "https://openweathermap.org/api/geocoding-api"
 

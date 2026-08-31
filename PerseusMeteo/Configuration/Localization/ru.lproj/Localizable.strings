@@ -294,8 +294,9 @@
 
 "Label: Credits" = "Работы выполнены";
 
-"Label: Meteo API" = "Метео службы";
-"Label: Geo API" = "Справочные гео службы";
+"Label: Meteo API" = "Метео службы (API)";
+"Label: Geo API" = "Справочные гео службы (API)";
+"Label: Major Components" = "Заменяемые детали";
 
 "Label: Balancing and Control" = "Контроль и Балансировка";
 "Label: Writing" = "Кодирование";

@@ -60,11 +60,11 @@
                                         <rect key="frame" x="0.0" y="264" width="434" height="22"/>
                                         <subviews>
                                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zyo-VN-gyy">
-                                                <rect key="frame" x="32" y="-1" width="243" height="24"/>
+                                                <rect key="frame" x="30" y="-1" width="246" height="24"/>
                                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="3V1-GY-T5v">
                                                     <font key="font" metaFont="system"/>
                                                     <segments>
-                                                        <segment label="Current Weather" width="117"/>
+                                                        <segment label="Current Weather" width="120"/>
                                                         <segment label="Forecast" width="117" selected="YES" tag="1"/>
                                                     </segments>
                                                 </segmentedCell>
@@ -73,9 +73,9 @@
                                                 </connections>
                                             </segmentedControl>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1oS-xB-Iag">
-                                                <rect key="frame" x="276" y="-6" width="165" height="32"/>
+                                                <rect key="frame" x="277" y="-6" width="164" height="32"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="151" id="VWq-Cf-yNs"/>
+                                                    <constraint firstAttribute="width" constant="150" id="VWq-Cf-yNs"/>
                                                 </constraints>
                                                 <buttonCell key="cell" type="push" title="Call Forecast" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fAD-io-zUq">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

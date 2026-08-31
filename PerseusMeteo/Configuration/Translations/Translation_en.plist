@@ -425,9 +425,11 @@
 	<key>Label: Author</key>
 	<string>Mikhail Zhigulin</string>
 	<key>Label: Meteo API</key>
-	<string>Meteo Services</string>
+	<string>Meteo API Services</string>
 	<key>Label: Geo API</key>
-	<string>GeoCoding Services</string>
+	<string>GeoCoding API Services</string>
+	<key>Label: Major Components</key>
+	<string>Functional Components</string>
 	<key>Button: License</key>
 	<string>License</string>
 	<key>Button: Terms &amp; Conditions</key>
