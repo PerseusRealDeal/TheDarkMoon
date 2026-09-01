@@ -219,7 +219,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         if self.controlOpenWeatherKey.isEditable {
             lockOpenWeatherKeyHole()
         } else {
-            let secret = AppOptions.OpenWeatherAPIOption
+            let secret = AppOptions.keyOpenWeatherAPIOption
             if let secret = secret {
                 unlockOpenWeatherKeyHole(stringValue: secret)
             }
@@ -244,8 +244,8 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
             tf.stringValue = text
         }
 
-        AppOptions.OpenWeatherAPIOption = tf.stringValue
-        if let secret = AppOptions.OpenWeatherAPIOption {
+        AppOptions.keyOpenWeatherAPIOption = tf.stringValue
+        if let secret = AppOptions.keyOpenWeatherAPIOption {
             controlOpenWeatherKey.stringValue = secret
         } else {
             lockOpenWeatherKeyHole()

@@ -339,9 +339,17 @@
 				4B1CA6A22B549358003F3EBF /* MeteoClientManager.swift */,
 				4BB2045E2B70EE69007E0308 /* MeteoProvider.swift */,
 				2EE7E1AA3036BBB2006152AE /* GeoCodingProvider.swift */,
+				2EEAAC513046833700D88EC6 /* OpenMeteo */,
 				2E1083D22E2B624E00400180 /* OpenWeather */,
 			);
 			path = BusinessAPIs;
+			sourceTree = "<group>";
+		};
+		2EEAAC513046833700D88EC6 /* OpenMeteo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OpenMeteo;
 			sourceTree = "<group>";
 		};
 		2EF147E42E966E3600BE657C /* StatusMenus */ = {

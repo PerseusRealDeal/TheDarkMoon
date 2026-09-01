@@ -236,7 +236,7 @@ class AppOptions {
 
     // MARK: - OpenWeather API Key Option
 
-    public static var OpenWeatherAPIOption: String? {
+    public static var keyOpenWeatherAPIOption: String? {
         get {
             // Secret
             let defender = globals.dataDefender
@@ -461,7 +461,7 @@ extension AppOptions {
         ud.removeObject(forKey: TIME_OPTION_KEY)
         ud.removeObject(forKey: SUGGESTIONS_REQUEST_OPTION_KEY)
 
-        self.OpenWeatherAPIOption = nil
+        self.keyOpenWeatherAPIOption = nil
     }
 }
 

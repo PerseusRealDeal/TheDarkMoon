@@ -123,10 +123,10 @@ extension SelfieViewController: SelfieViewDelegate {
         labelMeteoDataOpenWeather.weblink = linkOpenWeatherAPI
         labelMeteoDataOpenWeather.text = marketNameOpenWeather + " API"
 
-        labelGeoDataOpenMeteo.weblink = linkGeoCodingOpenMeteo
+        labelGeoDataOpenMeteo.weblink = linkGeoCodingOpenMeteoAPI
         labelGeoDataOpenMeteo.text = marketNameOpenMeteo + " API"
 
-        labelGeoDataOpenWeather.weblink = linkGeoCodingOpenWeather
+        labelGeoDataOpenWeather.weblink = linkGeoCodingOpenWeatherAPI
         labelGeoDataOpenWeather.text = marketNameOpenWeather + " API"
 
         labelPerseusDarkMode.weblink = linkPerseusDarkMode

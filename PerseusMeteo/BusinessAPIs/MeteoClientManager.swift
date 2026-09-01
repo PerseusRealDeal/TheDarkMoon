@@ -61,9 +61,15 @@ public class MeteoClientManager {
     private var isReadyToCallForecast = false
     private var isReadyToGetSuggestions = false
 
-    private let serviceCurrentWeather = PerseusNetworkClient(URLSession.shared, "Current")
-    private let serviceForecast = PerseusNetworkClient(URLSession.shared, "Forecast")
-    private let serviceSuggestions = PerseusNetworkClient(URLSession.shared, "Suggestions")
+    private let serviceCurrentWeather =
+    PerseusNetworkClient(URLSession.shared, "Current")
+    private let serviceForecast =
+    PerseusNetworkClient(URLSession.shared, "Forecast")
+
+    private let serviceOpenMeteoSuggestions =
+    PerseusNetworkClient(URLSession.shared, "OpenMeteoSuggestions")
+    private let serviceOpenWeatherSuggestions =
+    PerseusNetworkClient(URLSession.shared, "OpenWeatherSuggestions")
 
     init(presenter: StatusMenusPresenter) {
 
@@ -73,7 +79,9 @@ public class MeteoClientManager {
 
         serviceCurrentWeather.responseHandler = handleCurrent
         serviceForecast.responseHandler = handleForecast
-        serviceSuggestions.responseHandler = handleSuggestions
+
+        serviceOpenMeteoSuggestions.responseHandler = handleOpenMeteoSuggestions
+        serviceOpenWeatherSuggestions.responseHandler = handleOpenWeatherSuggestions
 
         isReadyToCall = true
         isReadyToCallForecast = true
@@ -90,9 +98,22 @@ public class MeteoClientManager {
         // retriesCountForecast = 0
     }
 
-    public func cancellSuggestionsRquest() {
-        serviceSuggestions.cancell()
-        // retriesCountSuggestions = 0
+    public func cancellSuggestionsRequest() {
+
+        serviceOpenMeteoSuggestions.cancell()
+        serviceOpenWeatherSuggestions.cancell()
+
+        self.retrySearchSuggestions = ""
+        self.retriesCountSuggestions = 0
+
+        self.isReadyToGetSuggestions = true
+
+        // stopAnimationIndicator
+
+        let viewLocation = ContentCoordinator.shared.screenPopover.viewLocation
+
+        viewLocation?.indicatorCircular.isHidden = true
+        viewLocation?.indicatorCircular.stopAnimation(nil)
     }
 
     public func fetchWeather() {
@@ -107,11 +128,11 @@ public class MeteoClientManager {
             return
         }
 
-        // let keyLoaded = AppOptions.OpenWeatherAPIOption ?? ""
-        // let key = keyLoaded.isEmpty ? AppGlobals.appKeyOpenWeather : keyLoaded
+        // let keyLoaded = AppOptions.keyOpenWeatherAPIOption ?? ""
+        // let key = keyLoaded.isEmpty ? AppGlobals.keyOpenWeatherAPI : keyLoaded
 
-        let keySaved = AppGlobals.appKeyOpenWeather
-        let key = keySaved.isEmpty ? AppOptions.OpenWeatherAPIOption ?? "" : keySaved
+        let keySaved = AppGlobals.keyOpenWeatherAPI
+        let key = keySaved.isEmpty ? AppOptions.keyOpenWeatherAPIOption ?? "" : keySaved
 
         guard key.isEmpty == false else {
             let message = "API key is either rejected or empty".localizedValue
@@ -165,11 +186,11 @@ public class MeteoClientManager {
             return
         }
 
-        // let keyLoaded = AppOptions.OpenWeatherAPIOption ?? ""
-        // let key = keyLoaded.isEmpty ? AppGlobals.appKeyOpenWeather : keyLoaded
+        // let keyLoaded = AppOptions.keyOpenWeatherAPIOption ?? ""
+        // let key = keyLoaded.isEmpty ? AppGlobals.keyOpenWeatherAPI : keyLoaded
 
-        let keySaved = AppGlobals.appKeyOpenWeather
-        let key = keySaved.isEmpty ? AppOptions.OpenWeatherAPIOption ?? "" : keySaved
+        let keySaved = AppGlobals.keyOpenWeatherAPI
+        let key = keySaved.isEmpty ? AppOptions.keyOpenWeatherAPIOption ?? "" : keySaved
 
         guard key.isEmpty == false else {
             let message = "API key is either rejected or empty".localizedValue
@@ -213,7 +234,12 @@ public class MeteoClientManager {
         }
     }
 
-    public func fetchSuggestions(_ search: String) {
+    public func fetchOpenMeteoSuggestions(_ search: String) {
+        log.message("[\(type(of: self))].\(#function)")
+        // TODO: Fetch OpenMeteo Suggestions
+    }
+
+    public func fetchOpenWeatherSuggestions(_ search: String) {
 
         guard
             self.isReadyToGetSuggestions,
@@ -231,11 +257,11 @@ public class MeteoClientManager {
             return
         }
 
-        // let keyLoaded = AppOptions.OpenWeatherAPIOption ?? ""
-        // let key = keyLoaded.isEmpty ? AppGlobals.appKeyOpenWeather : keyLoaded
+        // let keyLoaded = AppOptions.keyOpenWeatherAPIOption ?? ""
+        // let key = keyLoaded.isEmpty ? AppGlobals.keyOpenWeatherAPI : keyLoaded
 
-        let keySaved = AppGlobals.appKeyOpenWeather
-        let key = keySaved.isEmpty ? AppOptions.OpenWeatherAPIOption ?? "" : keySaved
+        let keySaved = AppGlobals.keyOpenWeatherAPI
+        let key = keySaved.isEmpty ? AppOptions.keyOpenWeatherAPIOption ?? "" : keySaved
 
         guard key.isEmpty == false
         else {
@@ -285,7 +311,7 @@ public class MeteoClientManager {
         log.message(urlString.replacingOccurrences(of: key, with: "###"), .notice)
 
         retrySearchSuggestions = search
-        serviceSuggestions.requestData(url: requestURL, timeoutIntervalSuggestions)
+        serviceOpenWeatherSuggestions.requestData(url: requestURL, timeoutIntervalSuggestions)
     }
 }
 
@@ -435,7 +461,16 @@ extension MeteoClientManager {
         }
     }
 
-    private func handleSuggestions(response: Result<Data, PerseusNetworkClientError>) {
+    private func handleOpenMeteoSuggestions(response: Result<Data,
+                                            PerseusNetworkClientError>) {
+        DispatchQueue.main.async {
+            log.message("[\(type(of: self))].\(#function)")
+            // TODO: Handle OpenMeteo Suggestions
+        }
+    }
+
+    private func handleOpenWeatherSuggestions(response: Result<Data,
+                                              PerseusNetworkClientError>) {
         DispatchQueue.main.async {
 
             // stopAnimationIndicator
@@ -473,7 +508,7 @@ extension MeteoClientManager {
                         log.message(text + ": \(self.retriesCountSuggestions)", .info)
 
                         DispatchQueue.main.async {
-                            self.fetchSuggestions(self.retrySearchSuggestions)
+                            self.fetchOpenWeatherSuggestions(self.retrySearchSuggestions)
                         }
                     } else {
                         self.retrySearchSuggestions = ""
@@ -503,15 +538,12 @@ extension MeteoClientManager {
 
         DispatchQueue.main.async {
 
-            guard data.isEmpty == false || AppGlobals.useSuggestionsSample else { return }
+            let isSample = AppGlobals.useSuggestionsSample
 
-            var suggestions: [Location]?
+            guard data.isEmpty == false || isSample else { return }
 
-            if AppGlobals.useSuggestionsSample {
-                suggestions = prepareSuggestionsSample()
-            } else {
-                suggestions = prepareSuggestions(json: data)
-            }
+            let suggestions: [Location]? =
+            isSample ? prepareSuggestionsSample() : prepareSuggestions(json: data)
 
             guard
                 let suggestions = suggestions,
@@ -535,7 +567,6 @@ extension MeteoClientManager {
 
             NSAnimationContext.runAnimationGroup({ context in
                 context.duration = 0.5
-
                 viewLocation.viewSuggestions.animator().alphaValue = 1.0
             }, completionHandler: nil)
 

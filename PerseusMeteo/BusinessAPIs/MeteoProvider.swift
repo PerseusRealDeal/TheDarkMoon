@@ -17,19 +17,28 @@ import Foundation
 
 public enum MeteoProvider: Int, CaseIterable, CustomStringConvertible, Codable {
 
+    // case serviceOpenMeteo      = 1 // Version 1
     case serviceOpenWeatherMap = 0 // Version 2.5
-    case serviceOpenMeteo      = 1 // Version 1
-
-    public var description: String {
-        return "\(marketName)"
-    }
 
     public var marketName: String {
         switch self {
+        // case .serviceOpenMeteo:
+            // return marketNameOpenMeteo
         case .serviceOpenWeatherMap:
-            return "OpenWeather"
-        case .serviceOpenMeteo:
-            return "Open-Meteo"
+            return marketNameOpenWeather
         }
+    }
+
+    public var marketNameWebLink: String {
+        switch self {
+        // case .serviceOpenMeteo:
+            // return linkOpenMeteo
+        case .serviceOpenWeatherMap:
+            return linkOpenWeather
+        }
+    }
+
+    public var description: String {
+        return "\(marketName)"
     }
 }

@@ -15,6 +15,9 @@
 
 import Cocoa
 
+let marketNameOpenWeather = "OpenWeather"
+let marketNameOpenMeteo = "Open-Meteo"
+
 // To adjust DarkMode appearance for HighSierra
 var isHighSierra: Bool { // true for HighSierra
     if #available(macOS 10.14, *) {
@@ -38,7 +41,7 @@ struct AppGlobals {
     // MARK: - Constants
 
     // 79eefe16f6e4714470502074369fc77b
-    static let appKeyOpenWeather = ""
+    static let keyOpenWeatherAPI = ""
 
     static let theAppLogoImageName = "Icon"
     static let meteoProviderName = "/\\__/\\"

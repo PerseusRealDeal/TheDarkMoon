@@ -99,8 +99,13 @@ class ContentCoordinator {
         shared.meteoClientManager?.fetchForecast()
     }
 
-    static func fetchSuggestions(_ search: String) {
-        shared.meteoClientManager?.fetchSuggestions(search)
+    static func fetchSuggestions(_ search: String, geoAgent: GeoCodingProvider) {
+        switch geoAgent {
+        case .serviceOpenMeteo:
+            shared.meteoClientManager?.fetchOpenMeteoSuggestions(search)
+        case .serviceOpenWeatherMap:
+            shared.meteoClientManager?.fetchOpenWeatherSuggestions(search)
+        }
     }
 
     static func startUpdateTimerIfNeeded() {
@@ -120,7 +125,7 @@ class ContentCoordinator {
     }
 
     static func cancellSuggestionsRequest() {
-        shared.meteoClientManager?.cancellSuggestionsRquest()
+        shared.meteoClientManager?.cancellSuggestionsRequest()
     }
 
     @objc private func updateCurrentWeatherByTimer() {

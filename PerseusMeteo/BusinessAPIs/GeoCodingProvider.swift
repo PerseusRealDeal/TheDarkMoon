@@ -17,28 +17,28 @@ import Foundation
 
 public enum GeoCodingProvider: Int, CaseIterable, CustomStringConvertible, Codable {
 
-    case serviceOpenWeatherMap = 0 // Version 1.0
-    case serviceOpenMeteo      = 1 // Version 1
-
-    public var description: String {
-        return "\(marketName)"
-    }
+    case serviceOpenMeteo      = 0 // Version 1
+    case serviceOpenWeatherMap = 1 // Version 1.0
 
     public var marketName: String {
         switch self {
-        case .serviceOpenWeatherMap:
-            return marketNameOpenWeather
         case .serviceOpenMeteo:
             return marketNameOpenMeteo
+        case .serviceOpenWeatherMap:
+            return marketNameOpenWeather
         }
     }
 
-    public var webLink: String {
+    public var marketNameWebLink: String {
         switch self {
-        case .serviceOpenWeatherMap:
-            return linkGeoCodingOpenWeather
         case .serviceOpenMeteo:
-            return linkGeoCodingOpenMeteo
+            return linkOpenMeteo
+        case .serviceOpenWeatherMap:
+            return linkOpenWeather
         }
+    }
+
+    public var description: String {
+        return "\(marketName)"
     }
 }

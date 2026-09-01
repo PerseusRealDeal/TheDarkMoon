@@ -156,7 +156,10 @@ class LocationView: NSView, NSTextFieldDelegate {
             return
         }
 
-        ContentCoordinator.fetchSuggestions(textFieldLocationNameSearch.stringValue)
+        let geoCodingAgent = AppOptions.currentGeoProviderOption
+        let searchNameText = self.textFieldLocationNameSearch.stringValue
+
+        ContentCoordinator.fetchSuggestions(searchNameText, geoAgent: geoCodingAgent)
     }
 
     @IBAction func bookmarkButtonTapped(_ sender: NSButton) {
@@ -281,7 +284,7 @@ class LocationView: NSView, NSTextFieldDelegate {
         let currentGeoProvider = AppOptions.currentGeoProviderOption
 
         labelGeoCodingServiceWebLink.text = currentGeoProvider.marketName
-        labelGeoCodingServiceWebLink.weblink = currentGeoProvider.webLink
+        labelGeoCodingServiceWebLink.weblink = currentGeoProvider.marketNameWebLink
 
         let locationNameLocalizedFull = locationNameLocalized
         let lengthLimit = 28
@@ -306,7 +309,6 @@ class LocationView: NSView, NSTextFieldDelegate {
     }
 
     public func makeup() {
-
 
         log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
 
@@ -450,7 +452,10 @@ class LocationView: NSView, NSTextFieldDelegate {
                 return
             }
 
-            ContentCoordinator.fetchSuggestions(self.textFieldLocationNameSearch.stringValue)
+            let geoCodingAgent = AppOptions.currentGeoProviderOption
+            let searchNameText = self.textFieldLocationNameSearch.stringValue
+
+            ContentCoordinator.fetchSuggestions(searchNameText, geoAgent: geoCodingAgent)
         })
     }
 
