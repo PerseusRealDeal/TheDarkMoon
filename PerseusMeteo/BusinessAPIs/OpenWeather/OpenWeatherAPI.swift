@@ -4,32 +4,22 @@
 //
 //  Created by Mikhail Zhigulin in 7531.
 //
-//  Copyright © 7531 - 7533 Mikhail A. Zhigulin of Novosibirsk
+//  Copyright © 7531 - 7535 Mikhail A. Zhigulin of Novosibirsk
 //  Copyright © 7533 PerseusRealDeal
 //
 //  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year. For instance, "Sep 01, 2025" is the beginning of 7534.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 //
 //  See LICENSE for details. All rights reserved.
 //
 
 import Foundation
 
-public let weatherSchemeBase = "https://api.openweathermap.org/data/2.5/"
-public let weatherSchemeAttributes = "%@?lat=%@&lon=%@&appid=%@"
+public let schemeOpenWeather = "https://api.openweathermap.org/data/2.5/"
+public let attributesOpenWeather = "%@?lat=%@&lon=%@&appid=%@"
 
-public let geocodingDirectSchemeBase = "http://api.openweathermap.org/geo/1.0/"
-public let geocodingDirectSchemeAttributes = "direct?q=%@&limit=%@&appid=%@"
-
-public func prepareDirectURLString(cityName: String, limit: Int, appid: String) -> String {
-
-    let args: [String] = [cityName, "\(limit)", appid]
-    let attributes = String(format: geocodingDirectSchemeAttributes, arguments: args)
-
-    let urlString = geocodingDirectSchemeBase + attributes
-
-    return urlString
-}
+public let schemeDirectGeoCodingOpenWeather = "http://api.openweathermap.org/geo/1.0/"
+public let attributesDirectGeoCodingOpenWeather = "direct?q=%@&limit=%@&appid=%@"
 
 public enum OpenWeatherRequest: String {
     case currentWeather = "weather" // Default.
@@ -42,27 +32,7 @@ public enum Units: String {
     case imperial
 }
 
-public enum Mode: String {
-    case json // Default.
-    case xml
-    case html
-}
-
-public struct Lang: RawRepresentable {
-    public var rawValue: String
-    public static let byDefault = Lang(rawValue: "")
-
-    public init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-}
-
-extension Lang {
-    public static let en = Lang(rawValue: "en")
-    public static let ru = Lang(rawValue: "ru")
-}
-
-public struct OpenWeatherRequestData {
+public struct OpenWeatherAPI {
 
     public let appid: String
     public let request: OpenWeatherRequest
@@ -97,7 +67,7 @@ public struct OpenWeatherRequestData {
     public var urlString: String {
 
         let args: [String] = [request.rawValue, lat, lon, appid]
-        var attributes = String(format: weatherSchemeAttributes, arguments: args)
+        var attributes = String(format: attributesOpenWeather, arguments: args)
 
         if !lang.rawValue.isEmpty {
             attributes.append("&lang=\(lang.rawValue)")
@@ -115,6 +85,49 @@ public struct OpenWeatherRequestData {
             attributes.append("&units=\(units.rawValue)")
         }
 
-        return weatherSchemeBase + attributes
+        return schemeOpenWeather + attributes
     }
+
+    // Returns URL String for direct geo coding city name
+    public static func directGeoCoding(city: String, limit: Int, appid: String) -> String {
+
+        let args: [String] = [city, "\(limit)", appid]
+        let attributes = String(format: attributesDirectGeoCodingOpenWeather, arguments: args)
+
+        let urlString = schemeDirectGeoCodingOpenWeather + attributes
+
+        return urlString
+    }
+}
+
+public func suggestionsOpenWeather(json: Data) -> [Location]? {
+
+    log.message("Suggestions:\n\(json.prettyPrinted ?? "")", .info, .standard)
+
+    // return prepareSuggestionsSample()
+
+    let decoder = JSONDecoder()
+
+    guard
+        let loadedObjects = try? decoder.decode([OpenWeatherSuggestion].self, from: json)
+    else {
+        return nil
+    }
+
+    var suggestions = [Location]()
+
+    for item in loadedObjects {
+        var location = Location()
+
+        location.name = item.name
+        location.localNames = item.local_names
+        location.country = item.country
+        location.latitude = item.lat
+        location.longitude = item.lon
+        location.state = item.state
+
+        suggestions.append(location)
+    }
+
+    return suggestions
 }

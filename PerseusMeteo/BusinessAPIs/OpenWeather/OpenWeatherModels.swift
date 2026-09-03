@@ -231,21 +231,6 @@ public let compassDirections = // 17 elements
      "N/NW",
      "N"]
 
-// MARK: - SUGGESTION
-
-public struct SuggestionOpenWeatherMap: Codable {
-
-    public let name: String
-    public let local_names: [String: String]?
-
-    public let country: String?
-
-    public let lat: Double
-    public let lon: Double
-
-    public let state: String?
-}
-
 // MARK: - Current Weather StatusMenus Update Period
 
 public enum StatusMenusUpdatePeriodOption: Int, CaseIterable, CustomStringConvertible {

@@ -440,7 +440,9 @@ class LocationView: NSView, NSTextFieldDelegate {
                 self.typeDeepCounter -= 1
 
                 let logText = "deepCounter > 0: \(self.typeDeepCounter)"
-                log.message("[\(type(of: self))].\(#function) \(logText)")
+                let searchText = self.textFieldLocationNameSearch.stringValue
+
+                log.message("[\(type(of: self))].\(#function) \(logText) \(searchText)")
             }
 
             guard

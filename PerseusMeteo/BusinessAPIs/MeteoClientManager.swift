@@ -4,11 +4,11 @@
 //
 //  Created by Mikhail Zhigulin in 7532.
 //
-//  Copyright © 7532 - 7534 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7532 - 7534 PerseusRealDeal
+//  Copyright © 7532 - 7535 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7532 - 7535 PerseusRealDeal
 //
 //  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year. For instance, "Sep 01, 2025" is the beginning of 7534.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 //
 //  See LICENSE for details. All rights reserved.
 //
@@ -16,30 +16,6 @@
 //
 
 import Cocoa
-
-extension PerseusNetworkClientError {
-
-    public var endUserMessageLocalized: String {
-        switch self {
-        case .invalidUrl:
-            return "Incorrect URL".localizedValue
-        case .cancelled:
-            return "Cancelled call".localizedValue
-        case .notConnectedToInternet:
-            return "The Internet connection offline".localizedValue
-        case .timedOut:
-            return "Timed out call".localizedValue
-        case .statusCode404:
-            return "Status 404, not found".localizedValue
-        case .nilOrEmptyRequestedData:
-            return "Empty data".localizedValue
-        case .failedResponseStatusCode:
-            return "Failed Response StatusCode".localizedValue
-        case .failedResponse(let text):
-            return text
-        }
-    }
-}
 
 public class MeteoClientManager {
 
@@ -100,6 +76,8 @@ public class MeteoClientManager {
 
     public func cancellSuggestionsRequest() {
 
+        log.message("[\(type(of: self))].\(#function)")
+
         serviceOpenMeteoSuggestions.cancell()
         serviceOpenWeatherSuggestions.cancell()
 
@@ -147,12 +125,12 @@ public class MeteoClientManager {
         let lon = point.longitude.cut(.two).description
 
         let lang = globals.languageSwitcher.currentAppLanguage
-        let callDetails = OpenWeatherRequestData(appid: key,
-                                                 lat: lat,
-                                                 lon: lon,
-                                                 units: .imperial,
-                                                 lang: .init(rawValue: lang),
-                                                 mode: .json)
+        let callDetails = OpenWeatherAPI(appid: key,
+                                         lat: lat,
+                                         lon: lon,
+                                         units: .imperial,
+                                         lang: .init(rawValue: lang),
+                                         mode: .json)
 
         log.message(callDetails.urlString.replacingOccurrences(of: key, with: "###"), .notice)
 
@@ -205,13 +183,13 @@ public class MeteoClientManager {
         let lon = point.longitude.cut(.two).description
 
         let lang = globals.languageSwitcher.currentAppLanguage
-        var callDetails = OpenWeatherRequestData(appid: key,
-                                                 request: .forecast,
-                                                 lat: lat,
-                                                 lon: lon,
-                                                 units: .imperial,
-                                                 lang: .init(rawValue: lang),
-                                                 mode: .json)
+        var callDetails = OpenWeatherAPI(appid: key,
+                                         request: .forecast,
+                                         lat: lat,
+                                         lon: lon,
+                                         units: .imperial,
+                                         lang: .init(rawValue: lang),
+                                         mode: .json)
         callDetails.cnt = 40
 
         log.message(callDetails.urlString.replacingOccurrences(of: key, with: "###"), .notice)
@@ -235,8 +213,66 @@ public class MeteoClientManager {
     }
 
     public func fetchOpenMeteoSuggestions(_ search: String) {
-        log.message("[\(type(of: self))].\(#function)")
-        // TODO: Fetch OpenMeteo Suggestions
+
+        log.message("[\(type(of: self))].\(#function) \(search)")
+
+        guard
+            self.isReadyToGetSuggestions,
+            search.isEmpty == false,
+            let viewLocation = ContentCoordinator.shared.screenPopover.viewLocation
+        else {
+            return
+        }
+
+        guard AppGlobals.useSuggestionsSample == false
+        else {
+            viewLocation.indicatorCircular.isHidden = true
+            viewLocation.indicatorCircular.stopAnimation(nil)
+            refreshOpenMeteoSuggestions(Data())
+            return
+        }
+
+        self.isReadyToGetSuggestions = false
+
+        let name = search
+        let limit = 5
+
+        let lang = Lang(rawValue: globals.languageSwitcher.currentAppLanguage)
+
+        let urlString = OpenMeteoAPI.directGeoCoding(city: name, count: limit, lang: lang)
+        let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+
+        var preparedURL: URL?
+
+        if let url = URL(string: urlString) {
+            preparedURL = url
+        } else if let encodedString = encoded, let urlEncoded = URL(string: encodedString) {
+            preparedURL = urlEncoded
+        }
+
+        guard let requestURL = preparedURL
+        else {
+
+            // WRONG: URL cann't be created at all
+            log.message("[\(type(of: self))].\(#function) no URL prepared", .error)
+
+            // stopAnimationIndicator
+            viewLocation.indicatorCircular.isHidden = true
+            viewLocation.indicatorCircular.stopAnimation(nil)
+
+            self.isReadyToGetSuggestions = true
+
+            return
+        }
+
+        // startAnimationIndicator
+        viewLocation.indicatorCircular.isHidden = false
+        viewLocation.indicatorCircular.startAnimation(nil)
+
+        // request
+
+        retrySearchSuggestions = search
+        serviceOpenMeteoSuggestions.requestData(url: requestURL, timeoutIntervalSuggestions)
     }
 
     public func fetchOpenWeatherSuggestions(_ search: String) {
@@ -253,7 +289,7 @@ public class MeteoClientManager {
         else {
             viewLocation.indicatorCircular.isHidden = true
             viewLocation.indicatorCircular.stopAnimation(nil)
-            refreshSuggestions(Data())
+            refreshOpenWeatherSuggestions(Data())
             return
         }
 
@@ -276,7 +312,7 @@ public class MeteoClientManager {
         let name = search
         let limit = 5
 
-        let urlString = prepareDirectURLString(cityName: name, limit: limit, appid: key)
+        let urlString = OpenWeatherAPI.directGeoCoding(city: name, limit: limit, appid: key)
         let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
 
         var preparedURL: URL?
@@ -464,8 +500,67 @@ extension MeteoClientManager {
     private func handleOpenMeteoSuggestions(response: Result<Data,
                                             PerseusNetworkClientError>) {
         DispatchQueue.main.async {
+
             log.message("[\(type(of: self))].\(#function)")
-            // TODO: Handle OpenMeteo Suggestions
+
+            // stopAnimationIndicator
+
+            let indicator =
+            ContentCoordinator.shared.screenPopover.viewLocation.indicatorCircular
+
+            indicator?.isHidden = true
+            indicator?.stopAnimation(nil)
+
+            self.isReadyToGetSuggestions = true
+
+            var suggestions: Data?
+            var errorResponse: PerseusNetworkClientError?
+
+            switch response {
+            case .success(let data):
+                suggestions = data
+            case .failure(let error):
+                errorResponse = error
+            }
+
+            if let error = errorResponse {
+
+                log.message("\(error.endUserMessageLocalized)", .notice, .custom, .enduser)
+
+                if error == .timedOut {
+                    if self.retriesCountSuggestions < self.requestAttemtsForSuggestions {
+
+                        // Retry call suggestions
+
+                        self.retriesCountSuggestions += 1
+
+                        let text = "The Suggestions call retry attempt"
+                        log.message(text + ": \(self.retriesCountSuggestions)", .info)
+
+                        DispatchQueue.main.async {
+                            self.fetchOpenMeteoSuggestions(self.retrySearchSuggestions)
+                        }
+                    } else {
+                        self.retrySearchSuggestions = ""
+                        self.retriesCountSuggestions = 0
+                    }
+
+                    return
+                }
+
+                self.retrySearchSuggestions = ""
+                self.retriesCountSuggestions = 0
+
+                return
+            }
+
+            guard let data = suggestions else {
+                let text = "[\(type(of: self))].\(#function)"
+                log.message(text + " data should not be nil", .fault)
+                return
+            }
+
+            self.refreshOpenMeteoSuggestions(data)
         }
     }
 
@@ -530,11 +625,11 @@ extension MeteoClientManager {
                 return
             }
 
-            self.refreshSuggestions(data)
+            self.refreshOpenWeatherSuggestions(data)
         }
     }
 
-    private func refreshSuggestions(_ data: Data) {
+    private func refreshOpenMeteoSuggestions(_ data: Data) {
 
         DispatchQueue.main.async {
 
@@ -543,7 +638,47 @@ extension MeteoClientManager {
             guard data.isEmpty == false || isSample else { return }
 
             let suggestions: [Location]? =
-            isSample ? prepareSuggestionsSample() : prepareSuggestions(json: data)
+            isSample ? suggestionsSample() : suggestionsOpenMeteo(json: data)
+
+            guard
+                let suggestions = suggestions,
+                let viewLocation = ContentCoordinator.shared.screenPopover.viewLocation
+            else {
+                return
+            }
+
+            if suggestions.isEmpty {
+                let text = "There are no suggestions received".localizedValue
+                log.message(text, .notice, .custom, .enduser)
+            }
+
+            viewLocation.viewSuggestions.suggestionsArray = suggestions
+
+            viewLocation.constraintViewSuggestionsHeight?.constant =
+            viewLocation.viewSuggestions.heightCalculated
+
+            viewLocation.collectionSuggestions?.reloadData()
+            viewLocation.hideControlsIfLegacy()
+
+            NSAnimationContext.runAnimationGroup({ context in
+                context.duration = 0.5
+                viewLocation.viewSuggestions.animator().alphaValue = 1.0
+            }, completionHandler: nil)
+
+            self.isReadyToGetSuggestions = true
+        }
+    }
+
+    private func refreshOpenWeatherSuggestions(_ data: Data) {
+
+        DispatchQueue.main.async {
+
+            let isSample = AppGlobals.useSuggestionsSample
+
+            guard data.isEmpty == false || isSample else { return }
+
+            let suggestions: [Location]? =
+            isSample ? suggestionsSample() : suggestionsOpenWeather(json: data)
 
             guard
                 let suggestions = suggestions,
@@ -603,86 +738,4 @@ extension MeteoClientManager {
 
         return point
     }
-}
-
-public func prepareSuggestionsSample() -> [Location] {
-
-    var suggestion1 = Location()
-    var suggestion2 = Location()
-    var suggestion3 = Location()
-
-    var suggestion4 = Location()
-    var suggestion5 = Location()
-    var suggestion6 = Location()
-
-    var suggestion7 = Location()
-
-    suggestion1.name = "Советская улица, 75, НСК"
-    suggestion1.point = GeoPoint(55.0377335373108, 82.91413691298119)
-    suggestion1.country = "RU"
-    suggestion1.localNames = [
-        "en": "Sovetskaya, 75, NSK",
-        "ru": "Советская улица, 75, НСК"
-    ]
-
-    suggestion2.name = "ГЛПК Прибой, НСК"
-    suggestion2.point = GeoPoint(54.83263291679862, 82.91570663265945)
-    suggestion2.country = "RU"
-
-    suggestion3.name = "Остров Тань-Вань, НСК"
-    suggestion3.point = GeoPoint(54.817322188351405, 83.03674574747961)
-    suggestion3.country = "RU"
-
-    suggestion4.name = "Озеро Мраморное, НСК обл."
-    suggestion4.point = GeoPoint(54.22810680087118, 81.7071991707937)
-    suggestion4.country = "RU"
-
-    suggestion5.name = "Беловский водопад, Белово, НСК обл."
-    suggestion5.point = GeoPoint(54.55994697554389, 83.62070984232841)
-    suggestion5.country = "RU"
-
-    suggestion6.name = "Бердские скалы, Новоседово, Нск обл."
-    suggestion6.point = GeoPoint(54.618033965714915, 83.98273590642789)
-    suggestion6.country = "RU"
-
-    suggestion7.name = "Гора Церковка, Белокуриха"
-    suggestion7.point = GeoPoint(51.97283289139373, 84.92740741343708)
-    suggestion7.country = "RU"
-
-    return [
-        suggestion1, suggestion2, suggestion3, suggestion4, suggestion5, suggestion6,
-        suggestion7
-    ]
-}
-
-public func prepareSuggestions(json: Data) -> [Location]? {
-
-    log.message("JSON suggestions:\n\(json.prettyPrinted ?? "")", .info, .standard)
-
-    // return prepareSuggestionsSample()
-
-    let decoder = JSONDecoder()
-
-    guard
-        let loadedObjects = try? decoder.decode([SuggestionOpenWeatherMap].self, from: json)
-    else {
-        return nil
-    }
-
-    var suggestions = [Location]()
-
-    for item in loadedObjects {
-        var location = Location()
-
-        location.name = item.name
-        location.localNames = item.local_names
-        location.country = item.country
-        location.latitude = item.lat
-        location.longitude = item.lon
-        location.state = item.state
-
-        suggestions.append(location)
-    }
-
-    return suggestions
 }
