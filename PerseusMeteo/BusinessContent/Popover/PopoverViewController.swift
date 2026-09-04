@@ -236,11 +236,11 @@ public class PopoverViewController: NSViewController {
         self.refreshCallInformation()
     }
 
-    public func startAnimationProgressIndicator(_ section: MeteoCategory,
+    public func startAnimationProgressIndicator(_ section: MeteoDataCategory,
                                                 _ sender: Any? = nil) {
 
         switch section {
-        case .weather:
+        case .currentWeather:
             viewWeather?.startProgressIndicator = true
         case .forecast:
             viewForecast?.startProgressIndicator = true
@@ -257,11 +257,11 @@ public class PopoverViewController: NSViewController {
         }
     }
 
-    public func stopAnimationProgressIndicator(_ section: MeteoCategory,
+    public func stopAnimationProgressIndicator(_ section: MeteoDataCategory,
                                                _ sender: Any? = nil) {
 
         switch section {
-        case .weather:
+        case .currentWeather:
             viewWeather?.startProgressIndicator = false
         case .forecast:
             viewForecast?.startProgressIndicator = false
@@ -284,7 +284,10 @@ public class PopoverViewController: NSViewController {
 
         let key = Notification.Name.suggestionNotification.rawValue
 
-        guard let location = notification.userInfo?[key] as? Location else { return }
+        guard let location = notification.userInfo?[key] as? Location
+        else {
+            return
+        }
 
         AppGlobals.currentLocation = nil
         AppGlobals.suggestion = location
@@ -573,28 +576,19 @@ extension PopoverViewController: PopoverViewDelegate {
 
     private func refreshCallInformation() {
 
-        var provider = ""
+        var marketName = ""
+        var webLink = ""
 
         if controlCallRequest.selectedSegment == 0 {
-            if AppGlobals.weather == nil {
-                provider = AppGlobals.meteoProviderName
-            } else {
-                provider = globals.sourceWeather.meteoDataProviderName
-            }
+            marketName = AppGlobals.weather?.source.marketName ?? AppGlobals.meteoProviderName
+            webLink = AppGlobals.weather?.source.marketNameWebLink ?? linkAuthor
         } else {
-            if AppGlobals.forecast == nil {
-                provider = AppGlobals.meteoProviderName
-            } else {
-                provider = globals.sourceForecast.meteoDataProviderName
-            }
+            marketName = AppGlobals.forecast?.source.marketName ?? AppGlobals.meteoProviderName
+            webLink = AppGlobals.forecast?.source.marketNameWebLink ?? linkAuthor
         }
 
-        // let toolTip = "Label: Meteo Data Provider".localizedValue
-        let toolTipLink = provider == AppGlobals.meteoProviderName ?
-        linkAuthor : linkOpenWeather
-
-        labelMeteoProviderWebLink.weblink = "\(toolTipLink)"
-        labelMeteoProviderWebLink.text = provider
+        labelMeteoProviderWebLink.weblink = webLink
+        labelMeteoProviderWebLink.text = marketName
 
         if controlCallRequest.selectedSegment == 0 {
             buttonFetchMeteoFacts.title = "Button: Call Weather".localizedValue

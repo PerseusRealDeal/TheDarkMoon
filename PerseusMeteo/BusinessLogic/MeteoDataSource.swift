@@ -17,7 +17,7 @@ import Foundation
 
 public class MeteoDataSource: DataDictionarySource {
 
-    internal let meteoCategory: MeteoCategory
+    internal let meteoCategory: MeteoDataCategory
     internal var reader: MeteoDataSourceReader?
 
     public var meteoProvider: MeteoProvider? {
@@ -33,18 +33,26 @@ public class MeteoDataSource: DataDictionarySource {
 
             reader.data = jsonSerialized // Data caching
 
-            if meteoCategory == .weather, let reader = reader as? WeatherDataSourceReader {
+            if
+                meteoCategory == .currentWeather,
+                let reader = reader as? WeatherDataSourceReader {
+
                 switch provider {
                 case .serviceOpenMeteo:
+                    // TODO: Add Open-Meteo current weather parser
                     reader.parser = nil
                 case .serviceOpenWeatherMap:
                     reader.parser = OpenWeatherWeatherParser()
                 }
             }
 
-            if meteoCategory == .forecast, let reader = reader as? ForecastDataSourceReader {
+            if
+                meteoCategory == .forecast,
+                let reader = reader as? ForecastDataSourceReader {
+
                 switch provider {
                 case .serviceOpenMeteo:
+                    // TODO: Add Open-Meteo forecast parser
                     reader.parser = nil
                 case .serviceOpenWeatherMap:
                     reader.parser = OpenWeatherForecastParser()
@@ -57,7 +65,7 @@ public class MeteoDataSource: DataDictionarySource {
 
     // MARK: - Init
 
-    init(contant: MeteoCategory) {
+    init(contant: MeteoDataCategory) {
         self.meteoCategory = contant
         super.init()
 
@@ -66,7 +74,7 @@ public class MeteoDataSource: DataDictionarySource {
 
     public func resetDataCach() {
         switch meteoCategory {
-        case .weather:
+        case .currentWeather:
             reader = WeatherDataSourceReader()
         case .forecast:
             reader = ForecastDataSourceReader()

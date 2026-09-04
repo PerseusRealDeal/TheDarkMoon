@@ -78,7 +78,7 @@ struct AppGlobals {
         }
     }
 
-    static var weather: Data? {
+    static var weather: (data: Data, source: MeteoProvider)? {
         didSet {
 
             guard let weather = weather else {
@@ -87,11 +87,11 @@ struct AppGlobals {
                 return
             }
 
-            log.message("JSON:\n\(weather.prettyPrinted ?? "")", .info)
+            log.message("JSON:\n\(weather.data.prettyPrinted ?? "")", .info)
         }
     }
 
-    static var forecast: Data? {
+    static var forecast: (data: Data, source: MeteoProvider)? {
         didSet {
 
             guard let forecast = forecast else {
@@ -101,7 +101,7 @@ struct AppGlobals {
             }
 
             // log.message("JSON:\n\(forecast.prettyPrinted ?? "")", .info)
-            log.message("JSON forecast:\n\(forecast.prettyPrinted ?? "")", .info, .standard)
+            log.message("JSON:\n\(forecast.data.prettyPrinted ?? "")", .info, .standard)
 
             // Save the date and time of the last one.
 
@@ -134,8 +134,8 @@ struct AppGlobals {
         self.languageSwitcher = LanguageSwitcher.shared
         self.dataDefender = PerseusDataDefender.shared
 
-        self.sourceWeather.path = { AppGlobals.weather ?? Data() }
-        self.sourceForecast.path = { AppGlobals.forecast ?? Data() }
+        self.sourceWeather.path = { AppGlobals.weather?.data ?? Data() }
+        self.sourceForecast.path = { AppGlobals.forecast?.data ?? Data() }
 
         // Geo Logic Setup
 

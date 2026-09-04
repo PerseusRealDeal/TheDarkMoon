@@ -21,11 +21,6 @@ public let attributesOpenWeather = "%@?lat=%@&lon=%@&appid=%@"
 public let schemeDirectGeoCodingOpenWeather = "http://api.openweathermap.org/geo/1.0/"
 public let attributesDirectGeoCodingOpenWeather = "direct?q=%@&limit=%@&appid=%@"
 
-public enum OpenWeatherRequest: String {
-    case currentWeather = "weather" // Default.
-    case forecast = "forecast"
-}
-
 public enum Units: String {
     case standard // Default.
     case metric
@@ -35,7 +30,7 @@ public enum Units: String {
 public struct OpenWeatherAPI {
 
     public let appid: String
-    public let request: OpenWeatherRequest
+    public let request: MeteoDataCategory
 
     public let lat: String
     public let lon: String
@@ -48,7 +43,7 @@ public struct OpenWeatherAPI {
     public var cnt: Int = -1
 
     public init(appid: String,
-                request: OpenWeatherRequest = .currentWeather,
+                request: MeteoDataCategory = .currentWeather,
                 lat: String = "55.66",
                 lon: String = "85.62",
                 units: Units = .standard,

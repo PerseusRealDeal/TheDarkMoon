@@ -66,6 +66,7 @@ class SelfieViewController: NSViewController {
     @IBOutlet weak var labelGeoDataServices: NSTextField!
     @IBOutlet weak var labelMajorComponents: NSTextField!
 
+    @IBOutlet weak var labelMeteoDataOpenMeteo: WebLabel!
     @IBOutlet weak var labelMeteoDataOpenWeather: WebLabel!
     @IBOutlet weak var labelGeoDataOpenMeteo: WebLabel!
     @IBOutlet weak var labelGeoDataOpenWeather: WebLabel!
@@ -120,6 +121,9 @@ extension SelfieViewController: SelfieViewDelegate {
         labelTheAppSourceCode.weblink = linkTheAppSourceCode
         labelTheTechnologicalTree.weblink = linkTheTechnologicalTree
 
+        labelMeteoDataOpenMeteo.weblink = linkOpenMeteoAPI
+        labelMeteoDataOpenMeteo.text = marketNameOpenMeteo + " API"
+
         labelMeteoDataOpenWeather.weblink = linkOpenWeatherAPI
         labelMeteoDataOpenWeather.text = marketNameOpenWeather + " API"
 
@@ -170,6 +174,7 @@ extension SelfieViewController: SelfieViewDelegate {
         labelTheAppSourceCode.textColorOnMove = .linkWebColor
         labelTheTechnologicalTree.textColorOnMove = .linkWebColor
 
+        labelMeteoDataOpenMeteo.textColorOnMove = .linkWebColor
         labelMeteoDataOpenWeather.textColorOnMove = .linkWebColor
         labelGeoDataOpenWeather.textColorOnMove = .linkWebColor
         labelGeoDataOpenMeteo.textColorOnMove = .linkWebColor

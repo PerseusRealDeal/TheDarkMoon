@@ -92,11 +92,21 @@ class ContentCoordinator {
     }
 
     static func callWeather() {
-        shared.meteoClientManager?.fetchWeather()
+        switch AppOptions.currentMeteoProviderOption {
+        case .serviceOpenMeteo:
+            shared.meteoClientManager?.fetchCurrentOpenMeteo()
+        case .serviceOpenWeatherMap:
+            shared.meteoClientManager?.fetchCurrentOpenWeather()
+        }
     }
 
     static func callForecast() {
-        shared.meteoClientManager?.fetchForecast()
+        switch AppOptions.currentMeteoProviderOption {
+        case .serviceOpenMeteo:
+            shared.meteoClientManager?.fetchForecastOpenMeteo()
+        case .serviceOpenWeatherMap:
+            shared.meteoClientManager?.fetchForecastOpenWeather()
+        }
     }
 
     static func fetchSuggestions(_ search: String, geoAgent: GeoCodingProvider) {
@@ -131,13 +141,15 @@ class ContentCoordinator {
     @objc private func updateCurrentWeatherByTimer() {
 
         let main = ContentCoordinator.shared
+        let currentMeteoSource = AppOptions.currentMeteoProviderOption
 
         main.updateTimer?.invalidate()
         main.statusMenus.reloadData()
 
         guard
             AppOptions.statusMenusOption == true,
-            AppOptions.statusMenusPeriodOption != .none
+            AppOptions.statusMenusPeriodOption != .none,
+            let manager = main.meteoClientManager
         else {
             return
         }
@@ -145,12 +157,24 @@ class ContentCoordinator {
         main.updateTimer = Timer.scheduledTimer(
             withTimeInterval: AppOptions.statusMenusPeriodOption.timeInterval,
             repeats: true) { _ in
-                main.meteoClientManager?.fetchWeather()
+
+                switch currentMeteoSource {
+                case .serviceOpenMeteo:
+                    manager.fetchCurrentOpenMeteo()
+                case .serviceOpenWeatherMap:
+                    manager.fetchCurrentOpenWeather()
+                }
+
                 log.message("[\(type(of: self))].\(#function) the timer fired", .info)
             }
 
         log.message("[\(type(of: self))].\(#function) the timer fired", .info)
 
-        main.meteoClientManager?.fetchWeather()
+        switch currentMeteoSource {
+        case .serviceOpenMeteo:
+            manager.fetchCurrentOpenMeteo()
+        case .serviceOpenWeatherMap:
+            manager.fetchCurrentOpenWeather()
+        }
     }
 }

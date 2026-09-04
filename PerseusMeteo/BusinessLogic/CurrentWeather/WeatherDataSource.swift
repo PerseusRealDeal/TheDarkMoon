@@ -24,7 +24,7 @@ public class WeatherDataSource: MeteoDataSource {
     // MARK: - Init
 
     init() {
-        super.init(contant: .weather)
+        super.init(contant: .currentWeather)
     }
 
     // MARK: - Properties
