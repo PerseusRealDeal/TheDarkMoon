@@ -35,19 +35,19 @@ public class MeteoDataSource: DataDictionarySource {
 
             if meteoCategory == .weather, let reader = reader as? WeatherDataSourceReader {
                 switch provider {
+                case .serviceOpenMeteo:
+                    reader.parser = nil
                 case .serviceOpenWeatherMap:
                     reader.parser = OpenWeatherWeatherParser()
-                // case .serviceOpenMeteo:
-                    // reader.parser = nil
                 }
             }
 
             if meteoCategory == .forecast, let reader = reader as? ForecastDataSourceReader {
                 switch provider {
+                case .serviceOpenMeteo:
+                    reader.parser = nil
                 case .serviceOpenWeatherMap:
                     reader.parser = OpenWeatherForecastParser()
-                // case .serviceOpenMeteo:
-                    // reader.parser = nil
                 }
             }
 

@@ -61,10 +61,10 @@ public let STATUSMENUS_VIEW_OPTIONS_DEFAULT = StatusMenusViewOptions(
 )
 
 public let METEO_PROVIDER_OPTION_KEY = "METEO_PROVIDER_OPTION_KEY"
-public let METEO_PROVIDER_OPTION_DEFAULT = MeteoProvider.serviceOpenWeatherMap
+public let METEO_PROVIDER_OPTION_DEFAULT = MeteoProvider.serviceOpenMeteo
 
 public let GEOCODING_PROVIDER_OPTION_KEY = "GEOCODING_PROVIDER_OPTION_KEY"
-public let GEOCODING_PROVIDER_OPTION_DEFAULT = GeoCodingProvider.serviceOpenWeatherMap
+public let GEOCODING_PROVIDER_OPTION_DEFAULT = GeoCodingProvider.serviceOpenMeteo
 
 // MARK: - User Defaults
 

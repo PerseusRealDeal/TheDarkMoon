@@ -546,11 +546,11 @@ extension OptionsViewController {
         comboBoxForMeteoProviders.removeAllItems()
 
         let selectedIndex = AppOptions.currentMeteoProviderOption.rawValue
-        let marketName = MeteoProvider.serviceOpenWeatherMap.marketName
 
-        // TODO: Add Open-Meteo provider
+        for item in MeteoProvider.allCases {
+            comboBoxForMeteoProviders.addItem(withObjectValue: "\(item.marketName)")
+        }
 
-        comboBoxForMeteoProviders.addItem(withObjectValue: marketName)
         comboBoxForMeteoProviders.selectItem(at: selectedIndex)
     }
 
