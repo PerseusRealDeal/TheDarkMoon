@@ -40,6 +40,8 @@
 	<string>Made with Love from Novosibirsk</string>
 	<key>Label: MeteoDataFrom</key>
 	<string>Meteo Data from</string>
+	<key>Label: GeoCodingService</key>
+	<string>Geo-Coding Service</string>
 	<key>Tab: Current Weather</key>
 	<string>Weather</string>
 	<key>Tab: Forecast</key>
@@ -304,6 +306,12 @@
 	<string>Humidity</string>
 	<key>StatusMenus: cloudiness</key>
 	<string>Cloudiness</string>
+	<key>Option: Current Provider</key>
+	<string>Current Provider</string>
+	<key>Option: For Meteo Data</key>
+	<string>For Meteo Data</string>
+	<key>Option: For Geo Data</key>
+	<string>For Geo Data</string>
 	<key>Button: TwoLines Info</key>
 	<string>The second line available from macOS Big Sur (11)</string>
 	<key>Button: Close</key>
@@ -416,6 +424,12 @@
 	<string>Russian by</string>
 	<key>Label: Author</key>
 	<string>Mikhail Zhigulin</string>
+	<key>Label: Meteo API</key>
+	<string>Meteo API Services</string>
+	<key>Label: Geo API</key>
+	<string>GeoCoding API Services</string>
+	<key>Label: Major Components</key>
+	<string>Functional Components</string>
 	<key>Button: License</key>
 	<string>License</string>
 	<key>Button: Terms &amp; Conditions</key>

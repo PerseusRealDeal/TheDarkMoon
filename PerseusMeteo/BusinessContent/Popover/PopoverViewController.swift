@@ -209,6 +209,7 @@ public class PopoverViewController: NSViewController {
 
         weather.reloadData()
         forecast.reloadData(saveSelection: true)
+        viewLocation.reloadData()
 
         self.refreshCallInformation()
     }
@@ -536,6 +537,9 @@ extension PopoverViewController: PopoverViewDelegate {
 
         viewWeather?.makeup()
         viewForecast?.makeup()
+
+        labelGreeting.messageTextColor = .snowmanMessageColor
+        labelMeteoProviderWebLink.textColorOnMove = .linkWebColor
     }
 
     func localize() {

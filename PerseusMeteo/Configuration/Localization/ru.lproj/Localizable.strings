@@ -25,6 +25,7 @@
 
 "Label: Made with Love" = "C любовью из Новосибирска";
 "Label: MeteoDataFrom" = "Метео сведения от";
+"Label: GeoCodingService" = "Географический справочник";
 
 /* Redirect Alert */
 
@@ -159,21 +160,21 @@
 
 /* Options Screen – OptionsWindowController, OptionsViewController */
 
-"Title: Options Screen" = "Настройки Изделия";
+"Title: Options Screen" = "Настройки изделия";
 
-"Section: App Options" = "Настройки Изделия";
+"Section: App Options" = "Настройки изделия";
 
-"Option: Dark Mode" = "Сторона Луны";
+"Option: Dark Mode" = "Сторона луны";
 "Option: Language" = "Язык";
 "Option: OpenWeather Key" = "Ключ OpenWeather";
-"Option: Time Format" = "Формат Времени";
+"Option: Time Format" = "Формат времени";
 
-"Section: Meteo Options" = "Метео Просмотр";
+"Section: Meteo Options" = "Метео просмотр";
 
 "Option: Temperature" = "Температура";
-"Option: Wind Speed" = "Скорость Ветра";
+"Option: Wind Speed" = "Скорость ветра";
 "Option: Pressure" = "Барометр";
-"Option: Distance" = "Дальность Обзора";
+"Option: Distance" = "Дальность обзора";
 
 "Unit: Light" = "Cветлая";
 "Unit: Dark" = "Темная";
@@ -196,7 +197,7 @@
 "Unit: Kilometre long" = "Километры";
 "Unit: Mile long" = "Мили";
 
-"Section: Special Options" = "Дополнительные Настройки";
+"Section: Special Options" = "Дополнительные настройки";
 
 "OpenWeather: Lock" = "Скрыть";
 "OpenWeather: Unlock" = "Показать";
@@ -204,7 +205,7 @@
 "OpenWeather: Editable" = "Нужен токен (ключ)";
 
 "Option: CurrentWeatherStatusMenus" = "Наблюдение";
-"Button: CheckBox StatusMenus" = "Системный Статус";
+"Button: CheckBox StatusMenus" = "Системный статус";
 
 "Option: StatusMenus Update" = "Период";
 "StatusMenus: per 12 hours" = "12 часов";
@@ -216,6 +217,9 @@
 "Button: CheckBox TwoLines" = "Две строки";
 "Option: SecondLine" = "Вторая строка";
 "Option: ToolTip" = "Подсказка";
+"Option: Current Provider" = "Поставщики";
+"Option: For Meteo Data" = "Метео данные";
+"Option: For Geo Data" = "Гео справочник";
 
 "StatusMenus: feelsLike" = "По ощущениям";
 "StatusMenus: direction" = "Направление";
@@ -284,11 +288,15 @@
 
 "Label: The App Version" = "Выпуск";
 
-"Label: Copyright Notice" = "Охраняется авторским правом © 7531 - 7534 Михаил A. Жигулин из Новосибирска.";
+"Label: Copyright Notice" = "Охраняется авторским правом © 7531 - 7535 Михаил A. Жигулин из Новосибирска.";
 
-"Label: Copyright Details" = "Летоисчесление ведется от Сотворения Мира в Звездном Храме в соответствии со славянским календарем в котором первый месяц сентябрь. Первое сентября 2025 года от Р.Х. начало 7534 года.";
+"Label: Copyright Details" = "Летоисчесление ведется от Сотворения Мира в Звездном Храме в соответствии со славянским календарем в котором первый месяц сентябрь. Первое сентября 2026 года от Р.Х. начало 7535 года.";
 
 "Label: Credits" = "Работы выполнены";
+
+"Label: Meteo API" = "Метео службы (API)";
+"Label: Geo API" = "Справочные гео службы (API)";
+"Label: Major Components" = "Заменяемые детали";
 
 "Label: Balancing and Control" = "Контроль и Балансировка";
 "Label: Writing" = "Кодирование";

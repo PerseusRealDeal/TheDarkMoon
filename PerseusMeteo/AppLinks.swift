@@ -51,5 +51,20 @@ let linkLicense =
 let linkAuthor =
 "https://github.com/perseusrealdeal"
 
+let linkOpenMeteo =
+"https://open-meteo.com/"
+
 let linkOpenWeather =
 "https://openweathermap.org/"
+
+let linkOpenMeteoAPI =
+"https://open-meteo.com/en/docs"
+
+let linkOpenWeatherAPI =
+"https://openweathermap.org/api/current?collection=current_forecast"
+
+let linkGeoCodingOpenMeteoAPI =
+"https://open-meteo.com/en/docs/geocoding-api"
+
+let linkGeoCodingOpenWeatherAPI =
+"https://openweathermap.org/api/geocoding-api"

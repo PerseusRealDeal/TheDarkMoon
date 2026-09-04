@@ -281,6 +281,38 @@ class OptionsViewPresenter: MVPPresenter {
         log.message("[\(type(of: self))].\(#function) called", .info)
     }
 
+    func forceMeteoDataProviderSelected(_ index: Int) {
+        guard
+            let currentMeteoProvider = MeteoProvider(rawValue: index)
+        else {
+            (view as? OptionsViewDelegate)?.refreshStatusMenusOptions()
+            return
+        }
+
+        AppOptions.currentMeteoProviderOption = currentMeteoProvider
+
+        AppGlobals.notificationCenter.post(
+            Notification.init(name: .meteoDataOptionsNotification)
+        )
+        log.message("[\(type(of: self))].\(#function) called", .info)
+    }
+
+    func forceGeoDataProviderSelected(_ index: Int) {
+        guard
+            let currentGeoProvider = GeoCodingProvider(rawValue: index)
+        else {
+            (view as? OptionsViewDelegate)?.refreshStatusMenusOptions()
+            return
+        }
+
+        AppOptions.currentGeoProviderOption = currentGeoProvider
+
+        AppGlobals.notificationCenter.post(
+            Notification.init(name: .meteoDataOptionsNotification)
+        )
+        log.message("[\(type(of: self))].\(#function) called", .info)
+    }
+
     func resetToDefaults() {
 
         let ud = AppGlobals.userDefaults
@@ -296,6 +328,8 @@ class OptionsViewPresenter: MVPPresenter {
         ud.removeObject(forKey: STATUSMENUS_OPTION_KEY)
         ud.removeObject(forKey: STATUSMENUS_PERIOD_OPTION_KEY)
         ud.removeObject(forKey: STATUSMENUS_VIEW_OPTIONS_KEY)
+        ud.removeObject(forKey: GEOCODING_PROVIDER_OPTION_KEY)
+        ud.removeObject(forKey: METEO_PROVIDER_OPTION_KEY)
 
         ud.removeObject(forKey: DARK_MODE_USER_CHOICE_KEY)
         DarkModeAgent.force(DARK_MODE_USER_CHOICE_DEFAULT)

@@ -109,6 +109,8 @@ class LocationView: NSView, NSTextFieldDelegate {
     @IBOutlet private(set) weak var labelLocationName: NSTextField!
     @IBOutlet private(set) weak var labelGeoCoordinates: NSTextField!
     @IBOutlet private(set) weak var labelPermissionStatus: NSTextField!
+    @IBOutlet private(set) weak var labelGeoCodingService: NSTextField!
+    @IBOutlet private(set) weak var labelGeoCodingServiceWebLink: WebLabel!
     @IBOutlet private(set) weak var labelAutoSuggestionsRequest: NSTextField!
 
     @IBOutlet private(set) weak var buttonUpdateCurrentLocation: NSButton!
@@ -154,7 +156,10 @@ class LocationView: NSView, NSTextFieldDelegate {
             return
         }
 
-        ContentCoordinator.fetchSuggestions(textFieldLocationNameSearch.stringValue)
+        let geoCodingAgent = AppOptions.currentGeoProviderOption
+        let searchNameText = self.textFieldLocationNameSearch.stringValue
+
+        ContentCoordinator.fetchSuggestions(searchNameText, geoAgent: geoCodingAgent)
     }
 
     @IBAction func bookmarkButtonTapped(_ sender: NSButton) {
@@ -269,7 +274,17 @@ class LocationView: NSView, NSTextFieldDelegate {
     // MARK: - Contract
 
     @objc public func reloadData() {
+
+        log.message("[\(type(of: self))].\(#function)")
+
         labelPermissionStatus.stringValue = AppGlobals.permissionStatusLocalized()
+
+        labelGeoCodingService.stringValue = "\("Label: GeoCodingService".localizedValue):"
+
+        let currentGeoProvider = AppOptions.currentGeoProviderOption
+
+        labelGeoCodingServiceWebLink.text = currentGeoProvider.marketName
+        labelGeoCodingServiceWebLink.weblink = currentGeoProvider.marketNameWebLink
 
         let locationNameLocalizedFull = locationNameLocalized
         let lengthLimit = 28
@@ -301,10 +316,9 @@ class LocationView: NSView, NSTextFieldDelegate {
 
             self.appearance = LIGHT_APPEARANCE_DEFAULT_IN_USE
 
-            let style = DarkModeAgent.shared.style
-
-            let colorSet =
-            style == .dark ? DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
+            let currentStyle = DarkModeAgent.shared.style
+            let colorSet = currentStyle == .dark ?
+            DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
 
             self.textFieldLocationNameSearch.appearance = colorSet
             self.comboBoxFavorites.appearance = colorSet
@@ -313,7 +327,7 @@ class LocationView: NSView, NSTextFieldDelegate {
             self.buttonUpdateCurrentLocation.appearance = colorSet
             self.buttonBookmark.appearance = colorSet
 
-            let whiteOrBlack: Color = style == .dark ? .white : .black
+            let whiteOrBlack: Color = currentStyle == .dark ? .white : .black
 
             self.labelPermissionStatus.textColor = whiteOrBlack
             self.labelLocationName.textColor = whiteOrBlack
@@ -322,6 +336,8 @@ class LocationView: NSView, NSTextFieldDelegate {
         }
 
         viewSuggestions.collectionView?.reloadData()
+
+        labelGeoCodingServiceWebLink.textColorOnMove = .linkWebColor
     }
 
     public func localize() {
@@ -424,7 +440,9 @@ class LocationView: NSView, NSTextFieldDelegate {
                 self.typeDeepCounter -= 1
 
                 let logText = "deepCounter > 0: \(self.typeDeepCounter)"
-                log.message("[\(type(of: self))].\(#function) \(logText)")
+                let searchText = self.textFieldLocationNameSearch.stringValue
+
+                log.message("[\(type(of: self))].\(#function) \(logText) \(searchText)")
             }
 
             guard
@@ -436,7 +454,10 @@ class LocationView: NSView, NSTextFieldDelegate {
                 return
             }
 
-            ContentCoordinator.fetchSuggestions(self.textFieldLocationNameSearch.stringValue)
+            let geoCodingAgent = AppOptions.currentGeoProviderOption
+            let searchNameText = self.textFieldLocationNameSearch.stringValue
+
+            ContentCoordinator.fetchSuggestions(searchNameText, geoAgent: geoCodingAgent)
         })
     }
 

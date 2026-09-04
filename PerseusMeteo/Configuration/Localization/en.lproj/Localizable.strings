@@ -28,6 +28,7 @@
 
 "Label: Made with Love" = "Made with Love from Novosibirsk";
 "Label: MeteoDataFrom" = "Meteo Data from";
+"Label: GeoCodingService" = "Geo-Coding Service";
 
 /* Redirect Alert */
 
@@ -219,6 +220,9 @@
 "Button: CheckBox TwoLines" = "Two lines";
 "Option: SecondLine" = "Second line";
 "Option: ToolTip" = "Tool tip";
+"Option: Current Provider" = "Current Provider";
+"Option: For Meteo Data" = "For Meteo Data";
+"Option: For Geo Data" = "For Geo Data";
 
 "StatusMenus: feelsLike" = "Feels like";
 "StatusMenus: direction" = "Direction";
@@ -287,11 +291,15 @@
 
 "Label: The App Version" = "Version";
 
-"Label: Copyright Notice" = "Copyright © 7531 - 7534 Mikhail Zhigulin of Novosibirsk";
+"Label: Copyright Notice" = "Copyright © 7531 - 7535 Mikhail Zhigulin of Novosibirsk";
 
-"Label: Copyright Details" = "The year starts from the creation of the world in the Star temple according to a Slavic calendar. September, the 1st of Slavic year. Sep 01, 2025 is the beginning of 7534";
+"Label: Copyright Details" = "The year starts from the creation of the world in the Star temple according to a Slavic calendar. September, the 1st of Slavic year. Sep 01, 2026 is the beginning of 7535";
 
 "Label: Credits" = "Credits";
+
+"Label: Meteo API" = "Meteo API Services";
+"Label: Geo API" = "GeoCoding API Services";
+"Label: Major Components" = "Functional Components";
 
 "Label: Balancing and Control" = "Balance and Control by";
 "Label: Writing" = "Written by";

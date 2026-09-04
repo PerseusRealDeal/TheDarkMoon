@@ -15,20 +15,30 @@
 
 import Foundation
 
-// MARK: - Providers list
+public enum MeteoProvider: Int, CaseIterable, CustomStringConvertible, Codable {
 
-public enum MeteoProvider: CustomStringConvertible {
+    // case serviceOpenMeteo      = 1 // Version 1
+    case serviceOpenWeatherMap = 0 // Version 2.5
 
-    public var description: String {
-        return "\(serviceMarketName)"
-    }
-
-    public var serviceMarketName: String {
+    public var marketName: String {
         switch self {
+        // case .serviceOpenMeteo:
+            // return marketNameOpenMeteo
         case .serviceOpenWeatherMap:
-            return "OpenWeather"
+            return marketNameOpenWeather
         }
     }
 
-    case serviceOpenWeatherMap // Version 2.5.
+    public var marketNameWebLink: String {
+        switch self {
+        // case .serviceOpenMeteo:
+            // return linkOpenMeteo
+        case .serviceOpenWeatherMap:
+            return linkOpenWeather
+        }
+    }
+
+    public var description: String {
+        return "\(marketName)"
+    }
 }

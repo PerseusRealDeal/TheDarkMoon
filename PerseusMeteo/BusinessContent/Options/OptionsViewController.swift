@@ -98,6 +98,13 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet private(set) weak var comboBoxToolTipLeft: NSComboBox!
     @IBOutlet private(set) weak var comboBoxToolTipRight: NSComboBox!
 
+    @IBOutlet private(set) weak var labelCurrentProvider: NSTextField!
+    @IBOutlet private(set) weak var labelForMeteoData: NSTextField!
+    @IBOutlet private(set) weak var labelForGeoData: NSTextField!
+
+    @IBOutlet private(set) weak var comboBoxForMeteoProviders: NSComboBox!
+    @IBOutlet private(set) weak var comboBoxForGeoProviders: NSComboBox!
+
     // MARK: - Actions
 
     @IBAction func closeOptionsWindow(_ sender: NSButton) {
@@ -189,6 +196,20 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         presenter?.forceStatusMenusToolTipRight(sender.indexOfSelectedItem)
     }
 
+    @IBAction func comboBoxForMeteoProvidersDidChanged(_ sender: NSComboBox) {
+        let index = comboBoxForMeteoProviders.indexOfSelectedItem
+        log.message("[\(type(of: self))].\(#function) - \(index)")
+
+        presenter?.forceMeteoDataProviderSelected(sender.indexOfSelectedItem)
+    }
+
+    @IBAction func comboBoxForGeoProvidersDidChanged(_ sender: NSComboBox) {
+        let index = comboBoxForGeoProviders.indexOfSelectedItem
+        log.message("[\(type(of: self))].\(#function) - \(index)")
+
+        presenter?.forceGeoDataProviderSelected(sender.indexOfSelectedItem)
+    }
+
     // MARK: - OpenWeatherKey Input
 
     @IBAction func controlUnlockButtonTapped(_ sender: NSButton) {
@@ -198,7 +219,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         if self.controlOpenWeatherKey.isEditable {
             lockOpenWeatherKeyHole()
         } else {
-            let secret = AppOptions.OpenWeatherAPIOption
+            let secret = AppOptions.keyOpenWeatherAPIOption
             if let secret = secret {
                 unlockOpenWeatherKeyHole(stringValue: secret)
             }
@@ -223,8 +244,8 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
             tf.stringValue = text
         }
 
-        AppOptions.OpenWeatherAPIOption = tf.stringValue
-        if let secret = AppOptions.OpenWeatherAPIOption {
+        AppOptions.keyOpenWeatherAPIOption = tf.stringValue
+        if let secret = AppOptions.keyOpenWeatherAPIOption {
             controlOpenWeatherKey.stringValue = secret
         } else {
             lockOpenWeatherKeyHole()
@@ -385,6 +406,13 @@ extension OptionsViewController: OptionsViewDelegate {
 
         buttonClose.title = "Button: Close".localizedValue
         buttonResetAllSettings.title = "Button: Reset to Defaults".localizedValue
+
+        labelCurrentProvider.stringValue = "Option: Current Provider".localizedValue
+        labelForMeteoData.stringValue = "Option: For Meteo Data".localizedValue + ":"
+        labelForGeoData.stringValue = "Option: For Geo Data".localizedValue + ":"
+
+        udpateComboBoxForMeteoData()
+        udpateComboBoxForGeoData()
     }
 
     private var windowTitleLocalized: String {
@@ -513,6 +541,32 @@ extension OptionsViewController {
         comboBoxStatusMenusUpdatePeriod.isEnabled = AppOptions.statusMenusOption
     }
 
+    private func udpateComboBoxForMeteoData() {
+        log.message("[\(type(of: self))].\(#function)")
+        comboBoxForMeteoProviders.removeAllItems()
+
+        let selectedIndex = AppOptions.currentMeteoProviderOption.rawValue
+        let marketName = MeteoProvider.serviceOpenWeatherMap.marketName
+
+        // TODO: Add Open-Meteo provider
+
+        comboBoxForMeteoProviders.addItem(withObjectValue: marketName)
+        comboBoxForMeteoProviders.selectItem(at: selectedIndex)
+    }
+
+    private func udpateComboBoxForGeoData() {
+        log.message("[\(type(of: self))].\(#function)")
+        comboBoxForGeoProviders.removeAllItems()
+
+        let selectedIndex = AppOptions.currentGeoProviderOption.rawValue
+
+        for item in GeoCodingProvider.allCases {
+            comboBoxForGeoProviders.addItem(withObjectValue: "\(item.marketName)")
+        }
+
+        comboBoxForGeoProviders.selectItem(at: selectedIndex)
+    }
+
     private func updateStatusMenusViewOptions() {
         log.message("[\(type(of: self))].\(#function)")
         let options = AppOptions.statusMenusViewOptions
@@ -555,5 +609,8 @@ extension OptionsViewController {
         udpateCheckBoxCurrentWeatherStatusMenus()
         udpateComboBoxStatusMenusUpdatePeriod()
         updateStatusMenusViewOptions()
+
+        udpateComboBoxForMeteoData()
+        udpateComboBoxForGeoData()
     }
 }

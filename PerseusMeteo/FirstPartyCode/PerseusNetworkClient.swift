@@ -4,14 +4,8 @@
 //
 //  Created by Mikhail Zhigulin in 7534 (31.03.2026.)
 //
-//  Copyright © 7534 Mikhail A. Zhigulin of Novosibirsk
-//  Copyright © 7534 PerseusRealDeal
-//
-//  All rights reserved.
-//
-//
 //  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year. For instance, "Sep 01, 2025" is the beginning of 7534.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 //
 //  Unlicensed Free Software
 //
@@ -69,6 +63,30 @@ public enum PerseusNetworkClientError: Error, Equatable {
     case failedResponseStatusCode
     case failedResponse(String)
 
+}
+
+extension PerseusNetworkClientError {
+
+    public var endUserMessageLocalized: String {
+        switch self {
+        case .invalidUrl:
+            return "Incorrect URL".localizedValue
+        case .cancelled:
+            return "Cancelled call".localizedValue
+        case .notConnectedToInternet:
+            return "The Internet connection offline".localizedValue
+        case .timedOut:
+            return "Timed out call".localizedValue
+        case .statusCode404:
+            return "Status 404, not found".localizedValue
+        case .nilOrEmptyRequestedData:
+            return "Empty data".localizedValue
+        case .failedResponseStatusCode:
+            return "Failed Response StatusCode".localizedValue
+        case .failedResponse(let text):
+            return text
+        }
+    }
 }
 
 public class PerseusNetworkClient: CustomStringConvertible {

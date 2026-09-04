@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - The project's file structure changes.
 - Apple SF Symbols instead of OpenWeather icons.
+- Geo-coding service web link.
 - Minor screen changes.
 
 ### Removed
