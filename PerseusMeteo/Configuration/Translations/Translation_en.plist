@@ -13,7 +13,7 @@
 	<key>Location Usage Description</key>
 	<string>Geo information—latitude and longitude—is required to fetch meteo facts.</string>
 	<key>Copyright</key>
-	<string>Copyright © 2023 - 2025 Mikhail Zhigulin of Novosibirsk. All rights reserved.</string>
+	<string>Copyright © 2023 - 2026 Mikhail Zhigulin of Novosibirsk. All rights reserved.</string>
 	<key>Default: N/A</key>
 	<string>N/A</string>
 	<key>P2P</key>
@@ -309,9 +309,9 @@
 	<key>Option: Current Provider</key>
 	<string>Current Provider</string>
 	<key>Option: For Meteo Data</key>
-	<string>For Meteo Data</string>
+	<string>Meteo Source</string>
 	<key>Option: For Geo Data</key>
-	<string>For Geo Data</string>
+	<string>Geo Guide</string>
 	<key>Button: TwoLines Info</key>
 	<string>The second line available from macOS Big Sur (11)</string>
 	<key>Button: Close</key>
@@ -405,9 +405,9 @@
 	<key>Label: The App Version</key>
 	<string>Version</string>
 	<key>Label: Copyright Notice</key>
-	<string>Copyright © 7531 - 7534 Mikhail Zhigulin of Novosibirsk</string>
+	<string>Copyright © 7531 - 7535 Mikhail Zhigulin of Novosibirsk</string>
 	<key>Label: Copyright Details</key>
-	<string>The year starts from the creation of the world in the Star temple according to a Slavic calendar. September, the 1st of Slavic year. Sep 01, 2025 is the beginning of 7534</string>
+	<string>The year starts from the creation of the world in the Star temple according to a Slavic calendar. September, the 1st of Slavic year. Sep 01, 2026 is the beginning of 7535</string>
 	<key>Label: Credits</key>
 	<string>Credits</string>
 	<key>Label: Balancing and Control</key>
