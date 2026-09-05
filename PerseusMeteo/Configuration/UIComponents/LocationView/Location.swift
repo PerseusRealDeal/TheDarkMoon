@@ -30,7 +30,7 @@ public struct Location: CustomStringConvertible, Codable {
     public var localName: String? {
         if
             let names = localNames,
-            let local = names[globals.languageSwitcher.currentAppLanguage] {
+            let local = names[AppGlobals.languageSwitcher.currentAppLanguage] {
             return local
         }
         return name

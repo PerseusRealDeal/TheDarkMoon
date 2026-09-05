@@ -1,5 +1,5 @@
 //
-//  WeatherDataSource.swift
+//  CurrentWeatherReader.swift
 //  PerseusMeteo
 //
 //  Created by Mikhail Zhigulin in 7532.
@@ -19,7 +19,7 @@ import Foundation
 
 // MARK: - Weather App values ready for reading, viewing on a screen
 
-public class WeatherDataSource: MeteoDataSource {
+public class CurrentWeatherReader: MeteoDataSource {
 
     // MARK: - Init
 

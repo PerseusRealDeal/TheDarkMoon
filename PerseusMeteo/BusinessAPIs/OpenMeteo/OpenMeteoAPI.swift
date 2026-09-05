@@ -78,9 +78,9 @@ snowfall,precipitation,precipitation_probability,is_day
 
 public func suggestionsOpenMeteo(json: Data) -> [Location]? {
 
-    // log.message("Suggestions:\n\(json.prettyPrinted ?? "")", .info, .standard)
+    log.message("Open-Meteo Suggestions:\n\(json.prettyPrinted ?? "")", .info, .custom)
 
-    // return prepareSuggestionsSample()
+    // return suggestionsSample()
 
     var results: [[String: Any]]
 
@@ -95,40 +95,43 @@ public func suggestionsOpenMeteo(json: Data) -> [Location]? {
                 results = arrayObjects
 
             } else {
-                let text = "There are no suggestions received".localizedValue
-                log.message(text, .notice, .custom, .enduser)
+                log.message("There are no suggestions received".localizedValue,
+                            .notice, .custom, .enduser)
                 return nil
             }
         } else {
-            log.message("\(#function) response can't go as dictionary", .error)
+            log.message("\(#function) Open-Meteo response can't go as dictionary", .error)
             return nil
         }
     } catch {
-        log.message("\(#function) response can't go as json", .error)
+        log.message("\(#function) Open-Meteo response can't go as json", .error)
         return nil
     }
 
     var suggestions = [Location]()
 
     for item in results {
-        var location = Location()
 
-        if
+        guard
             let name = item["name"] as? String,
             let lat = item["latitude"] as? Double,
-            let lon = item["longitude"] as? Double {
+            let lon = item["longitude"] as? Double
+        else {
+            continue
+        }
 
-            location.name = name
-            location.latitude = lat
-            location.longitude = lon
+        var location = Location()
 
-            if let country = item["country_code"] as? String {
-                location.country = country
-            }
+        location.name = name
+        location.latitude = lat
+        location.longitude = lon
 
-            if let name = location.name, let admin1 = item["admin1"] as? String {
-                location.name = "\(name), \(admin1)"
-            }
+        if let country = item["country_code"] as? String {
+            location.country = country
+        }
+
+        if let name = location.name, let admin1 = item["admin1"] as? String {
+            location.name = "\(name), \(admin1)"
         }
 
         suggestions.append(location)

@@ -90,19 +90,19 @@ class SelfieViewController: NSViewController {
     }
 
     @IBAction func buttonTermsTapped(_ sender: Any) {
-        AppGlobals.openDefaultBrowser(string: linkTermsAndConditions)
+        openDefaultBrowser(string: linkTermsAndConditions)
     }
 
     @IBAction func buttonLicenseTapped(_ sender: Any) {
-        AppGlobals.openDefaultBrowser(string: linkLicense)
+        openDefaultBrowser(string: linkLicense)
     }
 
     @IBAction func buttonTheTechnologicalTreeTapped(_ sender: Any) {
-        AppGlobals.openDefaultBrowser(string: linkTheTechnologicalTree)
+        openDefaultBrowser(string: linkTheTechnologicalTree)
     }
 
     @IBAction func buttonTheAppSourceCodeTapped(_ sender: Any) {
-        AppGlobals.openDefaultBrowser(string: linkTheAppSourceCode)
+        openDefaultBrowser(string: linkTheAppSourceCode)
     }
 }
 

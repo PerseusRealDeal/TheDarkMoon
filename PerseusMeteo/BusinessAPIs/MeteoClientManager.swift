@@ -19,8 +19,6 @@ import Cocoa
 
 public class MeteoClientManager {
 
-    private let statusMenusPresenter: StatusMenusPresenter
-
     private let timeoutIntervalMeteoData = 10.0 // 10 sec.
     private let timeoutIntervalSuggestions = 5.0 // 5 sec.
 
@@ -41,22 +39,19 @@ public class MeteoClientManager {
     PerseusNetworkClient(URLSession.shared, "CurrentOpenMeteo")
     private let serviceForecastOpenMeteo =
     PerseusNetworkClient(URLSession.shared, "ForecastOpenMeteo")
+    private let serviceOpenMeteoSuggestions =
+    PerseusNetworkClient(URLSession.shared, "OpenMeteoSuggestions")
 
     private let serviceCurrentOpenWeather =
     PerseusNetworkClient(URLSession.shared, "CurrentOpenWeather")
     private let serviceForecastOpenWeather =
     PerseusNetworkClient(URLSession.shared, "ForecastOpenWeather")
-
-    private let serviceOpenMeteoSuggestions =
-    PerseusNetworkClient(URLSession.shared, "OpenMeteoSuggestions")
     private let serviceOpenWeatherSuggestions =
     PerseusNetworkClient(URLSession.shared, "OpenWeatherSuggestions")
 
-    init(presenter: StatusMenusPresenter) {
+    init() {
 
-        log.message("[\(type(of: self))].\(#function)", .notice)
-
-        self.statusMenusPresenter = presenter
+        log.message("[\(type(of: self))].\(#function)")
 
         serviceCurrentOpenMeteo.responseHandler = handleCurrentOpenMeteo
         serviceForecastOpenMeteo.responseHandler = handleForecastOpenMeteo
@@ -130,7 +125,7 @@ public class MeteoClientManager {
 
     public func fetchCurrentOpenMeteo() {
 
-        log.message("[\(type(of: self))].\(#function)", .debug, .standard)
+        log.message("[\(type(of: self))].\(#function)")
 
         guard isReadyToCall else {
             log.message("[\(type(of: self))].\(#function) \(isReadyToCall)", .notice)
@@ -200,7 +195,7 @@ public class MeteoClientManager {
         let lat = point.latitude.cut(.two).description
         let lon = point.longitude.cut(.two).description
 
-        let lang = globals.languageSwitcher.currentAppLanguage
+        let lang = AppGlobals.languageSwitcher.currentAppLanguage
         let callDetails = OpenWeatherAPI(appid: key,
                                          lat: lat,
                                          lon: lon,
@@ -230,7 +225,8 @@ public class MeteoClientManager {
     }
 
     public func fetchForecastOpenMeteo() {
-        log.message("[\(type(of: self))].\(#function)", .debug, .standard)
+
+        log.message("[\(type(of: self))].\(#function)")
 
         guard isReadyToCallForecast else {
             log.message("[\(type(of: self))].\(#function) \(isReadyToCallForecast)", .notice)
@@ -298,7 +294,7 @@ public class MeteoClientManager {
         let lat = point.latitude.cut(.two).description
         let lon = point.longitude.cut(.two).description
 
-        let lang = globals.languageSwitcher.currentAppLanguage
+        let lang = AppGlobals.languageSwitcher.currentAppLanguage
         var callDetails = OpenWeatherAPI(appid: key,
                                          request: .forecast,
                                          lat: lat,
@@ -353,7 +349,7 @@ public class MeteoClientManager {
         let name = search
         let limit = 5
 
-        let lang = Lang(rawValue: globals.languageSwitcher.currentAppLanguage)
+        let lang = Lang(rawValue: AppGlobals.languageSwitcher.currentAppLanguage)
 
         let urlString = OpenMeteoAPI.directGeoCoding(city: name, count: limit, lang: lang)
         let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -474,7 +470,7 @@ extension MeteoClientManager {
 
     private func handleCurrentOpenMeteo(response: Result<Data, PerseusNetworkClientError>) {
 
-        log.message("[\(type(of: self))].\(#function)", .debug, .standard)
+        log.message("[\(type(of: self))].\(#function)")
 
         // Stop animation indicator
 
@@ -598,21 +594,16 @@ extension MeteoClientManager {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        // TODO: - Make no matter what order for the next two statements
-
-        // 1.
         AppGlobals.weather = (data, provider)
-
-        // 2. This statement should be removed
-        globals.sourceWeather.meteoProvider = provider
 
         DispatchQueue.main.async {
 
             ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(
                 .currentWeather)
-            ContentCoordinator.shared.screenPopover.reloadWeatherData()
 
-            self.statusMenusPresenter.reloadData()
+            ContentCoordinator.shared.screenPopover.reloadWeatherData()
+            ContentCoordinator.shared.statusMenus.reloadData()
+
             self.isReadyToCall = true
         }
     }
@@ -741,13 +732,7 @@ extension MeteoClientManager {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        // TODO: - Make no matter what order for the next two statements
-
-        // 1.
         AppGlobals.forecast = (data, provider)
-
-        // 2. This statement should be removed
-        globals.sourceForecast.meteoProvider = provider
 
         DispatchQueue.main.async {
 
@@ -955,8 +940,8 @@ extension MeteoClientManager {
             }
 
             if suggestions.isEmpty {
-                let text = "There are no suggestions received".localizedValue
-                log.message(text, .notice, .custom, .enduser)
+                log.message("There are no suggestions received".localizedValue,
+                            .notice, .custom, .enduser)
             }
 
             viewLocation.viewSuggestions.suggestionsArray = suggestions

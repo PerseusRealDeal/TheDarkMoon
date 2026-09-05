@@ -20,7 +20,7 @@ public class StatusMenusPresenter {
     // MARK: - Internals
 
     private var customStatusMenusItemContent: CustomStatusButtonView?
-    private let dataSource = globals.sourceWeather
+    private let dataSource = AppGlobals.currentWeatherReader
 
     private var buttonWidth: CGFloat {
         return 78.0

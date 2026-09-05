@@ -277,8 +277,7 @@ class LocationView: NSView, NSTextFieldDelegate {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        labelPermissionStatus.stringValue = AppGlobals.permissionStatusLocalized()
-
+        labelPermissionStatus.stringValue = permissionStatusLocalized()
         labelGeoCodingService.stringValue = "\("Label: GeoCodingService".localizedValue):"
 
         let currentGeoProvider = AppOptions.currentGeoProviderOption
@@ -349,7 +348,12 @@ class LocationView: NSView, NSTextFieldDelegate {
             buttonCancel: "Redirect Alert: cancel".localizedValue,
             buttonFunction: "Redirect Alert: function".localizedValue
         )
-        REDIRECT_ALERT_TITLES.titleCalculated = AppGlobals.permissionStatusLocalized
+        REDIRECT_ALERT_TITLES.titleCalculated = permissionStatusLocalized
+    }
+
+    private func permissionStatusLocalized() -> String {
+        let status = GeoAgent.currentStatus.localizedKey.localizedValue
+        return "Label: Permission".localizedValue + ": \(status)."
     }
 
     private func reloadComboBox() {

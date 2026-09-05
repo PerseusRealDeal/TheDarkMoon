@@ -45,7 +45,7 @@ class PopoverViewPresenter: MVPPresenter {
 
     func performQuit() {
         // AppOptions.removeAll()
-        AppGlobals.quitTheApp()
+        quitTheApp()
     }
 
     func performFetchMeteo(_ category: MeteoDataCategory) {
