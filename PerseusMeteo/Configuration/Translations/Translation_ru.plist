@@ -25,7 +25,7 @@
 	<key>Redirect Alert: title</key>
 	<string>Службы Локации.</string>
 	<key>Redirect Alert: message</key>
-	<string>Статус Гео Доступа можно актуализировать через Системные Настройки.</string>
+	<string>Статус Гео Доступа можно определить заново через Системные Настройки.</string>
 	<key>Redirect Alert: cancel</key>
 	<string>Хорошо</string>
 	<key>Redirect Alert: function</key>

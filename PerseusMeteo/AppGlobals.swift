@@ -40,7 +40,7 @@ struct AppGlobals {
 
     // MARK: - Constants
 
-    // 79eefe16f6e4714470502074369fc77b
+    // Don't be shy. Step into the light: 79eefe16f6e4714470502074369fc77b
     static let keyOpenWeatherAPI = ""
 
     static let theAppLogoImageName = "Icon"
@@ -82,7 +82,7 @@ struct AppGlobals {
         didSet {
 
             guard let weather = weather else {
-                globals.sourceWeather.resetDataCach()
+                AppGlobals.currentWeatherReader.resetDataCach()
                 log.message("[\(type(of: self))].\(#function) erased and reseted", .info)
                 return
             }
@@ -95,7 +95,7 @@ struct AppGlobals {
         didSet {
 
             guard let forecast = forecast else {
-                globals.sourceForecast.resetDataCach()
+                AppGlobals.forecastReader.resetDataCach()
                 log.message("[\(type(of: self))].\(#function) erased and reseted", .info)
                 return
             }
@@ -119,23 +119,22 @@ struct AppGlobals {
 
     // MARK: - Custom Services
 
-    public let languageSwitcher: LanguageSwitcher
-    public let dataDefender: PerseusDataDefender
+    static let languageSwitcher = LanguageSwitcher.shared
+    static let dataDefender = PerseusDataDefender.shared
 
-    // MARK: - UI Data Parsers
+    // MARK: - Business Data Reading Services
 
-    public let sourceWeather = WeatherDataSource()
-    public let sourceForecast = ForecastDataSource()
+    static let currentWeatherReader = CurrentWeatherReader()
+    static let forecastReader = ForecastReader()
 
-    init() {
+    // MARK: - Common Services Setup
 
-        log.message("[\(type(of: self))].\(#function)", .notice)
+    static func setup() {
 
-        self.languageSwitcher = LanguageSwitcher.shared
-        self.dataDefender = PerseusDataDefender.shared
+        log.message("[\(type(of: self))].\(#function)", .info, .standard)
 
-        self.sourceWeather.path = { AppGlobals.weather?.data ?? Data() }
-        self.sourceForecast.path = { AppGlobals.forecast?.data ?? Data() }
+        AppGlobals.currentWeatherReader.path = { AppGlobals.weather?.data ?? Data() }
+        AppGlobals.forecastReader.path = { AppGlobals.forecast?.data ?? Data() }
 
         // Geo Logic Setup
 
@@ -160,29 +159,26 @@ struct AppGlobals {
             }
         }
     }
+}
 
-    static func quitTheApp() {
-        app.terminate(appDelegate)
+// MARK: Global Functions
+
+func quitTheApp() {
+    app.terminate(appDelegate)
+}
+
+func openDefaultBrowser(string link: String) {
+
+    guard let url = NSURL(string: link) as URL? else {
+        log.message(#function, .error)
+        return
     }
 
-    static func openDefaultBrowser(string link: String) {
+    _ = NSWorkspace.shared.open(url) ?
+    log.message("\(#function) Default browser opened.") :
+    log.message("\(#function) Default browser not opened.")
 
-        guard let url = NSURL(string: link) as URL? else {
-            log.message("[\(type(of: self))].\(#function)", .error)
-            return
-        }
-
-        _ = NSWorkspace.shared.open(url) ?
-        log.message("[\(type(of: self))].\(#function) Default browser opened.") :
-        log.message("[\(type(of: self))].\(#function) Default browser not opened.")
-
-        log.message("[\(type(of: self))].\(#function) called: \(link)", .info)
-    }
-
-    static func permissionStatusLocalized() -> String {
-        let status = GeoAgent.currentStatus.localizedKey.localizedValue
-        return "Label: Permission".localizedValue + ": \(status)."
-    }
+    log.message("\(#function) called: \(link)", .info)
 }
 
 func loadCPLProfile(_ name: String) -> (status: Bool, info: String) {

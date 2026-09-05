@@ -30,7 +30,7 @@
 /* Redirect Alert */
 
 "Redirect Alert: title" = "Службы Локации.";
-"Redirect Alert: message" = "Статус Гео Доступа можно актуализировать через Системные Настройки.";
+"Redirect Alert: message" = "Статус Гео Доступа можно определить заново через Системные Настройки.";
 "Redirect Alert: cancel" = "Хорошо";
 "Redirect Alert: function" = "Системные Настройки";
 

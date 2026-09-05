@@ -239,7 +239,7 @@ class AppOptions {
     public static var keyOpenWeatherAPIOption: String? {
         get {
             // Secret
-            let defender = globals.dataDefender
+            let defender = AppGlobals.dataDefender
             var secret: String?
 
             // Load value from Keychain
@@ -267,7 +267,7 @@ class AppOptions {
             let value = newValue ?? ""
 
             // Update secret value
-            let defender = globals.dataDefender
+            let defender = AppGlobals.dataDefender
             let credentials = OpenWeatherCredentials(secret: value)
 
             if value.isEmpty {

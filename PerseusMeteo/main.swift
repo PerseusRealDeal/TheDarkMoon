@@ -28,7 +28,7 @@ log.message(loadCPLProfile("CPLConfig").info, .info, .standard)
 
 log.message("The start line...", .info)
 
-let globals = AppGlobals()
+AppGlobals.setup()
 
 let app = NSApplication.shared
 let appPurpose = NSClassFromString("TestingAppDelegate") as? NSObject.Type

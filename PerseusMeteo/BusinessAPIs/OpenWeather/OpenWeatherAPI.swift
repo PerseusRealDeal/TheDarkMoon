@@ -106,9 +106,9 @@ public struct OpenWeatherAPI {
 
 public func suggestionsOpenWeather(json: Data) -> [Location]? {
 
-    log.message("Suggestions:\n\(json.prettyPrinted ?? "")", .info, .standard)
+    log.message("OpenWeather Suggestions:\n\(json.prettyPrinted ?? "")", .info, .custom)
 
-    // return prepareSuggestionsSample()
+    // return suggestionsSample()
 
     let decoder = JSONDecoder()
 

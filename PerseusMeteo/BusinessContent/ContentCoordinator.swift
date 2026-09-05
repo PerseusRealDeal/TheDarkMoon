@@ -67,9 +67,7 @@ class ContentCoordinator {
         log.message("[\(type(of: self))].\(#function)", .notice)
 
         statusMenus = StatusMenusPresenter()
-
-        // TODO: Should not be connected to statusMenus
-        meteoClientManager = MeteoClientManager(presenter: statusMenus)
+        meteoClientManager = MeteoClientManager()
 
         // Observe StatusMenusItem events
         AppGlobals.notificationCenter.addObserver(
