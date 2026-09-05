@@ -15,10 +15,51 @@
 
 import Foundation
 
+public let schemeOpenMeteo = "https://api.open-meteo.com/v1/"
+public let attributesOpenMeteo =
+"forecast?latitude=%@&longitude=%@&temperature_unit=%@&forecast_days=%@"
+public let paramsOpenMeteo =
+"&daily=sunrise,sunset,precipitation_probability_max&wind_speed_unit=ms"
+
 public let schemeDirectGeoCodingOpenMeteo = "https://geocoding-api.open-meteo.com/v1/"
 public let attributesDirectGeoCodingOpenMeteo = "search?name=%@&count=%@&language=%@&format=%@"
 
 public struct OpenMeteoAPI {
+
+    public let request: MeteoDataCategory
+
+    public let lat: String
+    public let lon: String
+
+    public let units: Units = .imperial // Either .metric or .imperial, not .standard (kelvin)
+    public let forecastDays: Int
+
+    public init(request: MeteoDataCategory = .currentWeather,
+                lat: String = "55.66",
+                lon: String = "85.62",
+                days: Int = 1) {
+
+        self.request = request
+        self.lat = lat
+        self.lon = lon
+        self.forecastDays = days
+    }
+
+    public var urlString: String {
+
+        let args: [String] = [lat, lon, "\(units)", "\(forecastDays)"]
+        let attributes = String(format: attributesOpenMeteo, arguments: args)
+
+        let params = paramsOpenMeteo + (request == .forecast ? "&hourly=" : "&current=") + """
+weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,temperature_2m,
+""" + """
+apparent_temperature,visibility,pressure_msl,relative_humidity_2m,cloud_cover,showers,rain,
+""" + """
+snowfall,precipitation,precipitation_probability,is_day
+"""
+
+        return schemeOpenMeteo + attributes + params
+    }
 
     // Returns URL String for direct geo coding city name
     public static func directGeoCoding(city: String,

@@ -129,9 +129,43 @@ public class MeteoClientManager {
     }
 
     public func fetchCurrentOpenMeteo() {
+
         log.message("[\(type(of: self))].\(#function)", .debug, .standard)
 
-        // TODO: Current Open Meteo Request
+        guard isReadyToCall else {
+            log.message("[\(type(of: self))].\(#function) \(isReadyToCall)", .notice)
+            return
+        }
+
+        guard let point = getLocationPoint() else {
+            log.message("[\(type(of: self))].\(#function) location is nil", .notice)
+            return
+        }
+
+        isReadyToCall = false
+
+        let lat = point.latitude.cut(.two).description
+        let lon = point.longitude.cut(.two).description
+
+        let urlStr = OpenMeteoAPI(lat: lat, lon: lon).urlString
+
+        log.message(urlStr, .notice)
+
+        do {
+            ContentCoordinator.shared.screenPopover.startAnimationProgressIndicator(
+                .currentWeather)
+
+            try serviceCurrentOpenMeteo.call(urlString: urlStr,
+                                             timeout: timeoutIntervalMeteoData)
+        } catch {
+
+            log.message("[\(type(of: self))].\(#function) \(error)", .error)
+
+            ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(
+                .currentWeather)
+
+            isReadyToCall = true
+        }
     }
 
     public func fetchCurrentOpenWeather() {
@@ -170,7 +204,6 @@ public class MeteoClientManager {
         let callDetails = OpenWeatherAPI(appid: key,
                                          lat: lat,
                                          lon: lon,
-                                         units: .imperial,
                                          lang: .init(rawValue: lang),
                                          mode: .json)
 
@@ -199,7 +232,38 @@ public class MeteoClientManager {
     public func fetchForecastOpenMeteo() {
         log.message("[\(type(of: self))].\(#function)", .debug, .standard)
 
-        // TODO: Forecast Open Meteo Request
+        guard isReadyToCallForecast else {
+            log.message("[\(type(of: self))].\(#function) \(isReadyToCallForecast)", .notice)
+            return
+        }
+
+        guard let point = getLocationPoint() else {
+            log.message("[\(type(of: self))].\(#function) location is nil.", .notice)
+            return
+        }
+
+        isReadyToCallForecast = false
+
+        let lat = point.latitude.cut(.two).description
+        let lon = point.longitude.cut(.two).description
+
+        let urlStr = OpenMeteoAPI(request: .forecast, lat: lat, lon: lon, days: 16).urlString
+
+        log.message(urlStr, .notice)
+
+        do {
+            ContentCoordinator.shared.screenPopover.startAnimationProgressIndicator(.forecast)
+
+            try serviceForecastOpenMeteo.call(urlString: urlStr,
+                                              timeout: timeoutIntervalMeteoData)
+        } catch {
+
+            log.message("[\(type(of: self))].\(#function) \(error)", .error)
+
+            ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
+
+            isReadyToCallForecast = true
+        }
     }
 
     public func fetchForecastOpenWeather() {
@@ -239,7 +303,6 @@ public class MeteoClientManager {
                                          request: .forecast,
                                          lat: lat,
                                          lon: lon,
-                                         units: .imperial,
                                          lang: .init(rawValue: lang),
                                          mode: .json)
         callDetails.cnt = 40
