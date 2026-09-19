@@ -576,50 +576,47 @@ or
 
 */
 
-public func getPrecipitation(from source: [String: Any]) -> String {
+// (Double, String, Double) goes for (pop, rain/snow, 3h).
+// If not nil (-1, "", -1) means no values. "-- / --"
+public func getPrecipitation(from source: [String: Any]) -> (Double, String, Double)? {
 
-    if source.isEmpty { // Templated result for empty value.
-        return "-- / --"
-    }
+    guard !source.isEmpty else { return nil }
 
-    // TODO: should return (Double, String, Double); not just a string
     var precipitation: (Double, String, Double) = (-1, "", -1)
 
 /*
-     1. Get probability of precipitation.
+     1. Get probability of precipitation (pop).
 
      The values of the parameter vary between 0 and 1,
      where 0 is equal to 0%, 1 is equal to 100%
  */
 
-    if let probability = source["pop"] as? Double {
+    if let pop = source["pop"] as? Double { // 1. pop
 
-        precipitation.0 = probability
+        precipitation.0 = pop // 1. Probability of precipitation between 0 and 1.
 
     } else {
         log.message("[\(#function) [pop] mistaken", .error)
     }
 
 /*
-    2. Get Rain/Snow volume for last 3 hours, mm.
-
-    Only mm as units of measurement are available for this parameter
+    2. Get Rain/Snow volume for last 3 hours. Note that only mm as units of measurement.
 */
 
-    if let rain = source["rain"] as? [String: Any] {
+    if let rain = source["rain"] as? [String: Any] { // 2. Rain?
         if let mm = rain["3h"] as? Double {
 
             precipitation.1 = "rain".localizedValue
-            precipitation.2 = mm
+            precipitation.2 = mm.cut(.two) // 3. Rain volume for last 3 hours, mm.
 
         } else {
             log.message("[\(#function) [rain 3h] mistaken", .error)
         }
-    } else if let snow = source["snow"] as? [String: Any] {
+    } else if let snow = source["snow"] as? [String: Any] { // Snow probability.
         if let mm = snow["3h"] as? Double {
 
-            precipitation.1 = "snow".localizedValue
-            precipitation.2 = mm
+            precipitation.1 = "snow".localizedValue  // 2. Snow?
+            precipitation.2 = mm.cut(.two) // 3. Snow volume for last 3 hours, mm.
 
         } else {
             log.message("[\(#function) [snow 3h] mistaken", .error)
@@ -628,12 +625,7 @@ public func getPrecipitation(from source: [String: Any]) -> String {
         log.message("[\(#function) [rain], [snow] is empty", .notice)
     }
 
-    // MeteoFactsDefaults.conditions
-    guard precipitation.1 != "" else { return "-- / --" }
-
-    // "\(precipitation.0)%, \(precipitation.1), \(precipitation.2) mm"
-    // "\(precipitation.1), \(precipitation.2)" + " " + "Unit: mm".localizedValue
-    return "\(precipitation.1)"
+    return precipitation
 }
 
 /*

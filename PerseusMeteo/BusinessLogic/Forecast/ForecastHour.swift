@@ -101,7 +101,11 @@ public struct ForecastHour {
     // MARK: - Incoming Precipitation
 
     public var precipitation: String {
-        return getPrecipitation(from: source)
+        if let precipitation = getPrecipitation(from: source), precipitation.1 != "" {
+            return precipitation.1 + " \(precipitation.2)"
+        } else {
+            return "-- / --"
+        }
     }
 
     // MARK: - Weather conditions
