@@ -580,11 +580,17 @@ extension PopoverViewController: PopoverViewDelegate {
         var webLink = ""
 
         if controlCallRequest.selectedSegment == 0 {
-            marketName = AppGlobals.weather?.source.marketName ?? AppGlobals.meteoProviderName
-            webLink = AppGlobals.weather?.source.marketNameWebLink ?? linkAuthor
+
+            let weatherSource = AppGlobals.weather?.source
+
+            marketName = weatherSource?.marketName ?? AppGlobals.theMeteoProviderName
+            webLink = weatherSource?.marketNameWebLink ?? linkAuthor
         } else {
-            marketName = AppGlobals.forecast?.source.marketName ?? AppGlobals.meteoProviderName
-            webLink = AppGlobals.forecast?.source.marketNameWebLink ?? linkAuthor
+
+            let forecastSource = AppGlobals.forecast?.source
+
+            marketName = forecastSource?.marketName ?? AppGlobals.theMeteoProviderName
+            webLink = forecastSource?.marketNameWebLink ?? linkAuthor
         }
 
         labelMeteoProviderWebLink.weblink = webLink

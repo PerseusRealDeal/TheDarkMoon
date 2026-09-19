@@ -21,9 +21,9 @@ import Foundation
 
 public class CurrentWeatherReader: MeteoDataSource {
 
-    // MARK: - Init
+    public static let shared: CurrentWeatherReader = { return CurrentWeatherReader() }()
 
-    init() {
+    private init() {
         super.init(contant: .currentWeather)
     }
 

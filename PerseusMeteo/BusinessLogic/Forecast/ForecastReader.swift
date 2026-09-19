@@ -19,9 +19,9 @@ import Foundation
 
 public class ForecastReader: MeteoDataSource {
 
-    // MARK: - Init
+    public static let shared: ForecastReader = { return ForecastReader() }()
 
-    init() {
+    private init() {
         super.init(contant: .forecast)
     }
 

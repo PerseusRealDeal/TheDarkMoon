@@ -180,7 +180,7 @@ public class MeteoClientManager {
         // let keyLoaded = AppOptions.keyOpenWeatherAPIOption ?? ""
         // let key = keyLoaded.isEmpty ? AppGlobals.keyOpenWeatherAPI : keyLoaded
 
-        let keySaved = AppGlobals.keyOpenWeatherAPI
+        let keySaved = AppGlobals.theKeyOpenWeatherAPI
         let key = keySaved.isEmpty ? AppOptions.keyOpenWeatherAPIOption ?? "" : keySaved
 
         guard key.isEmpty == false else {
@@ -279,7 +279,7 @@ public class MeteoClientManager {
         // let keyLoaded = AppOptions.keyOpenWeatherAPIOption ?? ""
         // let key = keyLoaded.isEmpty ? AppGlobals.keyOpenWeatherAPI : keyLoaded
 
-        let keySaved = AppGlobals.keyOpenWeatherAPI
+        let keySaved = AppGlobals.theKeyOpenWeatherAPI
         let key = keySaved.isEmpty ? AppOptions.keyOpenWeatherAPIOption ?? "" : keySaved
 
         guard key.isEmpty == false else {
@@ -411,7 +411,7 @@ public class MeteoClientManager {
         // let keyLoaded = AppOptions.keyOpenWeatherAPIOption ?? ""
         // let key = keyLoaded.isEmpty ? AppGlobals.keyOpenWeatherAPI : keyLoaded
 
-        let keySaved = AppGlobals.keyOpenWeatherAPI
+        let keySaved = AppGlobals.theKeyOpenWeatherAPI
         let key = keySaved.isEmpty ? AppOptions.keyOpenWeatherAPIOption ?? "" : keySaved
 
         guard key.isEmpty == false

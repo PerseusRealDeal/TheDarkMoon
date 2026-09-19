@@ -41,10 +41,10 @@ struct AppGlobals {
     // MARK: - Constants
 
     // Don't be shy. Step into the light: 79eefe16f6e4714470502074369fc77b
-    static let keyOpenWeatherAPI = ""
+    static let theKeyOpenWeatherAPI = ""
 
     static let theAppLogoImageName = "Icon"
-    static let meteoProviderName = "/\\__/\\"
+    static let theMeteoProviderName = "/\\__/\\"
 
     static let favoritesLimit: Int = 7
     static let useSuggestionsSample = false
@@ -128,8 +128,8 @@ struct AppGlobals {
 
     // MARK: - Business Data Reading Services
 
-    static let currentWeatherReader = CurrentWeatherReader()
-    static let forecastReader = ForecastReader()
+    static let currentWeatherReader = CurrentWeatherReader.shared
+    static let forecastReader = ForecastReader.shared
 
     // MARK: - Common Services Setup
 
@@ -137,8 +137,8 @@ struct AppGlobals {
 
         log.message("[\(type(of: self))].\(#function)", .info, .standard)
 
-        AppGlobals.currentWeatherReader.path = { AppGlobals.weather?.data ?? Data() }
-        AppGlobals.forecastReader.path = { AppGlobals.forecast?.data ?? Data() }
+        currentWeatherReader.path = { AppGlobals.weather }
+        forecastReader.path = { AppGlobals.forecast }
 
         // Geo Logic Setup
 

@@ -22,7 +22,7 @@ public struct MeteoFactsDefaults {
     }
 
     public static var meteoDataProviderName: String {
-        return AppGlobals.meteoProviderName
+        return AppGlobals.theMeteoProviderName
     }
 
     public static var weatherIconName: String {
