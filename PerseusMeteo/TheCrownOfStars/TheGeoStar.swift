@@ -140,6 +140,7 @@ public class GeoAgent: NSObject {
     }
 
     internal var order: GeoAgentOrder = .none
+    internal var isReinitLocationManagerTried = false
 
     // MARK: - Singletone
 
@@ -337,6 +338,7 @@ public class GeoAgent: NSObject {
 
         log.message("[\(type(of: self))].\(#function) [REINIT LOCATION MANAGER]")
 
+        isReinitLocationManagerTried = true
         let desiredAccuracy = locationManager.desiredAccuracy
 
         locationManager = CLLocationManager()
@@ -527,6 +529,14 @@ extension GeoAgent: CLLocationManagerDelegate {
 
             let note = "[CASE - OPENCORE]"
             log.message("[\(type(of: self))].\(#function) \(note) \(details)", .notice)
+
+            // TODO: If reinint doesn't help, offer redirect
+            if isReinitLocationManagerTried {
+                log.message("[\(type(of: self))].\(#function): Alert", .info, .standard)
+
+                isReinitLocationManagerTried = false
+                // Redirect offer
+            }
 
             return
         }

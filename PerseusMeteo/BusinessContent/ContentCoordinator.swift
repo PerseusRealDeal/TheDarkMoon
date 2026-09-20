@@ -125,16 +125,46 @@ class ContentCoordinator {
     }
 
     static func cancellWeatherCall() {
-        shared.meteoClientManager?.canellWeatherCall()
+        shared.meteoClientManager?.cancellWeatherCall()
     }
 
     static func cancellForecastCall() {
         shared.meteoClientManager?.cancellForecastCall()
     }
 
-    static func cancellSuggestionsRequest() {
-        shared.meteoClientManager?.cancellSuggestionsRequest()
+    static func cancellSuggestionsCall() {
+        shared.meteoClientManager?.cancellSuggestionsCall()
     }
+
+    // MARK: - Animation Progress Indicators
+
+    static func startCurrentProgressIndicator() {
+        shared.screenPopover.startAnimationProgressIndicator(.currentWeather)
+    }
+
+    static func startForecastProgressIndicator() {
+        shared.screenPopover.startAnimationProgressIndicator(.forecast)
+    }
+
+    static func startSuggestionsProgressIndicator() {
+        shared.screenPopover.viewLocation?.indicatorCircular.isHidden = false
+        shared.screenPopover.viewLocation?.indicatorCircular.startAnimation(nil)
+    }
+
+    static func stopCurrentProgressIndicator() {
+        shared.screenPopover.stopAnimationProgressIndicator(.currentWeather)
+    }
+
+    static func stopForecastProgressIndicator() {
+        shared.screenPopover.stopAnimationProgressIndicator(.forecast)
+    }
+
+    static func stopSuggestionsProgressIndicator() {
+        shared.screenPopover.viewLocation?.indicatorCircular.isHidden = true
+        shared.screenPopover.viewLocation?.indicatorCircular.stopAnimation(nil)
+    }
+
+    // MARK: - Privacies
 
     @objc private func updateCurrentWeatherByTimer() {
 

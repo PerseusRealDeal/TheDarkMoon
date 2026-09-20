@@ -1,11 +1,11 @@
 //
 //  AppGlobals.swift
-//  PerseusMeteo
+//  TheDarkMoon
 //
 //  Created by Mikhail Zhigulin in 7531.
 //
-//  Copyright © 7531 - 7534 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7531 - 7534 PerseusRealDeal
+//  Copyright © 7531 - 7535 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7531 - 7535 PerseusRealDeal
 //
 //  The year starts from the creation of the world in the Star temple
 //  according to a Slavic calendar. September, the 1st of Slavic year.
@@ -47,18 +47,17 @@ struct AppGlobals {
     static let theMeteoProviderName = "/\\__/\\"
 
     static let favoritesLimit: Int = 7
-    static let useSuggestionsSample = false
 
     // MARK: - Business Data
 
     static var currentLocation: GeoPoint? {
         didSet {
             guard let description = currentLocation?.description else {
-                log.message("[\(type(of: self))].\(#function) erased", .info)
+                log.message("[\(type(of: self))].\(#function): Erased", .info)
                 return
             }
 
-            log.message("[\(type(of: self))].\(#function) \(description) setted", .info)
+            log.message("[\(type(of: self))].\(#function) \(description): Setted", .info)
             ContentCoordinator.startUpdateTimerIfNeeded()
         }
     }
@@ -69,50 +68,45 @@ struct AppGlobals {
                 let description = suggestion?.description,
                 let point = suggestion?.point
             else {
-                log.message("[\(type(of: self))].\(#function) erased", .info)
+                log.message("[\(type(of: self))].\(#function): Erased", .info)
                 return
             }
 
             let selected = "\(description): \(point)"
-            log.message("[\(type(of: self))].\(#function) \(selected) selected", .info)
+            log.message("[\(type(of: self))].\(#function) \(selected): Selected", .info)
         }
     }
 
     static var weather: (data: Data, source: MeteoProvider)? {
         didSet {
 
-            guard let weather = weather else {
-                AppGlobals.currentWeatherReader.resetDataCach()
-                log.message("[\(type(of: self))].\(#function) erased and reseted", .info)
+            if weather == nil {
+                currentReader.clearData()
+                log.message("[\(type(of: self))].\(#function): Erased and reseted", .info)
                 return
             }
 
-            log.message("JSON:\n\(weather.data.prettyPrinted ?? "")", .info)
+            currentReader.refreshData()
 
-            AppGlobals.currentWeatherReader.meteoProvider = weather.source
+            let logmsg = "\n\(weather?.data.prettyPrinted ?? "")"
+            log.message("[\(type(of: self))].\(#function): Data:\(logmsg)", .info, .standard)
         }
     }
 
     static var forecast: (data: Data, source: MeteoProvider)? {
         didSet {
 
-            guard let forecast = forecast else {
-                AppGlobals.forecastReader.resetDataCach()
-                log.message("[\(type(of: self))].\(#function) erased and reseted", .info)
+            if forecast == nil {
+                forecastReader.clearData()
+                log.message("[\(type(of: self))].\(#function): Erased and reseted", .info)
                 return
             }
 
-            // log.message("JSON:\n\(forecast.prettyPrinted ?? "")", .info)
-            log.message("JSON:\n\(forecast.data.prettyPrinted ?? "")", .info, .standard)
+            forecastReader.addResponseDateAndTime(dt: Int(Date().timeIntervalSince1970))
+            forecastReader.refreshData()
 
-            // Save the date and time of the last one.
-
-            let src = ContentCoordinator.shared.screenPopover.viewForecast.dataSource
-            let currentTimeInUTC = Date().timeIntervalSince1970
-
-            src.addResponseDateAndTime(dt: Int(currentTimeInUTC))
-
-            AppGlobals.forecastReader.meteoProvider = forecast.source
+            let logmsg = "\n\(forecast?.data.prettyPrinted ?? "")"
+            log.message("[\(type(of: self))].\(#function): Data:\(logmsg)", .info, .standard)
         }
     }
 
@@ -128,7 +122,7 @@ struct AppGlobals {
 
     // MARK: - Business Data Reading Services
 
-    static let currentWeatherReader = CurrentWeatherReader.shared
+    static let currentReader = CurrentReader.shared
     static let forecastReader = ForecastReader.shared
 
     // MARK: - Common Services Setup
@@ -137,7 +131,7 @@ struct AppGlobals {
 
         log.message("[\(type(of: self))].\(#function)", .info, .standard)
 
-        currentWeatherReader.path = { AppGlobals.weather }
+        currentReader.path = { AppGlobals.weather }
         forecastReader.path = { AppGlobals.forecast }
 
         // Geo Logic Setup
@@ -163,36 +157,36 @@ struct AppGlobals {
             }
         }
     }
-}
 
-// MARK: Global Functions
+    // MARK: - Contract Methods
 
-func quitTheApp() {
-    app.terminate(appDelegate)
-}
+    // To request meteo data (current, forecast or suggestions)
+    static func getLocationPoint() -> GeoPoint? {
 
-func openDefaultBrowser(string link: String) {
+        log.message("[\(type(of: self))].\(#function)")
 
-    guard let url = NSURL(string: link) as URL? else {
-        log.message(#function, .error)
-        return
-    }
+        var locationCardType: LocationCardType?
 
-    _ = NSWorkspace.shared.open(url) ?
-    log.message("\(#function) Default browser opened.") :
-    log.message("\(#function) Default browser not opened.")
-
-    log.message("\(#function) called: \(link)", .info)
-}
-
-func loadCPLProfile(_ name: String) -> (status: Bool, info: String) {
-    if let path = Bundle.main.url(forResource: name, withExtension: "json") {
-        if log.loadConfig(path) {
-            return (true, "Logging options successfully reseted.")
+        if let type = ContentCoordinator.shared.screenPopover.viewLocation?.locationCard {
+            locationCardType = type
         } else {
-            return (false, "Failed to reset options.")
+            locationCardType = AppOptions.favoriteLocationsOption.first(where: {
+                $0.isOnDisplay && $0.isCurrentLocation }) != nil ? .current : .favorite
         }
-    } else {
-        return (false, "Failed to create URL.")
+
+        guard let locationCard = locationCardType else { return nil }
+
+        var point: GeoPoint?
+
+        switch locationCard {
+        case .suggestion:
+            point = AppGlobals.suggestion?.point
+        case .favorite:
+            point = AppOptions.favoriteLocationsOption.first(where: { $0.isOnDisplay })?.point
+        case .current:
+            point = AppGlobals.currentLocation
+        }
+
+        return point
     }
 }

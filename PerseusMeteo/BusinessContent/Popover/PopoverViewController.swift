@@ -329,7 +329,7 @@ public class PopoverViewController: NSViewController {
 
         ContentCoordinator.cancellWeatherCall()
         ContentCoordinator.cancellForecastCall()
-        ContentCoordinator.cancellSuggestionsRequest()
+        ContentCoordinator.cancellSuggestionsCall()
 
         viewLocation?.locationCard = AppOptions.favoriteLocationsOption.first(where: {
             $0.isOnDisplay && $0.isCurrentLocation }) != nil ? .current : .favorite
@@ -598,10 +598,10 @@ extension PopoverViewController: PopoverViewDelegate {
 
         if controlCallRequest.selectedSegment == 0 {
             buttonFetchMeteoFacts.title = "Button: Call Weather".localizedValue
-            labelMadeWithLove.stringValue = AppGlobals.currentWeatherReader.lastOne
+            labelMadeWithLove.stringValue = AppGlobals.currentReader.lastOne
         } else {
             buttonFetchMeteoFacts.title = "Button: Call Forecast".localizedValue
-            labelMadeWithLove.stringValue = AppGlobals.currentWeatherReader.lastOne
+            labelMadeWithLove.stringValue = AppGlobals.forecastReader.lastOne
         }
     }
 }

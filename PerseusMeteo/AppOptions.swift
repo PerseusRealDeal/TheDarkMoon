@@ -1,11 +1,11 @@
 //
 //  AppUserDefaults.swift
-//  PerseusMeteo
+//  TheDarkMoon
 //
 //  Created by Mikhail Zhigulin in 7532.
 //
-//  Copyright © 7532 - 7534 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7532 - 7534 PerseusRealDeal
+//  Copyright © 7532 - 7535 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7532 - 7535 PerseusRealDeal
 //
 //  The year starts from the creation of the world in the Star temple
 //  according to a Slavic calendar. September, the 1st of Slavic year.
@@ -17,54 +17,59 @@
 
 import Foundation
 
+// MARK: - The triggers for meteo data samples
+
+let useSuggestionsResponseSample = false
+let useCurrentOpenMeteoResponseSample = false
+
 // MARK: - Keys
 
 // public let OPEN_WEATHER_API_KEY_OPTION_KEY = "OPEN_WEATHER_API_OPTION_KEY"
-public let OPEN_WEATHER_API_KEY_TEXT_LIMIT = 32
+let OPEN_WEATHER_API_KEY_TEXT_LIMIT = 32
 
-public let LANGUAGE_OPTION_KEY = "LANGUAGE_OPTION_KEY"
-public let LANGUAGE_OPTION_DEFAULT = LanguageOption.system
+let LANGUAGE_OPTION_KEY = "LANGUAGE_OPTION_KEY"
+let LANGUAGE_OPTION_DEFAULT = LanguageOption.system
 
-public let TEMPERATURE_OPTION_KEY = "TEMPERATURE_OPTION_KEY"
-public let TEMPERATURE_OPTION_DEFAULT = TemperatureOption.imperial
+let TEMPERATURE_OPTION_KEY = "TEMPERATURE_OPTION_KEY"
+let TEMPERATURE_OPTION_DEFAULT = TemperatureOption.imperial
 
-public let WINDSPEED_OPTION_KEY = "WINDSPEED_OPTION_KEY"
-public let WINDSPEED_OPTION_DEFAULT = WindSpeedOption.mph
+let WINDSPEED_OPTION_KEY = "WINDSPEED_OPTION_KEY"
+let WINDSPEED_OPTION_DEFAULT = WindSpeedOption.mph
 
-public let PRESSURE_OPTION_KEY = "PRESSURE_OPTION_KEY"
-public let PRESSURE_OPTION_DEFAULT = PressureOption.mb
+let PRESSURE_OPTION_KEY = "PRESSURE_OPTION_KEY"
+let PRESSURE_OPTION_DEFAULT = PressureOption.mb
 
-public let TIME_OPTION_KEY = "TIME_OPTION_KEY"
-public let TIME_OPTION_DEFAULT = TimeFormatOption.system
+let TIME_OPTION_KEY = "TIME_OPTION_KEY"
+let TIME_OPTION_DEFAULT = TimeFormatOption.system
 
-public let DISTANCE_OPTION_KEY = "DISTANCE_OPTION_KEY"
-public let DISTANCE_OPTION_DEFAULT = LengthOption.mile
+let DISTANCE_OPTION_KEY = "DISTANCE_OPTION_KEY"
+let DISTANCE_OPTION_DEFAULT = LengthOption.mile
 
-public let SUGGESTIONS_REQUEST_OPTION_KEY = "SUGGESTIONS_REQUEST_OPTION_KEY"
-public let SUGGESTIONS_REQUEST_OPTION_DEFAULT = false
+let SUGGESTIONS_REQUEST_OPTION_KEY = "SUGGESTIONS_REQUEST_OPTION_KEY"
+let SUGGESTIONS_REQUEST_OPTION_DEFAULT = false
 
-public let FAVORITE_LOCATIONS_OPTION_KEY = "FAVORITE_LOCATIONS_OPTION_KEY"
-public let FAVORITE_LOCATIONS_OPTION_DEFAULT: [Location] =
+let FAVORITE_LOCATIONS_OPTION_KEY = "FAVORITE_LOCATIONS_OPTION_KEY"
+let FAVORITE_LOCATIONS_OPTION_DEFAULT: [Location] =
 [
     Location(isCurrent: true, isOnDisplay: true)
 ]
 
-public let STATUSMENUS_OPTION_KEY = "STATUSMENUS_OPTION_KEY"
-public let STATUSMENUS_OPTION_DEFAULT = false
+let STATUSMENUS_OPTION_KEY = "STATUSMENUS_OPTION_KEY"
+let STATUSMENUS_OPTION_DEFAULT = false
 
-public let STATUSMENUS_PERIOD_OPTION_KEY = "STATUSMENUS_PERIOD_OPTION_KEY"
-public let STATUSMENUS_PERIOD_OPTION_DEFAULT = StatusMenusUpdatePeriodOption.none
+let STATUSMENUS_PERIOD_OPTION_KEY = "STATUSMENUS_PERIOD_OPTION_KEY"
+let STATUSMENUS_PERIOD_OPTION_DEFAULT = StatusMenusUpdatePeriodOption.none
 
-public let STATUSMENUS_VIEW_OPTIONS_KEY = "STATUSMENUS_VIEW_OPTION_KEY"
-public let STATUSMENUS_VIEW_OPTIONS_DEFAULT = StatusMenusViewOptions(
+let STATUSMENUS_VIEW_OPTIONS_KEY = "STATUSMENUS_VIEW_OPTION_KEY"
+let STATUSMENUS_VIEW_OPTIONS_DEFAULT = StatusMenusViewOptions(
     twoLines: false, secondLine: .wind, toolTipLeft: .direction, toolTipRight: .gust
 )
 
-public let METEO_PROVIDER_OPTION_KEY = "METEO_PROVIDER_OPTION_KEY"
-public let METEO_PROVIDER_OPTION_DEFAULT = MeteoProvider.serviceOpenMeteo
+let METEO_PROVIDER_OPTION_KEY = "METEO_PROVIDER_OPTION_KEY"
+let METEO_PROVIDER_OPTION_DEFAULT = MeteoProvider.serviceOpenMeteo
 
-public let GEOCODING_PROVIDER_OPTION_KEY = "GEOCODING_PROVIDER_OPTION_KEY"
-public let GEOCODING_PROVIDER_OPTION_DEFAULT = GeoCodingProvider.serviceOpenMeteo
+let GEOCODING_PROVIDER_OPTION_KEY = "GEOCODING_PROVIDER_OPTION_KEY"
+let GEOCODING_PROVIDER_OPTION_DEFAULT = GeoCodingProvider.serviceOpenMeteo
 
 // MARK: - User Defaults
 
@@ -257,8 +262,8 @@ class AppOptions {
             let limit = OPEN_WEATHER_API_KEY_TEXT_LIMIT
 
             if text.count > limit {
-                let secret = "[\(type(of: self))].\(#function) The key is out of length."
-                log.message(secret, .error)
+                let logMsg = "[\(type(of: self))].\(#function): The key is out of length"
+                log.message(logMsg, .error)
             }
 
             return secret

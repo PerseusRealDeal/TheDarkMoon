@@ -20,7 +20,7 @@ class WeatherView: NSView {
 
     // MARK: - View Data Source
 
-    public let dataSource = AppGlobals.currentWeatherReader
+    public let dataSource = AppGlobals.currentReader
     public var startProgressIndicator: Bool = false {
         didSet {
             if startProgressIndicator {

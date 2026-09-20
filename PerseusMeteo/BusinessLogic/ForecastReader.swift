@@ -1,37 +1,38 @@
 //
 //  ForecastReader.swift
-//  PerseusMeteo
+//  TheDarkMoon
 //
 //  Created by Mikhail Zhigulin in 7532.
 //
-//  Copyright © 7532 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7532 PerseusRealDeal
+//  Copyright © 7532 - 7535 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7532 - 7535 PerseusRealDeal
 //
-//  The year starts from the creation of the world in the Star temple
-//  according to a Slavic calendar. September, the 1st of Slavic year.
+//  The year starts from the creation of the world according to a Slavic calendar.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 //
 //  See LICENSE for details. All rights reserved.
 //
 
 import Foundation
 
-// MARK: - Weather App values ready for reading, viewing on a screen
+// Unified meteo values ready to be shown on screen.
 
-public class ForecastReader: MeteoDataSource {
+public class ForecastReader: MeteoSourceReader {
 
     public static let shared: ForecastReader = { return ForecastReader() }()
 
     private init() {
-        super.init(contant: .forecast)
+        super.init(category: .forecast)
     }
 
     // MARK: - Contract
 
     public func addResponseDateAndTime(dt: Int) {
 
-        guard let reader = self.reader as? ForecastDataSourceReader else { return }
+        guard let meteoDictionary = self.meteoDictionary as? ForecastDictionary
+        else { return }
 
-        reader.lastOne = dt
+        meteoDictionary.lastOne = dt
     }
 
     // MARK: - Properties
@@ -50,9 +51,9 @@ public class ForecastReader: MeteoDataSource {
     public var lastOne: String { // Last time API request response.
 
         guard
-            let reader = self.reader as? ForecastDataSourceReader,
-            let value = reader.lastOne,
-            let timezone = reader.timezone
+            let meteoDictionary = self.meteoDictionary as? ForecastDictionary,
+            let value = meteoDictionary.lastOne,
+            let timezone = meteoDictionary.timezone
         else {
             return MeteoFactsDefaults.lastOne
         }
@@ -71,7 +72,7 @@ public class ForecastReader: MeteoDataSource {
     public var forecastDays: [ForecastDay] {
 
         guard
-            let reader = self.reader as? ForecastDataSourceReader
+            let meteoDictionary = self.meteoDictionary as? ForecastDictionary
         else {
 
             // Return empty array
@@ -79,7 +80,7 @@ public class ForecastReader: MeteoDataSource {
             return [ForecastDay]()
         }
 
-        if let days = reader.forecastDays {
+        if let days = meteoDictionary.forecastDays {
 
             // Return available days
 
