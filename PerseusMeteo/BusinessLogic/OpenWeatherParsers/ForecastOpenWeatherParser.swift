@@ -1,41 +1,89 @@
 //
-//  OpenWeatherForecastRefresher.swift
-//  PerseusMeteo
+//  ForecastOpenWeatherParser.swift
+//  TheDarkMoon
 //
 //  Created by Mikhail Zhigulin in 7532.
 //
-//  Copyright © 7532 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7532 PerseusRealDeal
+//  Copyright © 7532 - 7535 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7532 - 7535 PerseusRealDeal
 //
-//  The year starts from the creation of the world in the Star temple
-//  according to a Slavic calendar. September, the 1st of Slavic year.
+//  The year starts from the creation of the world according to a Slavic calendar.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 //
 //  See LICENSE for details. All rights reserved.
 //
 // swiftlint:disable file_length
 //
 
-/* OpenWeatherMap JSON forecast list items sample
+/* OpenWeatherMap API request example
+
+https://api.openweathermap.org/data/2.5/forecast
+?lat=55.02
+&lon=82.92
+&appid=###
+&lang=ru
+&cnt=1
+&units=imperial
+
+*/
+
+/* OpenWeatherMap API response JSON example
 
 {
-  "message" : 0,
-  "cod" : "200",
-  "cnt" : 1,
-  "list" : [
-    // Forecast hours ...
+  "message": 0,
+  "cod": "200",
+  "cnt": 40,
+  "list": [
+    {
+      "clouds": {
+        "all": 100
+      },
+      "wind": {
+        "speed": 7.58,
+        "deg": 307,
+        "gust": 18.34
+      },
+      "dt": 1790434800,
+      "dt_txt": "2026-09-26 15:00:00",
+      "main": {
+        "humidity": 66,
+        "feels_like": 44.38,
+        "temp_min": 47.25,
+        "temp_max": 47.89,
+        "temp": 47.89,
+        "pressure": 1025,
+        "temp_kf": 0.36,
+        "dew_point": 37.09,
+        "sea_level": 1025,
+        "grnd_level": 1009
+      },
+      "weather": [
+        {
+          "id": 804,
+          "main": "Clouds",
+          "icon": "04n",
+          "description": "пасмурно"
+        }
+      ],
+      "pop": 0,
+      "sys": {
+        "pod": "n"
+      },
+      "visibility": 10000
+    }
   ],
-  "city" : {
-    "sunset" : 1708775436,
-    "country" : "RU",
-    "id" : 1496747,
-    "coord" : {
-      "lat" : 55.060000000000002,
-      "lon" : 83
+  "city": {
+    "sunset": 1790425151,
+    "country": "RU",
+    "id": 1496747,
+    "coord": {
+      "lat": 55.02,
+      "lon": 82.92
     },
-    "population" : 1419007,
-    "timezone" : 25200,
-    "sunrise" : 1708738346,
-    "name" : "Novosibirsk"
+    "population": 1419007,
+    "timezone": 25200,
+    "sunrise": 1790382024,
+    "name": "Новосибирск"
   }
 }
 
@@ -43,7 +91,7 @@
 
 import Foundation
 
-public class OpenWeatherForecastParser: ForecastParserProtocol {
+public class ForecastOpenWeatherParser: ForecastParserProtocol {
 
     public func getTimeZone(from dictionary: [String: Any]) -> Int? {
 

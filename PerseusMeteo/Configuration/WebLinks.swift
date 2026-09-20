@@ -1,5 +1,5 @@
 //
-//  AppLinks.swift
+//  WebLinks.swift
 //  T3Project
 //
 //  Created by Mikhail A. Zhigulin of Novosibirsk.

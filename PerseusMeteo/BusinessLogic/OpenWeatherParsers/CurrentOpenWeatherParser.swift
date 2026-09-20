@@ -1,103 +1,85 @@
 //
-//  OpenWeatherWeatherParser.swift
-//  PerseusMeteo
+//  CurrentOpenWeatherParser.swift
+//  TheDarkMoon
 //
 //  Created by Mikhail Zhigulin in 7532.
 //
-//  Copyright © 7532 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7532 PerseusRealDeal
+//  Copyright © 7532 - 7535 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7532 - 7535 PerseusRealDeal
 //
-//  The year starts from the creation of the world in the Star temple
-//  according to a Slavic calendar. September, the 1st of Slavic year.
+//  The year starts from the creation of the world according to a Slavic calendar.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 //
 //  See LICENSE for details. All rights reserved.
 //
 // swiftlint:disable file_length
 //
 
-/* OpenWeatherMap JSON format API response example
+/* OpenWeatherMap API request example
+
+https://api.openweathermap.org/data/2.5/weather
+?lat=55.02
+&lon=82.92
+&appid=###
+&lang=ru
+&units=imperial
+
+*/
+
+/* OpenWeatherMap API response JSON example
 
 {
-  "coord": {
-    "lon": 10.99,
-    "lat": 44.34
+  "base" : "stations",
+  "id" : 1496747,
+  "dt" : 1790432931,
+  "main" : {
+    "humidity" : 66,
+    "feels_like" : 46.090000000000003,
+    "temp_min" : 47.890000000000001,
+    "temp_max" : 47.890000000000001,
+    "temp" : 47.890000000000001,
+    "pressure" : 1025,
+    "sea_level" : 1025,
+    "grnd_level" : 1009
   },
-  "weather": [
+  "coord" : {
+    "lon" : 82.920000000000002,
+    "lat" : 55.020000000000003
+  },
+  "wind" : {
+    "speed" : 4.4699999999999998,
+    "deg" : 300,
+    "gust" : 19.010000000000002
+  },
+  "sys" : {
+    "id" : 8958,
+    "country" : "RU",
+    "sunset" : 1790425151,
+    "type" : 1,
+    "sunrise" : 1790382024
+  },
+  "weather" : [
     {
-      "id": 501,
-      "main": "Rain",
-      "description": "moderate rain",
-      "icon": "10d"
+      "id" : 804,
+      "main" : "Clouds",
+      "icon" : "04n",
+      "description" : "пасмурно"
     }
   ],
-  "base": "stations",
-  "main": {
-    "temp": 298.48,
-    "feels_like": 298.74,
-    "temp_min": 297.56,
-    "temp_max": 300.05,
-    "pressure": 1015,
-    "humidity": 64,
-    "sea_level": 1015,
-    "grnd_level": 933
+  "visibility" : 10000,
+  "clouds" : {
+    "all" : 100
   },
-  "visibility": 10000,
-  "wind": {
-    "speed": 0.62,
-    "deg": 349,
-    "gust": 1.18
-  },
-  "rain": {
-    "1h": 3.16
-  },
-  "clouds": {
-    "all": 100
-  },
-  "dt": 1661870592,
-  "sys": {
-    "type": 2,
-    "id": 2075663,
-    "country": "IT",
-    "sunrise": 1661834187,
-    "sunset": 1661882248
-  },
-  "timezone": 7200,
-  "id": 3163858,
-  "name": "Zocca",
-  "cod": 200
+  "timezone" : 25200,
+  "cod" : 200,
+  "name" : "Новосибирск"
 }
 
 */
 
 import Foundation
 
-func getInstance<T>(_ tag: String,
-                    _ type: T.Type,
-                    _ dic: [String: Any]) -> T? where T: Any {
-
-    if dic.isEmpty {
-        log.message("\(#function) \"\(tag)\", but dictionary is empty", .error)
-        return nil
-    }
-
-    if let value = dic[tag] {
-        if let instance = value as? T {
-
-            // log.message("\(#function) \"\(tag)\" cast to \(T.self)", .notice)
-
-            return instance
-
-        } else {
-            log.message("\(#function)\"\(tag)\" can't be cast to \(T.self)", .error)
-        }
-    } else {
-        log.message("\(#function) \"\(tag)\" not found", .notice)
-    }
-
-    return nil
-}
-
-public class OpenWeatherWeatherParser: WeatherParserProtocol {
+public class CurrentOpenWeatherParser: CurrentParserProtocol {
 
     public func getTimeZone(from dictionary: [String: Any]) -> Int? {
 

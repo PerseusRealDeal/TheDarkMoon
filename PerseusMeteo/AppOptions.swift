@@ -1,11 +1,11 @@
 //
 //  AppUserDefaults.swift
-//  PerseusMeteo
+//  TheDarkMoon
 //
 //  Created by Mikhail Zhigulin in 7532.
 //
-//  Copyright © 7532 - 7534 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7532 - 7534 PerseusRealDeal
+//  Copyright © 7532 - 7535 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7532 - 7535 PerseusRealDeal
 //
 //  The year starts from the creation of the world in the Star temple
 //  according to a Slavic calendar. September, the 1st of Slavic year.
@@ -257,8 +257,8 @@ class AppOptions {
             let limit = OPEN_WEATHER_API_KEY_TEXT_LIMIT
 
             if text.count > limit {
-                let secret = "[\(type(of: self))].\(#function) The key is out of length."
-                log.message(secret, .error)
+                let logMsg = "[\(type(of: self))].\(#function): The key is out of length"
+                log.message(logMsg, .error)
             }
 
             return secret

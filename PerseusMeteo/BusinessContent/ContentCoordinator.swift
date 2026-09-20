@@ -125,7 +125,7 @@ class ContentCoordinator {
     }
 
     static func cancellWeatherCall() {
-        shared.meteoClientManager?.canellWeatherCall()
+        shared.meteoClientManager?.cancellWeatherCall()
     }
 
     static func cancellForecastCall() {

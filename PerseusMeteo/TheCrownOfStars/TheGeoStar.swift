@@ -227,6 +227,8 @@ public class GeoAgent: NSObject {
                 // HOTFIX: Location Services Status in OpenCore usage case.
                 // Reinit location manager.
 
+                // TODO: If reinint doen't help, offer redirect
+
                 reInitLocationManager()
             }
 
@@ -457,6 +459,8 @@ extension GeoAgent: CLLocationManagerDelegate {
 
             let note = "[CASE - OPENCORE]"
             log.message("[\(type(of: self))].\(#function) \(note) \(details)", .error)
+
+            // TODO: If reinit doen't help, offer redirect
 
             reInitLocationManager()
 
