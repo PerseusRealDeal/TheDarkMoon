@@ -1,6 +1,6 @@
 //
 //  TheGeoStar.swift
-//  Version: 1.2.1
+//  Version: 1.2.2
 //
 //  Standalone PerseusGeoKit
 //
@@ -11,19 +11,19 @@
 //
 //  Created by Mikhail Zhigulin in 7531.
 //
-//  Copyright © 7531 - 7534 Mikhail A. Zhigulin of Novosibirsk
-//  Copyright © 7533 - 7534 PerseusRealDeal
+//  Copyright © 7531 - 7535 Mikhail A. Zhigulin of Novosibirsk
+//  Copyright © 7533 - 7535 PerseusRealDeal
 //
 //  All rights reserved.
 //
 //
 //  MIT License
 //
-//  Copyright © 7531 - 7534 Mikhail A. Zhigulin of Novosibirsk
-//  Copyright © 7533 - 7534 PerseusRealDeal
+//  Copyright © 7531 - 7535 Mikhail A. Zhigulin of Novosibirsk
+//  Copyright © 7533 - 7535 PerseusRealDeal
 //
 //  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year. For instance, "Sep 01, 2025" is the beginning of 7534.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -225,7 +225,7 @@ public class GeoAgent: NSObject {
         guard status == .notDetermined, isAuthorizedForLocationServices == false else {
             if status == .notDetermined, isAuthorizedForLocationServices {
 
-                // HOTFIX: Location Services Status in OpenCore usage case.
+                // MARK: HOTFIX: Location Services Status in OpenCore usage case.
                 // Reinit location manager.
 
                 reInitLocationManager()
@@ -328,7 +328,7 @@ public class GeoAgent: NSObject {
         order = .none
     }
 
-    // MARK: - To serve hotfixes
+    // MARK: - Serves hotfixes
 
     public static func reInit() {
         sharedInstance.reInitLocationManager()
@@ -339,6 +339,7 @@ public class GeoAgent: NSObject {
         log.message("[\(type(of: self))].\(#function) [REINIT LOCATION MANAGER]")
 
         isReinitLocationManagerTried = true
+
         let desiredAccuracy = locationManager.desiredAccuracy
 
         locationManager = CLLocationManager()
@@ -454,7 +455,7 @@ extension GeoAgent: CLLocationManagerDelegate {
 
             isErrorCased = true
 
-            // HOTFIX: Location Services Status in OpenCore usage case.
+            // MARK: HOTFIX: Location Services Status in OpenCore usage case.
             // Reinit location manager.
 
             let note = "[CASE - OPENCORE]"
@@ -525,21 +526,25 @@ extension GeoAgent: CLLocationManagerDelegate {
 
         if statusLM == .notDetermined, isAuthorizedForLocationServices {
 
-            // HOTFIX: Location Services Status in OpenCore usage case.
+            // MARK: HOTFIX: Location Services Status in OpenCore usage case.
 
-            let note = "[CASE - OPENCORE]"
+            let note = "[POSSIBLE CASE - OPENCORE]"
             log.message("[\(type(of: self))].\(#function) \(note) \(details)", .notice)
 
-            // TODO: If reinint doesn't help, offer redirect
+            // MARK: If reinit doesn't help, offer redirect (from v1.2.2)
             if isReinitLocationManagerTried {
-                log.message("[\(type(of: self))].\(#function): Alert", .info, .standard)
+                log.message("[\(type(of: self))].\(#function): alert invoked", .notice)
 
                 isReinitLocationManagerTried = false
-                // Redirect offer
+
+                REDIRECT_ALERT_TITLES.title = REDIRECT_ALERT_TITLES.titleWithStatus
+                GeoAgent.showRedirectAlert(REDIRECT_ALERT_TITLES) // Redirect offer.
             }
 
             return
         }
+
+        isReinitLocationManagerTried = false
 
         log.message("[\(type(of: self))].\(#function) \(details)", .info)
 
@@ -553,7 +558,7 @@ extension GeoAgent: CLLocationManagerDelegate {
 
         if type(of: locationManager).authorizationStatus() == .notDetermined {
 
-            // HOTFIX: Location Services Status in OpenCore usage case.
+            // MARK: HOTFIX: Location Services Status in OpenCore usage case.
 
             let note = "[STATUS .notDetermined]"
             log.message("[\(type(of: self))].\(#function) \(note)", .notice)
@@ -1092,7 +1097,7 @@ public func redirectToSettingsApp() {
 //  Created by Mikhail Zhigulin of Novosibirsk in 7533.
 //
 //  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year. For instance, "Sep 01, 2025" is the beginning of 7534.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 //
 //
 //  Unlicensed Free Software
