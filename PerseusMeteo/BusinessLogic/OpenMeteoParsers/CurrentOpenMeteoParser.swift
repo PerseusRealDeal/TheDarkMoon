@@ -28,9 +28,10 @@ howers,rain,snowfall,precipitation,precipitation_probability,is_day
 
 */
 
-/* Open-Meteo API response JSON example
+/* Open-Meteo API response JSON example */
 
- {
+let sampleResponseCurrentOpenMeteo = """
+{
    "generationtime_ms" : 0.28145313262939453,
    "longitude" : 83.00797,
    "utc_offset_seconds" : 0,
@@ -38,7 +39,7 @@ howers,rain,snowfall,precipitation,precipitation_probability,is_day
    "current_units" : {
      "rain" : "mm",
      "wind_direction_10m" : "°",
-     "wind_speed_10m" : "m\/s",
+     "wind_speed_10m" : "m\\s",
      "apparent_temperature" : "°F",
      "temperature_2m" : "°F",
      "showers" : "mm",
@@ -49,7 +50,7 @@ howers,rain,snowfall,precipitation,precipitation_probability,is_day
      "relative_humidity_2m" : "%",
      "precipitation" : "mm",
      "weather_code" : "wmo code",
-     "wind_gusts_10m" : "m\/s",
+     "wind_gusts_10m" : "m\\s",
      "visibility" : "m",
      "cloud_cover" : "%",
      "precipitation_probability" : "%",
@@ -98,9 +99,8 @@ howers,rain,snowfall,precipitation,precipitation_probability,is_day
        "2026-09-21T00:10"
      ]
    }
- }
-
-*/
+}
+"""
 
 import Foundation
 

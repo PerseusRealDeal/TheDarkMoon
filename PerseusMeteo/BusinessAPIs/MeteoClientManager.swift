@@ -137,7 +137,7 @@ public class MeteoClientManager {
         guard useCurrentOpenMeteoResponseSample == false
         else {
             ContentCoordinator.stopCurrentProgressIndicator()
-            handleCurrentOpenMeteo(response: .success(Data()))
+            handleCurrentOpenMeteo(response: .success(sampleCurrentOpenMeteoData()))
             return
         }
 
@@ -891,7 +891,7 @@ public class MeteoClientManager {
             guard data.isEmpty == false || isSample else { return }
 
             let suggestions: [Location]? =
-            isSample ? suggestionsSample() : suggestionsOpenMeteo(json: data)
+            isSample ? sampleSuggestions() : suggestionsOpenMeteo(json: data)
 
             guard
                 let suggestions = suggestions,
@@ -933,7 +933,7 @@ public class MeteoClientManager {
             guard data.isEmpty == false || isSample else { return }
 
             let suggestions: [Location]? =
-            isSample ? suggestionsSample() : suggestionsOpenWeather(json: data)
+            isSample ? sampleSuggestions() : suggestionsOpenWeather(json: data)
 
             guard
                 let suggestions = suggestions,
