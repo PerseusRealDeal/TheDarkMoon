@@ -4,11 +4,11 @@
 //
 //  Created by Mikhail Zhigulin in 7532.
 //
-//  Copyright © 7532 - 7534 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7532 - 7534 PerseusRealDeal
+//  Copyright © 7532 - 7535 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7532 - 7535 PerseusRealDeal
 //
-//  The year starts from the creation of the world in the Star temple
-//  according to a Slavic calendar. September, the 1st of Slavic year.
+//  The year starts from the creation of the world according to a Slavic calendar.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 //
 //  See LICENSE for details. All rights reserved.
 //
@@ -202,33 +202,37 @@ public class StatusMenusPresenter {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        if AppOptions.statusMenusOption == false { // Icon name by default.
+        if AppOptions.statusMenusOption == false {
             if isLegacy || AppOptions.statusMenusViewOptions.twoLines == false {
                 statusItem?.button?.imagePosition = .imageLeading
                 statusItem?.button?.image = NSImage(named: AppGlobals.theAppLogoImageName)
             } else {
-                customStatusMenusItemContent?.image = NSImage(
-                    named: AppGlobals.theAppLogoImageName
-                )
+                let icon = NSImage(named: AppGlobals.theAppLogoImageName)
+                customStatusMenusItemContent?.image = icon
             }
-
+            customStatusMenusItemContent?.image?.isTemplate = false
             return
         }
 
-        let imageName = dataSource.weatherIconName.toAppleIconName(isLight: false)
-        let image = NSImage(named: imageName)
+        let imageName = dataSource.weatherIconName.toAppleIconName()
+        let icon = NSImage(named: imageName)
 
-        if let button = statusItem?.button, let resized = image {
+        if let button = statusItem?.button, let resized = icon {
             resized.resizeProportionally(to: button.frame.height, padding: 4.0)
         }
 
         if isLegacy || AppOptions.statusMenusViewOptions.twoLines == false {
-
             statusItem?.button?.imagePosition = .imageLeading
-            statusItem?.button?.image = image
+            statusItem?.button?.image = icon
 
         } else {
-            customStatusMenusItemContent?.image = image
+            customStatusMenusItemContent?.image = icon
+        }
+
+        if customStatusMenusItemContent?.image?.name() == AppGlobals.theAppLogoImageName {
+            customStatusMenusItemContent?.image?.isTemplate = false
+        } else {
+            customStatusMenusItemContent?.image?.isTemplate = true
         }
     }
 
