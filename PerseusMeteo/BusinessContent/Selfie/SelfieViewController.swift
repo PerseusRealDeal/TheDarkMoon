@@ -4,8 +4,11 @@
 //
 //  Created by Mikhail Zhigulin of Novosibirsk in 7534 (7.11.2025).
 //
-//  The year starts from the creation of the world in the Star temple
-//  according to a Slavic calendar. September, the 1st of Slavic year.
+//  The year starts from the creation of the world according to a Slavic calendar.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
+//
+//  See LICENSE for details. All rights reserved.
+//
 //
 //  Unlicensed Free Software
 //
@@ -202,7 +205,7 @@ extension SelfieViewController: SelfieViewDelegate {
         buttonClose.title = "Button: Close".localizedValue
 
         labelTheAppName.stringValue = "Product Name".localizedValue
-        labelTheAppVersion.stringValue = theAppVersionLocalized
+        labelTheAppVersion.stringValue = AppGlobals.theAppVersionLocalized
         labelCopyrightText.stringValue = "Label: Copyright Notice".localizedValue
         labelCopyrightDetailsText.stringValue = "Label: Copyright Details".localizedValue
 
@@ -211,15 +214,6 @@ extension SelfieViewController: SelfieViewDelegate {
         labelMeteoDataServices.stringValue = "Label: Meteo API".localizedValue + ":"
         labelGeoDataServices.stringValue = "Label: Geo API".localizedValue + ":"
         labelMajorComponents.stringValue = "Label: Major Components".localizedValue + ":"
-    }
-
-    var theAppVersionLocalized: String {
-        guard
-            let ver = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
-        else {
-            return ""
-        }
-        return "Label: The App Version".localizedValue + ": \(ver)"
     }
 
     var theCredits: String {

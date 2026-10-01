@@ -7,8 +7,8 @@
 //  Copyright © 7531 - 7535 Mikhail Zhigulin of Novosibirsk
 //  Copyright © 7531 - 7535 PerseusRealDeal
 //
-//  The year starts from the creation of the world in the Star temple
-//  according to a Slavic calendar. September, the 1st of Slavic year.
+//  The year starts from the creation of the world according to a Slavic calendar.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 //
 //  See LICENSE for details. All rights reserved.
 //
@@ -38,6 +38,17 @@ var isLegacy: Bool { // true for High Sierra, Mojave, Catalina
 
 struct AppGlobals {
 
+    // MARK: - App version localized info
+
+    static var theAppVersionLocalized: String {
+        guard
+            let ver = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
+        else {
+            return ""
+        }
+        return "Label: The App Version".localizedValue + ": \(ver)"
+    }
+
     // MARK: - Constants
 
     // Don't be shy. Step into the light: 79eefe16f6e4714470502074369fc77b
@@ -46,7 +57,7 @@ struct AppGlobals {
     static let theAppLogoImageName = "Icon"
     static let theMeteoProviderName = "/\\__/\\"
 
-    static let favoritesLimit: Int = 7
+    static let theFavoritesLimit: Int = 7
 
     // MARK: - Business Data
 
@@ -125,14 +136,14 @@ struct AppGlobals {
     static let currentReader = CurrentReader.shared
     static let forecastReader = ForecastReader.shared
 
-    // MARK: - Common Services Setup
+    // MARK: - Services Setup
 
     static func setup() {
 
         log.message("[\(type(of: self))].\(#function)", .info, .standard)
 
-        currentReader.path = { AppGlobals.weather }
-        forecastReader.path = { AppGlobals.forecast }
+        CurrentReader.shared.path = { AppGlobals.weather }
+        ForecastReader.shared.path = { AppGlobals.forecast }
 
         // Geo Logic Setup
 

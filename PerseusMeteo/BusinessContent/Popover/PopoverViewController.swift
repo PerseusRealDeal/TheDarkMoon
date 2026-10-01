@@ -363,7 +363,7 @@ public class PopoverViewController: NSViewController {
 
         if viewLocation?.locationCard == .suggestion, var suggestion = AppGlobals.suggestion {
 
-            let limit = AppGlobals.favoritesLimit
+            let limit = AppGlobals.theFavoritesLimit
             let itemsCount = AppOptions.favoriteLocationsOption.count
 
             if itemsCount == limit {
