@@ -134,10 +134,10 @@ public class MeteoClientManager {
             return
         }
 
-        guard useCurrentOpenMeteoResponseSample == false
+        guard useOpenMeteoCurrentSample == false
         else {
             ContentCoordinator.stopCurrentProgressIndicator()
-            handleCurrentOpenMeteo(response: .success(sampleCurrentOpenMeteoData()))
+            handleCurrentOpenMeteo(response: .success(sampleOpenMeteoCurrentData()))
             return
         }
 
@@ -176,6 +176,13 @@ public class MeteoClientManager {
 
         guard isReadyToCall else {
             log.message("[\(type(of: self))].\(#function) \(isReadyToCall)", .notice)
+            return
+        }
+
+        guard useOpenMeteoCurrentSample == false
+        else {
+            ContentCoordinator.stopCurrentProgressIndicator()
+            handleCurrentOpenMeteo(response: .success(sampleOpenMeteoCurrentData()))
             return
         }
 
@@ -236,6 +243,13 @@ public class MeteoClientManager {
 
         guard isReadyToCallForecast else {
             log.message("[\(type(of: self))].\(#function) \(isReadyToCallForecast)", .notice)
+            return
+        }
+
+        guard useOpenMeteoForecastSample == false
+        else {
+            ContentCoordinator.stopForecastProgressIndicator()
+            handleForecastOpenMeteo(response: .success(sampleOpenMeteoForecastData()))
             return
         }
 

@@ -20,7 +20,9 @@ import Foundation
 // MARK: - The triggers for meteo data samples
 
 let useSuggestionsResponseSample = false
-let useCurrentOpenMeteoResponseSample = false
+
+let useOpenMeteoCurrentSample = true
+let useOpenMeteoForecastSample = true
 
 // MARK: - Keys
 

@@ -13,29 +13,6 @@
 //  See LICENSE for details. All rights reserved.
 //
 
-/* Open-Meteo API request example
-
-https://api.open-meteo.com/v1/forecast
-?latitude=55.02
-&longitude=82.92
-&temperature_unit=fahrenheit
-&forecast_days=16
-&daily=sunrise,sunset,precipitation_probability_max
-&wind_speed_unit=ms
-&hourly=weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,temperature_2m,
-apparent_temperature,visibility,pressure_msl,relative_humidity_2m,cloud_cover,showers,
-rain,snowfall,precipitation,precipitation_probability,is_day
-
-*/
-
-/* Open-Meteo API response JSON example
-
-// TODO: Insert Open-Meteo API response JSON example
-
-*/
-
-import Foundation
-
 public class ForecastOpenMeteoParser: ForecastParserProtocol {
 
     // TODO: Implement Open-Meteo forecast weather parser protocol

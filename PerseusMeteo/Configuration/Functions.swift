@@ -100,17 +100,41 @@ public func sampleSuggestions() -> [Location] {
     ]
 }
 
-public func sampleCurrentOpenMeteoData() -> Data {
+public func sampleOpenMeteoCurrentData() -> Data {
 
     let opts: JSONSerialization.ReadingOptions = [.mutableContainers]
 
-    guard let jsonDataSource = sampleResponseCurrentOpenMeteo.data(using: .utf16) else {
-        log.message("\(#function): jsonDataSource", .error, .standard)
+    guard let jsonData = sampleOpenMeteoCurrent.data(using: .utf16) else {
+        log.message("\(#function): jsonData", .error, .standard)
         return Data()
     }
 
     do {
-        let object = try JSONSerialization.jsonObject(with: jsonDataSource, options: opts)
+        let object = try JSONSerialization.jsonObject(with: jsonData, options: opts)
+        log.message("\(#function): serialized", .info, .standard)
+
+        let data = try JSONSerialization.data(withJSONObject: object)
+        log.message("\(#function):\n\(data.prettyPrinted ?? "")", .info, .standard)
+
+        return data
+    } catch let error as NSError {
+        log.message("\(#function): \(error.debugDescription)", .error, .standard)
+    }
+
+    return Data()
+}
+
+public func sampleOpenMeteoForecastData() -> Data {
+
+    let opts: JSONSerialization.ReadingOptions = [.mutableContainers]
+
+    guard let jsonData = sampleOpenMeteoForecast.data(using: .utf16) else {
+        log.message("\(#function): jsonData", .error, .standard)
+        return Data()
+    }
+
+    do {
+        let object = try JSONSerialization.jsonObject(with: jsonData, options: opts)
         log.message("\(#function): serialized", .info, .standard)
 
         let data = try JSONSerialization.data(withJSONObject: object)

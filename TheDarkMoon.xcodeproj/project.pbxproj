@@ -39,6 +39,8 @@
 		2EBB4CB22ED73E0E00C44504 /* LoggerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB4CAE2ED73E0E00C44504 /* LoggerWindowController.swift */; };
 		2EC294342ECDE1A200FC06F1 /* MVPPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC294332ECDE1A200FC06F1 /* MVPPresenter.swift */; };
 		2EC294362ECDE1B400FC06F1 /* MVPViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC294352ECDE1B400FC06F1 /* MVPViewDelegate.swift */; };
+		2ECB2CDF306F6BA9008FBC43 /* OpenMeteoCurrentSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2CDE306F6BA9008FBC43 /* OpenMeteoCurrentSample.swift */; };
+		2ECB2CE1306F6D5A008FBC43 /* OpenMeteoForecastSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2CE0306F6D5A008FBC43 /* OpenMeteoForecastSample.swift */; };
 		2ED6C7F82ECEDF50009EF57D /* OptionsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED6C7F72ECEDF50009EF57D /* OptionsViewPresenter.swift */; };
 		2ED8FE1D2E40F36C00C65619 /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED8FE1C2E40F36C00C65619 /* MessageLabel.swift */; };
 		2EDC74DA2EE30B0B00073C94 /* WebLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC74D92EE30B0B00073C94 /* WebLabel.swift */; };
@@ -173,6 +175,8 @@
 		2EBB4CAE2ED73E0E00C44504 /* LoggerWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerWindowController.swift; sourceTree = "<group>"; };
 		2EC294332ECDE1A200FC06F1 /* MVPPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPPresenter.swift; sourceTree = "<group>"; };
 		2EC294352ECDE1B400FC06F1 /* MVPViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPViewDelegate.swift; sourceTree = "<group>"; };
+		2ECB2CDE306F6BA9008FBC43 /* OpenMeteoCurrentSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMeteoCurrentSample.swift; sourceTree = "<group>"; };
+		2ECB2CE0306F6D5A008FBC43 /* OpenMeteoForecastSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMeteoForecastSample.swift; sourceTree = "<group>"; };
 		2ED6C7F72ECEDF50009EF57D /* OptionsViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewPresenter.swift; sourceTree = "<group>"; };
 		2ED8FE1C2E40F36C00C65619 /* MessageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabel.swift; sourceTree = "<group>"; };
 		2EDC74D92EE30B0B00073C94 /* WebLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebLabel.swift; sourceTree = "<group>"; };
@@ -401,6 +405,8 @@
 			children = (
 				2EE8EAD43061B97400905278 /* CurrentOpenMeteoParser.swift */,
 				2EE7ABF03067718500BF64B0 /* ForecastOpenMeteoParser.swift */,
+				2ECB2CDE306F6BA9008FBC43 /* OpenMeteoCurrentSample.swift */,
+				2ECB2CE0306F6D5A008FBC43 /* OpenMeteoForecastSample.swift */,
 			);
 			path = OpenMeteoParsers;
 			sourceTree = "<group>";
@@ -862,6 +868,7 @@
 				4B0A49F329F631CD00CAE8A0 /* AppGlobals.swift in Sources */,
 				2EDC74DA2EE30B0B00073C94 /* WebLabel.swift in Sources */,
 				4BFA5FDE2989A1F000AC09F5 /* OptionsViewController.swift in Sources */,
+				2ECB2CE1306F6D5A008FBC43 /* OpenMeteoForecastSample.swift in Sources */,
 				2EE8EAD53061B97400905278 /* CurrentOpenMeteoParser.swift in Sources */,
 				4B7690D42B4CA82A007F09D9 /* PerseusTimeFormat.swift in Sources */,
 				4B5F7D442BB6984D00121946 /* MeteoGroupView.swift in Sources */,
@@ -881,6 +888,7 @@
 				2ED8FE1D2E40F36C00C65619 /* MessageLabel.swift in Sources */,
 				4BB2045D2B70EE3A007E0308 /* CurrentParserProtocol.swift in Sources */,
 				4BB2046E2B755BDB007E0308 /* ForecastDay.swift in Sources */,
+				2ECB2CDF306F6BA9008FBC43 /* OpenMeteoCurrentSample.swift in Sources */,
 				2EA70338304B35AE0084D75B /* MeteoDataCategory.swift in Sources */,
 				4B5F7D412B9AD05900121946 /* MeteoDataDictionary.swift in Sources */,
 				2EBB4CB22ED73E0E00C44504 /* LoggerWindowController.swift in Sources */,
