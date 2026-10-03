@@ -76,7 +76,7 @@ public struct Location: CustomStringConvertible, Codable {
     }
 }
 
-public enum LocationCardType: String, CustomStringConvertible {
+public enum LocationType: String, CustomStringConvertible {
 
     case suggestion = "suggestion"
     case favorite   = "favorite"

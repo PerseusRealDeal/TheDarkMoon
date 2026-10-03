@@ -25,21 +25,21 @@ public class CurrentDictionary: MeteoDataDictionary {
 
         guard let cach = data else { return nil }
 
-        return parser?.getLastOne(from: cach)
+        return parser?.responseTime(from: cach)
     }
 
     public var timezone: Int? {
 
         guard let cach = data else { return nil }
 
-        return parser?.getTimeZone(from: cach)
+        return parser?.timeZone(from: cach)
     }
 
     public var weatherIconName: String? {
 
         guard
             let cach = data,
-            let name = parser?.getWeatherIconName(from: cach)
+            let name = parser?.weatherIconName(from: cach)
         else {
             return nil
         }
@@ -51,104 +51,104 @@ public class CurrentDictionary: MeteoDataDictionary {
 
         guard let cach = data else { return nil }
 
-        return parser?.getWeatherDescription(from: cach)
+        return parser?.weatherDescription(from: cach)
     }
 
     public var temperature: String? {
 
         guard let cach = data else { return nil }
 
-        return parser?.getTemperature(from: cach)
+        return parser?.temperature(from: cach)
     }
 
     public var temperatureFeelsLike: String? {
 
         guard let cach = data else { return nil }
 
-        return parser?.getTemperatureFeelsLike(from: cach)
+        return parser?.temperatureFeelsLike(from: cach)
     }
 
     public var temperatureMinimum: String? {
 
         guard let cach = data else { return nil }
 
-        return parser?.getTemperatureMinimum(from: cach)
+        return parser?.temperatureMinimum(from: cach)
     }
 
     public var temperatureMaximum: String? {
 
         guard let cach = data else { return nil }
 
-        return parser?.getTemperatureMaximum(from: cach)
+        return parser?.temperatureMaximum(from: cach)
     }
 
     public var windSpeed: String? {
 
         guard let cach = data else { return nil }
 
-        return parser?.getWindSpeed(from: cach)
+        return parser?.windSpeed(from: cach)
     }
 
     public var windGusts: String? {
 
         guard let cach = data else { return nil }
 
-        return parser?.getWindGusts(from: cach)
+        return parser?.windGusts(from: cach)
     }
 
     public var windDirection: String? {
 
         guard let cach = data else { return nil }
 
-        return parser?.getWindDirection(from: cach)
+        return parser?.windDirection(from: cach)
     }
 
     public var pressure: String? {
 
         guard let cach = data else { return nil }
 
-        return parser?.getPressure(from: cach)
+        return parser?.pressure(from: cach)
     }
 
     public var humidity: Int? {
 
         guard let cach = data else { return nil }
 
-        return parser?.getHumidity(from: cach)
+        return parser?.humidity(from: cach)
     }
 
     public var cloudiness: Int? {
 
         guard let cach = data else { return nil }
 
-        return parser?.getCloudiness(from: cach)
+        return parser?.cloudiness(from: cach)
     }
 
     public var visibility: Int? {
 
         guard let cach = data else { return nil }
 
-        return parser?.getVisibility(from: cach)
+        return parser?.visibility(from: cach)
     }
 
     public var sunrise: Int? {
 
         guard let cach = data else { return nil }
 
-        return parser?.getSunrise(from: cach)
+        return parser?.sunrise(from: cach)
     }
 
     public var sunset: Int? {
 
         guard let cach = data else { return nil }
 
-        return parser?.getSunset(from: cach)
+        return parser?.sunset(from: cach)
     }
 
     public var weatherConditions: WeatherConditions {
 
         if let cach = data, let parser = parser {
-            return parser.getWeatherConditions(from: cach)
+            return parser.weatherConditions(from: cach)
         }
 
         return MeteoFactsDefaults.weatherConditions

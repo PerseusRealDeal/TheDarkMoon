@@ -19,27 +19,27 @@ import Foundation
 
 public protocol CurrentParserProtocol {
 
-    func getTimeZone(from dictionary: [String: Any]) -> Int?
-    func getLastOne(from dictionary: [String: Any]) -> Int?
+    func timeZone(from dictionary: [String: Any]) -> Int?
+    func responseTime(from dictionary: [String: Any]) -> Int?
 
-    func getWeatherDescription(from dictionary: [String: Any]) -> String?
-    func getWeatherIconName(from dictionary: [String: Any]) -> String?
-    func getWeatherConditions(from source: [String: Any]) -> WeatherConditions
+    func weatherDescription(from dictionary: [String: Any]) -> String?
+    func weatherIconName(from dictionary: [String: Any]) -> String?
+    func weatherConditions(from source: [String: Any]) -> WeatherConditions
 
-    func getTemperature(from dictionary: [String: Any]) -> String?
-    func getTemperatureFeelsLike(from dictionary: [String: Any]) -> String?
-    func getTemperatureMinimum(from dictionary: [String: Any]) -> String?
-    func getTemperatureMaximum(from dictionary: [String: Any]) -> String?
+    func temperature(from dictionary: [String: Any]) -> String?
+    func temperatureFeelsLike(from dictionary: [String: Any]) -> String?
+    func temperatureMinimum(from dictionary: [String: Any]) -> String?
+    func temperatureMaximum(from dictionary: [String: Any]) -> String?
 
-    func getWindSpeed(from dictionary: [String: Any]) -> String?
-    func getWindGusts(from dictionary: [String: Any]) -> String?
-    func getWindDirection(from dictionary: [String: Any]) -> String?
+    func windSpeed(from dictionary: [String: Any]) -> String?
+    func windGusts(from dictionary: [String: Any]) -> String?
+    func windDirection(from dictionary: [String: Any]) -> String?
 
-    func getPressure(from dictionary: [String: Any]) -> String?
-    func getHumidity(from dictionary: [String: Any]) -> Int?
-    func getCloudiness(from dictionary: [String: Any]) -> Int?
-    func getVisibility(from dictionary: [String: Any]) -> Int?
+    func pressure(from dictionary: [String: Any]) -> String?
+    func humidity(from dictionary: [String: Any]) -> Int?
+    func cloudiness(from dictionary: [String: Any]) -> Int?
+    func visibility(from dictionary: [String: Any]) -> Int?
 
-    func getSunrise(from dictionary: [String: Any]) -> Int?
-    func getSunset(from dictionary: [String: Any]) -> Int?
+    func sunrise(from dictionary: [String: Any]) -> Int?
+    func sunset(from dictionary: [String: Any]) -> Int?
 }

@@ -19,28 +19,28 @@ import Foundation
 
 public class CurrentOpenWeatherParser: CurrentParserProtocol {
 
-    public func getTimeZone(from dictionary: [String: Any]) -> Int? {
+    public func timeZone(from dictionary: [String: Any]) -> Int? {
 
         // Timezone
 
         return getInstance("timezone", Int.self, dictionary)
     }
 
-    public func getLastOne(from dictionary: [String: Any]) -> Int? {
+    public func responseTime(from dictionary: [String: Any]) -> Int? {
 
         // Date and Time
 
         return getInstance("dt", Int.self, dictionary)
     }
 
-    public func getVisibility(from dictionary: [String: Any]) -> Int? {
+    public func visibility(from dictionary: [String: Any]) -> Int? {
 
         // Visibility
 
         return getInstance("visibility", Int.self, dictionary)
     }
 
-    public func getWeatherDescription(from dictionary: [String: Any]) -> String? {
+    public func weatherDescription(from dictionary: [String: Any]) -> String? {
 
         if let weather = dictionary["weather"] as? [Any] {
             if let wFirst = weather.first as? [String: Any] {
@@ -59,7 +59,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
         return nil
     }
 
-    public func getWeatherIconName(from dictionary: [String: Any]) -> String? {
+    public func weatherIconName(from dictionary: [String: Any]) -> String? {
 
         if let weather = dictionary["weather"] as? [Any] {
             if let wFirst = weather.first as? [String: Any] {
@@ -84,7 +84,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
         return nil
     }
 
-    public func getTemperature(from dictionary: [String: Any]) -> String? {
+    public func temperature(from dictionary: [String: Any]) -> String? {
 
         guard let main = dictionary["main"] as? [String: Any] else {
             log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .error)
@@ -96,7 +96,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
         return getInstance("temp", Double.self, main)?.description
     }
 
-    public func getTemperatureFeelsLike(from dictionary: [String: Any]) -> String? {
+    public func temperatureFeelsLike(from dictionary: [String: Any]) -> String? {
 
         guard let main = dictionary["main"] as? [String: Any] else {
             log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .error)
@@ -108,7 +108,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
         return getInstance("feels_like", Double.self, main)?.description
     }
 
-    public func getTemperatureMinimum(from dictionary: [String: Any]) -> String? {
+    public func temperatureMinimum(from dictionary: [String: Any]) -> String? {
 
         guard let main = dictionary["main"] as? [String: Any] else {
             log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .error)
@@ -120,7 +120,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
         return getInstance("temp_min", Double.self, main)?.description
     }
 
-    public func getTemperatureMaximum(from dictionary: [String: Any]) -> String? {
+    public func temperatureMaximum(from dictionary: [String: Any]) -> String? {
 
         guard let main = dictionary["main"] as? [String: Any] else {
             log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .error)
@@ -132,7 +132,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
         return getInstance("temp_max", Double.self, main)?.description
     }
 
-    public func getWindSpeed(from dictionary: [String: Any]) -> String? {
+    public func windSpeed(from dictionary: [String: Any]) -> String? {
 
         guard let wind = dictionary["wind"] as? [String: Any] else {
             log.message("[\(type(of: self))].\(#function) \"wind\" mistaken", .notice)
@@ -144,7 +144,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
         return getInstance("speed", Double.self, wind)?.description
     }
 
-    public func getWindGusts(from dictionary: [String: Any]) -> String? {
+    public func windGusts(from dictionary: [String: Any]) -> String? {
 
         guard let wind = dictionary["wind"] as? [String: Any] else {
             log.message("[\(type(of: self))].\(#function) \"wind\" mistaken", .notice)
@@ -156,7 +156,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
         return getInstance("gust", Double.self, wind)?.description
     }
 
-    public func getWindDirection(from dictionary: [String: Any]) -> String? {
+    public func windDirection(from dictionary: [String: Any]) -> String? {
 
         guard let wind = dictionary["wind"] as? [String: Any] else {
             log.message("[\(type(of: self))].\(#function) \"wind\" mistaken", .notice)
@@ -168,7 +168,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
         return getInstance("deg", Int.self, wind)?.description
     }
 
-    public func getPressure(from dictionary: [String: Any]) -> String? {
+    public func pressure(from dictionary: [String: Any]) -> String? {
 
         guard let main = dictionary["main"] as? [String: Any] else {
             log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .notice)
@@ -180,7 +180,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
         return getInstance("pressure", Int.self, main)?.description
     }
 
-    public func getHumidity(from dictionary: [String: Any]) -> Int? {
+    public func humidity(from dictionary: [String: Any]) -> Int? {
 
         guard let main = dictionary["main"] as? [String: Any] else {
             log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .notice)
@@ -192,7 +192,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
         return getInstance("humidity", Int.self, main)
     }
 
-    public func getCloudiness(from dictionary: [String: Any]) -> Int? {
+    public func cloudiness(from dictionary: [String: Any]) -> Int? {
 
         guard let clouds = dictionary["clouds"] as? [String: Any] else {
             log.message("[\(type(of: self))].\(#function) \"clouds\" mistaken", .notice)
@@ -204,7 +204,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
         return getInstance("all", Int.self, clouds)
     }
 
-    public func getSunrise(from dictionary: [String: Any]) -> Int? {
+    public func sunrise(from dictionary: [String: Any]) -> Int? {
 
         guard let sys = dictionary["sys"] as? [String: Any] else {
             log.message("[\(type(of: self))].\(#function) \"sys\" mistaken", .notice)
@@ -216,7 +216,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
         return getInstance("sunrise", Int.self, sys)
     }
 
-    public func getSunset(from dictionary: [String: Any]) -> Int? {
+    public func sunset(from dictionary: [String: Any]) -> Int? {
 
         guard let sys = dictionary["sys"] as? [String: Any] else {
             log.message("[\(type(of: self))].\(#function) \"sys\" mistaken", .notice)
@@ -228,7 +228,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
         return getInstance("sunset", Int.self, sys)
     }
 
-    public func getWeatherConditions(from source: [String: Any]) -> WeatherConditions {
+    public func weatherConditions(from source: [String: Any]) -> WeatherConditions {
 
         var value: WeatherConditions?
 

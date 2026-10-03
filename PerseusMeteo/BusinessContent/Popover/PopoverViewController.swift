@@ -89,7 +89,7 @@ public class PopoverViewController: NSViewController {
     }
 
     @IBAction func fetchMeteoFactsButtonTapped(_ sender: NSButton) {
-        if viewLocation.locationCard == .current, AppGlobals.currentLocation == nil {
+        if viewLocation.locationType == .current, AppGlobals.currentLocation == nil {
             let text = "Coordinates update is required".localizedValue
             log.message(text, .notice, .custom, .enduser)
             return
@@ -295,7 +295,7 @@ public class PopoverViewController: NSViewController {
         AppGlobals.weather = nil
         AppGlobals.forecast = nil
 
-        viewLocation?.locationCard = .suggestion
+        viewLocation?.locationType = .suggestion
 
         viewLocation?.reloadData()
 
@@ -331,7 +331,7 @@ public class PopoverViewController: NSViewController {
         ContentCoordinator.cancellForecastCall()
         ContentCoordinator.cancellSuggestionsCall()
 
-        viewLocation?.locationCard = AppOptions.favoriteLocationsOption.first(where: {
+        viewLocation?.locationType = AppOptions.favoriteLocationsOption.first(where: {
             $0.isOnDisplay && $0.isCurrentLocation }) != nil ? .current : .favorite
 
         AppGlobals.currentLocation = nil
@@ -361,7 +361,7 @@ public class PopoverViewController: NSViewController {
 
         // Add item to favorites
 
-        if viewLocation?.locationCard == .suggestion, var suggestion = AppGlobals.suggestion {
+        if viewLocation?.locationType == .suggestion, var suggestion = AppGlobals.suggestion {
 
             let limit = AppGlobals.theFavoritesLimit
             let itemsCount = AppOptions.favoriteLocationsOption.count
@@ -392,7 +392,7 @@ public class PopoverViewController: NSViewController {
                 AppOptions.favoriteLocationsOption.append(suggestion)
                 AppGlobals.suggestion = nil
 
-                viewLocation?.locationCard = .favorite
+                viewLocation?.locationType = .favorite
                 viewLocation?.reloadData()
 
                 let text = "Added to favorites".localizedValue
@@ -404,13 +404,13 @@ public class PopoverViewController: NSViewController {
 
         // Remove item from favorites
 
-        if viewLocation?.locationCard == .current {
+        if viewLocation?.locationType == .current {
             let text = "Current neither to add nor to remove!".localizedValue
             log.message(text, .notice, .custom, .enduser)
             return
         }
 
-        if viewLocation?.locationCard == .favorite {
+        if viewLocation?.locationType == .favorite {
 
             if let removedOneIndex = AppOptions.favoriteLocationsOption.firstIndex(
                 where: { $0.isOnDisplay && $0.isCurrentLocation == false }) {
@@ -418,7 +418,7 @@ public class PopoverViewController: NSViewController {
                 AppOptions.favoriteLocationsOption.remove(at: removedOneIndex)
                 AppOptions.favoriteLocationsOption[0].isOnDisplay = true
 
-                viewLocation?.locationCard = .current
+                viewLocation?.locationType = .current
             } else {
                 return
             }

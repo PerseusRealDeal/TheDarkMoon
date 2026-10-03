@@ -90,7 +90,7 @@
 "GeoAccess: .allowed" = "Предоставлен";
 "GeoAccess: .notAllowed" = "Запрещено";
 
-"Geo Couple" = "Широта, Долгота";
+"Geo Couple" = "Широта,Долгота";
 
 "Button: Update Geo Access" = "Обновить Геодоступ";
 "Button: Refresh Current Location" = "Обновить Координаты";

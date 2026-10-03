@@ -358,6 +358,17 @@
 			path = MVPPattern;
 			sourceTree = "<group>";
 		};
+		2EDEBCCE3070DB5E009A5E9D /* ResponseSamples */ = {
+			isa = PBXGroup;
+			children = (
+				2ECB2CDE306F6BA9008FBC43 /* OpenMeteoCurrentSample.swift */,
+				2ECB2CE0306F6D5A008FBC43 /* OpenMeteoForecastSample.swift */,
+				2EDEBCCA3070B529009A5E9D /* OpenWeatherCurrentSample.swift */,
+				2EDEBCCC3070C2A4009A5E9D /* OpenWeatherForecastSample.swift */,
+			);
+			path = ResponseSamples;
+			sourceTree = "<group>";
+		};
 		2EE6C9EC2F7A51B700FB5C27 /* BusinessAPIs */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,8 +420,6 @@
 			children = (
 				2EE8EAD43061B97400905278 /* CurrentOpenMeteoParser.swift */,
 				2EE7ABF03067718500BF64B0 /* ForecastOpenMeteoParser.swift */,
-				2ECB2CDE306F6BA9008FBC43 /* OpenMeteoCurrentSample.swift */,
-				2ECB2CE0306F6D5A008FBC43 /* OpenMeteoForecastSample.swift */,
 			);
 			path = OpenMeteoParsers;
 			sourceTree = "<group>";
@@ -580,8 +589,9 @@
 				2EE75F6F3060421300CC671F /* Dictionaries */,
 				2EE8EAD2306191BA00905278 /* Classes */,
 				2EE8EACF306190C400905278 /* Protocols */,
-				4BB204582B702384007E0308 /* OpenWeatherParsers */,
 				2EE8EAD33061B94B00905278 /* OpenMeteoParsers */,
+				4BB204582B702384007E0308 /* OpenWeatherParsers */,
+				2EDEBCCE3070DB5E009A5E9D /* ResponseSamples */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -659,8 +669,6 @@
 			children = (
 				4B5F7D3E2B99099F00121946 /* CurrentOpenWeatherParser.swift */,
 				4BB204622B70F2FE007E0308 /* ForecastOpenWeatherParser.swift */,
-				2EDEBCCA3070B529009A5E9D /* OpenWeatherCurrentSample.swift */,
-				2EDEBCCC3070C2A4009A5E9D /* OpenWeatherForecastSample.swift */,
 			);
 			path = OpenWeatherParsers;
 			sourceTree = "<group>";

@@ -176,9 +176,9 @@ struct AppGlobals {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        var locationCardType: LocationCardType?
+        var locationCardType: LocationType?
 
-        if let type = ContentCoordinator.shared.screenPopover.viewLocation?.locationCard {
+        if let type = ContentCoordinator.shared.screenPopover.viewLocation?.locationType {
             locationCardType = type
         } else {
             locationCardType = AppOptions.favoriteLocationsOption.first(where: {

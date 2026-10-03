@@ -17,15 +17,6 @@
 
 import Cocoa
 
-extension String {
-    public func cut(length: Int = 27, ending: String = "...") -> String {
-        guard self.count > length else {
-            return self
-        }
-        return self.prefix(length) + ending
-    }
-}
-
 @IBDesignable
 class LocationView: NSView, NSTextFieldDelegate {
 
@@ -38,7 +29,7 @@ class LocationView: NSView, NSTextFieldDelegate {
     // private var isReadyToGetSuggestions = false
 
     private var locationNameLocalized: String {
-        switch locationCard {
+        switch locationType {
         case .suggestion:
             if let suggestionName = AppGlobals.suggestion?.localName {
                 return suggestionName
@@ -75,7 +66,7 @@ class LocationView: NSView, NSTextFieldDelegate {
 
         */
 
-        switch locationCard {
+        switch locationType {
         case .suggestion:
             return "Geo Couple".localizedValue
         case .favorite:
@@ -85,7 +76,7 @@ class LocationView: NSView, NSTextFieldDelegate {
         }
 
         if let point = point {
-            return "\(point.latitude.cut(.two)), \(point.longitude.cut(.two))"
+            return "\(point.latitude.cut(.two)),\(point.longitude.cut(.two))"
         }
 
         return "Geo Couple".localizedValue
@@ -93,7 +84,7 @@ class LocationView: NSView, NSTextFieldDelegate {
 
     // MARK: - Properties
 
-    public var locationCard: LocationCardType = .current
+    public var locationType: LocationType = .current
 
     // MARK: - Outlets
 
@@ -126,7 +117,7 @@ class LocationView: NSView, NSTextFieldDelegate {
 
         log.message("[\(type(of: self))].\(#function) button tapped", .info)
 
-        guard locationCard == .current else {
+        guard locationType == .current else {
             let text = "Current Location should be selected".localizedValue
             log.message(text, .notice, .custom, .enduser)
             return
@@ -263,7 +254,7 @@ class LocationView: NSView, NSTextFieldDelegate {
 
         // Determine location card type
 
-        locationCard = AppOptions.favoriteLocationsOption.first(where: {
+        locationType = AppOptions.favoriteLocationsOption.first(where: {
             $0.isOnDisplay && $0.isCurrentLocation }) != nil ? .current : .favorite
 
         // Connect to Geo Coordinator
@@ -388,7 +379,7 @@ class LocationView: NSView, NSTextFieldDelegate {
     }
 
     private func reloadBookmarkButton() {
-        switch self.locationCard {
+        switch self.locationType {
         case .suggestion:
             buttonBookmark.image = NSImage(named: NSImage.Name("NSAddTemplate"))
         case .favorite:

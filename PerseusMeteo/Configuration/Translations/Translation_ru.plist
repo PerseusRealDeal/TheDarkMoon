@@ -117,7 +117,7 @@
 	<key>GeoAccess: .notAllowed</key>
 	<string>Запрещено</string>
 	<key>Geo Couple</key>
-	<string>Широта, Долгота</string>
+	<string>Широта,Долгота</string>
 	<key>Button: Update Geo Access</key>
 	<string>Обновить Геодоступ</string>
 	<key>Button: Refresh Current Location</key>

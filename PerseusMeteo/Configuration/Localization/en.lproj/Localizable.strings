@@ -93,7 +93,7 @@
 "GeoAccess: .allowed" = "Allowed";
 "GeoAccess: .notAllowed" = "Not allowed";
 
-"Geo Couple" = "Latitude, Longitude";
+"Geo Couple" = "Latitude,Longitude";
 
 "Button: Update Geo Access" = "Update Geo Access";
 "Button: Refresh Current Location" = "Update Current Location";

@@ -17,75 +17,76 @@ public class CurrentOpenMeteoParser: CurrentParserProtocol {
 
     // TODO: Implement Open-Meteo current weather parser protocol
 
-    public func getTimeZone(from dictionary: [String: Any]) -> Int? {
+    public func timeZone(from dictionary: [String: Any]) -> Int? {
         return nil
     }
 
-    public func getLastOne(from dictionary: [String: Any]) -> Int? {
+    public func responseTime(from dictionary: [String: Any]) -> Int? {
         return nil
     }
 
-    public func getWeatherDescription(from dictionary: [String: Any]) -> String? {
+    public func weatherDescription(from dictionary: [String: Any]) -> String? {
         return nil
     }
 
-    public func getWeatherIconName(from dictionary: [String: Any]) -> String? {
+    public func weatherIconName(from dictionary: [String: Any]) -> String? {
         return nil
     }
 
-    public func getWeatherConditions(from source: [String: Any]) -> WeatherConditions {
-        return MeteoFactsDefaults.weatherConditions
+    public func weatherConditions(from source: [String: Any]) -> WeatherConditions {
+        MeteoFactsDefaults.weatherConditions
     }
 
-    public func getTemperature(from dictionary: [String: Any]) -> String? {
+    public func temperature(from dictionary: [String: Any]) -> String? {
         return nil
     }
 
-    public func getTemperatureFeelsLike(from dictionary: [String: Any]) -> String? {
+    public func temperatureFeelsLike(from dictionary: [String: Any]) -> String? {
         return nil
     }
 
-    public func getTemperatureMinimum(from dictionary: [String: Any]) -> String? {
+    public func temperatureMinimum(from dictionary: [String: Any]) -> String? {
         return nil
     }
 
-    public func getTemperatureMaximum(from dictionary: [String: Any]) -> String? {
+    public func temperatureMaximum(from dictionary: [String: Any]) -> String? {
         return nil
     }
 
-    public func getWindSpeed(from dictionary: [String: Any]) -> String? {
+    public func windSpeed(from dictionary: [String: Any]) -> String? {
         return nil
     }
 
-    public func getWindGusts(from dictionary: [String: Any]) -> String? {
+    public func windGusts(from dictionary: [String: Any]) -> String? {
         return nil
     }
 
-    public func getWindDirection(from dictionary: [String: Any]) -> String? {
+    public func windDirection(from dictionary: [String: Any]) -> String? {
         return nil
     }
 
-    public func getPressure(from dictionary: [String: Any]) -> String? {
+    public func pressure(from dictionary: [String: Any]) -> String? {
         return nil
     }
 
-    public func getHumidity(from dictionary: [String: Any]) -> Int? {
+    public func humidity(from dictionary: [String: Any]) -> Int? {
         return nil
     }
 
-    public func getCloudiness(from dictionary: [String: Any]) -> Int? {
+    public func cloudiness(from dictionary: [String: Any]) -> Int? {
         return nil
     }
 
-    public func getVisibility(from dictionary: [String: Any]) -> Int? {
+    public func visibility(from dictionary: [String: Any]) -> Int? {
         return nil
     }
 
-    public func getSunrise(from dictionary: [String: Any]) -> Int? {
+    public func sunrise(from dictionary: [String: Any]) -> Int? {
         return nil
     }
 
-    public func getSunset(from dictionary: [String: Any]) -> Int? {
+    public func sunset(from dictionary: [String: Any]) -> Int? {
         return nil
     }
+
 }

@@ -17,6 +17,15 @@ import AppKit
 import CoreLocation
 
 extension String {
+    public func cut(length: Int = 27, ending: String = "...") -> String {
+        guard self.count > length else {
+            return self
+        }
+        return self.prefix(length) + ending
+    }
+}
+
+extension String {
 
     func capitalizingFirstLetter() -> String { // Generated with Google AI
         return prefix(1).uppercased() + dropFirst()
