@@ -147,3 +147,51 @@ public func sampleOpenMeteoForecastData() -> Data {
 
     return Data()
 }
+
+public func sampleOpenWeatherMapCurrentData() -> Data {
+
+    let opts: JSONSerialization.ReadingOptions = [.mutableContainers]
+
+    guard let jsonData = sampleOpenWeatherMapCurrent.data(using: .utf16) else {
+        log.message("\(#function): jsonData", .error, .standard)
+        return Data()
+    }
+
+    do {
+        let object = try JSONSerialization.jsonObject(with: jsonData, options: opts)
+        log.message("\(#function): serialized", .info, .standard)
+
+        let data = try JSONSerialization.data(withJSONObject: object)
+        log.message("\(#function):\n\(data.prettyPrinted ?? "")", .info, .standard)
+
+        return data
+    } catch let error as NSError {
+        log.message("\(#function): \(error.debugDescription)", .error, .standard)
+    }
+
+    return Data()
+}
+
+public func sampleOpenWeatherMapForecastData() -> Data {
+
+    let opts: JSONSerialization.ReadingOptions = [.mutableContainers]
+
+    guard let jsonData = sampleOpenWeatherMapForecast40.data(using: .utf16) else {
+        log.message("\(#function): jsonData", .error, .standard)
+        return Data()
+    }
+
+    do {
+        let object = try JSONSerialization.jsonObject(with: jsonData, options: opts)
+        log.message("\(#function): serialized", .info, .standard)
+
+        let data = try JSONSerialization.data(withJSONObject: object)
+        log.message("\(#function):\n\(data.prettyPrinted ?? "")", .info, .standard)
+
+        return data
+    } catch let error as NSError {
+        log.message("\(#function): \(error.debugDescription)", .error, .standard)
+    }
+
+    return Data()
+}

@@ -15,68 +15,6 @@
 // swiftlint:disable file_length
 //
 
-/* OpenWeatherMap API request example
-
-https://api.openweathermap.org/data/2.5/weather
-?lat=55.02
-&lon=82.92
-&appid=###
-&lang=ru
-&units=imperial
-
-*/
-
-/* OpenWeatherMap API response JSON example
-
-{
-  "base" : "stations",
-  "id" : 1496747,
-  "dt" : 1790432931,
-  "main" : {
-    "humidity" : 66,
-    "feels_like" : 46.090000000000003,
-    "temp_min" : 47.890000000000001,
-    "temp_max" : 47.890000000000001,
-    "temp" : 47.890000000000001,
-    "pressure" : 1025,
-    "sea_level" : 1025,
-    "grnd_level" : 1009
-  },
-  "coord" : {
-    "lon" : 82.920000000000002,
-    "lat" : 55.020000000000003
-  },
-  "wind" : {
-    "speed" : 4.4699999999999998,
-    "deg" : 300,
-    "gust" : 19.010000000000002
-  },
-  "sys" : {
-    "id" : 8958,
-    "country" : "RU",
-    "sunset" : 1790425151,
-    "type" : 1,
-    "sunrise" : 1790382024
-  },
-  "weather" : [
-    {
-      "id" : 804,
-      "main" : "Clouds",
-      "icon" : "04n",
-      "description" : "пасмурно"
-    }
-  ],
-  "visibility" : 10000,
-  "clouds" : {
-    "all" : 100
-  },
-  "timezone" : 25200,
-  "cod" : 200,
-  "name" : "Новосибирск"
-}
-
-*/
-
 import Foundation
 
 public class CurrentOpenWeatherParser: CurrentParserProtocol {

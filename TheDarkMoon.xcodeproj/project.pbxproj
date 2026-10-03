@@ -44,6 +44,8 @@
 		2ED6C7F82ECEDF50009EF57D /* OptionsViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED6C7F72ECEDF50009EF57D /* OptionsViewPresenter.swift */; };
 		2ED8FE1D2E40F36C00C65619 /* MessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED8FE1C2E40F36C00C65619 /* MessageLabel.swift */; };
 		2EDC74DA2EE30B0B00073C94 /* WebLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDC74D92EE30B0B00073C94 /* WebLabel.swift */; };
+		2EDEBCCB3070B529009A5E9D /* OpenWeatherCurrentSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDEBCCA3070B529009A5E9D /* OpenWeatherCurrentSample.swift */; };
+		2EDEBCCD3070C2A5009A5E9D /* OpenWeatherForecastSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDEBCCC3070C2A4009A5E9D /* OpenWeatherForecastSample.swift */; };
 		2EE4ED0E2F8F984B006D4D9C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE4ED0D2F8F984B006D4D9C /* Extensions.swift */; };
 		2EE7ABF13067718500BF64B0 /* ForecastOpenMeteoParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7ABF03067718500BF64B0 /* ForecastOpenMeteoParser.swift */; };
 		2EE7ABF330677D1000BF64B0 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE7ABF230677D1000BF64B0 /* Functions.swift */; };
@@ -180,6 +182,8 @@
 		2ED6C7F72ECEDF50009EF57D /* OptionsViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewPresenter.swift; sourceTree = "<group>"; };
 		2ED8FE1C2E40F36C00C65619 /* MessageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLabel.swift; sourceTree = "<group>"; };
 		2EDC74D92EE30B0B00073C94 /* WebLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebLabel.swift; sourceTree = "<group>"; };
+		2EDEBCCA3070B529009A5E9D /* OpenWeatherCurrentSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherCurrentSample.swift; sourceTree = "<group>"; };
+		2EDEBCCC3070C2A4009A5E9D /* OpenWeatherForecastSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherForecastSample.swift; sourceTree = "<group>"; };
 		2EE4ED0D2F8F984B006D4D9C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2EE7ABF03067718500BF64B0 /* ForecastOpenMeteoParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastOpenMeteoParser.swift; sourceTree = "<group>"; };
 		2EE7ABF230677D1000BF64B0 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
@@ -655,6 +659,8 @@
 			children = (
 				4B5F7D3E2B99099F00121946 /* CurrentOpenWeatherParser.swift */,
 				4BB204622B70F2FE007E0308 /* ForecastOpenWeatherParser.swift */,
+				2EDEBCCA3070B529009A5E9D /* OpenWeatherCurrentSample.swift */,
+				2EDEBCCC3070C2A4009A5E9D /* OpenWeatherForecastSample.swift */,
 			);
 			path = OpenWeatherParsers;
 			sourceTree = "<group>";
@@ -908,6 +914,7 @@
 				4B3384682B547609004682DF /* JsonDataPrettyPrintedGift.swift in Sources */,
 				4B1CA6A32B549358003F3EBF /* MeteoClientManager.swift in Sources */,
 				2EE7ABF330677D1000BF64B0 /* Functions.swift in Sources */,
+				2EDEBCCD3070C2A5009A5E9D /* OpenWeatherForecastSample.swift in Sources */,
 				4B5F7D3F2B99099F00121946 /* CurrentOpenWeatherParser.swift in Sources */,
 				4BB2045B2B7029FC007E0308 /* ForecastReader.swift in Sources */,
 				4BB2047C2B7936CB007E0308 /* ForecastHoursViewItem.swift in Sources */,
@@ -916,6 +923,7 @@
 				4B8426392B18810900C86E8A /* PerseusDefenderModels.swift in Sources */,
 				4B5F7D372B985C5D00121946 /* MeteoSourceReader.swift in Sources */,
 				2E05D20030491BE800D347B2 /* Lang.swift in Sources */,
+				2EDEBCCB3070B529009A5E9D /* OpenWeatherCurrentSample.swift in Sources */,
 				2EC294342ECDE1A200FC06F1 /* MVPPresenter.swift in Sources */,
 				2E9845882EDF11030079F726 /* ContentCoordinator.swift in Sources */,
 				2EE7ABF13067718500BF64B0 /* ForecastOpenMeteoParser.swift in Sources */,

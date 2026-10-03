@@ -24,6 +24,9 @@ let useSuggestionsResponseSample = false
 let useOpenMeteoCurrentSample = true
 let useOpenMeteoForecastSample = true
 
+let useOpenWeatherMapCurrentSample = true
+let useOpenWeatherMapForecastSample = true
+
 // MARK: - Keys
 
 // public let OPEN_WEATHER_API_KEY_OPTION_KEY = "OPEN_WEATHER_API_OPTION_KEY"

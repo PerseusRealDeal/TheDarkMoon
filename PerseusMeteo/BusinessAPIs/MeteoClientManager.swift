@@ -179,10 +179,10 @@ public class MeteoClientManager {
             return
         }
 
-        guard useOpenMeteoCurrentSample == false
+        guard useOpenWeatherMapCurrentSample == false
         else {
             ContentCoordinator.stopCurrentProgressIndicator()
-            handleCurrentOpenMeteo(response: .success(sampleOpenMeteoCurrentData()))
+            handleCurrentOpenWeather(response: .success(sampleOpenWeatherMapCurrentData()))
             return
         }
 
@@ -288,6 +288,13 @@ public class MeteoClientManager {
 
         guard isReadyToCallForecast else {
             log.message("[\(type(of: self))].\(#function) \(isReadyToCallForecast)", .notice)
+            return
+        }
+
+        guard useOpenWeatherMapForecastSample == false
+        else {
+            ContentCoordinator.stopForecastProgressIndicator()
+            handleForecastOpenWeather(response: .success(sampleOpenWeatherMapForecastData()))
             return
         }
 
