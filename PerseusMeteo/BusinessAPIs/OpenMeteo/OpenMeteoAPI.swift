@@ -78,7 +78,7 @@ snowfall,precipitation,precipitation_probability,is_day
 
 public func suggestionsOpenMeteo(json: Data) -> [Location]? {
 
-    log.message("Open-Meteo Suggestions:\n\(json.prettyPrinted ?? "")", .info, .custom)
+    log.message("Open-Meteo Suggestions:\n\(json.prettyPrinted ?? "")", .info, .standard)
 
     // return suggestionsSample()
 
