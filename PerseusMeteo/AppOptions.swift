@@ -17,9 +17,10 @@
 
 import Foundation
 
-// MARK: - The triggers for meteo data samples
+// MARK: - API Sample Usage
 
-let useSuggestionsResponseSample = false
+let useOpenMeteoSuggestionsSample = true
+let useOpenWeatherSuggestionsSample = true
 
 let useOpenMeteoCurrentSample = true
 let useOpenMeteoForecastSample = true

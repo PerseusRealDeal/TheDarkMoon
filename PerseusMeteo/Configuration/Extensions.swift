@@ -17,6 +17,34 @@ import AppKit
 import CoreLocation
 
 extension String {
+
+    public var jsonData: Data {
+
+        let opts: JSONSerialization.ReadingOptions = [.mutableContainers]
+
+        guard let jsonData = self.data(using: .utf16) else {
+            log.message("\(#function): jsonData", .error, .standard)
+            return Data()
+        }
+
+        do {
+            let object = try JSONSerialization.jsonObject(with: jsonData, options: opts)
+            log.message("\(#function): serialized", .info, .standard)
+
+            let data = try JSONSerialization.data(withJSONObject: object)
+            log.message("\(#function):\n\(data.prettyPrinted ?? "")", .info, .standard)
+
+            return data
+        } catch let error as NSError {
+            log.message("\(#function): \(error.debugDescription)", .error, .standard)
+        }
+
+        return Data()
+    }
+}
+
+extension String {
+
     public func cut(length: Int = 27, ending: String = "...") -> String {
         guard self.count > length else {
             return self

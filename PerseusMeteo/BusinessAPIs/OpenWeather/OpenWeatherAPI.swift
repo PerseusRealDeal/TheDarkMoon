@@ -103,35 +103,3 @@ public struct OpenWeatherAPI {
         return urlString
     }
 }
-
-public func suggestionsOpenWeather(json: Data) -> [Location]? {
-
-    log.message("OpenWeather Suggestions:\n\(json.prettyPrinted ?? "")", .info, .standard)
-
-    // return suggestionsSample()
-
-    let decoder = JSONDecoder()
-
-    guard
-        let loadedObjects = try? decoder.decode([OpenWeatherSuggestion].self, from: json)
-    else {
-        return nil
-    }
-
-    var suggestions = [Location]()
-
-    for item in loadedObjects {
-        var location = Location()
-
-        location.name = item.name
-        location.localNames = item.local_names
-        location.country = item.country
-        location.latitude = item.lat
-        location.longitude = item.lon
-        location.state = item.state
-
-        suggestions.append(location)
-    }
-
-    return suggestions
-}

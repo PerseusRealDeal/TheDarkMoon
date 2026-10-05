@@ -137,7 +137,7 @@ public class MeteoClientManager {
         guard useOpenMeteoCurrentSample == false
         else {
             ContentCoordinator.stopCurrentProgressIndicator()
-            handleCurrentOpenMeteo(response: .success(sampleOpenMeteoCurrentData()))
+            handleCurrentOpenMeteo(response: .success(sampleOpenMeteoCurrent.jsonData))
             return
         }
 
@@ -182,7 +182,7 @@ public class MeteoClientManager {
         guard useOpenWeatherMapCurrentSample == false
         else {
             ContentCoordinator.stopCurrentProgressIndicator()
-            handleCurrentOpenWeather(response: .success(sampleOpenWeatherMapCurrentData()))
+            handleCurrentOpenWeather(response: .success(sampleOpenWeatherMapCurrent.jsonData))
             return
         }
 
@@ -249,7 +249,7 @@ public class MeteoClientManager {
         guard useOpenMeteoForecastSample == false
         else {
             ContentCoordinator.stopForecastProgressIndicator()
-            handleForecastOpenMeteo(response: .success(sampleOpenMeteoForecastData()))
+            handleForecastOpenMeteo(response: .success(sampleOpenMeteoForecast.jsonData))
             return
         }
 
@@ -294,7 +294,9 @@ public class MeteoClientManager {
         guard useOpenWeatherMapForecastSample == false
         else {
             ContentCoordinator.stopForecastProgressIndicator()
-            handleForecastOpenWeather(response: .success(sampleOpenWeatherMapForecastData()))
+            handleForecastOpenWeather(response:
+                    .success(sampleOpenWeatherMapForecast40.jsonData)
+            )
             return
         }
 
@@ -363,11 +365,11 @@ public class MeteoClientManager {
             return
         }
 
-        guard useSuggestionsResponseSample == false
+        guard useOpenMeteoSuggestionsSample == false
         else {
             // Stop animation indicator
             ContentCoordinator.stopSuggestionsProgressIndicator()
-            refreshOpenMeteoSuggestionsCommand(Data())
+            handleOpenMeteoSuggestions(response: .success(sampleOpenMeteoSuggestions.jsonData))
             return
         }
 
@@ -425,11 +427,13 @@ public class MeteoClientManager {
             return
         }
 
-        guard useSuggestionsResponseSample == false
+        guard useOpenWeatherSuggestionsSample == false
         else {
             // Stop animation indicator
             ContentCoordinator.stopSuggestionsProgressIndicator()
-            refreshOpenWeatherSuggestionsCommand(Data())
+            handleOpenWeatherSuggestions(response:
+                    .success(sampleOpenWeatherMapSuggestions.jsonData)
+            )
             return
         }
 
@@ -799,6 +803,9 @@ public class MeteoClientManager {
                 return
             }
 
+            let logmsg = "Open-Meteo Suggestions:\n\(data.prettyPrinted ?? "")"
+            log.message(logmsg, .info, .standard)
+
             self.refreshOpenMeteoSuggestionsCommand(data)
         }
     }
@@ -863,6 +870,9 @@ public class MeteoClientManager {
                 return
             }
 
+            let logmsg = "OpenWeatherMap Suggestions:\n\(data.prettyPrinted ?? "")"
+            log.message(logmsg, .info, .standard)
+
             self.refreshOpenWeatherSuggestionsCommand(data)
         }
     }
@@ -903,16 +913,12 @@ public class MeteoClientManager {
 
     private func refreshOpenMeteoSuggestionsCommand(_ data: Data) {
 
+        log.message("[\(type(of: self))].\(#function)")
+        guard data.isEmpty == false else { return }
+
         DispatchQueue.main.async {
 
-            log.message("[\(type(of: self))].\(#function)")
-
-            let isSample = useSuggestionsResponseSample
-
-            guard data.isEmpty == false || isSample else { return }
-
-            let suggestions: [Location]? =
-            isSample ? sampleSuggestions() : suggestionsOpenMeteo(json: data)
+            let suggestions: [Location]? = suggestionsOpenMeteo(json: data)
 
             guard
                 let suggestions = suggestions,
@@ -945,16 +951,13 @@ public class MeteoClientManager {
 
     private func refreshOpenWeatherSuggestionsCommand(_ data: Data) {
 
+        log.message("[\(type(of: self))].\(#function)")
+
+        guard data.isEmpty == false else { return }
+
         DispatchQueue.main.async {
 
-            log.message("[\(type(of: self))].\(#function)")
-
-            let isSample = useSuggestionsResponseSample
-
-            guard data.isEmpty == false || isSample else { return }
-
-            let suggestions: [Location]? =
-            isSample ? sampleSuggestions() : suggestionsOpenWeather(json: data)
+            let suggestions: [Location]? = suggestionsOpenWeather(json: data)
 
             guard
                 let suggestions = suggestions,
