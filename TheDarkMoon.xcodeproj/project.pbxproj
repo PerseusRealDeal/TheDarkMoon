@@ -31,6 +31,7 @@
 		2E98E3213072217900672FF5 /* OpenWeatherSuggestionsSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E98E3203072217900672FF5 /* OpenWeatherSuggestionsSample.swift */; };
 		2EA5C3162F7BC3BA001D24F9 /* PerseusNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA5C3152F7BC3BA001D24F9 /* PerseusNetworkClient.swift */; };
 		2EA70338304B35AE0084D75B /* MeteoDataCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA70337304B35AE0084D75B /* MeteoDataCategory.swift */; };
+		2EB30B243078CDB7000916A3 /* OpenMeteoCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB30B233078CDB7000916A3 /* OpenMeteoCode.swift */; };
 		2EBB4CA42ED73C4F00C44504 /* SelfieWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB4CA02ED73C4F00C44504 /* SelfieWindowController.swift */; };
 		2EBB4CA52ED73C4F00C44504 /* SelfieWindowController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EBB4CA12ED73C4F00C44504 /* SelfieWindowController.storyboard */; };
 		2EBB4CA62ED73C4F00C44504 /* SelfieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBB4CA22ED73C4F00C44504 /* SelfieViewController.swift */; };
@@ -73,8 +74,8 @@
 		4B5921B32B5C339800D312B9 /* PopoverAppearanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5921B22B5C339800D312B9 /* PopoverAppearanceTests.swift */; };
 		4B5921BC2B5C38F000D312B9 /* OptionsAppearanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5921BB2B5C38F000D312B9 /* OptionsAppearanceTests.swift */; };
 		4B5921C12B5CCC4900D312B9 /* TranslationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5921C02B5CCC4900D312B9 /* TranslationTests.swift */; };
-		4B5D62342C418E2F0064EFB8 /* WeatherConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D62332C418E2F0064EFB8 /* WeatherConditions.swift */; };
-		4B5D62362C418E700064EFB8 /* WeatherCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D62352C418E700064EFB8 /* WeatherCode.swift */; };
+		4B5D62342C418E2F0064EFB8 /* OpenWeatherIconCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D62332C418E2F0064EFB8 /* OpenWeatherIconCode.swift */; };
+		4B5D62362C418E700064EFB8 /* OpenWeatherCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5D62352C418E700064EFB8 /* OpenWeatherCode.swift */; };
 		4B5F7D2F2B89243800121946 /* MeteoFactsDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F7D2E2B89243800121946 /* MeteoFactsDefaults.swift */; };
 		4B5F7D352B96394600121946 /* ForecastDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F7D342B96394600121946 /* ForecastDictionary.swift */; };
 		4B5F7D372B985C5D00121946 /* MeteoSourceReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F7D362B985C5D00121946 /* MeteoSourceReader.swift */; };
@@ -172,6 +173,7 @@
 		2E98E3203072217900672FF5 /* OpenWeatherSuggestionsSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherSuggestionsSample.swift; sourceTree = "<group>"; };
 		2EA5C3152F7BC3BA001D24F9 /* PerseusNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerseusNetworkClient.swift; sourceTree = "<group>"; };
 		2EA70337304B35AE0084D75B /* MeteoDataCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoDataCategory.swift; sourceTree = "<group>"; };
+		2EB30B233078CDB7000916A3 /* OpenMeteoCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMeteoCode.swift; sourceTree = "<group>"; };
 		2EBB4CA02ED73C4F00C44504 /* SelfieWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfieWindowController.swift; sourceTree = "<group>"; };
 		2EBB4CA12ED73C4F00C44504 /* SelfieWindowController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SelfieWindowController.storyboard; sourceTree = "<group>"; };
 		2EBB4CA22ED73C4F00C44504 /* SelfieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfieViewController.swift; sourceTree = "<group>"; };
@@ -219,8 +221,8 @@
 		4B5921B22B5C339800D312B9 /* PopoverAppearanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverAppearanceTests.swift; sourceTree = "<group>"; };
 		4B5921BB2B5C38F000D312B9 /* OptionsAppearanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsAppearanceTests.swift; sourceTree = "<group>"; };
 		4B5921C02B5CCC4900D312B9 /* TranslationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationTests.swift; sourceTree = "<group>"; };
-		4B5D62332C418E2F0064EFB8 /* WeatherConditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConditions.swift; sourceTree = "<group>"; };
-		4B5D62352C418E700064EFB8 /* WeatherCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCode.swift; sourceTree = "<group>"; };
+		4B5D62332C418E2F0064EFB8 /* OpenWeatherIconCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherIconCode.swift; sourceTree = "<group>"; };
+		4B5D62352C418E700064EFB8 /* OpenWeatherCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherCode.swift; sourceTree = "<group>"; };
 		4B5F7D2E2B89243800121946 /* MeteoFactsDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoFactsDefaults.swift; sourceTree = "<group>"; };
 		4B5F7D342B96394600121946 /* ForecastDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDictionary.swift; sourceTree = "<group>"; };
 		4B5F7D362B985C5D00121946 /* MeteoSourceReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteoSourceReader.swift; sourceTree = "<group>"; };
@@ -326,8 +328,8 @@
 			children = (
 				2E1083D32E2B65F400400180 /* OpenWeatherAPI.swift */,
 				2E05D205304925E700D347B2 /* OpenWeatherSuggestion.swift */,
-				4B5D62352C418E700064EFB8 /* WeatherCode.swift */,
-				4B5D62332C418E2F0064EFB8 /* WeatherConditions.swift */,
+				4B5D62352C418E700064EFB8 /* OpenWeatherCode.swift */,
+				4B5D62332C418E2F0064EFB8 /* OpenWeatherIconCode.swift */,
 				4B84263B2B19CE2600C86E8A /* OpenWeatherModels.swift */,
 			);
 			path = OpenWeather;
@@ -438,6 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				2E05D1FC304917CB00D347B2 /* OpenMeteoAPI.swift */,
+				2EB30B233078CDB7000916A3 /* OpenMeteoCode.swift */,
 			);
 			path = OpenMeteo;
 			sourceTree = "<group>";
@@ -899,7 +902,7 @@
 				2E98E31F30721E4400672FF5 /* OpenMeteoSuggestionsSample.swift in Sources */,
 				2E2020132E8BD93E00D8D496 /* Location.swift in Sources */,
 				4BEF7A442C2D377A0028C6EA /* DaysOfTheWeekLocalized.swift in Sources */,
-				4B5D62342C418E2F0064EFB8 /* WeatherConditions.swift in Sources */,
+				4B5D62342C418E2F0064EFB8 /* OpenWeatherIconCode.swift in Sources */,
 				2E1083D82E2B739000400180 /* TheGeoStar.swift in Sources */,
 				2E05D1FD304917CB00D347B2 /* OpenMeteoAPI.swift in Sources */,
 				4BA719872AF0D5E10074F7CD /* StatusMenusPresenter.swift in Sources */,
@@ -929,7 +932,7 @@
 				2EE8EAD73061BAB500905278 /* CommonFunctions.swift in Sources */,
 				2EBB4CA72ED73C4F00C44504 /* SelfieViewPresenter.swift in Sources */,
 				4BB204632B70F2FE007E0308 /* ForecastOpenWeatherParser.swift in Sources */,
-				4B5D62362C418E700064EFB8 /* WeatherCode.swift in Sources */,
+				4B5D62362C418E700064EFB8 /* OpenWeatherCode.swift in Sources */,
 				4B3384682B547609004682DF /* JsonDataPrettyPrintedGift.swift in Sources */,
 				4B1CA6A32B549358003F3EBF /* MeteoClientManager.swift in Sources */,
 				2EE7ABF330677D1000BF64B0 /* Functions.swift in Sources */,
@@ -955,6 +958,7 @@
 				4B993DC92B380FDD008C1FE7 /* WeatherView.swift in Sources */,
 				2EBB4CA62ED73C4F00C44504 /* SelfieViewController.swift in Sources */,
 				2EE4ED0E2F8F984B006D4D9C /* Extensions.swift in Sources */,
+				2EB30B243078CDB7000916A3 /* OpenMeteoCode.swift in Sources */,
 				4B8426362B13523600C86E8A /* PerseusDataDefender.swift in Sources */,
 				2EC294362ECDE1B400FC06F1 /* MVPViewDelegate.swift in Sources */,
 				4BB204742B7805DF007E0308 /* ForecastHour.swift in Sources */,

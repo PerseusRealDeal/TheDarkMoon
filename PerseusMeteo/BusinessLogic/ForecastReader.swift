@@ -32,7 +32,7 @@ public class ForecastReader: MeteoSourceReader {
         guard let meteoDictionary = self.meteoDictionary as? ForecastDictionary
         else { return }
 
-        meteoDictionary.lastOne = dt
+        meteoDictionary.responseTime = dt
     }
 
     // MARK: - Properties
@@ -48,14 +48,14 @@ public class ForecastReader: MeteoSourceReader {
         return "\(providerTitle)"
     }
 
-    public var lastOne: String { // Last time API request response.
+    public var responseTime: String { // Last time API request response.
 
         guard
             let meteoDictionary = self.meteoDictionary as? ForecastDictionary,
-            let value = meteoDictionary.lastOne,
+            let value = meteoDictionary.responseTime,
             let timezone = meteoDictionary.timezone
         else {
-            return MeteoFactsDefaults.lastOne
+            return MeteoFactsDefaults.responseTimeLabelText
         }
 
         let lastOne = representLastOneCalculationTime(value,
@@ -66,7 +66,7 @@ public class ForecastReader: MeteoSourceReader {
 
         let day = lastOne.day == nil ? "" : "\(lastOne.day ?? "")\(postfixYear) "
 
-        return "\(prefix): \(day)\(lastOne.time ?? MeteoFactsDefaults.lastOne)"
+        return "\(prefix): \(day)\(lastOne.time ?? MeteoFactsDefaults.responseTimeLabelText)"
     }
 
     public var forecastDays: [ForecastDay] {

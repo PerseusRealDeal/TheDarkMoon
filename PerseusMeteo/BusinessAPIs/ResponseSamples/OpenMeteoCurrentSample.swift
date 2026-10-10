@@ -29,12 +29,12 @@ howers,rain,snowfall,precipitation,precipitation_probability,is_day
 
 let sampleOpenMeteoCurrent = """
 {
-  "generationtime_ms" : 0.22208690643310547,
+  "generationtime_ms" : 1.5184879302978516,
   "longitude" : 83.00797,
   "utc_offset_seconds" : 0,
   "elevation" : 129,
   "current_units" : {
-    "is_day" : "",
+    "rain" : "mm",
     "wind_direction_10m" : "°",
     "wind_speed_10m" : "m/s",
     "apparent_temperature" : "°F",
@@ -43,7 +43,7 @@ let sampleOpenMeteoCurrent = """
     "interval" : "seconds",
     "snowfall" : "cm",
     "time" : "iso8601",
-    "pressure_msl" : "hPa",
+    "is_day" : "",
     "relative_humidity_2m" : "%",
     "precipitation" : "mm",
     "weather_code" : "wmo code",
@@ -51,49 +51,57 @@ let sampleOpenMeteoCurrent = """
     "visibility" : "m",
     "cloud_cover" : "%",
     "precipitation_probability" : "%",
-    "rain" : "mm"
+    "pressure_msl" : "hPa"
   },
   "timezone" : "GMT",
   "latitude" : 55.008785000000003,
   "timezone_abbreviation" : "GMT",
   "current" : {
-    "is_day" : 1,
-    "wind_direction_10m" : 86,
-    "wind_speed_10m" : 2.3500000000000001,
-    "apparent_temperature" : 41.799999999999997,
-    "temperature_2m" : 47,
+    "rain" : 0,
+    "wind_direction_10m" : 182,
+    "wind_speed_10m" : 3.25,
+    "apparent_temperature" : 40,
+    "temperature_2m" : 46.700000000000003,
     "showers" : 0,
     "interval" : 900,
     "snowfall" : 0,
-    "time" : "2026-10-02T03:45",
-    "pressure_msl" : 1018.5,
-    "relative_humidity_2m" : 68,
+    "time" : "2026-10-12T07:45",
+    "is_day" : 1,
+    "relative_humidity_2m" : 60,
     "precipitation" : 0,
     "weather_code" : 3,
-    "wind_gusts_10m" : 6.4000000000000004,
-    "visibility" : 60360,
+    "wind_gusts_10m" : 7.5999999999999996,
+    "visibility" : 64620,
     "cloud_cover" : 100,
     "precipitation_probability" : 0,
-    "rain" : 0
+    "pressure_msl" : 1020.8
   },
   "daily_units" : {
+    "temperature_2m_max" : "°F",
     "sunset" : "iso8601",
     "precipitation_probability_max" : "%",
+    "temperature_2m_min" : "°F",
     "time" : "iso8601",
     "sunrise" : "iso8601"
   },
   "daily" : {
+    "temperature_2m_max" : [
+      47.700000000000003
+    ],
     "sunset" : [
-      "2026-10-02T12:01"
+      "2026-10-12T11:37"
     ],
     "precipitation_probability_max" : [
-      13
+      76
+    ],
+    "temperature_2m_min" : [
+      33.899999999999999
     ],
     "time" : [
-      "2026-10-02"
+      "2026-10-12"
     ],
     "sunrise" : [
-      "2026-10-02T00:31"
+      "2026-10-12T00:50"
     ]
   }
 }

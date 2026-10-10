@@ -1,5 +1,5 @@
 //
-//  WeatherConditions.swift
+//  OpenWeatherIconCode.swift
 //  PerseusMeteo
 //
 //  Created by Mikhail Zhigulin in 7532.
@@ -15,12 +15,12 @@
 
 import Foundation
 
-public struct WeatherConditions: CustomStringConvertible {
+public struct OpenWeatherIconCode: CustomStringConvertible {
 
-    public let code: WeatherCode
+    public let code: OpenWeatherCode
     public let icon: String
 
-    init(code: WeatherCode, name: String) {
+    init(code: OpenWeatherCode, name: String) {
         self.code = code
         self.icon = name
     }
@@ -46,7 +46,7 @@ public struct WeatherConditions: CustomStringConvertible {
         case "50d", "50n":
             return "Main: mist".localizedValue
         default:
-            return MeteoFactsDefaults.conditions
+            return MeteoFactsDefaults.weatherDescription
         }
     }
 

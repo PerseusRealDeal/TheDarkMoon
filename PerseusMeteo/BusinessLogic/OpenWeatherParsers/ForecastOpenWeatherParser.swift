@@ -687,22 +687,22 @@ public func getPrecipitation(from source: [String: Any]) -> (Double, String, Dou
    ]
 */
 
-public func getWeatherConditions(from source: [String: Any]) -> WeatherConditions {
+public func getWeatherConditions(from source: [String: Any]) -> OpenWeatherIconCode {
 
     if source.isEmpty { // Templated result for empty value.
         return MeteoFactsDefaults.weatherConditions
     }
 
-    var value: WeatherConditions?
+    var value: OpenWeatherIconCode?
 
     if let weather = source["weather"] as? [Any] {
         if let wFirst = weather.first as? [String: Any] {
             if
                 let id = wFirst["id"] as? Int,
                 let icon = wFirst["icon"] as? String,
-                let code = WeatherCode(rawValue: id) {
+                let code = OpenWeatherCode(rawValue: id) {
 
-                value = WeatherConditions(code: code, name: icon)
+                value = OpenWeatherIconCode(code: code, name: icon)
 
             } else {
                 log.message("\(#function) [id / icon] mistaken", .error)

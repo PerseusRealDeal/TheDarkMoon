@@ -22,6 +22,7 @@ public let schemeDirectGeoCodingOpenWeather = "http://api.openweathermap.org/geo
 public let attributesDirectGeoCodingOpenWeather = "direct?q=%@&limit=%@&appid=%@"
 
 public enum Units: String, CustomStringConvertible {
+
     case standard // Default: Kelvin
     case metric
     case imperial

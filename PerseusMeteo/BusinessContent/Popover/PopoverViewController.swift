@@ -598,10 +598,10 @@ extension PopoverViewController: PopoverViewDelegate {
 
         if controlCallRequest.selectedSegment == 0 {
             buttonFetchMeteoFacts.title = "Button: Call Weather".localizedValue
-            labelMadeWithLove.stringValue = AppGlobals.currentReader.lastOne
+            labelMadeWithLove.stringValue = AppGlobals.currentReader.responseTime
         } else {
             buttonFetchMeteoFacts.title = "Button: Call Forecast".localizedValue
-            labelMadeWithLove.stringValue = AppGlobals.forecastReader.lastOne
+            labelMadeWithLove.stringValue = AppGlobals.forecastReader.responseTime
         }
     }
 }

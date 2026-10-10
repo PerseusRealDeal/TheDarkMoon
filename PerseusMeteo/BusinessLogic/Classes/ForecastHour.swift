@@ -110,7 +110,7 @@ public struct ForecastHour {
 
     // MARK: - Weather conditions
 
-    public var weatherConditions: WeatherConditions {
+    public var weatherConditions: OpenWeatherIconCode {
         return getWeatherConditions(from: source)
     }
 

@@ -12,8 +12,6 @@
 //
 //  See LICENSE for details. All rights reserved.
 //
-// swiftlint:disable file_length
-//
 
 import Foundation
 
@@ -40,14 +38,14 @@ public class CurrentReader: MeteoSourceReader {
         return "\(providerTitle)"
     }
 
-    public var lastOne: String { // API request response last time.
+    public var responseTime: String { // API response last time.
 
         guard
             let meteoDictionary = self.meteoDictionary as? CurrentDictionary,
-            let value = meteoDictionary.lastOne,
+            let value = meteoDictionary.responseTime,
             let timezone = meteoDictionary.timezone
         else {
-            return MeteoFactsDefaults.lastOne
+            return MeteoFactsDefaults.responseTimeLabelText
         }
 
         let lastOne = representLastOneCalculationTime(value,
@@ -58,7 +56,7 @@ public class CurrentReader: MeteoSourceReader {
 
         let day = lastOne.day == nil ? "" : "\(lastOne.day ?? "")\(postfixYear) "
 
-        return "\(prefix): \(day)\(lastOne.time ?? MeteoFactsDefaults.lastOne)"
+        return "\(prefix): \(day)\(lastOne.time ?? MeteoFactsDefaults.responseTimeLabelText)"
     }
 
     public var weatherIconName: String {
@@ -70,7 +68,7 @@ public class CurrentReader: MeteoSourceReader {
             return MeteoFactsDefaults.weatherIconName
         }
 
-        log.message(#function + " \(value)")
+        log.message(#function + " \(value)", .info, .standard)
 
         return value
     }
@@ -79,22 +77,12 @@ public class CurrentReader: MeteoSourceReader {
 
         guard
             let meteoDictionary = self.meteoDictionary as? CurrentDictionary,
-            let value = meteoDictionary.weatherDescription
+            let weatherDescription = meteoDictionary.weatherDescription
         else {
-            return MeteoFactsDefaults.forecastDaysItemWeatherDescription
+            return MeteoFactsDefaults.weatherDescription
         }
 
-        return "Prefix: Curren Weather in Brief".localizedValue + ": \(value)"
-    }
-
-    public var weatherConditions: WeatherConditions {
-
-        guard let meteoDictionary = self.meteoDictionary as? CurrentDictionary
-        else {
-            return MeteoFactsDefaults.weatherConditions
-        }
-
-        return meteoDictionary.weatherConditions
+        return weatherDescription
     }
 
     public var temperature: String {

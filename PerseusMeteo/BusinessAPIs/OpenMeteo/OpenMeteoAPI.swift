@@ -19,7 +19,8 @@ public let schemeOpenMeteo = "https://api.open-meteo.com/v1/"
 public let attributesOpenMeteo =
 "forecast?latitude=%@&longitude=%@&temperature_unit=%@&forecast_days=%@"
 public let paramsOpenMeteo =
-"&daily=sunrise,sunset,precipitation_probability_max&wind_speed_unit=ms"
+"&daily=sunrise,sunset,precipitation_probability_max,temperature_2m_min,temperature_2m_max" +
+"&wind_speed_unit=ms"
 
 public let schemeDirectGeoCodingOpenMeteo = "https://geocoding-api.open-meteo.com/v1/"
 public let attributesDirectGeoCodingOpenMeteo = "search?name=%@&count=%@&language=%@&format=%@"
