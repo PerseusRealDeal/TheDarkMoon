@@ -17,7 +17,7 @@ import Foundation
 
 public struct MeteoFactsDefaults {
 
-    public static var lastOne: String {
+    public static var responseTimeLabelText: String {
         return "Label: Made with Love".localizedValue
     }
 
@@ -77,7 +77,7 @@ public struct MeteoFactsDefaults {
         return template
     }
 
-    public static var conditions: String {
+    public static var weatherDescription: String {
         return "Label: Weather Conditions".localizedValue
     }
 
@@ -89,8 +89,8 @@ public struct MeteoFactsDefaults {
         return "Label: Forecast Date".localizedValue
     }
 
-    public static var weatherConditions: WeatherConditions {
-        return WeatherConditions(code: WeatherCode(rawValue: 99)!, name: "Icon")
+    public static var weatherConditions: OpenWeatherIconCode {
+        return OpenWeatherIconCode(code: OpenWeatherCode(rawValue: 99)!, name: "Icon")
     }
 
     // MARK: - Private Properties

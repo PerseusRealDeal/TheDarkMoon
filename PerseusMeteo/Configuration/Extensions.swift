@@ -18,6 +18,25 @@ import CoreLocation
 
 extension String {
 
+    public var iso8601Date: Date? {
+
+        let formatter = ISO8601DateFormatter()
+
+        formatter.formatOptions =
+        [
+            .withInternetDateTime,
+            .withDashSeparatorInDate,
+            .withColonSeparatorInTime
+        ]
+
+        let date = formatter.date(from: self)
+
+        return date
+    }
+}
+
+extension String {
+
     public var jsonData: Data {
 
         let opts: JSONSerialization.ReadingOptions = [.mutableContainers]
@@ -29,10 +48,10 @@ extension String {
 
         do {
             let object = try JSONSerialization.jsonObject(with: jsonData, options: opts)
-            log.message("\(#function): serialized", .info, .standard)
+            // log.message("\(#function): serialized", .info, .standard)
 
             let data = try JSONSerialization.data(withJSONObject: object)
-            log.message("\(#function):\n\(data.prettyPrinted ?? "")", .info, .standard)
+            // log.message("\(#function):\n\(data.prettyPrinted ?? "")", .info, .standard)
 
             return data
         } catch let error as NSError {
@@ -78,10 +97,12 @@ extension GeoPoint {
 
 extension String {
 
-    // swiftlint:disable:next cyclomatic_complexity
-    func toAppleIconName(isLight: Bool = true) -> String {
+    // swiftlint:disable:next cyclomatic_complexity function_body_length
+    public func toAppleIconName(isLight: Bool = true) -> String {
 
         var iconName = self
+
+        // From OpenWeatherMap
 
         if self.hasPrefix("OW_") {
 
@@ -127,6 +148,50 @@ extension String {
             default:
                 break
             }
+        }
+
+        // From OpenMeteo
+
+        switch iconName {
+
+        case "99d", "96d", "95d":
+            return isLight ? "moon.fill" : "moon.dark"
+        case "99n", "96n", "95n":
+            return isLight ? "moon.fill" : "moon.dark"
+
+        case "86d", "85d", "82d", "81d", "80d":
+            return isLight ? "moon.fill" : "moon.dark"
+        case "86n", "85n", "82n", "81n", "80n":
+            return isLight ? "moon.fill" : "moon.dark"
+
+        case "77d", "75d", "73d", "71d":
+            return isLight ? "moon.fill" : "moon.dark"
+        case "77n", "75n", "73n", "71n":
+            return isLight ? "moon.fill" : "moon.dark"
+
+        case "67d", "66d", "65d", "63d", "61d":
+            return isLight ? "moon.fill" : "moon.dark"
+        case "67n", "66n", "65n", "63n", "61n":
+            return isLight ? "moon.fill" : "moon.dark"
+
+        case "57d", "56d", "55d", "53d", "51d":
+            return isLight ? "moon.fill" : "moon.dark"
+        case "57n", "56n", "55n", "53n", "51n":
+            return isLight ? "moon.fill" : "moon.dark"
+
+        case "48d", "45d":
+            return isLight ? "moon.fill" : "moon.dark"
+        case "48n", "45n":
+            return isLight ? "moon.fill" : "moon.dark"
+
+        case "3d", "2d", "1d", "0d":
+            return isLight ? "moon.fill" : "moon.dark"
+        case "3n", "2n", "1n", "0n":
+            return isLight ? "moon.fill" : "moon.dark"
+
+        default:
+            // return isLight ? "sun.max.fill" : "sun.max.dark"
+            break
         }
 
         return iconName

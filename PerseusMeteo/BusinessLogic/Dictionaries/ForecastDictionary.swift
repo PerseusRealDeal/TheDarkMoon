@@ -21,7 +21,7 @@ public class ForecastDictionary: MeteoDataDictionary {
 
     // MARK: - Properties
 
-    public var lastOne: Int?
+    public var responseTime: Int?
 
     public var timezone: Int? {
 
@@ -40,6 +40,6 @@ public class ForecastDictionary: MeteoDataDictionary {
     // MARK: - Reset properties
 
     public func clear() {
-        lastOne = nil
+        responseTime = nil
     }
 }

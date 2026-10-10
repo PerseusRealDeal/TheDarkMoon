@@ -19,14 +19,14 @@ import Foundation
 
 // MARK: - API Sample Usage
 
-let useOpenMeteoSuggestionsSample = true
-let useOpenWeatherSuggestionsSample = true
+let useOpenMeteoSuggestionsSample = false
+let useOpenWeatherSuggestionsSample = false
 
 let useOpenMeteoCurrentSample = true
-let useOpenMeteoForecastSample = true
+let useOpenMeteoForecastSample = false
 
-let useOpenWeatherMapCurrentSample = true
-let useOpenWeatherMapForecastSample = true
+let useOpenWeatherMapCurrentSample = false
+let useOpenWeatherMapForecastSample = false
 
 // MARK: - Keys
 

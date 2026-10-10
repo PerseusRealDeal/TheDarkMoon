@@ -126,10 +126,12 @@ class WeatherView: NSView {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        // Temperature, Weather Icon, and Short desc
+        // Temperature, Weather Description, and Icon
 
         let temperature = dataSource.temperature
-        let wcs = dataSource.weatherConditions
+        let weatherDesc = dataSource.weatherDescription.capitalizingFirstLetter()
+
+        // let wcs = dataSource.weatherConditions
 
         let imageName = dataSource.weatherIconName.toAppleIconName(
             isLight: DarkModeAgent.shared.style == .light)
@@ -150,7 +152,7 @@ class WeatherView: NSView {
         */
 
         labelTemperatureValue.stringValue = temperature
-        labelWeatherConditionsDescriptionValue.stringValue = "\(wcs)".capitalizingFirstLetter()
+        labelWeatherConditionsDescriptionValue.stringValue = weatherDesc
 
         // Sunrise and sunset
 

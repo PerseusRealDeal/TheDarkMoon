@@ -54,6 +54,7 @@ Meteo Terms mapping
 | ------------- | --------------- | ------------------------- |
 | Temperature   | Temperature     | Temperature (2 m)         |
 | Kinda         | Feels Like      | Apparent Temperature      |
+| Visibility    | Visibility      | Visibility                |
 | L             | Temperature Min | Minimum Temperature (2 m) |
 | H             | Temperature Max | Maximum Temperature (2 m) |
 | Wind          | Wind Speed      | Wind Speed (10 m)         |

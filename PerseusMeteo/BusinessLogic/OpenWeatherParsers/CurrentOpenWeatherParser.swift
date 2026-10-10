@@ -44,16 +44,20 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
 
         if let weather = dictionary["weather"] as? [Any] {
             if let wFirst = weather.first as? [String: Any] {
+                if
+                    let id = getInstance("id", Int.self, wFirst),
+                    let code = OpenWeatherCode(rawValue: id) {
 
-                // Current Weather Conditions
+                    return code.description
 
-                return getInstance("description", String.self, wFirst)
-
+                } else {
+                    log.message("\(#function) [id] mistaken", .error)
+                }
             } else {
-                log.message("[\(type(of: self))].\(#function) weather.first mistaken", .error)
+                log.message("\(#function) weather.first wrong", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) \"weather\" mistaken", .error)
+            log.message("\(#function) \"weather\" mistaken", .error)
         }
 
         return nil
@@ -227,7 +231,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
 
         return getInstance("sunset", Int.self, sys)
     }
-
+/*
     public func weatherConditions(from source: [String: Any]) -> WeatherConditions {
 
         var value: WeatherConditions?
@@ -255,6 +259,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
 
         return conditions
     }
+*/
 }
 
 /*

@@ -21,7 +21,7 @@ public class CurrentDictionary: MeteoDataDictionary {
 
     // MARK: - Properties
 
-    public var lastOne: Int? {
+    public var responseTime: Int? {
 
         guard let cach = data else { return nil }
 
@@ -143,14 +143,5 @@ public class CurrentDictionary: MeteoDataDictionary {
         guard let cach = data else { return nil }
 
         return parser?.sunset(from: cach)
-    }
-
-    public var weatherConditions: WeatherConditions {
-
-        if let cach = data, let parser = parser {
-            return parser.weatherConditions(from: cach)
-        }
-
-        return MeteoFactsDefaults.weatherConditions
     }
 }

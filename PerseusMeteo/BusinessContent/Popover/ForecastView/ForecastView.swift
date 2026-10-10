@@ -226,7 +226,7 @@ class ForecastView: NSView {
 
     private func reloadHoursCollection(selectionSaved: Bool) {
 
-        labelWeatherDescription.stringValue = MeteoFactsDefaults.conditions
+        labelWeatherDescription.stringValue = MeteoFactsDefaults.weatherDescription
 
         guard viewForecastDays.selectionIndexPaths.first != nil else {
 
@@ -410,7 +410,7 @@ extension ForecastView: NSCollectionViewDelegate {
                 labelWeatherDescription.stringValue =
                 "\(details.weatherConditions)".capitalizingFirstLetter()
             } else {
-                labelWeatherDescription.stringValue = MeteoFactsDefaults.conditions
+                labelWeatherDescription.stringValue = MeteoFactsDefaults.weatherDescription
             }
 
             viewMeteoGroup.data = hourDetails?.prepareMeteoGroupData()
