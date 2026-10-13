@@ -133,7 +133,7 @@ class WeatherView: NSView {
 
         // let wcs = dataSource.weatherConditions
 
-        let imageName = dataSource.weatherIconName.toAppleIconName(
+        let imageName = dataSource.weatherIconName.symbolName(
             isLight: DarkModeAgent.shared.style == .light)
 
         viewWeatherConditionsIcon.image = NSImage(named: imageName)
@@ -218,7 +218,7 @@ extension WeatherView {
 
         let isDarkModeInLight = DarkModeAgent.shared.style == .light
 
-        let imageName = dataSource.weatherIconName.toAppleIconName(isLight: isDarkModeInLight)
+        let imageName = dataSource.weatherIconName.symbolName(isLight: isDarkModeInLight)
         let sunriseIconName = isDarkModeInLight ? "sunrise.fill" : "sunrise.dark"
         let sunsetIconName = isDarkModeInLight ? "sunset.fill" : "sunset.dark"
 

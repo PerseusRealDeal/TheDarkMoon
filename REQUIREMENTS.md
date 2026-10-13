@@ -19,9 +19,9 @@ Contents
 * [Options](#Options)
 * [Special Features](#Special-Features)
     * [Favorites](#Favorites)
-* [Data Mappings](#Data-Mappings)
-    * [OpenWeather Icons](#OpenWeather-Icons)
-    * [Open-Meteo Icons](#Open-Meteo-Icons)
+* [Weather Icons Mappings](#Weather-Icons-Mappings)
+    * [OpenWeather and SF Symbols](#OpenWeather-and-SF-Symbols)
+    * [Open-Meteo and SF Symbols](#Open-Meteo-and-SF-Symbols)
 
 Idea History
 ==
@@ -276,63 +276,68 @@ Favorites
 
 - The list of favorite places should have "Current Location" item as the first item that can't be removed.
 
-Data Mappings
+Weather Icons Mappings
 ==
 
-- The app should rely on Apple weather icons to represent weather condition.
-- If Dark Mode in Light, Apple icons should have postfix .fill, "sun.max.fill" for instance.
+- The app should rely on Apple weather icons, SF Symbols, to represent weather condition.
+- Filled SF Symbol should be used in Light, but filled always in StatusMenus.
+- Black SF Symbol should be used in Light, and white in Dark.
 
-OpenWeather Icons
+In this mapping SF Symbol name in use without indicating fill and color.
+
+[Online SF Symbols browser](https://github.com/andrewtavis/sf-symbols-online)
+
+OpenWeather and SF Symbols
 --
 
 > [!NOTE]
 > OpenWeather API: [weather conditions](https://openweathermap.org/api/weather-conditions)
 
-| OpenWeather Icon | Description      | Apple Icon Day  | Apple Icon Night |
-| ---------------- | ---------------- | --------------- | ---------------- |
-| 01d or 01n       | Clear sky        | sun.max         | moon             |
-| 02d or 02n       | Few clouds       | cloud.sun       | cloud.moon       |
-| 03d or 03n       | Scattered clouds | cloud           | cloud            |
-| 04d or 04n       | Broken clouds    | cloud           | cloud            |
-| 09d or 09n       | Shower rain      | cloud.heavyrain | cloud.heavyrain  |
-| 10d or 10n       | Rain             | cloud.sun.rain  | cloud.moon.rain  |
-| 11d or 11n       | Thunderstorm     | cloud.sun.bolt  | cloud.moon.bolt  |
-| 13d or 13n       | Snow             | snow            | snow             |
-| 50d or 50n       | Mist             | cloud.fog       | cloud.fog        |
+| OpenWeather Icon | Description      | SF Symbol for Day | SF Symbol for Night |
+| ---------------- | ---------------- | ----------------- | ------------------- |
+| 01d or 01n       | Clear sky        | sun.max           | moon                |
+| 02d or 02n       | Few clouds       | cloud.sun         | cloud.moon          |
+| 03d or 03n       | Scattered clouds | cloud             | cloud               |
+| 04d or 04n       | Broken clouds    | cloud             | cloud               |
+| 09d or 09n       | Shower rain      | cloud.heavyrain   | cloud.heavyrain     |
+| 10d or 10n       | Rain             | cloud.sun.rain    | cloud.moon.rain     |
+| 11d or 11n       | Thunderstorm     | cloud.sun.bolt    | cloud.moon.bolt     |
+| 13d or 13n       | Snow             | snow              | snow                |
+| 50d or 50n       | Mist             | cloud.fog         | cloud.fog           |
 
-Open-Meteo Icons
+Open-Meteo and SF Symbols
 --
 
 > [!NOTE]
 > Open-Meteo API: [WMO Weather interpretation codes](https://open-meteo.com/en/docs) at the end of page.
 
-| Open-Meteo Code | WMO Description                   | Apple Icon Day  | Apple Icon Night |
-| --------------- | --------------------------------- | --------------- | ---------------- |
-| 99              | Thunderstorm: heavy hail          | cloud.bolt.rain | cloud.bolt.rain  |
-| 96              | Thunderstorm: slight hail         | cloud.bolt.rain | cloud.bolt.rain  |
-| 95              | Thunderstorm: slight or moderate  | cloud.sun.bolt  | cloud.moon.bolt  |
-| 86              | Snow showers: heavy               | cloud.sleet     | cloud.sleet      |
-| 85              | Snow showers: slight              | cloud.sleet     | cloud.sleet      |
-| 82              | Rain showers: violent             | cloud.heavyrain | cloud.heavyrain  |
-| 81              | Rain showers: moderate            | cloud.heavyrain | cloud.heavyrain  |
-| 80              | Rain showers: slight              | cloud.heavyrain | cloud.heavyrain  |
-| 77              | Snow grains                       | cloud.snow      | cloud.snow       |
-| 75              | Snow fall: heavy intensity        | cloud.snow      | cloud.snow       |
-| 73              | Snow fall: moderate               | cloud.snow      | cloud.snow       |
-| 71              | Snow fall: slight                 | cloud.snow      | cloud.snow       |
-| 67              | Freezing Rain: heavy intensity    | cloud.sleet     | cloud.sleet      |
-| 66              | Freezing Rain: light              | cloud.sleet     | cloud.sleet      |
-| 65              | Rain: heavy intensity             | cloud.heavyrain | cloud.heavyrain  |
-| 63              | Rain: moderate                    | cloud.heavyrain | cloud.heavyrain  |
-| 61              | Rain: slight                      | cloud.rain      | cloud.moon.rain  |
-| 57              | Freezing Drizzle: dense intensity | cloud.sleet     | cloud.sleet      |
-| 56              | Freezing Drizzle: light           | cloud.sleet     | cloud.sleet      |
-| 55              | Drizzle: dense intensity          | cloud.drizzle   | cloud.drizzle    |
-| 53              | Drizzle: moderate                 | cloud.drizzle   | cloud.drizzle    |
-| 51              | Drizzle: light                    | cloud.drizzle   | cloud.drizzle    |
-| 48              | Depositing rime fog               | cloud.fog       | cloud.fog        |
-| 45              | Fog                               | cloud.fog       | cloud.fog        |
-| 3               | Overcast                          | cloud           | cloud            |
-| 2               | Partly cloudy                     | cloud.sun       | cloud.moon       |
-| 1               | Mainly clear                      | cloud.sun       | cloud.moon       |
-| 0               | Clear sky                         | sun.max         | moon             |
+| WMO Code | WMO Description                   | SF Symbol for Day | SF Symbol for Night |
+| -------- | --------------------------------- | ----------------- | ------------------- |
+| 99       | Thunderstorm: heavy hail          | cloud.bolt.rain   | cloud.bolt.rain     |
+| 96       | Thunderstorm: slight hail         | cloud.bolt.rain   | cloud.bolt.rain     |
+| 95       | Thunderstorm: slight or moderate  | cloud.sun.bolt    | cloud.moon.bolt     |
+| 86       | Snow showers: heavy               | cloud.snow        | cloud.snow          |
+| 85       | Snow showers: slight              | cloud.snow        | cloud.snow          |
+| 82       | Rain showers: violent             | cloud.heavyrain   | cloud.heavyrain     |
+| 81       | Rain showers: moderate            | cloud.heavyrain   | cloud.heavyrain     |
+| 80       | Rain showers: slight              | cloud.heavyrain   | cloud.heavyrain     |
+| 77       | Snow grains                       | cloud.snow        | cloud.snow          |
+| 75       | Snow fall: heavy intensity        | cloud.snow        | cloud.snow          |
+| 73       | Snow fall: moderate               | snow              | snow                |
+| 71       | Snow fall: slight                 | snow              | snow                |
+| 67       | Freezing Rain: heavy intensity    | cloud.sleet       | cloud.sleet         |
+| 66       | Freezing Rain: light              | cloud.sleet       | cloud.sleet         |
+| 65       | Rain: heavy intensity             | cloud.heavyrain   | cloud.heavyrain     |
+| 63       | Rain: moderate                    | cloud.rain        | cloud.rain          |
+| 61       | Rain: slight                      | cloud.sun.rain    | cloud.moon.rain     |
+| 57       | Freezing Drizzle: dense intensity | cloud.sleet       | cloud.sleet         |
+| 56       | Freezing Drizzle: light           | cloud.sleet       | cloud.sleet         |
+| 55       | Drizzle: dense intensity          | cloud.drizzle     | cloud.drizzle       |
+| 53       | Drizzle: moderate                 | cloud.drizzle     | cloud.drizzle       |
+| 51       | Drizzle: light                    | cloud.drizzle     | cloud.drizzle       |
+| 48       | Depositing rime fog               | cloud.fog         | cloud.fog           |
+| 45       | Fog                               | cloud.fog         | cloud.fog           |
+| 3        | Overcast                          | cloud.drizzle     | cloud.drizzle       |
+| 2        | Partly cloudy                     | cloud.sun         | cloud.moon          |
+| 1        | Mainly clear                      | sun.max           | moon                |
+| 0        | Clear sky                         | sun.max           | moon                |

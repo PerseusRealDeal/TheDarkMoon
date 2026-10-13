@@ -214,7 +214,7 @@ public class StatusMenusPresenter {
             return
         }
 
-        let imageName = dataSource.weatherIconName.toAppleIconName()
+        let imageName = dataSource.weatherIconName.symbolName() // By default filled always
         let icon = NSImage(named: imageName)
 
         if let button = statusItem?.button, let resized = icon {
