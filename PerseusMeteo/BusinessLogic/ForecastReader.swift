@@ -25,16 +25,6 @@ public class ForecastReader: MeteoSourceReader {
         super.init(category: .forecast)
     }
 
-    // MARK: - Contract
-
-    public func addResponseDateAndTime(dt: Int) {
-
-        guard let meteoDictionary = self.meteoDictionary as? ForecastDictionary
-        else { return }
-
-        meteoDictionary.responseTime = dt
-    }
-
     // MARK: - Properties
 
     public var meteoDataProviderName: String {
@@ -52,7 +42,7 @@ public class ForecastReader: MeteoSourceReader {
 
         guard
             let meteoDictionary = self.meteoDictionary as? ForecastDictionary,
-            let value = meteoDictionary.responseTime,
+            let value = self.responseClientReceivedTime,
             let timezone = meteoDictionary.timezone
         else {
             return MeteoFactsDefaults.responseTimeLabelText

@@ -97,6 +97,7 @@ struct AppGlobals {
                 return
             }
 
+            currentReader.responseClientReceivedTime = Int(Date().timeIntervalSince1970)
             currentReader.refreshData()
 
             let logmsg = "\n\(weather?.data.prettyPrinted ?? "")"
@@ -113,7 +114,7 @@ struct AppGlobals {
                 return
             }
 
-            forecastReader.addResponseDateAndTime(dt: Int(Date().timeIntervalSince1970))
+            forecastReader.responseClientReceivedTime = Int(Date().timeIntervalSince1970)
             forecastReader.refreshData()
 
             let logmsg = "\n\(forecast?.data.prettyPrinted ?? "")"

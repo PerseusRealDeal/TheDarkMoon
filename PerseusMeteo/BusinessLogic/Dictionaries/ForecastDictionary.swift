@@ -21,8 +21,6 @@ public class ForecastDictionary: MeteoDataDictionary {
 
     // MARK: - Properties
 
-    public var responseTime: Int?
-
     public var timezone: Int? {
 
         guard let cach = data else { return nil }
@@ -35,11 +33,5 @@ public class ForecastDictionary: MeteoDataDictionary {
         guard let cach = data else { return nil }
 
         return parser?.getForecastDays(from: cach)
-    }
-
-    // MARK: - Reset properties
-
-    public func clear() {
-        responseTime = nil
     }
 }

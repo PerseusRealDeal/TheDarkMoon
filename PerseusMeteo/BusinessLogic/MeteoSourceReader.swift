@@ -29,6 +29,10 @@ public class MeteoSourceReader: MeteoJsonAsDictionary {
         return self.jsonPath?()?.1
     }
 
+    // MARK: - Properties
+
+    public var responseClientReceivedTime: Int?
+
     // MARK: - Init
 
     init(category: MeteoDataCategory) {
@@ -90,6 +94,9 @@ public class MeteoSourceReader: MeteoJsonAsDictionary {
     // MARK: - Privates
 
     private func renewDictionary() {
+
+        responseClientReceivedTime = nil
+
         switch meteoCategory {
         case .currentWeather:
             meteoDictionary = CurrentDictionary()
