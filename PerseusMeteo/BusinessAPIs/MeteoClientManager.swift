@@ -134,13 +134,6 @@ public class MeteoClientManager {
             return
         }
 
-        guard useOpenMeteoCurrentSample == false
-        else {
-            ContentCoordinator.stopCurrentProgressIndicator()
-            handleCurrentOpenMeteo(response: .success(sampleOpenMeteoCurrent.jsonData))
-            return
-        }
-
         guard let point = AppGlobals.getLocationPoint() else {
             log.message("[\(type(of: self))].\(#function) location is nil", .notice)
             return
@@ -157,6 +150,11 @@ public class MeteoClientManager {
 
         do {
             ContentCoordinator.startCurrentProgressIndicator()
+
+            if useOpenMeteoCurrentSample {
+                handleCurrentOpenMeteo(response: .success(sampleOpenMeteoCurrent.jsonData))
+                return
+            }
 
             try serviceCurrentOpenMeteo.call(urlString: urlStr,
                                              timeout: timeoutIntervalMeteoData)
@@ -176,13 +174,6 @@ public class MeteoClientManager {
 
         guard isReadyToCall else {
             log.message("[\(type(of: self))].\(#function) \(isReadyToCall)", .notice)
-            return
-        }
-
-        guard useOpenWeatherMapCurrentSample == false
-        else {
-            ContentCoordinator.stopCurrentProgressIndicator()
-            handleCurrentOpenWeather(response: .success(sampleOpenWeatherMapCurrent.jsonData))
             return
         }
 
@@ -222,6 +213,13 @@ public class MeteoClientManager {
         do {
             ContentCoordinator.startCurrentProgressIndicator()
 
+            if useOpenWeatherMapCurrentSample {
+                handleCurrentOpenWeather(response:
+                        .success(sampleOpenWeatherMapCurrent.jsonData)
+                )
+                return
+            }
+
             try serviceCurrentOpenWeather.call(
                 urlString: callDetails.urlString,
                 timeout: timeoutIntervalMeteoData
@@ -246,19 +244,10 @@ public class MeteoClientManager {
             return
         }
 
-        guard useOpenMeteoForecastSample == false
-        else {
-            ContentCoordinator.stopForecastProgressIndicator()
-            handleForecastOpenMeteo(response: .success(sampleOpenMeteoForecast.jsonData))
-            return
-        }
-
         guard let point = AppGlobals.getLocationPoint() else {
             log.message("[\(type(of: self))].\(#function) location is nil.", .notice)
             return
         }
-
-        isReadyToCallForecast = false
 
         let lat = point.latitude.cut(.two).description
         let lon = point.longitude.cut(.two).description
@@ -267,8 +256,15 @@ public class MeteoClientManager {
 
         log.message("[\(type(of: self))].\(#function):\n\(urlStr)", .info, .standard)
 
+        isReadyToCallForecast = false
+
         do {
             ContentCoordinator.startForecastProgressIndicator()
+
+            if useOpenMeteoForecastSample {
+                handleForecastOpenMeteo(response: .success(sampleOpenMeteoForecast.jsonData))
+                return
+            }
 
             try serviceForecastOpenMeteo.call(urlString: urlStr,
                                               timeout: timeoutIntervalMeteoData)
@@ -288,15 +284,6 @@ public class MeteoClientManager {
 
         guard isReadyToCallForecast else {
             log.message("[\(type(of: self))].\(#function) \(isReadyToCallForecast)", .notice)
-            return
-        }
-
-        guard useOpenWeatherMapForecastSample == false
-        else {
-            ContentCoordinator.stopForecastProgressIndicator()
-            handleForecastOpenWeather(response:
-                    .success(sampleOpenWeatherMapForecast40.jsonData)
-            )
             return
         }
 
@@ -334,8 +321,16 @@ public class MeteoClientManager {
 
         let logmsg = "\n\(callDetails.urlString.replacingOccurrences(of: key, with: "###"))"
         log.message("[\(type(of: self))].\(#function):\(logmsg)", .info, .standard)
+
         do {
             ContentCoordinator.startForecastProgressIndicator()
+
+            if useOpenWeatherMapForecastSample {
+                handleForecastOpenWeather(response:
+                        .success(sampleOpenWeatherMapForecast40.jsonData)
+                )
+                return
+            }
 
             try serviceForecastOpenWeather.call(
                 urlString: callDetails.urlString,

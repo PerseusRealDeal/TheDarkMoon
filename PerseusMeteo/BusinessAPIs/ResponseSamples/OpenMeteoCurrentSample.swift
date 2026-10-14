@@ -16,8 +16,9 @@ https://api.open-meteo.com/v1/forecast
 ?latitude=55.02
 &longitude=82.92
 &temperature_unit=fahrenheit
+&timezone=GMT
 &forecast_days=1
-&daily=sunrise,sunset,precipitation_probability_max
+&daily=sunrise,sunset,precipitation_probability_max,temperature_2m_min,temperature_2m_max
 &wind_speed_unit=ms
 &current=weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,temperature_2m,
 apparent_temperature,visibility,pressure_msl,relative_humidity_2m,cloud_cover,

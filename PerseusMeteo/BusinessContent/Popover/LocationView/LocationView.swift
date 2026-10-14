@@ -365,7 +365,7 @@ class LocationView: NSView, NSTextFieldDelegate {
                           let lon = item.longitude {
 
                     let name = "\(item)".localizedValue
-                    value = "\(country): \(name) \(lat.cut(.two)), \(lon.cut(.two))"
+                    value = "\(country): \(name) \(lat.cut(.two)),\(lon.cut(.two))"
                 } else {
                     value = "\(item)".localizedValue
                 }

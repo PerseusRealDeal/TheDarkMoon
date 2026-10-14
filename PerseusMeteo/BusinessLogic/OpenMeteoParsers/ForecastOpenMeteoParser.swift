@@ -13,11 +13,25 @@
 //  See LICENSE for details. All rights reserved.
 //
 
+import Foundation
+
 public class ForecastOpenMeteoParser: ForecastParserProtocol {
 
     // TODO: Implement Open-Meteo forecast weather parser protocol
 
     public func getTimeZone(from dictionary: [String: Any]) -> Int? {
+
+        guard
+            let timezone = getInstance("timezone", String.self, dictionary)
+        else {
+            return nil
+        }
+
+        if timezone == "GMT" {
+            return TimeZone.current.secondsFromGMT()
+        }
+
+        // If timezone not equel to GMT
         return nil
     }
 

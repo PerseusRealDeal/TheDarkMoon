@@ -22,19 +22,13 @@ public class CurrentOpenMeteoParser: CurrentParserProtocol {
     public func timeZone(from dictionary: [String: Any]) -> Int? {
 
         guard
-            let timezone = getInstance("timezone", String.self, dictionary),
-            let utc_offset_seconds = getInstance("utc_offset_seconds", Int.self, dictionary)
+            let timezone = getInstance("timezone", String.self, dictionary)
         else {
             return nil
         }
 
         if timezone == "GMT" {
-            if utc_offset_seconds == 0 {
-                return TimeZone.current.secondsFromGMT()
-            } else {
-                // If utc_offset_seconds not equel to 0
-                return nil
-            }
+            return TimeZone.current.secondsFromGMT()
         }
 
         // If timezone not equel to GMT

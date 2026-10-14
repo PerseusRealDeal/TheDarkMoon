@@ -358,6 +358,10 @@ public enum Result<Value, Error: Swift.Error> {
 
 extension CLAuthorizationStatus: CustomStringConvertible {
 
+    // TODO: Xcode 16.2 triggers a compiler warning
+    // Not recommended forcing CustomStringConvertible conformance onto the imported enum.
+    // Better extend CLAuthorizationStatus with a standard computed property
+    // (e.g., customDescription) to return the corresponding string.
     public var description: String {
         switch self {
         case .notDetermined:
@@ -371,8 +375,8 @@ extension CLAuthorizationStatus: CustomStringConvertible {
         case .authorizedWhenInUse: // iOS only.
             return "authorizedWhenInUse"
         @unknown default:
-            log.message("Unknown CLAuthorizationStatus \(self)", .error)
-            // fatalError("Unknown CLAuthorizationStatus \(self)")
+            log.message("Unknown CLAuthorizationStatus", .error)
+            // fatalError("Unknown CLAuthorizationStatus")
             return "unknown"
         }
     }

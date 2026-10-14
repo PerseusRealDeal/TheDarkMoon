@@ -17,7 +17,7 @@ import Foundation
 
 public let schemeOpenMeteo = "https://api.open-meteo.com/v1/"
 public let attributesOpenMeteo =
-"forecast?latitude=%@&longitude=%@&temperature_unit=%@&forecast_days=%@"
+"forecast?latitude=%@&longitude=%@&temperature_unit=%@&timezone=GMT&forecast_days=%@"
 public let paramsOpenMeteo =
 "&daily=sunrise,sunset,precipitation_probability_max,temperature_2m_min,temperature_2m_max" +
 "&wind_speed_unit=ms"
@@ -51,13 +51,13 @@ public struct OpenMeteoAPI {
         let args: [String] = [lat, lon, "\(units)", "\(forecastDays)"]
         let attributes = String(format: attributesOpenMeteo, arguments: args)
 
-        let params = paramsOpenMeteo + (request == .forecast ? "&hourly=" : "&current=") + """
-weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,temperature_2m,
-""" + """
-apparent_temperature,visibility,pressure_msl,relative_humidity_2m,cloud_cover,showers,rain,
-""" + """
-snowfall,precipitation,precipitation_probability,is_day
-"""
+        let params = paramsOpenMeteo + (request == .forecast ? "&hourly=" : "&current=")
++
+"weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,temperature_2m,"
++
+"apparent_temperature,visibility,pressure_msl,relative_humidity_2m,cloud_cover,showers,rain,"
++
+"snowfall,precipitation,precipitation_probability,is_day"
 
         return schemeOpenMeteo + attributes + params
     }
