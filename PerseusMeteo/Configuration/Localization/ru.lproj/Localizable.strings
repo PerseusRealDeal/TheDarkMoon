@@ -137,6 +137,9 @@
 "Label: Sunrise" = "Восход";
 "Label: Sunset" = "Заход";
 
+"Label: UV Index" = "УФ-индекс";
+"Label: Moon Phase" = "Фаза луны";
+
 /* Time */
 
 "AM" = "ДП";

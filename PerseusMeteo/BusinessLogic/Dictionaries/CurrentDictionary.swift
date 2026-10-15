@@ -144,4 +144,32 @@ public class CurrentDictionary: MeteoDataDictionary {
 
         return parser?.sunset(from: cach)
     }
+
+    public var moonrise: Int? {
+
+        guard let cach = data else { return nil }
+
+        return parser?.moonrise(from: cach)
+    }
+
+    public var moonset: Int? {
+
+        guard let cach = data else { return nil }
+
+        return parser?.moonset(from: cach)
+    }
+
+    public var moonphase: Double? {
+
+        guard let cach = data else { return nil }
+
+        return parser?.moonphase(from: cach)
+    }
+
+    public var uvindex: Double? {
+
+        guard let cach = data else { return nil }
+
+        return parser?.uvindex(from: cach)
+    }
 }

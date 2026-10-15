@@ -372,12 +372,12 @@ Credits
 </table>
 
 > [!NOTE]
-> The Apple weather icons are used to indicate different weather conditions, like fog or haze.
+> The Apple weather icons, [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols) are used to indicate different weather conditions, like fog or haze.
 
 > [!IMPORTANT]
 > The Open-Meteo `logo` taken from [`https://open-meteo.com/favicon.ico`](https://open-meteo.com/favicon.ico).</br>
 > The OpenWeather `logo` taken from [`https://github.com/openweathermap`](https://github.com/openweathermap).</br>
-> The weather conditions icons taken from [`sf-symbols-online`](https://github.com/andrewtavis/sf-symbols-online).
+> The weather conditions icons taken from [`sf-symbols-online`](https://github.com/andrewtavis/sf-symbols-online), and partly from the [SF Symbols app](https://developer.apple.com/sf-symbols/).
 
 - Artwork tool: [GIMP](https://www.gimp.org/) / [2.10.36](https://download.gimp.org/gimp/v2.10/osx/) for macOS 10.12 Sierra or newer
 - Language support: [Reverso](https://www.reverso.net/) 

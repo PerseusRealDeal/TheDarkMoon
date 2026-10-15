@@ -12,6 +12,8 @@
 //
 //  See LICENSE for details. All rights reserved.
 //
+// swiftlint:disable file_length
+//
 
 import Cocoa
 
@@ -20,7 +22,7 @@ class WeatherView: NSView {
 
     // MARK: - View Data Source
 
-    public let dataSource = AppGlobals.currentReader
+    public let weatherReader = AppGlobals.currentReader
     public var startProgressIndicator: Bool = false {
         didSet {
             if startProgressIndicator {
@@ -44,15 +46,19 @@ class WeatherView: NSView {
     @IBOutlet private(set) weak var viewWeatherConditionsIcon: NSImageView!
     @IBOutlet private(set) weak var viewSunriseIcon: NSImageView!
     @IBOutlet private(set) weak var viewSunsetIcon: NSImageView!
+    @IBOutlet private(set) weak var viewMoonriseIcon: NSImageView!
+    @IBOutlet private(set) weak var viewMoonsetIcon: NSImageView!
 
     @IBOutlet private(set) weak var labelTemperatureValue: NSTextField!
     @IBOutlet private(set) weak var labelWeatherConditionsDescriptionValue: NSTextField!
 
-    @IBOutlet private(set) weak var labelSunriseTitle: NSTextField!
     @IBOutlet private(set) weak var labelSunriseValue: NSTextField!
-
-    @IBOutlet private(set) weak var labelSunsetTitle: NSTextField!
     @IBOutlet private(set) weak var labelSunsetValue: NSTextField!
+    @IBOutlet private(set) weak var labelMoonriseValue: NSTextField!
+    @IBOutlet private(set) weak var labelMoonsetValue: NSTextField!
+
+    @IBOutlet private(set) weak var labelUVIndex: NSTextField!
+    @IBOutlet private(set) weak var labelMoonphase: NSTextField!
 
     // MARK: - Initialization
 
@@ -128,12 +134,12 @@ class WeatherView: NSView {
 
         // Temperature, Weather Description, and Icon
 
-        let temperature = dataSource.temperature
-        let weatherDesc = dataSource.weatherDescription.capitalizingFirstLetter()
+        let temperature = weatherReader.temperature
+        let weatherDesc = weatherReader.weatherDescription.capitalizingFirstLetter()
 
         // let wcs = dataSource.weatherConditions
 
-        let imageName = dataSource.weatherIconName.symbolName(
+        let imageName = weatherReader.weatherIconName.symbolName(
             isLight: DarkModeAgent.shared.style == .light)
 
         viewWeatherConditionsIcon.image = NSImage(named: imageName)
@@ -156,51 +162,86 @@ class WeatherView: NSView {
 
         // Sunrise and sunset
 
-        labelSunriseTitle.stringValue = "Label: Sunrise".localizedValue
-        labelSunsetTitle.stringValue = "Label: Sunset".localizedValue
+        viewSunriseIcon.toolTip = "Label: Sunrise".localizedValue
+        viewSunsetIcon.toolTip = "Label: Sunset".localizedValue
 
-        labelSunriseValue.stringValue = dataSource.sunrise
-        labelSunsetValue.stringValue = dataSource.sunset
+        labelSunriseValue.stringValue = weatherReader.sunrise
+        labelSunsetValue.stringValue = weatherReader.sunset
 
-        // Prepare Meteo group
+        // Moonrise and moonset
+
+        viewMoonriseIcon.toolTip = "Label: Sunrise".localizedValue
+        viewMoonsetIcon.toolTip = "Label: Sunset".localizedValue
+
+        labelMoonriseValue.stringValue = weatherReader.moonrise
+        labelMoonsetValue.stringValue = weatherReader.moonset
+
+        // UV Index
+
+        let uvindex = "Label: UV Index".localizedValue + " \(weatherReader.uvindex)"
+        labelUVIndex.stringValue = uvindex
+
+        // Moon Phase
+
+        let moonphase = "Label: Moon Phase".localizedValue + " \(weatherReader.moonphase)"
+        labelMoonphase.stringValue = moonphase
+
+        // Meteo group params
+
+        showMeteoGroupParams()
+
+        // Show/Hide special params
+
+        if AppOptions.currentMeteoProviderOption == .serviceOpenMeteo {
+            labelUVIndex.isHidden = false
+            labelMoonsetValue.isHidden = false
+            labelMoonriseValue.isHidden = false
+            viewMoonsetIcon.isHidden = false
+            viewMoonriseIcon.isHidden = false
+        } else {
+            labelUVIndex.isHidden = true
+            labelMoonsetValue.isHidden = true
+            labelMoonriseValue.isHidden = true
+            viewMoonsetIcon.isHidden = true
+            viewMoonriseIcon.isHidden = true
+        }
+    }
+
+    private func showMeteoGroupParams() {
 
         var meteogroup = MeteoGroupData()
 
+        let provider = AppOptions.currentMeteoProviderOption
+
+        switch provider {
+        case .serviceOpenMeteo:
+            meteogroup.setTemplatedValuesUp(provider: .serviceOpenMeteo,
+                                            category: .currentWeather)
+        case .serviceOpenWeatherMap:
+            meteogroup.setTemplatedValuesUp(provider: .serviceOpenWeatherMap,
+                                            category: .currentWeather)
+        }
+
         // Line 1 - Top
 
-        let titleMinMax = "Prefix: Min".localizedValue + ", " + "Prefix: Max".localizedValue
-        let valueMinMax = "\(dataSource.temperatureMinimum) : \(dataSource.temperatureMaximum)"
+        let valueMinMax =
+        "\(weatherReader.temperatureMinimum) : \(weatherReader.temperatureMaximum)"
 
-        meteogroup.title1 = titleMinMax
         meteogroup.value1 = valueMinMax
-
-        meteogroup.title2 = "Prefix: Feels Like".localizedValue
-        meteogroup.value2 = dataSource.temperatureFeelsLike
-
-        meteogroup.title3 = "Prefix: Visibility".localizedValue
-        meteogroup.value3 = dataSource.visibility
+        meteogroup.value2 = weatherReader.temperatureFeelsLike
+        meteogroup.value3 = weatherReader.visibility
 
         // Line 2 - Middle
 
-        meteogroup.title4 = "Label: Speed".localizedValue
-        meteogroup.value4 = dataSource.windSpeed
-
-        meteogroup.title5 = "Label: Direction".localizedValue
-        meteogroup.value5 = dataSource.windDirection
-
-        meteogroup.title6 = "Label: Gust".localizedValue
-        meteogroup.value6 = dataSource.windGusts
+        meteogroup.value4 = weatherReader.windSpeed
+        meteogroup.value5 = weatherReader.windDirection
+        meteogroup.value6 = weatherReader.windGusts
 
         // Line 3 - Bottom
 
-        meteogroup.title7 = "Label: Pressure".localizedValue
-        meteogroup.value7 = dataSource.pressure
-
-        meteogroup.title8 = "Prefix: Humidity".localizedValue
-        meteogroup.value8 = dataSource.humidity
-
-        meteogroup.title9 = "Prefix: Cloudiness".localizedValue
-        meteogroup.value9 = dataSource.cloudiness
+        meteogroup.value7 = weatherReader.pressure
+        meteogroup.value8 = weatherReader.humidity
+        meteogroup.value9 = weatherReader.cloudiness
 
         // Set meteo group
 
@@ -218,14 +259,19 @@ extension WeatherView {
 
         let isDarkModeInLight = DarkModeAgent.shared.style == .light
 
-        let imageName = dataSource.weatherIconName.symbolName(isLight: isDarkModeInLight)
+        let imageName = weatherReader.weatherIconName.symbolName(isLight: isDarkModeInLight)
+
         let sunriseIconName = isDarkModeInLight ? "sunrise.fill" : "sunrise.dark"
         let sunsetIconName = isDarkModeInLight ? "sunset.fill" : "sunset.dark"
+        let moonriseIconName = isDarkModeInLight ? "moonrise.fill" : "moonrise.dark"
+        let moonsetIconName = isDarkModeInLight ? "moonset.fill" : "moonset.dark"
 
         viewWeatherConditionsIcon.image = NSImage(named: imageName)
 
         viewSunriseIcon.image = NSImage(named: sunriseIconName)
         viewSunsetIcon.image = NSImage(named: sunsetIconName)
+        viewMoonriseIcon.image = NSImage(named: moonriseIconName)
+        viewMoonsetIcon.image = NSImage(named: moonsetIconName)
 
         if isHighSierra {
 
@@ -234,11 +280,11 @@ extension WeatherView {
 
             self.labelTemperatureValue.textColor = whiteOrBlack
             self.labelWeatherConditionsDescriptionValue.textColor = whiteOrBlack
-            self.labelSunriseTitle.textColor = whiteOrBlack
-            self.labelSunsetTitle.textColor = whiteOrBlack
             self.labelSunriseValue.textColor = whiteOrBlack
             self.labelSunsetValue.textColor = whiteOrBlack
-
+            self.labelMoonriseValue.textColor = whiteOrBlack
+            self.labelMoonsetValue.textColor = whiteOrBlack
+            self.labelUVIndex.textColor = whiteOrBlack
             self.viewMeteoGroup.title1.textColor = whiteOrBlack
             self.viewMeteoGroup.value1.textColor = whiteOrBlack
             self.viewMeteoGroup.title2.textColor = whiteOrBlack

@@ -65,10 +65,14 @@ Meteo Terms mapping
 | Cloudiness    | Cloudiness      | Cloud Cover Total         |
 | Sunrise       | Sunrise         | Sunrise                   |
 | Sunset        | Sunset          | Sunset                    |
+| Moonrise      | --              | Moonrise                  |
+| Moonset       | --              | Moonset                   |
+| Moon Phase    | --              | Moon Phase                |
 | Rain          | Rain            | Rain, Showers             |
 | Snow          | Snow            | Snow, Snowfall            |
 | Precipitation | Rain, Snow      | Rain + Showers + Snow     |
-| Probability   | None            | Precipitation Probability |
+| Probability   | --              | Precipitation Probability |
+| UV Index      | --              | UV Index                  |
 
 Integrations
 ==
@@ -161,10 +165,13 @@ Current Weather
 
 | Show in App            | OpenWeather API Respose        | Open-Meteo API Response          |
 | ---------------------- | ------------------------------ | -------------------------------- |
-| Weather Icon           | Weather icon id                | None                             |
+| Weather Icon           | Weather icon id                | --                               |
 | Weather Description    | Weather condition codes        | WMO code                         |
 | Sunrise                | UTC                            | GMT                              |
 | Sunset                 | UTC                            | GMT                              |
+| Moonrise               | --                             | GMT                              |
+| Moonset                | --                             | GMT                              |
+| Moon Phase             | --                             | fraction                         |
 | Temperature            | Imperial: Fahrenheit           | Imperial: Fahrenheit             |
 | Temperature Low        | Imperial: Fahrenheit           | Imperial: Fahrenheit             |
 | Temperature High       | Imperial: Fahrenheit           | Imperial: Fahrenheit             |
@@ -180,6 +187,7 @@ Current Weather
 | Snow                   | Snow Precipitation, mm/h       | Snow, Snowfall, cm/h             |
 | Precipitation          | Calculated (Rain + Snow), mm/h | Precipitation, mm/h              |
 | Probability            | Calculated (Precipitation), %  | Precipitation Probability Max, % |
+| UV Index               | --                             | from 0.00 to 11.00+              |
 
 > [!NOTE]
 > `OpenWeather Current Weather request prepared:`
@@ -187,7 +195,7 @@ Current Weather
 
 > [!NOTE]
 > `Open-Meteo Current Weather request prepared:`
-> https://api.open-meteo.com/v1/forecast?latitude=##.##&longitude=##.##&daily=sunrise,sunset,precipitation_probability_max&current={PARAMS}&temperature_unit=fahrenheit&wind_speed_unit=ms&forecast_days=1
+> https://api.open-meteo.com/v1/forecast?latitude=##.##&longitude=##.##&daily=uv_index_max,moon_phase,moonrise,moonset,sunrise,sunset,precipitation_probability_max&current={PARAMS}&temperature_unit=fahrenheit&wind_speed_unit=ms&forecast_days=1
 
 `Open-Meteo Current PARAMS:` weather_code, wind_speed_10m, wind_direction_10m, wind_gusts_10m, temperature_2m, apparent_temperature, visibility, pressure_msl, relative_humidity_2m, cloud_cover, showers, rain, snowfall, precipitation, precipitation_probability, is_day
 
@@ -206,6 +214,9 @@ Forecast
 | Weather Description    | Weather condition codes          | WMO code                                    |
 | Sunrise                | UTC                              | GMT                                         |
 | Sunset                 | UTC                              | GMT                                         |
+| Moonrise               | --                               | GMT                                         |
+| Moonset                | --                               | GMT                                         |
+| Moon Phase             | --                               | fraction                                    |
 | Temperature            | Imperial: Fahrenheit             | Imperial: Fahrenheit                        |
 | Temperature Low        | Imperial: Fahrenheit             | Imperial: Fahrenheit                        |
 | Temperature High       | Imperial: Fahrenheit             | Imperial: Fahrenheit                        |
@@ -221,6 +232,7 @@ Forecast
 | Snow                   | Hourly: Snow Precipitation, mm/h | Hourly: Snow, Snowfall, cm/h                |
 | Precipitation          | Calculated (Rain + Snow), mm/h   | Hourly: Precipitation, mm/h                 |
 | Probability            | Calculated (Precipitation), %    | Daily and Hourly: Precipitation Probability |
+| UV Index               | --                               | from 0.00 to 11.00+                         |
 
 > [!NOTE]
 > `OpenWeather Weather Forecast request prepared:`
@@ -286,6 +298,7 @@ Weather Icons Mappings
 In this mapping SF Symbol name in use without indicating fill and color.
 
 [Online SF Symbols browser](https://github.com/andrewtavis/sf-symbols-online)
+[Human Interface Guidelines. SF Symbols.](https://developer.apple.com/design/human-interface-guidelines/sf-symbols)
 
 OpenWeather and SF Symbols
 --

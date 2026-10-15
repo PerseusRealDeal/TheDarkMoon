@@ -231,6 +231,22 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
 
         return getInstance("sunset", Int.self, sys)
     }
+
+    public func moonrise(from dictionary: [String: Any]) -> Int? {
+        return nil
+    }
+
+    public func moonset(from dictionary: [String: Any]) -> Int? {
+        return nil
+    }
+
+    public func moonphase(from dictionary: [String: Any]) -> Double? {
+        return nil
+    }
+
+    public func uvindex(from dictionary: [String: Any]) -> Double? {
+        return nil
+    }
 /*
     public func weatherConditions(from source: [String: Any]) -> WeatherConditions {
 

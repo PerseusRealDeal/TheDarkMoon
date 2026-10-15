@@ -41,4 +41,9 @@ public protocol CurrentParserProtocol {
 
     func sunrise(from dictionary: [String: Any]) -> Int?
     func sunset(from dictionary: [String: Any]) -> Int?
+    func moonrise(from dictionary: [String: Any]) -> Int?
+    func moonset(from dictionary: [String: Any]) -> Int?
+    func moonphase(from dictionary: [String: Any]) -> Double?
+
+    func uvindex(from dictionary: [String: Any]) -> Double?
 }

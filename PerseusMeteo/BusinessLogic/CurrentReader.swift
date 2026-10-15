@@ -12,6 +12,8 @@
 //
 //  See LICENSE for details. All rights reserved.
 //
+// swiftlint:disable file_length
+//
 
 import Foundation
 
@@ -265,7 +267,7 @@ public class CurrentReader: MeteoSourceReader {
             let value = meteoDictionary.sunrise,
             let timezone = meteoDictionary.timezone
         else {
-            return MeteoFactsDefaults.sunrizesunset
+            return MeteoFactsDefaults.timeFormat
         }
 
         // Recalculate if needed.
@@ -273,7 +275,7 @@ public class CurrentReader: MeteoSourceReader {
                                              timezone,
                                              toBe: AppOptions.timeFormatOption)
 
-        return "\(represented ?? MeteoFactsDefaults.sunrizesunset)"
+        return "\(represented ?? MeteoFactsDefaults.timeFormat)"
     }
 
     public var sunset: String {
@@ -283,7 +285,7 @@ public class CurrentReader: MeteoSourceReader {
             let value = meteoDictionary.sunset,
             let timezone = meteoDictionary.timezone
         else {
-            return MeteoFactsDefaults.sunrizesunset
+            return MeteoFactsDefaults.timeFormat
         }
 
         // Recalculate if needed.
@@ -291,6 +293,66 @@ public class CurrentReader: MeteoSourceReader {
                                              timezone,
                                              toBe: AppOptions.timeFormatOption)
 
-        return "\(represented ?? MeteoFactsDefaults.sunrizesunset)"
+        return "\(represented ?? MeteoFactsDefaults.timeFormat)"
+    }
+
+    public var moonrise: String {
+
+        guard
+            let meteoDictionary = self.meteoDictionary as? CurrentDictionary,
+            let value = meteoDictionary.moonrise,
+            let timezone = meteoDictionary.timezone
+        else {
+            return MeteoFactsDefaults.timeFormat
+        }
+
+        // Recalculate if needed.
+        let represented = representMeteoTime(value,
+                                             timezone,
+                                             toBe: AppOptions.timeFormatOption)
+
+        return "\(represented ?? MeteoFactsDefaults.timeFormat)"
+    }
+
+    public var moonset: String {
+
+        guard
+            let meteoDictionary = self.meteoDictionary as? CurrentDictionary,
+            let value = meteoDictionary.moonset,
+            let timezone = meteoDictionary.timezone
+        else {
+            return MeteoFactsDefaults.timeFormat
+        }
+
+        // Recalculate if needed.
+        let represented = representMeteoTime(value,
+                                             timezone,
+                                             toBe: AppOptions.timeFormatOption)
+
+        return "\(represented ?? MeteoFactsDefaults.timeFormat)"
+    }
+
+    public var moonphase: String {
+
+        guard
+            let meteoDictionary = self.meteoDictionary as? CurrentDictionary,
+            let value = meteoDictionary.moonphase
+        else {
+            return MeteoFactsDefaults.moonphase
+        }
+
+        return value.cut(.two).description
+    }
+
+    public var uvindex: String {
+
+        guard
+            let meteoDictionary = self.meteoDictionary as? CurrentDictionary,
+            let value = meteoDictionary.uvindex
+        else {
+            return MeteoFactsDefaults.uvindex
+        }
+
+        return value.description
     }
 }

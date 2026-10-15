@@ -12,6 +12,8 @@
 //
 //  See LICENSE for details. All rights reserved.
 //
+// swiftlint:disable file_length
+//
 
 import Foundation
 
@@ -263,5 +265,65 @@ public class CurrentOpenMeteoParser: CurrentParserProtocol {
         }
 
         return Int(iso8601Date.timeIntervalSince1970)
+    }
+
+    // MARK: - Moonrise
+
+    public func moonrise(from dictionary: [String: Any]) -> Int? {
+
+        guard
+            let daily = dictionary["daily"] as? [String: Any],
+            let sunset = daily["moonrise"] as? [String],
+            let first = sunset.first,
+            let iso8601Date = "\(first):00Z".iso8601Date
+        else {
+            return nil
+        }
+
+        return Int(iso8601Date.timeIntervalSince1970)
+    }
+
+    // MARK: - Moonset
+
+    public func moonset(from dictionary: [String: Any]) -> Int? {
+
+        guard
+            let daily = dictionary["daily"] as? [String: Any],
+            let sunset = daily["moonset"] as? [String],
+            let first = sunset.first,
+            let iso8601Date = "\(first):00Z".iso8601Date
+        else {
+            return nil
+        }
+
+        return Int(iso8601Date.timeIntervalSince1970)
+    }
+
+    // MARK: - Moonphase
+
+    public func moonphase(from dictionary: [String: Any]) -> Double? {
+
+        guard
+            let daily = dictionary["daily"] as? [String: Any],
+            let moon_phase = (daily["moon_phase"] as? [Double])?.first
+        else {
+            return nil
+        }
+
+        return moon_phase
+    }
+
+    // MARK: - UV Index
+
+    public func uvindex(from dictionary: [String: Any]) -> Double? {
+
+        guard
+            let daily = dictionary["daily"] as? [String: Any],
+            let uv_index_max = (daily["uv_index_max"] as? [Double])?.first
+        else {
+            return nil
+        }
+
+        return uv_index_max
     }
 }

@@ -203,6 +203,7 @@ class TranslationTests: XCTestCase {
 
     // MARK: - WeatherView
 
+    // swiftlint:disable:next function_body_length
     func test_translation_of_PopoverScreen_WeatherView() {
 
         // assert
@@ -281,6 +282,12 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Label: Sunset".localizedExpectation,
                        "Label: Sunset".localizedValue)
+
+        XCTAssertEqual("Label: UV Index".localizedExpectation,
+                       "Label: UV Index".localizedValue)
+
+        XCTAssertEqual("Label: Moon Phase".localizedExpectation,
+                       "Label: Moon Phase".localizedValue)
 
         XCTAssertEqual("AM".localizedExpectation,
                        "AM".localizedValue)

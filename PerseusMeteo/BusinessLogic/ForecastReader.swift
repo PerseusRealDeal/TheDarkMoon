@@ -80,13 +80,14 @@ public class ForecastReader: MeteoSourceReader {
         // Return sample templated array
 
         var days = [ForecastDay]()
+        let provider = AppOptions.currentMeteoProviderOption
 
         for item in 0...4 {
 
             var hours = [ForecastHour]()
 
             for item in 0...4 {
-                hours.append(ForecastHour(title: "\(item)"))
+                hours.append(ForecastHour(title: "\(item)", provider: provider))
             }
 
             days.append(ForecastDay(date: item.description, hours: hours, templated: true))

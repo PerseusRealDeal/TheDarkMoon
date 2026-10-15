@@ -142,7 +142,10 @@ public class PopoverViewController: NSViewController {
                 }, completionHandler: nil)
             }*/
             self.viewWeather.alphaValue = 1.0
+            self.viewWeather.isHidden = false
+
             self.viewForecast.alphaValue = 0.0
+            self.viewForecast.isHidden = true
         } else {
             // Show forecast view
             /*
@@ -156,7 +159,10 @@ public class PopoverViewController: NSViewController {
                 }, completionHandler: nil)
             }*/
             self.viewWeather.alphaValue = 0.0
+            self.viewWeather.isHidden = true
+
             self.viewForecast.alphaValue = 1.0
+            self.viewForecast.isHidden = false
         }
     }
 

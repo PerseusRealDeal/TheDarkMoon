@@ -140,6 +140,9 @@
 "Label: Sunrise" = "Sunrise";
 "Label: Sunset" = "Sunset";
 
+"Label: UV Index" = "UV Index";
+"Label: Moon Phase" = "Moon Phase";
+
 /* Time */
 
 "AM" = "AM";

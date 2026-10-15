@@ -61,7 +61,7 @@ public struct MeteoFactsDefaults {
         return  "_____ \(AppOptions.distanceOption.unitLocalized)"
     }
 
-    public static var sunrizesunset: String {
+    public static var timeFormat: String {
 
         var template = ""
 
@@ -75,6 +75,14 @@ public struct MeteoFactsDefaults {
         }
 
         return template
+    }
+
+    public static var moonphase: String {
+        return "_.__"
+    }
+
+    public static var uvindex: String {
+        return "_.__"
     }
 
     public static var weatherDescription: String {

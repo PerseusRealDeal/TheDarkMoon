@@ -192,7 +192,10 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
                 continue
             }
 
-            hours.append(ForecastHour(source: item, timezone: timezone, title: "auto"))
+            hours.append(ForecastHour(provider: .serviceOpenWeatherMap,
+                                      source: item,
+                                      timezone: timezone,
+                                      title: "auto"))
         }
 
         return hours
@@ -248,7 +251,7 @@ public func getForecastDay(from source: [String: Any], timezone: Int) -> String 
 public func getForecastHourDt(from source: [String: Any], timezone: Int) -> String {
 
     if source.isEmpty { // Templated result for empty value.
-        return MeteoFactsDefaults.sunrizesunset
+        return MeteoFactsDefaults.timeFormat
     }
 
     var value = -1
@@ -262,14 +265,14 @@ public func getForecastHourDt(from source: [String: Any], timezone: Int) -> Stri
         log.message("[\(#function) [dt] mistaken", .error)
     }
 
-    guard value != -1 else { return MeteoFactsDefaults.sunrizesunset }
+    guard value != -1 else { return MeteoFactsDefaults.timeFormat }
 
     // Recalculate if needed.
     let represented = representMeteoTime(value,
                                          timezone,
                                          toBe: AppOptions.timeFormatOption)
 
-    return "\(represented ?? MeteoFactsDefaults.sunrizesunset)"
+    return "\(represented ?? MeteoFactsDefaults.timeFormat)"
 }
 
 public func getForecastHourTemp(from source: [String: Any]) -> String {
