@@ -27,7 +27,7 @@ class ForecastView: NSView {
 
     // MARK: - View Data Source
 
-    public let dataSource = AppGlobals.forecastReader
+    public let forecastReader = AppGlobals.forecastReader
     public var startProgressIndicator: Bool = false {
         didSet {
             if startProgressIndicator {
@@ -181,22 +181,22 @@ class ForecastView: NSView {
         viewForecastHours.selectItems(at: indexes, scrollPosition: .left)
         let daySelected = viewForecastDays.selectionIndexPaths
 
-        if !dataSource.forecastDays.isEmpty {
+        if !forecastReader.forecastDays.isEmpty {
             // log.message("[\(type(of: self))].\(#function) ForecastDays not empty.")
 
-            if !dataSource.forecastDays[0].hours.isEmpty {
+            if !forecastReader.forecastDays[0].hours.isEmpty {
                 // log.message("[\(type(of: self))].\(#function) Hours not empty.")
 
                 if let daySelectedIndex = daySelected.first {
                     let index = daySelectedIndex.item
-                    let item = dataSource.forecastDays[index].hours[0]
+                    let item = forecastReader.forecastDays[index].hours[0]
 
                     viewMeteoGroup.data = item.prepareMeteoGroupData()
 
                     labelWeatherDescription.stringValue =
                     "\(item.weatherConditions)".capitalizingFirstLetter()
                 } else {
-                    let item = dataSource.forecastDays[0].hours[0]
+                    let item = forecastReader.forecastDays[0].hours[0]
 
                     viewMeteoGroup.data = item.prepareMeteoGroupData()
 
@@ -231,7 +231,7 @@ class ForecastView: NSView {
         guard viewForecastDays.selectionIndexPaths.first != nil else {
 
             viewForecastHours.reloadData()
-            viewMeteoGroup.data = nil
+            viewMeteoGroup.data = MeteoGroupData()
 
             return
         }
@@ -249,16 +249,16 @@ class ForecastView: NSView {
         let indexDay = viewForecastDays.selectionIndexPaths.first
         let indexHour = paths.first
 
-        if !dataSource.forecastDays.isEmpty && indexDay != nil {
+        if !forecastReader.forecastDays.isEmpty && indexDay != nil {
             // log.message("[\(type(of: self))].\(#function) forecastDays not empty")
 
             let dayItem = indexDay!.item
 
-            if !dataSource.forecastDays[dayItem].hours.isEmpty && indexHour != nil {
+            if !forecastReader.forecastDays[dayItem].hours.isEmpty && indexHour != nil {
                 // log.message("[\(type(of: self))].\(#function) hours not empty")
 
                 let hourItem = indexHour!.item
-                let item = dataSource.forecastDays[dayItem].hours[hourItem]
+                let item = forecastReader.forecastDays[dayItem].hours[hourItem]
 
                 viewMeteoGroup.data = item.prepareMeteoGroupData()
 
@@ -286,19 +286,21 @@ extension ForecastView: NSCollectionViewDataSource {
         // Amount of items in the Forecast Days collection.
 
         if collectionView.identifier == daysID {
-            return dataSource.forecastDays.count
+            return forecastReader.forecastDays.count
         }
 
         // Amount of items in the Forecast Hours collection of the day selected.
 
         if collectionView.identifier == hoursID,
-            dataSource.forecastDays.isEmpty == false {
+           forecastReader.forecastDays.isEmpty == false {
 
             if
                 let selectedIndexPath = viewForecastDays.selectionIndexPaths.first,
                 (selectedIndexPath as NSIndexPath).item != -1 {
 
-                let theDay = dataSource.forecastDays[(selectedIndexPath as NSIndexPath).item]
+                let theDay = forecastReader.forecastDays[
+                    (selectedIndexPath as NSIndexPath).item
+                ]
 
                 return theDay.hours.count
             }
@@ -319,7 +321,7 @@ extension ForecastView: NSCollectionViewDataSource {
             // The day data.
 
             let index = (indexPath as NSIndexPath).item
-            var data = dataSource.forecastDays[index]
+            var data = forecastReader.forecastDays[index]
 
             // log.message("day \(index) : \(dataSource.forecastDays.count)", .info)
 
@@ -339,7 +341,7 @@ extension ForecastView: NSCollectionViewDataSource {
         // Create a new Forecast Hour item
 
         if collectionView.identifier == hoursID,
-            dataSource.forecastDays.isEmpty == false {
+           forecastReader.forecastDays.isEmpty == false {
 
             if
                 let selectedIndexPath = viewForecastDays.selectionIndexPaths.first,
@@ -347,7 +349,7 @@ extension ForecastView: NSCollectionViewDataSource {
 
                 // The day data.
 
-                let day = dataSource.forecastDays[(selectedIndexPath as NSIndexPath).item]
+                let day = forecastReader.forecastDays[(selectedIndexPath as NSIndexPath).item]
 
                 // The hour of the day data.
 
@@ -385,7 +387,7 @@ extension ForecastView: NSCollectionViewDelegate {
         // log.message("[\(type(of: self))].\(#function)")
 
         if collectionView.identifier == daysID {
-            viewMeteoGroup.data = nil
+            viewMeteoGroup.data = MeteoGroupData()
             viewForecastHours.reloadData()
 
             self.selectTheFirstForecastHour()
@@ -397,11 +399,11 @@ extension ForecastView: NSCollectionViewDelegate {
 
             if
                 let selectedIndexPath = viewForecastDays.selectionIndexPaths.first,
-                !dataSource.forecastDays.isEmpty,
+                !forecastReader.forecastDays.isEmpty,
                 (selectedIndexPath as NSIndexPath).item != -1,
                 let hourIndexPaths = indexPaths.first {
 
-                let day = dataSource.forecastDays[(selectedIndexPath as NSIndexPath).item]
+                let day = forecastReader.forecastDays[(selectedIndexPath as NSIndexPath).item]
 
                 hourDetails = day.hours[(hourIndexPaths as NSIndexPath).item]
             }
@@ -413,7 +415,7 @@ extension ForecastView: NSCollectionViewDelegate {
                 labelWeatherDescription.stringValue = MeteoFactsDefaults.weatherDescription
             }
 
-            viewMeteoGroup.data = hourDetails?.prepareMeteoGroupData()
+            viewMeteoGroup.data = hourDetails?.prepareMeteoGroupData() ?? MeteoGroupData()
         }
     }
 }

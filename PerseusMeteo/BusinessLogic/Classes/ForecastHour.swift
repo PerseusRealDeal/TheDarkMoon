@@ -67,6 +67,8 @@ public struct ForecastHour {
 
     // MARK: - Data
 
+    public let provider: MeteoProvider
+
     public let source: [String: Any]
     public let timezone: Int
 
@@ -74,14 +76,19 @@ public struct ForecastHour {
 
     // MARK: - Init
 
-    init(title: String, source: [String: Any] = [:], timezone: Int = 0) {
+    init(title: String,
+         provider: MeteoProvider,
+         source: [String: Any] = [:],
+         timezone: Int = 0) {
+
         self.label = title
+        self.provider = provider
         self.source = source
         self.timezone = timezone
     }
 
-    init(source: [String: Any], timezone: Int, title: String = "") {
-        self.init(title: title, source: source, timezone: timezone)
+    init(provider: MeteoProvider, source: [String: Any], timezone: Int, title: String = "") {
+        self.init(title: title, provider: provider, source: source, timezone: timezone)
     }
 
     // MARK: - Contract
@@ -120,54 +127,29 @@ public struct ForecastHour {
 
         count += 1
 
-        log.message("- GET GROUP COUNT: \(count)")
+        log.message("- GET GROUP COUNT: \(count)", .notice, .standard)
 
         // Set titles up
 
         var meteogroup = MeteoGroupData()
 
-        // Array 1
-
-        meteogroup.title1 = "Prefix: Min".localizedValue + ", " + "Prefix: Max".localizedValue
-        meteogroup.title2 = "Prefix: Feels Like".localizedValue
-        meteogroup.title3 = "Prefix: Visibility".localizedValue
-
-        // Array 2
-
-        meteogroup.title4 = "Label: Speed".localizedValue
-        meteogroup.title5 = "Label: Direction".localizedValue
-        meteogroup.title6 = "Label: Gust".localizedValue
-
-        // Array 3
-
-        meteogroup.title7 = "Label: Pressure".localizedValue
-        meteogroup.title8 = "Prefix: Humidity".localizedValue
-        meteogroup.title9 = "Prefix: Cloudiness".localizedValue
+        switch provider {
+        case .serviceOpenMeteo:
+            meteogroup.setTemplatedValuesUp(provider: .serviceOpenMeteo,
+                                            category: .forecast)
+        case .serviceOpenWeatherMap:
+            meteogroup.setTemplatedValuesUp(provider: .serviceOpenWeatherMap,
+                                            category: .forecast)
+        }
 
         // Set values up
 
-        let tempMin = getForecastHourTempMin(from: source)
-        let tempMax = getForecastHourTempMax(from: source)
-
-        let valueMinMax = "\(tempMin) : \(tempMax)"
-
-        // Array 1
-
-        meteogroup.value1 = valueMinMax
-        meteogroup.value2 = getForecastHourTempKinda(from: source)
-        meteogroup.value3 = getForecastHourVisibility(from: source)
-
-        // Array 2
-
-        meteogroup.value4 = getForecastHourWindSpeed(from: source)
-        meteogroup.value5 = getForecastHourWindDirection(from: source)
-        meteogroup.value6 = getForecastHourWindGusts(from: source)
-
-        // Array 3
-
-        meteogroup.value7 = getForecastHourPressure(from: source)
-        meteogroup.value8 = getForecastHourHumidity(from: source)
-        meteogroup.value9 = getForecastHourCloudiness(from: source)
+        switch provider {
+        case .serviceOpenMeteo:
+            meteogroup.setOpenMeteoForecastUp(data: source)
+        case .serviceOpenWeatherMap:
+            meteogroup.setOpenWeatherForecastUp(data: source)
+        }
 
         return meteogroup
     }

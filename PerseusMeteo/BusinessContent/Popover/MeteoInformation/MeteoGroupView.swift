@@ -20,7 +20,7 @@ class MeteoGroupView: NSView {
 
     // MARK: - Data
 
-    var data: MeteoGroupData? {
+    var data: MeteoGroupData {
         didSet {
             reload()
         }
@@ -57,6 +57,9 @@ class MeteoGroupView: NSView {
     // MARK: - Initialization
 
     required public init?(coder: NSCoder) {
+
+        data = MeteoGroupData()
+
         super.init(coder: coder)
 
         // log.message("[\(type(of: self))].\(#function)")
@@ -135,34 +138,31 @@ class MeteoGroupView: NSView {
 
     public func reload() {
 
-        let title1str = "Prefix: Min".localizedValue + ", " + "Prefix: Max".localizedValue
-        let value1str = "\(MeteoFactsDefaults.temperature) : \(MeteoFactsDefaults.temperature)"
+        self.title1.stringValue = data.title1
+        self.value1.stringValue = data.value1
 
-        self.title1.stringValue = data?.title1 ?? title1str
-        self.value1.stringValue = data?.value1 ?? value1str
+        self.title2.stringValue = data.title2
+        self.value2.stringValue = data.value2
 
-        self.title2.stringValue = data?.title2 ?? "Prefix: Feels Like".localizedValue
-        self.value2.stringValue = data?.value2 ?? MeteoFactsDefaults.temperature
+        self.title3.stringValue = data.title3
+        self.value3.stringValue = data.value3
 
-        self.title3.stringValue = data?.title3 ?? "Prefix: Visibility".localizedValue
-        self.value3.stringValue = data?.value3 ?? MeteoFactsDefaults.visibility
+        self.title4.stringValue = data.title4
+        self.value4.stringValue = data.value4
 
-        self.title4.stringValue = data?.title4 ?? "Label: Speed".localizedValue
-        self.value4.stringValue = data?.value4 ?? MeteoFactsDefaults.windSpeed
+        self.title5.stringValue = data.title5
+        self.value5.stringValue = data.value5
 
-        self.title5.stringValue = data?.title5 ?? "Label: Direction".localizedValue
-        self.value5.stringValue = data?.value5 ?? MeteoFactsDefaults.windDirection
+        self.title6.stringValue = data.title6
+        self.value6.stringValue = data.value6
 
-        self.title6.stringValue = data?.title6 ?? "Label: Gust".localizedValue
-        self.value6.stringValue = data?.value6 ?? MeteoFactsDefaults.windSpeed
+        self.title7.stringValue = data.title7
+        self.value7.stringValue = data.value7
 
-        self.title7.stringValue = data?.title7 ?? "Label: Pressure".localizedValue
-        self.value7.stringValue = data?.value7 ?? MeteoFactsDefaults.pressure
+        self.title8.stringValue = data.title8
+        self.value8.stringValue = data.value8
 
-        self.title8.stringValue = data?.title8 ?? "Prefix: Humidity".localizedValue
-        self.value8.stringValue = data?.value8 ?? MeteoFactsDefaults.humidity
-
-        self.title9.stringValue = data?.title9 ?? "Prefix: Cloudiness".localizedValue
-        self.value9.stringValue = data?.value9 ?? MeteoFactsDefaults.cloudiness
+        self.title9.stringValue = data.title9
+        self.value9.stringValue = data.value9
     }
 }

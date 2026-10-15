@@ -15,6 +15,8 @@
 
 import Foundation
 
+// TODO: Add moonrise, moonset, and uv index. Refresh samples.
+
 public let schemeOpenMeteo = "https://api.open-meteo.com/v1/"
 public let attributesOpenMeteo =
 "forecast?latitude=%@&longitude=%@&temperature_unit=%@&timezone=GMT&forecast_days=%@"

@@ -42,8 +42,13 @@ class OptionsLocalizationTests: XCTestCase {
 
         // assert
 
+        let name = "Product Name".localizedValue
         let title = "Title: Options Screen".localizedValue
-        XCTAssertEqual(sut.view.window?.title, "Product Name".localizedValue + " — " + title)
+        let version = AppGlobals.theAppVersionLocalized
+
+        let expected = name + " — " + title + ". " + version
+
+        XCTAssertEqual(sut.view.window?.title, expected)
 
         let theAppOptions = "Section: App Options".localizedValue
         XCTAssertEqual(sut.boxAppOptions.title, theAppOptions + ":")

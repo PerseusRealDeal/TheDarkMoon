@@ -180,6 +180,8 @@
 	<string>Sunrise</string>
 	<key>Label: Sunset</key>
 	<string>Sunset</string>
+	<key>Label: UV Index</key>
+	<string>UV Index</string>
 	<key>/* Time */</key>
 	<string>--</string>
 	<key>AM</key>

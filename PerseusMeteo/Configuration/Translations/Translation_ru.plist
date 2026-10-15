@@ -180,6 +180,8 @@
 	<string>Восход</string>
 	<key>Label: Sunset</key>
 	<string>Заход</string>
+	<key>Label: UV Index</key>
+	<string>УФ-индекс</string>
 	<key>/* Time */</key>
 	<string>--</string>
 	<key>AM</key>

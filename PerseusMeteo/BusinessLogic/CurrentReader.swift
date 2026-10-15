@@ -12,6 +12,8 @@
 //
 //  See LICENSE for details. All rights reserved.
 //
+// swiftlint:disable file_length
+//
 
 import Foundation
 
@@ -265,7 +267,7 @@ public class CurrentReader: MeteoSourceReader {
             let value = meteoDictionary.sunrise,
             let timezone = meteoDictionary.timezone
         else {
-            return MeteoFactsDefaults.sunrizesunset
+            return MeteoFactsDefaults.timeFormat
         }
 
         // Recalculate if needed.
@@ -273,7 +275,7 @@ public class CurrentReader: MeteoSourceReader {
                                              timezone,
                                              toBe: AppOptions.timeFormatOption)
 
-        return "\(represented ?? MeteoFactsDefaults.sunrizesunset)"
+        return "\(represented ?? MeteoFactsDefaults.timeFormat)"
     }
 
     public var sunset: String {
@@ -283,7 +285,7 @@ public class CurrentReader: MeteoSourceReader {
             let value = meteoDictionary.sunset,
             let timezone = meteoDictionary.timezone
         else {
-            return MeteoFactsDefaults.sunrizesunset
+            return MeteoFactsDefaults.timeFormat
         }
 
         // Recalculate if needed.
@@ -291,6 +293,18 @@ public class CurrentReader: MeteoSourceReader {
                                              timezone,
                                              toBe: AppOptions.timeFormatOption)
 
-        return "\(represented ?? MeteoFactsDefaults.sunrizesunset)"
+        return "\(represented ?? MeteoFactsDefaults.timeFormat)"
+    }
+
+    public var moonrise: String {
+        return MeteoFactsDefaults.timeFormat
+    }
+
+    public var moonset: String {
+        return MeteoFactsDefaults.timeFormat
+    }
+
+    public var uvindex: String {
+        return MeteoFactsDefaults.uvindex
     }
 }

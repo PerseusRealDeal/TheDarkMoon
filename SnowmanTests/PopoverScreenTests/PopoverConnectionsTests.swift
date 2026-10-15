@@ -83,9 +83,9 @@ class PopoverConnectionsTests: XCTestCase {
         XCTAssertNotNil(sut.viewWeather.labelTemperatureValue)
         XCTAssertNotNil(sut.viewWeather.labelWeatherConditionsDescriptionValue)
 
-        XCTAssertNotNil(sut.viewWeather.labelSunriseTitle)
+        XCTAssertNotNil(sut.viewWeather.labelMoonriseValue)
         XCTAssertNotNil(sut.viewWeather.labelSunriseValue)
-        XCTAssertNotNil(sut.viewWeather.labelSunsetTitle)
+        XCTAssertNotNil(sut.viewWeather.labelMoonsetValue)
         XCTAssertNotNil(sut.viewWeather.labelSunsetValue)
     }
 
