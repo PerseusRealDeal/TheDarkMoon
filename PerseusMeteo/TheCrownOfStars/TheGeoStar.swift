@@ -356,13 +356,13 @@ public enum Result<Value, Error: Swift.Error> {
     case failure(Error)
 }
 
-extension CLAuthorizationStatus: CustomStringConvertible {
+extension CLAuthorizationStatus {
 
-    // TODO: Xcode 16.2 triggers a compiler warning
+    // FIXED: Xcode 16.2 triggers a compiler warning
     // Not recommended forcing CustomStringConvertible conformance onto the imported enum.
     // Better extend CLAuthorizationStatus with a standard computed property
     // (e.g., customDescription) to return the corresponding string.
-    public var description: String {
+    public var customDescription: String {
         switch self {
         case .notDetermined:
             return "notDetermined"
@@ -375,7 +375,7 @@ extension CLAuthorizationStatus: CustomStringConvertible {
         case .authorizedWhenInUse: // iOS only.
             return "authorizedWhenInUse"
         @unknown default:
-            log.message("Unknown CLAuthorizationStatus", .error)
+            log.message("Unknown CLAuthorizationStatus", .notice)
             // fatalError("Unknown CLAuthorizationStatus")
             return "unknown"
         }
@@ -526,7 +526,7 @@ extension GeoAgent: CLLocationManagerDelegate {
 #endif
 
         let statusLM = type(of: locationManager).authorizationStatus()
-        let details = "statusLM: \(statusLM)"
+        let details = "statusLM: \(statusLM.customDescription)"
 
         if statusLM == .notDetermined, isAuthorizedForLocationServices {
 
