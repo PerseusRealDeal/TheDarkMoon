@@ -60,6 +60,10 @@ class WeatherView: NSView {
     @IBOutlet private(set) weak var labelUVIndex: NSTextField!
     @IBOutlet private(set) weak var labelMoonphase: NSTextField!
 
+    @IBOutlet private(set) weak var labelPrecipitationProbability: NSTextField!
+    @IBOutlet private(set) weak var labelRainPrecipitation: NSTextField!
+    @IBOutlet private(set) weak var labelSnowPrecipitation: NSTextField!
+
     // MARK: - Initialization
 
     override func awakeFromNib() {
@@ -170,8 +174,8 @@ class WeatherView: NSView {
 
         // Moonrise and moonset
 
-        viewMoonriseIcon.toolTip = "Label: Sunrise".localizedValue
-        viewMoonsetIcon.toolTip = "Label: Sunset".localizedValue
+        viewMoonriseIcon.toolTip = "Label: Moonrise".localizedValue
+        viewMoonsetIcon.toolTip = "Label: Moonset".localizedValue
 
         labelMoonriseValue.stringValue = weatherReader.moonrise
         labelMoonsetValue.stringValue = weatherReader.moonset
@@ -186,24 +190,59 @@ class WeatherView: NSView {
         let moonphase = "Label: Moon Phase".localizedValue + " \(weatherReader.moonphase)"
         labelMoonphase.stringValue = moonphase
 
+        // Precipitation probability
+
+        let probability = "Label: Probability".localizedValue + " \(weatherReader.probability)"
+        labelPrecipitationProbability.stringValue = "\(probability)"
+
+        // Precipitation
+
+        let rain = "Label: Rain".localizedValue + " \(weatherReader.precipitation.rain)"
+        labelRainPrecipitation.stringValue = "\(rain)"
+
+        let snow = "Label: Snow".localizedValue + " \(weatherReader.precipitation.snow)"
+        labelSnowPrecipitation.stringValue = "\(snow)"
+
         // Meteo group params
 
         showMeteoGroupParams()
+        // showSpecialUIElementsIfRequired()
+    }
 
-        // Show/Hide special params
+    private func showSpecialUIElementsIfRequired() {
 
-        if AppOptions.currentMeteoProviderOption == .serviceOpenMeteo {
+        // TODO: Gray empty labels
+
+        if AppGlobals.weather == nil {
+            if AppOptions.currentMeteoProviderOption == .serviceOpenMeteo {
+                labelUVIndex.isHidden = false
+                labelMoonsetValue.isHidden = false
+                labelMoonriseValue.isHidden = false
+                viewMoonsetIcon.isHidden = false
+                viewMoonriseIcon.isHidden = false
+                labelMoonphase.isHidden = false
+            } else {
+                labelUVIndex.isHidden = true
+                labelMoonsetValue.isHidden = true
+                labelMoonriseValue.isHidden = true
+                viewMoonsetIcon.isHidden = true
+                viewMoonriseIcon.isHidden = true
+                labelMoonphase.isHidden = true
+            }
+        } else if AppGlobals.weather?.source == .serviceOpenMeteo {
             labelUVIndex.isHidden = false
             labelMoonsetValue.isHidden = false
             labelMoonriseValue.isHidden = false
             viewMoonsetIcon.isHidden = false
             viewMoonriseIcon.isHidden = false
+            labelMoonphase.isHidden = false
         } else {
             labelUVIndex.isHidden = true
             labelMoonsetValue.isHidden = true
             labelMoonriseValue.isHidden = true
             viewMoonsetIcon.isHidden = true
             viewMoonriseIcon.isHidden = true
+            labelMoonphase.isHidden = true
         }
     }
 
@@ -285,6 +324,7 @@ extension WeatherView {
             self.labelMoonriseValue.textColor = whiteOrBlack
             self.labelMoonsetValue.textColor = whiteOrBlack
             self.labelUVIndex.textColor = whiteOrBlack
+            self.labelMoonphase.textColor = whiteOrBlack
             self.viewMeteoGroup.title1.textColor = whiteOrBlack
             self.viewMeteoGroup.value1.textColor = whiteOrBlack
             self.viewMeteoGroup.title2.textColor = whiteOrBlack

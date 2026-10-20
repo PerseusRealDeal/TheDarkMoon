@@ -12,6 +12,9 @@
                 <outlet property="labelMoonphase" destination="YRc-At-G1c" id="CiW-uh-Efd"/>
                 <outlet property="labelMoonriseValue" destination="PEx-OS-GuU" id="0d2-uF-xGj"/>
                 <outlet property="labelMoonsetValue" destination="Ru6-Ex-aAs" id="Cyg-sp-9hc"/>
+                <outlet property="labelPrecipitationProbability" destination="mWf-71-BfG" id="RnL-ZT-9gW"/>
+                <outlet property="labelRainPrecipitation" destination="Yqi-f4-PqW" id="pkT-gW-SqM"/>
+                <outlet property="labelSnowPrecipitation" destination="gFH-4s-NNf" id="nCH-zB-FgX"/>
                 <outlet property="labelSunriseValue" destination="vWh-dP-4Gl" id="Etj-oc-iFI"/>
                 <outlet property="labelSunsetValue" destination="qBw-SP-YLr" id="W3g-DV-Z61"/>
                 <outlet property="labelTemperatureValue" destination="QQn-0Y-EXY" id="ziI-8b-dWb"/>
@@ -29,14 +32,14 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="415" height="327"/>
+            <rect key="frame" x="0.0" y="0.0" width="450" height="315"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="7cu-vs-6m3">
-                    <rect key="frame" x="0.0" y="247" width="415" height="80"/>
+                    <rect key="frame" x="0.0" y="225" width="450" height="90"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1ak-U7-0E6">
-                            <rect key="frame" x="90" y="4" width="195" height="16"/>
+                            <rect key="frame" x="99" y="24" width="195" height="16"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" alignment="left" title="Weather-conditions description" id="kM7-Hj-qbW">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -44,25 +47,25 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QQn-0Y-EXY">
-                            <rect key="frame" x="90" y="25" width="129" height="30"/>
+                            <rect key="frame" x="99" y="40" width="129" height="26"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="125" id="YHB-H6-RS9"/>
                             </constraints>
                             <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" alignment="left" title="263.72 K" id="acj-7o-ujA">
-                                <font key="font" metaFont="system" size="26"/>
+                                <font key="font" metaFont="system" size="22"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7ou-eL-RIc">
-                            <rect key="frame" x="10" y="4" width="72" height="72"/>
+                            <rect key="frame" x="10" y="5" width="81" height="80"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="7ou-eL-RIc" secondAttribute="height" multiplier="1:1" id="IKe-26-ztD"/>
                             </constraints>
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="Icon" id="nj1-ar-9WA"/>
                         </imageView>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Yg-f3-Evc">
-                            <rect key="frame" x="227" y="55" width="25" height="25"/>
+                            <rect key="frame" x="262" y="65" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="Slh-Jp-h3X"/>
                                 <constraint firstAttribute="width" secondItem="0Yg-f3-Evc" secondAttribute="height" multiplier="1:1" id="aFR-UC-9N5"/>
@@ -70,7 +73,7 @@
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sunrise.fill" id="ZnS-UG-G28"/>
                         </imageView>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X8O-8r-Cql">
-                            <rect key="frame" x="325" y="55" width="25" height="25"/>
+                            <rect key="frame" x="360" y="65" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="0PR-Wr-Ujb"/>
                                 <constraint firstAttribute="width" secondItem="X8O-8r-Cql" secondAttribute="height" multiplier="1:1" id="LPf-z8-YyZ"/>
@@ -78,7 +81,7 @@
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sunset.fill" id="Zdb-zr-hKc"/>
                         </imageView>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wjv-dL-awJ">
-                            <rect key="frame" x="227" y="34" width="25" height="25"/>
+                            <rect key="frame" x="262" y="41" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="wjv-dL-awJ" secondAttribute="height" multiplier="1:1" id="Dlb-eD-Hxa"/>
                                 <constraint firstAttribute="width" constant="25" id="UAH-kU-ssz"/>
@@ -86,7 +89,7 @@
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="moonrise.fill" id="DVf-Rn-ihC"/>
                         </imageView>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N6g-3Z-tsB">
-                            <rect key="frame" x="325" y="34" width="25" height="25"/>
+                            <rect key="frame" x="360" y="41" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="5pE-66-OAt"/>
                                 <constraint firstAttribute="width" secondItem="N6g-3Z-tsB" secondAttribute="height" multiplier="1:1" id="zIV-Fw-t5v"/>
@@ -94,7 +97,7 @@
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="moonset.fill" id="lA3-h7-E7i"/>
                         </imageView>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qBw-SP-YLr">
-                            <rect key="frame" x="353" y="59" width="64" height="16"/>
+                            <rect key="frame" x="388" y="69" width="64" height="16"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="05:03 PM" id="DjO-Im-nAI">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -102,7 +105,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ru6-Ex-aAs">
-                            <rect key="frame" x="353" y="38" width="64" height="16"/>
+                            <rect key="frame" x="388" y="45" width="64" height="16"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="05:03 PM" id="LPe-eP-Qyk">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -110,7 +113,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PEx-OS-GuU">
-                            <rect key="frame" x="255" y="38" width="62" height="16"/>
+                            <rect key="frame" x="290" y="45" width="62" height="16"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="13:53 PM" id="ryO-qT-B7p">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -118,16 +121,40 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YRc-At-G1c">
-                            <rect key="frame" x="315" y="17" width="102" height="16"/>
-                            <textFieldCell key="cell" lineBreakMode="clipping" title="Moon Phase 0.3" id="8B5-4X-UIA">
+                            <rect key="frame" x="350" y="24" width="102" height="16"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Moon Phase 0.3" id="8B5-4X-UIA">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i79-94-c2X">
-                            <rect key="frame" x="129" y="59" width="90" height="16"/>
-                            <textFieldCell key="cell" lineBreakMode="clipping" title="UV Index 0.24" id="pGt-DZ-MP3">
+                            <rect key="frame" x="164" y="69" width="90" height="16"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="UV Index 0.24" id="pGt-DZ-MP3">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mWf-71-BfG">
+                            <rect key="frame" x="99" y="0.0" width="107" height="16"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Probability 100%" id="uem-hH-iX7">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yqi-f4-PqW">
+                            <rect key="frame" x="207" y="0.0" width="99" height="16"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Rain 0.25 mm/h" id="8Oh-bi-6bi">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gFH-4s-NNf">
+                            <rect key="frame" x="307" y="0.0" width="106" height="16"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Snow 0.30 mm/h" id="F4p-JS-04s">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -137,15 +164,19 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="qBw-SP-YLr" secondAttribute="trailing" id="0Nr-Zy-G01"/>
                         <constraint firstItem="Ru6-Ex-aAs" firstAttribute="leading" secondItem="qBw-SP-YLr" secondAttribute="leading" id="0mh-dC-pSb"/>
-                        <constraint firstItem="1ak-U7-0E6" firstAttribute="top" secondItem="QQn-0Y-EXY" secondAttribute="bottom" constant="5" id="2yg-zy-1xp"/>
+                        <constraint firstItem="QQn-0Y-EXY" firstAttribute="centerY" secondItem="wjv-dL-awJ" secondAttribute="centerY" id="0pj-RU-riI"/>
+                        <constraint firstItem="gFH-4s-NNf" firstAttribute="leading" secondItem="Yqi-f4-PqW" secondAttribute="trailing" constant="5" id="3Sn-hP-byb"/>
                         <constraint firstItem="7ou-eL-RIc" firstAttribute="centerY" secondItem="7cu-vs-6m3" secondAttribute="centerY" id="5Jr-eg-XNK"/>
-                        <constraint firstItem="Ru6-Ex-aAs" firstAttribute="top" secondItem="qBw-SP-YLr" secondAttribute="bottom" constant="5" id="BcK-CX-SMu"/>
+                        <constraint firstItem="Ru6-Ex-aAs" firstAttribute="top" secondItem="qBw-SP-YLr" secondAttribute="bottom" constant="8" id="BcK-CX-SMu"/>
+                        <constraint firstItem="1ak-U7-0E6" firstAttribute="centerY" secondItem="YRc-At-G1c" secondAttribute="centerY" id="Cxp-6s-Djl"/>
                         <constraint firstItem="wjv-dL-awJ" firstAttribute="centerY" secondItem="Ru6-Ex-aAs" secondAttribute="centerY" id="Edg-f9-wKE"/>
                         <constraint firstAttribute="trailing" secondItem="YRc-At-G1c" secondAttribute="trailing" id="HrJ-Ac-mZG"/>
                         <constraint firstAttribute="trailing" secondItem="Ru6-Ex-aAs" secondAttribute="trailing" id="Jrb-Qb-h7b"/>
                         <constraint firstItem="QQn-0Y-EXY" firstAttribute="leading" secondItem="7ou-eL-RIc" secondAttribute="trailing" constant="10" id="KMy-xa-lF7"/>
                         <constraint firstItem="7ou-eL-RIc" firstAttribute="leading" secondItem="7cu-vs-6m3" secondAttribute="leading" constant="10" id="Kdp-iW-WRu"/>
                         <constraint firstItem="Ru6-Ex-aAs" firstAttribute="leading" secondItem="N6g-3Z-tsB" secondAttribute="trailing" constant="5" id="KzD-aA-gT0"/>
+                        <constraint firstItem="Yqi-f4-PqW" firstAttribute="centerY" secondItem="mWf-71-BfG" secondAttribute="centerY" id="L2k-tI-SvQ"/>
+                        <constraint firstAttribute="bottom" secondItem="mWf-71-BfG" secondAttribute="bottom" id="Oer-WM-o7b"/>
                         <constraint firstItem="X8O-8r-Cql" firstAttribute="centerY" secondItem="qBw-SP-YLr" secondAttribute="centerY" id="TOV-Nc-Ekh"/>
                         <constraint firstItem="PEx-OS-GuU" firstAttribute="centerY" secondItem="Ru6-Ex-aAs" secondAttribute="centerY" id="X7m-9c-bSj"/>
                         <constraint firstItem="0Yg-f3-Evc" firstAttribute="leading" secondItem="i79-94-c2X" secondAttribute="trailing" constant="10" id="bdi-8O-Snt"/>
@@ -153,20 +184,22 @@
                         <constraint firstItem="N6g-3Z-tsB" firstAttribute="centerY" secondItem="Ru6-Ex-aAs" secondAttribute="centerY" id="dfl-eR-ygM"/>
                         <constraint firstItem="i79-94-c2X" firstAttribute="centerY" secondItem="qBw-SP-YLr" secondAttribute="centerY" id="j1l-fd-jlT"/>
                         <constraint firstItem="N6g-3Z-tsB" firstAttribute="leading" secondItem="PEx-OS-GuU" secondAttribute="trailing" constant="10" id="kWq-Ra-2xH"/>
-                        <constraint firstItem="QQn-0Y-EXY" firstAttribute="centerY" secondItem="7ou-eL-RIc" secondAttribute="centerY" id="lcG-Fk-YNr"/>
                         <constraint firstItem="1ak-U7-0E6" firstAttribute="leading" secondItem="QQn-0Y-EXY" secondAttribute="leading" id="nDT-Bb-P1G"/>
                         <constraint firstItem="qBw-SP-YLr" firstAttribute="leading" secondItem="X8O-8r-Cql" secondAttribute="trailing" constant="5" id="pL0-Yi-XNF"/>
+                        <constraint firstItem="mWf-71-BfG" firstAttribute="leading" secondItem="QQn-0Y-EXY" secondAttribute="leading" id="qI6-lP-OZb"/>
+                        <constraint firstItem="Yqi-f4-PqW" firstAttribute="leading" secondItem="mWf-71-BfG" secondAttribute="trailing" constant="5" id="rD7-Ju-TCU"/>
                         <constraint firstItem="7ou-eL-RIc" firstAttribute="height" secondItem="7cu-vs-6m3" secondAttribute="height" multiplier="0.9" id="smQ-9P-Dvb"/>
                         <constraint firstItem="0Yg-f3-Evc" firstAttribute="centerY" secondItem="qBw-SP-YLr" secondAttribute="centerY" id="uVZ-QJ-GWB"/>
                         <constraint firstItem="PEx-OS-GuU" firstAttribute="leading" secondItem="wjv-dL-awJ" secondAttribute="trailing" constant="5" id="v4Q-5t-MAO"/>
+                        <constraint firstItem="gFH-4s-NNf" firstAttribute="centerY" secondItem="Yqi-f4-PqW" secondAttribute="centerY" id="xpE-zZ-fFt"/>
                         <constraint firstItem="qBw-SP-YLr" firstAttribute="top" secondItem="7cu-vs-6m3" secondAttribute="top" constant="5" id="yBK-Bt-gqU"/>
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="GQy-nj-ciG" customClass="MeteoGroupView" customModule="Snowman" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="415" height="247"/>
+                    <rect key="frame" x="0.0" y="0.0" width="450" height="225"/>
                 </customView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vWh-dP-4Gl">
-                    <rect key="frame" x="255" y="306" width="62" height="16"/>
+                    <rect key="frame" x="290" y="294" width="62" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="13:53 PM" id="ghv-g6-XmG">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -174,7 +207,7 @@
                     </textFieldCell>
                 </textField>
                 <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="lEf-fh-mLw">
-                    <rect key="frame" x="399" y="0.0" width="16" height="16"/>
+                    <rect key="frame" x="434" y="0.0" width="16" height="16"/>
                 </progressIndicator>
             </subviews>
             <constraints>
@@ -183,7 +216,7 @@
                 <constraint firstItem="GQy-nj-ciG" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="8mi-Uh-qnK"/>
                 <constraint firstItem="7cu-vs-6m3" firstAttribute="bottom" secondItem="GQy-nj-ciG" secondAttribute="top" id="E1R-l6-pra"/>
                 <constraint firstAttribute="trailing" secondItem="7cu-vs-6m3" secondAttribute="trailing" id="EVt-zq-KWc"/>
-                <constraint firstItem="GQy-nj-ciG" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="80" id="FPI-hj-b23"/>
+                <constraint firstItem="GQy-nj-ciG" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="90" id="FPI-hj-b23"/>
                 <constraint firstItem="X8O-8r-Cql" firstAttribute="leading" secondItem="vWh-dP-4Gl" secondAttribute="trailing" constant="10" id="ICM-6g-kwi"/>
                 <constraint firstAttribute="trailing" secondItem="GQy-nj-ciG" secondAttribute="trailing" id="JWd-LQ-AUi"/>
                 <constraint firstItem="vWh-dP-4Gl" firstAttribute="centerY" secondItem="qBw-SP-YLr" secondAttribute="centerY" id="KPJ-n8-LDP"/>
@@ -192,7 +225,7 @@
                 <constraint firstAttribute="bottom" secondItem="GQy-nj-ciG" secondAttribute="bottom" id="aPv-g9-kUU"/>
                 <constraint firstItem="7cu-vs-6m3" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="cOl-7I-Yq8"/>
             </constraints>
-            <point key="canvasLocation" x="107.5" y="217.5"/>
+            <point key="canvasLocation" x="125" y="211.5"/>
         </customView>
     </objects>
     <resources>

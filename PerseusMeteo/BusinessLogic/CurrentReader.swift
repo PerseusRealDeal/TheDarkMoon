@@ -58,7 +58,7 @@ public class CurrentReader: MeteoSourceReader {
 
         let day = lastOne.day == nil ? "" : "\(lastOne.day ?? "")\(postfixYear) "
 
-        return "\(prefix): \(day)\(lastOne.time ?? MeteoFactsDefaults.responseTimeLabelText)"
+        return "\(prefix) \(day)\(lastOne.time ?? MeteoFactsDefaults.responseTimeLabelText)"
     }
 
     public var weatherIconName: String {
@@ -354,5 +354,37 @@ public class CurrentReader: MeteoSourceReader {
         }
 
         return value.description
+    }
+
+    public var probability: String {
+
+        guard
+            let meteoDictionary = self.meteoDictionary as? CurrentDictionary,
+            let value = meteoDictionary.probability
+        else {
+            return MeteoFactsDefaults.probability
+        }
+
+        return "\(value)%"
+    }
+
+    public var precipitation: (rain: String, snow: String) {
+
+        guard
+            let meteoDictionary = self.meteoDictionary as? CurrentDictionary
+        else {
+            return (MeteoFactsDefaults.rain, MeteoFactsDefaults.snow)
+        }
+
+        let rain = meteoDictionary.rain
+        let snow = meteoDictionary.snow
+
+        let rainString = rain == nil
+        ? MeteoFactsDefaults.rain : "\(rain!.cut(.two)) " + "Unit: mm/h".localizedValue
+
+        let snowString = snow == nil
+        ? MeteoFactsDefaults.snow : "\(snow!.cut(.two)) " + "Unit: mm/h".localizedValue
+
+        return (rainString, snowString)
     }
 }

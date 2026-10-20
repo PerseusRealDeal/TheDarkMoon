@@ -56,7 +56,7 @@ public class ForecastReader: MeteoSourceReader {
 
         let day = lastOne.day == nil ? "" : "\(lastOne.day ?? "")\(postfixYear) "
 
-        return "\(prefix): \(day)\(lastOne.time ?? MeteoFactsDefaults.responseTimeLabelText)"
+        return "\(prefix) \(day)\(lastOne.time ?? MeteoFactsDefaults.responseTimeLabelText)"
     }
 
     public var forecastDays: [ForecastDay] {

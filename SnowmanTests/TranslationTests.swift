@@ -283,6 +283,12 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("Label: Sunset".localizedExpectation,
                        "Label: Sunset".localizedValue)
 
+        XCTAssertEqual("Label: Moonrise".localizedExpectation,
+                       "Label: Moonrise".localizedValue)
+
+        XCTAssertEqual("Label: Moonset".localizedExpectation,
+                       "Label: Moonset".localizedValue)
+
         XCTAssertEqual("Label: UV Index".localizedExpectation,
                        "Label: UV Index".localizedValue)
 

@@ -102,9 +102,9 @@ class PopoverScreenLocalizationTests: XCTestCase {
                        "Label: Sunset".localizedValue)
 
         XCTAssertEqual(sut.viewWeather.viewMoonriseIcon.toolTip,
-                       "Label: Sunrise".localizedValue)
+                       "Label: Moonrise".localizedValue)
         XCTAssertEqual(sut.viewWeather.viewMoonsetIcon.toolTip,
-                       "Label: Sunset".localizedValue)
+                       "Label: Moonset".localizedValue)
     }
 
     func test_Localization_of_WeatherView_MeteoGroupView() {

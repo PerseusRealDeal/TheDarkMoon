@@ -326,4 +326,46 @@ public class CurrentOpenMeteoParser: CurrentParserProtocol {
 
         return uv_index_max
     }
+
+    // MARK: - Precipitation Probability
+
+    public func probability(from dictionary: [String: Any]) -> Int? {
+
+        guard
+            let current = dictionary["current"] as? [String: Any],
+            let probability = getInstance("precipitation_probability", Int.self, current)
+        else {
+            return nil
+        }
+
+        return probability
+    }
+
+    // MARK: - Rain
+
+    public func rain(from dictionary: [String: Any]) -> Double? {
+
+        guard
+            let current = dictionary["current"] as? [String: Any],
+            let rain = getInstance("rain", Double.self, current)
+        else {
+            return nil
+        }
+
+        return rain
+    }
+
+    // MARK: - Snow
+
+    public func snow(from dictionary: [String: Any]) -> Double? {
+
+        guard
+            let current = dictionary["current"] as? [String: Any],
+            let snow = getInstance("snowfall", Double.self, current)
+        else {
+            return nil
+        }
+
+        return snow
+    }
 }
