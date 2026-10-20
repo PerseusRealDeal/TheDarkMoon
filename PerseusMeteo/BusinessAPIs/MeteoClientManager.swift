@@ -20,7 +20,13 @@ import Cocoa
 // swiftlint:disable:next type_body_length
 public class MeteoClientManager {
 
-    private let timeoutIntervalMeteoData = 10.0 // 10 sec.
+    private var timeoutIntervalMeteoData: Double {
+        if useProxy {
+            return 60.0
+        }
+
+        return 10.0 // 10 sec.
+    }
     private let timeoutIntervalSuggestions = 5.0 // 5 sec.
 
     private let requestAttemptsForMeteo = 3 // For both current and forecast.
@@ -36,36 +42,84 @@ public class MeteoClientManager {
     private var isReadyToCallForecast = false
     private var isReadyToGetSuggestions = false
 
-    private let serviceCurrentOpenMeteo =
-    PerseusNetworkClient(URLSession.shared, "CurrentOpenMeteo")
-    private let serviceForecastOpenMeteo =
-    PerseusNetworkClient(URLSession.shared, "ForecastOpenMeteo")
-    private let serviceOpenMeteoSuggestions =
-    PerseusNetworkClient(URLSession.shared, "OpenMeteoSuggestions")
+    private var serviceCurrentOpenMeteo: PerseusNetworkClient?
+    private var serviceForecastOpenMeteo: PerseusNetworkClient?
+    private var serviceOpenMeteoSuggestions: PerseusNetworkClient?
 
-    private let serviceCurrentOpenWeather =
-    PerseusNetworkClient(URLSession.shared, "CurrentOpenWeather")
-    private let serviceForecastOpenWeather =
-    PerseusNetworkClient(URLSession.shared, "ForecastOpenWeather")
-    private let serviceOpenWeatherSuggestions =
-    PerseusNetworkClient(URLSession.shared, "OpenWeatherSuggestions")
+    private var serviceCurrentOpenWeather: PerseusNetworkClient?
+    private var serviceForecastOpenWeather: PerseusNetworkClient?
+    private var serviceOpenWeatherSuggestions: PerseusNetworkClient?
 
     init() {
 
-        log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)", .info, .standard)
 
-        serviceCurrentOpenMeteo.responseHandler = handleCurrentOpenMeteo
-        serviceForecastOpenMeteo.responseHandler = handleForecastOpenMeteo
+        serviceCurrentOpenMeteo = PerseusNetworkClient(
+            useProxy ? createProxiedSession() : URLSession.shared, "CurrentOpenMeteo")
+        serviceForecastOpenMeteo = PerseusNetworkClient(
+            useProxy ? createProxiedSession() : URLSession.shared, "ForecastOpenMeteo")
+        serviceOpenMeteoSuggestions = PerseusNetworkClient(
+            useProxy ? createProxiedSession() : URLSession.shared, "OpenMeteoSuggestions")
 
-        serviceCurrentOpenWeather.responseHandler = handleCurrentOpenWeather
-        serviceForecastOpenWeather.responseHandler = handleForecastOpenWeather
+        serviceCurrentOpenWeather = PerseusNetworkClient(
+            URLSession.shared, "CurrentOpenWeather")
+        serviceForecastOpenWeather = PerseusNetworkClient(
+            URLSession.shared, "ForecastOpenWeather")
+        serviceOpenWeatherSuggestions = PerseusNetworkClient(
+            URLSession.shared, "OpenWeatherSuggestions")
 
-        serviceOpenMeteoSuggestions.responseHandler = handleOpenMeteoSuggestions
-        serviceOpenWeatherSuggestions.responseHandler = handleOpenWeatherSuggestions
+        serviceCurrentOpenMeteo?.responseHandler = handleCurrentOpenMeteo
+        serviceForecastOpenMeteo?.responseHandler = handleForecastOpenMeteo
+
+        serviceCurrentOpenWeather?.responseHandler = handleCurrentOpenWeather
+        serviceForecastOpenWeather?.responseHandler = handleForecastOpenWeather
+
+        serviceOpenMeteoSuggestions?.responseHandler = handleOpenMeteoSuggestions
+        serviceOpenWeatherSuggestions?.responseHandler = handleOpenWeatherSuggestions
 
         isReadyToCall = true
         isReadyToCallForecast = true
         isReadyToGetSuggestions = true
+    }
+
+    private func createProxiedSession() -> URLSession {
+
+        let configuration = URLSessionConfiguration.default
+        let proxySettings: [AnyHashable: Any] = [
+
+            // HTTP Proxy configuration
+            kCFNetworkProxiesHTTPEnable: 1,               // 1 = True, 0 = False
+            kCFNetworkProxiesHTTPProxy: proxy.server,     // Proxy Server IP/Domain
+            kCFNetworkProxiesHTTPPort: proxy.port,        // Proxy Server Port
+
+            // HTTPS Proxy configuration (optional but highly recommended)
+            kCFNetworkProxiesHTTPSEnable: 1,
+            kCFNetworkProxiesHTTPSProxy: proxy.server,
+            kCFNetworkProxiesHTTPSPort: proxy.port
+
+            // Credentials keys
+            // kCFProxyUsernameKey as String: "username",
+            // kCFProxyPasswordKey as String: "password"
+        ]
+
+    /*
+        let proxySettings: [AnyHashable: Any] = [
+            "HTTPEnable": 1,
+            "HTTPProxy": proxy.server,
+            "HTTPPort": proxy.port,
+
+            "HTTPSEnable": 1,
+            "HTTPSProxy": proxy.server,
+            "HTTPSPort": proxy.port
+        ]
+
+        proxySettings[kCFProxyUsernameKey as String] = "username"
+        proxySettings[kCFProxyPasswordKey as String] = "password"
+    */
+
+        configuration.connectionProxyDictionary = proxySettings
+
+        return URLSession(configuration: configuration)
     }
 
     // MARK: - Calls Cancellation
@@ -74,8 +128,8 @@ public class MeteoClientManager {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        serviceCurrentOpenMeteo.cancell()
-        serviceCurrentOpenWeather.cancell()
+        serviceCurrentOpenMeteo?.cancell()
+        serviceCurrentOpenWeather?.cancell()
 
         self.retriesCountCurrent = 0
         self.isReadyToCall = true
@@ -91,8 +145,8 @@ public class MeteoClientManager {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        serviceForecastOpenMeteo.cancell()
-        serviceForecastOpenWeather.cancell()
+        serviceForecastOpenMeteo?.cancell()
+        serviceForecastOpenWeather?.cancell()
 
         self.retriesCountForecast = 0
         self.isReadyToCallForecast = true
@@ -108,8 +162,8 @@ public class MeteoClientManager {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        serviceOpenMeteoSuggestions.cancell()
-        serviceOpenWeatherSuggestions.cancell()
+        serviceOpenMeteoSuggestions?.cancell()
+        serviceOpenWeatherSuggestions?.cancell()
 
         self.retrySearchSuggestions = ""
         self.retriesCountSuggestions = 0
@@ -156,8 +210,10 @@ public class MeteoClientManager {
                 return
             }
 
-            try serviceCurrentOpenMeteo.call(urlString: urlStr,
-                                             timeout: timeoutIntervalMeteoData)
+            try serviceCurrentOpenMeteo?.call(
+                urlString: urlStr,
+                timeout: timeoutIntervalMeteoData
+            )
         } catch {
 
             log.message("[\(type(of: self))].\(#function) \(error)", .error)
@@ -220,7 +276,7 @@ public class MeteoClientManager {
                 return
             }
 
-            try serviceCurrentOpenWeather.call(
+            try serviceCurrentOpenWeather?.call(
                 urlString: callDetails.urlString,
                 timeout: timeoutIntervalMeteoData
             )
@@ -266,8 +322,10 @@ public class MeteoClientManager {
                 return
             }
 
-            try serviceForecastOpenMeteo.call(urlString: urlStr,
-                                              timeout: timeoutIntervalMeteoData)
+            try serviceForecastOpenMeteo?.call(
+                urlString: urlStr,
+                timeout: timeoutIntervalMeteoData
+            )
         } catch {
 
             log.message("[\(type(of: self))].\(#function) \(error)", .error)
@@ -332,7 +390,7 @@ public class MeteoClientManager {
                 return
             }
 
-            try serviceForecastOpenWeather.call(
+            try serviceForecastOpenWeather?.call(
                 urlString: callDetails.urlString,
                 timeout: timeoutIntervalMeteoData
             )
@@ -408,7 +466,7 @@ public class MeteoClientManager {
         // request
 
         retrySearchSuggestions = search
-        serviceOpenMeteoSuggestions.requestData(url: requestURL, timeoutIntervalSuggestions)
+        serviceOpenMeteoSuggestions?.requestData(url: requestURL, timeoutIntervalSuggestions)
     }
 
     public func fetchOpenWeatherSuggestions(_ search: String) {
@@ -487,7 +545,7 @@ public class MeteoClientManager {
         log.message(urlString.replacingOccurrences(of: key, with: "###"), .notice)
 
         retrySearchSuggestions = search
-        serviceOpenWeatherSuggestions.requestData(url: requestURL, timeoutIntervalSuggestions)
+        serviceOpenWeatherSuggestions?.requestData(url: requestURL, timeoutIntervalSuggestions)
     }
 
     // MARK: - Handling Current and Forecast Responses

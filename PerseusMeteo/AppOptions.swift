@@ -28,6 +28,25 @@ let useOpenMeteoForecastSample = false
 let useOpenWeatherMapCurrentSample = false
 let useOpenWeatherMapForecastSample = false
 
+// TODO: Build-in proxy tool as an end-user option
+
+let useProxy = true
+let proxy = Proxy("114.244.215.125:8888")
+
+struct Proxy {
+
+    let server: String
+    let port: Int
+
+    init(_ configuration: String) {
+
+        let split = configuration.split(separator: ":")
+
+        server = String(split[0])
+        port = Int(split[1])!
+    }
+}
+
 // MARK: - Keys
 
 // public let OPEN_WEATHER_API_KEY_OPTION_KEY = "OPEN_WEATHER_API_OPTION_KEY"
