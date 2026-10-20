@@ -172,4 +172,25 @@ public class CurrentDictionary: MeteoDataDictionary {
 
         return parser?.uvindex(from: cach)
     }
+
+    public var probability: Int? {
+
+        guard let cach = data else { return nil }
+
+        return parser?.probability(from: cach)
+    }
+
+    public var rain: Double? {
+
+        guard let cach = data else { return nil }
+
+        return parser?.rain(from: cach)
+    }
+
+    public var snow: Double? {
+
+        guard let cach = data else { return nil }
+
+        return parser?.snow(from: cach)
+    }
 }

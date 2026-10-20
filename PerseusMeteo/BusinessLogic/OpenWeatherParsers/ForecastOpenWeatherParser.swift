@@ -93,6 +93,10 @@ import Foundation
 
 public class ForecastOpenWeatherParser: ForecastParserProtocol {
 
+    private var count = 0 // For debug purpose
+
+    // MARK: - Contract
+
     public func getTimeZone(from dictionary: [String: Any]) -> Int? {
 
         guard let city = dictionary["city"] as? [String: Any] else {
@@ -100,14 +104,13 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
             return nil
         }
 
-        // TimeZone
-
         return getInstance("timezone", Int.self, city)
     }
 
     public func getForecastDays(from dictionary: [String: Any]) -> [ForecastDay]? {
 
-        // log.message("[\(type(of: self))].\(#function)")
+        count += 1
+        log.message("[\(type(of: self))].\(#function) \(count)", .debug, .standard)
 
         guard
             let list = dictionary["list"] as? [Any],
@@ -128,8 +131,15 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
             // log.message("[\(type(of: self))].\(#function) \(addition)")
 
             let hours = createForecastHours(from: item.value, timezone)
-
-            forecastDays.append(ForecastDay(date: item.key, hours: hours))
+            let probability = initProbability(hours)
+            let day = ForecastDay(date: item.key,
+                                  hours: hours,
+                                  iconName: initIconName(hours),
+                                  temperaturesNightDay: initTemperatures(hours),
+                                  probability: initProbability(hours),
+                                  precipitation: initPrecipitation(hours, pop: probability)
+            )
+            forecastDays.append(day)
         }
 
         // log.message("[\(type(of: self))].\(#function): \(forecastDays)")
@@ -137,7 +147,9 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
         return forecastDays
     }
 
-    fileprivate func createForecastDays(from list: [Any], timezone: Int) ->
+    // MARK: - Helper methods
+
+    private func createForecastDays(from list: [Any], timezone: Int) ->
         [(key: String, value: [[String: Any]?])] {
 
             let listItems = list.map { $0 as? [String: Any] }
@@ -179,8 +191,8 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
             return daysSorted
     }
 
-    fileprivate func createForecastHours(from source: [[String: Any]?],
-                                         _ timezone: Int = 0) -> [ForecastHour] {
+    private func createForecastHours(from source: [[String: Any]?],
+                                     _ timezone: Int = 0) -> [ForecastHour] {
         guard source.isEmpty == false else {
             return [ForecastHour]()
         }
@@ -201,7 +213,7 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
         return hours
     }
 
-    fileprivate func createDate(from date: String, format: String = "yyyy-MM-dd") -> Date {
+    private func createDate(from date: String, format: String = "yyyy-MM-dd") -> Date {
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
@@ -214,7 +226,7 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
 
 // MARK: Getting Forecast Day Values
 
-public func getForecastDay(from source: [String: Any], timezone: Int) -> String {
+public func parseForecastDay(from source: [String: Any], timezone: Int) -> String {
 
     if source.isEmpty { // Templated result for empty value.
         return MeteoFactsDefaults.forecastDate
@@ -720,4 +732,172 @@ public func getWeatherConditions(from source: [String: Any]) -> OpenWeatherIconC
     guard let conditions = value else { return MeteoFactsDefaults.weatherConditions }
 
     return conditions
+}
+
+// MARK: - Helper functions
+
+public func initIconName(_ hours: [ForecastHour]) -> String? {
+
+    // Ranks
+
+    let iconRanks: [String: Int] = [
+        "01": 9, // clear sky
+        "02": 8, // few clouds
+        "03": 7, // scattered clouds
+        "04": 6, // broken clouds
+        "09": 3, // shower rain
+        "10": 4, // rain
+        "11": 1, // thunderstorm
+        "13": 2, // snow
+        "50": 5  // mist
+    ]
+
+    // Icons
+
+    var icons = [String]()
+
+    hours.forEach {
+        if let weather = $0.source["weather"] as? [Any] {
+            if let wFirst = weather.first as? [String: Any] {
+                if let icon = wFirst["icon"] as? String {
+                    icons.append(icon) // String(icon.dropLast())
+                }
+            }
+        }
+    }
+
+    // Ranked icons
+
+    var rankedIcons = [String: Int]()
+
+    icons.forEach { item in
+        let rank = iconRanks["\(item.dropLast())"]
+        rankedIcons["\(item)"] = rank
+    }
+
+    // The most relevant icon
+
+    guard let iconName = (rankedIcons.min { $0.value < $1.value })?.key else {
+        return nil
+    }
+
+    return "OW_\(iconName)"
+}
+
+public func initTemperatures(_ hours: [ForecastHour]) -> (Double?, Double?) {
+
+    // Get temperatures.
+    var temperaturesDay = [Double]()
+    var temperaturesNight = [Double]()
+
+    hours.forEach {
+
+        // Get value.
+        if let main = $0.source["main"] as? [String: Any] {
+            if let temp = main["temp"] as? Double {
+
+                if let sys = $0.source["sys"] as? [String: Any] {
+                    if let pod = sys["pod"] as? String {
+                        if pod == "d" {
+                            temperaturesDay.append(temp)
+                        } else if pod == "n" {
+                            temperaturesNight.append(temp)
+                        }
+                    }
+                }
+
+            } else {
+                log.message("[\(#function) [temp] wrong.", .error)
+            }
+        } else {
+            // log.message("[\(#function) [main] wrong.", .error)
+        }
+    }
+
+    return (temperaturesNight.min(), temperaturesDay.max())
+}
+
+public func initPrecipitation(_ hours: [ForecastHour], pop: Double? = nil) -> String? {
+
+    var precipitation = [String]()
+
+    hours.forEach {
+
+        let snow = $0.source["snow"] as? [String: Any]
+        let rain = $0.source["rain"] as? [String: Any]
+
+        if snow != nil {
+            if !precipitation.contains("snow") {
+                precipitation.append("snow".localizedValue)
+            }
+        }
+
+        if rain != nil {
+            if !precipitation.contains("rain") {
+                precipitation.append("rain".localizedValue)
+            }
+        }
+    }
+
+    var conditions = ""
+
+    if precipitation.contains("rain".localizedValue) {
+        conditions.append("rain".localizedValue)
+    }
+
+    if precipitation.contains("snow".localizedValue) {
+        conditions.append(" " + "snow".localizedValue)
+    }
+
+    let popRepresented = representProbabilityOfPrecipitation(pop)
+
+    return conditions.isEmpty ? nil :
+        (pop == nil ? conditions : "\(popRepresented)% \(conditions)")
+}
+
+public func initProbability(_ hours: [ForecastHour]) -> Double? {
+    // "pop":0.48999999999999999
+
+    var pops = [Double]()
+
+    hours.forEach {
+        // Get values.
+        if let pop = $0.source["pop"] as? Double {
+            pops.append(pop)
+        }
+    }
+
+    return pops.max()
+}
+
+private var count = 0 // For debug purpose
+public func prepareMeteoGroupForecastHourData(_ forecastHourSource: [String: Any],
+                                              _ provider: MeteoProvider) -> MeteoGroupData {
+
+    count += 1
+    log.message("\(#function): called \(count)", .debug, .standard)
+
+    // Set titles up
+
+    var meteogroup = MeteoGroupData()
+
+    switch provider {
+    case .serviceOpenMeteo:
+        meteogroup.setTemplatedValuesUp(provider: .serviceOpenMeteo,
+                                        category: .forecast)
+    case .serviceOpenWeatherMap:
+        meteogroup.setTemplatedValuesUp(provider: .serviceOpenWeatherMap,
+                                        category: .forecast)
+    }
+
+    // Set values up
+
+    switch provider {
+    case .serviceOpenMeteo:
+        meteogroup.setOpenMeteoForecastUp(data: forecastHourSource)
+    case .serviceOpenWeatherMap:
+        meteogroup.setOpenWeatherForecastUp(data: forecastHourSource)
+    }
+
+    return meteogroup
 }

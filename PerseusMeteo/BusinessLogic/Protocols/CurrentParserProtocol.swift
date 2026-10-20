@@ -46,4 +46,7 @@ public protocol CurrentParserProtocol {
     func moonphase(from dictionary: [String: Any]) -> Double?
 
     func uvindex(from dictionary: [String: Any]) -> Double?
+    func probability(from dictionary: [String: Any]) -> Int?
+    func rain(from dictionary: [String: Any]) -> Double?
+    func snow(from dictionary: [String: Any]) -> Double?
 }

@@ -68,6 +68,12 @@ let sampleOpenWeatherMapCurrent = """
   },
   "timezone" : 25200,
   "cod" : 200,
-  "name" : "Новосибирск"
+  "name" : "Новосибирск",
+  "rain": {
+    "1h": 2.73
+  },
+  "snow" : {
+    "1h" : 0.93999999999999995
+  }
 }
 """

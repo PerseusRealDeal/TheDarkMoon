@@ -22,8 +22,8 @@ import Foundation
 let useOpenMeteoSuggestionsSample = false
 let useOpenWeatherSuggestionsSample = false
 
-let useOpenMeteoCurrentSample = false
-let useOpenMeteoForecastSample = false
+let useOpenMeteoCurrentSample = true
+let useOpenMeteoForecastSample = true
 
 let useOpenWeatherMapCurrentSample = false
 let useOpenWeatherMapForecastSample = false

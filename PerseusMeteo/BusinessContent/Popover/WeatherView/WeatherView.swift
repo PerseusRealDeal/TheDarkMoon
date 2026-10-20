@@ -60,6 +60,10 @@ class WeatherView: NSView {
     @IBOutlet private(set) weak var labelUVIndex: NSTextField!
     @IBOutlet private(set) weak var labelMoonphase: NSTextField!
 
+    @IBOutlet private(set) weak var labelPrecipitationProbability: NSTextField!
+    @IBOutlet private(set) weak var labelRainPrecipitation: NSTextField!
+    @IBOutlet private(set) weak var labelSnowPrecipitation: NSTextField!
+
     // MARK: - Initialization
 
     override func awakeFromNib() {
@@ -130,7 +134,7 @@ class WeatherView: NSView {
 
     public func reloadData() {
 
-        log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)", .debug, .standard)
 
         // Temperature, Weather Description, and Icon
 
@@ -170,8 +174,8 @@ class WeatherView: NSView {
 
         // Moonrise and moonset
 
-        viewMoonriseIcon.toolTip = "Label: Sunrise".localizedValue
-        viewMoonsetIcon.toolTip = "Label: Sunset".localizedValue
+        viewMoonriseIcon.toolTip = "Label: Moonrise".localizedValue
+        viewMoonsetIcon.toolTip = "Label: Moonset".localizedValue
 
         labelMoonriseValue.stringValue = weatherReader.moonrise
         labelMoonsetValue.stringValue = weatherReader.moonset
@@ -186,25 +190,102 @@ class WeatherView: NSView {
         let moonphase = "Label: Moon Phase".localizedValue + " \(weatherReader.moonphase)"
         labelMoonphase.stringValue = moonphase
 
+        // Precipitation probability
+
+        let probability = "Label: Probability".localizedValue + " \(weatherReader.probability)"
+        labelPrecipitationProbability.stringValue = "\(probability)"
+        labelPrecipitationProbability.toolTip = selectToolTip("labelPrecipitationProbability")
+
+        // Precipitation
+
+        let rain = "Label: Rain".localizedValue + " \(weatherReader.precipitation.rain)"
+        labelRainPrecipitation.stringValue = "\(rain)"
+        labelRainPrecipitation.toolTip = selectToolTip("labelRainPrecipitation")
+
+        let snow = "Label: Snow".localizedValue + " \(weatherReader.precipitation.snow)"
+        labelSnowPrecipitation.stringValue = "\(snow)"
+        labelSnowPrecipitation.toolTip = selectToolTip("labelSnowPrecipitation")
+
         // Meteo group params
 
         showMeteoGroupParams()
+        showSpecialUIElementsIfRequired()
+    }
 
-        // Show/Hide special params
+    private func selectToolTip(_ label: String) -> String? {
 
-        if AppOptions.currentMeteoProviderOption == .serviceOpenMeteo {
-            labelUVIndex.isHidden = false
-            labelMoonsetValue.isHidden = false
-            labelMoonriseValue.isHidden = false
-            viewMoonsetIcon.isHidden = false
-            viewMoonriseIcon.isHidden = false
-        } else {
-            labelUVIndex.isHidden = true
-            labelMoonsetValue.isHidden = true
-            labelMoonriseValue.isHidden = true
-            viewMoonsetIcon.isHidden = true
-            viewMoonriseIcon.isHidden = true
+        let provider = weatherReader.meteoProvider ?? AppOptions.currentMeteoProviderOption
+
+        switch label {
+        case "labelPrecipitationProbability":
+            switch provider {
+            case .serviceOpenMeteo:
+                return "ToolTip: Probability OM".localizedValue
+            case .serviceOpenWeatherMap:
+                return "ToolTip: Probability OW".localizedValue
+            }
+        case "labelRainPrecipitation":
+            switch provider {
+            case .serviceOpenMeteo:
+                return "ToolTip: Rain OM".localizedValue
+            case .serviceOpenWeatherMap:
+                return "ToolTip: Rain OW".localizedValue
+            }
+        case "labelSnowPrecipitation":
+            switch provider {
+            case .serviceOpenMeteo:
+                return "ToolTip: Snow OM".localizedValue
+            case .serviceOpenWeatherMap:
+                return "ToolTip: Snow OW".localizedValue
+            }
+        default:
+            return nil
         }
+    }
+
+    private func showSpecialUIElementsIfRequired() {
+
+        let whiteOrBlack: Color = DarkModeAgent.shared.style == .dark ? .white : .black
+
+        if AppGlobals.weather == nil {
+            if AppOptions.currentMeteoProviderOption == .serviceOpenMeteo {
+                labelUVIndex.textColor = whiteOrBlack
+                labelMoonsetValue.textColor = whiteOrBlack
+                labelMoonriseValue.textColor = whiteOrBlack
+                labelMoonphase.textColor = whiteOrBlack
+                labelPrecipitationProbability.textColor = whiteOrBlack
+            } else {
+                labelUVIndex.textColor = .perseusGray
+                labelMoonsetValue.textColor = .perseusGray
+                labelMoonriseValue.textColor = .perseusGray
+                labelMoonphase.textColor = .perseusGray
+                labelPrecipitationProbability.textColor = .perseusGray
+            }
+        } else if AppGlobals.weather?.source == .serviceOpenMeteo {
+            labelUVIndex.textColor = whiteOrBlack
+            labelMoonsetValue.textColor = whiteOrBlack
+            labelMoonriseValue.textColor = whiteOrBlack
+            labelMoonphase.textColor = whiteOrBlack
+            labelPrecipitationProbability.textColor = whiteOrBlack
+        } else {
+            labelUVIndex.textColor = .perseusGray
+            labelMoonsetValue.textColor = .perseusGray
+            labelMoonriseValue.textColor = .perseusGray
+            labelMoonphase.textColor = .perseusGray
+            labelPrecipitationProbability.textColor = .perseusGray
+        }
+
+        labelPrecipitationProbability.textColor =
+        labelPrecipitationProbability.stringValue.contains(MeteoFactsDefaults.probability) ?
+            .perseusGray : whiteOrBlack
+
+        labelRainPrecipitation.textColor =
+        labelRainPrecipitation.stringValue.contains(MeteoFactsDefaults.rain) ?
+            .perseusGray : whiteOrBlack
+
+        labelSnowPrecipitation.textColor =
+        labelSnowPrecipitation.stringValue.contains(MeteoFactsDefaults.snow) ?
+            .perseusGray : whiteOrBlack
     }
 
     private func showMeteoGroupParams() {
@@ -255,7 +336,8 @@ extension WeatherView {
 
     public func makeup() {
 
-        log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
+        // log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
+        log.message("[\(type(of: self))].\(#function)", .debug, .standard)
 
         let isDarkModeInLight = DarkModeAgent.shared.style == .light
 
@@ -285,6 +367,7 @@ extension WeatherView {
             self.labelMoonriseValue.textColor = whiteOrBlack
             self.labelMoonsetValue.textColor = whiteOrBlack
             self.labelUVIndex.textColor = whiteOrBlack
+            self.labelMoonphase.textColor = whiteOrBlack
             self.viewMeteoGroup.title1.textColor = whiteOrBlack
             self.viewMeteoGroup.value1.textColor = whiteOrBlack
             self.viewMeteoGroup.title2.textColor = whiteOrBlack
@@ -304,6 +387,7 @@ extension WeatherView {
             self.viewMeteoGroup.title9.textColor = whiteOrBlack
             self.viewMeteoGroup.value9.textColor = whiteOrBlack
         }
+        showSpecialUIElementsIfRequired()
     }
 }
 

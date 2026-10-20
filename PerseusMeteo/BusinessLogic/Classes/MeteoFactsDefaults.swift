@@ -85,6 +85,18 @@ public struct MeteoFactsDefaults {
         return "_.__"
     }
 
+    public static var probability: String {
+        return "___%"
+    }
+
+    public static var rain: String {
+        return "_.__ " + "Unit: mm".localizedValue
+    }
+
+    public static var snow: String {
+        return "_.__ " + "Unit: mm".localizedValue
+    }
+
     public static var weatherDescription: String {
         return "Label: Weather Conditions".localizedValue
     }

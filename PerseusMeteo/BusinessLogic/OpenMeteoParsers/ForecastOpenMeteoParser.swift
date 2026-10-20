@@ -17,6 +17,8 @@ import Foundation
 
 public class ForecastOpenMeteoParser: ForecastParserProtocol {
 
+    private var count = 0 // For debug purpose
+
     // TODO: Implement Open-Meteo forecast weather parser protocol
 
     public func getTimeZone(from dictionary: [String: Any]) -> Int? {
@@ -36,6 +38,10 @@ public class ForecastOpenMeteoParser: ForecastParserProtocol {
     }
 
     public func getForecastDays(from dictionary: [String: Any]) -> [ForecastDay]? {
+
+        count += 1
+        log.message("[\(type(of: self))].\(#function) \(count)", .debug, .standard)
+
         return nil
     }
 }

@@ -419,11 +419,11 @@
 		2EE8EAD2306191BA00905278 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				4BB204732B7805DF007E0308 /* ForecastHour.swift */,
 				4BB2046D2B755BDB007E0308 /* ForecastDay.swift */,
+				4BB204732B7805DF007E0308 /* ForecastHour.swift */,
+				2EA70337304B35AE0084D75B /* MeteoDataCategory.swift */,
 				4B5F7D2E2B89243800121946 /* MeteoFactsDefaults.swift */,
 				4B1073942B4607CE008A692D /* MeteoFactsRepresenter.swift */,
-				2EA70337304B35AE0084D75B /* MeteoDataCategory.swift */,
 				2EE8EAD63061BAB500905278 /* CommonFunctions.swift */,
 			);
 			path = Classes;

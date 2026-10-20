@@ -51,13 +51,13 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
                     return code.description
 
                 } else {
-                    log.message("\(#function) [id] mistaken", .error)
+                    log.message("\(#function) [id] doesn't exist", .error)
                 }
             } else {
                 log.message("\(#function) weather.first wrong", .error)
             }
         } else {
-            log.message("\(#function) \"weather\" mistaken", .error)
+            log.message("\(#function) \"weather\" doesn't exist", .error)
         }
 
         return nil
@@ -82,7 +82,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
                 log.message("[\(type(of: self))].\(#function) weather.first mistaken", .error)
             }
         } else {
-            log.message("[\(type(of: self))].\(#function) \"weather\" mistaken", .error)
+            log.message("[\(type(of: self))].\(#function) \"weather\" doesn't exist", .error)
         }
 
         return nil
@@ -91,7 +91,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
     public func temperature(from dictionary: [String: Any]) -> String? {
 
         guard let main = dictionary["main"] as? [String: Any] else {
-            log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .error)
+            log.message("[\(type(of: self))].\(#function) \"main\" doesn't exist", .error)
             return nil
         }
 
@@ -103,7 +103,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
     public func temperatureFeelsLike(from dictionary: [String: Any]) -> String? {
 
         guard let main = dictionary["main"] as? [String: Any] else {
-            log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .error)
+            log.message("[\(type(of: self))].\(#function) \"main\" doesn't exist", .error)
             return nil
         }
 
@@ -115,7 +115,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
     public func temperatureMinimum(from dictionary: [String: Any]) -> String? {
 
         guard let main = dictionary["main"] as? [String: Any] else {
-            log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .error)
+            log.message("[\(type(of: self))].\(#function) \"main\" doesn't exist", .error)
             return nil
         }
 
@@ -127,7 +127,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
     public func temperatureMaximum(from dictionary: [String: Any]) -> String? {
 
         guard let main = dictionary["main"] as? [String: Any] else {
-            log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .error)
+            log.message("[\(type(of: self))].\(#function) \"main\" doesn't exist", .error)
             return nil
         }
 
@@ -139,7 +139,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
     public func windSpeed(from dictionary: [String: Any]) -> String? {
 
         guard let wind = dictionary["wind"] as? [String: Any] else {
-            log.message("[\(type(of: self))].\(#function) \"wind\" mistaken", .notice)
+            log.message("[\(type(of: self))].\(#function) \"wind\" doesn't exist", .notice)
             return nil
         }
 
@@ -151,7 +151,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
     public func windGusts(from dictionary: [String: Any]) -> String? {
 
         guard let wind = dictionary["wind"] as? [String: Any] else {
-            log.message("[\(type(of: self))].\(#function) \"wind\" mistaken", .notice)
+            log.message("[\(type(of: self))].\(#function) \"wind\" doesn't exist", .notice)
             return nil
         }
 
@@ -163,7 +163,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
     public func windDirection(from dictionary: [String: Any]) -> String? {
 
         guard let wind = dictionary["wind"] as? [String: Any] else {
-            log.message("[\(type(of: self))].\(#function) \"wind\" mistaken", .notice)
+            log.message("[\(type(of: self))].\(#function) \"wind\" doesn't exist", .notice)
             return nil
         }
 
@@ -175,7 +175,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
     public func pressure(from dictionary: [String: Any]) -> String? {
 
         guard let main = dictionary["main"] as? [String: Any] else {
-            log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .notice)
+            log.message("[\(type(of: self))].\(#function) \"main\" doesn't exist", .notice)
             return nil
         }
 
@@ -187,7 +187,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
     public func humidity(from dictionary: [String: Any]) -> Int? {
 
         guard let main = dictionary["main"] as? [String: Any] else {
-            log.message("[\(type(of: self))].\(#function) \"main\" mistaken", .notice)
+            log.message("[\(type(of: self))].\(#function) \"main\" doesn't exist", .notice)
             return nil
         }
 
@@ -199,7 +199,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
     public func cloudiness(from dictionary: [String: Any]) -> Int? {
 
         guard let clouds = dictionary["clouds"] as? [String: Any] else {
-            log.message("[\(type(of: self))].\(#function) \"clouds\" mistaken", .notice)
+            log.message("[\(type(of: self))].\(#function) \"clouds\" doesn't exist", .notice)
             return nil
         }
 
@@ -211,7 +211,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
     public func sunrise(from dictionary: [String: Any]) -> Int? {
 
         guard let sys = dictionary["sys"] as? [String: Any] else {
-            log.message("[\(type(of: self))].\(#function) \"sys\" mistaken", .notice)
+            log.message("[\(type(of: self))].\(#function) \"sys\" doesn't exist", .notice)
             return nil
         }
 
@@ -223,7 +223,7 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
     public func sunset(from dictionary: [String: Any]) -> Int? {
 
         guard let sys = dictionary["sys"] as? [String: Any] else {
-            log.message("[\(type(of: self))].\(#function) \"sys\" mistaken", .notice)
+            log.message("[\(type(of: self))].\(#function) \"sys\" doesn't exist", .notice)
             return nil
         }
 
@@ -246,6 +246,36 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
 
     public func uvindex(from dictionary: [String: Any]) -> Double? {
         return nil
+    }
+
+    // MARK: - Precipitation Probability
+
+    public func probability(from dictionary: [String: Any]) -> Int? {
+        return nil
+    }
+
+    // MARK: - Rain
+
+    public func rain(from dictionary: [String: Any]) -> Double? {
+
+        guard let rain = dictionary["rain"] as? [String: Any] else {
+            log.message("[\(type(of: self))].\(#function) \"rain\" doesn't exist", .notice)
+            return nil
+        }
+
+        return getInstance("1h", Double.self, rain)
+    }
+
+    // MARK: - Snow
+
+    public func snow(from dictionary: [String: Any]) -> Double? {
+
+        guard let snow = dictionary["snow"] as? [String: Any] else {
+            log.message("[\(type(of: self))].\(#function) \"snow\" doesn't exist", .notice)
+            return nil
+        }
+
+        return getInstance("1h", Double.self, snow)
     }
 /*
     public func weatherConditions(from source: [String: Any]) -> WeatherConditions {

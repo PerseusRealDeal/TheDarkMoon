@@ -93,8 +93,13 @@ class ForecastHoursViewItem: NSCollectionViewItem {
         view.layer?.backgroundColor = isSelected ? NSColor.red.cgColor : NSColor.clear.cgColor
          */
 
-        self.time?.stringValue = hour.time
-        self.temperature?.stringValue = hour.temperature
-        self.incomingPrecipitation?.stringValue = hour.precipitation
+        if let precipitation = getPrecipitation(from: hour.source), precipitation.1 != "" {
+            self.incomingPrecipitation?.stringValue = precipitation.1 + " \(precipitation.2)"
+        } else {
+            self.incomingPrecipitation?.stringValue = "-- / --"
+        }
+
+        self.time?.stringValue = getForecastHourDt(from: hour.source, timezone: hour.timezone)
+        self.temperature?.stringValue = getForecastHourTemp(from: hour.source)
     }
 }

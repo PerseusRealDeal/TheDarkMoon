@@ -180,6 +180,10 @@
 	<string>Sunrise</string>
 	<key>Label: Sunset</key>
 	<string>Sunset</string>
+	<key>Label: Moonrise</key>
+	<string>Moonrise</string>
+	<key>Label: Moonset</key>
+	<string>Moonset</string>
 	<key>Label: UV Index</key>
 	<string>UV Index</string>
 	<key>Label: Moon Phase</key>
@@ -193,7 +197,7 @@
 	<key>Postfix: Year</key>
 	<string></string>
 	<key>Prefix: Last One</key>
-	<string>Last One</string>
+	<string>Received:</string>
 	<key>/* Forecast View */</key>
 	<string>--</string>
 	<key>Label: DayItem Weather Conditions</key>

@@ -136,12 +136,28 @@
 "Unit: mb" = "mb";
 
 "Unit: mm" = "mm";
+"Unit: mm/h" = "mm/h";
 
 "Label: Sunrise" = "Sunrise";
 "Label: Sunset" = "Sunset";
 
+"Label: Moonrise" = "Moonrise";
+"Label: Moonset" = "Moonset";
+
 "Label: UV Index" = "UV Index";
 "Label: Moon Phase" = "Moon Phase";
+"Label: Probability" = "Probability";
+"Label: Rain" = "Rain";
+"Label: Snow" = "Snow";
+
+"ToolTip: Probability OM" = "Daily Precipitation Probability Max";
+"ToolTip: Probability OW" = "";
+
+"ToolTip: Rain OM" = "Daily Rain Sum";
+"ToolTip: Rain OW" = "Rain precipitation for current hour";
+
+"ToolTip: Snow OM" = "Daily Snowfall Sum";
+"ToolTip: Snow OW" = "Snow precipitation for current hour";
 
 /* Time */
 
@@ -150,7 +166,7 @@
 
 "Postfix: Year" = "";
 
-"Prefix: Last One" = "Last One";
+"Prefix: Last One" = "Received:";
 
 /* Forecast View */
 

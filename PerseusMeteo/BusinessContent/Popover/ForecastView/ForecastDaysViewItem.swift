@@ -85,7 +85,7 @@ class ForecastDaysViewItem: NSCollectionViewItem {
 
         guard let day = self.data else { return }
 
-        let imageName = day.weatherConditionIconName.symbolName(
+        let imageName = day.weatherIconName.symbolName(
             isLight: DarkModeAgent.shared.style == .light)
 
         self.viewWeatherConditionIcon?.image = NSImage(named: imageName)
@@ -103,13 +103,13 @@ class ForecastDaysViewItem: NSCollectionViewItem {
         // imageView?.image = NSImage(named: friend.iconName)
         // view.layer?.backgroundColor = NSColor.red.cgColor
 
-        let imageName = day.weatherConditionIconName.symbolName(
+        let imageName = day.weatherIconName.symbolName(
             isLight: DarkModeAgent.shared.style == .light)
 
         self.viewWeatherConditionIcon?.image = NSImage(named: imageName)
         self.labelWeatherConditionValue?.stringValue = day.weatherConditions
 
-        self.date?.stringValue = "\(day.dateDayOfTheWeek), \(day.dateDayMonth)"
-        self.temperature?.stringValue = "\(day.minimumTemperature) \(day.maximumTemperature)"
+        self.date?.stringValue = "\(day.theDayOfTheWeek), \(day.theDayOftheMonth)"
+        self.temperature?.stringValue = "\(day.temperatureMin) \(day.temperatureMax)"
     }
 }

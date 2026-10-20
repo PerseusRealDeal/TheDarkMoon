@@ -16,12 +16,20 @@
 import Foundation
 
 public let schemeOpenMeteo = "https://api.open-meteo.com/v1/"
+
 public let attributesOpenMeteo =
-"forecast?latitude=%@&longitude=%@&temperature_unit=%@&timezone=GMT&forecast_days=%@"
-public let paramsOpenMeteo =
+"forecast?latitude=%@&longitude=%@&temperature_unit=%@&forecast_days=%@"
+
+public let paramsOpenMeteo = "&wind_speed_unit=ms&timezone=GMT"
+
+public let paramsOpenMeteoDaily =
 "&daily=uv_index_max,moon_phase,moonrise,moonset,sunrise,sunset" +
-",precipitation_probability_max,temperature_2m_min,temperature_2m_max" +
-"&wind_speed_unit=ms"
+",rain_sum,snowfall_sum,precipitation_probability_max,temperature_2m_min,temperature_2m_max"
+
+public let paramsOpenMeteoHourlyCurrent =
+"weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,temperature_2m," +
+"apparent_temperature,visibility,pressure_msl,relative_humidity_2m,cloud_cover,showers,rain," +
+"snowfall,precipitation,precipitation_probability,is_day"
 
 public let schemeDirectGeoCodingOpenMeteo = "https://geocoding-api.open-meteo.com/v1/"
 public let attributesDirectGeoCodingOpenMeteo = "search?name=%@&count=%@&language=%@&format=%@"
@@ -52,13 +60,8 @@ public struct OpenMeteoAPI {
         let args: [String] = [lat, lon, "\(units)", "\(forecastDays)"]
         let attributes = String(format: attributesOpenMeteo, arguments: args)
 
-        let params = paramsOpenMeteo + (request == .forecast ? "&hourly=" : "&current=")
-+
-"weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,temperature_2m,"
-+
-"apparent_temperature,visibility,pressure_msl,relative_humidity_2m,cloud_cover,showers,rain,"
-+
-"snowfall,precipitation,precipitation_probability,is_day"
+        let params = paramsOpenMeteo + paramsOpenMeteoDaily +
+        (request == .forecast ? "&hourly=" : "&current=") + paramsOpenMeteoHourlyCurrent
 
         return schemeOpenMeteo + attributes + params
     }

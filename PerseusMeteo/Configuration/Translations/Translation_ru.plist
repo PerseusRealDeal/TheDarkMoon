@@ -177,9 +177,13 @@
 	<key>Unit: mb</key>
 	<string>мбар</string>
 	<key>Label: Sunrise</key>
-	<string>Восход</string>
+	<string>Восход солнца</string>
 	<key>Label: Sunset</key>
-	<string>Заход</string>
+	<string>Заход солнца</string>
+	<key>Label: Moonrise</key>
+	<string>Восход луны</string>
+	<key>Label: Moonset</key>
+	<string>Заход луны</string>
 	<key>Label: UV Index</key>
 	<string>УФ-индекс</string>
 	<key>Label: Moon Phase</key>
@@ -193,7 +197,7 @@
 	<key>Postfix: Year</key>
 	<string> г.</string>
 	<key>Prefix: Last One</key>
-	<string>Расчет от</string>
+	<string>Данные от</string>
 	<key>/* Forecast View */</key>
 	<string>--</string>
 	<key>Label: DayItem Weather Conditions</key>

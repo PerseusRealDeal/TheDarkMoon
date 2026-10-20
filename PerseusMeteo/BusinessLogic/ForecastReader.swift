@@ -56,10 +56,12 @@ public class ForecastReader: MeteoSourceReader {
 
         let day = lastOne.day == nil ? "" : "\(lastOne.day ?? "")\(postfixYear) "
 
-        return "\(prefix): \(day)\(lastOne.time ?? MeteoFactsDefaults.responseTimeLabelText)"
+        return "\(prefix) \(day)\(lastOne.time ?? MeteoFactsDefaults.responseTimeLabelText)"
     }
 
     public var forecastDays: [ForecastDay] {
+
+        log.message("[\(type(of: self))].\(#function)", .debug, .standard)
 
         guard
             let meteoDictionary = self.meteoDictionary as? ForecastDictionary
@@ -90,7 +92,16 @@ public class ForecastReader: MeteoSourceReader {
                 hours.append(ForecastHour(title: "\(item)", provider: provider))
             }
 
-            days.append(ForecastDay(date: item.description, hours: hours, templated: true))
+            let probability = initProbability(hours)
+            let day = ForecastDay(date: item.description,
+                                  hours: hours,
+                                  iconName: initIconName(hours),
+                                  temperaturesNightDay: initTemperatures(hours),
+                                  probability: initProbability(hours),
+                                  precipitation: initPrecipitation(hours, pop: probability),
+                                  templated: true
+            )
+            days.append(day)
         }
 
         return days

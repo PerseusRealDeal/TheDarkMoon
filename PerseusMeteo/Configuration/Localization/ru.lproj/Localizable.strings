@@ -133,12 +133,28 @@
 "Unit: mb" = "мбар";
 
 "Unit: mm" = "мм";
+"Unit: mm/h" = "мм/ч";
 
-"Label: Sunrise" = "Восход";
-"Label: Sunset" = "Заход";
+"Label: Sunrise" = "Восход солнца";
+"Label: Sunset" = "Заход солнца";
+
+"Label: Moonrise" = "Восход луны";
+"Label: Moonset" = "Заход луны";
 
 "Label: UV Index" = "УФ-индекс";
 "Label: Moon Phase" = "Фаза луны";
+"Label: Probability" = "Осадки";
+"Label: Rain" = "Дождь";
+"Label: Snow" = "Снег";
+
+"ToolTip: Probability OM" = "Вероятность осадков сегодня";
+"ToolTip: Probability OW" = "";
+
+"ToolTip: Rain OM" = "Прогнозируемый дождь сегодня";
+"ToolTip: Rain OW" = "Прогнозируемый дождь на ближайший час";
+
+"ToolTip: Snow OM" = "Прогнозируемый снег сегодня";
+"ToolTip: Snow OW" = "Прогнозируемый снег на ближайший час";
 
 /* Time */
 
@@ -147,7 +163,7 @@
 
 "Postfix: Year" = " г.";
 
-"Prefix: Last One" = "Расчет от";
+"Prefix: Last One" = "Данные от";
 
 /* Forecast View */
 

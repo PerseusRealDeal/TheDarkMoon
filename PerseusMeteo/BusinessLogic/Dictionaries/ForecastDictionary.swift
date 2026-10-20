@@ -19,19 +19,6 @@ public class ForecastDictionary: MeteoDataDictionary {
 
     public var parser: ForecastParserProtocol?
 
-    // MARK: - Properties
-
-    public var timezone: Int? {
-
-        guard let cach = data else { return nil }
-
-        return parser?.getTimeZone(from: cach)
-    }
-
-    public var forecastDays: [ForecastDay]? {
-
-        guard let cach = data else { return nil }
-
-        return parser?.getForecastDays(from: cach)
-    }
+    public var timezone: Int?
+    public var forecastDays: [ForecastDay]?
 }

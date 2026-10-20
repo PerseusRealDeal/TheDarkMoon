@@ -89,6 +89,15 @@ public class MeteoSourceReader: MeteoJsonAsDictionary {
                 meteoDictionary.parser = ForecastOpenWeatherParser()
             }
         }
+
+        // Reparse json data
+
+        if let dictionary = meteoDictionary as? ForecastDictionary,
+           let source = meteoDictionary.data {
+
+            dictionary.timezone = dictionary.parser?.getTimeZone(from: source)
+            dictionary.forecastDays = dictionary.parser?.getForecastDays(from: source)
+        }
     }
 
     // MARK: - Privates

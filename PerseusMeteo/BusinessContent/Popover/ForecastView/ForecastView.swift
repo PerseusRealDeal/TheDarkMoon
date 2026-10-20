@@ -191,17 +191,19 @@ class ForecastView: NSView {
                     let index = daySelectedIndex.item
                     let item = forecastReader.forecastDays[index].hours[0]
 
-                    viewMeteoGroup.data = item.prepareMeteoGroupData()
+                    viewMeteoGroup.data = prepareMeteoGroupForecastHourData(item.source,
+                                                                            item.provider)
 
                     labelWeatherDescription.stringValue =
-                    "\(item.weatherConditions)".capitalizingFirstLetter()
+                    "\(getWeatherConditions(from: item.source))".capitalizingFirstLetter()
                 } else {
                     let item = forecastReader.forecastDays[0].hours[0]
 
-                    viewMeteoGroup.data = item.prepareMeteoGroupData()
+                    viewMeteoGroup.data = prepareMeteoGroupForecastHourData(item.source,
+                                                                            item.provider)
 
                     labelWeatherDescription.stringValue =
-                    "\(item.weatherConditions)".capitalizingFirstLetter()
+                    "\(getWeatherConditions(from: item.source))".capitalizingFirstLetter()
                 }
             }
         }
@@ -260,10 +262,11 @@ class ForecastView: NSView {
                 let hourItem = indexHour!.item
                 let item = forecastReader.forecastDays[dayItem].hours[hourItem]
 
-                viewMeteoGroup.data = item.prepareMeteoGroupData()
+                viewMeteoGroup.data = prepareMeteoGroupForecastHourData(item.source,
+                                                                        item.provider)
 
                 labelWeatherDescription.stringValue =
-                "\(item.weatherConditions)".capitalizingFirstLetter()
+                "\(getWeatherConditions(from: item.source))".capitalizingFirstLetter()
             }
         }
 
@@ -410,12 +413,13 @@ extension ForecastView: NSCollectionViewDelegate {
 
             if let details = hourDetails {
                 labelWeatherDescription.stringValue =
-                "\(details.weatherConditions)".capitalizingFirstLetter()
+                "\(getWeatherConditions(from: details.source))".capitalizingFirstLetter()
+                viewMeteoGroup.data = prepareMeteoGroupForecastHourData(details.source,
+                                                                        details.provider)
             } else {
                 labelWeatherDescription.stringValue = MeteoFactsDefaults.weatherDescription
+                viewMeteoGroup.data = MeteoGroupData()
             }
-
-            viewMeteoGroup.data = hourDetails?.prepareMeteoGroupData() ?? MeteoGroupData()
         }
     }
 }

@@ -16,6 +16,32 @@ http://api.openweathermap.org/geo/1.0/direct?q=Новосибирск&limit=5&ap
 
 */
 
+/* OpenWeatherMap JSON forecast list items sample
+
+{
+  "message" : 0,
+  "cod" : "200",
+  "cnt" : 1,
+  "list" : [
+    // Forecast hours ...
+  ],
+  "city" : {
+    "sunset" : 1708775436,
+    "country" : "RU",
+    "id" : 1496747,
+    "coord" : {
+      "lat" : 55.060000000000002,
+      "lon" : 83
+    },
+    "population" : 1419007,
+    "timezone" : 25200,
+    "sunrise" : 1708738346,
+    "name" : "Novosibirsk"
+  }
+}
+
+*/
+
 // MARK: - OpenWeatherMap Suggestions JSON Response
 
 let sampleOpenWeatherMapSuggestions = """
