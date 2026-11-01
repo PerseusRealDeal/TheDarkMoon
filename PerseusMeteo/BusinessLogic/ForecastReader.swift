@@ -61,7 +61,7 @@ public class ForecastReader: MeteoSourceReader {
 
     public var forecastDays: [ForecastDay] {
 
-        log.message("[\(type(of: self))].\(#function)", .debug, .standard)
+        // log.message("[\(type(of: self))].\(#function)", .debug, .standard)
 
         guard
             let meteoDictionary = self.meteoDictionary as? ForecastDictionary
@@ -79,7 +79,7 @@ public class ForecastReader: MeteoSourceReader {
             return days
         }
 
-        // Return sample templated array
+        // Return sample data with default values
 
         var days = [ForecastDay]()
         let provider = AppOptions.currentMeteoProviderOption
@@ -92,13 +92,12 @@ public class ForecastReader: MeteoSourceReader {
                 hours.append(ForecastHour(title: "\(item)", provider: provider))
             }
 
-            let probability = initProbability(hours)
             let day = ForecastDay(date: item.description,
                                   hours: hours,
                                   iconName: initIconName(hours),
                                   temperaturesNightDay: initTemperatures(hours),
                                   probability: initProbability(hours),
-                                  precipitation: initPrecipitation(hours, pop: probability),
+                                  precipitation: initPrecipitation(hours),
                                   templated: true
             )
             days.append(day)

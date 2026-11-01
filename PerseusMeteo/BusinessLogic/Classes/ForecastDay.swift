@@ -19,20 +19,20 @@ public struct ForecastDay {
 
     // MARK: - Debug Parameters
 
-    public var label: String = "" // For debug purpose
-    private let isTemplated: Bool
+    public var title: String = "" // For debug purpose
+    private var isTemplated: Bool = false
 
     // MARK: - Business Data
 
-    public let date: String // Formate: YYYY-MM-DD, it's uniq calculated value
+    public let date: String // YYYY-MM-DD, it's uniq calculated value. Time zone added.
     public let hours: [ForecastHour]
 
     // MARK: - Private Parameters
 
     private let iconName: String?
-    private let temperaturesNightDay: (Double?, Double?)
+    private let temperaturesNightDay: (Double?, Double?)?
 
-    private let probability: Double?
+    private let probability: Int?
     private let precipitation: String?
 
     // MARK: - Calculated Parameters
@@ -42,18 +42,30 @@ public struct ForecastDay {
     }
 
     public var weatherConditions: String {
-        return isTemplated ? MeteoFactsDefaults.forecastDaysItemWeatherDescription :
-            (precipitation == nil ? "clear".localizedValue : precipitation!)
+
+        if isTemplated {
+            return MeteoFactsDefaults.forecastDaysItemWeatherDescription
+        }
+
+        if precipitation == nil {
+            return probability == nil ?
+            "clear".localizedValue : "\(probability!)% \("clear".localizedValue)"
+        }
+
+        if probability != nil {
+            return "\(probability!)% \(precipitation!)"
+        }
+
+        return precipitation!
     }
 
     public var theDayOfTheWeek: String {
 
         guard
-            let firstHour = hours.first,
-            let dt = firstHour.source["dt"] as? Int,
+            let theDay = createDate(from: date)?.timeIntervalSince1970,
             let theDayOfWeek = representLastOneCalculationTime(
-                dt,
-                firstHour.timezone,
+                Int(theDay),
+                TimeZone.current.secondsFromGMT(),
                 toBe: AppOptions.timeFormatOption).theDayOfTheWeek,
             let theDayOfTheWeekLocalized = DayOfWeek(rawValue: theDayOfWeek)?.localized
         else {
@@ -63,33 +75,45 @@ public struct ForecastDay {
         return theDayOfTheWeekLocalized
     }
 
-    public var theDayOftheMonth: String {
+    public var theDayNumberAndtheMonth: String {
 
-        guard let firstHour = hours.first else { return MeteoFactsDefaults.forecastDate }
+        guard let theDay = createDate(from: date)?.timeIntervalSince1970 else {
+            return MeteoFactsDefaults.forecastDate
+        }
 
-        let source = firstHour.source
-        let tz = firstHour.timezone
+        let theDayFormatted = representLastOneCalculationTime(
+            Int(theDay),
+            TimeZone.current.secondsFromGMT(),
+            toBe: AppOptions.timeFormatOption
+        )
 
-        return parseForecastDay(from: source, timezone: tz)
+        let theDayItems = theDayFormatted.day?.split(separator: " ")
+
+        guard let items = theDayItems, items.count > 2 else {
+            return MeteoFactsDefaults.forecastDate
+        }
+
+        return "\(items[0]) \(items[1])"
     }
 
     public var temperatureMin: String {
 
-        guard let value = temperaturesNightDay.0?.description else {
+        guard let value = temperaturesNightDay?.0?.description else {
             return MeteoFactsDefaults.temperature
         }
 
         // Recalculate if needed.
-        let represented = representTemperature(value,
-                                               asIs: TemperatureOption.imperial,
-                                               toBe: AppOptions.temperatureOption)
+
+        let represented = representTemperature(
+            value, asIs: TemperatureOption.imperial, toBe: AppOptions.temperatureOption
+        )
 
         return "\(represented)\(AppOptions.temperatureOption.unit)"
     }
 
     public var temperatureMax: String {
 
-        guard let value = temperaturesNightDay.1?.description else {
+        guard let value = temperaturesNightDay?.1?.description else {
             return MeteoFactsDefaults.temperature
         }
 
@@ -106,7 +130,7 @@ public struct ForecastDay {
          hours: [ForecastHour],
          iconName: String?,
          temperaturesNightDay: (Double?, Double?),
-         probability: Double?,
+         probability: Int?,
          precipitation: String?,
          templated: Bool = false) {
 

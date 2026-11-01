@@ -23,7 +23,9 @@ public class CurrentOpenWeatherParser: CurrentParserProtocol {
 
         // Timezone
 
-        return getInstance("timezone", Int.self, dictionary)
+        // return getInstance("timezone", Int.self, dictionary)
+
+        return TimeZone.current.secondsFromGMT()
     }
 
     public func responseTime(from dictionary: [String: Any]) -> Int? {

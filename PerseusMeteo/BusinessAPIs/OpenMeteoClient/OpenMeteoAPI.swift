@@ -23,7 +23,7 @@ public let attributesOpenMeteo =
 public let paramsOpenMeteo = "&wind_speed_unit=ms&timezone=GMT"
 
 public let paramsOpenMeteoDaily =
-"&daily=uv_index_max,moon_phase,moonrise,moonset,sunrise,sunset" +
+"&daily=uv_index_max,moon_phase,moonrise,moonset,sunrise,sunset,weather_code" +
 ",rain_sum,snowfall_sum,precipitation_probability_max,temperature_2m_min,temperature_2m_max"
 
 public let paramsOpenMeteoHourlyCurrent =

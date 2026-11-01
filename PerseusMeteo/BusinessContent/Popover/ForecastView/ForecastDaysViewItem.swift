@@ -109,7 +109,7 @@ class ForecastDaysViewItem: NSCollectionViewItem {
         self.viewWeatherConditionIcon?.image = NSImage(named: imageName)
         self.labelWeatherConditionValue?.stringValue = day.weatherConditions
 
-        self.date?.stringValue = "\(day.theDayOfTheWeek), \(day.theDayOftheMonth)"
+        self.date?.stringValue = "\(day.theDayOfTheWeek), \(day.theDayNumberAndtheMonth)"
         self.temperature?.stringValue = "\(day.temperatureMin) \(day.temperatureMax)"
     }
 }

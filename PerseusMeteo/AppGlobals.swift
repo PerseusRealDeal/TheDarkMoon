@@ -97,11 +97,11 @@ struct AppGlobals {
                 return
             }
 
-            currentReader.responseClientReceivedTime = Int(Date().timeIntervalSince1970)
-            currentReader.refreshData()
-
             let logmsg = "\n\(weather?.data.prettyPrinted ?? "")"
             log.message("[\(type(of: self))].\(#function): Data:\(logmsg)", .info, .standard)
+
+            currentReader.responseClientReceivedTime = Int(Date().timeIntervalSince1970)
+            currentReader.refreshData()
         }
     }
 
@@ -114,11 +114,12 @@ struct AppGlobals {
                 return
             }
 
+            // let logmsg = "\n\(forecast?.data.prettyPrinted ?? "")"
+            let logmsg = " Setted!"
+            log.message("[\(type(of: self))].\(#function): Data:\(logmsg)", .info, .standard)
+
             forecastReader.responseClientReceivedTime = Int(Date().timeIntervalSince1970)
             forecastReader.refreshData()
-
-            let logmsg = "\n\(forecast?.data.prettyPrinted ?? "")"
-            log.message("[\(type(of: self))].\(#function): Data:\(logmsg)", .info, .standard)
         }
     }
 

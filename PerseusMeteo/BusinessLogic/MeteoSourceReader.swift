@@ -31,7 +31,11 @@ public class MeteoSourceReader: MeteoJsonAsDictionary {
 
     // MARK: - Properties
 
-    public var responseClientReceivedTime: Int?
+    public var responseClientReceivedTime: Int? {
+        didSet {
+            log.message("[\(type(of: self))].\(#function): Setted!", .info, .standard)
+        }
+    }
 
     // MARK: - Init
 

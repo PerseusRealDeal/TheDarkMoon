@@ -328,7 +328,7 @@ extension ForecastView: NSCollectionViewDataSource {
 
             // log.message("day \(index) : \(dataSource.forecastDays.count)", .info)
 
-            data.label = "\(index)"
+            data.title = "\(index)"
 
             // The view for the day.
 

@@ -44,3 +44,11 @@ func loadCPLProfile(_ name: String) -> (status: Bool, info: String) {
         return (false, "Failed to create URL")
     }
 }
+
+func createDate(from date: String, format: String = "yyyy-MM-dd") -> Date? {
+
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = format
+
+    return dateFormatter.date(from: date)
+}

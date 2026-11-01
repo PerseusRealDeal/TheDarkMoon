@@ -99,12 +99,16 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
 
     public func getTimeZone(from dictionary: [String: Any]) -> Int? {
 
+/*
         guard let city = dictionary["city"] as? [String: Any] else {
             log.message("[\(type(of: self))].\(#function) [city] mistaken", .error)
             return nil
         }
 
         return getInstance("timezone", Int.self, city)
+*/
+
+        return TimeZone.current.secondsFromGMT()
     }
 
     public func getForecastDays(from dictionary: [String: Any]) -> [ForecastDay]? {
@@ -117,7 +121,7 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
             let timezone = getTimeZone(from: dictionary)
         else {
 
-            log.message("[\(type(of: self))].\(#function) Wrong list.", .error)
+            log.message("[\(type(of: self))].\(#function) There's no items list.", .error)
 
             return nil
         }
@@ -130,14 +134,13 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
             // let addition = "DAY KEY: \(item.key) : count \(item.value.count)"
             // log.message("[\(type(of: self))].\(#function) \(addition)")
 
-            let hours = createForecastHours(from: item.value, timezone)
-            let probability = initProbability(hours)
+            let hours = prepareHours(item.value, timezone)
             let day = ForecastDay(date: item.key,
                                   hours: hours,
                                   iconName: initIconName(hours),
                                   temperaturesNightDay: initTemperatures(hours),
                                   probability: initProbability(hours),
-                                  precipitation: initPrecipitation(hours, pop: probability)
+                                  precipitation: initPrecipitation(hours)
             )
             forecastDays.append(day)
         }
@@ -185,14 +188,13 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
             // log.message("[\(type(of: self))].\(#function) LIST ITEMS: \(listItems.count)")
 
             let daysSorted = days.sorted(by: {
-                createDate(from: $0.key) < createDate(from: $1.key)
+                createDate(from: $0.key)! < createDate(from: $1.key)!
             })
 
             return daysSorted
     }
+    private func prepareHours(_ source: [[String: Any]?], _ tz: Int) -> [ForecastHour] {
 
-    private func createForecastHours(from source: [[String: Any]?],
-                                     _ timezone: Int = 0) -> [ForecastHour] {
         guard source.isEmpty == false else {
             return [ForecastHour]()
         }
@@ -206,27 +208,19 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
 
             hours.append(ForecastHour(provider: .serviceOpenWeatherMap,
                                       source: item,
-                                      timezone: timezone,
+                                      timezone: tz,
                                       title: "auto"))
         }
 
         return hours
     }
-
-    private func createDate(from date: String, format: String = "yyyy-MM-dd") -> Date {
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-
-        let theDay = dateFormatter.date(from: date)!
-
-        return theDay
-    }
 }
 
 // MARK: Getting Forecast Day Values
 
-public func parseForecastDay(from source: [String: Any], timezone: Int) -> String {
+/*
+
+public func getFormattedDayLocalized(from source: [String: Any], timezone: Int) -> String {
 
     if source.isEmpty { // Templated result for empty value.
         return MeteoFactsDefaults.forecastDate
@@ -257,6 +251,7 @@ public func parseForecastDay(from source: [String: Any], timezone: Int) -> Strin
 
     return "\(items[0]) \(items[1])"
 }
+*/
 
 // MARK: Getting Forecast Hour Values
 
@@ -817,7 +812,7 @@ public func initTemperatures(_ hours: [ForecastHour]) -> (Double?, Double?) {
     return (temperaturesNight.min(), temperaturesDay.max())
 }
 
-public func initPrecipitation(_ hours: [ForecastHour], pop: Double? = nil) -> String? {
+public func initPrecipitation(_ hours: [ForecastHour]) -> String? {
 
     var precipitation = [String]()
 
@@ -849,13 +844,10 @@ public func initPrecipitation(_ hours: [ForecastHour], pop: Double? = nil) -> St
         conditions.append(" " + "snow".localizedValue)
     }
 
-    let popRepresented = representProbabilityOfPrecipitation(pop)
-
-    return conditions.isEmpty ? nil :
-        (pop == nil ? conditions : "\(popRepresented)% \(conditions)")
+    return conditions
 }
 
-public func initProbability(_ hours: [ForecastHour]) -> Double? {
+public func initProbability(_ hours: [ForecastHour]) -> Int? {
     // "pop":0.48999999999999999
 
     var pops = [Double]()
@@ -867,7 +859,7 @@ public func initProbability(_ hours: [ForecastHour]) -> Double? {
         }
     }
 
-    return pops.max()
+    return representProbabilityOfPrecipitation(pops.max())
 }
 
 private var count = 0 // For debug purpose
