@@ -24,23 +24,18 @@ public class CurrentOpenMeteoParser: CurrentParserProtocol {
     public func timeZone(from dictionary: [String: Any]) -> Int? {
 
         guard
-            let timezone = getInstance("timezone", String.self, dictionary)
+            let timezone = getInstance("utc_offset_seconds", Int.self, dictionary)
         else {
             return nil
         }
 
-        if timezone == "GMT" {
-            return TimeZone.current.secondsFromGMT()
-        }
-
-        // If timezone not equel to GMT
-        return nil
+        return timezone
     }
 
     // MARK: - Response time
 
     public func responseTime(from dictionary: [String: Any]) -> Int? {
-
+/*
         guard
             let current = dictionary["current"] as? [String: Any],
             let currentTime = getInstance("time", String.self, current),
@@ -50,6 +45,15 @@ public class CurrentOpenMeteoParser: CurrentParserProtocol {
         }
 
         return Int(iso8601Date.timeIntervalSince1970)
+*/
+        guard
+            let current = dictionary["current"] as? [String: Any],
+            let time = getInstance("time", Int.self, current)
+        else {
+            return nil
+        }
+
+        return time
     }
 
     // MARK: - Weather description

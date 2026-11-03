@@ -19,9 +19,6 @@ import Foundation
 
 public protocol CurrentParserProtocol {
 
-    // TODO: Consider TimeZone!
-    // 1. TimeZone.current.secondsFromGMT() // In use
-    // 2. TimeZone where geocoordinates are // ?
     func timeZone(from dictionary: [String: Any]) -> Int?
     func responseTime(from dictionary: [String: Any]) -> Int?
 

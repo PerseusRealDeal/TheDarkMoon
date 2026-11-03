@@ -17,6 +17,8 @@
 
 import Cocoa
 
+// TODO: This view should be redesigned, depends on mouse capabilities (native or not)
+
 @IBDesignable
 class ForecastView: NSView {
 
@@ -157,6 +159,8 @@ class ForecastView: NSView {
 
         // dataSource.refresh()
 
+        forecastReader.refreshData()
+
         reloadDaysCollection(selectionSaved: saveSelection)
         reloadHoursCollection(selectionSaved: saveSelection)
 
@@ -191,6 +195,7 @@ class ForecastView: NSView {
                     let index = daySelectedIndex.item
                     let item = forecastReader.forecastDays[index].hours[0]
 
+                    // TODO: 1 MeteoGroupForecast for Open-Meteo
                     viewMeteoGroup.data = prepareMeteoGroupForecastHourData(item.source,
                                                                             item.provider)
 
@@ -199,6 +204,7 @@ class ForecastView: NSView {
                 } else {
                     let item = forecastReader.forecastDays[0].hours[0]
 
+                    // TODO: 2 MeteoGroupForecast for Open-Meteo
                     viewMeteoGroup.data = prepareMeteoGroupForecastHourData(item.source,
                                                                             item.provider)
 
@@ -262,6 +268,7 @@ class ForecastView: NSView {
                 let hourItem = indexHour!.item
                 let item = forecastReader.forecastDays[dayItem].hours[hourItem]
 
+                // TODO: 3 MeteoGroupForecast for Open-Meteo
                 viewMeteoGroup.data = prepareMeteoGroupForecastHourData(item.source,
                                                                         item.provider)
 
@@ -361,7 +368,7 @@ extension ForecastView: NSCollectionViewDataSource {
 
                 // log.message("hour \(index) : \(dataSource.forecastDays.count)", .info)
 
-                data.label = "\(index)"
+                data.title = "\(index)"
 
                 // The new view for the hour of the day.
 
@@ -414,6 +421,7 @@ extension ForecastView: NSCollectionViewDelegate {
             if let details = hourDetails {
                 labelWeatherDescription.stringValue =
                 "\(getWeatherConditions(from: details.source))".capitalizingFirstLetter()
+                // TODO: 4 MeteoGroupForecast for Open-Meteo
                 viewMeteoGroup.data = prepareMeteoGroupForecastHourData(details.source,
                                                                         details.provider)
             } else {

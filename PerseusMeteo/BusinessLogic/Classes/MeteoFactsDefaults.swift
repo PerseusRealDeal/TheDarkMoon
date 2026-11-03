@@ -77,6 +77,10 @@ public struct MeteoFactsDefaults {
         return template
     }
 
+    public static var forecastRainSnow: String {
+        return "-- / --"
+    }
+
     public static var moonphase: String {
         return "_.__"
     }

@@ -45,6 +45,7 @@ public class CurrentReader: MeteoSourceReader {
         guard
             let meteoDictionary = self.meteoDictionary as? CurrentDictionary,
             let value = self.responseClientReceivedTime,
+            // let value = meteoDictionary.responseTime,
             let timezone = meteoDictionary.timezone
         else {
             return MeteoFactsDefaults.responseTimeLabelText

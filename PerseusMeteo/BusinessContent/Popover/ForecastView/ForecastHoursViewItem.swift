@@ -50,12 +50,12 @@ class ForecastHoursViewItem: NSCollectionViewItem {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configure()
-
         darkModeObserver.action = { _ in self.makeup() }
 
-        makeup()
+        configure()
         reload()
+
+        makeup()
     }
 
     private func configure() {
@@ -86,20 +86,16 @@ class ForecastHoursViewItem: NSCollectionViewItem {
 
         // log.message("[\(type(of: self))].\(#function) hour \(hour.label)")
 
-        // textField?.stringValue = hour.label
-        // view.layer?.backgroundColor = NSColor.clear.cgColor
-
         /*
+        textField?.stringValue = hour.label
+        view.layer?.backgroundColor = NSColor.clear.cgColor
+
         view.layer?.backgroundColor = isSelected ? NSColor.red.cgColor : NSColor.clear.cgColor
          */
 
-        if let precipitation = getPrecipitation(from: hour.source), precipitation.1 != "" {
-            self.incomingPrecipitation?.stringValue = precipitation.1 + " \(precipitation.2)"
-        } else {
-            self.incomingPrecipitation?.stringValue = "-- / --"
-        }
+        self.time?.stringValue = hour.time
+        self.incomingPrecipitation?.stringValue = hour.rainsnow
 
-        self.time?.stringValue = getForecastHourDt(from: hour.source, timezone: hour.timezone)
-        self.temperature?.stringValue = getForecastHourTemp(from: hour.source)
+        self.temperature?.stringValue = hour.temperature
     }
 }

@@ -17,7 +17,7 @@ import Foundation
 
 public struct ForecastHour {
 
-    public var label: String // For debug purpose
+    public var title = "-1" // For debug purpose
 
     // MARK: - Business Data
 
@@ -26,20 +26,15 @@ public struct ForecastHour {
     public let source: [String: Any]
     public let timezone: Int
 
+    public var time = MeteoFactsDefaults.timeFormat
+    public var temperature = MeteoFactsDefaults.temperature
+    public var rainsnow = MeteoFactsDefaults.forecastRainSnow
+
     // MARK: - Init
 
-    init(title: String,
-         provider: MeteoProvider,
-         source: [String: Any] = [:],
-         timezone: Int = 0) {
-
-        self.label = title
+    init(provider: MeteoProvider, source: [String: Any] = [:], timezone: Int = 0) {
         self.provider = provider
         self.source = source
         self.timezone = timezone
-    }
-
-    init(provider: MeteoProvider, source: [String: Any], timezone: Int, title: String = "") {
-        self.init(title: title, provider: provider, source: source, timezone: timezone)
     }
 }

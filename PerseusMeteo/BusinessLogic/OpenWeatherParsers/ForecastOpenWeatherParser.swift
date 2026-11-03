@@ -99,16 +99,12 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
 
     public func getTimeZone(from dictionary: [String: Any]) -> Int? {
 
-/*
         guard let city = dictionary["city"] as? [String: Any] else {
             log.message("[\(type(of: self))].\(#function) [city] mistaken", .error)
             return nil
         }
 
         return getInstance("timezone", Int.self, city)
-*/
-
-        return TimeZone.current.secondsFromGMT()
     }
 
     public func getForecastDays(from dictionary: [String: Any]) -> [ForecastDay]? {
@@ -193,6 +189,7 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
 
             return daysSorted
     }
+
     private func prepareHours(_ source: [[String: Any]?], _ tz: Int) -> [ForecastHour] {
 
         guard source.isEmpty == false else {
@@ -206,10 +203,15 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
                 continue
             }
 
-            hours.append(ForecastHour(provider: .serviceOpenWeatherMap,
-                                      source: item,
-                                      timezone: tz,
-                                      title: "auto"))
+            var hour = ForecastHour(provider: .serviceOpenWeatherMap,
+                                    source: item,
+                                    timezone: tz)
+
+            hour.time = getForecastHourDt(from: item, timezone: tz)
+            hour.temperature = getForecastHourTemp(from: item)
+            hour.rainsnow = getRainSnow(item)
+
+            hours.append(hour)
         }
 
         return hours
@@ -264,6 +266,7 @@ public func getForecastHourDt(from source: [String: Any], timezone: Int) -> Stri
     var value = -1
 
     // Get value.
+
     if let dt = source["dt"] as? Int {
 
         value = dt
@@ -634,9 +637,41 @@ or
 
 */
 
+public func getRainSnow(_ source: [String: Any]) -> String {
+
+    guard !source.isEmpty else { return MeteoFactsDefaults.forecastRainSnow }
+
+    var rainsnow: (String, Double) = ("", -1)
+
+    if let rain = source["rain"] as? [String: Any] { // 2. Rain?
+        if let mm = rain["3h"] as? Double {
+
+            rainsnow.0 = "rain".localizedValue
+            rainsnow.1 = mm.cut(.two) // 3. Rain volume for last 3 hours, mm.
+
+        } else {
+            log.message("[\(#function) [rain 3h] mistaken", .error)
+        }
+    } else if let snow = source["snow"] as? [String: Any] { // Snow probability.
+        if let mm = snow["3h"] as? Double {
+
+            rainsnow.0 = "snow".localizedValue  // 2. Snow?
+            rainsnow.1 = mm.cut(.two) // 3. Snow volume for last 3 hours, mm.
+
+        } else {
+            log.message("[\(#function) [snow 3h] mistaken", .error)
+        }
+    } else {
+        log.message("[\(#function) [rain], [snow] is empty", .notice)
+    }
+
+    return rainsnow.0.isEmpty ?
+    MeteoFactsDefaults.forecastRainSnow : "\(rainsnow.0) \(rainsnow.1)"
+}
+
 // (Double, String, Double) goes for (pop, rain/snow, 3h).
 // If not nil (-1, "", -1) means no values. "-- / --"
-public func getPrecipitation(from source: [String: Any]) -> (Double, String, Double)? {
+public func getRainSnow(from source: [String: Any]) -> (Double, String, Double)? {
 
     guard !source.isEmpty else { return nil }
 

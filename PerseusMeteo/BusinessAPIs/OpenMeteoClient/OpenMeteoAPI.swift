@@ -20,7 +20,7 @@ public let schemeOpenMeteo = "https://api.open-meteo.com/v1/"
 public let attributesOpenMeteo =
 "forecast?latitude=%@&longitude=%@&temperature_unit=%@&forecast_days=%@"
 
-public let paramsOpenMeteo = "&wind_speed_unit=ms&timezone=GMT"
+public let paramsOpenMeteo = "&wind_speed_unit=ms&timezone=auto&timeformat=unixtime"
 
 public let paramsOpenMeteoDaily =
 "&daily=uv_index_max,moon_phase,moonrise,moonset,sunrise,sunset,weather_code" +

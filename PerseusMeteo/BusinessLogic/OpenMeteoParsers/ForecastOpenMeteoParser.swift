@@ -22,17 +22,12 @@ public class ForecastOpenMeteoParser: ForecastParserProtocol {
     public func getTimeZone(from dictionary: [String: Any]) -> Int? {
 
         guard
-            let timezone = getInstance("timezone", String.self, dictionary)
+            let timezone = getInstance("utc_offset_seconds", Int.self, dictionary)
         else {
             return nil
         }
 
-        if timezone == "GMT" {
-            return TimeZone.current.secondsFromGMT()
-        }
-
-        // If timezone not equel to GMT
-        return nil
+        return timezone
     }
 
     public func getForecastDays(from dictionary: [String: Any]) -> [ForecastDay]? {
@@ -41,33 +36,43 @@ public class ForecastOpenMeteoParser: ForecastParserProtocol {
         log.message("[\(type(of: self))].\(#function) \(count)", .debug, .standard)
 
         guard
-            // let timezone = getTimeZone(from: dictionary),
+            let timezone = getTimeZone(from: dictionary),
             let daily = dictionary["daily"] as? [String: Any],
-            let dailyTime = daily["time"] as? [String],
+            let dailyTime = daily["time"] as? [Int],
             let hourly = dictionary["hourly"] as? [String: Any],
-            let hourlyTime = hourly["time"] as? [String]
+            let hourlyTime = hourly["time"] as? [Int]
         else {
+            log.message("[\(type(of: self))].\(#function) \(count)", .error, .standard)
             return nil
         }
+
+        let hoursInTimeZone = hourlyTime.map { prepareTimeInTimeZone($0, 0) }
+        // log.message("\(hoursInTimeZone)", .debug, .standard)
 
         var forecastDays = [ForecastDay]()
 
         for day in dailyTime {
 
-            guard let dayIndex = (dailyTime.firstIndex { $0.contains(day) }) else {
+            guard let dayIndex = (dailyTime.firstIndex { $0 == day }) else {
                 continue
             }
 
-            let day = ForecastDay(
-                date: getDate(day),
-                hours: getHours(
-                    hourlyTime.indices.filter { hourlyTime[$0].contains(day) }, hourly),
-                iconName: getIconName(dayIndex, daily),
-                temperaturesNightDay: getTemperatures(dayIndex, daily),
-                probability: getProbability(dayIndex, daily),
-                precipitation: getPrecipitation(dayIndex, daily)
+            let dayInTimeZone = prepareTimeInTimeZone(day, timezone, "yyyy-MM-dd")
+            // log.message("\(dayInTimeZone)", .debug, .standard)
+
+            let hours = getHours(
+                hoursInTimeZone.indices.filter { hoursInTimeZone[$0].contains(dayInTimeZone) },
+                hourly,
+                timezone
             )
 
+            let day = ForecastDay(date: dayInTimeZone,
+                                  hours: hours,
+                                  iconName: getIconName(dayIndex, daily),
+                                  temperaturesNightDay: getTemperatures(dayIndex, daily),
+                                  probability: getProbability(dayIndex, daily),
+                                  precipitation: getPrecipitation(dayIndex, daily)
+            )
             forecastDays.append(day)
         }
 
@@ -76,45 +81,87 @@ public class ForecastOpenMeteoParser: ForecastParserProtocol {
 
     // MARK: - Helper methods
 
-    private func getDate(_ day: String) -> String {
+    private func prepareTimeInTimeZone(_ time: Int,
+                                       _ timeoffset: Int,
+                                       _ format: String = "yyyy-MM-dd'T'HH:mm") -> String {
 
-        if createDate(from: day) != nil {
-            return day
-        }
-
-        return MeteoFactsDefaults.forecastDate
-    }
-
-/*
-    private func getDate(_ day: String, _ tz: Int) -> String {
+        var day = Date(timeIntervalSince1970: TimeInterval(time))
+        day.addTimeInterval(TimeInterval(timeoffset))
 
         let formatter = DateFormatter()
 
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
-        formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeZone = TimeZone(secondsFromGMT: timezone)
+        formatter.dateFormat = format // "yyyy-MM-dd" // "yyyy-MM-dd'T'HH:mm"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
 
-        if let dayWithTZ = formatter.date(from: day) {
-            return formatter.string(from: dayWithTZ)
-        }
-
-        return MeteoFactsDefaults.forecastDate
+        return formatter.string(from: day)
     }
-*/
 
     private func getHours(_ timeIndices: [Int],
-                          _ hours: [String: Any]) -> [ForecastHour] {
+                          _ hours: [String: Any],
+                          _ timeoffset: Int) -> [ForecastHour] {
 
-        var hours = [ForecastHour]()
+        // log.message("min\(timeIndices.min()!) max\(timeIndices.max()!)", .debug, .standard)
 
-        // TODO: Parse Open-Meteo forecast hours
+        var forecastHours = [ForecastHour]()
 
-        for item in 0...4 {
-            hours.append(ForecastHour(title: "\(item)", provider: .serviceOpenMeteo))
+        for index in timeIndices {
+
+            var hour = ForecastHour(provider: .serviceOpenMeteo)
+
+            // Time Field
+
+            if
+                let times = hours["time"] as? [Int],
+                let time = representMeteoTime(times[index], timeoffset,
+                                              toBe: AppOptions.timeFormatOption) {
+                hour.time = time
+            } else {
+                hour.time = MeteoFactsDefaults.timeFormat
+            }
+
+            // Rain Snow Field
+
+            if let rain = hours["rain"] as? [Double], rain[index] > 0.0 {
+                hour.rainsnow = "rain".localizedValue + " \(rain[index].cut(.two))"
+            } else if let snow = hours["snowfall"] as? [Double], snow[index] > 0.0 {
+                hour.rainsnow = "snow".localizedValue + " \(snow[index].cut(.two))"
+            } else {
+                hour.rainsnow = MeteoFactsDefaults.forecastRainSnow
+            }
+
+            // Temperature Field temperature_2m
+
+            if let temperatures = hours["temperature_2m"] as? [Double] {
+
+                let value = representTemperature("\(temperatures[index])",
+                                                 asIs: TemperatureOption.imperial,
+                                                 toBe: AppOptions.temperatureOption)
+
+                hour.temperature = "\(value)\(AppOptions.temperatureOption.unit)"
+            } else {
+                hour.temperature = MeteoFactsDefaults.temperature
+            }
+
+            forecastHours.append(hour)
         }
 
-        return hours
+        return forecastHours
+    }
+
+    private func getForecastHourTime(_ index: Int, _ hours: [String: Any]) -> String {
+
+        guard
+            index < hours.count, index >= 0, !hours.isEmpty,
+            let times = hours["time"] as? [Int]
+        else {
+            return MeteoFactsDefaults.timeFormat
+        }
+
+        return representMeteoTime(times[index], 0,
+                                  toBe: AppOptions.timeFormatOption)
+        ?? MeteoFactsDefaults.timeFormat
     }
 
     private func getIconName(_ timeIndex: Int,

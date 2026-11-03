@@ -84,12 +84,12 @@ public class ForecastReader: MeteoSourceReader {
         var days = [ForecastDay]()
         let provider = AppOptions.currentMeteoProviderOption
 
-        for item in 0...4 {
+        for item in 0...4 { // Five days
 
             var hours = [ForecastHour]()
 
-            for item in 0...4 {
-                hours.append(ForecastHour(title: "\(item)", provider: provider))
+            for _ in 0...4 { // Five hours
+                hours.append(ForecastHour(provider: provider))
             }
 
             let day = ForecastDay(date: item.description,
