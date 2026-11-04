@@ -66,13 +66,13 @@ public class ForecastOpenMeteoParser: ForecastParserProtocol {
                 timezone
             )
 
-            let day = ForecastDay(date: dayInTimeZone,
-                                  hours: hours,
-                                  iconName: getIconName(dayIndex, daily),
-                                  temperaturesNightDay: getTemperatures(dayIndex, daily),
-                                  probability: getProbability(dayIndex, daily),
-                                  precipitation: getPrecipitation(dayIndex, daily)
-            )
+            var day = ForecastDay(date: dayInTimeZone, hours: hours)
+
+            day.iconName = getIconName(dayIndex, daily)
+            day.temperaturesNightDay = getTemperatures(dayIndex, daily)
+            day.probability = getProbability(dayIndex, daily)
+            day.precipitation = getPrecipitation(dayIndex, daily)
+
             forecastDays.append(day)
         }
 
@@ -143,6 +143,11 @@ public class ForecastOpenMeteoParser: ForecastParserProtocol {
             } else {
                 hour.temperature = MeteoFactsDefaults.temperature
             }
+
+            // Meteo Group Forecast Hour
+
+            // TODO: MeteoGroupForecastHourData
+            hour.data = prepareMeteoGroupForecastHourData([:], .serviceOpenMeteo)
 
             forecastHours.append(hour)
         }

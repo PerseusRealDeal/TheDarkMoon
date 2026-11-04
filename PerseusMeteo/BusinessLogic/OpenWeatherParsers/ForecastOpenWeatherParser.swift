@@ -131,13 +131,14 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
             // log.message("[\(type(of: self))].\(#function) \(addition)")
 
             let hours = prepareHours(item.value, timezone)
-            let day = ForecastDay(date: item.key,
-                                  hours: hours,
-                                  iconName: initIconName(hours),
-                                  temperaturesNightDay: initTemperatures(hours),
-                                  probability: initProbability(hours),
-                                  precipitation: initPrecipitation(hours)
-            )
+
+            var day = ForecastDay(date: item.key, hours: hours)
+
+            day.iconName = initIconName(item.value)
+            day.temperaturesNightDay = initTemperatures(item.value)
+            day.probability = initProbability(item.value)
+            day.precipitation = initPrecipitation(item.value)
+
             forecastDays.append(day)
         }
 
@@ -203,13 +204,15 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
                 continue
             }
 
-            var hour = ForecastHour(provider: .serviceOpenWeatherMap,
-                                    source: item,
-                                    timezone: tz)
+            var hour = ForecastHour(provider: .serviceOpenWeatherMap)
 
             hour.time = getForecastHourDt(from: item, timezone: tz)
             hour.temperature = getForecastHourTemp(from: item)
             hour.rainsnow = getRainSnow(item)
+            hour.data = prepareMeteoGroupForecastHourData(item, .serviceOpenWeatherMap)
+
+            hour.weatherDescription =
+            "\(getWeatherConditions(from: item))".capitalizingFirstLetter()
 
             hours.append(hour)
         }
@@ -766,7 +769,7 @@ public func getWeatherConditions(from source: [String: Any]) -> OpenWeatherIconC
 
 // MARK: - Helper functions
 
-public func initIconName(_ hours: [ForecastHour]) -> String? {
+public func initIconName(_ hours: [[String: Any]?]) -> String? {
 
     // Ranks
 
@@ -787,7 +790,7 @@ public func initIconName(_ hours: [ForecastHour]) -> String? {
     var icons = [String]()
 
     hours.forEach {
-        if let weather = $0.source["weather"] as? [Any] {
+        if let weather = $0?["weather"] as? [Any] {
             if let wFirst = weather.first as? [String: Any] {
                 if let icon = wFirst["icon"] as? String {
                     icons.append(icon) // String(icon.dropLast())
@@ -814,7 +817,7 @@ public func initIconName(_ hours: [ForecastHour]) -> String? {
     return "OW_\(iconName)"
 }
 
-public func initTemperatures(_ hours: [ForecastHour]) -> (Double?, Double?) {
+public func initTemperatures(_ hours: [[String: Any]?]) -> (Double?, Double?) {
 
     // Get temperatures.
     var temperaturesDay = [Double]()
@@ -823,10 +826,10 @@ public func initTemperatures(_ hours: [ForecastHour]) -> (Double?, Double?) {
     hours.forEach {
 
         // Get value.
-        if let main = $0.source["main"] as? [String: Any] {
+        if let main = $0?["main"] as? [String: Any] {
             if let temp = main["temp"] as? Double {
 
-                if let sys = $0.source["sys"] as? [String: Any] {
+                if let sys = $0?["sys"] as? [String: Any] {
                     if let pod = sys["pod"] as? String {
                         if pod == "d" {
                             temperaturesDay.append(temp)
@@ -847,14 +850,14 @@ public func initTemperatures(_ hours: [ForecastHour]) -> (Double?, Double?) {
     return (temperaturesNight.min(), temperaturesDay.max())
 }
 
-public func initPrecipitation(_ hours: [ForecastHour]) -> String? {
+public func initPrecipitation(_ hours: [[String: Any]?]) -> String? {
 
     var precipitation = [String]()
 
     hours.forEach {
 
-        let snow = $0.source["snow"] as? [String: Any]
-        let rain = $0.source["rain"] as? [String: Any]
+        let snow = $0?["snow"] as? [String: Any]
+        let rain = $0?["rain"] as? [String: Any]
 
         if snow != nil {
             if !precipitation.contains("snow") {
@@ -882,14 +885,14 @@ public func initPrecipitation(_ hours: [ForecastHour]) -> String? {
     return conditions
 }
 
-public func initProbability(_ hours: [ForecastHour]) -> Int? {
+public func initProbability(_ hours: [[String: Any]?]) -> Int? {
     // "pop":0.48999999999999999
 
     var pops = [Double]()
 
     hours.forEach {
         // Get values.
-        if let pop = $0.source["pop"] as? Double {
+        if let pop = $0?["pop"] as? Double {
             pops.append(pop)
         }
     }

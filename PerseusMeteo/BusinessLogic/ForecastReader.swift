@@ -92,14 +92,13 @@ public class ForecastReader: MeteoSourceReader {
                 hours.append(ForecastHour(provider: provider))
             }
 
-            let day = ForecastDay(date: item.description,
-                                  hours: hours,
-                                  iconName: initIconName(hours),
-                                  temperaturesNightDay: initTemperatures(hours),
-                                  probability: initProbability(hours),
-                                  precipitation: initPrecipitation(hours),
-                                  templated: true
-            )
+            var day = ForecastDay(date: item.description, hours: hours, templated: true)
+
+            day.iconName = initIconName([[:]])
+            day.temperaturesNightDay = initTemperatures([[:]])
+            day.probability = initProbability([[:]])
+            day.precipitation = initPrecipitation([[:]])
+
             days.append(day)
         }
 

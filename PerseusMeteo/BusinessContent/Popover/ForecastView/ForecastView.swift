@@ -195,21 +195,13 @@ class ForecastView: NSView {
                     let index = daySelectedIndex.item
                     let item = forecastReader.forecastDays[index].hours[0]
 
-                    // TODO: 1 MeteoGroupForecast for Open-Meteo
-                    viewMeteoGroup.data = prepareMeteoGroupForecastHourData(item.source,
-                                                                            item.provider)
-
-                    labelWeatherDescription.stringValue =
-                    "\(getWeatherConditions(from: item.source))".capitalizingFirstLetter()
+                    viewMeteoGroup.data = item.data
+                    labelWeatherDescription.stringValue = item.weatherDescription
                 } else {
                     let item = forecastReader.forecastDays[0].hours[0]
 
-                    // TODO: 2 MeteoGroupForecast for Open-Meteo
-                    viewMeteoGroup.data = prepareMeteoGroupForecastHourData(item.source,
-                                                                            item.provider)
-
-                    labelWeatherDescription.stringValue =
-                    "\(getWeatherConditions(from: item.source))".capitalizingFirstLetter()
+                    viewMeteoGroup.data = item.data
+                    labelWeatherDescription.stringValue = item.weatherDescription
                 }
             }
         }
@@ -268,12 +260,8 @@ class ForecastView: NSView {
                 let hourItem = indexHour!.item
                 let item = forecastReader.forecastDays[dayItem].hours[hourItem]
 
-                // TODO: 3 MeteoGroupForecast for Open-Meteo
-                viewMeteoGroup.data = prepareMeteoGroupForecastHourData(item.source,
-                                                                        item.provider)
-
-                labelWeatherDescription.stringValue =
-                "\(getWeatherConditions(from: item.source))".capitalizingFirstLetter()
+                viewMeteoGroup.data = item.data
+                labelWeatherDescription.stringValue = item.weatherDescription
             }
         }
 
@@ -419,11 +407,9 @@ extension ForecastView: NSCollectionViewDelegate {
             }
 
             if let details = hourDetails {
-                labelWeatherDescription.stringValue =
-                "\(getWeatherConditions(from: details.source))".capitalizingFirstLetter()
-                // TODO: 4 MeteoGroupForecast for Open-Meteo
-                viewMeteoGroup.data = prepareMeteoGroupForecastHourData(details.source,
-                                                                        details.provider)
+                viewMeteoGroup.data = details.data
+                labelWeatherDescription.stringValue = details.weatherDescription
+
             } else {
                 labelWeatherDescription.stringValue = MeteoFactsDefaults.weatherDescription
                 viewMeteoGroup.data = MeteoGroupData()

@@ -29,11 +29,11 @@ public struct ForecastDay {
 
     // MARK: - Private Parameters
 
-    private let iconName: String?
-    private let temperaturesNightDay: (Double?, Double?)?
+    public var iconName: String?
+    public var temperaturesNightDay: (Double?, Double?)?
 
-    private let probability: Int?
-    private let precipitation: String?
+    public var probability: Int?
+    public var precipitation: String?
 
     // MARK: - Calculated Parameters
 
@@ -126,21 +126,10 @@ public struct ForecastDay {
     }
     // MARK: - Init
 
-    init(date: String,
-         hours: [ForecastHour],
-         iconName: String?,
-         temperaturesNightDay: (Double?, Double?),
-         probability: Int?,
-         precipitation: String?,
-         templated: Bool = false) {
+    init(date: String, hours: [ForecastHour], templated: Bool = false) {
 
         self.date = date
         self.hours = hours
         self.isTemplated = templated
-
-        self.iconName = iconName // initIconName(hours)
-        self.temperaturesNightDay = temperaturesNightDay // initTemperatures(hours)
-        self.probability = probability // initProbability(hours)
-        self.precipitation = precipitation // initPrecipitation(hours, pop: probability)
     }
 }

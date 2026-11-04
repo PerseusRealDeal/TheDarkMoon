@@ -23,18 +23,17 @@ public struct ForecastHour {
 
     public let provider: MeteoProvider
 
-    public let source: [String: Any]
-    public let timezone: Int
-
     public var time = MeteoFactsDefaults.timeFormat
     public var temperature = MeteoFactsDefaults.temperature
     public var rainsnow = MeteoFactsDefaults.forecastRainSnow
 
+    public var weatherDescription = MeteoFactsDefaults.weatherDescription
+    public var data: MeteoGroupData
+
     // MARK: - Init
 
-    init(provider: MeteoProvider, source: [String: Any] = [:], timezone: Int = 0) {
+    init(provider: MeteoProvider) {
         self.provider = provider
-        self.source = source
-        self.timezone = timezone
+        self.data = prepareMeteoGroupForecastHourData([:], provider)
     }
 }
