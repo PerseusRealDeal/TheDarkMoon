@@ -34,6 +34,12 @@ public struct ForecastHour {
 
     init(provider: MeteoProvider) {
         self.provider = provider
-        self.data = prepareMeteoGroupForecastHourData([:], provider)
+
+        switch provider {
+        case .serviceOpenMeteo:
+            self.data = prepareOpenMeteoForecastHourData(0, [:])
+        case .serviceOpenWeatherMap:
+            self.data = prepareOpenWeatherForecastHourData([:])
+        }
     }
 }

@@ -92,34 +92,4 @@ public extension MeteoGroupData {
         value8 = MeteoFactsDefaults.humidity
         value9 = MeteoFactsDefaults.cloudiness
     }
-
-    mutating func setOpenWeatherForecastUp(data: [String: Any] = [:]) {
-
-        let tempMin = getForecastHourTempMin(from: data)
-        let tempMax = getForecastHourTempMax(from: data)
-
-        let valueMinMax = "\(tempMin) : \(tempMax)"
-
-        // Array 1
-
-        value1 = valueMinMax
-        value2 = getForecastHourTempKinda(from: data)
-        value3 = getForecastHourVisibility(from: data)
-
-        // Array 2
-
-        value4 = getForecastHourWindSpeed(from: data)
-        value5 = getForecastHourWindDirection(from: data)
-        value6 = getForecastHourWindGusts(from: data)
-
-        // Array 3
-
-        value7 = getForecastHourPressure(from: data)
-        value8 = getForecastHourHumidity(from: data)
-        value9 = getForecastHourCloudiness(from: data)
-    }
-
-    mutating func setOpenMeteoForecastUp(data: [String: Any] = [:]) {
-
-    }
 }

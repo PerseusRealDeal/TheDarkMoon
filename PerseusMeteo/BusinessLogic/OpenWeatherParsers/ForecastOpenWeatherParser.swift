@@ -209,10 +209,11 @@ public class ForecastOpenWeatherParser: ForecastParserProtocol {
             hour.time = getForecastHourDt(from: item, timezone: tz)
             hour.temperature = getForecastHourTemp(from: item)
             hour.rainsnow = getRainSnow(item)
-            hour.data = prepareMeteoGroupForecastHourData(item, .serviceOpenWeatherMap)
 
             hour.weatherDescription =
             "\(getWeatherConditions(from: item))".capitalizingFirstLetter()
+
+            hour.data = prepareOpenWeatherForecastHourData(item)
 
             hours.append(hour)
         }
@@ -901,8 +902,7 @@ public func initProbability(_ hours: [[String: Any]?]) -> Int? {
 }
 
 private var count = 0 // For debug purpose
-public func prepareMeteoGroupForecastHourData(_ forecastHourSource: [String: Any],
-                                              _ provider: MeteoProvider) -> MeteoGroupData {
+public func prepareOpenWeatherForecastHourData(_ hour: [String: Any]) -> MeteoGroupData {
 
     count += 1
     log.message("\(#function): called \(count)", .debug, .standard)
@@ -911,23 +911,32 @@ public func prepareMeteoGroupForecastHourData(_ forecastHourSource: [String: Any
 
     var meteogroup = MeteoGroupData()
 
-    switch provider {
-    case .serviceOpenMeteo:
-        meteogroup.setTemplatedValuesUp(provider: .serviceOpenMeteo,
-                                        category: .forecast)
-    case .serviceOpenWeatherMap:
-        meteogroup.setTemplatedValuesUp(provider: .serviceOpenWeatherMap,
-                                        category: .forecast)
-    }
+    meteogroup.setTemplatedValuesUp(provider: .serviceOpenWeatherMap, category: .forecast)
 
     // Set values up
 
-    switch provider {
-    case .serviceOpenMeteo:
-        meteogroup.setOpenMeteoForecastUp(data: forecastHourSource)
-    case .serviceOpenWeatherMap:
-        meteogroup.setOpenWeatherForecastUp(data: forecastHourSource)
-    }
+    let tempMin = getForecastHourTempMin(from: hour)
+    let tempMax = getForecastHourTempMax(from: hour)
+
+    let valueMinMax = "\(tempMin) : \(tempMax)"
+
+    // Array 1
+
+    meteogroup.value1 = valueMinMax
+    meteogroup.value2 = getForecastHourTempKinda(from: hour)
+    meteogroup.value3 = getForecastHourVisibility(from: hour)
+
+    // Array 2
+
+    meteogroup.value4 = getForecastHourWindSpeed(from: hour)
+    meteogroup.value5 = getForecastHourWindDirection(from: hour)
+    meteogroup.value6 = getForecastHourWindGusts(from: hour)
+
+    // Array 3
+
+    meteogroup.value7 = getForecastHourPressure(from: hour)
+    meteogroup.value8 = getForecastHourHumidity(from: hour)
+    meteogroup.value9 = getForecastHourCloudiness(from: hour)
 
     return meteogroup
 }

@@ -50,6 +50,9 @@ public class MeteoClientManager {
     private var serviceForecastOpenWeather: PerseusNetworkClient?
     private var serviceOpenWeatherSuggestions: PerseusNetworkClient?
 
+    private let countOpenMeteoForecastDays = 16
+    private let countOpenWeatherForecastHours = 40
+
     init() {
 
         log.message("[\(type(of: self))].\(#function)", .info, .standard)
@@ -308,7 +311,10 @@ public class MeteoClientManager {
         let lat = point.latitude.cut(.two).description
         let lon = point.longitude.cut(.two).description
 
-        let urlStr = OpenMeteoAPI(request: .forecast, lat: lat, lon: lon, days: 16).urlString
+        let urlStr = OpenMeteoAPI(request: .forecast,
+                                  lat: lat,
+                                  lon: lon,
+                                  days: countOpenMeteoForecastDays).urlString
 
         log.message("[\(type(of: self))].\(#function):\n\(urlStr)", .info, .standard)
 
@@ -318,7 +324,7 @@ public class MeteoClientManager {
             ContentCoordinator.startForecastProgressIndicator()
 
             if useOpenMeteoForecastSample {
-                handleForecastOpenMeteo(response: .success(sampleOpenMeteoForecast.jsonData))
+                handleForecastOpenMeteo(response: .success(sampleOpenMeteoForecast1.jsonData))
                 return
             }
 
@@ -375,7 +381,7 @@ public class MeteoClientManager {
                                          lon: lon,
                                          lang: .init(rawValue: lang),
                                          mode: .json)
-        callDetails.cnt = 40
+        callDetails.cnt = countOpenWeatherForecastHours
 
         let logmsg = "\n\(callDetails.urlString.replacingOccurrences(of: key, with: "###"))"
         log.message("[\(type(of: self))].\(#function):\(logmsg)", .info, .standard)

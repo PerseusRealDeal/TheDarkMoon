@@ -18,6 +18,12 @@ import CoreLocation
 
 extension String {
 
+    // How to use:
+    //
+    // let date = "2026-10-20" // "2026-11-03T19:17"
+    // let iso8601Date = "\(date):00Z".iso8601Date
+    // let isoTime = Int(iso8601Date.timeIntervalSince1970)
+    //
     public var iso8601Date: Date? {
 
         let formatter = ISO8601DateFormatter()

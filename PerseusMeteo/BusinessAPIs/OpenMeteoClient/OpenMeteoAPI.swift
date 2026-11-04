@@ -29,7 +29,7 @@ public let paramsOpenMeteoDaily =
 public let paramsOpenMeteoHourlyCurrent =
 "weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,temperature_2m," +
 "apparent_temperature,visibility,pressure_msl,relative_humidity_2m,cloud_cover,showers,rain," +
-"snowfall,precipitation,precipitation_probability,is_day"
+"snowfall,precipitation,precipitation_probability,uv_index,is_day"
 
 public let schemeDirectGeoCodingOpenMeteo = "https://geocoding-api.open-meteo.com/v1/"
 public let attributesDirectGeoCodingOpenMeteo = "search?name=%@&count=%@&language=%@&format=%@"

@@ -1,5 +1,5 @@
 //
-//  OpenWeatherCurrentSample.swift
+//  OpenWeatherCurrent.swift
 //  TheDarkMoon
 //
 //  Created in 7535 (03.10.2026.)

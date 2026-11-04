@@ -12,6 +12,8 @@
 //
 //  See LICENSE for details. All rights reserved.
 //
+// swiftlint:disable file_length
+//
 
 import Foundation
 
@@ -30,6 +32,7 @@ public class ForecastOpenMeteoParser: ForecastParserProtocol {
         return timezone
     }
 
+    // TODO: Problem: Called twice, but shouldn't...
     public func getForecastDays(from dictionary: [String: Any]) -> [ForecastDay]? {
 
         count += 1
@@ -38,33 +41,51 @@ public class ForecastOpenMeteoParser: ForecastParserProtocol {
         guard
             let timezone = getTimeZone(from: dictionary),
             let daily = dictionary["daily"] as? [String: Any],
-            let dailyTime = daily["time"] as? [Int],
+            let dailyTime = daily["time"] as? [Int?],
             let hourly = dictionary["hourly"] as? [String: Any],
-            let hourlyTime = hourly["time"] as? [Int]
+            let hourlyTime = hourly["time"] as? [Int?]
         else {
             log.message("[\(type(of: self))].\(#function) \(count)", .error, .standard)
             return nil
         }
 
-        let hoursInTimeZone = hourlyTime.map { prepareTimeInTimeZone($0, 0) }
+        // TODO: Problem: What if time item in null?
+
+        let hoursInTimeZone = hourlyTime.map { prepareTimeInTimeZone($0, timezone) }
         // log.message("\(hoursInTimeZone)", .debug, .standard)
 
         var forecastDays = [ForecastDay]()
 
-        for day in dailyTime {
+        for dayItem in dailyTime {
 
-            guard let dayIndex = (dailyTime.firstIndex { $0 == day }) else {
+            guard let theDay = dayItem, let dayIndex = (dailyTime.firstIndex { $0 == theDay })
+            else {
                 continue
             }
 
-            let dayInTimeZone = prepareTimeInTimeZone(day, timezone, "yyyy-MM-dd")
+            guard let dayInTimeZone = prepareTimeInTimeZone(dayItem, timezone, "yyyy-MM-dd")
+            else {
+                continue
+            }
+
             // log.message("\(dayInTimeZone)", .debug, .standard)
 
-            let hours = getHours(
-                hoursInTimeZone.indices.filter { hoursInTimeZone[$0].contains(dayInTimeZone) },
-                hourly,
-                timezone
-            )
+            let hoursIndices = hoursInTimeZone.indices.filter {
+
+                if let item = hoursInTimeZone[$0] {
+                    // log.message("\(item)", .debug, .standard)
+                    return item.hasPrefix(dayInTimeZone)
+                }
+                return false
+            }
+
+            if hoursIndices.isEmpty {
+                continue
+            }
+
+            // log.message("\(hoursIndices)", .debug, .standard)
+
+            let hours = getHours(hoursIndices, hourly, timezone)
 
             var day = ForecastDay(date: dayInTimeZone, hours: hours)
 
@@ -81,15 +102,21 @@ public class ForecastOpenMeteoParser: ForecastParserProtocol {
 
     // MARK: - Helper methods
 
-    private func prepareTimeInTimeZone(_ time: Int,
+    private func prepareTimeInTimeZone(_ time: Int?,
                                        _ timeoffset: Int,
-                                       _ format: String = "yyyy-MM-dd'T'HH:mm") -> String {
+                                       _ format: String = "yyyy-MM-dd'T'HH:mm") -> String? {
+
+        guard let time = time else { return nil }
 
         var day = Date(timeIntervalSince1970: TimeInterval(time))
-        day.addTimeInterval(TimeInterval(timeoffset))
+
+        if timeoffset > 0 {
+            day.addTimeInterval(TimeInterval(timeoffset))
+        }
 
         let formatter = DateFormatter()
 
+        formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.dateFormat = format // "yyyy-MM-dd" // "yyyy-MM-dd'T'HH:mm"
@@ -113,41 +140,56 @@ public class ForecastOpenMeteoParser: ForecastParserProtocol {
             // Time Field
 
             if
-                let times = hours["time"] as? [Int],
-                let time = representMeteoTime(times[index], timeoffset,
-                                              toBe: AppOptions.timeFormatOption) {
-                hour.time = time
+                let times = hours["time"] as? [Int?], let time = times[index],
+                let timeRepresented = representMeteoTime(time, timeoffset,
+                                                         toBe: AppOptions.timeFormatOption) {
+                hour.time = timeRepresented
             } else {
                 hour.time = MeteoFactsDefaults.timeFormat
             }
 
             // Rain Snow Field
 
-            if let rain = hours["rain"] as? [Double], rain[index] > 0.0 {
-                hour.rainsnow = "rain".localizedValue + " \(rain[index].cut(.two))"
-            } else if let snow = hours["snowfall"] as? [Double], snow[index] > 0.0 {
-                hour.rainsnow = "snow".localizedValue + " \(snow[index].cut(.two))"
+            if let rains = hours["rain"] as? [Double?],
+               let rain = rains[index], rain > 0.0 {
+                hour.rainsnow = "rain".localizedValue + " \(rain.cut(.two))"
+            } else if let snows = hours["snowfall"] as? [Double?],
+                      let snow = snows[index], snow > 0.0 {
+                hour.rainsnow = "snow".localizedValue + " \(snow.cut(.two))"
             } else {
                 hour.rainsnow = MeteoFactsDefaults.forecastRainSnow
             }
 
             // Temperature Field temperature_2m
 
-            if let temperatures = hours["temperature_2m"] as? [Double] {
+            if let temperatures = hours["temperature_2m"] as? [Double?],
+               let temperature = temperatures[index] {
 
-                let value = representTemperature("\(temperatures[index])",
-                                                 asIs: TemperatureOption.imperial,
-                                                 toBe: AppOptions.temperatureOption)
+                let temperatureRepresented = representTemperature(
+                    temperature.description,
+                    asIs: TemperatureOption.imperial,
+                    toBe: AppOptions.temperatureOption)
 
-                hour.temperature = "\(value)\(AppOptions.temperatureOption.unit)"
+                hour.temperature =
+                "\(temperatureRepresented)\(AppOptions.temperatureOption.unit)"
             } else {
                 hour.temperature = MeteoFactsDefaults.temperature
             }
 
-            // Meteo Group Forecast Hour
+            // Weather Description
 
-            // TODO: MeteoGroupForecastHourData
-            hour.data = prepareMeteoGroupForecastHourData([:], .serviceOpenMeteo)
+            if let weather_code = hours["weather_code"] as? [Int?],
+               let code = weather_code[index],
+               let desc = OpenMeteoCode(rawValue: code) {
+
+                hour.weatherDescription = desc.description.capitalizingFirstLetter()
+            } else {
+                hour.weatherDescription = MeteoFactsDefaults.weatherDescription
+            }
+
+            // Meteo Group Data
+
+            hour.data = prepareOpenMeteoForecastHourData(index, hours)
 
             forecastHours.append(hour)
         }
@@ -155,17 +197,17 @@ public class ForecastOpenMeteoParser: ForecastParserProtocol {
         return forecastHours
     }
 
-    private func getForecastHourTime(_ index: Int, _ hours: [String: Any]) -> String {
+    private func getForecastHourTime(_ index: Int,
+                                     _ hours: [String: Any]) -> String {
 
         guard
             index < hours.count, index >= 0, !hours.isEmpty,
-            let times = hours["time"] as? [Int]
+            let times = hours["time"] as? [Int?], let time = times[index]
         else {
             return MeteoFactsDefaults.timeFormat
         }
 
-        return representMeteoTime(times[index], 0,
-                                  toBe: AppOptions.timeFormatOption)
+        return representMeteoTime(time, 0, toBe: AppOptions.timeFormatOption)
         ?? MeteoFactsDefaults.timeFormat
     }
 
@@ -173,13 +215,14 @@ public class ForecastOpenMeteoParser: ForecastParserProtocol {
                              _ days: [String: Any]) -> String {
 
         guard
-            let codes = days["weather_code"] as? [Int],
-            codes.count > timeIndex, timeIndex >= 0
+            let codes = days["weather_code"] as? [Int?],
+            codes.count > timeIndex, timeIndex >= 0,
+            let code = codes[timeIndex]
         else {
             return MeteoFactsDefaults.weatherIconName
         }
 
-        return "\(codes[timeIndex])"
+        return "\(code)"
     }
 
     private func getTemperatures(_ timeIndex: Int,
@@ -240,4 +283,108 @@ public class ForecastOpenMeteoParser: ForecastParserProtocol {
         return precipitation.count == 1 ? "\(precipitation[0])" :
         "\(precipitation[0]) \(precipitation[1])"
     }
+}
+
+private var count = 0 // For debug purpose
+public func prepareOpenMeteoForecastHourData(_ index: Int,
+                                             _ hours: [String: Any]) -> MeteoGroupData {
+
+    count += 1
+    // log.message("\(#function): called \(count)", .debug, .standard)
+
+    // Set titles up
+
+    var meteogroup = MeteoGroupData()
+
+    meteogroup.setTemplatedValuesUp(provider: .serviceOpenMeteo, category: .forecast)
+
+    // Set values up
+
+    // Array 1 apparent_temperature
+
+    if let uv_indices = hours["uv_index"] as? [Double?],
+       let uv_index = uv_indices[index] {
+
+        meteogroup.value1 = "\(uv_index)"
+    }
+
+    if let apparent_temperatures = hours["apparent_temperature"] as? [Double?],
+       let apparent_temperature = apparent_temperatures[index] {
+
+        let represented = representTemperature(apparent_temperature.description,
+                                               asIs: TemperatureOption.imperial,
+                                               toBe: AppOptions.temperatureOption)
+
+        meteogroup.value2 = "\(represented)\(AppOptions.temperatureOption.unit)"
+    }
+
+    if let visibilities = hours["visibility"] as? [Int?],
+       let visibility = visibilities[index] {
+
+        let represented = representDistance(visibility,
+                                            asIs: LengthOption.meter,
+                                            toBe: AppOptions.distanceOption)
+
+        meteogroup.value3 = "\(represented) \(AppOptions.distanceOption.unitLocalized)"
+    }
+
+    // Array 2
+
+    if let wind_speed_10m = hours["wind_speed_10m"] as? [Double?],
+       let wind_speed = wind_speed_10m[index] {
+
+        let represented = representWindSpeedGusts(wind_speed.description,
+                                                  asIs: WindSpeedOption.ms,
+                                                  toBe: AppOptions.windSpeedOption)
+
+        meteogroup.value4 = "\(represented) \(AppOptions.windSpeedOption.unitLocalized)"
+    }
+
+    if let wind_direction_10m = hours["wind_direction_10m"] as? [Int?],
+       let wind_direction = wind_direction_10m[index],
+       let point = try? WindDegree(wind_direction.description) {
+
+        let degree = Int(point.degree)
+        let abbreviation = point.common.abbreviation.localizedValue
+
+        meteogroup.value5 = "\(degree)° : \(abbreviation)"
+    } else {
+        meteogroup.value5 = MeteoFactsDefaults.windDirection
+    }
+
+    if let wind_gusts_10m = hours["wind_gusts_10m"] as? [Double?],
+       let wind_gusts = wind_gusts_10m[index] {
+
+        let represented = representWindSpeedGusts(wind_gusts.description,
+                                                  asIs: WindSpeedOption.ms,
+                                                  toBe: AppOptions.windSpeedOption)
+
+        meteogroup.value6 = "\(represented) \(AppOptions.windSpeedOption.unitLocalized)"
+    }
+
+    // Array 3
+
+    if let pressure_msl = hours["pressure_msl"] as? [Double?],
+       let pressure = pressure_msl[index] {
+
+        let represented = representPressure(pressure.description,
+                                            asIs: PressureOption.hPa,
+                                            toBe: AppOptions.pressureOption)
+
+        meteogroup.value7 = "\(represented) \(AppOptions.pressureOption.unitLocalized)"
+    }
+
+    if let relative_humidity_2m = hours["relative_humidity_2m"] as? [Int?],
+       let humidity = relative_humidity_2m[index] {
+
+        meteogroup.value8 = "\(humidity)%"
+    }
+
+    if let cloud_cover = hours["cloud_cover"] as? [Int?],
+       let cloud = cloud_cover[index] {
+
+        meteogroup.value9 = "\(cloud)%"
+    }
+
+    return meteogroup
 }

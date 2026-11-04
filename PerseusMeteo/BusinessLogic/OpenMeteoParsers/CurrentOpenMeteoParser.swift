@@ -245,14 +245,12 @@ public class CurrentOpenMeteoParser: CurrentParserProtocol {
 
         guard
             let daily = dictionary["daily"] as? [String: Any],
-            let sunset = daily["sunrise"] as? [String],
-            let first = sunset.first,
-            let iso8601Date = "\(first):00Z".iso8601Date
+            let sunrise = (daily["sunrise"] as? [Int])?.first
         else {
             return nil
         }
 
-        return Int(iso8601Date.timeIntervalSince1970)
+        return sunrise
     }
 
     // MARK: - Sunset
@@ -261,14 +259,12 @@ public class CurrentOpenMeteoParser: CurrentParserProtocol {
 
         guard
             let daily = dictionary["daily"] as? [String: Any],
-            let sunset = daily["sunset"] as? [String],
-            let first = sunset.first,
-            let iso8601Date = "\(first):00Z".iso8601Date
+            let sunset = (daily["sunset"] as? [Int])?.first
         else {
             return nil
         }
 
-        return Int(iso8601Date.timeIntervalSince1970)
+        return sunset
     }
 
     // MARK: - Moonrise
@@ -277,14 +273,12 @@ public class CurrentOpenMeteoParser: CurrentParserProtocol {
 
         guard
             let daily = dictionary["daily"] as? [String: Any],
-            let sunset = daily["moonrise"] as? [String],
-            let first = sunset.first,
-            let iso8601Date = "\(first):00Z".iso8601Date
+            let moonrise = (daily["moonrise"] as? [Int])?.first
         else {
             return nil
         }
 
-        return Int(iso8601Date.timeIntervalSince1970)
+        return moonrise
     }
 
     // MARK: - Moonset
@@ -293,14 +287,12 @@ public class CurrentOpenMeteoParser: CurrentParserProtocol {
 
         guard
             let daily = dictionary["daily"] as? [String: Any],
-            let sunset = daily["moonset"] as? [String],
-            let first = sunset.first,
-            let iso8601Date = "\(first):00Z".iso8601Date
+            let moonset = (daily["moonset"] as? [Int])?.first
         else {
             return nil
         }
 
-        return Int(iso8601Date.timeIntervalSince1970)
+        return moonset
     }
 
     // MARK: - Moonphase
