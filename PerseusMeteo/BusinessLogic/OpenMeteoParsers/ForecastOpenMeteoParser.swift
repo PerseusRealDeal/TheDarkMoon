@@ -32,7 +32,6 @@ public class ForecastOpenMeteoParser: ForecastParserProtocol {
         return timezone
     }
 
-    // TODO: Problem: Called twice, but shouldn't...
     public func getForecastDays(from dictionary: [String: Any]) -> [ForecastDay]? {
 
         count += 1

@@ -207,17 +207,17 @@ public class PopoverViewController: NSViewController {
     // MARK: - Contract
 
     @objc public func reloadData() {
-        guard let weather = self.viewWeather, let forecast = self.viewForecast else {
-            return
-        }
 
         ContentCoordinator.shared.statusMenus.reloadData()
 
-        weather.reloadData()
-        forecast.reloadData(saveSelection: true)
-        viewLocation.reloadData()
+        self.viewLocation.reloadData()
+        self.viewWeather?.reloadData()
+
+        self.viewForecast.forecastReader.refreshData()
+        self.viewForecast.reloadData(saveSelection: true)
 
         self.refreshCallInformation()
+
     }
 
     public func reloadWeatherData() {
