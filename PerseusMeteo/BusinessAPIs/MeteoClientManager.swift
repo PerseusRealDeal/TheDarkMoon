@@ -20,14 +20,10 @@ import Cocoa
 // swiftlint:disable:next type_body_length
 public class MeteoClientManager {
 
-    private var timeoutIntervalMeteoData: Double {
-        if useProxy {
-            return 60.0
-        }
+    private let timeoutIntervalMeteoDataProxy = 60.0 // sec.
+    private let timeoutIntervalMeteoData = 10.0 // sec.
 
-        return 10.0 // 10 sec.
-    }
-    private let timeoutIntervalSuggestions = 5.0 // 5 sec.
+    private let timeoutIntervalSuggestions = 5.0 // sec.
 
     private let requestAttemptsForMeteo = 3 // For both current and forecast.
     private let requestAttemtsForSuggestions = 2
@@ -215,7 +211,7 @@ public class MeteoClientManager {
 
             try serviceCurrentOpenMeteo?.call(
                 urlString: urlStr,
-                timeout: timeoutIntervalMeteoData
+                timeout: useProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
             )
         } catch {
 
@@ -281,7 +277,7 @@ public class MeteoClientManager {
 
             try serviceCurrentOpenWeather?.call(
                 urlString: callDetails.urlString,
-                timeout: timeoutIntervalMeteoData
+                timeout: useProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
             )
 
         } catch {
@@ -330,7 +326,7 @@ public class MeteoClientManager {
 
             try serviceForecastOpenMeteo?.call(
                 urlString: urlStr,
-                timeout: timeoutIntervalMeteoData
+                timeout: useProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
             )
         } catch {
 
@@ -398,7 +394,7 @@ public class MeteoClientManager {
 
             try serviceForecastOpenWeather?.call(
                 urlString: callDetails.urlString,
-                timeout: timeoutIntervalMeteoData
+                timeout: useProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
             )
 
         } catch {

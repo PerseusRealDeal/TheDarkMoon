@@ -240,8 +240,8 @@
 "Option: SecondLine" = "Second line";
 "Option: ToolTip" = "Tool tip";
 "Option: Current Provider" = "Current Provider";
-"Option: For Meteo Data" = "Meteo Source";
-"Option: For Geo Data" = "Geo Guide";
+"Option: For Meteo Data" = "Data";
+"Option: For Geo Data" = "Geo";
 
 "StatusMenus: feelsLike" = "Feels like";
 "StatusMenus: direction" = "Direction";

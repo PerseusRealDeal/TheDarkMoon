@@ -31,7 +31,8 @@ let useOpenWeatherMapForecastSample = false
 // TODO: Build-in proxy tool as an end-user option
 
 let useProxy = true
-let proxy = Proxy("114.244.215.125:8888")
+// let proxy = Proxy("114.244.215.125:8888")
+let proxy = Proxy("180.190.24.163:9999")
 
 struct Proxy {
 

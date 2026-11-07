@@ -317,9 +317,9 @@
 	<key>Option: Current Provider</key>
 	<string>Current Provider</string>
 	<key>Option: For Meteo Data</key>
-	<string>Meteo Source</string>
+	<string>Data</string>
 	<key>Option: For Geo Data</key>
-	<string>Geo Guide</string>
+	<string>Geo</string>
 	<key>Button: TwoLines Info</key>
 	<string>The second line available from macOS Big Sur (11)</string>
 	<key>Button: Close</key>

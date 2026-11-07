@@ -155,11 +155,9 @@ class ForecastView: NSView {
 
     public func reloadData(saveSelection: Bool = false) {
 
-        // log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)", .debug, .standard)
 
         // dataSource.refresh()
-
-        forecastReader.refreshData()
 
         reloadDaysCollection(selectionSaved: saveSelection)
         reloadHoursCollection(selectionSaved: saveSelection)
@@ -462,6 +460,7 @@ extension ForecastView {
 
         // log.message("[\(type(of: self))].\(#function)")
 
+        forecastReader.refreshData()
         reloadData(saveSelection: true)
     }
 }

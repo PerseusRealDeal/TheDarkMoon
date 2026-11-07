@@ -905,7 +905,7 @@ private var count = 0 // For debug purpose
 public func prepareOpenWeatherForecastHourData(_ hour: [String: Any]) -> MeteoGroupData {
 
     count += 1
-    log.message("\(#function): called \(count)", .debug, .standard)
+    // log.message("\(#function): called \(count)", .debug, .standard)
 
     // Set titles up
 

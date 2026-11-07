@@ -319,9 +319,9 @@
 	<key>Option: Current Provider</key>
 	<string>Поставщики</string>
 	<key>Option: For Meteo Data</key>
-	<string>Метео данные</string>
+	<string>Данные</string>
 	<key>Option: For Geo Data</key>
-	<string>Гео справочник</string>
+	<string>Гео</string>
 	<key>Button: Close</key>
 	<string>Закрыть</string>
 	<key>Button: Reset to Defaults</key>
