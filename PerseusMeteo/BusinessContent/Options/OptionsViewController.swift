@@ -70,8 +70,8 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet private(set) weak var controlDarkMode: NSSegmentedControl!
     @IBOutlet private(set) weak var controlLanguage: NSSegmentedControl!
     @IBOutlet private(set) weak var controlTimeFormat: NSSegmentedControl!
-    @IBOutlet private(set) weak var controlOpenWeatherKey: NSTextField!
-    @IBOutlet private(set) weak var controlUnlockButton: NSButton!
+    @IBOutlet private(set) weak var textFieldOpenWeatherKey: NSTextField!
+    @IBOutlet private(set) weak var buttonUnlockOpenWeatherKey: NSButton!
 
     @IBOutlet private(set) weak var labelTemperature: NSTextField!
     @IBOutlet private(set) weak var labelWindSpeed: NSTextField!
@@ -105,7 +105,43 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet private(set) weak var comboBoxForMeteoProviders: NSComboBox!
     @IBOutlet private(set) weak var comboBoxForGeoProviders: NSComboBox!
 
+    @IBOutlet private(set) weak var checkBoxProxy: NSButton!
+    @IBOutlet private(set) weak var textFieldProxy: NSTextField!
+    @IBOutlet private(set) weak var buttonUnlockProxyCredentials: NSButton!
+
     // MARK: - Actions
+
+    @IBAction func checkBoxProxy(_ sender: NSButton) {
+        let state = checkBoxProxy.state
+        log.message("[\(type(of: self))].\(#function) - \(state)", .debug, .standard)
+    }
+
+    @IBAction func buttonUnlockProxyCredentialsTapped(_ sender: NSButton) {
+
+        if self.textFieldProxy.isEditable {
+            lockProxyTextField()
+        } else {
+            /*
+            let secret = AppOptions.keyOpenWeatherAPIOption
+            if let secret = secret {
+                unlockProxyTextField(stringValue: secret)
+            }
+            */
+            unlockProxyTextField(stringValue: "ip:port:login:password")
+        }
+    }
+
+    @IBAction func buttonUnlockOpenWeatherKeyTapped(_ sender: NSButton) {
+
+        if self.textFieldOpenWeatherKey.isEditable {
+            lockOpenWeatherKeyHole()
+        } else {
+            let secret = AppOptions.keyOpenWeatherAPIOption
+            if let secret = secret {
+                unlockOpenWeatherKeyHole(stringValue: secret)
+            }
+        }
+    }
 
     @IBAction func closeOptionsWindow(_ sender: NSButton) {
         ContentCoordinator.shared.screenOptions.close()
@@ -210,27 +246,60 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         presenter?.forceGeoDataProviderSelected(sender.indexOfSelectedItem)
     }
 
-    // MARK: - OpenWeatherKey Input
-
-    @IBAction func controlUnlockButtonTapped(_ sender: NSButton) {
-
-        log.message("[\(type(of: self))].\(#function) - \(controlUnlockButton.stringValue)")
-
-        if self.controlOpenWeatherKey.isEditable {
-            lockOpenWeatherKeyHole()
-        } else {
-            let secret = AppOptions.keyOpenWeatherAPIOption
-            if let secret = secret {
-                unlockOpenWeatherKeyHole(stringValue: secret)
-            }
-        }
-    }
+    // MARK: - NSTextFieldDelegate: Proxy and OpenWeatherKey
 
     func controlTextDidChange(_ obj: Notification) {
 
-        log.message("[\(type(of: self))].\(#function)")
+        log.message("[\(type(of: self))].\(#function)", .debug, .standard)
 
-        guard let tf = obj.object as? NSTextField else { return }
+        guard
+            let tf = obj.object as? NSTextField,
+            let id = tf.identifier?.rawValue
+        else { return }
+
+        switch id {
+        case "textFieldProxy":
+            textFieldProxyDidChange(tf)
+        case "textFieldOpenWeatherKey":
+            textFieldOpenWeatherKeyDidChange(tf)
+        default:
+            return
+        }
+    }
+
+    // MARK: Proxy Credentials Hole
+
+    private func textFieldProxyDidChange(_ tf: NSTextField) {
+        log.message("[\(type(of: self))].\(#function)", .debug, .standard)
+    }
+
+    private func lockProxyTextField() {
+        textFieldProxy.isEditable = false
+
+        textFieldProxy.stringValue = ""
+        textFieldProxy.placeholderString = "Proxy: Hidden".localizedValue
+
+        buttonUnlockProxyCredentials.title = "Proxy: Unlock".localizedValue
+    }
+
+    private func unlockProxyTextField(stringValue: String = "") {
+        textFieldProxy.isEditable = true
+
+        if stringValue.isEmpty {
+            textFieldProxy.stringValue = ""
+            textFieldProxy.placeholderString = "Proxy: Editable".localizedValue
+        } else {
+            textFieldProxy.stringValue = stringValue
+        }
+
+        buttonUnlockProxyCredentials.title = "Proxy: Lock".localizedValue
+    }
+
+    // MARK: - OpenWeather Key Hole
+
+    private func textFieldOpenWeatherKeyDidChange(_ tf: NSTextField) {
+
+        log.message("[\(type(of: self))].\(#function)", .debug, .standard)
 
         var text = tf.stringValue
         let limit = OPEN_WEATHER_API_KEY_TEXT_LIMIT
@@ -246,32 +315,32 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
 
         AppOptions.keyOpenWeatherAPIOption = tf.stringValue
         if let secret = AppOptions.keyOpenWeatherAPIOption {
-            controlOpenWeatherKey.stringValue = secret
+            textFieldOpenWeatherKey.stringValue = secret
         } else {
             lockOpenWeatherKeyHole()
         }
     }
 
     private func lockOpenWeatherKeyHole() {
-        controlOpenWeatherKey.isEditable = false
+        textFieldOpenWeatherKey.isEditable = false
 
-        controlOpenWeatherKey.stringValue = ""
-        controlOpenWeatherKey.placeholderString = "OpenWeather: Hidden".localizedValue
+        textFieldOpenWeatherKey.stringValue = ""
+        textFieldOpenWeatherKey.placeholderString = "OpenWeather: Hidden".localizedValue
 
-        controlUnlockButton.title = "OpenWeather: Unlock".localizedValue
+        buttonUnlockOpenWeatherKey.title = "OpenWeather: Unlock".localizedValue
     }
 
     private func unlockOpenWeatherKeyHole(stringValue: String = "") {
-        controlOpenWeatherKey.isEditable = true
+        textFieldOpenWeatherKey.isEditable = true
 
         if stringValue.isEmpty {
-            controlOpenWeatherKey.stringValue = ""
-            controlOpenWeatherKey.placeholderString = "OpenWeather: Editable".localizedValue
+            textFieldOpenWeatherKey.stringValue = ""
+            textFieldOpenWeatherKey.placeholderString = "OpenWeather: Editable".localizedValue
         } else {
-            controlOpenWeatherKey.stringValue = stringValue
+            textFieldOpenWeatherKey.stringValue = stringValue
         }
 
-        controlUnlockButton.title = "OpenWeather: Lock".localizedValue
+        buttonUnlockOpenWeatherKey.title = "OpenWeather: Lock".localizedValue
     }
 }
 
@@ -283,6 +352,7 @@ extension OptionsViewController: OptionsViewDelegate {
 
     func onViewWillDisappear() {
         lockOpenWeatherKeyHole()
+        lockProxyTextField()
     }
 
     func onViewDidAppear() {
@@ -300,7 +370,8 @@ extension OptionsViewController: OptionsViewDelegate {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        controlOpenWeatherKey.delegate = self
+        textFieldOpenWeatherKey.delegate = self
+        textFieldProxy.delegate = self
 
         if isHighSierra {
 
@@ -315,6 +386,7 @@ extension OptionsViewController: OptionsViewDelegate {
         }
 
         lockOpenWeatherKeyHole()
+        lockProxyTextField()
     }
 
     func makeUp() {
@@ -379,11 +451,11 @@ extension OptionsViewController: OptionsViewDelegate {
 
         labelOpenWeatherKey.stringValue = "Option: OpenWeather Key".localizedValue
 
-        controlOpenWeatherKey.placeholderString = controlOpenWeatherKey.isEditable ?
+        textFieldOpenWeatherKey.placeholderString = textFieldOpenWeatherKey.isEditable ?
             "OpenWeather: Editable".localizedValue :
             "OpenWeather: Hidden".localizedValue
 
-        controlUnlockButton.title = controlOpenWeatherKey.isEditable ?
+        buttonUnlockOpenWeatherKey.title = textFieldOpenWeatherKey.isEditable ?
             "OpenWeather: Lock".localizedValue :
             "OpenWeather: Unlock".localizedValue
 
