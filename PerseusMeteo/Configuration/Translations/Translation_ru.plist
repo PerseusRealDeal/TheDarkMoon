@@ -234,9 +234,11 @@
 	<string>Барометр</string>
 	<key>Option: Distance</key>
 	<string>Дальность обзора</string>
-	<key>OpenWeather: Lock</key>
+	<key>IP:Port:Login:Password</key>
+	<string>IP:Порт:Логин:Пароль</string>
+	<key>Button: Lock</key>
 	<string>Скрыть</string>
-	<key>OpenWeather: Unlock</key>
+	<key>Button: Unlock</key>
 	<string>Показать</string>
 	<key>OpenWeather: Hidden</key>
 	<string>Скрытая замочная скважина...</string>

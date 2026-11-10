@@ -449,9 +449,9 @@
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CFq-vm-FP5">
-                                                    <rect key="frame" x="178" y="48" width="62" height="18"/>
+                                                    <rect key="frame" x="178" y="48" width="72" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="L95-6y-4xU"/>
+                                                        <constraint firstAttribute="width" constant="70" id="L95-6y-4xU"/>
                                                     </constraints>
                                                     <buttonCell key="cell" type="check" title="Proxy:" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ncZ-CE-0N7">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -462,7 +462,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField identifier="textFieldProxy" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VEI-7z-a4t">
-                                                    <rect key="frame" x="250" y="47" width="165" height="21"/>
+                                                    <rect key="frame" x="255" y="47" width="160" height="21"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="ip:port:login:password" drawsBackground="YES" usesSingleLineMode="YES" id="B8O-3L-FWU">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -502,7 +502,7 @@
                                                 <constraint firstItem="gTG-bY-TbX" firstAttribute="top" secondItem="AH6-cc-1rL" secondAttribute="bottom" constant="15" id="KC5-gM-iwj"/>
                                                 <constraint firstItem="vQb-9F-2bJ" firstAttribute="top" secondItem="s31-zU-nb8" secondAttribute="bottom" constant="48" id="Kd0-sK-E9b"/>
                                                 <constraint firstItem="kRt-m6-cQf" firstAttribute="centerY" secondItem="4Q4-s1-iZc" secondAttribute="centerY" id="M1U-xP-BDW"/>
-                                                <constraint firstItem="VEI-7z-a4t" firstAttribute="leading" secondItem="CFq-vm-FP5" secondAttribute="trailing" constant="10" id="N9d-OS-vre"/>
+                                                <constraint firstItem="VEI-7z-a4t" firstAttribute="leading" secondItem="CFq-vm-FP5" secondAttribute="trailing" constant="5" id="N9d-OS-vre"/>
                                                 <constraint firstItem="fxx-gC-flh" firstAttribute="leading" secondItem="iEY-Xd-mwt" secondAttribute="trailing" constant="10" id="PkY-hg-bnb"/>
                                                 <constraint firstItem="4Q4-s1-iZc" firstAttribute="trailing" secondItem="F1A-GE-l8k" secondAttribute="trailing" id="TjD-H6-BOT"/>
                                                 <constraint firstItem="iEY-Xd-mwt" firstAttribute="centerY" secondItem="xwh-7c-fFZ" secondAttribute="centerY" id="Tqc-sT-moy"/>

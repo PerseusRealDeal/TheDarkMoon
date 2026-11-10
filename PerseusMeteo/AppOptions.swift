@@ -17,7 +17,7 @@
 
 import Foundation
 
-// MARK: - API Sample Usage
+// MARK: - Debug API Samples
 
 let useOpenMeteoSuggestionsSample = false
 let useOpenWeatherSuggestionsSample = false
@@ -28,30 +28,33 @@ let useOpenMeteoForecastSample = false
 let useOpenWeatherMapCurrentSample = false
 let useOpenWeatherMapForecastSample = false
 
-// TODO: Build-in proxy tool as an end-user option
+// MARK: - Debug Proxy
 
-let useProxy = true
+let useProxyDebug = false
+let proxyDebug: PerseusProxyCredentials? = PerseusProxyCredentials("190.114.242.155:999")
+
 // let proxy = Proxy("114.244.215.125:8888")
-let proxy = Proxy("180.190.24.163:9999")
+// let proxy = PerseusProxy("180.190.24.163:9999")
 
-struct Proxy {
+// MARK: - Notifications
 
-    let server: String
-    let port: Int
-
-    init(_ configuration: String) {
-
-        let split = configuration.split(separator: ":")
-
-        server = String(split[0])
-        port = Int(split[1])!
-    }
+extension Notification.Name {
+    public static let meteoDataOptionsNotification =
+        Notification.Name("meteoDataOptionsNotification")
+    public static let updateCurrentWeatherByTimerCommand =
+        Notification.Name("updateCurrentWeatherByTimerCommand")
+    public static let proxyCredentialsChangedNotification =
+        Notification.Name("proxyCredentialsChangedNotification")
 }
 
 // MARK: - Keys
 
 // public let OPEN_WEATHER_API_KEY_OPTION_KEY = "OPEN_WEATHER_API_OPTION_KEY"
 let OPEN_WEATHER_API_KEY_TEXT_LIMIT = 32
+let PROXY_CREDENTIALS_TEXT_LIMIT = 32
+
+let PROXY_OPTION_KEY = "PROXY_OPTION_KEY"
+let PROXY_OPTION_DEFAULT = false
 
 let LANGUAGE_OPTION_KEY = "LANGUAGE_OPTION_KEY"
 let LANGUAGE_OPTION_DEFAULT = LanguageOption.system
@@ -99,6 +102,7 @@ let GEOCODING_PROVIDER_OPTION_DEFAULT = GeoCodingProvider.serviceOpenMeteo
 
 // MARK: - User Defaults
 
+// swiftlint:disable:next type_body_length
 class AppOptions {
 
     // MARK: - Special options
@@ -265,6 +269,78 @@ class AppOptions {
         }
     }
 
+    // MARK: - Proxy Credentials
+
+    public static var proxyOption: Bool {
+        get {
+            let ud = AppGlobals.userDefaults
+
+            let result = ud.valueExists(forKey: PROXY_OPTION_KEY) ?
+            ud.bool(forKey: PROXY_OPTION_KEY) : PROXY_OPTION_DEFAULT
+
+            return result
+        }
+        set {
+            let ud = AppGlobals.userDefaults
+            ud.setValue(newValue, forKey: PROXY_OPTION_KEY)
+        }
+    }
+
+    public static var proxyCredentials: String? {
+        get {
+            // Secret
+            let defender = AppGlobals.dataDefender
+            var secret: String?
+
+            // Load value from Keychain
+            do {
+                let credentials = SecretCredentials(
+                    service: "Snowman Proxy Service",
+                    account: "Snowman",
+                    description: "Weather Service via Proxy"
+                )
+
+                secret = try defender.load(credentials)
+            } catch DataDefenderError.unhandledError {
+                return nil // Rejected to load a value
+            } catch {
+                return "" // There's no value
+            }
+
+            // The value should meet OPEN_WEATHER_API_KEY_TEXT_LIMIT
+            guard let text = secret, !text.isEmpty else { return secret }
+
+            let limit = PROXY_CREDENTIALS_TEXT_LIMIT
+
+            if text.count > limit {
+                let logMsg = "[\(type(of: self))].\(#function): The line is out of length"
+                log.message(logMsg, .error)
+            }
+
+            return secret
+        }
+        set {
+            let value = newValue ?? ""
+
+            // Update secret value
+            let defender = AppGlobals.dataDefender
+            let credentials = SecretCredentials(
+                secret: value,
+                service: "Snowman Proxy Service",
+                account: "Snowman",
+                description: "Weather Service via Proxy"
+            )
+
+            if value.isEmpty {
+                // Remove secret
+                try? defender.remove(credentials)
+            } else {
+                // Save secret
+                try? defender.save(credentials)
+            }
+        }
+    }
+
     // MARK: - OpenWeather API Key Option
 
     public static var keyOpenWeatherAPIOption: String? {
@@ -275,7 +351,13 @@ class AppOptions {
 
             // Load value from Keychain
             do {
-                secret = try defender.load(OpenWeatherCredentials())
+                let credentials = SecretCredentials(
+                    service: "Snowman Weather Service",
+                    account: "Snowman",
+                    description: "Open Weather API key"
+                )
+
+                secret = try defender.load(credentials)
             } catch DataDefenderError.unhandledError {
                 return nil // Rejected to load a value
             } catch {
@@ -288,7 +370,7 @@ class AppOptions {
             let limit = OPEN_WEATHER_API_KEY_TEXT_LIMIT
 
             if text.count > limit {
-                let logMsg = "[\(type(of: self))].\(#function): The key is out of length"
+                let logMsg = "[\(type(of: self))].\(#function): The line is out of length"
                 log.message(logMsg, .error)
             }
 
@@ -299,7 +381,12 @@ class AppOptions {
 
             // Update secret value
             let defender = AppGlobals.dataDefender
-            let credentials = OpenWeatherCredentials(secret: value)
+            let credentials = SecretCredentials(
+                secret: value,
+                service: "Snowman Weather Service",
+                account: "Snowman",
+                description: "Open Weather API key"
+            )
 
             if value.isEmpty {
                 // Remove secret

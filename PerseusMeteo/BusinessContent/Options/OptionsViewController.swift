@@ -112,8 +112,23 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     // MARK: - Actions
 
     @IBAction func checkBoxProxy(_ sender: NSButton) {
+
         let state = checkBoxProxy.state
         log.message("[\(type(of: self))].\(#function) - \(state)", .debug, .standard)
+
+        let isEnabled = sender.state == .on ? true : false
+
+        if isEnabled {
+            if let credentials = AppOptions.proxyCredentials {
+                presenter?.forceProxy(isEnabled, credentials) // Turn on proxy
+            } else {
+                checkBoxProxy.state = .off // Ignore
+                // TODO: Send end-user message?
+                return
+            }
+        }
+
+        presenter?.forceProxy(isEnabled) // Turn off proxy
     }
 
     @IBAction func buttonUnlockProxyCredentialsTapped(_ sender: NSButton) {
@@ -121,13 +136,12 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         if self.textFieldProxy.isEditable {
             lockProxyTextField()
         } else {
-            /*
-            let secret = AppOptions.keyOpenWeatherAPIOption
+
+            let secret = AppOptions.proxyCredentials
+
             if let secret = secret {
                 unlockProxyTextField(stringValue: secret)
             }
-            */
-            unlockProxyTextField(stringValue: "ip:port:login:password")
         }
     }
 
@@ -270,16 +284,37 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
     // MARK: Proxy Credentials Hole
 
     private func textFieldProxyDidChange(_ tf: NSTextField) {
+
         log.message("[\(type(of: self))].\(#function)", .debug, .standard)
+
+        var text = tf.stringValue
+        let limit = PROXY_CREDENTIALS_TEXT_LIMIT
+
+        log.message("[\(type(of: self))].\(#function) count: \(text.count)", .debug, .standard)
+
+        if text.count > limit {
+            let index = text.index(text.startIndex, offsetBy: limit)
+            text.removeSubrange(index..<text.endIndex)
+
+            tf.stringValue = text
+        }
+
+        AppOptions.proxyCredentials = tf.stringValue
+
+        if let secret = AppOptions.proxyCredentials {
+            textFieldProxy.stringValue = secret
+        } else {
+            lockProxyTextField()
+        }
     }
 
     private func lockProxyTextField() {
         textFieldProxy.isEditable = false
 
         textFieldProxy.stringValue = ""
-        textFieldProxy.placeholderString = "Proxy: Hidden".localizedValue
+        textFieldProxy.placeholderString = "IP:Port:Login:Password".localizedValue
 
-        buttonUnlockProxyCredentials.title = "Proxy: Unlock".localizedValue
+        buttonUnlockProxyCredentials.title = "Button: Unlock".localizedValue
     }
 
     private func unlockProxyTextField(stringValue: String = "") {
@@ -287,12 +322,12 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
 
         if stringValue.isEmpty {
             textFieldProxy.stringValue = ""
-            textFieldProxy.placeholderString = "Proxy: Editable".localizedValue
+            textFieldProxy.placeholderString = "IP:Port:Login:Password".localizedValue
         } else {
             textFieldProxy.stringValue = stringValue
         }
 
-        buttonUnlockProxyCredentials.title = "Proxy: Lock".localizedValue
+        buttonUnlockProxyCredentials.title = "Button: Lock".localizedValue
     }
 
     // MARK: - OpenWeather Key Hole
@@ -327,7 +362,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         textFieldOpenWeatherKey.stringValue = ""
         textFieldOpenWeatherKey.placeholderString = "OpenWeather: Hidden".localizedValue
 
-        buttonUnlockOpenWeatherKey.title = "OpenWeather: Unlock".localizedValue
+        buttonUnlockOpenWeatherKey.title = "Button: Unlock".localizedValue
     }
 
     private func unlockOpenWeatherKeyHole(stringValue: String = "") {
@@ -340,7 +375,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
             textFieldOpenWeatherKey.stringValue = stringValue
         }
 
-        buttonUnlockOpenWeatherKey.title = "OpenWeather: Lock".localizedValue
+        buttonUnlockOpenWeatherKey.title = "Button: Lock".localizedValue
     }
 }
 
@@ -452,12 +487,13 @@ extension OptionsViewController: OptionsViewDelegate {
         labelOpenWeatherKey.stringValue = "Option: OpenWeather Key".localizedValue
 
         textFieldOpenWeatherKey.placeholderString = textFieldOpenWeatherKey.isEditable ?
-            "OpenWeather: Editable".localizedValue :
-            "OpenWeather: Hidden".localizedValue
+        "OpenWeather: Editable".localizedValue : "OpenWeather: Hidden".localizedValue
 
         buttonUnlockOpenWeatherKey.title = textFieldOpenWeatherKey.isEditable ?
-            "OpenWeather: Lock".localizedValue :
-            "OpenWeather: Unlock".localizedValue
+        "Button: Lock".localizedValue : "Button: Unlock".localizedValue
+
+        buttonUnlockProxyCredentials.title = textFieldProxy.isEditable ?
+        "Button: Lock".localizedValue : "Button: Unlock".localizedValue
 
         labelCurrentWeatherStatusMenus.stringValue =
         "Option: CurrentWeatherStatusMenus".localizedValue
@@ -465,6 +501,7 @@ extension OptionsViewController: OptionsViewDelegate {
         let weatherStatusMenusUpdate = "Option: StatusMenus Update".localizedValue + ":"
         labelStatusMenusUpdate.stringValue = weatherStatusMenusUpdate
         checkBoxCurrentWeatherStatusMenus.title = "Button: CheckBox StatusMenus".localizedValue
+        checkBoxProxy.title = "Button: Proxy".localizedValue + ":"
 
         udpateComboBoxStatusMenusUpdatePeriod()
 
@@ -602,6 +639,11 @@ extension OptionsViewController {
         checkBoxCurrentWeatherStatusMenus.state = AppOptions.statusMenusOption ? .on : .off
     }
 
+    private func udpateCheckBoxProxy() {
+        log.message("[\(type(of: self))].\(#function) \(AppOptions.proxyOption)")
+        checkBoxProxy.state = AppOptions.proxyOption ? .on : .off
+    }
+
     private func udpateComboBoxStatusMenusUpdatePeriod() {
         log.message("[\(type(of: self))].\(#function)")
         comboBoxStatusMenusUpdatePeriod.removeAllItems()
@@ -682,6 +724,8 @@ extension OptionsViewController {
         updateControlDistance()
 
         udpateCheckBoxCurrentWeatherStatusMenus()
+        udpateCheckBoxProxy()
+
         udpateComboBoxStatusMenusUpdatePeriod()
         updateStatusMenusViewOptions()
 

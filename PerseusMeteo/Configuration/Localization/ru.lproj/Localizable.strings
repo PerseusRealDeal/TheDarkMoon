@@ -218,8 +218,11 @@
 
 "Section: Special Options" = "Дополнительные настройки";
 
-"OpenWeather: Lock" = "Скрыть";
-"OpenWeather: Unlock" = "Показать";
+"Button: Proxy" = "Прокся";
+"IP:Port:Login:Password" = "IP:Порт:Логин:Пароль";
+
+"Button: Lock" = "Скрыть";
+"Button: Unlock" = "Показать";
 "OpenWeather: Hidden" = "Скрытая замочная скважина...";
 "OpenWeather: Editable" = "Нужен токен (ключ)";
 

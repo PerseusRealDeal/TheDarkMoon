@@ -1,40 +1,45 @@
 //
-//  PerseusDefenderModels.swift
-//  PerseusMeteo
+//  PerseusSecretCredentials.swift
+//  TheDarkMoon
 //
 //  Created by Mikhail Zhigulin in 7532.
 //
-//  Copyright © 7532 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7532 PerseusRealDeal
+//  Copyright © 7532 - 7535 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7532 - 7535 PerseusRealDeal
 //
 //  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 //
 //  See LICENSE for details. All rights reserved.
 //
 
 import Foundation
 
-public struct OpenWeatherCredentials {
-    let note: String // = "Secured note"
-    let service: String
-    let account: String
-    let description: String
+public struct SecretCredentials {
+
+    let dataSecured: String // Secured note
+
+    let service: String // Name field in Keychain app.
+    let account: String // Account field in Keychain app.
+    let description: String // Kind field in Keychain app.
 
     init(secret: String = "",
-         service: String = "Open Weather Service",
-         account: String = "perseusrealdeal",
-         description: String = "API Key") {
+         service: String = "Weather",
+         account: String = "Snowman",
+         description: String = "Personal Weather Service") {
 
-        self.note = secret
+        self.dataSecured = secret
+
         self.service = service
         self.account = account
         self.description = description
     }
 }
 
-extension OpenWeatherCredentials: KeychainQueryable {
+extension SecretCredentials: KeychainQueryable {
+
     public var keychainQuery: [String: Any] {
+
         var query: [String: Any] = [:]
 
         query[String(kSecClass)] = kSecClassGenericPassword
@@ -46,6 +51,7 @@ extension OpenWeatherCredentials: KeychainQueryable {
     }
 
     public var keychainLoadQuery: [String: Any] {
+
         var query: [String: Any] = [:]
 
         query[String(kSecClass)] = kSecClassGenericPassword

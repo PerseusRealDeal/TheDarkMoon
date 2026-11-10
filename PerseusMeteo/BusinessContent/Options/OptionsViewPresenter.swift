@@ -199,6 +199,26 @@ class OptionsViewPresenter: MVPPresenter {
         log.message("[\(type(of: self))].\(#function) called", .info)
     }
 
+    func forceProxy(_ turned: Bool, _ credentials: String? = nil) {
+
+        AppOptions.proxyOption = turned
+        var userInfo: [AnyHashable : Any]?
+
+        if let credentials = credentials, !credentials.isEmpty {
+            userInfo = ["credentials": credentials]
+        }
+
+        AppGlobals.notificationCenter.post(
+            Notification.init(
+                name: .proxyCredentialsChangedNotification,
+                object: nil,
+                userInfo: userInfo
+            )
+        )
+
+        log.message("[\(type(of: self))].\(#function) called", .info)
+    }
+
     func forceStatusMenus(_ turned: Bool) {
         AppOptions.statusMenusOption = turned
         AppGlobals.notificationCenter.post(
@@ -330,6 +350,7 @@ class OptionsViewPresenter: MVPPresenter {
         ud.removeObject(forKey: STATUSMENUS_VIEW_OPTIONS_KEY)
         ud.removeObject(forKey: GEOCODING_PROVIDER_OPTION_KEY)
         ud.removeObject(forKey: METEO_PROVIDER_OPTION_KEY)
+        ud.removeObject(forKey: PROXY_OPTION_KEY)
 
         ud.removeObject(forKey: DARK_MODE_USER_CHOICE_KEY)
         DarkModeAgent.force(DARK_MODE_USER_CHOICE_DEFAULT)
@@ -340,6 +361,7 @@ class OptionsViewPresenter: MVPPresenter {
 
         nc.post(Notification.init(name: .updateCurrentWeatherByTimerCommand))
         nc.post(Notification.init(name: .meteoDataOptionsNotification))
+        nc.post(Notification.init(name: .proxyCredentialsChangedNotification))
 
         LanguageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
 

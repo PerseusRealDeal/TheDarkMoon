@@ -20,6 +20,8 @@ import Cocoa
 // swiftlint:disable:next type_body_length
 public class MeteoClientManager {
 
+    private var shouldUseProxy = false
+
     private let timeoutIntervalMeteoDataProxy = 60.0 // sec.
     private let timeoutIntervalMeteoData = 10.0 // sec.
 
@@ -49,23 +51,58 @@ public class MeteoClientManager {
     private let countOpenMeteoForecastDays = 16
     private let countOpenWeatherForecastHours = 40
 
+    // MARK: - Configure
+
     init() {
 
         log.message("[\(type(of: self))].\(#function)", .info, .standard)
 
-        serviceCurrentOpenMeteo = PerseusNetworkClient(
-            useProxy ? createProxiedSession() : URLSession.shared, "CurrentOpenMeteo")
-        serviceForecastOpenMeteo = PerseusNetworkClient(
-            useProxy ? createProxiedSession() : URLSession.shared, "ForecastOpenMeteo")
-        serviceOpenMeteoSuggestions = PerseusNetworkClient(
-            useProxy ? createProxiedSession() : URLSession.shared, "OpenMeteoSuggestions")
+        configureSessions()
 
-        serviceCurrentOpenWeather = PerseusNetworkClient(
-            URLSession.shared, "CurrentOpenWeather")
-        serviceForecastOpenWeather = PerseusNetworkClient(
-            URLSession.shared, "ForecastOpenWeather")
-        serviceOpenWeatherSuggestions = PerseusNetworkClient(
-            URLSession.shared, "OpenWeatherSuggestions")
+        AppGlobals.notificationCenter.addObserver(
+            self,
+            selector: #selector(proxyCredentialsChanged),
+            name: NSNotification.Name.proxyCredentialsChangedNotification,
+            object: nil
+        )
+
+        isReadyToCall = true
+        isReadyToCallForecast = true
+        isReadyToGetSuggestions = true
+    }
+
+    private func configureSessions(_ proxyConfiguration: String? = nil) {
+
+        var credentials: PerseusProxyCredentials?
+        var useProxy = AppOptions.proxyOption
+
+        if useProxyDebug, let debugProxy = proxyDebug {
+            credentials = debugProxy
+            useProxy = true
+        } else if useProxy {
+            if let configuration = proxyConfiguration {
+                credentials = PerseusProxyCredentials(configuration)
+            } else {
+                // TODO: ?
+            }
+        }
+
+        shouldUseProxy = useProxy == false ? useProxyDebug : true
+
+        var logmsg = "[\(type(of: self))].\(#function) " +
+        "proxyOption:\(useProxy) proxyDebug: \(useProxyDebug) "
+
+        logmsg += credentials != nil ? "\(credentials!.server):\(credentials!.port)" : ""
+        log.message(logmsg, .info, .standard)
+
+        let session = credentials == nil ? URLSession.shared : createProxySession(credentials!)
+
+        serviceCurrentOpenMeteo = PerseusNetworkClient(session, "CurrentOpenMeteo")
+        serviceForecastOpenMeteo = PerseusNetworkClient(session, "ForecastOpenMeteo")
+        serviceOpenMeteoSuggestions = PerseusNetworkClient(session, "OpenMeteoSuggestions")
+        serviceCurrentOpenWeather = PerseusNetworkClient(session, "CurrentOpenWeather")
+        serviceForecastOpenWeather = PerseusNetworkClient(session, "ForecastOpenWeather")
+        serviceOpenWeatherSuggestions = PerseusNetworkClient(session, "OpenWeatherSuggestions")
 
         serviceCurrentOpenMeteo?.responseHandler = handleCurrentOpenMeteo
         serviceForecastOpenMeteo?.responseHandler = handleForecastOpenMeteo
@@ -75,13 +112,20 @@ public class MeteoClientManager {
 
         serviceOpenMeteoSuggestions?.responseHandler = handleOpenMeteoSuggestions
         serviceOpenWeatherSuggestions?.responseHandler = handleOpenWeatherSuggestions
-
-        isReadyToCall = true
-        isReadyToCallForecast = true
-        isReadyToGetSuggestions = true
     }
 
-    private func createProxiedSession() -> URLSession {
+    @objc private func proxyCredentialsChanged(notification: Notification) {
+        var proxyCredentials: String?
+
+        if let userInfo = notification.userInfo,
+           let credentials = userInfo["credentials"] as? String {
+            proxyCredentials = credentials
+        }
+
+        configureSessions(proxyCredentials)
+    }
+
+    private func createProxySession(_ proxy: PerseusProxyCredentials) -> URLSession {
 
         let configuration = URLSessionConfiguration.default
         let proxySettings: [AnyHashable: Any] = [
@@ -211,7 +255,8 @@ public class MeteoClientManager {
 
             try serviceCurrentOpenMeteo?.call(
                 urlString: urlStr,
-                timeout: useProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
+                timeout:
+                    shouldUseProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
             )
         } catch {
 
@@ -277,7 +322,8 @@ public class MeteoClientManager {
 
             try serviceCurrentOpenWeather?.call(
                 urlString: callDetails.urlString,
-                timeout: useProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
+                timeout:
+                    shouldUseProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
             )
 
         } catch {
@@ -326,7 +372,8 @@ public class MeteoClientManager {
 
             try serviceForecastOpenMeteo?.call(
                 urlString: urlStr,
-                timeout: useProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
+                timeout:
+                    shouldUseProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
             )
         } catch {
 
@@ -394,7 +441,8 @@ public class MeteoClientManager {
 
             try serviceForecastOpenWeather?.call(
                 urlString: callDetails.urlString,
-                timeout: useProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
+                timeout:
+                    shouldUseProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
             )
 
         } catch {
