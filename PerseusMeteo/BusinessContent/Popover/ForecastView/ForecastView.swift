@@ -172,7 +172,8 @@ class ForecastView: NSView {
 
         viewForecastDays.selectItems(at: indexes, scrollPosition: .top)
 
-        log.message("[\(type(of: self))].\(#function) The first day selected.")
+        // let logmsg = "[\(type(of: self))].\(#function) The first day selected."
+        // log.message(logmsg, .debug, .standard)
     }
 
     public func selectTheFirstForecastHour() {

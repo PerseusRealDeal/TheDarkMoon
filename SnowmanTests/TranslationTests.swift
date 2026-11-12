@@ -453,11 +453,11 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("Section: Special Options".localizedExpectation,
                        "Section: Special Options".localizedValue)
 
-        XCTAssertEqual("OpenWeather: Lock".localizedExpectation,
-                       "OpenWeather: Lock".localizedValue)
+        XCTAssertEqual("Button: Lock".localizedExpectation,
+                       "Button: Lock".localizedValue)
 
-        XCTAssertEqual("OpenWeather: Unlock".localizedExpectation,
-                       "OpenWeather: Unlock".localizedValue)
+        XCTAssertEqual("Button: Unlock".localizedExpectation,
+                       "Button: Unlock".localizedValue)
 
         XCTAssertEqual("OpenWeather: Hidden".localizedExpectation,
                        "OpenWeather: Hidden".localizedValue)

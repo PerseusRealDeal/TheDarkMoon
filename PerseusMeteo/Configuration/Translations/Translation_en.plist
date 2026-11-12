@@ -234,9 +234,11 @@
 	<string>Barometer</string>
 	<key>Option: Distance</key>
 	<string>Visibility</string>
-	<key>OpenWeather: Lock</key>
+	<key>IP:Port:Login:Password</key>
+	<string>IP:Port:Login:Password</string>
+	<key>Button: Lock</key>
 	<string>Lock</string>
-	<key>OpenWeather: Unlock</key>
+	<key>Button: Unlock</key>
 	<string>Unlock</string>
 	<key>OpenWeather: Hidden</key>
 	<string>Hidden key-hole...</string>

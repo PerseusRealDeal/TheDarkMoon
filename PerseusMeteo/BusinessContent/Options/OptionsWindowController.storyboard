@@ -374,31 +374,31 @@
                                                     </connections>
                                                 </comboBox>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s31-zU-nb8">
-                                                    <rect key="frame" x="10" y="80" width="104" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Current Provider" id="mC5-lb-6Kl">
+                                                    <rect key="frame" x="10" y="80" width="128" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Meteo Data Provider" id="mC5-lb-6Kl">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xwh-7c-fFZ">
-                                                    <rect key="frame" x="178" y="80" width="93" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Meteo Source:" id="XAu-mO-tz2">
+                                                    <rect key="frame" x="178" y="80" width="36" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Data:" id="XAu-mO-tz2">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fxx-gC-flh">
-                                                    <rect key="frame" x="365" y="80" width="72" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Geo Guide:" id="7dR-WP-ZlD">
+                                                    <rect key="frame" x="384" y="80" width="33" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Geo:" id="7dR-WP-ZlD">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
                                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iEY-Xd-mwt">
-                                                    <rect key="frame" x="180" y="47" width="180" height="25"/>
+                                                    <rect key="frame" x="222" y="75" width="157" height="25"/>
                                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="z9r-F7-CDg">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -409,7 +409,7 @@
                                                     </connections>
                                                 </comboBox>
                                                 <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w4v-hu-vUJ">
-                                                    <rect key="frame" x="367" y="47" width="181" height="25"/>
+                                                    <rect key="frame" x="425" y="75" width="123" height="25"/>
                                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="4HT-ZW-m6U">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -427,7 +427,7 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField verticalHuggingPriority="750" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="F1A-GE-l8k">
+                                                <textField identifier="textFieldOpenWeatherKey" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="F1A-GE-l8k">
                                                     <rect key="frame" x="180" y="14" width="235" height="21"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="N5p-L0-7YR">
                                                         <font key="font" metaFont="system"/>
@@ -445,58 +445,127 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="controlUnlockButtonTapped:" target="NdM-46-oIE" id="AhK-ue-kxT"/>
+                                                        <action selector="buttonUnlockOpenWeatherKeyTapped:" target="NdM-46-oIE" id="TCB-PF-hAr"/>
                                                     </connections>
                                                 </button>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CFq-vm-FP5">
+                                                    <rect key="frame" x="178" y="46" width="24" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="L95-6y-4xU"/>
+                                                    </constraints>
+                                                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ncZ-CE-0N7">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="checkBoxProxy:" target="NdM-46-oIE" id="oqj-L4-2sD"/>
+                                                    </connections>
+                                                </button>
+                                                <textField identifier="textFieldProxy" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VEI-7z-a4t">
+                                                    <rect key="frame" x="230" y="45" width="185" height="21"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="ip:port:login:password" drawsBackground="YES" usesSingleLineMode="YES" id="B8O-3L-FWU">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zxv-fG-ShU">
+                                                    <rect key="frame" x="418" y="38" width="134" height="32"/>
+                                                    <buttonCell key="cell" type="push" title="Unlock" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ofo-E3-HDn">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="buttonUnlockProxyCredentialsTapped:" target="NdM-46-oIE" id="Ug7-rm-Ez3"/>
+                                                    </connections>
+                                                </button>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vvw-FH-Tvr">
+                                                    <rect key="frame" x="10" y="47" width="38" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Proxy" id="9DH-9w-h8B">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iA0-Ya-5A3">
+                                                    <rect key="frame" x="193" y="38" width="39" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="1IB-bn-JBJ"/>
+                                                    </constraints>
+                                                    <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSRefreshTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gt6-qr-ewD">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                </button>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xg1-U4-tAj">
+                                                    <rect key="frame" x="15" y="36" width="69" height="11"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="ip/domain:port" id="2nH-We-ZGC">
+                                                        <font key="font" metaFont="miniSystem"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="fxx-gC-flh" firstAttribute="centerY" secondItem="s31-zU-nb8" secondAttribute="centerY" id="3c9-eR-wM5"/>
+                                                <constraint firstItem="zxv-fG-ShU" firstAttribute="leading" secondItem="VEI-7z-a4t" secondAttribute="trailing" constant="10" id="2Eh-bc-IJI"/>
                                                 <constraint firstItem="Xj7-P1-Gq6" firstAttribute="width" secondItem="0SC-Zc-u6t" secondAttribute="width" id="4B3-Ps-1QZ"/>
                                                 <constraint firstItem="Qjn-Rj-b91" firstAttribute="centerY" secondItem="pG1-e8-IOI" secondAttribute="centerY" id="7b6-Z4-Mub"/>
                                                 <constraint firstItem="UQa-cT-Et5" firstAttribute="trailing" secondItem="G6n-0E-mSc" secondAttribute="leading" constant="-3" id="7ym-Ao-RPJ"/>
                                                 <constraint firstItem="Xj7-P1-Gq6" firstAttribute="centerY" secondItem="KWv-Ww-NrH" secondAttribute="centerY" id="8Eb-Fy-rbk"/>
                                                 <constraint firstItem="0SC-Zc-u6t" firstAttribute="centerY" secondItem="vQb-9F-2bJ" secondAttribute="centerY" id="8wZ-hw-4nh"/>
-                                                <constraint firstItem="fxx-gC-flh" firstAttribute="leading" secondItem="xwh-7c-fFZ" secondAttribute="trailing" constant="98" id="9NY-vf-jnD"/>
+                                                <constraint firstItem="iA0-Ya-5A3" firstAttribute="centerY" secondItem="CFq-vm-FP5" secondAttribute="centerY" id="9So-t7-DZ9"/>
+                                                <constraint firstItem="fxx-gC-flh" firstAttribute="centerY" secondItem="xwh-7c-fFZ" secondAttribute="centerY" id="AeO-ep-dhS"/>
                                                 <constraint firstItem="AH6-cc-1rL" firstAttribute="leading" secondItem="gIN-gO-Lp7" secondAttribute="leading" constant="12" id="C5O-te-KyP"/>
                                                 <constraint firstItem="F1A-GE-l8k" firstAttribute="leading" secondItem="jET-Am-2AY" secondAttribute="leading" id="CXA-2J-ggI"/>
+                                                <constraint firstItem="w4v-hu-vUJ" firstAttribute="centerY" secondItem="xwh-7c-fFZ" secondAttribute="centerY" id="D2E-He-web"/>
                                                 <constraint firstItem="Foe-Mz-703" firstAttribute="width" secondItem="0SC-Zc-u6t" secondAttribute="width" id="DUb-41-f3O"/>
-                                                <constraint firstItem="iEY-Xd-mwt" firstAttribute="leading" secondItem="xwh-7c-fFZ" secondAttribute="leading" id="ELC-sS-m1g"/>
+                                                <constraint firstItem="iEY-Xd-mwt" firstAttribute="leading" secondItem="xwh-7c-fFZ" secondAttribute="trailing" constant="10" id="ELC-sS-m1g"/>
                                                 <constraint firstItem="4Q4-s1-iZc" firstAttribute="centerY" secondItem="jET-Am-2AY" secondAttribute="centerY" id="EYO-Sd-zET"/>
                                                 <constraint firstItem="UQa-cT-Et5" firstAttribute="width" secondItem="0SC-Zc-u6t" secondAttribute="width" id="EYY-QE-Hba"/>
                                                 <constraint firstAttribute="trailing" secondItem="0SC-Zc-u6t" secondAttribute="trailing" constant="10" id="Egu-qR-bAw"/>
-                                                <constraint firstItem="iEY-Xd-mwt" firstAttribute="trailing" secondItem="fxx-gC-flh" secondAttribute="leading" constant="-10" id="F8H-zb-cmT"/>
                                                 <constraint firstItem="UQa-cT-Et5" firstAttribute="trailing" secondItem="F1A-GE-l8k" secondAttribute="trailing" id="GyJ-mw-PAh"/>
-                                                <constraint firstItem="iEY-Xd-mwt" firstAttribute="top" secondItem="xwh-7c-fFZ" secondAttribute="bottom" constant="10" id="IfT-UE-RFY"/>
+                                                <constraint firstItem="iEY-Xd-mwt" firstAttribute="width" relation="greaterThanOrEqual" secondItem="w4v-hu-vUJ" secondAttribute="width" id="HnV-qa-qVF"/>
                                                 <constraint firstItem="kRt-m6-cQf" firstAttribute="width" secondItem="0SC-Zc-u6t" secondAttribute="width" id="K0R-a6-Av1"/>
                                                 <constraint firstItem="gTG-bY-TbX" firstAttribute="top" secondItem="AH6-cc-1rL" secondAttribute="bottom" constant="15" id="KC5-gM-iwj"/>
+                                                <constraint firstItem="CFq-vm-FP5" firstAttribute="centerY" secondItem="vvw-FH-Tvr" secondAttribute="centerY" id="KEA-ZZ-wun"/>
                                                 <constraint firstItem="vQb-9F-2bJ" firstAttribute="top" secondItem="s31-zU-nb8" secondAttribute="bottom" constant="48" id="Kd0-sK-E9b"/>
-                                                <constraint firstItem="xwh-7c-fFZ" firstAttribute="centerY" secondItem="s31-zU-nb8" secondAttribute="centerY" id="LCk-63-1RA"/>
+                                                <constraint firstItem="iA0-Ya-5A3" firstAttribute="leading" secondItem="CFq-vm-FP5" secondAttribute="trailing" id="Ky2-96-HLz"/>
                                                 <constraint firstItem="kRt-m6-cQf" firstAttribute="centerY" secondItem="4Q4-s1-iZc" secondAttribute="centerY" id="M1U-xP-BDW"/>
+                                                <constraint firstItem="fxx-gC-flh" firstAttribute="leading" secondItem="iEY-Xd-mwt" secondAttribute="trailing" constant="10" id="PkY-hg-bnb"/>
                                                 <constraint firstItem="4Q4-s1-iZc" firstAttribute="trailing" secondItem="F1A-GE-l8k" secondAttribute="trailing" id="TjD-H6-BOT"/>
-                                                <constraint firstItem="w4v-hu-vUJ" firstAttribute="leading" secondItem="fxx-gC-flh" secondAttribute="leading" id="U9y-KO-WmS"/>
+                                                <constraint firstItem="iEY-Xd-mwt" firstAttribute="centerY" secondItem="xwh-7c-fFZ" secondAttribute="centerY" id="Tqc-sT-moy"/>
+                                                <constraint firstItem="w4v-hu-vUJ" firstAttribute="leading" secondItem="fxx-gC-flh" secondAttribute="trailing" constant="10" id="U9y-KO-WmS"/>
                                                 <constraint firstItem="gTG-bY-TbX" firstAttribute="leading" secondItem="AH6-cc-1rL" secondAttribute="leading" id="UUf-ug-KsV"/>
+                                                <constraint firstItem="xg1-U4-tAj" firstAttribute="top" secondItem="vvw-FH-Tvr" secondAttribute="bottom" id="Usq-Oq-Vxh"/>
                                                 <constraint firstItem="UQa-cT-Et5" firstAttribute="leading" secondItem="KWv-Ww-NrH" secondAttribute="trailing" constant="10" id="VDj-le-nLd"/>
-                                                <constraint firstItem="w4v-hu-vUJ" firstAttribute="centerY" secondItem="iEY-Xd-mwt" secondAttribute="centerY" id="WeE-pk-e92"/>
+                                                <constraint firstItem="xg1-U4-tAj" firstAttribute="leading" secondItem="vvw-FH-Tvr" secondAttribute="leading" constant="5" id="WjR-bo-tvv"/>
                                                 <constraint firstItem="w4v-hu-vUJ" firstAttribute="trailing" secondItem="0SC-Zc-u6t" secondAttribute="trailing" id="WkO-Hi-2W0"/>
+                                                <constraint firstItem="CFq-vm-FP5" firstAttribute="leading" secondItem="jET-Am-2AY" secondAttribute="leading" id="XnQ-63-4JI"/>
                                                 <constraint firstItem="AH6-cc-1rL" firstAttribute="top" secondItem="gIN-gO-Lp7" secondAttribute="top" constant="2" id="YFS-fU-OAb"/>
                                                 <constraint firstItem="Xj7-P1-Gq6" firstAttribute="trailing" secondItem="0SC-Zc-u6t" secondAttribute="trailing" id="ZbC-QT-b68"/>
                                                 <constraint firstItem="Foe-Mz-703" firstAttribute="centerY" secondItem="Qjn-Rj-b91" secondAttribute="centerY" id="bFC-dd-NAG"/>
+                                                <constraint firstItem="VEI-7z-a4t" firstAttribute="leading" secondItem="iA0-Ya-5A3" secondAttribute="trailing" constant="5" id="bux-fE-dpC"/>
                                                 <constraint firstItem="jET-Am-2AY" firstAttribute="centerY" secondItem="AH6-cc-1rL" secondAttribute="centerY" constant="1" id="cjp-aj-aHd"/>
                                                 <constraint firstItem="pG1-e8-IOI" firstAttribute="leading" secondItem="F1A-GE-l8k" secondAttribute="leading" id="dE1-Nd-8Ll"/>
                                                 <constraint firstItem="s31-zU-nb8" firstAttribute="leading" secondItem="AH6-cc-1rL" secondAttribute="leading" id="de6-wy-Isi"/>
                                                 <constraint firstItem="UQa-cT-Et5" firstAttribute="centerY" secondItem="KWv-Ww-NrH" secondAttribute="centerY" id="eVO-Rx-YDD"/>
+                                                <constraint firstItem="zxv-fG-ShU" firstAttribute="centerY" secondItem="CFq-vm-FP5" secondAttribute="centerY" id="fCG-12-GTq"/>
                                                 <constraint firstItem="KWv-Ww-NrH" firstAttribute="top" secondItem="pG1-e8-IOI" secondAttribute="bottom" constant="15" id="fsm-s4-3nN"/>
                                                 <constraint firstItem="eOa-1c-nEW" firstAttribute="centerY" secondItem="pG1-e8-IOI" secondAttribute="centerY" id="gTH-Bs-5gw"/>
                                                 <constraint firstItem="eOa-1c-nEW" firstAttribute="leading" secondItem="pG1-e8-IOI" secondAttribute="trailing" constant="6" id="h0W-eB-mzJ"/>
                                                 <constraint firstItem="Foe-Mz-703" firstAttribute="trailing" secondItem="0SC-Zc-u6t" secondAttribute="trailing" id="hGE-Ro-8lc"/>
+                                                <constraint firstItem="vvw-FH-Tvr" firstAttribute="leading" secondItem="AH6-cc-1rL" secondAttribute="leading" id="hNd-xF-Y5a"/>
                                                 <constraint firstItem="s31-zU-nb8" firstAttribute="top" secondItem="gTG-bY-TbX" secondAttribute="bottom" constant="53" id="i1S-vf-fWJ"/>
                                                 <constraint firstItem="pG1-e8-IOI" firstAttribute="centerY" secondItem="gTG-bY-TbX" secondAttribute="centerY" id="jiu-nR-KrP"/>
                                                 <constraint firstItem="F1A-GE-l8k" firstAttribute="centerY" secondItem="vQb-9F-2bJ" secondAttribute="centerY" id="jwC-b3-gWq"/>
+                                                <constraint firstItem="VEI-7z-a4t" firstAttribute="centerY" secondItem="CFq-vm-FP5" secondAttribute="centerY" id="kS5-Lu-Vl7"/>
                                                 <constraint firstItem="kRt-m6-cQf" firstAttribute="trailing" secondItem="0SC-Zc-u6t" secondAttribute="trailing" id="mHM-oJ-9AF"/>
                                                 <constraint firstItem="0SC-Zc-u6t" firstAttribute="leading" secondItem="F1A-GE-l8k" secondAttribute="trailing" constant="10" id="pUj-6f-ptf"/>
+                                                <constraint firstItem="xwh-7c-fFZ" firstAttribute="centerY" secondItem="s31-zU-nb8" secondAttribute="centerY" id="qby-y4-quy"/>
                                                 <constraint firstItem="G6n-0E-mSc" firstAttribute="centerY" secondItem="UQa-cT-Et5" secondAttribute="centerY" id="rEd-Gv-ihJ"/>
                                                 <constraint firstItem="vQb-9F-2bJ" firstAttribute="leading" secondItem="AH6-cc-1rL" secondAttribute="leading" id="sLc-e0-CDI"/>
                                                 <constraint firstItem="Qjn-Rj-b91" firstAttribute="trailing" secondItem="F1A-GE-l8k" secondAttribute="trailing" id="vI3-JW-ybm"/>
+                                                <constraint firstItem="vvw-FH-Tvr" firstAttribute="top" secondItem="s31-zU-nb8" secondAttribute="bottom" constant="17" id="yey-DM-UMw"/>
                                                 <constraint firstItem="xwh-7c-fFZ" firstAttribute="leading" secondItem="jET-Am-2AY" secondAttribute="leading" id="zxO-le-Ynm"/>
                                             </constraints>
                                         </view>
@@ -546,10 +615,13 @@
                             </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="w4v-hu-vUJ" firstAttribute="width" secondItem="Jvm-O9-bm1" secondAttribute="width" id="23Y-Oz-cGp"/>
+                            <constraint firstItem="zxv-fG-ShU" firstAttribute="trailing" secondItem="Jvm-O9-bm1" secondAttribute="trailing" id="7ml-TV-Y0l"/>
                             <constraint firstAttribute="bottom" secondItem="Jvm-O9-bm1" secondAttribute="bottom" constant="10" id="8cA-Eg-MZG"/>
                             <constraint firstAttribute="trailing" secondItem="qzI-oB-87E" secondAttribute="trailing" id="IiS-nf-mNx"/>
                             <constraint firstAttribute="bottom" secondItem="qzI-oB-87E" secondAttribute="bottom" constant="35" id="Ur8-CE-404"/>
                             <constraint firstItem="0Np-Hh-uIh" firstAttribute="centerY" secondItem="Jvm-O9-bm1" secondAttribute="centerY" id="dlD-Pf-0Z9"/>
+                            <constraint firstItem="zxv-fG-ShU" firstAttribute="width" secondItem="Jvm-O9-bm1" secondAttribute="width" id="hnN-76-SUQ"/>
                             <constraint firstAttribute="trailing" secondItem="Jvm-O9-bm1" secondAttribute="trailing" constant="10" id="n2j-8p-DE5"/>
                             <constraint firstItem="Jvm-O9-bm1" firstAttribute="width" secondItem="0SC-Zc-u6t" secondAttribute="width" id="rmF-im-7MX"/>
                             <constraint firstItem="0Np-Hh-uIh" firstAttribute="leading" secondItem="Zo1-hM-qgJ" secondAttribute="leading" constant="10" id="vHg-ps-qgE"/>
@@ -563,8 +635,12 @@
                         <outlet property="boxWeatherOptions" destination="xlu-T9-4Dc" id="mm8-Kf-AOW"/>
                         <outlet property="buttonClose" destination="Jvm-O9-bm1" id="YvW-Mp-EzB"/>
                         <outlet property="buttonInfo" destination="eOa-1c-nEW" id="0Dh-dR-9zo"/>
+                        <outlet property="buttonRefreshProxyConnectionStatus" destination="iA0-Ya-5A3" id="D7T-fx-v7C"/>
                         <outlet property="buttonResetAllSettings" destination="0Np-Hh-uIh" id="b2W-Nb-no5"/>
+                        <outlet property="buttonUnlockOpenWeatherKey" destination="0SC-Zc-u6t" id="wBL-96-mSo"/>
+                        <outlet property="buttonUnlockProxyCredentials" destination="zxv-fG-ShU" id="qPX-RT-RY0"/>
                         <outlet property="checkBoxCurrentWeatherStatusMenus" destination="jET-Am-2AY" id="LeZ-Qa-Qyc"/>
+                        <outlet property="checkBoxProxy" destination="CFq-vm-FP5" id="7Kp-GH-1Co"/>
                         <outlet property="checkBoxTwoLines" destination="pG1-e8-IOI" id="PNm-B5-Ua4"/>
                         <outlet property="comboBoxForGeoProviders" destination="w4v-hu-vUJ" id="BNj-78-rvI"/>
                         <outlet property="comboBoxForMeteoProviders" destination="iEY-Xd-mwt" id="qbS-MQ-Y2v"/>
@@ -575,11 +651,9 @@
                         <outlet property="controlDarkMode" destination="Qnu-8q-EXi" id="mbN-G1-bYK"/>
                         <outlet property="controlDistance" destination="R2S-za-RVt" id="BfT-pi-TDk"/>
                         <outlet property="controlLanguage" destination="Yoa-ad-Hs1" id="SCJ-PZ-ort"/>
-                        <outlet property="controlOpenWeatherKey" destination="F1A-GE-l8k" id="tYt-2R-zZy"/>
                         <outlet property="controlPressure" destination="G9W-NY-l1g" id="vlh-ex-UGw"/>
                         <outlet property="controlTemperature" destination="yxu-78-aFI" id="coz-Yp-qnN"/>
                         <outlet property="controlTimeFormat" destination="R7l-Kv-CQy" id="ukF-GV-Pod"/>
-                        <outlet property="controlUnlockButton" destination="0SC-Zc-u6t" id="2WV-9J-2lh"/>
                         <outlet property="controlWindSpeed" destination="nqP-bv-4Wk" id="E3H-n0-4aG"/>
                         <outlet property="labelCurrentProvider" destination="s31-zU-nb8" id="1k0-y9-q2x"/>
                         <outlet property="labelCurrentWeatherStatusMenus" destination="AH6-cc-1rL" id="gkr-jl-jab"/>
@@ -590,6 +664,8 @@
                         <outlet property="labelLanguage" destination="zxY-ag-jLf" id="TK5-z7-e27"/>
                         <outlet property="labelOpenWeatherKey" destination="vQb-9F-2bJ" id="axD-cs-fa9"/>
                         <outlet property="labelPressure" destination="0i9-b8-cXK" id="8c2-LD-RZh"/>
+                        <outlet property="labelProxy" destination="vvw-FH-Tvr" id="K1b-7Z-PQc"/>
+                        <outlet property="labelProxyCredentials" destination="xg1-U4-tAj" id="mZj-qz-9us"/>
                         <outlet property="labelSecondLine" destination="Qjn-Rj-b91" id="NUD-fP-qSa"/>
                         <outlet property="labelStatusMenus" destination="gTG-bY-TbX" id="5kE-Zu-87g"/>
                         <outlet property="labelStatusMenusUpdate" destination="4Q4-s1-iZc" id="KW7-9k-SXy"/>
@@ -597,6 +673,8 @@
                         <outlet property="labelTimeFormat" destination="vBF-Ie-qLr" id="SIE-5L-mMN"/>
                         <outlet property="labelToolTip" destination="KWv-Ww-NrH" id="uTb-Xh-8Ya"/>
                         <outlet property="labelWindSpeed" destination="gcZ-4O-uT9" id="gC8-tI-QNv"/>
+                        <outlet property="textFieldOpenWeatherKey" destination="F1A-GE-l8k" id="1lY-UH-USd"/>
+                        <outlet property="textFieldProxy" destination="VEI-7z-a4t" id="XLr-Wq-sz9"/>
                     </connections>
                 </viewController>
                 <customObject id="wub-Iw-l7t" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -604,4 +682,7 @@
             <point key="canvasLocation" x="-122.5" y="946"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSRefreshTemplate" width="14" height="16"/>
+    </resources>
 </document>

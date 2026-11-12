@@ -221,8 +221,11 @@
 
 "Section: Special Options" = "Special Options";
 
-"OpenWeather: Lock" = "Lock";
-"OpenWeather: Unlock" = "Unlock";
+"Label: Proxy" = "Proxy";
+"IP:Port:Login:Password" = "IP:Port:Login:Password";
+
+"Button: Lock" = "Lock";
+"Button: Unlock" = "Unlock";
 "OpenWeather: Hidden" = "Hidden key-hole...";
 "OpenWeather: Editable" = "Past the key (token)...";
 

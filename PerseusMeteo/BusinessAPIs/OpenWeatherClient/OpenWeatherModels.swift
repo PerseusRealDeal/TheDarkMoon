@@ -12,17 +12,8 @@
 //
 //  See LICENSE for details. All rights reserved.
 //
-// swiftlint:disable file_length
-//
 
 import Foundation
-
-extension Notification.Name {
-    public static let meteoDataOptionsNotification =
-        Notification.Name("meteoDataOptionsNotification")
-    public static let updateCurrentWeatherByTimerCommand =
-        Notification.Name("updateCurrentWeatherByTimerCommand")
-}
 
 // MARK: - TEMPERATURE
 
