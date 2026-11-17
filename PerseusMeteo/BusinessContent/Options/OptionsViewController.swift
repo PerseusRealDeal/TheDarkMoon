@@ -121,15 +121,18 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         log.message("[\(type(of: self))].\(#function): \(isOn)", .debug, .standard)
 
         if isOn {
-            if let credentials = AppOptions.proxyCredentials, !credentials.isEmpty {
-                let config = PerseusProxyCredentials(credentials)
+            if let proxyServerPort = AppOptions.proxyServerPort,
+               let proxyLoginPassword = AppOptions.proxyLoginPassword,
+               !proxyServerPort.isEmpty,
+               !proxyLoginPassword.isEmpty {
+                
+                let serverPort = PerseusProxyServerPort(proxyServerPort)
+                let loginPassword = PerseusProxyLoginPassword(proxyLoginPassword)
 
                 AppOptions.proxyOption = true
-                labelProxyCredentials.stringValue = "\(config.server):\(config.port)"
+                labelProxyCredentials.stringValue = "\(serverPort.server):\(serverPort.port)"
 
-                presenter?.forceProxy(config) // Turn on proxy
-
-                // TODO: Send end-user message?
+                presenter?.forceProxy(loginPassword) // Turn on proxy
                 return
             }
         }
@@ -140,31 +143,32 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         labelProxyCredentials.stringValue = ""
 
         presenter?.forceProxy() // Turn off proxy
-
-        // TODO: Send end-user message?
     }
 
     @IBAction func buttonRefreshProxyConnectionStatusTapped(_ sender: NSButton) {
 
-        let isOn = AppOptions.proxyOption
+        if AppOptions.proxyOption {
+            if let proxyServerPort = AppOptions.proxyServerPort,
+               let proxyLoginPassword = AppOptions.proxyLoginPassword,
+               !proxyServerPort.isEmpty,
+               !proxyLoginPassword.isEmpty {
+                
+                let serverPort = PerseusProxyServerPort(proxyServerPort)
+                let loginPassword = PerseusProxyLoginPassword(proxyLoginPassword)
 
-        if isOn {
-            if let credentials = AppOptions.proxyCredentials, !credentials.isEmpty {
-                let config = PerseusProxyCredentials(credentials)
-                AppOptions.proxyOption = true
-                presenter?.forceProxy(config) // Turn on proxy
-                labelProxyCredentials.stringValue = "\(config.server):\(config.port)"
-                return
-            } else {
-                checkBoxProxy.state = .off // Ignore
-                AppOptions.proxyOption = false
-                labelProxyCredentials.stringValue = ""
-                // TODO: Send end-user message?
+                labelProxyCredentials.stringValue = "\(serverPort.server):\(serverPort.port)"
+
+                presenter?.forceProxy(loginPassword) // Turn on proxy
+                
                 return
             }
         }
 
+        checkBoxProxy.state = .off
+
         AppOptions.proxyOption = false
+        labelProxyCredentials.stringValue = ""
+
         presenter?.forceProxy() // Turn off proxy
     }
 
@@ -173,11 +177,9 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         if self.textFieldProxy.isEditable {
             lockProxyTextField()
         } else {
-
-            let secret = AppOptions.proxyCredentials
-
-            if let secret = secret {
-                unlockProxyTextField(stringValue: secret)
+            if let serverPort = AppOptions.proxyServerPort,
+               let loginPassword = AppOptions.proxyLoginPassword {
+                unlockProxyTextField(stringValue: "\(serverPort):\(loginPassword)")
             }
         }
     }
@@ -336,6 +338,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
             tf.stringValue = text
         }
 
+        /*
         AppOptions.proxyCredentials = tf.stringValue
 
         if let secret = AppOptions.proxyCredentials {
@@ -343,6 +346,7 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         } else {
             lockProxyTextField()
         }
+         */
     }
 
     private func lockProxyTextField() {

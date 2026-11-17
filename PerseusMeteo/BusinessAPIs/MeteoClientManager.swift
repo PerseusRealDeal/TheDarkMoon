@@ -73,20 +73,25 @@ public class MeteoClientManager {
 
     // MARK: - Configure
 
-    private func configureSessions(_ proxyConfiguration: PerseusProxyCredentials? = nil) {
+    private func configureSessions(_ proxyConfiguration: PerseusProxyLoginPassword? = nil) {
 
-        var credentials: PerseusProxyCredentials?
+        var serverPort: PerseusProxyServerPort?
+        var loginPassword: PerseusProxyLoginPassword?
         var useProxy = AppOptions.proxyOption
 
-        if useProxyDebug, let debugProxy = proxyDebug {
-            credentials = debugProxy
+        if useProxyDebug, let debugServerPort = proxyServerPortDebug, let debugLoginPassword = proxyLoginPasswordDebug {
+            serverPort = debugServerPort
+            loginPassword = debugLoginPassword
             useProxy = true
-        } else if useProxy {
+        } else if useProxy, let perseusServerPort = AppOptions.proxyServerPort, !perseusServerPort.isEmpty {
+            
             if let configuration = proxyConfiguration {
-                credentials = configuration
-            } else if let proxy = AppOptions.proxyCredentials {
-                credentials = PerseusProxyCredentials(proxy)
+                loginPassword = configuration
+            } else if let proxy = AppOptions.proxyLoginPassword {
+                loginPassword = PerseusProxyLoginPassword(proxy)
             }
+            
+            serverPort = PerseusProxyServerPort(perseusServerPort)
         }
 
         shouldUseProxy = useProxy == false ? useProxyDebug : true
@@ -94,10 +99,10 @@ public class MeteoClientManager {
         var logmsg = "[\(type(of: self))].\(#function) " +
         "proxyOption:\(useProxy) proxyDebug: \(useProxyDebug) "
 
-        logmsg += credentials != nil ? "\(credentials!.server):\(credentials!.port)" : ""
+        logmsg += serverPort != nil ? "\(serverPort!.server):\(serverPort!.port)" : ""
         log.message(logmsg, .info, .standard)
 
-        let session = credentials == nil ? URLSession.shared : createProxySession(credentials!)
+        let session = serverPort == nil ? URLSession.shared : createProxySession(serverPort!, loginPassword)
 
         serviceCurrentOpenMeteo = PerseusNetworkClient(session, "CurrentOpenMeteo")
         serviceForecastOpenMeteo = PerseusNetworkClient(session, "ForecastOpenMeteo")
@@ -118,10 +123,10 @@ public class MeteoClientManager {
 
     @objc private func proxyCredentialsChanged(notification: Notification) {
 
-        var proxyCredentials: PerseusProxyCredentials?
+        var proxyCredentials: PerseusProxyLoginPassword?
 
         if let userInfo = notification.userInfo,
-           let credentials = userInfo["credentials"] as? PerseusProxyCredentials {
+           let credentials = userInfo["credentials"] as? PerseusProxyLoginPassword {
 
             proxyCredentials = credentials
         }
@@ -129,27 +134,28 @@ public class MeteoClientManager {
         configureSessions(proxyCredentials)
     }
 
-    private func createProxySession(_ proxy: PerseusProxyCredentials) -> URLSession {
+    private func createProxySession(_ serverPort: PerseusProxyServerPort,
+                                    _ loginPassword: PerseusProxyLoginPassword?) -> URLSession {
 
         let configuration = URLSessionConfiguration.default
         var proxySettings: [AnyHashable: Any] = [
 
             // HTTP Proxy configuration
             kCFNetworkProxiesHTTPEnable: 1,               // 1 = True, 0 = False
-            kCFNetworkProxiesHTTPProxy: proxy.server,     // Proxy Server IP/Domain
-            kCFNetworkProxiesHTTPPort: proxy.port,        // Proxy Server Port
+            kCFNetworkProxiesHTTPProxy: serverPort.server,     // Proxy Server IP/Domain
+            kCFNetworkProxiesHTTPPort: serverPort.port,        // Proxy Server Port
 
             // HTTPS Proxy configuration (optional but highly recommended)
             kCFNetworkProxiesHTTPSEnable: 1,
-            kCFNetworkProxiesHTTPSProxy: proxy.server,
-            kCFNetworkProxiesHTTPSPort: proxy.port
+            kCFNetworkProxiesHTTPSProxy: serverPort.server,
+            kCFNetworkProxiesHTTPSPort: serverPort.port
 
         ]
 
         // Credentials keys
-        if !proxy.login.isEmpty, !proxy.password.isEmpty {
-            proxySettings[kCFProxyUsernameKey as String] = proxy.login
-            proxySettings[kCFProxyPasswordKey as String] = proxy.password
+        if let credentials = loginPassword, !credentials.login.isEmpty, !credentials.password.isEmpty {
+            proxySettings[kCFProxyUsernameKey as String] = credentials.login
+            proxySettings[kCFProxyPasswordKey as String] = credentials.password
         }
 
     /*

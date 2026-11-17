@@ -30,12 +30,13 @@ let useOpenWeatherMapForecastSample = false
 
 // MARK: - Debug Proxy
 
-// TODO: Proxy connection UI mark and button
-
 let useProxyDebug = false
 
-let proxyCredentialsDebug = "" // ip/domain:port:login:password
-let proxyDebug: PerseusProxyCredentials? = PerseusProxyCredentials(proxyCredentialsDebug)
+let proxyCredentialsServerPortDebug = "" // ip/domain:port
+let proxyCredentialsLoginPasswordDebug = "" // login:password
+
+let proxyServerPortDebug: PerseusProxyServerPort? = PerseusProxyServerPort(proxyCredentialsServerPortDebug)
+let proxyLoginPasswordDebug: PerseusProxyLoginPassword? = PerseusProxyLoginPassword(proxyCredentialsLoginPasswordDebug)
 
 // MARK: - Notifications
 
@@ -52,7 +53,7 @@ extension Notification.Name {
 
 // public let OPEN_WEATHER_API_KEY_OPTION_KEY = "OPEN_WEATHER_API_OPTION_KEY"
 let OPEN_WEATHER_API_KEY_TEXT_LIMIT = 32
-let PROXY_CREDENTIALS_TEXT_LIMIT = 64
+let PROXY_CREDENTIALS_TEXT_LIMIT = 32
 
 let PROXY_OPTION_KEY = "PROXY_OPTION_KEY"
 let PROXY_OPTION_DEFAULT = false
@@ -100,6 +101,9 @@ let METEO_PROVIDER_OPTION_DEFAULT = MeteoProvider.serviceOpenMeteo
 
 let GEOCODING_PROVIDER_OPTION_KEY = "GEOCODING_PROVIDER_OPTION_KEY"
 let GEOCODING_PROVIDER_OPTION_DEFAULT = GeoCodingProvider.serviceOpenMeteo
+
+let PROXY_SERVER_PORT_KEY = "PROXY_SERVER_PORT_KEY"
+let PROXY_SERVER_PORT_DEFAULT = ""
 
 // MARK: - User Defaults
 
@@ -286,8 +290,23 @@ class AppOptions {
             ud.setValue(newValue, forKey: PROXY_OPTION_KEY)
         }
     }
+    
+    public static var proxyServerPort: String? {
+        get {
+            let ud = AppGlobals.userDefaults
 
-    public static var proxyCredentials: String? {
+            let result = ud.valueExists(forKey: PROXY_SERVER_PORT_KEY) ?
+            ud.string(forKey: PROXY_SERVER_PORT_KEY) : PROXY_SERVER_PORT_DEFAULT
+
+            return result
+        }
+        set {
+            let ud = AppGlobals.userDefaults
+            ud.setValue(newValue, forKey: PROXY_SERVER_PORT_KEY)
+        }
+    }
+
+    public static var proxyLoginPassword: String? {
         get {
             // Secret
             let defender = AppGlobals.dataDefender
@@ -308,7 +327,7 @@ class AppOptions {
                 return "" // There's no value
             }
 
-            // The value should meet OPEN_WEATHER_API_KEY_TEXT_LIMIT
+            // The value should meet PROXY_CREDENTIALS_TEXT_LIMIT
             guard let text = secret, !text.isEmpty else { return secret }
 
             let limit = PROXY_CREDENTIALS_TEXT_LIMIT
