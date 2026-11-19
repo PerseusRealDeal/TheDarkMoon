@@ -344,8 +344,6 @@ class OptionsViewPresenter: MVPPresenter {
         ud.removeObject(forKey: GEOCODING_PROVIDER_OPTION_KEY)
         ud.removeObject(forKey: METEO_PROVIDER_OPTION_KEY)
         ud.removeObject(forKey: PROXY_OPTION_KEY)
-        
-        // TODO: Proxy turn off
 
         ud.removeObject(forKey: DARK_MODE_USER_CHOICE_KEY)
         DarkModeAgent.force(DARK_MODE_USER_CHOICE_DEFAULT)

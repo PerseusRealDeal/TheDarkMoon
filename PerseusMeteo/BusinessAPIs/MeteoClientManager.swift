@@ -79,18 +79,22 @@ public class MeteoClientManager {
         var loginPassword: PerseusProxyLoginPassword?
         var useProxy = AppOptions.proxyOption
 
-        if useProxyDebug, let debugServerPort = proxyServerPortDebug, let debugLoginPassword = proxyLoginPasswordDebug {
+        if useProxyDebug,
+           let debugServerPort = proxyServerPortDebug,
+            let debugLoginPassword = proxyLoginPasswordDebug {
             serverPort = debugServerPort
             loginPassword = debugLoginPassword
             useProxy = true
-        } else if useProxy, let perseusServerPort = AppOptions.proxyServerPort, !perseusServerPort.isEmpty {
-            
+        } else if useProxy,
+                    let perseusServerPort = AppOptions.proxyServerPort,
+                    !perseusServerPort.isEmpty {
+
             if let configuration = proxyConfiguration {
                 loginPassword = configuration
             } else if let proxy = AppOptions.proxyLoginPassword {
                 loginPassword = PerseusProxyLoginPassword(proxy)
             }
-            
+
             serverPort = PerseusProxyServerPort(perseusServerPort)
         }
 
@@ -102,7 +106,8 @@ public class MeteoClientManager {
         logmsg += serverPort != nil ? "\(serverPort!.server):\(serverPort!.port)" : ""
         log.message(logmsg, .info, .standard)
 
-        let session = serverPort == nil ? URLSession.shared : createProxySession(serverPort!, loginPassword)
+        let session = serverPort == nil ?
+        URLSession.shared : createProxySession(serverPort!, loginPassword)
 
         serviceCurrentOpenMeteo = PerseusNetworkClient(session, "CurrentOpenMeteo")
         serviceForecastOpenMeteo = PerseusNetworkClient(session, "ForecastOpenMeteo")
@@ -135,7 +140,8 @@ public class MeteoClientManager {
     }
 
     private func createProxySession(_ serverPort: PerseusProxyServerPort,
-                                    _ loginPassword: PerseusProxyLoginPassword?) -> URLSession {
+                                    _ loginPassword: PerseusProxyLoginPassword?)
+    -> URLSession {
 
         let configuration = URLSessionConfiguration.default
         var proxySettings: [AnyHashable: Any] = [
@@ -153,7 +159,10 @@ public class MeteoClientManager {
         ]
 
         // Credentials keys
-        if let credentials = loginPassword, !credentials.login.isEmpty, !credentials.password.isEmpty {
+        if let credentials = loginPassword,
+           !credentials.login.isEmpty,
+           !credentials.password.isEmpty {
+
             proxySettings[kCFProxyUsernameKey as String] = credentials.login
             proxySettings[kCFProxyPasswordKey as String] = credentials.password
         }

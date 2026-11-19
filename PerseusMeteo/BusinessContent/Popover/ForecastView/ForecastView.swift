@@ -176,6 +176,8 @@ class ForecastView: NSView {
         // log.message(logmsg, .debug, .standard)
     }
 
+    // TODO: - Select the nearest hour to current hour automatically on data loaded event.
+
     public func selectTheFirstForecastHour() {
 
         let indexPath = IndexPath(item: 0, section: 0)

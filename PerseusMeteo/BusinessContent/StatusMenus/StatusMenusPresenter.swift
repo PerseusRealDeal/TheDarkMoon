@@ -214,8 +214,7 @@ public class StatusMenusPresenter {
             return
         }
 
-        let imageName = dataSource.weatherIconName.symbolName() // By default filled always
-        let icon = NSImage(named: imageName)
+        let icon = NSImage(named: dataSource.weatherIconName.symbolName(isLight: false))
 
         if let button = statusItem?.button, let resized = icon {
             resized.resizeProportionally(to: button.frame.height, padding: 4.0)

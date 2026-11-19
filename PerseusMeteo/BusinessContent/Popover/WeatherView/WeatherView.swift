@@ -340,7 +340,6 @@ extension WeatherView {
         log.message("[\(type(of: self))].\(#function)", .debug, .standard)
 
         let isDarkModeInLight = DarkModeAgent.shared.style == .light
-
         let imageName = weatherReader.weatherIconName.symbolName(isLight: isDarkModeInLight)
 
         let sunriseIconName = isDarkModeInLight ? "sunrise.fill" : "sunrise.dark"

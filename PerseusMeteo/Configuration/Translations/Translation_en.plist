@@ -236,6 +236,10 @@
 	<string>Visibility</string>
 	<key>IP:Port:Login:Password</key>
 	<string>IP:Port:Login:Password</string>
+	<key>Button Proxy: Save</key>
+	<string>Save</string>
+	<key>Button Proxy: Lock</key>
+	<string>Lock</string>
 	<key>Button: Lock</key>
 	<string>Lock</string>
 	<key>Button: Unlock</key>

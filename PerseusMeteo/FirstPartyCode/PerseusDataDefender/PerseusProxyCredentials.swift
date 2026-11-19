@@ -68,7 +68,6 @@ public struct PerseusProxyLoginPassword {
     }
 
     public init(_ login: String, _ password: String) {
-
         self.login = login
         self.password = password
     }

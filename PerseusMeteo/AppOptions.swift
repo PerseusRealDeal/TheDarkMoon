@@ -35,8 +35,10 @@ let useProxyDebug = false
 let proxyCredentialsServerPortDebug = "" // ip/domain:port
 let proxyCredentialsLoginPasswordDebug = "" // login:password
 
-let proxyServerPortDebug: PerseusProxyServerPort? = PerseusProxyServerPort(proxyCredentialsServerPortDebug)
-let proxyLoginPasswordDebug: PerseusProxyLoginPassword? = PerseusProxyLoginPassword(proxyCredentialsLoginPasswordDebug)
+let proxyServerPortDebug: PerseusProxyServerPort? =
+PerseusProxyServerPort(proxyCredentialsServerPortDebug)
+let proxyLoginPasswordDebug: PerseusProxyLoginPassword? =
+PerseusProxyLoginPassword(proxyCredentialsLoginPasswordDebug)
 
 // MARK: - Notifications
 
@@ -290,7 +292,7 @@ class AppOptions {
             ud.setValue(newValue, forKey: PROXY_OPTION_KEY)
         }
     }
-    
+
     public static var proxyServerPort: String? {
         get {
             let ud = AppGlobals.userDefaults
