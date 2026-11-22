@@ -45,14 +45,14 @@ class PopoverViewPresenter: MVPPresenter {
 
     func performQuit() {
         // AppOptions.removeAll()
-        AppGlobals.quitTheApp()
+        quitTheApp()
     }
 
-    func performFetchMeteo(_ info: OpenWeatherRequest) {
+    func performFetchMeteo(_ category: MeteoDataCategory) {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        switch info {
+        switch category {
         case .currentWeather:
             if AppOptions.statusMenusPeriodOption == .none {
                 ContentCoordinator.callWeather()
@@ -64,11 +64,11 @@ class PopoverViewPresenter: MVPPresenter {
         }
     }
 
-    func performCancellation(_ info: OpenWeatherRequest) {
+    func performCancellation(_ category: MeteoDataCategory) {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        switch info {
+        switch category {
         case .currentWeather:
             ContentCoordinator.cancellWeatherCall()
         case .forecast:

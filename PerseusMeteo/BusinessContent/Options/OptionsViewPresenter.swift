@@ -118,7 +118,7 @@ class OptionsViewPresenter: MVPPresenter {
             Notification.init(name: .meteoDataOptionsNotification)
         )
 
-        log.message("[\(type(of: self))].\(#function) called", .info)
+        log.message("[\(type(of: self))].\(#function)", .info)
     }
 
     func forceTemperatureUnit(_ selected: Int) {
@@ -138,7 +138,7 @@ class OptionsViewPresenter: MVPPresenter {
             Notification.init(name: .meteoDataOptionsNotification)
         )
 
-        log.message("[\(type(of: self))].\(#function) called", .info)
+        log.message("[\(type(of: self))].\(#function)", .info)
     }
 
     func forceWindSpeedUnit(_ selected: Int) {
@@ -158,7 +158,7 @@ class OptionsViewPresenter: MVPPresenter {
             Notification.init(name: .meteoDataOptionsNotification)
         )
 
-        log.message("[\(type(of: self))].\(#function) called", .info)
+        log.message("[\(type(of: self))].\(#function)", .info)
     }
 
     func forcePressureUnit(_ selected: Int) {
@@ -178,7 +178,7 @@ class OptionsViewPresenter: MVPPresenter {
             Notification.init(name: .meteoDataOptionsNotification)
         )
 
-        log.message("[\(type(of: self))].\(#function) called", .info)
+        log.message("[\(type(of: self))].\(#function)", .info)
     }
 
     func forceDistanceUnit(_ selected: Int) {
@@ -196,7 +196,20 @@ class OptionsViewPresenter: MVPPresenter {
             Notification.init(name: .meteoDataOptionsNotification)
         )
 
-        log.message("[\(type(of: self))].\(#function) called", .info)
+        log.message("[\(type(of: self))].\(#function)", .info)
+    }
+
+    func forceProxy(_ credentials: PerseusProxyLoginPassword? = nil) {
+
+        AppGlobals.notificationCenter.post(
+            Notification.init(
+                name: .proxyCredentialsChangedNotification,
+                object: nil,
+                userInfo: credentials == nil ? nil : ["credentials": credentials!]
+            )
+        )
+
+        log.message("[\(type(of: self))].\(#function)", .info)
     }
 
     func forceStatusMenus(_ turned: Bool) {
@@ -205,7 +218,7 @@ class OptionsViewPresenter: MVPPresenter {
             Notification.init(name: .updateCurrentWeatherByTimerCommand)
         )
 
-        log.message("[\(type(of: self))].\(#function) called", .info)
+        log.message("[\(type(of: self))].\(#function)", .info)
     }
 
     func forceStatusMenusUpdatePeriod(_ index: Int) {
@@ -221,7 +234,7 @@ class OptionsViewPresenter: MVPPresenter {
             Notification.init(name: .updateCurrentWeatherByTimerCommand)
         )
 
-        log.message("[\(type(of: self))].\(#function) called", .info)
+        log.message("[\(type(of: self))].\(#function)", .info)
     }
 
     func forceStatusMenusTwoLines(_ turned: Bool) {
@@ -230,7 +243,7 @@ class OptionsViewPresenter: MVPPresenter {
             Notification.init(name: .meteoDataOptionsNotification)
         )
 
-        log.message("[\(type(of: self))].\(#function) called", .info)
+        log.message("[\(type(of: self))].\(#function)", .info)
     }
 
     func forceStatusMenusSecondLine(_ index: Int) {
@@ -246,7 +259,7 @@ class OptionsViewPresenter: MVPPresenter {
             Notification.init(name: .meteoDataOptionsNotification)
         )
 
-        log.message("[\(type(of: self))].\(#function) called", .info)
+        log.message("[\(type(of: self))].\(#function)", .info)
     }
 
     func forceStatusMenusToolTipLeft(_ index: Int) {
@@ -262,7 +275,7 @@ class OptionsViewPresenter: MVPPresenter {
             Notification.init(name: .meteoDataOptionsNotification)
         )
 
-        log.message("[\(type(of: self))].\(#function) called", .info)
+        log.message("[\(type(of: self))].\(#function)", .info)
     }
 
     func forceStatusMenusToolTipRight(_ index: Int) {
@@ -278,7 +291,7 @@ class OptionsViewPresenter: MVPPresenter {
             Notification.init(name: .meteoDataOptionsNotification)
         )
 
-        log.message("[\(type(of: self))].\(#function) called", .info)
+        log.message("[\(type(of: self))].\(#function)", .info)
     }
 
     func forceMeteoDataProviderSelected(_ index: Int) {
@@ -294,7 +307,7 @@ class OptionsViewPresenter: MVPPresenter {
         AppGlobals.notificationCenter.post(
             Notification.init(name: .meteoDataOptionsNotification)
         )
-        log.message("[\(type(of: self))].\(#function) called", .info)
+        log.message("[\(type(of: self))].\(#function)", .info)
     }
 
     func forceGeoDataProviderSelected(_ index: Int) {
@@ -310,7 +323,7 @@ class OptionsViewPresenter: MVPPresenter {
         AppGlobals.notificationCenter.post(
             Notification.init(name: .meteoDataOptionsNotification)
         )
-        log.message("[\(type(of: self))].\(#function) called", .info)
+        log.message("[\(type(of: self))].\(#function)", .info)
     }
 
     func resetToDefaults() {
@@ -330,6 +343,7 @@ class OptionsViewPresenter: MVPPresenter {
         ud.removeObject(forKey: STATUSMENUS_VIEW_OPTIONS_KEY)
         ud.removeObject(forKey: GEOCODING_PROVIDER_OPTION_KEY)
         ud.removeObject(forKey: METEO_PROVIDER_OPTION_KEY)
+        ud.removeObject(forKey: PROXY_OPTION_KEY)
 
         ud.removeObject(forKey: DARK_MODE_USER_CHOICE_KEY)
         DarkModeAgent.force(DARK_MODE_USER_CHOICE_DEFAULT)
@@ -340,9 +354,10 @@ class OptionsViewPresenter: MVPPresenter {
 
         nc.post(Notification.init(name: .updateCurrentWeatherByTimerCommand))
         nc.post(Notification.init(name: .meteoDataOptionsNotification))
+        nc.post(Notification.init(name: .proxyCredentialsChangedNotification))
 
         LanguageSwitcher.switchLanguageIfNeeded(AppOptions.languageOption)
 
-        log.message("[\(type(of: self))].\(#function) called", .info)
+        log.message("[\(type(of: self))].\(#function)", .info)
     }
 }

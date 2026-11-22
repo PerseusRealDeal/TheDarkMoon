@@ -17,12 +17,15 @@
 
 import Cocoa
 
+// swiftlint:disable:next type_body_length
 public class MeteoClientManager {
 
-    private let statusMenusPresenter: StatusMenusPresenter
+    private var shouldUseProxy = false
 
-    private let timeoutIntervalMeteoData = 10.0 // 10 sec.
-    private let timeoutIntervalSuggestions = 5.0 // 5 sec.
+    private let timeoutIntervalMeteoDataProxy = 60.0 // sec.
+    private let timeoutIntervalMeteoData = 10.0 // sec.
+
+    private let timeoutIntervalSuggestions = 5.0 // sec.
 
     private let requestAttemptsForMeteo = 3 // For both current and forecast.
     private let requestAttemtsForSuggestions = 2
@@ -37,71 +40,263 @@ public class MeteoClientManager {
     private var isReadyToCallForecast = false
     private var isReadyToGetSuggestions = false
 
-    private let serviceCurrentWeather =
-    PerseusNetworkClient(URLSession.shared, "Current")
-    private let serviceForecast =
-    PerseusNetworkClient(URLSession.shared, "Forecast")
+    private var serviceCurrentOpenMeteo: PerseusNetworkClient?
+    private var serviceForecastOpenMeteo: PerseusNetworkClient?
+    private var serviceSuggestionsOpenMeteo: PerseusNetworkClient?
 
-    private let serviceOpenMeteoSuggestions =
-    PerseusNetworkClient(URLSession.shared, "OpenMeteoSuggestions")
-    private let serviceOpenWeatherSuggestions =
-    PerseusNetworkClient(URLSession.shared, "OpenWeatherSuggestions")
+    private var serviceCurrentOpenWeather: PerseusNetworkClient?
+    private var serviceForecastOpenWeather: PerseusNetworkClient?
+    private var serviceSuggestionsOpenWeather: PerseusNetworkClient?
 
-    init(presenter: StatusMenusPresenter) {
+    private let countOpenMeteoForecastDays = 16
+    private let countOpenWeatherForecastHours = 40
 
-        log.message("[\(type(of: self))].\(#function)", .notice)
+    // MARK: - Init
 
-        self.statusMenusPresenter = presenter
+    init() {
 
-        serviceCurrentWeather.responseHandler = handleCurrent
-        serviceForecast.responseHandler = handleForecast
+        log.message("[\(type(of: self))].\(#function)", .info, .standard)
 
-        serviceOpenMeteoSuggestions.responseHandler = handleOpenMeteoSuggestions
-        serviceOpenWeatherSuggestions.responseHandler = handleOpenWeatherSuggestions
+        configureSessions()
+
+        AppGlobals.notificationCenter.addObserver(
+            self,
+            selector: #selector(proxyCredentialsChanged),
+            name: NSNotification.Name.proxyCredentialsChangedNotification,
+            object: nil
+        )
 
         isReadyToCall = true
         isReadyToCallForecast = true
         isReadyToGetSuggestions = true
     }
 
-    public func canellWeatherCall() {
-        serviceCurrentWeather.cancell()
-        // retriesCountCurrent = 0
+    // MARK: - Configure
+
+    private func configureSessions(_ proxyConfiguration: PerseusProxyLoginPassword? = nil) {
+
+        var serverPort: PerseusProxyServerPort?
+        var loginPassword: PerseusProxyLoginPassword?
+        var useProxy = AppOptions.proxyOption
+
+        if useProxyDebug,
+           let debugServerPort = proxyServerPortDebug,
+            let debugLoginPassword = proxyLoginPasswordDebug {
+            serverPort = debugServerPort
+            loginPassword = debugLoginPassword
+            useProxy = true
+        } else if useProxy,
+                    let perseusServerPort = AppOptions.proxyServerPort,
+                    !perseusServerPort.isEmpty {
+
+            if let configuration = proxyConfiguration {
+                loginPassword = configuration
+            } else if let proxy = AppOptions.proxyLoginPassword {
+                loginPassword = PerseusProxyLoginPassword(proxy)
+            }
+
+            serverPort = PerseusProxyServerPort(perseusServerPort)
+        }
+
+        shouldUseProxy = useProxy == false ? useProxyDebug : true
+
+        var logmsg = "[\(type(of: self))].\(#function) " +
+        "proxyOption:\(useProxy) proxyDebug: \(useProxyDebug) "
+
+        logmsg += serverPort != nil ? "\(serverPort!.server):\(serverPort!.port)" : ""
+        log.message(logmsg, .info, .standard)
+
+        let session = serverPort == nil ?
+        URLSession.shared : createProxySession(serverPort!, loginPassword)
+
+        serviceCurrentOpenMeteo = PerseusNetworkClient(session, "CurrentOpenMeteo")
+        serviceForecastOpenMeteo = PerseusNetworkClient(session, "ForecastOpenMeteo")
+        serviceSuggestionsOpenMeteo = PerseusNetworkClient(session, "OpenMeteoSuggestions")
+
+        serviceCurrentOpenWeather = PerseusNetworkClient(session, "CurrentOpenWeather")
+        serviceForecastOpenWeather = PerseusNetworkClient(session, "ForecastOpenWeather")
+        serviceSuggestionsOpenWeather = PerseusNetworkClient(session, "OpenWeatherSuggestions")
+
+        serviceCurrentOpenMeteo?.responseHandler = handleCurrentOpenMeteo
+        serviceForecastOpenMeteo?.responseHandler = handleForecastOpenMeteo
+        serviceSuggestionsOpenMeteo?.responseHandler = handleSuggestionsOpenMeteo
+
+        serviceCurrentOpenWeather?.responseHandler = handleCurrentOpenWeather
+        serviceForecastOpenWeather?.responseHandler = handleForecastOpenWeather
+        serviceSuggestionsOpenWeather?.responseHandler = handleSuggestionsOpenWeather
     }
 
-    public func cancellForecastCall() {
-        serviceForecast.cancell()
-        // retriesCountForecast = 0
+    @objc private func proxyCredentialsChanged(notification: Notification) {
+
+        var proxyCredentials: PerseusProxyLoginPassword?
+
+        if let userInfo = notification.userInfo,
+           let credentials = userInfo["credentials"] as? PerseusProxyLoginPassword {
+
+            proxyCredentials = credentials
+        }
+
+        configureSessions(proxyCredentials)
     }
 
-    public func cancellSuggestionsRequest() {
+    private func createProxySession(_ serverPort: PerseusProxyServerPort,
+                                    _ loginPassword: PerseusProxyLoginPassword?)
+    -> URLSession {
+
+        let configuration = URLSessionConfiguration.default
+        var proxySettings: [AnyHashable: Any] = [
+
+            // HTTP Proxy configuration
+            kCFNetworkProxiesHTTPEnable: 1,               // 1 = True, 0 = False
+            kCFNetworkProxiesHTTPProxy: serverPort.server,     // Proxy Server IP/Domain
+            kCFNetworkProxiesHTTPPort: serverPort.port,        // Proxy Server Port
+
+            // HTTPS Proxy configuration (optional but highly recommended)
+            kCFNetworkProxiesHTTPSEnable: 1,
+            kCFNetworkProxiesHTTPSProxy: serverPort.server,
+            kCFNetworkProxiesHTTPSPort: serverPort.port
+
+        ]
+
+        // Credentials keys
+        if let credentials = loginPassword,
+           !credentials.login.isEmpty,
+           !credentials.password.isEmpty {
+
+            proxySettings[kCFProxyUsernameKey as String] = credentials.login
+            proxySettings[kCFProxyPasswordKey as String] = credentials.password
+        }
+
+    /*
+        let proxySettings: [AnyHashable: Any] = [
+            "HTTPEnable": 1,
+            "HTTPProxy": proxy.server,
+            "HTTPPort": proxy.port,
+
+            "HTTPSEnable": 1,
+            "HTTPSProxy": proxy.server,
+            "HTTPSPort": proxy.port
+        ]
+    */
+
+        configuration.connectionProxyDictionary = proxySettings
+
+        return URLSession(configuration: configuration)
+    }
+
+    // MARK: - Calls Cancellation
+
+    public func cancellWeatherCall() {
 
         log.message("[\(type(of: self))].\(#function)")
 
-        serviceOpenMeteoSuggestions.cancell()
-        serviceOpenWeatherSuggestions.cancell()
+        serviceCurrentOpenMeteo?.cancell()
+        serviceCurrentOpenWeather?.cancell()
+
+        self.retriesCountCurrent = 0
+        self.isReadyToCall = true
+
+        // Stop animation indicator
+
+        DispatchQueue.main.async {
+            ContentCoordinator.stopCurrentProgressIndicator()
+        }
+    }
+
+    public func cancellForecastCall() {
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        serviceForecastOpenMeteo?.cancell()
+        serviceForecastOpenWeather?.cancell()
+
+        self.retriesCountForecast = 0
+        self.isReadyToCallForecast = true
+
+        // Stop animation indicator
+
+        DispatchQueue.main.async {
+            ContentCoordinator.stopForecastProgressIndicator()
+        }
+    }
+
+    public func cancellSuggestionsCall() {
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        serviceSuggestionsOpenMeteo?.cancell()
+        serviceSuggestionsOpenWeather?.cancell()
 
         self.retrySearchSuggestions = ""
         self.retriesCountSuggestions = 0
 
         self.isReadyToGetSuggestions = true
 
-        // stopAnimationIndicator
+        // Stop animation indicator
 
-        let viewLocation = ContentCoordinator.shared.screenPopover.viewLocation
-
-        viewLocation?.indicatorCircular.isHidden = true
-        viewLocation?.indicatorCircular.stopAnimation(nil)
+        DispatchQueue.main.async {
+            ContentCoordinator.stopSuggestionsProgressIndicator()
+        }
     }
 
-    public func fetchWeather() {
+    // MARK: - Fetching Current and Forecast Requests
+
+    public func fetchCurrentOpenMeteo() {
+
+        log.message("[\(type(of: self))].\(#function)")
 
         guard isReadyToCall else {
             log.message("[\(type(of: self))].\(#function) \(isReadyToCall)", .notice)
             return
         }
 
-        guard let point = getLocationPoint() else {
+        guard let point = AppGlobals.getLocationPoint() else {
+            log.message("[\(type(of: self))].\(#function) location is nil", .notice)
+            return
+        }
+
+        isReadyToCall = false
+
+        let lat = point.latitude.cut(.two).description
+        let lon = point.longitude.cut(.two).description
+
+        let urlStr = OpenMeteoAPI(lat: lat, lon: lon).urlString
+
+        log.message("[\(type(of: self))].\(#function):\n\(urlStr)", .info, .standard)
+
+        do {
+            ContentCoordinator.startCurrentProgressIndicator()
+
+            if useOpenMeteoCurrentSample {
+                handleCurrentOpenMeteo(response: .success(sampleOpenMeteoCurrent.jsonData))
+                return
+            }
+
+            try serviceCurrentOpenMeteo?.call(
+                urlString: urlStr,
+                timeout:
+                    shouldUseProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
+            )
+        } catch {
+
+            log.message("[\(type(of: self))].\(#function) \(error)", .error)
+
+            ContentCoordinator.stopCurrentProgressIndicator()
+
+            isReadyToCall = true
+        }
+    }
+
+    public func fetchCurrentOpenWeather() {
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        guard isReadyToCall else {
+            log.message("[\(type(of: self))].\(#function) \(isReadyToCall)", .notice)
+            return
+        }
+
+        guard let point = AppGlobals.getLocationPoint() else {
             log.message("[\(type(of: self))].\(#function) location is nil", .notice)
             return
         }
@@ -109,7 +304,7 @@ public class MeteoClientManager {
         // let keyLoaded = AppOptions.keyOpenWeatherAPIOption ?? ""
         // let key = keyLoaded.isEmpty ? AppGlobals.keyOpenWeatherAPI : keyLoaded
 
-        let keySaved = AppGlobals.keyOpenWeatherAPI
+        let keySaved = AppGlobals.theKeyOpenWeatherAPI
         let key = keySaved.isEmpty ? AppOptions.keyOpenWeatherAPIOption ?? "" : keySaved
 
         guard key.isEmpty == false else {
@@ -124,42 +319,101 @@ public class MeteoClientManager {
         let lat = point.latitude.cut(.two).description
         let lon = point.longitude.cut(.two).description
 
-        let lang = globals.languageSwitcher.currentAppLanguage
+        let lang = AppGlobals.languageSwitcher.currentAppLanguage
         let callDetails = OpenWeatherAPI(appid: key,
                                          lat: lat,
                                          lon: lon,
-                                         units: .imperial,
                                          lang: .init(rawValue: lang),
                                          mode: .json)
 
-        log.message(callDetails.urlString.replacingOccurrences(of: key, with: "###"), .notice)
+        let logmsg = "\n\(callDetails.urlString.replacingOccurrences(of: key, with: "###"))"
+        log.message("[\(type(of: self))].\(#function):\(logmsg)", .info, .standard)
 
         do {
-            ContentCoordinator.shared.screenPopover.startAnimationProgressIndicator(.weather)
+            ContentCoordinator.startCurrentProgressIndicator()
 
-            try serviceCurrentWeather.call(
+            if useOpenWeatherMapCurrentSample {
+                handleCurrentOpenWeather(response:
+                        .success(sampleOpenWeatherMapCurrent.jsonData)
+                )
+                return
+            }
+
+            try serviceCurrentOpenWeather?.call(
                 urlString: callDetails.urlString,
-                timeout: timeoutIntervalMeteoData
+                timeout:
+                    shouldUseProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
             )
 
         } catch {
 
             log.message("[\(type(of: self))].\(#function) \(error)", .error)
 
-            ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
+            ContentCoordinator.stopCurrentProgressIndicator()
 
             isReadyToCall = true
         }
     }
 
-    public func fetchForecast() {
+    public func fetchForecastOpenMeteo() {
+
+        log.message("[\(type(of: self))].\(#function)")
 
         guard isReadyToCallForecast else {
             log.message("[\(type(of: self))].\(#function) \(isReadyToCallForecast)", .notice)
             return
         }
 
-        guard let point = getLocationPoint() else {
+        guard let point = AppGlobals.getLocationPoint() else {
+            log.message("[\(type(of: self))].\(#function) location is nil.", .notice)
+            return
+        }
+
+        let lat = point.latitude.cut(.two).description
+        let lon = point.longitude.cut(.two).description
+
+        let urlStr = OpenMeteoAPI(request: .forecast,
+                                  lat: lat,
+                                  lon: lon,
+                                  days: countOpenMeteoForecastDays).urlString
+
+        log.message("[\(type(of: self))].\(#function):\n\(urlStr)", .info, .standard)
+
+        isReadyToCallForecast = false
+
+        do {
+            ContentCoordinator.startForecastProgressIndicator()
+
+            if useOpenMeteoForecastSample {
+                handleForecastOpenMeteo(response: .success(sampleOpenMeteoForecast1.jsonData))
+                return
+            }
+
+            try serviceForecastOpenMeteo?.call(
+                urlString: urlStr,
+                timeout:
+                    shouldUseProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
+            )
+        } catch {
+
+            log.message("[\(type(of: self))].\(#function) \(error)", .error)
+
+            ContentCoordinator.stopForecastProgressIndicator()
+
+            isReadyToCallForecast = true
+        }
+    }
+
+    public func fetchForecastOpenWeather() {
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        guard isReadyToCallForecast else {
+            log.message("[\(type(of: self))].\(#function) \(isReadyToCallForecast)", .notice)
+            return
+        }
+
+        guard let point = AppGlobals.getLocationPoint() else {
             log.message("[\(type(of: self))].\(#function) location is nil.", .notice)
             return
         }
@@ -167,7 +421,7 @@ public class MeteoClientManager {
         // let keyLoaded = AppOptions.keyOpenWeatherAPIOption ?? ""
         // let key = keyLoaded.isEmpty ? AppGlobals.keyOpenWeatherAPI : keyLoaded
 
-        let keySaved = AppGlobals.keyOpenWeatherAPI
+        let keySaved = AppGlobals.theKeyOpenWeatherAPI
         let key = keySaved.isEmpty ? AppOptions.keyOpenWeatherAPIOption ?? "" : keySaved
 
         guard key.isEmpty == false else {
@@ -182,35 +436,45 @@ public class MeteoClientManager {
         let lat = point.latitude.cut(.two).description
         let lon = point.longitude.cut(.two).description
 
-        let lang = globals.languageSwitcher.currentAppLanguage
+        let lang = AppGlobals.languageSwitcher.currentAppLanguage
         var callDetails = OpenWeatherAPI(appid: key,
                                          request: .forecast,
                                          lat: lat,
                                          lon: lon,
-                                         units: .imperial,
                                          lang: .init(rawValue: lang),
                                          mode: .json)
-        callDetails.cnt = 40
+        callDetails.cnt = countOpenWeatherForecastHours
 
-        log.message(callDetails.urlString.replacingOccurrences(of: key, with: "###"), .notice)
+        let logmsg = "\n\(callDetails.urlString.replacingOccurrences(of: key, with: "###"))"
+        log.message("[\(type(of: self))].\(#function):\(logmsg)", .info, .standard)
 
         do {
-            ContentCoordinator.shared.screenPopover.startAnimationProgressIndicator(.forecast)
+            ContentCoordinator.startForecastProgressIndicator()
 
-            try serviceForecast.call(
+            if useOpenWeatherMapForecastSample {
+                handleForecastOpenWeather(response:
+                        .success(sampleOpenWeatherMapForecast40.jsonData)
+                )
+                return
+            }
+
+            try serviceForecastOpenWeather?.call(
                 urlString: callDetails.urlString,
-                timeout: timeoutIntervalMeteoData
+                timeout:
+                    shouldUseProxy ? timeoutIntervalMeteoDataProxy : timeoutIntervalMeteoData
             )
 
         } catch {
 
             log.message("[\(type(of: self))].\(#function) \(error)", .error)
 
-            ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
+            ContentCoordinator.stopForecastProgressIndicator()
 
             isReadyToCallForecast = true
         }
     }
+
+    // MARK: - Fetching Suggestions Requests
 
     public func fetchOpenMeteoSuggestions(_ search: String) {
 
@@ -218,17 +482,16 @@ public class MeteoClientManager {
 
         guard
             self.isReadyToGetSuggestions,
-            search.isEmpty == false,
-            let viewLocation = ContentCoordinator.shared.screenPopover.viewLocation
+            search.isEmpty == false
         else {
             return
         }
 
-        guard AppGlobals.useSuggestionsSample == false
+        guard useOpenMeteoSuggestionsSample == false
         else {
-            viewLocation.indicatorCircular.isHidden = true
-            viewLocation.indicatorCircular.stopAnimation(nil)
-            refreshOpenMeteoSuggestions(Data())
+            // Stop animation indicator
+            ContentCoordinator.stopSuggestionsProgressIndicator()
+            handleSuggestionsOpenMeteo(response: .success(sampleOpenMeteoSuggestions.jsonData))
             return
         }
 
@@ -237,10 +500,12 @@ public class MeteoClientManager {
         let name = search
         let limit = 5
 
-        let lang = Lang(rawValue: globals.languageSwitcher.currentAppLanguage)
+        let lang = Lang(rawValue: AppGlobals.languageSwitcher.currentAppLanguage)
 
         let urlString = OpenMeteoAPI.directGeoCoding(city: name, count: limit, lang: lang)
         let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+
+        log.message("[\(type(of: self))].\(#function):\n\(urlString)", .info, .standard)
 
         var preparedURL: URL?
 
@@ -257,8 +522,7 @@ public class MeteoClientManager {
             log.message("[\(type(of: self))].\(#function) no URL prepared", .error)
 
             // stopAnimationIndicator
-            viewLocation.indicatorCircular.isHidden = true
-            viewLocation.indicatorCircular.stopAnimation(nil)
+            ContentCoordinator.stopSuggestionsProgressIndicator()
 
             self.isReadyToGetSuggestions = true
 
@@ -266,37 +530,39 @@ public class MeteoClientManager {
         }
 
         // startAnimationIndicator
-        viewLocation.indicatorCircular.isHidden = false
-        viewLocation.indicatorCircular.startAnimation(nil)
+        ContentCoordinator.startSuggestionsProgressIndicator()
 
         // request
 
         retrySearchSuggestions = search
-        serviceOpenMeteoSuggestions.requestData(url: requestURL, timeoutIntervalSuggestions)
+        serviceSuggestionsOpenMeteo?.requestData(url: requestURL, timeoutIntervalSuggestions)
     }
 
     public func fetchOpenWeatherSuggestions(_ search: String) {
 
+        log.message("[\(type(of: self))].\(#function)")
+
         guard
             self.isReadyToGetSuggestions,
-            search.isEmpty == false,
-            let viewLocation = ContentCoordinator.shared.screenPopover.viewLocation
+            search.isEmpty == false
         else {
             return
         }
 
-        guard AppGlobals.useSuggestionsSample == false
+        guard useOpenWeatherSuggestionsSample == false
         else {
-            viewLocation.indicatorCircular.isHidden = true
-            viewLocation.indicatorCircular.stopAnimation(nil)
-            refreshOpenWeatherSuggestions(Data())
+            // Stop animation indicator
+            ContentCoordinator.stopSuggestionsProgressIndicator()
+            handleSuggestionsOpenWeather(response:
+                    .success(sampleOpenWeatherMapSuggestions.jsonData)
+            )
             return
         }
 
         // let keyLoaded = AppOptions.keyOpenWeatherAPIOption ?? ""
         // let key = keyLoaded.isEmpty ? AppGlobals.keyOpenWeatherAPI : keyLoaded
 
-        let keySaved = AppGlobals.keyOpenWeatherAPI
+        let keySaved = AppGlobals.theKeyOpenWeatherAPI
         let key = keySaved.isEmpty ? AppOptions.keyOpenWeatherAPIOption ?? "" : keySaved
 
         guard key.isEmpty == false
@@ -315,6 +581,9 @@ public class MeteoClientManager {
         let urlString = OpenWeatherAPI.directGeoCoding(city: name, limit: limit, appid: key)
         let encoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
 
+        let logmsg = "\n\(urlString.replacingOccurrences(of: key, with: "###"))"
+        log.message("[\(type(of: self))].\(#function):\(logmsg)", .info, .standard)
+
         var preparedURL: URL?
 
         if let url = URL(string: urlString) {
@@ -330,8 +599,7 @@ public class MeteoClientManager {
             log.message("[\(type(of: self))].\(#function) no URL prepared", .error)
 
             // stopAnimationIndicator
-            viewLocation.indicatorCircular.isHidden = true
-            viewLocation.indicatorCircular.stopAnimation(nil)
+            ContentCoordinator.stopSuggestionsProgressIndicator()
 
             self.isReadyToGetSuggestions = true
 
@@ -339,24 +607,26 @@ public class MeteoClientManager {
         }
 
         // startAnimationIndicator
-        viewLocation.indicatorCircular.isHidden = false
-        viewLocation.indicatorCircular.startAnimation(nil)
+        ContentCoordinator.startSuggestionsProgressIndicator()
 
         // request
 
         log.message(urlString.replacingOccurrences(of: key, with: "###"), .notice)
 
         retrySearchSuggestions = search
-        serviceOpenWeatherSuggestions.requestData(url: requestURL, timeoutIntervalSuggestions)
+        serviceSuggestionsOpenWeather?.requestData(url: requestURL, timeoutIntervalSuggestions)
     }
-}
 
-extension MeteoClientManager {
+    // MARK: - Handling Current and Forecast Responses
 
-    private func handleCurrent(response: Result<Data, PerseusNetworkClientError>) {
+    private func handleCurrentOpenMeteo(response: Result<Data, PerseusNetworkClientError>) {
+
+        log.message("[\(type(of: self))].\(#function)", .debug, .standard)
+
+        // Stop animation indicator
 
         DispatchQueue.main.async {
-            ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
+            ContentCoordinator.stopCurrentProgressIndicator()
         }
 
         var meteoData: Data?
@@ -369,6 +639,7 @@ extension MeteoClientManager {
             meteoData = data
         case .failure(let error):
             errorResponse = error
+            log.message("[\(type(of: self))].\(#function): \(error)", .debug, .standard)
         }
 
         if let error = errorResponse {
@@ -386,7 +657,7 @@ extension MeteoClientManager {
                     log.message(text, .info)
 
                     DispatchQueue.main.async {
-                        self.fetchWeather()
+                        self.fetchCurrentOpenMeteo()
                     }
                 } else {
                     retriesCountCurrent = 0
@@ -406,31 +677,78 @@ extension MeteoClientManager {
             return
         }
 
-        refreshCurrent(data)
+        refreshCurrentCommand(data, provider: .serviceOpenMeteo)
     }
 
-    private func refreshCurrent(_ data: Data) {
+    private func handleCurrentOpenWeather(response: Result<Data, PerseusNetworkClientError>) {
 
-        // TODO: - Make no matter what order for the next two statements
+        log.message("[\(type(of: self))].\(#function)")
 
-        AppGlobals.weather = data
-
-        globals.sourceWeather.meteoProvider = .serviceOpenWeatherMap
+        // Stop animation indicator
 
         DispatchQueue.main.async {
-
-            ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(.weather)
-            ContentCoordinator.shared.screenPopover.reloadWeatherData()
-
-            self.statusMenusPresenter.reloadData()
-            self.isReadyToCall = true
+            ContentCoordinator.stopCurrentProgressIndicator()
         }
+
+        var meteoData: Data?
+        var errorResponse: PerseusNetworkClientError?
+
+        self.isReadyToCall = true
+
+        switch response {
+        case .success(let data):
+            meteoData = data
+        case .failure(let error):
+            errorResponse = error
+            log.message("[\(type(of: self))].\(#function): \(error)", .debug, .standard)
+        }
+
+        if let error = errorResponse {
+
+            log.message("\(error.endUserMessageLocalized)", .notice, .custom, .enduser)
+
+            if error == .timedOut {
+                if retriesCountCurrent < requestAttemptsForMeteo {
+
+                    // Retry call current weather
+
+                    retriesCountCurrent += 1
+
+                    let text = "The Current Weather call retry attempt \(retriesCountCurrent)"
+                    log.message(text, .info)
+
+                    DispatchQueue.main.async {
+                        self.fetchCurrentOpenWeather()
+                    }
+                } else {
+                    retriesCountCurrent = 0
+                }
+
+                return
+            }
+
+            retriesCountCurrent = 0
+
+            return
+        }
+
+        guard let data = meteoData else {
+            let text = "[\(type(of: self))].\(#function)"
+            log.message(text + " meteoData should not be nil", .fault)
+            return
+        }
+
+        refreshCurrentCommand(data, provider: .serviceOpenWeatherMap)
     }
 
-    private func handleForecast(response: Result<Data, PerseusNetworkClientError>) {
+    private func handleForecastOpenMeteo(response: Result<Data, PerseusNetworkClientError>) {
+
+        log.message("[\(type(of: self))].\(#function)", .debug, .standard)
+
+        // Stop animation indicator
 
         DispatchQueue.main.async {
-            ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
+            ContentCoordinator.stopForecastProgressIndicator()
         }
 
         var meteoData: Data?
@@ -443,6 +761,7 @@ extension MeteoClientManager {
             meteoData = data
         case .failure(let error):
             errorResponse = error
+            log.message("[\(type(of: self))].\(#function): \(error)", .debug, .standard)
         }
 
         if let error = errorResponse {
@@ -460,7 +779,7 @@ extension MeteoClientManager {
                     log.message(text + ": \(self.retriesCountForecast)", .info)
 
                     DispatchQueue.main.async {
-                        self.fetchForecast()
+                        self.fetchForecastOpenMeteo()
                     }
                 } else {
                     retriesCountForecast = 0
@@ -480,36 +799,81 @@ extension MeteoClientManager {
             return
         }
 
-        refreshForecast(data)
+        refreshForecastCommand(data, provider: .serviceOpenMeteo)
     }
 
-    private func refreshForecast(_ data: Data) {
+    private func handleForecastOpenWeather(response: Result<Data, PerseusNetworkClientError>) {
 
-        AppGlobals.forecast = data
-        globals.sourceForecast.meteoProvider = .serviceOpenWeatherMap
+        log.message("[\(type(of: self))].\(#function)")
+
+        // Stop animation indicator
 
         DispatchQueue.main.async {
-
-            ContentCoordinator.shared.screenPopover.stopAnimationProgressIndicator(.forecast)
-            ContentCoordinator.shared.screenPopover.reloadForecastData()
-
-            self.isReadyToCallForecast = true
+            ContentCoordinator.stopForecastProgressIndicator()
         }
+
+        var meteoData: Data?
+        var errorResponse: PerseusNetworkClientError?
+
+        self.isReadyToCallForecast = true
+
+        switch response {
+        case .success(let data):
+            meteoData = data
+        case .failure(let error):
+            errorResponse = error
+            log.message("[\(type(of: self))].\(#function): \(error)", .debug, .standard)
+        }
+
+        if let error = errorResponse {
+
+            log.message("\(error.endUserMessageLocalized)", .notice, .custom, .enduser)
+
+            if error == .timedOut {
+                if retriesCountForecast < requestAttemptsForMeteo {
+
+                    // Retry call forecast
+
+                    retriesCountForecast += 1
+
+                    let text = "The Forecast call retry attempt"
+                    log.message(text + ": \(self.retriesCountForecast)", .info)
+
+                    DispatchQueue.main.async {
+                        self.fetchForecastOpenWeather()
+                    }
+                } else {
+                    retriesCountForecast = 0
+                }
+
+                return
+            }
+
+            retriesCountForecast = 0
+
+            return
+        }
+
+        guard let data = meteoData else {
+            let text = "[\(type(of: self))].\(#function)"
+            log.message(text + " meteoData should not be nil", .fault)
+            return
+        }
+
+        refreshForecastCommand(data, provider: .serviceOpenWeatherMap)
     }
 
-    private func handleOpenMeteoSuggestions(response: Result<Data,
+    // MARK: - Handling Suggestions Responses
+
+    private func handleSuggestionsOpenMeteo(response: Result<Data,
                                             PerseusNetworkClientError>) {
         DispatchQueue.main.async {
 
             log.message("[\(type(of: self))].\(#function)")
 
-            // stopAnimationIndicator
+            // Stop animation indicator
 
-            let indicator =
-            ContentCoordinator.shared.screenPopover.viewLocation.indicatorCircular
-
-            indicator?.isHidden = true
-            indicator?.stopAnimation(nil)
+            ContentCoordinator.stopSuggestionsProgressIndicator()
 
             self.isReadyToGetSuggestions = true
 
@@ -521,6 +885,7 @@ extension MeteoClientManager {
                 suggestions = data
             case .failure(let error):
                 errorResponse = error
+                log.message("[\(type(of: self))].\(#function): \(error)", .debug, .standard)
             }
 
             if let error = errorResponse {
@@ -560,21 +925,22 @@ extension MeteoClientManager {
                 return
             }
 
-            self.refreshOpenMeteoSuggestions(data)
+            let logmsg = "Open-Meteo Suggestions:\n\(data.prettyPrinted ?? "")"
+            log.message(logmsg, .info, .standard)
+
+            self.refreshOpenMeteoSuggestionsCommand(data)
         }
     }
 
-    private func handleOpenWeatherSuggestions(response: Result<Data,
+    private func handleSuggestionsOpenWeather(response: Result<Data,
                                               PerseusNetworkClientError>) {
         DispatchQueue.main.async {
 
-            // stopAnimationIndicator
+            log.message("[\(type(of: self))].\(#function)")
 
-            let indicator =
-            ContentCoordinator.shared.screenPopover.viewLocation.indicatorCircular
+            // Stop animation indicator
 
-            indicator?.isHidden = true
-            indicator?.stopAnimation(nil)
+            ContentCoordinator.stopSuggestionsProgressIndicator()
 
             self.isReadyToGetSuggestions = true
 
@@ -586,6 +952,7 @@ extension MeteoClientManager {
                 suggestions = data
             case .failure(let error):
                 errorResponse = error
+                log.message("[\(type(of: self))].\(#function): \(error)", .debug, .standard)
             }
 
             if let error = errorResponse {
@@ -625,20 +992,55 @@ extension MeteoClientManager {
                 return
             }
 
-            self.refreshOpenWeatherSuggestions(data)
+            let logmsg = "OpenWeatherMap Suggestions:\n\(data.prettyPrinted ?? "")"
+            log.message(logmsg, .info, .standard)
+
+            self.refreshOpenWeatherSuggestionsCommand(data)
         }
     }
 
-    private func refreshOpenMeteoSuggestions(_ data: Data) {
+    // MARK: - Refreshing UI data Commands
+
+    private func refreshCurrentCommand(_ data: Data, provider: MeteoProvider) {
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        AppGlobals.weather = (data, provider)
 
         DispatchQueue.main.async {
 
-            let isSample = AppGlobals.useSuggestionsSample
+            ContentCoordinator.stopCurrentProgressIndicator()
 
-            guard data.isEmpty == false || isSample else { return }
+            ContentCoordinator.shared.screenPopover.reloadWeatherData()
+            ContentCoordinator.shared.statusMenus.reloadData()
 
-            let suggestions: [Location]? =
-            isSample ? suggestionsSample() : suggestionsOpenMeteo(json: data)
+            self.isReadyToCall = true
+        }
+    }
+
+    private func refreshForecastCommand(_ data: Data, provider: MeteoProvider) {
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        AppGlobals.forecast = (data, provider)
+
+        DispatchQueue.main.async {
+
+            ContentCoordinator.stopForecastProgressIndicator()
+            ContentCoordinator.shared.screenPopover.reloadForecastData()
+
+            self.isReadyToCallForecast = true
+        }
+    }
+
+    private func refreshOpenMeteoSuggestionsCommand(_ data: Data) {
+
+        log.message("[\(type(of: self))].\(#function)")
+        guard data.isEmpty == false else { return }
+
+        DispatchQueue.main.async {
+
+            let suggestions: [Location]? = suggestionsOpenMeteo(json: data)
 
             guard
                 let suggestions = suggestions,
@@ -669,16 +1071,15 @@ extension MeteoClientManager {
         }
     }
 
-    private func refreshOpenWeatherSuggestions(_ data: Data) {
+    private func refreshOpenWeatherSuggestionsCommand(_ data: Data) {
+
+        log.message("[\(type(of: self))].\(#function)")
+
+        guard data.isEmpty == false else { return }
 
         DispatchQueue.main.async {
 
-            let isSample = AppGlobals.useSuggestionsSample
-
-            guard data.isEmpty == false || isSample else { return }
-
-            let suggestions: [Location]? =
-            isSample ? suggestionsSample() : suggestionsOpenWeather(json: data)
+            let suggestions: [Location]? = suggestionsOpenWeather(json: data)
 
             guard
                 let suggestions = suggestions,
@@ -688,8 +1089,8 @@ extension MeteoClientManager {
             }
 
             if suggestions.isEmpty {
-                let text = "There are no suggestions received".localizedValue
-                log.message(text, .notice, .custom, .enduser)
+                log.message("There are no suggestions received".localizedValue,
+                            .notice, .custom, .enduser)
             }
 
             viewLocation.viewSuggestions.suggestionsArray = suggestions
@@ -707,35 +1108,5 @@ extension MeteoClientManager {
 
             self.isReadyToGetSuggestions = true
         }
-    }
-
-    private func getLocationPoint() -> GeoPoint? {
-
-        var locationCardType: LocationCardType?
-
-        if let type = ContentCoordinator.shared.screenPopover.viewLocation?.locationCard {
-            locationCardType = type
-        } else {
-            locationCardType = AppOptions.favoriteLocationsOption.first(where: {
-                $0.isOnDisplay && $0.isCurrentLocation }) != nil ? .current : .favorite
-        }
-
-        guard let locationCard = locationCardType
-        else {
-            return nil
-        }
-
-        var point: GeoPoint?
-
-        switch locationCard {
-        case .suggestion:
-            point = AppGlobals.suggestion?.point
-        case .favorite:
-            point = AppOptions.favoriteLocationsOption.first(where: { $0.isOnDisplay })?.point
-        case .current:
-            point = AppGlobals.currentLocation
-        }
-
-        return point
     }
 }

@@ -13,7 +13,7 @@
 	<key>Location Usage Description</key>
 	<string>Гео сведения (широта и долгота) обязательны для получения метео данных.</string>
 	<key>Copyright</key>
-	<string>Охраняется авторским правом © 2023 - 2025 Михаил A. Жигулин из Новосибирска.</string>
+	<string>Охраняется авторским правом © 2023 - 2026 Михаил A. Жигулин из Новосибирска.</string>
 	<key>Default: N/A</key>
 	<string>нет</string>
 	<key>P2P</key>
@@ -25,7 +25,7 @@
 	<key>Redirect Alert: title</key>
 	<string>Службы Локации.</string>
 	<key>Redirect Alert: message</key>
-	<string>Статус Гео Доступа можно актуализировать через Системные Настройки.</string>
+	<string>Статус Гео Доступа можно определить заново через Системные Настройки.</string>
 	<key>Redirect Alert: cancel</key>
 	<string>Хорошо</string>
 	<key>Redirect Alert: function</key>
@@ -117,7 +117,7 @@
 	<key>GeoAccess: .notAllowed</key>
 	<string>Запрещено</string>
 	<key>Geo Couple</key>
-	<string>Широта, Долгота</string>
+	<string>Широта,Долгота</string>
 	<key>Button: Update Geo Access</key>
 	<string>Обновить Геодоступ</string>
 	<key>Button: Refresh Current Location</key>
@@ -177,9 +177,17 @@
 	<key>Unit: mb</key>
 	<string>мбар</string>
 	<key>Label: Sunrise</key>
-	<string>Восход</string>
+	<string>Восход солнца</string>
 	<key>Label: Sunset</key>
-	<string>Заход</string>
+	<string>Заход солнца</string>
+	<key>Label: Moonrise</key>
+	<string>Восход луны</string>
+	<key>Label: Moonset</key>
+	<string>Заход луны</string>
+	<key>Label: UV Index</key>
+	<string>УФ-индекс</string>
+	<key>Label: Moon Phase</key>
+	<string>Фаза луны</string>
 	<key>/* Time */</key>
 	<string>--</string>
 	<key>AM</key>
@@ -189,7 +197,7 @@
 	<key>Postfix: Year</key>
 	<string> г.</string>
 	<key>Prefix: Last One</key>
-	<string>Расчет от</string>
+	<string>Данные от</string>
 	<key>/* Forecast View */</key>
 	<string>--</string>
 	<key>Label: DayItem Weather Conditions</key>
@@ -226,9 +234,19 @@
 	<string>Барометр</string>
 	<key>Option: Distance</key>
 	<string>Дальность обзора</string>
-	<key>OpenWeather: Lock</key>
+	<key>Label: Proxy</key>
+	<string>Прокся</string>
+	<key>Label: ProxyCredentials</key>
+	<string>IP:Порт</string>
+	<key>IP:Port:Login:Password</key>
+	<string>IP:Порт:Логин:Пароль</string>
+	<key>Button Proxy: Save</key>
+	<string>Сохр.</string>
+	<key>Button Proxy: Lock</key>
+	<string>Закр.</string>
+	<key>Button: Lock</key>
 	<string>Скрыть</string>
-	<key>OpenWeather: Unlock</key>
+	<key>Button: Unlock</key>
 	<string>Показать</string>
 	<key>OpenWeather: Hidden</key>
 	<string>Скрытая замочная скважина...</string>
@@ -311,9 +329,9 @@
 	<key>Option: Current Provider</key>
 	<string>Поставщики</string>
 	<key>Option: For Meteo Data</key>
-	<string>Метео данные</string>
+	<string>Данные</string>
 	<key>Option: For Geo Data</key>
-	<string>Гео справочник</string>
+	<string>Гео</string>
 	<key>Button: Close</key>
 	<string>Закрыть</string>
 	<key>Button: Reset to Defaults</key>
@@ -405,9 +423,9 @@
 	<key>Label: The App Version</key>
 	<string>Выпуск</string>
 	<key>Label: Copyright Notice</key>
-	<string>Охраняется авторским правом © 7531 - 7534 Михаил A. Жигулин из Новосибирска.</string>
+	<string>Охраняется авторским правом © 7531 - 7535 Михаил A. Жигулин из Новосибирска.</string>
 	<key>Label: Copyright Details</key>
-	<string>Летоисчесление ведется от Сотворения Мира в Звездном Храме в соответствии со славянским календарем в котором первый месяц сентябрь. Первое сентября 2025 года от Р.Х. начало 7534 года.</string>
+	<string>Летоисчесление ведется от Сотворения Мира в Звездном Храме в соответствии со славянским календарем в котором первый месяц сентябрь. Первое сентября 2026 года от Р.Х. начало 7535 года.</string>
 	<key>Label: Credits</key>
 	<string>Работы выполнены</string>
 	<key>Label: Balancing and Control</key>

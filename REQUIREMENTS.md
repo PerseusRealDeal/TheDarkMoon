@@ -19,9 +19,9 @@ Contents
 * [Options](#Options)
 * [Special Features](#Special-Features)
     * [Favorites](#Favorites)
-* [Data Mappings](#Data-Mappings)
-    * [OpenWeather Icons](#OpenWeather-Icons)
-    * [Open-Meteo Icons](#Open-Meteo-Icons)
+* [Weather Icons Mappings](#Weather-Icons-Mappings)
+    * [OpenWeather and SF Symbols](#OpenWeather-and-SF-Symbols)
+    * [Open-Meteo and SF Symbols](#Open-Meteo-and-SF-Symbols)
 
 Idea History
 ==
@@ -54,6 +54,7 @@ Meteo Terms mapping
 | ------------- | --------------- | ------------------------- |
 | Temperature   | Temperature     | Temperature (2 m)         |
 | Kinda         | Feels Like      | Apparent Temperature      |
+| Visibility    | Visibility      | Visibility                |
 | L             | Temperature Min | Minimum Temperature (2 m) |
 | H             | Temperature Max | Maximum Temperature (2 m) |
 | Wind          | Wind Speed      | Wind Speed (10 m)         |
@@ -64,10 +65,14 @@ Meteo Terms mapping
 | Cloudiness    | Cloudiness      | Cloud Cover Total         |
 | Sunrise       | Sunrise         | Sunrise                   |
 | Sunset        | Sunset          | Sunset                    |
+| Moonrise      | --              | Moonrise                  |
+| Moonset       | --              | Moonset                   |
+| Moon Phase    | --              | Moon Phase                |
 | Rain          | Rain            | Rain, Showers             |
 | Snow          | Snow            | Snow, Snowfall            |
 | Precipitation | Rain, Snow      | Rain + Showers + Snow     |
-| Probability   | None            | Precipitation Probability |
+| Probability   | --              | Precipitation Probability |
+| UV Index      | --              | UV Index                  |
 
 Integrations
 ==
@@ -160,10 +165,13 @@ Current Weather
 
 | Show in App            | OpenWeather API Respose        | Open-Meteo API Response          |
 | ---------------------- | ------------------------------ | -------------------------------- |
-| Weather Icon           | Weather icon id                | None                             |
+| Weather Icon           | Weather icon id                | --                               |
 | Weather Description    | Weather condition codes        | WMO code                         |
 | Sunrise                | UTC                            | GMT                              |
 | Sunset                 | UTC                            | GMT                              |
+| Moonrise               | --                             | GMT                              |
+| Moonset                | --                             | GMT                              |
+| Moon Phase             | --                             | fraction                         |
 | Temperature            | Imperial: Fahrenheit           | Imperial: Fahrenheit             |
 | Temperature Low        | Imperial: Fahrenheit           | Imperial: Fahrenheit             |
 | Temperature High       | Imperial: Fahrenheit           | Imperial: Fahrenheit             |
@@ -179,6 +187,7 @@ Current Weather
 | Snow                   | Snow Precipitation, mm/h       | Snow, Snowfall, cm/h             |
 | Precipitation          | Calculated (Rain + Snow), mm/h | Precipitation, mm/h              |
 | Probability            | Calculated (Precipitation), %  | Precipitation Probability Max, % |
+| UV Index               | --                             | from 0.00 to 11.00+              |
 
 > [!NOTE]
 > `OpenWeather Current Weather request prepared:`
@@ -186,9 +195,9 @@ Current Weather
 
 > [!NOTE]
 > `Open-Meteo Current Weather request prepared:`
-> https://api.open-meteo.com/v1/forecast?latitude=##.##&longitude=##.##&daily=sunrise,sunset,precipitation_probability_max&current={PARAMS}&temperature_unit=fahrenheit&wind_speed_unit=ms&forecast_days=1
+> https://api.open-meteo.com/v1/forecast?latitude=##.##&longitude=##.##&daily=uv_index_max,moon_phase,moonrise,moonset,sunrise,sunset,precipitation_probability_max&current={PARAMS}&temperature_unit=fahrenheit&wind_speed_unit=ms&forecast_days=1
 
-`Open-Meteo Current PARAMS:` weather_code, wind_speed_10m, wind_direction_10m, wind_gusts_10m, temperature_2m, apparent_temperature, visibility, pressure_msl, relative_humidity_2m, cloud_cover, showers, rain, snowfall, precipitation, is_day
+`Open-Meteo Current PARAMS:` weather_code, wind_speed_10m, wind_direction_10m, wind_gusts_10m, temperature_2m, apparent_temperature, visibility, pressure_msl, relative_humidity_2m, cloud_cover, showers, rain, snowfall, precipitation, precipitation_probability, is_day
 
 Forecast
 --
@@ -205,6 +214,9 @@ Forecast
 | Weather Description    | Weather condition codes          | WMO code                                    |
 | Sunrise                | UTC                              | GMT                                         |
 | Sunset                 | UTC                              | GMT                                         |
+| Moonrise               | --                               | GMT                                         |
+| Moonset                | --                               | GMT                                         |
+| Moon Phase             | --                               | fraction                                    |
 | Temperature            | Imperial: Fahrenheit             | Imperial: Fahrenheit                        |
 | Temperature Low        | Imperial: Fahrenheit             | Imperial: Fahrenheit                        |
 | Temperature High       | Imperial: Fahrenheit             | Imperial: Fahrenheit                        |
@@ -220,6 +232,7 @@ Forecast
 | Snow                   | Hourly: Snow Precipitation, mm/h | Hourly: Snow, Snowfall, cm/h                |
 | Precipitation          | Calculated (Rain + Snow), mm/h   | Hourly: Precipitation, mm/h                 |
 | Probability            | Calculated (Precipitation), %    | Daily and Hourly: Precipitation Probability |
+| UV Index               | --                               | from 0.00 to 11.00+                         |
 
 > [!NOTE]
 > `OpenWeather Weather Forecast request prepared:`
@@ -275,63 +288,69 @@ Favorites
 
 - The list of favorite places should have "Current Location" item as the first item that can't be removed.
 
-Data Mappings
+Weather Icons Mappings
 ==
 
-- The app should rely on Apple weather icons to represent weather condition.
-- If Dark Mode in Light, Apple icons should have postfix .fill, "sun.max.fill" for instance.
+- The app should rely on Apple weather icons, SF Symbols, to represent weather condition.
+- Filled SF Symbol should be used in Light, but filled always in StatusMenus.
+- Black SF Symbol should be used in Light, and white in Dark.
 
-OpenWeather Icons
+In this mapping SF Symbol name in use without indicating fill and color.
+
+[Online SF Symbols browser](https://github.com/andrewtavis/sf-symbols-online)
+[Human Interface Guidelines. SF Symbols.](https://developer.apple.com/design/human-interface-guidelines/sf-symbols)
+
+OpenWeather and SF Symbols
 --
 
 > [!NOTE]
 > OpenWeather API: [weather conditions](https://openweathermap.org/api/weather-conditions)
 
-| OpenWeather Icon | Description      | Apple Icon Day  | Apple Icon Night |
-| ---------------- | ---------------- | --------------- | ---------------- |
-| 01d or 01n       | Clear sky        | sun.max         | moon             |
-| 02d or 02n       | Few clouds       | cloud.sun       | cloud.moon       |
-| 03d or 03n       | Scattered clouds | cloud           | cloud            |
-| 04d or 04n       | Broken clouds    | cloud           | cloud            |
-| 09d or 09n       | Shower rain      | cloud.heavyrain | cloud.heavyrain  |
-| 10d or 10n       | Rain             | cloud.sun.rain  | cloud.moon.rain  |
-| 11d or 11n       | Thunderstorm     | cloud.sun.bolt  | cloud.moon.bolt  |
-| 13d or 13n       | Snow             | snow            | snow             |
-| 50d or 50n       | Mist             | cloud.fog       | cloud.fog        |
+| OpenWeather Icon | Description      | SF Symbol for Day | SF Symbol for Night |
+| ---------------- | ---------------- | ----------------- | ------------------- |
+| 01d or 01n       | Clear sky        | sun.max           | moon                |
+| 02d or 02n       | Few clouds       | cloud.sun         | cloud.moon          |
+| 03d or 03n       | Scattered clouds | cloud             | cloud               |
+| 04d or 04n       | Broken clouds    | cloud             | cloud               |
+| 09d or 09n       | Shower rain      | cloud.heavyrain   | cloud.heavyrain     |
+| 10d or 10n       | Rain             | cloud.sun.rain    | cloud.moon.rain     |
+| 11d or 11n       | Thunderstorm     | cloud.sun.bolt    | cloud.moon.bolt     |
+| 13d or 13n       | Snow             | snow              | snow                |
+| 50d or 50n       | Mist             | cloud.fog         | cloud.fog           |
 
-Open-Meteo Icons
+Open-Meteo and SF Symbols
 --
 
 > [!NOTE]
 > Open-Meteo API: [WMO Weather interpretation codes](https://open-meteo.com/en/docs) at the end of page.
 
-| Open-Meteo Code | WMO Description                   | Apple Icon Day  | Apple Icon Night |
-| --------------- | --------------------------------- | --------------- | ---------------- |
-| 99              | Thunderstorm: heavy hail          | cloud.bolt.rain | cloud.bolt.rain  |
-| 96              | Thunderstorm: slight hail         | cloud.bolt.rain | cloud.bolt.rain  |
-| 95              | Thunderstorm: slight or moderate  | cloud.sun.bolt  | cloud.moon.bolt  |
-| 86              | Snow showers: heavy               | cloud.sleet     | cloud.sleet      |
-| 85              | Snow showers: slight              | cloud.sleet     | cloud.sleet      |
-| 82              | Rain showers: violent             | cloud.heavyrain | cloud.heavyrain  |
-| 81              | Rain showers: moderate            | cloud.heavyrain | cloud.heavyrain  |
-| 80              | Rain showers: slight              | cloud.heavyrain | cloud.heavyrain  |
-| 77              | Snow grains                       | cloud.snow      | cloud.snow       |
-| 75              | Snow fall: heavy intensity        | cloud.snow      | cloud.snow       |
-| 73              | Snow fall: moderate               | cloud.snow      | cloud.snow       |
-| 71              | Snow fall: slight                 | cloud.snow      | cloud.snow       |
-| 67              | Freezing Rain: heavy intensity    | cloud.sleet     | cloud.sleet      |
-| 66              | Freezing Rain: light              | cloud.sleet     | cloud.sleet      |
-| 65              | Rain: heavy intensity             | cloud.heavyrain | cloud.heavyrain  |
-| 63              | Rain: moderate                    | cloud.heavyrain | cloud.heavyrain  |
-| 61              | Rain: slight                      | cloud.rain      | cloud.moon.rain  |
-| 57              | Freezing Drizzle: dense intensity | cloud.sleet     | cloud.sleet      |
-| 56              | Freezing Drizzle: light           | cloud.sleet     | cloud.sleet      |
-| 55              | Drizzle: dense intensity          | cloud.drizzle   | cloud.drizzle    |
-| 53              | Drizzle: moderate                 | cloud.drizzle   | cloud.drizzle    |
-| 51              | Drizzle: light                    | cloud.drizzle   | cloud.drizzle    |
-| 48              | Depositing rime fog               | cloud.fog       | cloud.fog        |
-| 45              | Fog                               | cloud.fog       | cloud.fog        |
-| 3               | Overcast                          | cloud           | cloud            |
-| 2               | Partly cloudy                     | cloud.sun       | cloud.moon       |
-| 1               | Mainly clear                      | cloud.sun       | cloud.moon       |
-| 0               | Clear sky                         | sun.max         | moon             |
+| WMO Code | WMO Description                   | SF Symbol for Day | SF Symbol for Night |
+| -------- | --------------------------------- | ----------------- | ------------------- |
+| 99       | Thunderstorm: heavy hail          | cloud.bolt.rain   | cloud.bolt.rain     |
+| 96       | Thunderstorm: slight hail         | cloud.bolt.rain   | cloud.bolt.rain     |
+| 95       | Thunderstorm: slight or moderate  | cloud.sun.bolt    | cloud.moon.bolt     |
+| 86       | Snow showers: heavy               | cloud.snow        | cloud.snow          |
+| 85       | Snow showers: slight              | cloud.snow        | cloud.snow          |
+| 82       | Rain showers: violent             | cloud.heavyrain   | cloud.heavyrain     |
+| 81       | Rain showers: moderate            | cloud.heavyrain   | cloud.heavyrain     |
+| 80       | Rain showers: slight              | cloud.heavyrain   | cloud.heavyrain     |
+| 77       | Snow grains                       | cloud.snow        | cloud.snow          |
+| 75       | Snow fall: heavy intensity        | cloud.snow        | cloud.snow          |
+| 73       | Snow fall: moderate               | snow              | snow                |
+| 71       | Snow fall: slight                 | snow              | snow                |
+| 67       | Freezing Rain: heavy intensity    | cloud.sleet       | cloud.sleet         |
+| 66       | Freezing Rain: light              | cloud.sleet       | cloud.sleet         |
+| 65       | Rain: heavy intensity             | cloud.heavyrain   | cloud.heavyrain     |
+| 63       | Rain: moderate                    | cloud.rain        | cloud.rain          |
+| 61       | Rain: slight                      | cloud.sun.rain    | cloud.moon.rain     |
+| 57       | Freezing Drizzle: dense intensity | cloud.sleet       | cloud.sleet         |
+| 56       | Freezing Drizzle: light           | cloud.sleet       | cloud.sleet         |
+| 55       | Drizzle: dense intensity          | cloud.drizzle     | cloud.drizzle       |
+| 53       | Drizzle: moderate                 | cloud.drizzle     | cloud.drizzle       |
+| 51       | Drizzle: light                    | cloud.drizzle     | cloud.drizzle       |
+| 48       | Depositing rime fog               | cloud.fog         | cloud.fog           |
+| 45       | Fog                               | cloud.fog         | cloud.fog           |
+| 3        | Overcast                          | cloud.drizzle     | cloud.drizzle       |
+| 2        | Partly cloudy                     | cloud.sun         | cloud.moon          |
+| 1        | Mainly clear                      | sun.max           | moon                |
+| 0        | Clear sky                         | sun.max           | moon                |

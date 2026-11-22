@@ -1,0 +1,154 @@
+//
+//  MeteoFactsDefaults.swift
+//  TheDarkMoon
+//
+//  Created by Mikhail Zhigulin in 7532.
+//
+//  Copyright © 7532 - 7535 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7532 - 7535 PerseusRealDeal
+//
+//  The year starts from the creation of the world according to a Slavic calendar.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
+//
+//  See LICENSE for details. All rights reserved.
+//
+
+import Foundation
+
+public struct MeteoFactsDefaults {
+
+    public static var responseTimeLabelText: String {
+        return "Label: Made with Love".localizedValue
+    }
+
+    public static var meteoDataProviderName: String {
+        return AppGlobals.theMeteoProviderName
+    }
+
+    public static var weatherIconName: String {
+        return AppGlobals.theAppLogoImageName
+    }
+
+    public static var forecastDaysItemWeatherDescription: String {
+        return "Label: DayItem Weather Conditions".localizedValue
+    }
+
+    public static var temperature: String {
+        return "\(temperatureCurrentFormat)\(AppOptions.temperatureOption.unit)"
+    }
+
+    public static var windSpeed: String {
+        return "\(windSpeedFormat) \(AppOptions.windSpeedOption.unitLocalized)"
+    }
+
+    public static var windDirection: String {
+        return  "___° : _/__"
+    }
+
+    public static var pressure: String {
+        return  "____ \(AppOptions.pressureOption.unitLocalized)"
+    }
+
+    public static var humidity: String {
+        return  "___%"
+    }
+
+    public static var cloudiness: String {
+        return  "___%"
+    }
+
+    public static var visibility: String {
+        return  "_____ \(AppOptions.distanceOption.unitLocalized)"
+    }
+
+    public static var timeFormat: String {
+
+        var template = ""
+
+        switch AppOptions.timeFormatOption {
+        case .hour24:
+            template = "--:--"
+        case .hour12:
+            template = "--:-- _._."
+        case .system:
+            template = Date.currentTimeFormat == .hour12 ? "--:-- _._." : "--:--"
+        }
+
+        return template
+    }
+
+    public static var forecastRainSnow: String {
+        return "-- / --"
+    }
+
+    public static var moonphase: String {
+        return "_.__"
+    }
+
+    public static var uvindex: String {
+        return "_.__"
+    }
+
+    public static var probability: String {
+        return "___%"
+    }
+
+    public static var rain: String {
+        return "_.__ " + "Unit: mm".localizedValue
+    }
+
+    public static var snow: String {
+        return "_.__ " + "Unit: mm".localizedValue
+    }
+
+    public static var weatherDescription: String {
+        return "Label: Weather Conditions".localizedValue
+    }
+
+    public static var weekday: String {
+        return "Label: Weekday short".localizedValue
+    }
+
+    public static var forecastDate: String {
+        return "Label: Forecast Date".localizedValue
+    }
+
+    public static var weatherConditions: OpenWeatherIconCode {
+        return OpenWeatherIconCode(code: OpenWeatherCode(rawValue: 99)!, name: "Icon")
+    }
+
+    // MARK: - Private Properties
+
+    public static var temperatureCurrentFormat: String {
+
+        var format = ""
+
+        switch AppOptions.temperatureOption {
+        case .standard:
+            format = "___.__"
+        case .metric:
+            format = "-__"
+        case .imperial:
+            format = "-__"
+        }
+
+        return format
+    }
+
+    private static var windSpeedFormat: String {
+
+        var format = ""
+
+        switch AppOptions.windSpeedOption {
+        case .ms:
+            format = "__"
+        case .kmh:
+            format = "__"
+        case .mph:
+            format = "__"
+        }
+
+        return format
+    }
+
+}

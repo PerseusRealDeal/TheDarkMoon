@@ -1,14 +1,14 @@
 //
 //  PerseusDataDefender.swift
-//  PerseusMeteo
+//  TheDarkMoon
 //
 //  Created by Mikhail Zhigulin in 7532.
 //
-//  Copyright © 7532 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7532 PerseusRealDeal
+//  Copyright © 7532 - 7535 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7532 - 7535 PerseusRealDeal
 //
 //  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 //
 //  See LICENSE for details. All rights reserved.
 //
@@ -54,10 +54,10 @@ final class PerseusDataDefender: NSObject {
         super.init()
     }
 
-    public func save(_ secret: OpenWeatherCredentials) throws {
+    public func save(_ secret: SecretCredentials) throws {
 
         // Get data of note
-        guard let secretData = secret.note.data(using: .utf8)
+        guard let secretData = secret.dataSecured.data(using: .utf8)
         else {
             let error = DataDefenderError.string2DataError
             log.message(error.logMessage, .error)
@@ -116,7 +116,7 @@ final class PerseusDataDefender: NSObject {
         }
     }
 
-    public func remove(_ secret: OpenWeatherCredentials) throws {
+    public func remove(_ secret: SecretCredentials) throws {
 
         let query = secret.keychainQuery
         let status = SecItemDelete(query as CFDictionary)
@@ -147,7 +147,7 @@ final class PerseusDataDefender: NSObject {
         }
     }
 
-    public func load(_ secret: OpenWeatherCredentials) throws -> String {
+    public func load(_ secret: SecretCredentials) throws -> String {
 
         // Get keychain query to load secret
         let query = secret.keychainLoadQuery

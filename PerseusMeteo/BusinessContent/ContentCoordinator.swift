@@ -67,9 +67,7 @@ class ContentCoordinator {
         log.message("[\(type(of: self))].\(#function)", .notice)
 
         statusMenus = StatusMenusPresenter()
-
-        // TODO: Should not be connected to statusMenus
-        meteoClientManager = MeteoClientManager(presenter: statusMenus)
+        meteoClientManager = MeteoClientManager()
 
         // Observe StatusMenusItem events
         AppGlobals.notificationCenter.addObserver(
@@ -92,11 +90,21 @@ class ContentCoordinator {
     }
 
     static func callWeather() {
-        shared.meteoClientManager?.fetchWeather()
+        switch AppOptions.currentMeteoProviderOption {
+        case .serviceOpenMeteo:
+            shared.meteoClientManager?.fetchCurrentOpenMeteo()
+        case .serviceOpenWeatherMap:
+            shared.meteoClientManager?.fetchCurrentOpenWeather()
+        }
     }
 
     static func callForecast() {
-        shared.meteoClientManager?.fetchForecast()
+        switch AppOptions.currentMeteoProviderOption {
+        case .serviceOpenMeteo:
+            shared.meteoClientManager?.fetchForecastOpenMeteo()
+        case .serviceOpenWeatherMap:
+            shared.meteoClientManager?.fetchForecastOpenWeather()
+        }
     }
 
     static func fetchSuggestions(_ search: String, geoAgent: GeoCodingProvider) {
@@ -117,27 +125,59 @@ class ContentCoordinator {
     }
 
     static func cancellWeatherCall() {
-        shared.meteoClientManager?.canellWeatherCall()
+        shared.meteoClientManager?.cancellWeatherCall()
     }
 
     static func cancellForecastCall() {
         shared.meteoClientManager?.cancellForecastCall()
     }
 
-    static func cancellSuggestionsRequest() {
-        shared.meteoClientManager?.cancellSuggestionsRequest()
+    static func cancellSuggestionsCall() {
+        shared.meteoClientManager?.cancellSuggestionsCall()
     }
+
+    // MARK: - Animation Progress Indicators
+
+    static func startCurrentProgressIndicator() {
+        shared.screenPopover.startAnimationProgressIndicator(.currentWeather)
+    }
+
+    static func startForecastProgressIndicator() {
+        shared.screenPopover.startAnimationProgressIndicator(.forecast)
+    }
+
+    static func startSuggestionsProgressIndicator() {
+        shared.screenPopover.viewLocation?.indicatorCircular.isHidden = false
+        shared.screenPopover.viewLocation?.indicatorCircular.startAnimation(nil)
+    }
+
+    static func stopCurrentProgressIndicator() {
+        shared.screenPopover.stopAnimationProgressIndicator(.currentWeather)
+    }
+
+    static func stopForecastProgressIndicator() {
+        shared.screenPopover.stopAnimationProgressIndicator(.forecast)
+    }
+
+    static func stopSuggestionsProgressIndicator() {
+        shared.screenPopover.viewLocation?.indicatorCircular.isHidden = true
+        shared.screenPopover.viewLocation?.indicatorCircular.stopAnimation(nil)
+    }
+
+    // MARK: - Privacies
 
     @objc private func updateCurrentWeatherByTimer() {
 
         let main = ContentCoordinator.shared
+        let currentMeteoSource = AppOptions.currentMeteoProviderOption
 
         main.updateTimer?.invalidate()
         main.statusMenus.reloadData()
 
         guard
             AppOptions.statusMenusOption == true,
-            AppOptions.statusMenusPeriodOption != .none
+            AppOptions.statusMenusPeriodOption != .none,
+            let manager = main.meteoClientManager
         else {
             return
         }
@@ -145,12 +185,24 @@ class ContentCoordinator {
         main.updateTimer = Timer.scheduledTimer(
             withTimeInterval: AppOptions.statusMenusPeriodOption.timeInterval,
             repeats: true) { _ in
-                main.meteoClientManager?.fetchWeather()
+
+                switch currentMeteoSource {
+                case .serviceOpenMeteo:
+                    manager.fetchCurrentOpenMeteo()
+                case .serviceOpenWeatherMap:
+                    manager.fetchCurrentOpenWeather()
+                }
+
                 log.message("[\(type(of: self))].\(#function) the timer fired", .info)
             }
 
         log.message("[\(type(of: self))].\(#function) the timer fired", .info)
 
-        main.meteoClientManager?.fetchWeather()
+        switch currentMeteoSource {
+        case .serviceOpenMeteo:
+            manager.fetchCurrentOpenMeteo()
+        case .serviceOpenWeatherMap:
+            manager.fetchCurrentOpenWeather()
+        }
     }
 }

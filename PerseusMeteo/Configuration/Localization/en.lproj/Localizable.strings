@@ -93,7 +93,7 @@
 "GeoAccess: .allowed" = "Allowed";
 "GeoAccess: .notAllowed" = "Not allowed";
 
-"Geo Couple" = "Latitude, Longitude";
+"Geo Couple" = "Latitude,Longitude";
 
 "Button: Update Geo Access" = "Update Geo Access";
 "Button: Refresh Current Location" = "Update Current Location";
@@ -136,9 +136,28 @@
 "Unit: mb" = "mb";
 
 "Unit: mm" = "mm";
+"Unit: mm/h" = "mm/h";
 
 "Label: Sunrise" = "Sunrise";
 "Label: Sunset" = "Sunset";
+
+"Label: Moonrise" = "Moonrise";
+"Label: Moonset" = "Moonset";
+
+"Label: UV Index" = "UV Index";
+"Label: Moon Phase" = "Moon Phase";
+"Label: Probability" = "Probability";
+"Label: Rain" = "Rain";
+"Label: Snow" = "Snow";
+
+"ToolTip: Probability OM" = "Daily Precipitation Probability Max";
+"ToolTip: Probability OW" = "";
+
+"ToolTip: Rain OM" = "Daily Rain Sum";
+"ToolTip: Rain OW" = "Rain precipitation for current hour";
+
+"ToolTip: Snow OM" = "Daily Snowfall Sum";
+"ToolTip: Snow OW" = "Snow precipitation for current hour";
 
 /* Time */
 
@@ -147,7 +166,7 @@
 
 "Postfix: Year" = "";
 
-"Prefix: Last One" = "Last One";
+"Prefix: Last One" = "Received:";
 
 /* Forecast View */
 
@@ -202,8 +221,14 @@
 
 "Section: Special Options" = "Special Options";
 
-"OpenWeather: Lock" = "Lock";
-"OpenWeather: Unlock" = "Unlock";
+"Label: Proxy" = "Proxy";
+"Label: ProxyCredentials" = "IP:Port";
+"IP:Port:Login:Password" = "IP:Port:Login:Password";
+"Button Proxy: Save" = "Save";
+"Button Proxy: Lock" = "Lock";
+
+"Button: Lock" = "Lock";
+"Button: Unlock" = "Unlock";
 "OpenWeather: Hidden" = "Hidden key-hole...";
 "OpenWeather: Editable" = "Past the key (token)...";
 
@@ -221,8 +246,8 @@
 "Option: SecondLine" = "Second line";
 "Option: ToolTip" = "Tool tip";
 "Option: Current Provider" = "Current Provider";
-"Option: For Meteo Data" = "For Meteo Data";
-"Option: For Geo Data" = "For Geo Data";
+"Option: For Meteo Data" = "Data";
+"Option: For Geo Data" = "Geo";
 
 "StatusMenus: feelsLike" = "Feels like";
 "StatusMenus: direction" = "Direction";

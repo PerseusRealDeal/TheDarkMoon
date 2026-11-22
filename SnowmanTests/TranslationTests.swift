@@ -203,6 +203,7 @@ class TranslationTests: XCTestCase {
 
     // MARK: - WeatherView
 
+    // swiftlint:disable:next function_body_length
     func test_translation_of_PopoverScreen_WeatherView() {
 
         // assert
@@ -281,6 +282,18 @@ class TranslationTests: XCTestCase {
 
         XCTAssertEqual("Label: Sunset".localizedExpectation,
                        "Label: Sunset".localizedValue)
+
+        XCTAssertEqual("Label: Moonrise".localizedExpectation,
+                       "Label: Moonrise".localizedValue)
+
+        XCTAssertEqual("Label: Moonset".localizedExpectation,
+                       "Label: Moonset".localizedValue)
+
+        XCTAssertEqual("Label: UV Index".localizedExpectation,
+                       "Label: UV Index".localizedValue)
+
+        XCTAssertEqual("Label: Moon Phase".localizedExpectation,
+                       "Label: Moon Phase".localizedValue)
 
         XCTAssertEqual("AM".localizedExpectation,
                        "AM".localizedValue)
@@ -440,11 +453,26 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("Section: Special Options".localizedExpectation,
                        "Section: Special Options".localizedValue)
 
-        XCTAssertEqual("OpenWeather: Lock".localizedExpectation,
-                       "OpenWeather: Lock".localizedValue)
+        XCTAssertEqual("Label: Proxy".localizedExpectation,
+                       "Label: Proxy".localizedValue)
 
-        XCTAssertEqual("OpenWeather: Unlock".localizedExpectation,
-                       "OpenWeather: Unlock".localizedValue)
+        XCTAssertEqual("Label: ProxyCredentials".localizedExpectation,
+                       "Label: ProxyCredentials".localizedValue)
+
+        XCTAssertEqual("IP:Port:Login:Password".localizedExpectation,
+                       "IP:Port:Login:Password".localizedValue)
+
+        XCTAssertEqual("Button Proxy: Save".localizedExpectation,
+                       "Button Proxy: Save".localizedValue)
+
+        XCTAssertEqual("Button Proxy: Lock".localizedExpectation,
+                       "Button Proxy: Lock".localizedValue)
+
+        XCTAssertEqual("Button: Lock".localizedExpectation,
+                       "Button: Lock".localizedValue)
+
+        XCTAssertEqual("Button: Unlock".localizedExpectation,
+                       "Button: Unlock".localizedValue)
 
         XCTAssertEqual("OpenWeather: Hidden".localizedExpectation,
                        "OpenWeather: Hidden".localizedValue)

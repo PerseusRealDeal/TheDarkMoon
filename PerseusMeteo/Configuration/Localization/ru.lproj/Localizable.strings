@@ -30,7 +30,7 @@
 /* Redirect Alert */
 
 "Redirect Alert: title" = "Службы Локации.";
-"Redirect Alert: message" = "Статус Гео Доступа можно актуализировать через Системные Настройки.";
+"Redirect Alert: message" = "Статус Гео Доступа можно определить заново через Системные Настройки.";
 "Redirect Alert: cancel" = "Хорошо";
 "Redirect Alert: function" = "Системные Настройки";
 
@@ -90,7 +90,7 @@
 "GeoAccess: .allowed" = "Предоставлен";
 "GeoAccess: .notAllowed" = "Запрещено";
 
-"Geo Couple" = "Широта, Долгота";
+"Geo Couple" = "Широта,Долгота";
 
 "Button: Update Geo Access" = "Обновить Геодоступ";
 "Button: Refresh Current Location" = "Обновить Координаты";
@@ -133,9 +133,28 @@
 "Unit: mb" = "мбар";
 
 "Unit: mm" = "мм";
+"Unit: mm/h" = "мм/ч";
 
-"Label: Sunrise" = "Восход";
-"Label: Sunset" = "Заход";
+"Label: Sunrise" = "Восход солнца";
+"Label: Sunset" = "Заход солнца";
+
+"Label: Moonrise" = "Восход луны";
+"Label: Moonset" = "Заход луны";
+
+"Label: UV Index" = "УФ-индекс";
+"Label: Moon Phase" = "Фаза луны";
+"Label: Probability" = "Осадки";
+"Label: Rain" = "Дождь";
+"Label: Snow" = "Снег";
+
+"ToolTip: Probability OM" = "Вероятность осадков сегодня";
+"ToolTip: Probability OW" = "";
+
+"ToolTip: Rain OM" = "Прогнозируемый дождь сегодня";
+"ToolTip: Rain OW" = "Прогнозируемый дождь на ближайший час";
+
+"ToolTip: Snow OM" = "Прогнозируемый снег сегодня";
+"ToolTip: Snow OW" = "Прогнозируемый снег на ближайший час";
 
 /* Time */
 
@@ -144,7 +163,7 @@
 
 "Postfix: Year" = " г.";
 
-"Prefix: Last One" = "Расчет от";
+"Prefix: Last One" = "Данные от";
 
 /* Forecast View */
 
@@ -199,8 +218,14 @@
 
 "Section: Special Options" = "Дополнительные настройки";
 
-"OpenWeather: Lock" = "Скрыть";
-"OpenWeather: Unlock" = "Показать";
+"Label: Proxy" = "Прокся";
+"Label: ProxyCredentials" = "IP:Порт";
+"IP:Port:Login:Password" = "IP:Порт:Логин:Пароль";
+"Button Proxy: Save" = "Сохр.";
+"Button Proxy: Lock" = "Закр.";
+
+"Button: Lock" = "Скрыть";
+"Button: Unlock" = "Показать";
 "OpenWeather: Hidden" = "Скрытая замочная скважина...";
 "OpenWeather: Editable" = "Нужен токен (ключ)";
 
@@ -218,8 +243,8 @@
 "Option: SecondLine" = "Вторая строка";
 "Option: ToolTip" = "Подсказка";
 "Option: Current Provider" = "Поставщики";
-"Option: For Meteo Data" = "Метео данные";
-"Option: For Geo Data" = "Гео справочник";
+"Option: For Meteo Data" = "Данные";
+"Option: For Geo Data" = "Гео";
 
 "StatusMenus: feelsLike" = "По ощущениям";
 "StatusMenus: direction" = "Направление";

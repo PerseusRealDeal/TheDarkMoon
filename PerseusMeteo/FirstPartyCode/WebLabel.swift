@@ -133,6 +133,6 @@ class WebLabel: NSTextField {
     }
 
     override func mouseUp(with event: NSEvent) {
-        AppGlobals.openDefaultBrowser(string: weblink)
+        openDefaultBrowser(string: weblink)
     }
 }

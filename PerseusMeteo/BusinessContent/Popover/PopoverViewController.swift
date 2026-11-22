@@ -89,7 +89,7 @@ public class PopoverViewController: NSViewController {
     }
 
     @IBAction func fetchMeteoFactsButtonTapped(_ sender: NSButton) {
-        if viewLocation.locationCard == .current, AppGlobals.currentLocation == nil {
+        if viewLocation.locationType == .current, AppGlobals.currentLocation == nil {
             let text = "Coordinates update is required".localizedValue
             log.message(text, .notice, .custom, .enduser)
             return
@@ -142,7 +142,10 @@ public class PopoverViewController: NSViewController {
                 }, completionHandler: nil)
             }*/
             self.viewWeather.alphaValue = 1.0
+            self.viewWeather.isHidden = false
+
             self.viewForecast.alphaValue = 0.0
+            self.viewForecast.isHidden = true
         } else {
             // Show forecast view
             /*
@@ -156,7 +159,10 @@ public class PopoverViewController: NSViewController {
                 }, completionHandler: nil)
             }*/
             self.viewWeather.alphaValue = 0.0
+            self.viewWeather.isHidden = true
+
             self.viewForecast.alphaValue = 1.0
+            self.viewForecast.isHidden = false
         }
     }
 
@@ -201,17 +207,17 @@ public class PopoverViewController: NSViewController {
     // MARK: - Contract
 
     @objc public func reloadData() {
-        guard let weather = self.viewWeather, let forecast = self.viewForecast else {
-            return
-        }
 
         ContentCoordinator.shared.statusMenus.reloadData()
 
-        weather.reloadData()
-        forecast.reloadData(saveSelection: true)
-        viewLocation.reloadData()
+        self.viewLocation.reloadData()
+        self.viewWeather?.reloadData()
+
+        self.viewForecast.forecastReader.refreshData()
+        self.viewForecast.reloadData(saveSelection: true)
 
         self.refreshCallInformation()
+
     }
 
     public func reloadWeatherData() {
@@ -236,11 +242,11 @@ public class PopoverViewController: NSViewController {
         self.refreshCallInformation()
     }
 
-    public func startAnimationProgressIndicator(_ section: MeteoCategory,
+    public func startAnimationProgressIndicator(_ section: MeteoDataCategory,
                                                 _ sender: Any? = nil) {
 
         switch section {
-        case .weather:
+        case .currentWeather:
             viewWeather?.startProgressIndicator = true
         case .forecast:
             viewForecast?.startProgressIndicator = true
@@ -257,11 +263,11 @@ public class PopoverViewController: NSViewController {
         }
     }
 
-    public func stopAnimationProgressIndicator(_ section: MeteoCategory,
+    public func stopAnimationProgressIndicator(_ section: MeteoDataCategory,
                                                _ sender: Any? = nil) {
 
         switch section {
-        case .weather:
+        case .currentWeather:
             viewWeather?.startProgressIndicator = false
         case .forecast:
             viewForecast?.startProgressIndicator = false
@@ -284,7 +290,10 @@ public class PopoverViewController: NSViewController {
 
         let key = Notification.Name.suggestionNotification.rawValue
 
-        guard let location = notification.userInfo?[key] as? Location else { return }
+        guard let location = notification.userInfo?[key] as? Location
+        else {
+            return
+        }
 
         AppGlobals.currentLocation = nil
         AppGlobals.suggestion = location
@@ -292,7 +301,7 @@ public class PopoverViewController: NSViewController {
         AppGlobals.weather = nil
         AppGlobals.forecast = nil
 
-        viewLocation?.locationCard = .suggestion
+        viewLocation?.locationType = .suggestion
 
         viewLocation?.reloadData()
 
@@ -326,9 +335,9 @@ public class PopoverViewController: NSViewController {
 
         ContentCoordinator.cancellWeatherCall()
         ContentCoordinator.cancellForecastCall()
-        ContentCoordinator.cancellSuggestionsRequest()
+        ContentCoordinator.cancellSuggestionsCall()
 
-        viewLocation?.locationCard = AppOptions.favoriteLocationsOption.first(where: {
+        viewLocation?.locationType = AppOptions.favoriteLocationsOption.first(where: {
             $0.isOnDisplay && $0.isCurrentLocation }) != nil ? .current : .favorite
 
         AppGlobals.currentLocation = nil
@@ -358,9 +367,9 @@ public class PopoverViewController: NSViewController {
 
         // Add item to favorites
 
-        if viewLocation?.locationCard == .suggestion, var suggestion = AppGlobals.suggestion {
+        if viewLocation?.locationType == .suggestion, var suggestion = AppGlobals.suggestion {
 
-            let limit = AppGlobals.favoritesLimit
+            let limit = AppGlobals.theFavoritesLimit
             let itemsCount = AppOptions.favoriteLocationsOption.count
 
             if itemsCount == limit {
@@ -389,7 +398,7 @@ public class PopoverViewController: NSViewController {
                 AppOptions.favoriteLocationsOption.append(suggestion)
                 AppGlobals.suggestion = nil
 
-                viewLocation?.locationCard = .favorite
+                viewLocation?.locationType = .favorite
                 viewLocation?.reloadData()
 
                 let text = "Added to favorites".localizedValue
@@ -401,13 +410,13 @@ public class PopoverViewController: NSViewController {
 
         // Remove item from favorites
 
-        if viewLocation?.locationCard == .current {
+        if viewLocation?.locationType == .current {
             let text = "Current neither to add nor to remove!".localizedValue
             log.message(text, .notice, .custom, .enduser)
             return
         }
 
-        if viewLocation?.locationCard == .favorite {
+        if viewLocation?.locationType == .favorite {
 
             if let removedOneIndex = AppOptions.favoriteLocationsOption.firstIndex(
                 where: { $0.isOnDisplay && $0.isCurrentLocation == false }) {
@@ -415,7 +424,7 @@ public class PopoverViewController: NSViewController {
                 AppOptions.favoriteLocationsOption.remove(at: removedOneIndex)
                 AppOptions.favoriteLocationsOption[0].isOnDisplay = true
 
-                viewLocation?.locationCard = .current
+                viewLocation?.locationType = .current
             } else {
                 return
             }
@@ -573,35 +582,32 @@ extension PopoverViewController: PopoverViewDelegate {
 
     private func refreshCallInformation() {
 
-        var provider = ""
+        var marketName = ""
+        var webLink = ""
 
         if controlCallRequest.selectedSegment == 0 {
-            if AppGlobals.weather == nil {
-                provider = AppGlobals.meteoProviderName
-            } else {
-                provider = globals.sourceWeather.meteoDataProviderName
-            }
+
+            let weatherSource = AppGlobals.weather?.source
+
+            marketName = weatherSource?.marketName ?? AppGlobals.theMeteoProviderName
+            webLink = weatherSource?.marketNameWebLink ?? linkAuthor
         } else {
-            if AppGlobals.forecast == nil {
-                provider = AppGlobals.meteoProviderName
-            } else {
-                provider = globals.sourceForecast.meteoDataProviderName
-            }
+
+            let forecastSource = AppGlobals.forecast?.source
+
+            marketName = forecastSource?.marketName ?? AppGlobals.theMeteoProviderName
+            webLink = forecastSource?.marketNameWebLink ?? linkAuthor
         }
 
-        // let toolTip = "Label: Meteo Data Provider".localizedValue
-        let toolTipLink = provider == AppGlobals.meteoProviderName ?
-        linkAuthor : linkOpenWeather
-
-        labelMeteoProviderWebLink.weblink = "\(toolTipLink)"
-        labelMeteoProviderWebLink.text = provider
+        labelMeteoProviderWebLink.weblink = webLink
+        labelMeteoProviderWebLink.text = marketName
 
         if controlCallRequest.selectedSegment == 0 {
             buttonFetchMeteoFacts.title = "Button: Call Weather".localizedValue
-            labelMadeWithLove.stringValue = globals.sourceWeather.lastOne
+            labelMadeWithLove.stringValue = AppGlobals.currentReader.responseTime
         } else {
             buttonFetchMeteoFacts.title = "Button: Call Forecast".localizedValue
-            labelMadeWithLove.stringValue = globals.sourceForecast.lastOne
+            labelMadeWithLove.stringValue = AppGlobals.forecastReader.responseTime
         }
     }
 }

@@ -97,7 +97,7 @@ Details</string>
                                         </textFieldCell>
                                     </textField>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y6X-hh-LMO">
-                                        <rect key="frame" x="0.0" y="289" width="260" height="16"/>
+                                        <rect key="frame" x="0.0" y="289" width="298" height="16"/>
                                         <subviews>
                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="cwY-yR-UFU">
                                                 <rect key="frame" x="0.0" y="0.0" width="5" height="16"/>
@@ -113,8 +113,16 @@ Details</string>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RLn-hx-6Vh" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="acR-eJ-Gsp" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
                                                 <rect key="frame" x="225" y="0.0" width="37" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="diZ-ep-wGs">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RLn-hx-6Vh" customClass="WebLabel" customModule="Snowman" customModuleProvider="target">
+                                                <rect key="frame" x="263" y="0.0" width="37" height="16"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="ZGI-Ed-jJJ">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -129,8 +137,10 @@ Details</string>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
+                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
@@ -394,6 +404,7 @@ Details</string>
                         <outlet property="labelGeoDataOpenWeather" destination="72y-Zu-ewe" id="UHx-o1-RD8"/>
                         <outlet property="labelGeoDataServices" destination="nOr-mU-bab" id="Yho-27-4Y9"/>
                         <outlet property="labelMajorComponents" destination="S9i-sa-NCa" id="wM9-1p-LYn"/>
+                        <outlet property="labelMeteoDataOpenMeteo" destination="acR-eJ-Gsp" id="AA5-pL-Os1"/>
                         <outlet property="labelMeteoDataOpenWeather" destination="RLn-hx-6Vh" id="nDx-GH-COc"/>
                         <outlet property="labelMeteoDataServices" destination="eEf-jT-dQk" id="ZMi-Fh-wtu"/>
                         <outlet property="labelPerseusCompassDirection" destination="6s9-BN-Tbx" id="epd-D4-lhs"/>

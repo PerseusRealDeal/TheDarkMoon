@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Functional requirements [specification](/REQUIREMENTS.md) for v0.6.0.
 - Meteo data source web-link.
 - CPL dependecy to v1.7.2.
+- PGK dependecy to v1.2.2.
 - [README](/README.md)
 
 ## [0.5.5] - [2026-04-17], The Dark Moon

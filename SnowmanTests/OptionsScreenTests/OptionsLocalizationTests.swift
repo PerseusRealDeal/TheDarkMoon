@@ -42,8 +42,13 @@ class OptionsLocalizationTests: XCTestCase {
 
         // assert
 
+        let name = "Product Name".localizedValue
         let title = "Title: Options Screen".localizedValue
-        XCTAssertEqual(sut.view.window?.title, "Product Name".localizedValue + " — " + title)
+        let version = AppGlobals.theAppVersionLocalized
+
+        let expected = name + " — " + title + ". " + version
+
+        XCTAssertEqual(sut.view.window?.title, expected)
 
         let theAppOptions = "Section: App Options".localizedValue
         XCTAssertEqual(sut.boxAppOptions.title, theAppOptions + ":")
@@ -95,22 +100,22 @@ class OptionsLocalizationTests: XCTestCase {
         // arrange
 
         sut.loadView()
-        sut.controlOpenWeatherKey.isEditable = false
+        sut.textFieldOpenWeatherKey.isEditable = false
 
         sut.localize()
 
         // assert
 
-        XCTAssertEqual(sut.controlOpenWeatherKey.placeholderString,
+        XCTAssertEqual(sut.textFieldOpenWeatherKey.placeholderString,
                        "OpenWeather: Hidden".localizedValue)
-        XCTAssertEqual(sut.controlUnlockButton.title, "OpenWeather: Unlock".localizedValue)
+        XCTAssertEqual(sut.buttonUnlockOpenWeatherKey.title, "Button: Unlock".localizedValue)
 
-        sut.controlOpenWeatherKey.isEditable = true
+        sut.textFieldOpenWeatherKey.isEditable = true
         sut.localize()
 
-        XCTAssertEqual(sut.controlOpenWeatherKey.placeholderString,
+        XCTAssertEqual(sut.textFieldOpenWeatherKey.placeholderString,
                        "OpenWeather: Editable".localizedValue)
-        XCTAssertEqual(sut.controlUnlockButton.title, "OpenWeather: Lock".localizedValue)
+        XCTAssertEqual(sut.buttonUnlockOpenWeatherKey.title, "Button: Lock".localizedValue)
     }
 
     func test_Localization_of_OptionsScreen_controlDarkMode() {

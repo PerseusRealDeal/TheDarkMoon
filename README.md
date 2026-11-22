@@ -22,9 +22,9 @@ __The Status Menus Weather App__
 [![Style](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml/badge.svg)](https://github.com/perseusrealdeal/TheDarkMoon/actions/workflows/swiftlint.yml)
 [![Version](https://img.shields.io/badge/Version-0.6.0-green.svg)](/CHANGELOG.md)
 
-[![ConsolePerseusLogger](http://img.shields.io/:ConsolePerseusLogger-1.7.1-green.svg)](https://github.com/perseusrealdeal/ConsolePerseusLogger.git)
+[![ConsolePerseusLogger](http://img.shields.io/:ConsolePerseusLogger-1.7.2-green.svg)](https://github.com/perseusrealdeal/ConsolePerseusLogger.git)
 [![PerseusDarkMode](http://img.shields.io/:PerseusDarkMode-2.2.0-green.svg)](https://github.com/perseusrealdeal/PerseusDarkMode.git)
-[![PerseusGeoKit](http://img.shields.io/:PerseusGeoKit-1.2.1-green.svg)](https://github.com/perseusrealdeal/PerseusGeoKit.git)
+[![PerseusGeoKit](http://img.shields.io/:PerseusGeoKit-1.2.2-green.svg)](https://github.com/perseusrealdeal/PerseusGeoKit.git)
 
 </div>
 
@@ -266,10 +266,10 @@ First-party software
 
 | Type     | License                            | Name                                                                                                      |
 | -------- | :--------------------------------: | --------------------------------------------------------------------------------------------------------- |
-| Package  | MIT                                | [ConsolePerseusLogger v1.7.1](https://github.com/perseusrealdeal/ConsolePerseusLogger/releases/tag/1.7.1) |
+| Package  | MIT                                | [ConsolePerseusLogger v1.7.2](https://github.com/perseusrealdeal/ConsolePerseusLogger/releases/tag/1.7.2) |
 | Class    | MIT                                | [PerseusLogger](https://gist.github.com/perseusrealdeal/df456a9825fcface44eca738056eb6d5)                 |
 | Package  | MIT                                | [PerseusDarkMode v2.2.0](https://github.com/perseusrealdeal/PerseusDarkMode/releases/tag/2.2.0)           |
-| Package  | MIT                                | [PerseusGeoKit v1.2.1](https://github.com/perseusrealdeal/PerseusGeoKit/releases/tag/1.2.1)               |
+| Package  | MIT                                | [PerseusGeoKit v1.2.2](https://github.com/perseusrealdeal/PerseusGeoKit/releases/tag/1.2.2)               |
 | Class    | MIT                                | [PerseusCompassDirection](https://gist.github.com/perseusrealdeal/3b053b2390d704f561ec52c6477b5cf2)       |
 | Variable | MIT                                | [PerseusTimeFormat](https://gist.github.com/perseusrealdeal/7aa89d78d9b1c220cc06682be8908a97)             |
 | Class    | MIT                                | [MessageLabel](https://gist.github.com/PerseusRealDeal/dbfed6e01ed80be084983738ba713654)                  |
@@ -372,12 +372,12 @@ Credits
 </table>
 
 > [!NOTE]
-> The Apple weather icons are used to indicate different weather conditions, like fog or haze.
+> The Apple weather icons, [SF Symbols](https://developer.apple.com/design/human-interface-guidelines/sf-symbols) are used to indicate different weather conditions, like fog or haze.
 
 > [!IMPORTANT]
 > The Open-Meteo `logo` taken from [`https://open-meteo.com/favicon.ico`](https://open-meteo.com/favicon.ico).</br>
 > The OpenWeather `logo` taken from [`https://github.com/openweathermap`](https://github.com/openweathermap).</br>
-> The weather conditions icons taken from [`sf-symbols-online`](https://github.com/andrewtavis/sf-symbols-online).
+> The weather conditions icons taken from [`sf-symbols-online`](https://github.com/andrewtavis/sf-symbols-online), and partly from the [SF Symbols app](https://developer.apple.com/sf-symbols/).
 
 - Artwork tool: [GIMP](https://www.gimp.org/) / [2.10.36](https://download.gimp.org/gimp/v2.10/osx/) for macOS 10.12 Sierra or newer
 - Language support: [Reverso](https://www.reverso.net/) 

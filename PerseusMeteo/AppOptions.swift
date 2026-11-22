@@ -1,11 +1,11 @@
 //
 //  AppUserDefaults.swift
-//  PerseusMeteo
+//  TheDarkMoon
 //
 //  Created by Mikhail Zhigulin in 7532.
 //
-//  Copyright © 7532 - 7534 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7532 - 7534 PerseusRealDeal
+//  Copyright © 7532 - 7535 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7532 - 7535 PerseusRealDeal
 //
 //  The year starts from the creation of the world in the Star temple
 //  according to a Slavic calendar. September, the 1st of Slavic year.
@@ -17,57 +17,109 @@
 
 import Foundation
 
+// MARK: - Debug API Samples
+
+let useOpenMeteoSuggestionsSample = false
+let useOpenWeatherSuggestionsSample = false
+
+let useOpenMeteoCurrentSample = false
+let useOpenMeteoForecastSample = false
+
+let useOpenWeatherMapCurrentSample = false
+let useOpenWeatherMapForecastSample = false
+
+// MARK: - Debug Proxy
+
+let useProxyDebug = false
+
+let proxyCredentialsServerPortDebug = "" // ip/domain:port
+let proxyCredentialsLoginPasswordDebug = "" // login:password
+
+let proxyServerPortDebug: PerseusProxyServerPort? =
+PerseusProxyServerPort(proxyCredentialsServerPortDebug)
+let proxyLoginPasswordDebug: PerseusProxyLoginPassword? =
+PerseusProxyLoginPassword(proxyCredentialsLoginPasswordDebug)
+
+// MARK: - KeyChain Credentials
+
+let proxyKeyChain = (service: "Snowman Proxy Service",
+                     account: "Snowman",
+                     description: "Proxy Login and Password")
+
+let openWeatherKeyChain = (service: "Snowman Weather Service",
+                           account: "Snowman",
+                           description: "OpenWeatherMap API key")
+
+// MARK: - Notifications
+
+extension Notification.Name {
+    public static let meteoDataOptionsNotification =
+        Notification.Name("meteoDataOptionsNotification")
+    public static let updateCurrentWeatherByTimerCommand =
+        Notification.Name("updateCurrentWeatherByTimerCommand")
+    public static let proxyCredentialsChangedNotification =
+        Notification.Name("proxyCredentialsChangedNotification")
+}
+
 // MARK: - Keys
 
 // public let OPEN_WEATHER_API_KEY_OPTION_KEY = "OPEN_WEATHER_API_OPTION_KEY"
-public let OPEN_WEATHER_API_KEY_TEXT_LIMIT = 32
+let OPEN_WEATHER_API_KEY_TEXT_LIMIT = 32
+let PROXY_CREDENTIALS_TEXT_LIMIT = 32
 
-public let LANGUAGE_OPTION_KEY = "LANGUAGE_OPTION_KEY"
-public let LANGUAGE_OPTION_DEFAULT = LanguageOption.system
+let PROXY_OPTION_KEY = "PROXY_OPTION_KEY"
+let PROXY_OPTION_DEFAULT = false
 
-public let TEMPERATURE_OPTION_KEY = "TEMPERATURE_OPTION_KEY"
-public let TEMPERATURE_OPTION_DEFAULT = TemperatureOption.imperial
+let LANGUAGE_OPTION_KEY = "LANGUAGE_OPTION_KEY"
+let LANGUAGE_OPTION_DEFAULT = LanguageOption.system
 
-public let WINDSPEED_OPTION_KEY = "WINDSPEED_OPTION_KEY"
-public let WINDSPEED_OPTION_DEFAULT = WindSpeedOption.mph
+let TEMPERATURE_OPTION_KEY = "TEMPERATURE_OPTION_KEY"
+let TEMPERATURE_OPTION_DEFAULT = TemperatureOption.imperial
 
-public let PRESSURE_OPTION_KEY = "PRESSURE_OPTION_KEY"
-public let PRESSURE_OPTION_DEFAULT = PressureOption.mb
+let WINDSPEED_OPTION_KEY = "WINDSPEED_OPTION_KEY"
+let WINDSPEED_OPTION_DEFAULT = WindSpeedOption.mph
 
-public let TIME_OPTION_KEY = "TIME_OPTION_KEY"
-public let TIME_OPTION_DEFAULT = TimeFormatOption.system
+let PRESSURE_OPTION_KEY = "PRESSURE_OPTION_KEY"
+let PRESSURE_OPTION_DEFAULT = PressureOption.mb
 
-public let DISTANCE_OPTION_KEY = "DISTANCE_OPTION_KEY"
-public let DISTANCE_OPTION_DEFAULT = LengthOption.mile
+let TIME_OPTION_KEY = "TIME_OPTION_KEY"
+let TIME_OPTION_DEFAULT = TimeFormatOption.system
 
-public let SUGGESTIONS_REQUEST_OPTION_KEY = "SUGGESTIONS_REQUEST_OPTION_KEY"
-public let SUGGESTIONS_REQUEST_OPTION_DEFAULT = false
+let DISTANCE_OPTION_KEY = "DISTANCE_OPTION_KEY"
+let DISTANCE_OPTION_DEFAULT = LengthOption.mile
 
-public let FAVORITE_LOCATIONS_OPTION_KEY = "FAVORITE_LOCATIONS_OPTION_KEY"
-public let FAVORITE_LOCATIONS_OPTION_DEFAULT: [Location] =
+let SUGGESTIONS_REQUEST_OPTION_KEY = "SUGGESTIONS_REQUEST_OPTION_KEY"
+let SUGGESTIONS_REQUEST_OPTION_DEFAULT = false
+
+let FAVORITE_LOCATIONS_OPTION_KEY = "FAVORITE_LOCATIONS_OPTION_KEY"
+let FAVORITE_LOCATIONS_OPTION_DEFAULT: [Location] =
 [
     Location(isCurrent: true, isOnDisplay: true)
 ]
 
-public let STATUSMENUS_OPTION_KEY = "STATUSMENUS_OPTION_KEY"
-public let STATUSMENUS_OPTION_DEFAULT = false
+let STATUSMENUS_OPTION_KEY = "STATUSMENUS_OPTION_KEY"
+let STATUSMENUS_OPTION_DEFAULT = false
 
-public let STATUSMENUS_PERIOD_OPTION_KEY = "STATUSMENUS_PERIOD_OPTION_KEY"
-public let STATUSMENUS_PERIOD_OPTION_DEFAULT = StatusMenusUpdatePeriodOption.none
+let STATUSMENUS_PERIOD_OPTION_KEY = "STATUSMENUS_PERIOD_OPTION_KEY"
+let STATUSMENUS_PERIOD_OPTION_DEFAULT = StatusMenusUpdatePeriodOption.none
 
-public let STATUSMENUS_VIEW_OPTIONS_KEY = "STATUSMENUS_VIEW_OPTION_KEY"
-public let STATUSMENUS_VIEW_OPTIONS_DEFAULT = StatusMenusViewOptions(
+let STATUSMENUS_VIEW_OPTIONS_KEY = "STATUSMENUS_VIEW_OPTION_KEY"
+let STATUSMENUS_VIEW_OPTIONS_DEFAULT = StatusMenusViewOptions(
     twoLines: false, secondLine: .wind, toolTipLeft: .direction, toolTipRight: .gust
 )
 
-public let METEO_PROVIDER_OPTION_KEY = "METEO_PROVIDER_OPTION_KEY"
-public let METEO_PROVIDER_OPTION_DEFAULT = MeteoProvider.serviceOpenWeatherMap
+let METEO_PROVIDER_OPTION_KEY = "METEO_PROVIDER_OPTION_KEY"
+let METEO_PROVIDER_OPTION_DEFAULT = MeteoProvider.serviceOpenMeteo
 
-public let GEOCODING_PROVIDER_OPTION_KEY = "GEOCODING_PROVIDER_OPTION_KEY"
-public let GEOCODING_PROVIDER_OPTION_DEFAULT = GeoCodingProvider.serviceOpenWeatherMap
+let GEOCODING_PROVIDER_OPTION_KEY = "GEOCODING_PROVIDER_OPTION_KEY"
+let GEOCODING_PROVIDER_OPTION_DEFAULT = GeoCodingProvider.serviceOpenMeteo
+
+let PROXY_SERVER_PORT_KEY = "PROXY_SERVER_PORT_KEY"
+let PROXY_SERVER_PORT_DEFAULT = ""
 
 // MARK: - User Defaults
 
+// swiftlint:disable:next type_body_length
 class AppOptions {
 
     // MARK: - Special options
@@ -234,17 +286,110 @@ class AppOptions {
         }
     }
 
+    // MARK: - Proxy Credentials
+
+    public static var proxyOption: Bool {
+        get {
+            let ud = AppGlobals.userDefaults
+
+            let result = ud.valueExists(forKey: PROXY_OPTION_KEY) ?
+            ud.bool(forKey: PROXY_OPTION_KEY) : PROXY_OPTION_DEFAULT
+
+            return result
+        }
+        set {
+            let ud = AppGlobals.userDefaults
+            ud.setValue(newValue, forKey: PROXY_OPTION_KEY)
+        }
+    }
+
+    public static var proxyServerPort: String? {
+        get {
+            let ud = AppGlobals.userDefaults
+
+            let result = ud.valueExists(forKey: PROXY_SERVER_PORT_KEY) ?
+            ud.string(forKey: PROXY_SERVER_PORT_KEY) : PROXY_SERVER_PORT_DEFAULT
+
+            return result
+        }
+        set {
+            let ud = AppGlobals.userDefaults
+            ud.setValue(newValue, forKey: PROXY_SERVER_PORT_KEY)
+        }
+    }
+
+    public static var proxyLoginPassword: String? {
+        get {
+            // Secret
+            let defender = AppGlobals.dataDefender
+            var secret: String?
+
+            // Load value from Keychain
+            do {
+                let credentials = SecretCredentials(
+                    service: proxyKeyChain.service,
+                    account: proxyKeyChain.account,
+                    description: proxyKeyChain.description
+                )
+
+                secret = try defender.load(credentials)
+            } catch DataDefenderError.unhandledError {
+                return nil // Rejected to load a value
+            } catch {
+                return "" // There's no value
+            }
+
+            // The value should meet PROXY_CREDENTIALS_TEXT_LIMIT
+            guard let text = secret, !text.isEmpty else { return secret }
+
+            let limit = PROXY_CREDENTIALS_TEXT_LIMIT
+
+            if text.count > limit {
+                let logMsg = "[\(type(of: self))].\(#function): The line is out of length"
+                log.message(logMsg, .error)
+            }
+
+            return secret
+        }
+        set {
+            let value = newValue ?? ""
+
+            // Update secret value
+            let defender = AppGlobals.dataDefender
+            let credentials = SecretCredentials(
+                secret: value,
+                service: proxyKeyChain.service,
+                account: proxyKeyChain.account,
+                description: proxyKeyChain.description
+            )
+
+            if value.isEmpty {
+                // Remove secret
+                try? defender.remove(credentials)
+            } else {
+                // Save secret
+                try? defender.save(credentials)
+            }
+        }
+    }
+
     // MARK: - OpenWeather API Key Option
 
     public static var keyOpenWeatherAPIOption: String? {
         get {
             // Secret
-            let defender = globals.dataDefender
+            let defender = AppGlobals.dataDefender
             var secret: String?
 
             // Load value from Keychain
             do {
-                secret = try defender.load(OpenWeatherCredentials())
+                let credentials = SecretCredentials(
+                    service: openWeatherKeyChain.service,
+                    account: openWeatherKeyChain.account,
+                    description: openWeatherKeyChain.description
+                )
+
+                secret = try defender.load(credentials)
             } catch DataDefenderError.unhandledError {
                 return nil // Rejected to load a value
             } catch {
@@ -257,8 +402,8 @@ class AppOptions {
             let limit = OPEN_WEATHER_API_KEY_TEXT_LIMIT
 
             if text.count > limit {
-                let secret = "[\(type(of: self))].\(#function) The key is out of length."
-                log.message(secret, .error)
+                let logMsg = "[\(type(of: self))].\(#function): The line is out of length"
+                log.message(logMsg, .error)
             }
 
             return secret
@@ -267,8 +412,13 @@ class AppOptions {
             let value = newValue ?? ""
 
             // Update secret value
-            let defender = globals.dataDefender
-            let credentials = OpenWeatherCredentials(secret: value)
+            let defender = AppGlobals.dataDefender
+            let credentials = SecretCredentials(
+                secret: value,
+                service: openWeatherKeyChain.service,
+                account: openWeatherKeyChain.account,
+                description: openWeatherKeyChain.description
+            )
 
             if value.isEmpty {
                 // Remove secret
@@ -276,6 +426,7 @@ class AppOptions {
             } else {
                 // Save secret
                 try? defender.save(credentials)
+                log.message("SAVED", .debug, .standard)
             }
         }
     }
@@ -454,14 +605,30 @@ extension AppOptions {
 
         ud.removeObject(forKey: DARK_MODE_USER_CHOICE_KEY)
         ud.removeObject(forKey: DARK_MODE_SETTINGS_KEY)
+
         ud.removeObject(forKey: LANGUAGE_OPTION_KEY)
+
+        ud.removeObject(forKey: SUGGESTIONS_REQUEST_OPTION_KEY)
+        ud.removeObject(forKey: FAVORITE_LOCATIONS_OPTION_KEY)
+
+        ud.removeObject(forKey: STATUSMENUS_OPTION_KEY)
+        ud.removeObject(forKey: STATUSMENUS_PERIOD_OPTION_KEY)
+        ud.removeObject(forKey: STATUSMENUS_VIEW_OPTIONS_KEY)
+
+        ud.removeObject(forKey: METEO_PROVIDER_OPTION_KEY)
+        ud.removeObject(forKey: GEOCODING_PROVIDER_OPTION_KEY)
+
         ud.removeObject(forKey: TEMPERATURE_OPTION_KEY)
         ud.removeObject(forKey: WINDSPEED_OPTION_KEY)
         ud.removeObject(forKey: PRESSURE_OPTION_KEY)
         ud.removeObject(forKey: TIME_OPTION_KEY)
-        ud.removeObject(forKey: SUGGESTIONS_REQUEST_OPTION_KEY)
+        ud.removeObject(forKey: DISTANCE_OPTION_KEY)
 
-        self.keyOpenWeatherAPIOption = nil
+        ud.removeObject(forKey: PROXY_OPTION_KEY)
+        ud.removeObject(forKey: PROXY_SERVER_PORT_KEY)
+
+        self.proxyLoginPassword = nil // Remove from KeyChain
+        self.keyOpenWeatherAPIOption = nil // Remove from KeyChain
     }
 }
 

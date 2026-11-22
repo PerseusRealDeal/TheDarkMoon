@@ -1,14 +1,14 @@
 //
 //  AppGlobals.swift
-//  PerseusMeteo
+//  TheDarkMoon
 //
 //  Created by Mikhail Zhigulin in 7531.
 //
-//  Copyright © 7531 - 7534 Mikhail Zhigulin of Novosibirsk
-//  Copyright © 7531 - 7534 PerseusRealDeal
+//  Copyright © 7531 - 7535 Mikhail Zhigulin of Novosibirsk
+//  Copyright © 7531 - 7535 PerseusRealDeal
 //
-//  The year starts from the creation of the world in the Star temple
-//  according to a Slavic calendar. September, the 1st of Slavic year.
+//  The year starts from the creation of the world according to a Slavic calendar.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 //
 //  See LICENSE for details. All rights reserved.
 //
@@ -38,27 +38,37 @@ var isLegacy: Bool { // true for High Sierra, Mojave, Catalina
 
 struct AppGlobals {
 
+    // MARK: - App version localized info
+
+    static var theAppVersionLocalized: String {
+        guard
+            let ver = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
+        else {
+            return ""
+        }
+        return "Label: The App Version".localizedValue + ": \(ver)"
+    }
+
     // MARK: - Constants
 
-    // 79eefe16f6e4714470502074369fc77b
-    static let keyOpenWeatherAPI = ""
+    // Don't be shy. Step into the light: 79eefe16f6e4714470502074369fc77b
+    static let theKeyOpenWeatherAPI = ""
 
     static let theAppLogoImageName = "Icon"
-    static let meteoProviderName = "/\\__/\\"
+    static let theMeteoProviderName = "/\\__/\\"
 
-    static let favoritesLimit: Int = 7
-    static let useSuggestionsSample = false
+    static let theFavoritesLimit: Int = 7
 
     // MARK: - Business Data
 
     static var currentLocation: GeoPoint? {
         didSet {
             guard let description = currentLocation?.description else {
-                log.message("[\(type(of: self))].\(#function) erased", .info)
+                log.message("[\(type(of: self))].\(#function): Erased", .info)
                 return
             }
 
-            log.message("[\(type(of: self))].\(#function) \(description) setted", .info)
+            log.message("[\(type(of: self))].\(#function) \(description): Setted", .info)
             ContentCoordinator.startUpdateTimerIfNeeded()
         }
     }
@@ -69,46 +79,47 @@ struct AppGlobals {
                 let description = suggestion?.description,
                 let point = suggestion?.point
             else {
-                log.message("[\(type(of: self))].\(#function) erased", .info)
+                log.message("[\(type(of: self))].\(#function): Erased", .info)
                 return
             }
 
             let selected = "\(description): \(point)"
-            log.message("[\(type(of: self))].\(#function) \(selected) selected", .info)
+            log.message("[\(type(of: self))].\(#function) \(selected): Selected", .info)
         }
     }
 
-    static var weather: Data? {
+    static var weather: (data: Data, source: MeteoProvider)? {
         didSet {
 
-            guard let weather = weather else {
-                globals.sourceWeather.resetDataCach()
-                log.message("[\(type(of: self))].\(#function) erased and reseted", .info)
+            if weather == nil {
+                currentReader.clearData()
+                log.message("[\(type(of: self))].\(#function): Erased and reseted", .info)
                 return
             }
 
-            log.message("JSON:\n\(weather.prettyPrinted ?? "")", .info)
+            let logmsg = "\n\(weather?.data.prettyPrinted ?? "")"
+            log.message("[\(type(of: self))].\(#function): Data:\(logmsg)", .info, .standard)
+
+            currentReader.responseClientReceivedTime = Int(Date().timeIntervalSince1970)
+            currentReader.refreshData()
         }
     }
 
-    static var forecast: Data? {
+    static var forecast: (data: Data, source: MeteoProvider)? {
         didSet {
 
-            guard let forecast = forecast else {
-                globals.sourceForecast.resetDataCach()
-                log.message("[\(type(of: self))].\(#function) erased and reseted", .info)
+            if forecast == nil {
+                forecastReader.clearData()
+                log.message("[\(type(of: self))].\(#function): Erased and reseted", .info)
                 return
             }
 
-            // log.message("JSON:\n\(forecast.prettyPrinted ?? "")", .info)
-            log.message("JSON forecast:\n\(forecast.prettyPrinted ?? "")", .info, .standard)
+            // let logmsg = "\n\(forecast?.data.prettyPrinted ?? "")"
+            let logmsg = " Setted!"
+            log.message("[\(type(of: self))].\(#function): Data:\(logmsg)", .info, .standard)
 
-            // Save the date and time of the last one.
-
-            let src = ContentCoordinator.shared.screenPopover.viewForecast.dataSource
-            let currentTimeInUTC = Date().timeIntervalSince1970
-
-            src.addResponseDateAndTime(dt: Int(currentTimeInUTC))
+            forecastReader.responseClientReceivedTime = Int(Date().timeIntervalSince1970)
+            forecastReader.refreshData()
         }
     }
 
@@ -119,23 +130,22 @@ struct AppGlobals {
 
     // MARK: - Custom Services
 
-    public let languageSwitcher: LanguageSwitcher
-    public let dataDefender: PerseusDataDefender
+    static let languageSwitcher = LanguageSwitcher.shared
+    static let dataDefender = PerseusDataDefender.shared
 
-    // MARK: - UI Data Parsers
+    // MARK: - Business Data Reading Services
 
-    public let sourceWeather = WeatherDataSource()
-    public let sourceForecast = ForecastDataSource()
+    static let currentReader = CurrentReader.shared
+    static let forecastReader = ForecastReader.shared
 
-    init() {
+    // MARK: - Services Setup
 
-        log.message("[\(type(of: self))].\(#function)", .notice)
+    static func setup() {
 
-        self.languageSwitcher = LanguageSwitcher.shared
-        self.dataDefender = PerseusDataDefender.shared
+        log.message("[\(type(of: self))].\(#function)", .info, .standard)
 
-        self.sourceWeather.path = { AppGlobals.weather ?? Data() }
-        self.sourceForecast.path = { AppGlobals.forecast ?? Data() }
+        CurrentReader.shared.path = { AppGlobals.weather }
+        ForecastReader.shared.path = { AppGlobals.forecast }
 
         // Geo Logic Setup
 
@@ -161,38 +171,35 @@ struct AppGlobals {
         }
     }
 
-    static func quitTheApp() {
-        app.terminate(appDelegate)
-    }
+    // MARK: - Contract Methods
 
-    static func openDefaultBrowser(string link: String) {
+    // To request meteo data (current, forecast or suggestions)
+    static func getLocationPoint() -> GeoPoint? {
 
-        guard let url = NSURL(string: link) as URL? else {
-            log.message("[\(type(of: self))].\(#function)", .error)
-            return
-        }
+        log.message("[\(type(of: self))].\(#function)")
 
-        _ = NSWorkspace.shared.open(url) ?
-        log.message("[\(type(of: self))].\(#function) Default browser opened.") :
-        log.message("[\(type(of: self))].\(#function) Default browser not opened.")
+        var locationCardType: LocationType?
 
-        log.message("[\(type(of: self))].\(#function) called: \(link)", .info)
-    }
-
-    static func permissionStatusLocalized() -> String {
-        let status = GeoAgent.currentStatus.localizedKey.localizedValue
-        return "Label: Permission".localizedValue + ": \(status)."
-    }
-}
-
-func loadCPLProfile(_ name: String) -> (status: Bool, info: String) {
-    if let path = Bundle.main.url(forResource: name, withExtension: "json") {
-        if log.loadConfig(path) {
-            return (true, "Logging options successfully reseted.")
+        if let type = ContentCoordinator.shared.screenPopover.viewLocation?.locationType {
+            locationCardType = type
         } else {
-            return (false, "Failed to reset options.")
+            locationCardType = AppOptions.favoriteLocationsOption.first(where: {
+                $0.isOnDisplay && $0.isCurrentLocation }) != nil ? .current : .favorite
         }
-    } else {
-        return (false, "Failed to create URL.")
+
+        guard let locationCard = locationCardType else { return nil }
+
+        var point: GeoPoint?
+
+        switch locationCard {
+        case .suggestion:
+            point = AppGlobals.suggestion?.point
+        case .favorite:
+            point = AppOptions.favoriteLocationsOption.first(where: { $0.isOnDisplay })?.point
+        case .current:
+            point = AppGlobals.currentLocation
+        }
+
+        return point
     }
 }

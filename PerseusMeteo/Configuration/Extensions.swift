@@ -7,14 +7,76 @@
 //  Copyright © 7534 Mikhail Zhigulin of Novosibirsk
 //  Copyright © 7534 PerseusRealDeal
 //
-//  The year starts from the creation of the world in the Star temple
-//  according to a Slavic calendar. September, the 1st of Slavic year.
+//  The year starts from the creation of the world according to a Slavic calendar.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 //
 //  See LICENSE for details. All rights reserved.
 //
 
 import AppKit
 import CoreLocation
+
+extension String {
+
+    // How to use:
+    //
+    // let date = "2026-10-20" // "2026-11-03T19:17"
+    // let iso8601Date = "\(date):00Z".iso8601Date
+    // let isoTime = Int(iso8601Date.timeIntervalSince1970)
+    //
+    public var iso8601Date: Date? {
+
+        let formatter = ISO8601DateFormatter()
+
+        formatter.formatOptions =
+        [
+            .withInternetDateTime,
+            .withDashSeparatorInDate,
+            .withColonSeparatorInTime
+        ]
+
+        let date = formatter.date(from: self)
+
+        return date
+    }
+}
+
+extension String {
+
+    public var jsonData: Data {
+
+        let opts: JSONSerialization.ReadingOptions = [.mutableContainers]
+
+        guard let jsonData = self.data(using: .utf16) else {
+            log.message("\(#function): jsonData", .error, .standard)
+            return Data()
+        }
+
+        do {
+            let object = try JSONSerialization.jsonObject(with: jsonData, options: opts)
+            // log.message("\(#function): serialized", .info, .standard)
+
+            let data = try JSONSerialization.data(withJSONObject: object)
+            // log.message("\(#function):\n\(data.prettyPrinted ?? "")", .info, .standard)
+
+            return data
+        } catch let error as NSError {
+            log.message("\(#function): \(error.debugDescription)", .error, .standard)
+        }
+
+        return Data()
+    }
+}
+
+extension String {
+
+    public func cut(length: Int = 27, ending: String = "...") -> String {
+        guard self.count > length else {
+            return self
+        }
+        return self.prefix(length) + ending
+    }
+}
 
 extension String {
 
@@ -36,63 +98,6 @@ extension Notification.Name {
 extension GeoPoint {
     public init(_ latitude: Double, _ longitude: Double) {
         self.location = CLLocation(latitude: latitude, longitude: longitude)
-    }
-}
-
-extension String {
-
-    // swiftlint:disable:next cyclomatic_complexity
-    func toAppleIconName(isLight: Bool = true) -> String {
-
-        var iconName = self
-
-        if self.hasPrefix("OW_") {
-
-            iconName = self.replacingOccurrences(of: "OW_", with: "")
-
-            switch iconName {
-            case "01d":
-                return isLight ? "sun.max.fill" : "sun.max.dark"
-            case "01n":
-                return isLight ? "moon.fill" : "moon.dark"
-            case "02d":
-                return isLight ? "cloud.sun.fill" : "cloud.sun.dark"
-            case "02n":
-                return isLight ? "cloud.moon.fill" : "cloud.moon.dark"
-            case "03d":
-                return isLight ? "cloud.fill" : "cloud.dark"
-            case "03n":
-                return isLight ? "cloud.fill" : "cloud.dark"
-            case "04d":
-                return isLight ? "cloud.fill" : "cloud.dark"
-            case "04n":
-                return isLight ? "cloud.fill" : "cloud.dark"
-            case "09d":
-                return isLight ? "cloud.heavyrain.fill" : "cloud.heavyrain.dark"
-            case "09n":
-                return isLight ? "cloud.heavyrain.fill" : "cloud.heavyrain.dark"
-            case "10d":
-                return isLight ? "cloud.sun.rain.fill" : "cloud.sun.rain.dark"
-            case "10n":
-                return isLight ? "cloud.moon.rain.fill" : "cloud.moon.rain.dark"
-            case "11d":
-                return isLight ? "cloud.sun.bolt.fill" : "cloud.sun.bolt.dark"
-            case "11n":
-                return isLight ? "cloud.moon.bolt.fill" : "cloud.moon.bolt.dark"
-            case "13d":
-                return isLight ? "snow.fill" : "snow.dark"
-            case "13n":
-                return isLight ? "snow.fill" : "snow.dark"
-            case "50d":
-                return isLight ? "cloud.fog.fill" : "cloud.fog.dark"
-            case "50n":
-                return isLight ? "cloud.fog.fill" : "cloud.fog.dark"
-            default:
-                break
-            }
-        }
-
-        return iconName
     }
 }
 
