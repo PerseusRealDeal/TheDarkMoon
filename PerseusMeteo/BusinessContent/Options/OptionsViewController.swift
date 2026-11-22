@@ -410,8 +410,6 @@ class OptionsViewController: NSViewController, NSTextFieldDelegate {
         var text = tf.stringValue
         let limit = OPEN_WEATHER_API_KEY_TEXT_LIMIT
 
-        log.message("[\(type(of: self))].\(#function) count: \(text.count)")
-
         if text.count > limit {
             let index = text.index(text.startIndex, offsetBy: limit)
             text.removeSubrange(index..<text.endIndex)

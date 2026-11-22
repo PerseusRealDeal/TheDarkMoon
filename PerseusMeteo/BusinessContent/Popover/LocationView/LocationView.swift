@@ -103,6 +103,7 @@ class LocationView: NSView, NSTextFieldDelegate {
     @IBOutlet private(set) weak var labelGeoCodingService: NSTextField!
     @IBOutlet private(set) weak var labelGeoCodingServiceWebLink: WebLabel!
     @IBOutlet private(set) weak var labelAutoSuggestionsRequest: NSTextField!
+    @IBOutlet private(set) weak var labelProxyCredentials: NSTextField!
 
     @IBOutlet private(set) weak var buttonUpdateCurrentLocation: NSButton!
     @IBOutlet private(set) weak var checkBoxAutoSuggestionsRequest: NSButton!
@@ -248,6 +249,7 @@ class LocationView: NSView, NSTextFieldDelegate {
         self.addConstraints(newConstraints)
 
         geoSetup()
+        proxyStatusSetup()
     }
 
     private func geoSetup() {
@@ -260,6 +262,15 @@ class LocationView: NSView, NSTextFieldDelegate {
         // Connect to Geo Coordinator
 
         GeoCoordinator.register(stakeholder: self, selector: #selector(reloadData))
+    }
+
+    private func proxyStatusSetup() {
+        AppGlobals.notificationCenter.addObserver(
+            self,
+            selector: #selector(proxyCredentialsChanged),
+            name: NSNotification.Name.proxyCredentialsChangedNotification,
+            object: nil
+        )
     }
 
     // MARK: - Contract
@@ -296,50 +307,7 @@ class LocationView: NSView, NSTextFieldDelegate {
 
         reloadComboBox()
         reloadBookmarkButton()
-    }
-
-    public func makeup() {
-
-        log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
-
-        if isHighSierra {
-
-            self.appearance = LIGHT_APPEARANCE_DEFAULT_IN_USE
-
-            let currentStyle = DarkModeAgent.shared.style
-            let colorSet = currentStyle == .dark ?
-            DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
-
-            self.textFieldLocationNameSearch.appearance = colorSet
-            self.comboBoxFavorites.appearance = colorSet
-            self.checkBoxAutoSuggestionsRequest.appearance = colorSet
-            self.buttonSuggestionsRequest.appearance = colorSet
-            self.buttonUpdateCurrentLocation.appearance = colorSet
-            self.buttonBookmark.appearance = colorSet
-
-            let whiteOrBlack: Color = currentStyle == .dark ? .white : .black
-
-            self.labelPermissionStatus.textColor = whiteOrBlack
-            self.labelLocationName.textColor = whiteOrBlack
-            self.labelGeoCoordinates.textColor = whiteOrBlack
-            self.labelAutoSuggestionsRequest.textColor = whiteOrBlack
-        }
-
-        viewSuggestions.collectionView?.reloadData()
-
-        labelGeoCodingServiceWebLink.textColorOnMove = .linkWebColor
-    }
-
-    public func localize() {
-        reloadData()
-
-        REDIRECT_ALERT_TITLES = ActionAlertText(
-            title: "Redirect Alert: title".localizedValue,
-            message: "Redirect Alert: message".localizedValue,
-            buttonCancel: "Redirect Alert: cancel".localizedValue,
-            buttonFunction: "Redirect Alert: function".localizedValue
-        )
-        REDIRECT_ALERT_TITLES.titleCalculated = permissionStatusLocalized
+        proxyCredentialsChanged()
     }
 
     private func permissionStatusLocalized() -> String {
@@ -387,6 +355,19 @@ class LocationView: NSView, NSTextFieldDelegate {
         case .current:
             buttonBookmark.image = NSImage(named: NSImage.Name("NSBookmarksTemplate"))
         }
+    }
+
+    @objc private func proxyCredentialsChanged() {
+        if AppOptions.proxyOption {
+            if let proxyString = AppOptions.proxyServerPort {
+                let proxy = PerseusProxyServerPort(proxyString)
+                labelProxyCredentials.stringValue = "\(proxy.server):\(proxy.port)"
+
+                return
+            }
+        }
+
+        labelProxyCredentials.stringValue = ""
     }
 
     // MARK: - NSTextFieldDelegate Protocol
@@ -476,5 +457,56 @@ class LocationView: NSView, NSTextFieldDelegate {
             buttonBookmark.isHidden = false
             comboBoxFavorites.isHidden = false
         }
+    }
+}
+
+extension LocationView {
+
+    // MARK: - DarkMode
+
+    public func makeup() {
+
+        log.message("[\(type(of: self))].\(#function) DarkMode: \(DarkMode.style)")
+
+        if isHighSierra {
+
+            self.appearance = LIGHT_APPEARANCE_DEFAULT_IN_USE
+
+            let currentStyle = DarkModeAgent.shared.style
+            let colorSet = currentStyle == .dark ?
+            DARK_APPEARANCE_DEFAULT_IN_USE : LIGHT_APPEARANCE_DEFAULT_IN_USE
+
+            self.textFieldLocationNameSearch.appearance = colorSet
+            self.comboBoxFavorites.appearance = colorSet
+            self.checkBoxAutoSuggestionsRequest.appearance = colorSet
+            self.buttonSuggestionsRequest.appearance = colorSet
+            self.buttonUpdateCurrentLocation.appearance = colorSet
+            self.buttonBookmark.appearance = colorSet
+
+            let whiteOrBlack: Color = currentStyle == .dark ? .white : .black
+
+            self.labelPermissionStatus.textColor = whiteOrBlack
+            self.labelLocationName.textColor = whiteOrBlack
+            self.labelGeoCoordinates.textColor = whiteOrBlack
+            self.labelAutoSuggestionsRequest.textColor = whiteOrBlack
+        }
+
+        viewSuggestions.collectionView?.reloadData()
+
+        labelGeoCodingServiceWebLink.textColorOnMove = .linkWebColor
+    }
+
+    // MARK: - Localization
+
+    public func localize() {
+        reloadData()
+
+        REDIRECT_ALERT_TITLES = ActionAlertText(
+            title: "Redirect Alert: title".localizedValue,
+            message: "Redirect Alert: message".localizedValue,
+            buttonCancel: "Redirect Alert: cancel".localizedValue,
+            buttonFunction: "Redirect Alert: function".localizedValue
+        )
+        REDIRECT_ALERT_TITLES.titleCalculated = permissionStatusLocalized
     }
 }

@@ -22,6 +22,7 @@
                 <outlet property="labelGeoCoordinates" destination="kTd-g8-roX" id="W4j-3K-OKo"/>
                 <outlet property="labelLocationName" destination="TAU-CR-D1I" id="bHy-hx-tYJ"/>
                 <outlet property="labelPermissionStatus" destination="6Bi-kF-QOm" id="dG8-7k-KJh"/>
+                <outlet property="labelProxyCredentials" destination="dp1-0p-5Oh" id="uod-Uj-eqU"/>
                 <outlet property="textFieldLocationNameSearch" destination="Rpg-d7-viE" id="8R0-Wv-vHB"/>
                 <outlet property="viewContent" destination="c22-O7-iKe" id="hqr-Zc-of2"/>
                 <outlet property="viewSuggestions" destination="1ES-ZP-RZQ" id="spV-pP-F8M"/>
@@ -139,6 +140,14 @@
                         <action selector="favoritesComboBoxDidChange:" target="-2" id="gby-UB-PdG"/>
                     </connections>
                 </comboBox>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dp1-0p-5Oh">
+                    <rect key="frame" x="271" y="22" width="82" height="11"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Proxy Credentials" id="QEc-Wp-7i4">
+                        <font key="font" metaFont="miniSystem"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
                 <textField verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="TAU-CR-D1I">
                     <rect key="frame" x="119" y="7" width="113" height="19"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" title="Location Name" id="3Ma-Dd-zy7">
@@ -195,6 +204,7 @@
                 </scrollView>
             </subviews>
             <constraints>
+                <constraint firstItem="dp1-0p-5Oh" firstAttribute="top" secondItem="b6G-QQ-NM1" secondAttribute="bottom" constant="2" id="09a-Pd-Mwl"/>
                 <constraint firstItem="hqy-xq-2kg" firstAttribute="centerY" secondItem="3DI-NV-P6G" secondAttribute="centerY" id="0Xf-dU-Ram"/>
                 <constraint firstItem="kmR-XI-uQL" firstAttribute="top" secondItem="6Bi-kF-QOm" secondAttribute="bottom" id="1rM-pk-APZ"/>
                 <constraint firstItem="6Bi-kF-QOm" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="1wC-wd-bRi"/>
@@ -225,6 +235,7 @@
                 <constraint firstItem="Iyc-oz-9My" firstAttribute="centerY" secondItem="90S-jS-UkF" secondAttribute="centerY" id="t8n-RC-ofb"/>
                 <constraint firstItem="dzE-ai-CbN" firstAttribute="leading" secondItem="kTd-g8-roX" secondAttribute="trailing" constant="5" id="tGF-nu-LYF"/>
                 <constraint firstItem="hqy-xq-2kg" firstAttribute="trailing" secondItem="3DI-NV-P6G" secondAttribute="trailing" id="tUl-B1-yLJ"/>
+                <constraint firstAttribute="trailing" secondItem="dp1-0p-5Oh" secondAttribute="trailing" id="wL7-ew-8C7"/>
                 <constraint firstItem="b6G-QQ-NM1" firstAttribute="top" secondItem="3tP-nC-EJ4" secondAttribute="bottom" constant="8" id="x2g-dV-DMu"/>
                 <constraint firstItem="3DI-NV-P6G" firstAttribute="top" secondItem="dzE-ai-CbN" secondAttribute="bottom" constant="-2" id="yph-MJ-7Ct"/>
             </constraints>

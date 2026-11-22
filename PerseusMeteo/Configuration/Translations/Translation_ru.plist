@@ -234,6 +234,10 @@
 	<string>Барометр</string>
 	<key>Option: Distance</key>
 	<string>Дальность обзора</string>
+	<key>Label: Proxy</key>
+	<string>Прокся</string>
+	<key>Label: ProxyCredentials</key>
+	<string>IP:Порт</string>
 	<key>IP:Port:Login:Password</key>
 	<string>IP:Порт:Логин:Пароль</string>
 	<key>Button Proxy: Save</key>

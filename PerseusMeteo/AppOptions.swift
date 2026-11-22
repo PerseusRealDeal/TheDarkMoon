@@ -40,6 +40,16 @@ PerseusProxyServerPort(proxyCredentialsServerPortDebug)
 let proxyLoginPasswordDebug: PerseusProxyLoginPassword? =
 PerseusProxyLoginPassword(proxyCredentialsLoginPasswordDebug)
 
+// MARK: - KeyChain Credentials
+
+let proxyKeyChain = (service: "Snowman Proxy Service",
+                     account: "Snowman",
+                     description: "Proxy Login and Password")
+
+let openWeatherKeyChain = (service: "Snowman Weather Service",
+                           account: "Snowman",
+                           description: "OpenWeatherMap API key")
+
 // MARK: - Notifications
 
 extension Notification.Name {
@@ -317,9 +327,9 @@ class AppOptions {
             // Load value from Keychain
             do {
                 let credentials = SecretCredentials(
-                    service: "Snowman Proxy Service",
-                    account: "Snowman",
-                    description: "Weather Service via Proxy"
+                    service: proxyKeyChain.service,
+                    account: proxyKeyChain.account,
+                    description: proxyKeyChain.description
                 )
 
                 secret = try defender.load(credentials)
@@ -348,9 +358,9 @@ class AppOptions {
             let defender = AppGlobals.dataDefender
             let credentials = SecretCredentials(
                 secret: value,
-                service: "Snowman Proxy Service",
-                account: "Snowman",
-                description: "Weather Service via Proxy"
+                service: proxyKeyChain.service,
+                account: proxyKeyChain.account,
+                description: proxyKeyChain.description
             )
 
             if value.isEmpty {
@@ -374,9 +384,9 @@ class AppOptions {
             // Load value from Keychain
             do {
                 let credentials = SecretCredentials(
-                    service: "Snowman Weather Service",
-                    account: "Snowman",
-                    description: "Open Weather API key"
+                    service: openWeatherKeyChain.service,
+                    account: openWeatherKeyChain.account,
+                    description: openWeatherKeyChain.description
                 )
 
                 secret = try defender.load(credentials)
@@ -405,9 +415,9 @@ class AppOptions {
             let defender = AppGlobals.dataDefender
             let credentials = SecretCredentials(
                 secret: value,
-                service: "Snowman Weather Service",
-                account: "Snowman",
-                description: "Open Weather API key"
+                service: openWeatherKeyChain.service,
+                account: openWeatherKeyChain.account,
+                description: openWeatherKeyChain.description
             )
 
             if value.isEmpty {
@@ -416,6 +426,7 @@ class AppOptions {
             } else {
                 // Save secret
                 try? defender.save(credentials)
+                log.message("SAVED", .debug, .standard)
             }
         }
     }
@@ -594,14 +605,30 @@ extension AppOptions {
 
         ud.removeObject(forKey: DARK_MODE_USER_CHOICE_KEY)
         ud.removeObject(forKey: DARK_MODE_SETTINGS_KEY)
+
         ud.removeObject(forKey: LANGUAGE_OPTION_KEY)
+
+        ud.removeObject(forKey: SUGGESTIONS_REQUEST_OPTION_KEY)
+        ud.removeObject(forKey: FAVORITE_LOCATIONS_OPTION_KEY)
+
+        ud.removeObject(forKey: STATUSMENUS_OPTION_KEY)
+        ud.removeObject(forKey: STATUSMENUS_PERIOD_OPTION_KEY)
+        ud.removeObject(forKey: STATUSMENUS_VIEW_OPTIONS_KEY)
+
+        ud.removeObject(forKey: METEO_PROVIDER_OPTION_KEY)
+        ud.removeObject(forKey: GEOCODING_PROVIDER_OPTION_KEY)
+
         ud.removeObject(forKey: TEMPERATURE_OPTION_KEY)
         ud.removeObject(forKey: WINDSPEED_OPTION_KEY)
         ud.removeObject(forKey: PRESSURE_OPTION_KEY)
         ud.removeObject(forKey: TIME_OPTION_KEY)
-        ud.removeObject(forKey: SUGGESTIONS_REQUEST_OPTION_KEY)
+        ud.removeObject(forKey: DISTANCE_OPTION_KEY)
 
-        self.keyOpenWeatherAPIOption = nil
+        ud.removeObject(forKey: PROXY_OPTION_KEY)
+        ud.removeObject(forKey: PROXY_SERVER_PORT_KEY)
+
+        self.proxyLoginPassword = nil // Remove from KeyChain
+        self.keyOpenWeatherAPIOption = nil // Remove from KeyChain
     }
 }
 

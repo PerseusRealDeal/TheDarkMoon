@@ -453,6 +453,15 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("Section: Special Options".localizedExpectation,
                        "Section: Special Options".localizedValue)
 
+        XCTAssertEqual("Label: Proxy".localizedExpectation,
+                       "Label: Proxy".localizedValue)
+
+        XCTAssertEqual("Label: ProxyCredentials".localizedExpectation,
+                       "Label: ProxyCredentials".localizedValue)
+
+        XCTAssertEqual("IP:Port:Login:Password".localizedExpectation,
+                       "IP:Port:Login:Password".localizedValue)
+
         XCTAssertEqual("Button Proxy: Save".localizedExpectation,
                        "Button Proxy: Save".localizedValue)
 

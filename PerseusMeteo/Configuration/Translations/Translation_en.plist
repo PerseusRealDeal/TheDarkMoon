@@ -234,6 +234,10 @@
 	<string>Barometer</string>
 	<key>Option: Distance</key>
 	<string>Visibility</string>
+	<key>Label: Proxy</key>
+	<string>Proxy</string>
+	<key>Label: ProxyCredentials</key>
+	<string>IP:Port</string>
 	<key>IP:Port:Login:Password</key>
 	<string>IP:Port:Login:Password</string>
 	<key>Button Proxy: Save</key>
