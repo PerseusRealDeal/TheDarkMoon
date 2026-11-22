@@ -219,7 +219,10 @@
 "Section: Special Options" = "Дополнительные настройки";
 
 "Label: Proxy" = "Прокся";
+"Label: ProxyCredentials" = "IP:Порт";
 "IP:Port:Login:Password" = "IP:Порт:Логин:Пароль";
+"Button Proxy: Save" = "Сохр.";
+"Button Proxy: Lock" = "Закр.";
 
 "Button: Lock" = "Скрыть";
 "Button: Unlock" = "Показать";

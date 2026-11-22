@@ -15,10 +15,38 @@
 
 import Foundation
 
-public struct PerseusProxyCredentials {
+public struct PerseusProxyServerPort {
 
     public let server: String
     public let port: Int
+
+    public init(_ configuration: String) {
+
+        let split = configuration.split(separator: ":")
+
+        if split.count == 2 {
+
+            self.server = String(split[0])
+            self.port = Int(split[1]) ?? 80
+
+            return
+        }
+
+        self.server = ""
+        self.port = 80
+    }
+
+    public init(server: String, port: Int) {
+        self.server = server
+        self.port = port
+    }
+
+    public var credentials: String {
+        return "\(server):\(port)"
+    }
+}
+
+public struct PerseusProxyLoginPassword {
 
     public let login: String
     public let password: String
@@ -29,40 +57,22 @@ public struct PerseusProxyCredentials {
 
         if split.count == 2 {
 
-            self.server = String(split[0])
-            self.port = Int(split[1]) ?? 80
-            self.login = ""
-            self.password = ""
+            self.login =  String(split[0])
+            self.password =  String(split[1])
 
             return
-
-        } else if split.count == 4 {
-
-            self.server = String(split[0])
-            self.port = Int(split[1]) ?? 80
-            self.login = String(split[2])
-            self.password = String(split[3])
-
-            return
-
         }
 
-        self.server = ""
-        self.port = -1
         self.login = ""
         self.password = ""
     }
 
-    public init(server: String, port: Int, login: String = "", password: String = "") {
-
-        self.server = server
-        self.port = port
-
+    public init(_ login: String, _ password: String) {
         self.login = login
         self.password = password
     }
 
     public var credentials: String {
-        return "\(server):\(port):\(login):\(password)"
+        return "\(login):\(password)"
     }
 }

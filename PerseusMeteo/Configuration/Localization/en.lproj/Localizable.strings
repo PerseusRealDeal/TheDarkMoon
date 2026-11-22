@@ -222,7 +222,10 @@
 "Section: Special Options" = "Special Options";
 
 "Label: Proxy" = "Proxy";
+"Label: ProxyCredentials" = "IP:Port";
 "IP:Port:Login:Password" = "IP:Port:Login:Password";
+"Button Proxy: Save" = "Save";
+"Button Proxy: Lock" = "Lock";
 
 "Button: Lock" = "Lock";
 "Button: Unlock" = "Unlock";

@@ -453,6 +453,12 @@ class TranslationTests: XCTestCase {
         XCTAssertEqual("Section: Special Options".localizedExpectation,
                        "Section: Special Options".localizedValue)
 
+        XCTAssertEqual("Button Proxy: Save".localizedExpectation,
+                       "Button Proxy: Save".localizedValue)
+
+        XCTAssertEqual("Button Proxy: Lock".localizedExpectation,
+                       "Button Proxy: Lock".localizedValue)
+
         XCTAssertEqual("Button: Lock".localizedExpectation,
                        "Button: Lock".localizedValue)
 

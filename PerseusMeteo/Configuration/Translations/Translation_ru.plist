@@ -236,6 +236,10 @@
 	<string>Дальность обзора</string>
 	<key>IP:Port:Login:Password</key>
 	<string>IP:Порт:Логин:Пароль</string>
+	<key>Button Proxy: Save</key>
+	<string>Сохр.</string>
+	<key>Button Proxy: Lock</key>
+	<string>Закр.</string>
 	<key>Button: Lock</key>
 	<string>Скрыть</string>
 	<key>Button: Unlock</key>
