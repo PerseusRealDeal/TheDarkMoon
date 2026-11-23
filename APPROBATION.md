@@ -18,66 +18,79 @@
 
 | macOS       | Version  | Ok? | Details |
 | ----------- | -------- | --- | ------- |
-| High Sierra | 10.13.6  | ok  | -       |
-| Mojave      | 10.14.6  | ok  | -       |
-| Catalina    | 10.15.7  | ok  | -       |
-| Big Sur     | 11.7.10  | ok  | -       |
-| Monterey    | 12.7.6   | ok  | -       |
-| Ventura     | 13.7.4   | ok  | -       |
-| Sonoma      | 14.7.4   | ok  | -       |
-| Sequoia     | 15.3.1   | ok  | -       |
+| High Sierra | 10.13.6  | ??  | -       |
+| Mojave      | 10.14.6  | ??  | -       |
+| Catalina    | 10.15.7  | ??  | -       |
+| Big Sur     | 11.7.10  | ??  | -       |
+| Monterey    | 12.7.6   | ??  | -       |
+| Ventura     | 13.7.4   | ??  | -       |
+| Sonoma      | 14.7.4   | ??  | -       |
+| Sequoia     | 15.3.1   | ??  | -       |
 
 > Approbated capability: forecast<br/>
 
 | macOS       | Version  | Ok? | Details |
 | ----------- | -------- | --- | ------- |
-| High Sierra | 10.13.6  | ok  | -       |
-| Mojave      | 10.14.6  | ok  | -       |
-| Catalina    | 10.15.7  | ok  | -       |
-| Big Sur     | 11.7.10  | ok  | -       |
-| Monterey    | 12.7.6   | ok  | -       |
-| Ventura     | 13.7.4   | ok  | -       |
-| Sonoma      | 14.7.4   | ok  | -       |
-| Sequoia     | 15.3.1   | ok  | -       |
+| High Sierra | 10.13.6  | ??  | -       |
+| Mojave      | 10.14.6  | ??  | -       |
+| Catalina    | 10.15.7  | ??  | -       |
+| Big Sur     | 11.7.10  | ??  | -       |
+| Monterey    | 12.7.6   | ??  | -       |
+| Ventura     | 13.7.4   | ??  | -       |
+| Sonoma      | 14.7.4   | ??  | -       |
+| Sequoia     | 15.3.1   | ??  | -       |
 
 > Approbated capability: city search by name (direct geocoding with OpenWeather)<br/>
 
 | macOS       | Version  | Ok? | Details |
 | ----------- | -------- | --- | ------- |
-| High Sierra | 10.13.6  | ok  | -       |
-| Mojave      | 10.14.6  | ok  | -       |
-| Catalina    | 10.15.7  | ok  | -       |
-| Big Sur     | 11.7.10  | ok  | -       |
-| Monterey    | 12.7.6   | ok  | -       |
-| Ventura     | 13.7.4   | ok  | -       |
-| Sonoma      | 14.7.4   | ok  | -       |
-| Sequoia     | 15.3.1   | ok  | -       |
+| High Sierra | 10.13.6  | ??  | -       |
+| Mojave      | 10.14.6  | ??  | -       |
+| Catalina    | 10.15.7  | ??  | -       |
+| Big Sur     | 11.7.10  | ??  | -       |
+| Monterey    | 12.7.6   | ??  | -       |
+| Ventura     | 13.7.4   | ??  | -       |
+| Sonoma      | 14.7.4   | ??  | -       |
+| Sequoia     | 15.3.1   | ??  | -       |
 
 > Approbated capability: the list of favorite places (CRUD operations)<br/>
 
 | macOS       | Version  | Ok? | Details |
 | ----------- | -------- | --- | ------- |
-| High Sierra | 10.13.6  | ok  | -       |
-| Mojave      | 10.14.6  | ok  | -       |
-| Catalina    | 10.15.7  | ok  | -       |
-| Big Sur     | 11.7.10  | ok  | -       |
-| Monterey    | 12.7.6   | ok  | -       |
-| Ventura     | 13.7.4   | ok  | -       |
-| Sonoma      | 14.7.4   | ok  | -       |
-| Sequoia     | 15.3.1   | ok  | -       |
+| High Sierra | 10.13.6  | ??  | -       |
+| Mojave      | 10.14.6  | ??  | -       |
+| Catalina    | 10.15.7  | ??  | -       |
+| Big Sur     | 11.7.10  | ??  | -       |
+| Monterey    | 12.7.6   | ??  | -       |
+| Ventura     | 13.7.4   | ??  | -       |
+| Sonoma      | 14.7.4   | ??  | -       |
+| Sequoia     | 15.3.1   | ??  | -       |
 
 > Approbated capability: options (window with the app's options, also and all other options)<br/>
 
 | macOS       | Version  | Ok? | Details |
 | ----------- | -------- | --- | ------- |
-| High Sierra | 10.13.6  | ok  | -       |
-| Mojave      | 10.14.6  | ok  | -       |
-| Catalina    | 10.15.7  | ok  | -       |
-| Big Sur     | 11.7.10  | ok  | -       |
-| Monterey    | 12.7.6   | ok  | -       |
-| Ventura     | 13.7.4   | ok  | -       |
-| Sonoma      | 14.7.4   | ok  | -       |
-| Sequoia     | 15.3.1   | ok  | -       |
+| High Sierra | 10.13.6  | ??  | -       |
+| Mojave      | 10.14.6  | ??  | -       |
+| Catalina    | 10.15.7  | ??  | -       |
+| Big Sur     | 11.7.10  | ??  | -       |
+| Monterey    | 12.7.6   | ??  | -       |
+| Ventura     | 13.7.4   | ??  | -       |
+| Sonoma      | 14.7.4   | ??  | -       |
+| Sequoia     | 15.3.1   | ??  | -       |
+
+> Approbated capability: Proxy<br/>
+
+| macOS       | Version  | Ok? | Details |
+| ----------- | -------- | --- | ------- |
+| High Sierra | 10.13.6  | ??  | -       |
+| Mojave      | 10.14.6  | ??  | -       |
+| Catalina    | 10.15.7  | ??  | -       |
+| Big Sur     | 11.7.10  | ??  | -       |
+| Monterey    | 12.7.6   | ??  | -       |
+| Ventura     | 13.7.4   | ??  | -       |
+| Sonoma      | 14.7.4   | ??  | -       |
+| Sequoia     | 15.3.1   | ??  | -       |
 
 ## A3 environment
 
