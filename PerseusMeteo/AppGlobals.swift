@@ -84,7 +84,7 @@ struct AppGlobals {
             }
 
             let selected = "\(description): \(point)"
-            log.message("[\(type(of: self))].\(#function) \(selected): Selected", .info)
+            log.message("[\(type(of: self))].\(#function) \(selected)", .info, .standard)
         }
     }
 
