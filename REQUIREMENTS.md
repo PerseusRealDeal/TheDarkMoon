@@ -30,7 +30,7 @@ Idea History
 
 | Ver     | Release     | Type         | Top feature                                                 | Link |
 | ------- | ----------- | :----------: | ----------------------------------------------------------- | ---- |
-| v0.6+   | 2026-NNN-NN | Developer RC | Open-Meteo API: Current & Weather Forecast. Geocoding.      | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.6.0) |
+| v0.6+   | 2026-Dec-NN | Developer RC | Open-Meteo API: Current & Weather Forecast. Geocoding.      | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.6.0) |
 | v0.5.2+ | 2026-Apr-07 | Developer RC | Retry logic for current, forecast and suggestions calls.    | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.5.2) |
 | v0.5+   | 2025-Dec-29 | Developer RC | Multiline Status Menus.                                     | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.5.0) |
 | v0.4+   | 2025-Nov-13 | Developer RC | OpenWeather API: Direct geocoding. Location search by name. | [View](https://github.com/PerseusRealDeal/TheDarkMoon/releases/tag/0.4)   |
@@ -76,6 +76,8 @@ Meteo Terms mapping
 
 Integrations
 ==
+
+To play with API: [WebProxySession.playground.zip](https://github.com/user-attachments/files/35392102/WebProxySession.playground.zip)
 
 OpenWeather API
 --
@@ -191,13 +193,32 @@ Current Weather
 
 > [!NOTE]
 > `OpenWeather Current Weather request prepared:`
-> https://api.openweathermap.org/data/2.5/weather?lat=##.##&lon=##.##&units=imperial&lang=##&appid=###
+
+```
+
+https://api.openweathermap.org/data/2.5/weather?lat=55.02&lon=82.92&units=imperial&lang=ru&appid=###
+
+```
 
 > [!NOTE]
 > `Open-Meteo Current Weather request prepared:`
-> https://api.open-meteo.com/v1/forecast?latitude=##.##&longitude=##.##&daily=uv_index_max,moon_phase,moonrise,moonset,sunrise,sunset,precipitation_probability_max&current={PARAMS}&temperature_unit=fahrenheit&wind_speed_unit=ms&forecast_days=1
 
-`Open-Meteo Current PARAMS:` weather_code, wind_speed_10m, wind_direction_10m, wind_gusts_10m, temperature_2m, apparent_temperature, visibility, pressure_msl, relative_humidity_2m, cloud_cover, showers, rain, snowfall, precipitation, precipitation_probability, is_day
+```
+
+https://api.open-meteo.com/v1/forecast
+?latitude=55.02&longitude=82.92
+&temperature_unit=fahrenheit
+&forecast_days=1
+&wind_speed_unit=ms
+&timezone=auto
+&timeformat=unixtime
+&daily=uv_index_max,moon_phase,moonrise,moonset,sunrise,sunset,weather_code,
+ rain_sum,snowfall_sum,precipitation_probability_max,temperature_2m_min,temperature_2m_max
+&current=weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,
+ temperature_2m,apparent_temperature,visibility,pressure_msl,relative_humidity_2m,
+ cloud_cover,showers,rain,snowfall,precipitation,precipitation_probability,uv_index,is_day
+
+```
 
 Forecast
 --
@@ -236,13 +257,32 @@ Forecast
 
 > [!NOTE]
 > `OpenWeather Weather Forecast request prepared:`
-> https://api.openweathermap.org/data/2.5/forecast?lat=##.##&lon=##.##&cnt=40&units=imperial&lang=##&appid=###
+
+```
+
+https://api.openweathermap.org/data/2.5/forecast?lat=55.02&lon=82.92&cnt=40&units=imperial&lang=ru&appid=###
+
+```
 
 > [!NOTE]
 > `Open-Meteo Weather Forecast request prepared:`
-> https://api.open-meteo.com/v1/forecast?latitude=##.##&longitude=##.##&daily=sunrise,sunse,precipitation_probability_maxt&hourly={PARAMS}&temperature_unit=fahrenheit&wind_speed_unit=ms&forecast_days=16
 
-`Open-Meteo Forecast PARAMS:` weather_code, wind_speed_10m, wind_direction_10m, wind_gusts_10m, temperature_2m, apparent_temperature, visibility, pressure_msl, relative_humidity_2m, cloud_cover, showers, rain, snowfall, precipitation, precipitation_probability, is_day
+```
+
+https://api.open-meteo.com/v1/forecast
+?latitude=55.02&longitude=82.92
+&temperature_unit=fahrenheit
+&forecast_days=16
+&wind_speed_unit=ms
+&timezone=auto
+&timeformat=unixtime
+&daily=uv_index_max,moon_phase,moonrise,moonset,sunrise,sunset,weather_code,rain_sum,
+ snowfall_sum,precipitation_probability_max,temperature_2m_min,temperature_2m_max
+&hourly=weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,temperature_2m,
+ apparent_temperature,visibility,pressure_msl,relative_humidity_2m,cloud_cover,showers,rain,
+ snowfall,precipitation,precipitation_probability,uv_index,is_day
+
+```
 
 Geocoding
 --
@@ -278,7 +318,10 @@ Options
 > `Weather quick list:` Feels like, Direction, Gust, Wind, Visibility, Pressure, Humidity, Cloudiness.
 
 > [!IMPORTANT]
-> `Precipitation:` For the water equivalent in millimeter, divide by 7. E.g. 7 cm snow = 10 mm precipitation water equivalent
+> `Precipitation:` For the water equivalent in millimeter, divide by 7. E.g. 7 cm snow = 10 mm precipitation water equivalent.
+
+> [!IMPORTANT]
+> `Proxy Option:` Should go as an end-user build-in option with `ip:port:login:password` credentials input format where `ip:port` is the required part to enable feature.
 
 Special Features
 ==
