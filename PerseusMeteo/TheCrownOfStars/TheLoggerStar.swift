@@ -4,6 +4,8 @@
 //
 //  Standalone ConsolePerseusLogger.
 //
+//  Project: https://github.com/PerseusRealDeal/ConsolePerseusLogger
+//
 //  Stars to adopt for the specifics you need.
 //
 //  DESC: USE LOGGER LIKE A VARIABLE ANYWHERE YOU WANT.
@@ -15,19 +17,19 @@
 //  BASED_ON_LOGGER: https://gist.github.com/PerseusRealDeal/df456a9825fcface44eca738056eb6d5
 //  BASED_ON_REPORT: https://gist.github.com/PerseusRealDeal/9a4118301b59d43969d8edf5ebc3a571
 //
-//  Copyright © 7531 - 7534 Mikhail A. Zhigulin of Novosibirsk
-//  Copyright © 7531 - 7534 PerseusRealDeal
+//  Copyright © 7531 - 7535 Mikhail A. Zhigulin of Novosibirsk
+//  Copyright © 7531 - 7535 PerseusRealDeal
 //
 //  All rights reserved.
 //
 //
 //  MIT License
 //
-//  Copyright © 7531 - 7534 Mikhail A. Zhigulin of Novosibirsk
-//  Copyright © 7531 - 7534 PerseusRealDeal
+//  Copyright © 7531 - 7535 Mikhail A. Zhigulin of Novosibirsk
+//  Copyright © 7531 - 7535 PerseusRealDeal
 //
 //  The year starts from the creation of the world according to a Slavic calendar.
-//  September, the 1st of Slavic year. For instance, "Sep 01, 2025" is the beginning of 7534.
+//  September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -54,10 +56,11 @@ import Foundation
 import os
 
 // swiftlint:disable type_name
-typealias log = PerseusLogger // Not public in SPM package, except TheOne.
+// Not public in SPM package, except TheOne, – public otherwise.
+typealias log = PerseusLogger
 // swiftlint:enable type_name
 
-// Not public in SPM package, except TheOne.
+// Not public in SPM package, except TheOne, – public otherwise.
 protocol PerseusDelegatedMessage: AnyObject {
     var message: String { get set }
 }
@@ -308,12 +311,35 @@ public class PerseusLogger {
 
     // MARK: - Contract
 
+    public static func text(_ text: @autoclosure () -> String,
+                            _ type: Level = .debug,
+                            _ oput: Output = PerseusLogger.output,
+                            _ user: User = .operative,
+                            _ file: StaticString = #file,
+                            _ line: UInt = #line) {
+
+        PerseusLogger.textMessage(text(), type, oput, user, file, line)
+    }
+
     public static func message(_ text: @autoclosure () -> String,
                                _ type: Level = .debug,
                                _ oput: Output = PerseusLogger.output,
                                _ user: User = .operative,
                                _ file: StaticString = #file,
                                _ line: UInt = #line) {
+
+        PerseusLogger.textMessage(text(), type, oput, user, file, line)
+    }
+
+    // MARK: - Realisation
+
+    // swiftlint:disable:next function_parameter_count
+    private static func textMessage(_ text: String,
+                                    _ type: Level,
+                                    _ oput: Output,
+                                    _ user: User,
+                                    _ file: StaticString,
+                                    _ line: UInt) {
 
         guard turned == .on || user == .enduser, type.rawValue <= level.rawValue
         else {
@@ -323,7 +349,7 @@ public class PerseusLogger {
         // Get message details.
 
         let details = LogMessage(
-            text: text(),
+            text: text,
             level: type,
             localTime: getLocalTime(),
             owner: getPIDandTID(),
@@ -339,7 +365,6 @@ public class PerseusLogger {
             print(details, type, oput)
         }
     }
-
 }
 
 // MARK: - Contract for CPL json config profile

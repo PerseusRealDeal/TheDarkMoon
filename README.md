@@ -215,6 +215,8 @@ The requirements
 - [Functional specification](/REQUIREMENTS.md)
 - Translations [EN](/PerseusMeteo/Configuration/Translations/Translation_en.plist), [RU](/PerseusMeteo/Configuration/Translations/Translation_ru.plist)
 
+To play with API: [WebProxySession.playground.zip](https://github.com/user-attachments/files/35495862/WebProxySession.playground.zip)
+
 The unity and part-whole structure
 ==
 
@@ -287,9 +289,9 @@ Copyright `© 7531 - 7535 PerseusRealDeal`
 Other required licenses details
 --
 
-`© 2025 The SwiftLint Contributors` for SwiftLint.<br/>
-`© GitHub` for GitHub Action cirruslabs/swiftlint-action@v1.</br>
-`© 2025 Ghazi (mgks.dev)` for GitHubTree Viewer.
+`© 2025 The SwiftLint Contributors` **for** SwiftLint<br/>
+`© GitHub` **for** GitHub Action cirruslabs/swiftlint-action@v1</br>
+`© 2025 Ghazi (mgks.dev)` **for** GitHubTree Viewer</br>
 
 `Attribution to Open-Meteo:` [format recommendation](https://open-meteo.com/en/licence#:~:text=Weather%20data%20by%20Open-Meteo%2Ecom)<br/>
 `Attribution to OpenWeather:` [format recommendation](https://openweathermap.org/full-price#:~:text=Weather%20data%20%C2%A9%20OpenWeather)

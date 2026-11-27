@@ -77,7 +77,7 @@ Meteo Terms mapping
 Integrations
 ==
 
-To play with API: [WebProxySession.playground.zip](https://github.com/user-attachments/files/35392102/WebProxySession.playground.zip)
+To play with API: [WebProxySession.playground.zip](https://github.com/user-attachments/files/35495862/WebProxySession.playground.zip)
 
 OpenWeather API
 --
