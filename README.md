@@ -6,6 +6,7 @@
 [![Xcode](https://img.shields.io/badge/Xcode-14.2+-red.svg)](https://en.wikipedia.org/wiki/Xcode)
 [![Swift](https://img.shields.io/badge/Swift-5-orange.svg)](https://docs.swift.org/swift-book/RevisionHistory/RevisionHistory.html)
 [![SDK](https://img.shields.io/badge/SDK-UIKit%20-blueviolet.svg)](https://developer.apple.com/documentation/uikit)
+[![GitHubTree](https://img.shields.io/badge/GitHubTree-TheDarkMoon-blue)](https://githubtree.mgks.dev/repo/perseusrealdeal/thedarkmoon/main/?ref=badge)
 
 </div>
 
@@ -54,6 +55,8 @@ Meteo source switching
   </tr>
 </table>
 
+`Open-Meteo` in use by default.
+
 Contents
 ==
 
@@ -64,7 +67,6 @@ Contents
     * [Top features](#Top-features)
 * [The requirements](#The-requirements)
 * [The unity and part-whole structure](#The-unity-and-part-whole-structure)
-    * [Project directory tree](#Project-directory-tree)
     * [First-party software](#First-party-software)
     * [Third-party software](#Third-party-software)
     * [Gifts](#Gifts)
@@ -112,11 +114,22 @@ TODO: refresh GUI screens
 
 <table>
   <tr>
-    <th>Main Screen (Popover)</th>
+    <th>Main Screen (Popover). Current Weather</th>
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/7eef35cb-b8ee-4223-bd23-bf5916b9d65b" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/b8cc4ecb-28d0-4a8b-99c8-ab617e46936a" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Main Screen (Popover). Forecast</th>
+  </tr>
+  <tr>
+    <td>
+        <img src="https://github.com/user-attachments/assets/c313f6cf-fafb-4b5c-957f-578ac14a55e5" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
@@ -127,7 +140,7 @@ TODO: refresh GUI screens
   </tr>
   <tr>
     <td>
-        <img src="https://github.com/user-attachments/assets/3c3e4617-ee40-4270-b0f7-a94b989e3ad0" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/user-attachments/assets/86708aab-a266-4f39-88a8-f33ab182f274" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;"/>
     </td>
   </tr>
 </table>
@@ -160,8 +173,12 @@ Top features
 - `Pressure:` hPa, mmHg, mb
 - `Humidity:` %
 - `Cloudiness:` %
-- `Sunrise:` local time
-- `Sunset:` local time
+- `Sunrise:` local time of the location
+- `Sunset:` local time of the location
+- `Moonrise:` local time of the location
+- `Moonset:` local time of the location
+- `Moon phase:` Fraction
+- `UV index:` From 0.0 to 11+
 
 ---
 
@@ -175,8 +192,12 @@ Top features
 
 - `Multiline:` Additional string line for Status Menus item, macOS 11 (Big Sur)+ 
 - `ToolTip:` Showing extra meteo parameters for Status Menus item
-- `Keychain:` Keeping OpenWeather API key saved as a secret
+- `Keychain:` Keeping secrets saved, OpenWeather API key and Proxy login:password
 - `Logging:` Collecting log messages, special screen with [CPL](https://github.com/perseusrealdeal/ConsolePerseusLogger.git) managing options
+
+---
+
+- `Proxy:` Goes as an end-user build-in option with `ip:port:login:password` credentials input format where `ip:port` is the required part to enable feature
 
 The requirements
 ==
@@ -194,72 +215,10 @@ The requirements
 - [Functional specification](/REQUIREMENTS.md)
 - Translations [EN](/PerseusMeteo/Configuration/Translations/Translation_en.plist), [RU](/PerseusMeteo/Configuration/Translations/Translation_ru.plist)
 
+To play with API: [WebProxySession.playground.zip](https://github.com/user-attachments/files/35495862/WebProxySession.playground.zip)
+
 The unity and part-whole structure
 ==
-
-Project directory tree
---
-
-[![GitHubTree](https://img.shields.io/badge/GitHubTree-TheDarkMoon-blue)](https://githubtree.mgks.dev/repo/perseusrealdeal/thedarkmoon/main/?ref=badge)
-
-```bash
-
-.
-├── LICENSE
-├── main.yml
-├── swiftlint.yml
-├── .gitignore
-├── .swiftlint.yml
-├── PerseusMeteo
-│   ├── TheCrownOfStars
-│   │   ├── TheLoggerStar.swift
-│   │   ├── TheGeoStar.swift
-│   │   └── TheDarknessStar.swift
-│   ├── main.swift
-│   ├── AppGlobals.swift
-│   ├── AppOptions.swift
-│   ├── AppDelegate.swift
-│   ├── Configuration
-│   │   ├── MVPPattern
-│   │   │   ├── MVPPresenter.swift
-│   │   │   └── MVPViewDelegate.swift
-│   │   ├── Translations
-│   │   │   ├── Translation_en.plist
-│   │   │   └── Translation_ru.plist
-│   │   ├── Localization
-│   │   │   ├── InfoPlist.strings
-│   │   │   └── Localizable.strings
-│   │   ├── UIComponents
-│   │   │   └── ...
-│   │   ├── Assets.xcassets
-│   │   ├── Info.plist
-│   │   ├── PerseusMeteo.entitlements
-│   │   ├── AppLinks.swift
-│   │   ├── Extensions.swift
-│   │   └── CPLConfig.json
-│   ├── FirstPartyCode
-│   │   └── ...
-│   ├── BusinessContent
-│   │   └── ...
-│   ├── BusinessLogic
-│   │   └── ...
-│   └── BusinessAPIs
-│       └── ...
-├── SnowmanTests
-│   ├── Info.plist
-│   ├── TestPlan.xctestplan
-│   ├── TestingAppDelegate.swift
-│   ├── ...
-│   └── Helpers
-│       ├── LocalizedInfoPlistGift.swift
-│       ├── LocalizedExpectationGift.swift
-│       └── PerseusLogger.swift
-├── README.md
-├── CHANGELOG.md
-├── APPROBATION.md
-└── REQUIREMENTS.md
-
-```
 
 First-party software
 --
@@ -321,18 +280,18 @@ License
 
 __The Clear BSD License__, see [LICENSE](/LICENSE) for details.
 
-Copyright `© 7531 - 7534 Mikhail A. Zhigulin of Novosibirsk`<br/>
-Copyright `© 7531 - 7534 PerseusRealDeal`
+Copyright `© 7531 - 7535 Mikhail A. Zhigulin of Novosibirsk`<br/>
+Copyright `© 7531 - 7535 PerseusRealDeal`
 
 - The year starts from the creation of the world according to a Slavic calendar.
-- September, the 1st of Slavic year. For instance, "Sep 01, 2025" is the beginning of 7534.
+- September, the 1st of Slavic year. For instance, "Sep 01, 2026" is the beginning of 7535.
 
 Other required licenses details
 --
 
-`© 2025 The SwiftLint Contributors` for SwiftLint.<br/>
-`© GitHub` for GitHub Action cirruslabs/swiftlint-action@v1.</br>
-`© 2025 Ghazi (mgks.dev)` for GitHubTree Viewer.
+`© 2025 The SwiftLint Contributors` **for** SwiftLint<br/>
+`© GitHub` **for** GitHub Action cirruslabs/swiftlint-action@v1</br>
+`© 2025 Ghazi (mgks.dev)` **for** GitHubTree Viewer</br>
 
 `Attribution to Open-Meteo:` [format recommendation](https://open-meteo.com/en/licence#:~:text=Weather%20data%20by%20Open-Meteo%2Ecom)<br/>
 `Attribution to OpenWeather:` [format recommendation](https://openweathermap.org/full-price#:~:text=Weather%20data%20%C2%A9%20OpenWeather)

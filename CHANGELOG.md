@@ -6,26 +6,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Given a version number MAJOR.MINOR.PATCH, where MAJOR in 0 means developer edition.
 - Date in format YYYY-MM-DD, in this file meets Gregorian calendar only.
 
-## [0.6.0] - [2026-NN-NN], The Dark Moon
+## [0.6.0] - [2026-12-NN], The Dark Moon
 
 ### Added
 
-- The project's file structure changes.
-- Apple SF Symbols instead of OpenWeather icons.
-- Geo-coding service web link.
-- Minor screen changes.
+- Open-Meteo Current and Forecast weather (by default.)
+- Open-Meteo Geocoding (by default.)
+- Proxy as an end-user build-in option with `ip:port:login:password` input format.
+- Special web-links to weather and geo data providers where required.
 
-### Removed
+### Changed
 
-- Unused imagesets.
+- Removed unused imagesets, and added Apple SF Symbols instead of OpenWeather icons.
+- Project file structure.
 
 ### Updated
 
-- Functional requirements [specification](/REQUIREMENTS.md) for v0.6.0.
-- Meteo data source web-link.
-- CPL dependecy to v1.7.2.
-- PGK dependecy to v1.2.2.
-- [README](/README.md)
+- CPL dependecy to [v1.7.2](https://github.com/perseusrealdeal/ConsolePerseusLogger/releases/tag/1.7.2).
+- PGK dependecy to [v1.2.2](https://github.com/perseusrealdeal/PerseusGeoKit/releases/tag/1.2.2).
+
+### Refreshed
+
+- [REQUIREMENTS](/REQUIREMENTS.md).
+- [README](/README.md).
 
 ## [0.5.5] - [2026-04-17], The Dark Moon
 

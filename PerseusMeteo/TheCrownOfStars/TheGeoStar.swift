@@ -2,8 +2,9 @@
 //  TheGeoStar.swift
 //  Version: 1.2.2
 //
-//  Standalone PerseusGeoKit
+//  Standalone PerseusGeoKit.
 //
+//  Project: https://github.com/PerseusRealDeal/PerseusGeoKit
 //
 //  Stars to adopt for the specifics you need.
 //
@@ -140,7 +141,9 @@ public class GeoAgent: NSObject {
     }
 
     internal var order: GeoAgentOrder = .none
+#if os(macOS)
     internal var isReinitLocationManagerTried = false
+#endif
 
     // MARK: - Singletone
 
@@ -337,9 +340,9 @@ public class GeoAgent: NSObject {
     internal func reInitLocationManager() {
 
         log.message("[\(type(of: self))].\(#function) [REINIT LOCATION MANAGER]")
-
+#if os(macOS)
         isReinitLocationManagerTried = true
-
+#endif
         let desiredAccuracy = locationManager.desiredAccuracy
 
         locationManager = CLLocationManager()
@@ -358,7 +361,7 @@ public enum Result<Value, Error: Swift.Error> {
 
 extension CLAuthorizationStatus {
 
-    // FIXED: Xcode 16.2 triggers a compiler warning
+    // MARK: FIXED: Xcode 16.2 triggers a compiler warning
     // Not recommended forcing CustomStringConvertible conformance onto the imported enum.
     // Better extend CLAuthorizationStatus with a standard computed property
     // (e.g., customDescription) to return the corresponding string.
@@ -527,7 +530,7 @@ extension GeoAgent: CLLocationManagerDelegate {
 
         let statusLM = type(of: locationManager).authorizationStatus()
         let details = "statusLM: \(statusLM.customDescription)"
-
+#if os(macOS)
         if statusLM == .notDetermined, isAuthorizedForLocationServices {
 
             // MARK: HOTFIX: Location Services Status in OpenCore usage case.
@@ -549,8 +552,8 @@ extension GeoAgent: CLLocationManagerDelegate {
         }
 
         isReinitLocationManagerTried = false
-
-        log.message("[\(type(of: self))].\(#function) \(details)", .info)
+#endif
+        log.message("[\(type(of: self))].\(#function) \(details)", .notice)
 
         notificationCenter.post(name: GeoEvent.locationStatus.name, object: status)
     }
